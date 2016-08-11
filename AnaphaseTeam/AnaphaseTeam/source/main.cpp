@@ -18,7 +18,6 @@
 
 #include "../header/light/DirectionalLight.h"
 
-//コミット用コメント
 class MyGame : public gslib::Game
 {
 public:
