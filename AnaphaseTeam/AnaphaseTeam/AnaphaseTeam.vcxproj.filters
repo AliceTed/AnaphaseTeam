@@ -1,0 +1,237 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="ヘッダー ファイル">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="リソース ファイル">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="util">
+      <UniqueIdentifier>{32e2145c-5130-43e3-9f31-45664b3f8aa1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\actor">
+      <UniqueIdentifier>{2246a75d-e06b-40fd-a1a8-a1a3afec84c4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\math">
+      <UniqueIdentifier>{c75ae539-64b7-4c06-8841-df9a0796b241}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\entity">
+      <UniqueIdentifier>{8e23d08f-a5bb-43ce-8d92-f52edd157abe}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\renderer">
+      <UniqueIdentifier>{2b2e0ff7-f4a0-4ef5-ada6-2b104d095a2d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\data">
+      <UniqueIdentifier>{9008e198-226a-4d33-9161-f582b92ab69e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="ソース ファイル\light">
+      <UniqueIdentifier>{0a00c302-c9fb-4d6c-83d3-af30e7e3f276}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\renderer">
+      <UniqueIdentifier>{aa7ecfc3-d6f2-48b8-ac99-79c3b283e998}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\data">
+      <UniqueIdentifier>{6fe53640-bf53-41bb-8e0d-fd329785c149}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\light">
+      <UniqueIdentifier>{96bb23a3-759e-4165-9946-542bf7dcc6d7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\device">
+      <UniqueIdentifier>{8e80c7fd-3fab-4aeb-b550-21490bb8520d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\device">
+      <UniqueIdentifier>{80176e14-bebd-4e22-bc24-503cbc787920}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\array">
+      <UniqueIdentifier>{229af078-2adb-4de5-a2bf-786e9ddab527}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\scene">
+      <UniqueIdentifier>{3c3bb691-036c-4973-b0eb-7a7e54713d69}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\scene\each">
+      <UniqueIdentifier>{d7397896-6697-4bd7-b092-91c3df135684}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\scene">
+      <UniqueIdentifier>{0ef0df93-eada-4a65-ac9f-b16e5dfc4405}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\scene\each">
+      <UniqueIdentifier>{942ca9f6-110a-4039-adfb-55fefdebb8f5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\data\id">
+      <UniqueIdentifier>{0e44e006-9926-4892-8601-12b87d5e09d5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\camera">
+      <UniqueIdentifier>{8b26a032-4802-4034-ae6c-fef2d4b00838}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\camera">
+      <UniqueIdentifier>{975d37c5-230f-47f6-a801-9ad3ca6a7302}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Util\BasicShapes.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="Util\EffectGL.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="Util\RenderTarget.h">
+      <Filter>util</Filter>
+    </ClInclude>
+    <ClInclude Include="header\Transform.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="header\math\Calculate.h">
+      <Filter>ヘッダー ファイル\math</Filter>
+    </ClInclude>
+    <ClInclude Include="header\light\DirectionalLight.h">
+      <Filter>ヘッダー ファイル\light</Filter>
+    </ClInclude>
+    <ClInclude Include="header\light\PointLight.h">
+      <Filter>ヘッダー ファイル\light</Filter>
+    </ClInclude>
+    <ClInclude Include="header\light\SpotLight.h">
+      <Filter>ヘッダー ファイル\light</Filter>
+    </ClInclude>
+    <ClInclude Include="header\entity\CloneCreator.h">
+      <Filter>ヘッダー ファイル\entity</Filter>
+    </ClInclude>
+    <ClInclude Include="header\entity\EntityManager.h">
+      <Filter>ヘッダー ファイル\entity</Filter>
+    </ClInclude>
+    <ClInclude Include="header\entity\Factory.h">
+      <Filter>ヘッダー ファイル\entity</Filter>
+    </ClInclude>
+    <ClInclude Include="header\renderer\Draw2D.h">
+      <Filter>ヘッダー ファイル\renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="header\data\Loader.h">
+      <Filter>ヘッダー ファイル\data</Filter>
+    </ClInclude>
+    <ClInclude Include="header\device\Input.h">
+      <Filter>ヘッダー ファイル\device</Filter>
+    </ClInclude>
+    <ClInclude Include="header\math\Random.h">
+      <Filter>ヘッダー ファイル\math</Filter>
+    </ClInclude>
+    <ClInclude Include="header\array\Array.h">
+      <Filter>ヘッダー ファイル\array</Filter>
+    </ClInclude>
+    <ClInclude Include="header\array\Array2D.h">
+      <Filter>ヘッダー ファイル\array</Filter>
+    </ClInclude>
+    <ClInclude Include="header\scene\IScene.h">
+      <Filter>ヘッダー ファイル\scene</Filter>
+    </ClInclude>
+    <ClInclude Include="header\scene\SceneManager.h">
+      <Filter>ヘッダー ファイル\scene</Filter>
+    </ClInclude>
+    <ClInclude Include="header\scene\each\Ending.h">
+      <Filter>ヘッダー ファイル\scene\each</Filter>
+    </ClInclude>
+    <ClInclude Include="header\scene\each\GamePlay.h">
+      <Filter>ヘッダー ファイル\scene\each</Filter>
+    </ClInclude>
+    <ClInclude Include="header\scene\each\Load.h">
+      <Filter>ヘッダー ファイル\scene\each</Filter>
+    </ClInclude>
+    <ClInclude Include="header\scene\each\Title.h">
+      <Filter>ヘッダー ファイル\scene\each</Filter>
+    </ClInclude>
+    <ClInclude Include="header\scene\SceneMode.h">
+      <Filter>ヘッダー ファイル\scene</Filter>
+    </ClInclude>
+    <ClInclude Include="header\data\Release.h">
+      <Filter>ヘッダー ファイル\data</Filter>
+    </ClInclude>
+    <ClInclude Include="header\data\CastID.h">
+      <Filter>ヘッダー ファイル\data</Filter>
+    </ClInclude>
+    <ClInclude Include="header\data\LoadError.h">
+      <Filter>ヘッダー ファイル\data</Filter>
+    </ClInclude>
+    <ClInclude Include="header\data\ANIMATION_ID.h">
+      <Filter>ヘッダー ファイル\data\id</Filter>
+    </ClInclude>
+    <ClInclude Include="header\data\BGM_ID.h">
+      <Filter>ヘッダー ファイル\data\id</Filter>
+    </ClInclude>
+    <ClInclude Include="header\data\MESH_ID.h">
+      <Filter>ヘッダー ファイル\data\id</Filter>
+    </ClInclude>
+    <ClInclude Include="header\data\OCTREE_ID.h">
+      <Filter>ヘッダー ファイル\data\id</Filter>
+    </ClInclude>
+    <ClInclude Include="header\data\SE_ID.h">
+      <Filter>ヘッダー ファイル\data\id</Filter>
+    </ClInclude>
+    <ClInclude Include="header\data\TEXTURE_ID.h">
+      <Filter>ヘッダー ファイル\data\id</Filter>
+    </ClInclude>
+    <ClInclude Include="header\data\SKELETON_ID.h">
+      <Filter>ヘッダー ファイル\data\id</Filter>
+    </ClInclude>
+    <ClInclude Include="header\camera\Camera.h">
+      <Filter>ヘッダー ファイル\camera</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Util\BasicShapes.cpp">
+      <Filter>util</Filter>
+    </ClCompile>
+    <ClCompile Include="source\main.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="source\Transform.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="source\light\DirectionalLight.cpp">
+      <Filter>ソース ファイル\light</Filter>
+    </ClCompile>
+    <ClCompile Include="source\light\PointLight.cpp">
+      <Filter>ソース ファイル\light</Filter>
+    </ClCompile>
+    <ClCompile Include="source\light\SpotLight.cpp">
+      <Filter>ソース ファイル\light</Filter>
+    </ClCompile>
+    <ClCompile Include="source\renderer\Draw2D.cpp">
+      <Filter>ソース ファイル\renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="source\data\Loader.cpp">
+      <Filter>ソース ファイル\data</Filter>
+    </ClCompile>
+    <ClCompile Include="source\input\Input.cpp">
+      <Filter>ソース ファイル\device</Filter>
+    </ClCompile>
+    <ClCompile Include="source\scene\SceneManager.cpp">
+      <Filter>ソース ファイル\scene</Filter>
+    </ClCompile>
+    <ClCompile Include="source\scene\each\Ending.cpp">
+      <Filter>ソース ファイル\scene\each</Filter>
+    </ClCompile>
+    <ClCompile Include="source\scene\each\GamePlay.cpp">
+      <Filter>ソース ファイル\scene\each</Filter>
+    </ClCompile>
+    <ClCompile Include="source\scene\each\Load.cpp">
+      <Filter>ソース ファイル\scene\each</Filter>
+    </ClCompile>
+    <ClCompile Include="source\scene\each\Title.cpp">
+      <Filter>ソース ファイル\scene\each</Filter>
+    </ClCompile>
+    <ClCompile Include="source\data\Release.cpp">
+      <Filter>ソース ファイル\data</Filter>
+    </ClCompile>
+    <ClCompile Include="source\data\LoadError.cpp">
+      <Filter>ソース ファイル\data</Filter>
+    </ClCompile>
+    <ClCompile Include="source\camera\Camera.cpp">
+      <Filter>ソース ファイル\camera</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>
