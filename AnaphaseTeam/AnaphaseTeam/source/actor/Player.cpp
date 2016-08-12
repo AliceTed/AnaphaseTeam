@@ -2,17 +2,18 @@
 #include "../../header/actor/MoveState.h"
 #include "../../header/actor/StandState.h"
 Player::Player()
-	:m_action(nullptr)
+	:Actor(Transform()), m_action(nullptr)
 {}
 Player::~Player()
 {}
 void Player::initialize()
 {
+	Actor::initialize();
 	actionChange(std::make_shared<StandState>());
 }
 void Player::update(float deltatime)
 {
-	m_action->action(this);
+	m_action->action(this,deltatime);
 }
 void Player::draw()
 {
@@ -37,6 +38,9 @@ void Player::attack()
 void Player::damage()
 {
 
+}
+void Player::jump()
+{
 }
 	/*
 	* @fn

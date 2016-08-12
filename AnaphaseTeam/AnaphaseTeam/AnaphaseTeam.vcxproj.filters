@@ -201,7 +201,16 @@
     <ClInclude Include="header\actor\MoveState.h">
       <Filter>ヘッダー ファイル\actor</Filter>
     </ClInclude>
+    <ClInclude Include="header\actor\AttackState.h">
+      <Filter>ヘッダー ファイル\actor</Filter>
+    </ClInclude>
     <ClInclude Include="header\actor\StandState.h">
+      <Filter>ヘッダー ファイル\actor</Filter>
+    </ClInclude>
+    <ClInclude Include="header\actor\JumpState.h">
+      <Filter>ヘッダー ファイル\actor</Filter>
+    </ClInclude>
+    <ClInclude Include="header\actor\ICharacter.h">
       <Filter>ヘッダー ファイル\actor</Filter>
     </ClInclude>
   </ItemGroup>
@@ -264,6 +273,12 @@
       <Filter>ソース ファイル\actor</Filter>
     </ClCompile>
     <ClCompile Include="source\actor\StandState.cpp">
+      <Filter>ソース ファイル\actor</Filter>
+    </ClCompile>
+    <ClCompile Include="source\Acotr\JumpState.cpp">
+      <Filter>ソース ファイル\actor</Filter>
+    </ClCompile>
+    <ClCompile Include="source\Acotr\AttackState.cpp">
       <Filter>ソース ファイル\actor</Filter>
     </ClCompile>
   </ItemGroup>

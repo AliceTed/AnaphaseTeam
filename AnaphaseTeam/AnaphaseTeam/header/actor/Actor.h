@@ -5,17 +5,18 @@
 *@date 2016/08/11
 */
 #pragma once
+#include "../Transform.h"
 class Actor
 {
 public:
-	virtual void initialize() = 0;
+	Actor(const Transform &_transform):m_transform(_transform),m_isDead(false){}
+	virtual ~Actor() {}
+	virtual void initialize() { m_isDead = false; };
 	virtual void update(float deltatime) = 0;
 	virtual void draw() = 0;
-	virtual void finish() = 0;
-	virtual void stand() = 0;
-	virtual void move() = 0;
-	virtual void attack() = 0;
-	virtual void damage() = 0;
+	virtual void finish() {}
+
 private:
+	Transform m_transform;
 	bool m_isDead;
 };

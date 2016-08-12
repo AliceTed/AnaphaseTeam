@@ -2,7 +2,8 @@
 #include "IActionState.h"
 class MoveState:public IActionState
 {
+public:
 	MoveState();
 	~MoveState();
-	void action(Actor* _actor,float deltatime);
+	void action(ICharacter* _actor,float deltatime);
 };

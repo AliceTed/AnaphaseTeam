@@ -1,11 +1,9 @@
 #pragma once
-
 #include "IActionState.h"
-
-class StandState :public IActionState
+class JumpState :public IActionState
 {
 public:
-	StandState();
-	~StandState();
+	JumpState();
+	~JumpState();
 	void action(ICharacter* _actor, float deltatime);
 };

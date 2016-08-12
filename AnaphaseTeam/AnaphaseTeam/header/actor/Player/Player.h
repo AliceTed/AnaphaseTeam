@@ -8,9 +8,9 @@
 #include "../Actor.h"
 #include "../IActionState.h"
 #include <memory>
-
+#include "../ICharacter.h"
 typedef std::shared_ptr<IActionState> Action_Ptr;
-class Player :public Actor
+class Player :public Actor,public ICharacter
 {
 public:
 	Player();
@@ -23,6 +23,7 @@ public:
 	void move();
 	void attack();
 	void damage();
+	void jump();
 	/**
 	* @fn
 	* @brief アクションステートの切り替え関数

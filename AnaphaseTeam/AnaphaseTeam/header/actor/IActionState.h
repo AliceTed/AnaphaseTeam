@@ -1,6 +1,7 @@
 #pragma once
-class Actor;
+__interface ICharacter;
 __interface IActionState
 {
-	void action(Actor* _actor) = 0;
+public:
+	void action(ICharacter* _actor,float deltatime) = 0;
 };

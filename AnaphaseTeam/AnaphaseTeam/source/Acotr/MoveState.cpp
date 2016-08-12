@@ -1,5 +1,5 @@
 #include "../../header/actor/MoveState.h"
-#include "../../header/actor/Actor.h"
+#include "../../header/actor/ICharacter.h"
 
 
 MoveState::MoveState()
@@ -10,7 +10,7 @@ MoveState::~MoveState()
 {
 }
 
-void MoveState::action(Actor* _actor,float deltatime)
+void MoveState::action(ICharacter* _actor,float deltatime)
 {
 	_actor->move();
 }
