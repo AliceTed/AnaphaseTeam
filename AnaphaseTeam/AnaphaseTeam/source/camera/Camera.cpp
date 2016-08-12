@@ -1,4 +1,5 @@
 #include "../../header/camera/Camera.h"
+//a
 Camera::Camera(float range_Position, float range_Eye, const GSvector3 & offset)
 	:range_Position(range_Position)
 	, range_Eye(range_Eye),
