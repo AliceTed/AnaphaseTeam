@@ -9,7 +9,7 @@ void Player::initialize()
 {
 	actionChange(std::make_shared<MoveState>());
 }
-void Player::update()
+void Player::update(float deltatime)
 {
 	m_action->action(this);
 }

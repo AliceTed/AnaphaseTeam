@@ -254,9 +254,6 @@
     <ClCompile Include="source\camera\Camera.cpp">
       <Filter>ソース ファイル\camera</Filter>
     </ClCompile>
-    <ClCompile Include="header\actor\Player.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
     <ClCompile Include="source\actor\Player.cpp">
       <Filter>ソース ファイル\actor\Player</Filter>
     </ClCompile>

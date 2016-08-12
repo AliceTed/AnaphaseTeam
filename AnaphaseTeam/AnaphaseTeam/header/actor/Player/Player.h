@@ -16,7 +16,7 @@ public:
 	Player();
 	~Player();
 	void initialize();
-	void update();
+	void update(float deltatime);
 	void draw();
 	void finish();
 	void stand();

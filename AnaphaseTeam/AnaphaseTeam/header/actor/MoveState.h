@@ -4,5 +4,5 @@ class MoveState:public IActionState
 {
 	MoveState();
 	~MoveState();
-	void action(Actor* actor);
+	void action(Actor* _actor,float deltatime);
 };

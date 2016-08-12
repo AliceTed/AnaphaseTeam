@@ -138,7 +138,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="header\actor\Player.cpp" />
     <ClCompile Include="source\Acotr\MoveState.cpp" />
     <ClCompile Include="source\actor\Player.cpp" />
     <ClCompile Include="source\camera\Camera.cpp" />
