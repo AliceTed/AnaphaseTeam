@@ -5,12 +5,13 @@
 *@date 2016/08/11
 */
 #pragma once
+class Renderer;
 class Actor
 {
 public:
 	virtual void initialize() = 0;
 	virtual void update(float deltatime) = 0;
-	virtual void draw() = 0;
+	virtual void draw(const Renderer &_renderer) = 0;
 	virtual void finish() = 0;
 	virtual void stand() = 0;
 	virtual void move() = 0;
