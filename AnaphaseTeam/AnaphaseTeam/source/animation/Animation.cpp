@@ -1,8 +1,8 @@
-#include "Animation.h"
+#include "../../header/animation/Animation.h"
 #include <gslib.h>
 
 
-Animation::Animation(ANIMATION_ID anim_id, BONE_ID bone_id, unsigned int animNo,AnimationTimer timer, bool isLoop)
+Animation::Animation(ANIMATION_ID anim_id, SKELETON_ID bone_id, unsigned int animNo,AnimationTimer timer, bool isLoop)
 	:isLoop(isLoop), animNo(animNo), timer(timer),
 	anim_id(static_cast<unsigned int>(anim_id)), bone_id(static_cast<unsigned int>(bone_id))
 {

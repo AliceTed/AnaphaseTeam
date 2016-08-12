@@ -1,4 +1,4 @@
-#include "AnimationTimer.h"
+#include "../../header/animation/AnimationTimer.h"
 
 AnimationTimer::AnimationTimer(float _timer, float speed)
 	:timer(0), defTimer(_timer), speed(speed), isStart(true)

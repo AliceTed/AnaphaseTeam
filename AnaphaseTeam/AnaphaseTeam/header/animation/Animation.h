@@ -3,8 +3,8 @@
 #define _ANIMATION_H_
 
 #include "AnimationTimer.h"
-#include "ANIMATION_ID.h"
-#include "BONE_ID.h"
+#include "../data/ANIMATION_ID.h"
+#include "../data/SKELETON_ID.h"
 /*
 animation情報の管理
 
@@ -28,7 +28,7 @@ public:
 	/*
 	アニメーション番号をuintで管理していてキャストが必要ないとき用
 	*/
-	Animation(ANIMATION_ID anim_id, BONE_ID bone_id, unsigned int animNo,
+	Animation(ANIMATION_ID anim_id, SKELETON_ID bone_id, unsigned int animNo,
 		AnimationTimer timer, bool isLoop = false);
 
 	~Animation();
