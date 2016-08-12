@@ -1,5 +1,6 @@
 #include "../../header/actor/Player/Player.h"
 #include "../../header/actor/MoveState.h"
+#include "../../header/actor/StandState.h"
 Player::Player()
 	:m_action(nullptr)
 {}
@@ -7,7 +8,7 @@ Player::~Player()
 {}
 void Player::initialize()
 {
-	actionChange(std::make_shared<MoveState>());
+	actionChange(std::make_shared<StandState>());
 }
 void Player::update(float deltatime)
 {

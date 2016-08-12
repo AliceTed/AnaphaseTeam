@@ -201,6 +201,9 @@
     <ClInclude Include="header\actor\MoveState.h">
       <Filter>ヘッダー ファイル\actor</Filter>
     </ClInclude>
+    <ClInclude Include="header\actor\StandState.h">
+      <Filter>ヘッダー ファイル\actor</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Util\BasicShapes.cpp">
@@ -258,6 +261,9 @@
       <Filter>ソース ファイル\actor\Player</Filter>
     </ClCompile>
     <ClCompile Include="source\Acotr\MoveState.cpp">
+      <Filter>ソース ファイル\actor</Filter>
+    </ClCompile>
+    <ClCompile Include="source\actor\StandState.cpp">
       <Filter>ソース ファイル\actor</Filter>
     </ClCompile>
   </ItemGroup>

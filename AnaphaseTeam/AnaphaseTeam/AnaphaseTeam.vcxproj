@@ -140,6 +140,7 @@
   <ItemGroup>
     <ClCompile Include="source\Acotr\MoveState.cpp" />
     <ClCompile Include="source\actor\Player.cpp" />
+    <ClCompile Include="source\actor\StandState.cpp" />
     <ClCompile Include="source\camera\Camera.cpp" />
     <ClCompile Include="source\data\LoadError.cpp" />
     <ClCompile Include="source\data\Loader.cpp" />
@@ -163,6 +164,7 @@
     <ClInclude Include="header\actor\IActionState.h" />
     <ClInclude Include="header\actor\MoveState.h" />
     <ClInclude Include="header\actor\Player\Player.h" />
+    <ClInclude Include="header\actor\StandState.h" />
     <ClInclude Include="header\array\Array.h" />
     <ClInclude Include="header\array\Array2D.h" />
     <ClInclude Include="header\camera\Camera.h" />
