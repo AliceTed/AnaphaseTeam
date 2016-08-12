@@ -12,7 +12,6 @@ public:
 	virtual void update() = 0;
 	virtual void draw() = 0;
 	virtual void finish() = 0;
-protected:
 	virtual void stand() = 0;
 	virtual void move() = 0;
 	virtual void attack() = 0;

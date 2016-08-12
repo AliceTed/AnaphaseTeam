@@ -79,6 +79,9 @@
     <Filter Include="ソース ファイル\actor\Player">
       <UniqueIdentifier>{7c1265b2-f6eb-48d2-844d-2d054a86a670}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ヘッダー ファイル\actor\Player">
+      <UniqueIdentifier>{e5c09450-9b90-4e6b-81f4-8ebe36a23f21}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Util\BasicShapes.h">
@@ -186,10 +189,16 @@
     <ClInclude Include="header\camera\Camera.h">
       <Filter>ヘッダー ファイル\camera</Filter>
     </ClInclude>
-    <ClInclude Include="header\actor\Player.h">
+    <ClInclude Include="header\actor\Actor.h">
       <Filter>ヘッダー ファイル\actor</Filter>
     </ClInclude>
-    <ClInclude Include="header\actor\Actor.h">
+    <ClInclude Include="header\actor\Player\Player.h">
+      <Filter>ヘッダー ファイル\actor\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="header\actor\IActionState.h">
+      <Filter>ヘッダー ファイル\actor</Filter>
+    </ClInclude>
+    <ClInclude Include="header\actor\MoveState.h">
       <Filter>ヘッダー ファイル\actor</Filter>
     </ClInclude>
   </ItemGroup>
@@ -250,6 +259,9 @@
     </ClCompile>
     <ClCompile Include="source\actor\Player.cpp">
       <Filter>ソース ファイル\actor\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="source\Acotr\MoveState.cpp">
+      <Filter>ソース ファイル\actor</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

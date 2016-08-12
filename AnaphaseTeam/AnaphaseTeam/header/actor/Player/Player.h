@@ -1,0 +1,34 @@
+#pragma once
+/**
+*@file Player.h
+*@drief プレイヤークラス
+*@author 久秋雅
+*@date 2016/08/12
+*/
+#include "../Actor.h"
+#include "../IActionState.h"
+#include <memory>
+
+typedef std::shared_ptr<IActionState> Action_Ptr;
+class Player :public Actor
+{
+public:
+	Player();
+	~Player();
+	void initialize();
+	void update();
+	void draw();
+	void finish();
+	void stand();
+	void move();
+	void attack();
+	void damage();
+	/**
+	* @fn
+	* @brief アクションステートの切り替え関数
+	* @param (_action) 切り替えるアクションのShared_ptr
+	*/
+	void actionChange(Action_Ptr _action);
+private:
+	Action_Ptr m_action;
+};

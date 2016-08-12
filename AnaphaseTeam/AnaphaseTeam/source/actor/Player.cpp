@@ -1,15 +1,17 @@
-#include "../../header/actor/Player.h"
+#include "../../header/actor/Player/Player.h"
+#include "../../header/actor/MoveState.h"
 Player::Player()
+	:m_action(nullptr)
 {}
 Player::~Player()
 {}
 void Player::initialize()
 {
-
+	actionChange(std::make_shared<MoveState>());
 }
 void Player::update()
 {
-
+	m_action->action(this);
 }
 void Player::draw()
 {
@@ -34,4 +36,13 @@ void Player::attack()
 void Player::damage()
 {
 
+}
+	/*
+	* @fn
+	* @brief アクションステートの切り替え関数
+	* @param (_action) 切り替えるアクションのShared_ptr
+	*/
+void Player::actionChange(Action_Ptr _action)
+{
+	m_action = _action;
 }
