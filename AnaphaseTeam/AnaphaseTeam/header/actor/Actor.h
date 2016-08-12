@@ -9,6 +9,7 @@ class Renderer;
 class Actor
 {
 public:
+	virtual ~Actor() {}
 	virtual void initialize() = 0;
 	virtual void update(float deltatime) = 0;
 	virtual void draw(const Renderer &_renderer) = 0;
