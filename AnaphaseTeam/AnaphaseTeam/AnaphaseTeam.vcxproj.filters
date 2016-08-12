@@ -180,6 +180,9 @@
     <ClInclude Include="header\camera\Camera.h">
       <Filter>ヘッダー ファイル\camera</Filter>
     </ClInclude>
+    <ClInclude Include="header\actor\Player.h">
+      <Filter>ヘッダー ファイル\actor</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Util\BasicShapes.cpp">
