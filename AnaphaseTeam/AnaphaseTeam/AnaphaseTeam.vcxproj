@@ -157,6 +157,7 @@
     <ClCompile Include="Util\BasicShapes.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="header\actor\Actor.h" />
     <ClInclude Include="header\actor\Player.h" />
     <ClInclude Include="header\array\Array.h" />
     <ClInclude Include="header\array\Array2D.h" />
