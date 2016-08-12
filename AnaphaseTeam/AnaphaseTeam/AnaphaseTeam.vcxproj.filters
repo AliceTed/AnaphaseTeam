@@ -73,6 +73,12 @@
     <Filter Include="ソース ファイル\camera">
       <UniqueIdentifier>{975d37c5-230f-47f6-a801-9ad3ca6a7302}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\actor">
+      <UniqueIdentifier>{4900f0d3-c46c-4a57-b191-aa0aebddcd2a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\actor\Player">
+      <UniqueIdentifier>{7c1265b2-f6eb-48d2-844d-2d054a86a670}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Util\BasicShapes.h">
@@ -238,6 +244,12 @@
     </ClCompile>
     <ClCompile Include="source\camera\Camera.cpp">
       <Filter>ソース ファイル\camera</Filter>
+    </ClCompile>
+    <ClCompile Include="header\actor\Player.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="source\actor\Player.cpp">
+      <Filter>ソース ファイル\actor\Player</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
