@@ -82,6 +82,12 @@
     <Filter Include="ヘッダー ファイル\actor\Player">
       <UniqueIdentifier>{e5c09450-9b90-4e6b-81f4-8ebe36a23f21}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ヘッダー ファイル\animation">
+      <UniqueIdentifier>{df5e587a-90bc-43ee-a3f5-e07d31577869}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\animation">
+      <UniqueIdentifier>{31cadc3f-2436-46cd-a77d-8c705b5e49e1}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Util\BasicShapes.h">
@@ -213,6 +219,12 @@
     <ClInclude Include="header\actor\ICharacter.h">
       <Filter>ヘッダー ファイル\actor</Filter>
     </ClInclude>
+    <ClInclude Include="header\animation\Animation.h">
+      <Filter>ヘッダー ファイル\animation</Filter>
+    </ClInclude>
+    <ClInclude Include="header\animation\AnimationTimer.h">
+      <Filter>ヘッダー ファイル\animation</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Util\BasicShapes.cpp">
@@ -280,6 +292,12 @@
     </ClCompile>
     <ClCompile Include="source\Acotr\AttackState.cpp">
       <Filter>ソース ファイル\actor</Filter>
+    </ClCompile>
+    <ClCompile Include="source\animation\Animation.cpp">
+      <Filter>ソース ファイル\animation</Filter>
+    </ClCompile>
+    <ClCompile Include="source\animation\AnimationTimer.cpp">
+      <Filter>ソース ファイル\animation</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
