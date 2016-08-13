@@ -26,7 +26,7 @@ namespace Data
 		* @param (_func)Š®—¹‚µ‚È‚©‚Á‚½‚ÉŒÄ‚Î‚ê‚éŠÖ”
 		*/
 		template<class Func>
-		void operator ()(BOOL _isComplete, Func _func)const
+		void operator ()(bool _isComplete, Func _func)const
 		{
 			if (_isComplete)return;
 			_func();

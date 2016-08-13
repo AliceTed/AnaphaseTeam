@@ -19,7 +19,7 @@ public:
 	enumなどでアニメーションの番号を管理してるとき用
 	*/
 	template<class T>
-	Animation(ANIMATION_ID anim_id, BONE_ID bone_id,T animNo,AnimationTimer timer, bool isLoop=false)
+	Animation(ANIMATION_ID anim_id, SKELETON_ID bone_id,T animNo,AnimationTimer timer, bool isLoop=false)
 		:isLoop(isLoop), animNo(static_cast<unsigned int>(animNo)), timer(timer),
 		anim_id(static_cast<unsigned int>(anim_id)),bone_id(static_cast<unsigned int>(bone_id))
 	{

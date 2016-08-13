@@ -225,6 +225,9 @@
     <ClInclude Include="header\animation\AnimationTimer.h">
       <Filter>ヘッダー ファイル\animation</Filter>
     </ClInclude>
+    <ClInclude Include="header\data\PathConnect.h">
+      <Filter>ヘッダー ファイル\data</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Util\BasicShapes.cpp">
@@ -247,9 +250,6 @@
     </ClCompile>
     <ClCompile Include="source\renderer\Draw2D.cpp">
       <Filter>ソース ファイル\renderer</Filter>
-    </ClCompile>
-    <ClCompile Include="source\data\Loader.cpp">
-      <Filter>ソース ファイル\data</Filter>
     </ClCompile>
     <ClCompile Include="source\input\Input.cpp">
       <Filter>ソース ファイル\device</Filter>

@@ -4,7 +4,6 @@
 
 enum class BGM_ID:unsigned int
 {
-
 	SIZE
 };
 
