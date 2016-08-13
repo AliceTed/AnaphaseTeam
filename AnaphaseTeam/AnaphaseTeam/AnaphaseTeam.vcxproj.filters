@@ -52,12 +52,6 @@
     <Filter Include="ヘッダー ファイル\array">
       <UniqueIdentifier>{229af078-2adb-4de5-a2bf-786e9ddab527}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ヘッダー ファイル\scene">
-      <UniqueIdentifier>{3c3bb691-036c-4973-b0eb-7a7e54713d69}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ヘッダー ファイル\scene\each">
-      <UniqueIdentifier>{d7397896-6697-4bd7-b092-91c3df135684}</UniqueIdentifier>
-    </Filter>
     <Filter Include="ソース ファイル\scene">
       <UniqueIdentifier>{0ef0df93-eada-4a65-ac9f-b16e5dfc4405}</UniqueIdentifier>
     </Filter>
@@ -87,6 +81,12 @@
     </Filter>
     <Filter Include="ソース ファイル\animation">
       <UniqueIdentifier>{31cadc3f-2436-46cd-a77d-8c705b5e49e1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\scene">
+      <UniqueIdentifier>{3c3bb691-036c-4973-b0eb-7a7e54713d69}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\scene\each">
+      <UniqueIdentifier>{d7397896-6697-4bd7-b092-91c3df135684}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -228,6 +228,9 @@
     <ClInclude Include="header\data\PathConnect.h">
       <Filter>ヘッダー ファイル\data</Filter>
     </ClInclude>
+    <ClInclude Include="header\renderer\Draw3D.h">
+      <Filter>ヘッダー ファイル\renderer</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Util\BasicShapes.cpp">
@@ -298,6 +301,9 @@
     </ClCompile>
     <ClCompile Include="source\animation\AnimationTimer.cpp">
       <Filter>ソース ファイル\animation</Filter>
+    </ClCompile>
+    <ClCompile Include="source\renderer\Draw3D.cpp">
+      <Filter>ソース ファイル\renderer</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
