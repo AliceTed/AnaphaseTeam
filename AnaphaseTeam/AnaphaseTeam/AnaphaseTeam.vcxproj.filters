@@ -231,6 +231,9 @@
     <ClInclude Include="header\renderer\Draw3D.h">
       <Filter>ヘッダー ファイル\renderer</Filter>
     </ClInclude>
+    <ClInclude Include="header\renderer\Renderer.h">
+      <Filter>ヘッダー ファイル\renderer</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Util\BasicShapes.cpp">
@@ -303,6 +306,9 @@
       <Filter>ソース ファイル\animation</Filter>
     </ClCompile>
     <ClCompile Include="source\renderer\Draw3D.cpp">
+      <Filter>ソース ファイル\renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="source\renderer\Renderer.cpp">
       <Filter>ソース ファイル\renderer</Filter>
     </ClCompile>
   </ItemGroup>

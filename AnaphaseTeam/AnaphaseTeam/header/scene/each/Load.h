@@ -2,7 +2,6 @@
 #define _LOAD_H_
 #include "../IScene.h"
 
-class Renderer;
 class Load :public IScene
 {
 public:

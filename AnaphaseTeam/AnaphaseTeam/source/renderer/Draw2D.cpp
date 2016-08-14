@@ -54,11 +54,12 @@ void Draw2D::number(TEXTURE_ID id, const GSvector2 & _position, const GSvector2 
 void Draw2D::number(TEXTURE_ID id, const GSvector2 & _position, const GSvector2 & cuttingSize, float point, unsigned int decimalNumber, unsigned int digitNumber, const GScolor * _color) const
 {
 	GSvector2 pos = _position;
+	
 	for each (auto c in numToStr(point, decimalNumber, digitNumber))
 	{
-		bool istoken = istoken = (c == '.');
+		bool istoken = (c == '.');
 
-		float x = x = istoken ? 10 : (c - '0');
+		float x =istoken ? 10 : (c - '0');
 		x *= cuttingSize.x;
 
 		textrue(id, &pos, &GSrect(x, 0, x + cuttingSize.x, cuttingSize.y), _color);
@@ -81,7 +82,6 @@ void Draw2D::string(const std::string & text, const GSvector2 * _position, const
 	glColor4f(_color->r, _color->g, _color->b, _color->a);
 	gsTextPos(_position->x, _position->y);
 	gsDrawText(text.c_str());
-	glColor4f(1, 1, 1, 1);
 }
 
 void Draw2D::initBlend() const

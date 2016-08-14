@@ -155,6 +155,7 @@
     <ClCompile Include="source\main.cpp" />
     <ClCompile Include="source\renderer\Draw2D.cpp" />
     <ClCompile Include="source\renderer\Draw3D.cpp" />
+    <ClCompile Include="source\renderer\Renderer.cpp" />
     <ClCompile Include="source\scene\each\Ending.cpp" />
     <ClCompile Include="source\scene\each\GamePlay.cpp" />
     <ClCompile Include="source\scene\each\Load.cpp" />
@@ -200,6 +201,7 @@
     <ClInclude Include="header\math\Random.h" />
     <ClInclude Include="header\renderer\Draw2D.h" />
     <ClInclude Include="header\renderer\Draw3D.h" />
+    <ClInclude Include="header\renderer\Renderer.h" />
     <ClInclude Include="header\scene\each\Ending.h" />
     <ClInclude Include="header\scene\each\GamePlay.h" />
     <ClInclude Include="header\scene\each\Load.h" />

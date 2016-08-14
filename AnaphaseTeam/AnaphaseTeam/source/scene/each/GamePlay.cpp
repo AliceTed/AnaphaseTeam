@@ -1,7 +1,9 @@
 #include "../../../header/scene/each/GamePlay.h"
-
-GamePlay::GamePlay()
-	:m_IsEnd(false)
+#include "../../../header/renderer/Renderer.h"
+#include "../../../header/device/Input.h"
+GamePlay::GamePlay(const Input* _input)
+	:m_IsEnd(false),
+	m_Input(_input)
 {
 }
 GamePlay::~GamePlay()
@@ -27,7 +29,7 @@ void GamePlay::finish()
 
 const SceneMode GamePlay::next() const
 {
-	return SceneMode();
+	return SceneMode::ENDING;
 }
 
 const bool GamePlay::isEnd() const

@@ -1,7 +1,9 @@
 #include "../../../header/scene/each/Ending.h"
-
-Ending::Ending()
-	:m_IsEnd(false)
+#include "../../../header/renderer/Renderer.h"
+#include "../../../header/device/Input.h"
+Ending::Ending(const Input* _input)
+	:m_IsEnd(false),
+	m_Input(_input)
 {
 }
 Ending::~Ending()
@@ -10,7 +12,6 @@ Ending::~Ending()
 
 void Ending::initialize()
 {
-
 	m_IsEnd = false;
 }
 

@@ -1,10 +1,11 @@
 #ifndef _GAMEPLAY_H_
 #define _GAMEPLAY_H_
 #include "../IScene.h"
+class Input;
 class GamePlay :public IScene
 {
 public:
-	GamePlay();
+	GamePlay(const Input* _input);
 	~GamePlay();
 	void initialize();
 	void update(float deltaTime);
@@ -14,6 +15,6 @@ public:
 	const bool isEnd()const;
 private:
 	bool m_IsEnd;
-
+	const Input* m_Input;
 };
 #endif

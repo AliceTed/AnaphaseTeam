@@ -1,6 +1,6 @@
 #include "../../../header/scene/each/Load.h"
 #include "../../../header/data/Loader.h"
-
+#include "../../../header/renderer/Renderer.h"
 Load::Load()
 	:m_IsEnd(false)
 {
