@@ -49,6 +49,7 @@ void Title::draw(const Renderer & renderer)
 	}
 	std::string str = isDraw ? "Draw" : "Non";
 	renderer.getDraw2D().string(str, &GSvector2(0, 0), 20);
+	renderer.getDraw2D().textrue(TEXTURE_ID::TEST,&GSvector2(100,50));
 }
 
 void Title::finish()

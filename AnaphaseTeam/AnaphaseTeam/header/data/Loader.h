@@ -7,13 +7,7 @@
 * @author èºîˆóTñÁ
 * @date 2016/8/02
 */
-#include "BGM_ID.h"
-#include "SKELETON_ID.h"
-#include "MESH_ID.h"
-#include "OCTREE_ID.h"
-#include "SE_ID.h"
-#include "TEXTURE_ID.h"
-#include "ANIMATION_ID.h"
+
 #include <string>
 #include <gslib.h>
 
@@ -44,31 +38,31 @@ namespace Data
 	{
 	public:
 		template<class ID>
-		void operator ()(ID id, const std::string& name, const std::string& path = "res/model/", const std::string& extension = ".msh");
+		void operator ()(ID id, const std::string& name, const std::string& path = "./res/model/", const std::string& extension = ".msh");
 	};
 	class LoadSkeleton
 	{
 	public:
 		template<class ID>
-		void operator ()(ID id, const std::string& name, const std::string& path = "res/model/", const std::string& extension = ".skl");
+		void operator ()(ID id, const std::string& name, const std::string& path = "./res/model/", const std::string& extension = ".skl");
 	};
 	class LoadAnimation
 	{
 	public:
 		template<class ID>
-		void operator ()(ID id, const std::string& name, const std::string& path = "res/model/", const std::string& extension = ".anm");
+		void operator ()(ID id, const std::string& name, const std::string& path = "./res/model/", const std::string& extension = ".anm");
 	};
 	class LoadOctree
 	{
 	public:
 		template<class ID>
-		void operator ()(ID id, const std::string& name, const std::string& path = "res/model/", const std::string& extension = ".oct");
+		void operator ()(ID id, const std::string& name, const std::string& path = "./res/model/", const std::string& extension = ".oct");
 	};
 	class LoadTexture
 	{
 	public:
 		template<class ID>
-		void operator ()(ID id, const std::string& name, const std::string& path = "res/texture/", const std::string& extension = ".png");
+		void operator ()(ID id, const std::string& name, const std::string& path = "./res/texture/", const std::string& extension = ".png");
 	};
 }
 template<class ID>
@@ -77,7 +71,7 @@ void Data::LoadSE::operator()(ID _id, const std::string & name, int max, GWAVEFL
 	LoadError error;
 	CastID cast;
 	PathConnect connect;
-	error(!!gsLoadSE(cast(_id),connect(name,path,extension), max, flag), [&name] { ErrorMessage mes; mes(name, "SE");});
+	error(!!gsLoadSE(cast(_id), connect(name, path, extension).c_str(), max, flag), [&name] { ErrorMessage mes; mes(name, "SE");});
 }
 template<class ID>
 void Data::LoadBGM::operator()(ID _id, const std::string & name, const std::string & path, const std::string & extension)
@@ -85,7 +79,7 @@ void Data::LoadBGM::operator()(ID _id, const std::string & name, const std::stri
 	LoadError error;
 	CastID cast;
 	PathConnect connect;
-	error(!!gsLoadBGM(cast(_id), connect(name, path, extension), GMIDI_LOOP), [&name] { ErrorMessage mes; mes(name, "BGM");});
+	error(!!gsLoadBGM(cast(_id), connect(name, path, extension).c_str(), GMIDI_LOOP), [&name] { ErrorMessage mes; mes(name, "BGM");});
 }
 template<class ID>
 void Data::LoadMesh::operator()(ID id, const std::string & name, const std::string & path, const std::string & extension)
@@ -93,7 +87,7 @@ void Data::LoadMesh::operator()(ID id, const std::string & name, const std::stri
 	LoadError error;
 	CastID cast;
 	PathConnect connect;
-	error(!!gsLoadMesh(cast(id), connect(name, path, extension)), [&name] { ErrorMessage mes; mes(name, "Mesh");});
+	error(!!gsLoadMesh(cast(id), connect(name, path, extension).c_str()), [&name] { ErrorMessage mes; mes(name, "Mesh");});
 }
 template<class ID>
 void Data::LoadSkeleton::operator()(ID id, const std::string & name, const std::string & path, const std::string & extension)
@@ -101,7 +95,7 @@ void Data::LoadSkeleton::operator()(ID id, const std::string & name, const std::
 	LoadError error;
 	CastID cast;
 	PathConnect connect;
-	error(!!gsLoadSkeleton(cast(id), connect(name, path, extension)), [&name] { ErrorMessage mes; mes(name, "Skeleton");});
+	error(!!gsLoadSkeleton(cast(id), connect(name, path, extension).c_str()), [&name] { ErrorMessage mes; mes(name, "Skeleton");});
 }
 template<class ID>
 void Data::LoadAnimation::operator()(ID id, const std::string & name, const std::string & path, const std::string & extension)
@@ -109,7 +103,7 @@ void Data::LoadAnimation::operator()(ID id, const std::string & name, const std:
 	LoadError error;
 	CastID cast;
 	PathConnect connect;
-	error(!!gsLoadAnimation(cast(id), connect(name, path, extension)), [&name] { ErrorMessage mes; mes(name, "Animation");});
+	error(!!gsLoadAnimation(cast(id), connect(name, path, extension).c_str()), [&name] { ErrorMessage mes; mes(name, "Animation");});
 }
 template<class ID>
 void Data::LoadOctree::operator()(ID id, const std::string & name, const std::string & path, const std::string & extension)
@@ -117,7 +111,7 @@ void Data::LoadOctree::operator()(ID id, const std::string & name, const std::st
 	LoadError error;
 	CastID cast;
 	PathConnect connect;
-	error(!!gsLoadOctree(cast(id), connect(name, path, extension)), [&name] { ErrorMessage mes; mes(name, "Octree");});
+	error(!!gsLoadOctree(cast(id), connect(name, path, extension).c_str()), [&name] { ErrorMessage mes; mes(name, "Octree");});
 }
 template<class ID>
 void Data::LoadTexture::operator()(ID id, const std::string & name, const std::string & path, const std::string & extension)
@@ -125,6 +119,6 @@ void Data::LoadTexture::operator()(ID id, const std::string & name, const std::s
 	LoadError error;
 	CastID cast;
 	PathConnect connect;
-	error(!!gsLoadTexture(cast(id), connect(name, path, extension)),[&name] { ErrorMessage mes; mes(name, "Texture");});
+	error(!!gsLoadTexture(cast(id), connect(name, path, extension).c_str()),[&] { ErrorMessage mes; mes(name, "Texture");});
 }
 #endif

@@ -7,10 +7,11 @@ namespace Data
 	class PathConnect
 	{
 	public:
-		const char* operator ()(const std::string& name, const std::string& path, const std::string& extension)
+		//const char* ‚ð•Ô‚·‚Æ•¶Žš‰»‚¯‚·‚é
+		std::string operator ()(const std::string& name, const std::string& path, const std::string& extension)
 		{
 			std::string fullpath = path + name + extension;
-			return fullpath.c_str();
+			return fullpath;
 		}
 	};
 }
