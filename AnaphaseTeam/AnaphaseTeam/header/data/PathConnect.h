@@ -8,7 +8,7 @@ namespace Data
 	{
 	public:
 		//const char* ‚ð•Ô‚·‚Æ•¶Žš‰»‚¯‚·‚é
-		std::string operator ()(const std::string& name, const std::string& path, const std::string& extension)
+		const std::string operator ()(const std::string& name, const std::string& path, const std::string& extension)const
 		{
 			std::string fullpath = path + name + extension;
 			return fullpath;
