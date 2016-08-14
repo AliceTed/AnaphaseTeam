@@ -16,7 +16,7 @@ public:
 	virtual void draw() = 0;
 	virtual void finish() {}
 
-private:
+protected:
 	Transform m_transform;
 	bool m_isDead;
 };
