@@ -40,6 +40,24 @@ void Draw2D::textrue(TEXTURE_ID id, const GSvector2 * _position, const GSrect * 
 	gsDrawSprite2D(static_cast<GSuint>(id), _position, _rect, _center, _color, _scaling, _rotation);
 }
 
+void Draw2D::number(TEXTURE_ID id, const NumString & _number, const GSvector2 & _position, const GSvector2 & cuttingSize, const GScolor * _color) const
+{
+	GSvector2 pos = _position;
+	for each (auto c in _number)
+	{
+		bool istoken = (c == '.');
+
+		float x = istoken ? 10 : (c - '0');
+		x *= cuttingSize.x;
+
+		textrue(id, &pos, &GSrect(x, 0, x + cuttingSize.x, cuttingSize.y), _color);
+		//位置をずらす .なら半分
+		x = cuttingSize.x;
+		x *= istoken ? 0.5f : 1.0f;
+		pos.x += x;
+	}
+}
+
 void Draw2D::number(TEXTURE_ID id, const GSvector2 & _position, const GSvector2 & cuttingSize, int point, const GScolor * _color) const
 {
 	GSvector2 pos = _position;
@@ -55,7 +73,7 @@ void Draw2D::number(TEXTURE_ID id, const GSvector2 & _position, const GSvector2 
 {
 	GSvector2 pos = _position;
 	
-	for each (auto c in numToStr(point, decimalNumber, digitNumber))
+	for each (auto c in transformToNumString(point, decimalNumber, digitNumber))
 	{
 		bool istoken = (c == '.');
 
@@ -94,14 +112,14 @@ void Draw2D::additionBlend() const
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE);
 }
 
-const std::string Draw2D::numToStr(float point, unsigned int decimalNumber, unsigned int digitNumber) const
+const NumString Draw2D::transformToNumString(float _number, GSuint _decimal, GSuint _digit) const
 {
 	std::ostringstream stream;
-	stream << std::fixed << std::setprecision(decimalNumber);
+	stream << std::fixed << std::setprecision(_decimal);
 
 	//小数点を表示する場合は点の数も追加
-	digitNumber += decimalNumber == 0 ? 0 : 1;
+	_digit += _decimal == 0 ? 0 : 1;
 	//         0で埋める              　　　　　　　　　右寄せ
-	stream << std::setfill('0') << std::setw(digitNumber) << std::right << point;
+	stream << std::setfill('0') << std::setw(_digit) << std::right << _number;
 	return stream.str();
 }
