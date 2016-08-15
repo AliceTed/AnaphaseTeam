@@ -2,8 +2,8 @@
 #include "../../header/shape/Sphere.h"
 #include "../../header/camera/Camera.h"
 #include "../../header/renderer/Renderer.h"
-TestActor::TestActor(const Sphere& _sphere)
-	:Actor(Transform(),_sphere),target(0,0,0)
+TestActor::TestActor()
+	:Actor(Transform(),Sphere(GSvector3(0,0,0),0.5f)), target(0, 0, 0)
 {
 }
 

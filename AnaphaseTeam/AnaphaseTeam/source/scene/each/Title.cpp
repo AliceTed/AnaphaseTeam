@@ -2,16 +2,14 @@
 #include "../../../header/renderer/Renderer.h"
 
 #include "../../../header/device/Input.h"
-#include "../../../header/shape/Sphere.h"
 
 #include "../../../header/actor/TestActor.h"
 
-#include "../../../header/math/Random.h"
 Title::Title(const Input* _input)
 	:m_IsEnd(false),
 	m_Input(_input),
 	m_Camera(10, 8, GSvector3(0, 0, 0)),
-	target(0, 0, -10),
+	target(0, 0, -20),
 	actorManager()
 {
 }
@@ -23,11 +21,9 @@ Title::~Title()
 void Title::initialize()
 {
 	m_IsEnd = false;
-	Math::Random rnd;
-	for (int i = 0; i < 10; i++)
+	for (int i = 0; i <20; i++)
 	{
-		Sphere sphere(GSvector3(rnd(-10,10,i), rnd(-10, 10, i),rnd(-10, 10, i)), rnd(0.3f,1.0f));
-		Actor_Ptr actor = std::make_shared<TestActor>(sphere);
+		Actor_Ptr actor = std::make_shared<TestActor>();
 		actor->initialize();
 		actorManager.add(actor);
 	}
