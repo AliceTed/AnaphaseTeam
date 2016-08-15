@@ -9,7 +9,7 @@
 */
 //スマートポインタを格納すことを前提にしている
 #include <list>
-
+#include <algorithm>
 namespace Entity
 {
 	template<class Entity>
@@ -89,6 +89,6 @@ namespace Entity
 	template<typename Func>
 	void EntityManager<Entity>::accept(Func _func)
 	{
-		std::for_each(m_Container.begin(), m_Container.end(), _func);
+		std::_For_each(m_Container.begin(), m_Container.end(), _func);
 	}
 }

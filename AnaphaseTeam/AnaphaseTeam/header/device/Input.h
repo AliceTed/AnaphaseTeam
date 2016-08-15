@@ -10,6 +10,9 @@ public:
 	const int horizontal()const;
 	//êÇíº
 	const int vertical()const;
+
+	const int ymove()const;
+
 	const bool upTrigger()const;
 	const bool downTrigger()const;
 };

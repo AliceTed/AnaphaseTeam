@@ -88,6 +88,21 @@
     <Filter Include="ヘッダー ファイル\scene\each">
       <UniqueIdentifier>{d7397896-6697-4bd7-b092-91c3df135684}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\shape">
+      <UniqueIdentifier>{5836e1ef-63ad-44d2-b8a1-bda7e93e8d88}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\shape">
+      <UniqueIdentifier>{d1514622-14bc-42f8-8b00-3f830a4d902e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\actor\state">
+      <UniqueIdentifier>{61104c57-671d-43c7-85b4-db3010b8f8be}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\actor\state\each">
+      <UniqueIdentifier>{4946e860-a7a5-4d96-a5e3-7c077b525eeb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\actor\state">
+      <UniqueIdentifier>{d9e47648-a575-4ce5-9744-67c5b1d7719a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Util\BasicShapes.h">
@@ -201,24 +216,6 @@
     <ClInclude Include="header\actor\Player\Player.h">
       <Filter>ヘッダー ファイル\actor\Player</Filter>
     </ClInclude>
-    <ClInclude Include="header\actor\IActionState.h">
-      <Filter>ヘッダー ファイル\actor</Filter>
-    </ClInclude>
-    <ClInclude Include="header\actor\MoveState.h">
-      <Filter>ヘッダー ファイル\actor</Filter>
-    </ClInclude>
-    <ClInclude Include="header\actor\AttackState.h">
-      <Filter>ヘッダー ファイル\actor</Filter>
-    </ClInclude>
-    <ClInclude Include="header\actor\StandState.h">
-      <Filter>ヘッダー ファイル\actor</Filter>
-    </ClInclude>
-    <ClInclude Include="header\actor\JumpState.h">
-      <Filter>ヘッダー ファイル\actor</Filter>
-    </ClInclude>
-    <ClInclude Include="header\actor\ICharacter.h">
-      <Filter>ヘッダー ファイル\actor</Filter>
-    </ClInclude>
     <ClInclude Include="header\animation\Animation.h">
       <Filter>ヘッダー ファイル\animation</Filter>
     </ClInclude>
@@ -233,6 +230,30 @@
     </ClInclude>
     <ClInclude Include="header\renderer\Renderer.h">
       <Filter>ヘッダー ファイル\renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="header\shape\Sphere.h">
+      <Filter>ヘッダー ファイル\shape</Filter>
+    </ClInclude>
+    <ClInclude Include="header\actor\IActionState.h">
+      <Filter>ヘッダー ファイル\actor\state</Filter>
+    </ClInclude>
+    <ClInclude Include="header\actor\AttackState.h">
+      <Filter>ヘッダー ファイル\actor\state\each</Filter>
+    </ClInclude>
+    <ClInclude Include="header\actor\JumpState.h">
+      <Filter>ヘッダー ファイル\actor\state\each</Filter>
+    </ClInclude>
+    <ClInclude Include="header\actor\MoveState.h">
+      <Filter>ヘッダー ファイル\actor\state\each</Filter>
+    </ClInclude>
+    <ClInclude Include="header\actor\StandState.h">
+      <Filter>ヘッダー ファイル\actor\state\each</Filter>
+    </ClInclude>
+    <ClInclude Include="header\actor\ICharacter.h">
+      <Filter>ヘッダー ファイル\actor</Filter>
+    </ClInclude>
+    <ClInclude Include="header\actor\TestActor.h">
+      <Filter>ヘッダー ファイル\actor</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -287,18 +308,6 @@
     <ClCompile Include="source\actor\Player.cpp">
       <Filter>ソース ファイル\actor\Player</Filter>
     </ClCompile>
-    <ClCompile Include="source\Acotr\MoveState.cpp">
-      <Filter>ソース ファイル\actor</Filter>
-    </ClCompile>
-    <ClCompile Include="source\actor\StandState.cpp">
-      <Filter>ソース ファイル\actor</Filter>
-    </ClCompile>
-    <ClCompile Include="source\Acotr\JumpState.cpp">
-      <Filter>ソース ファイル\actor</Filter>
-    </ClCompile>
-    <ClCompile Include="source\Acotr\AttackState.cpp">
-      <Filter>ソース ファイル\actor</Filter>
-    </ClCompile>
     <ClCompile Include="source\animation\Animation.cpp">
       <Filter>ソース ファイル\animation</Filter>
     </ClCompile>
@@ -310,6 +319,27 @@
     </ClCompile>
     <ClCompile Include="source\renderer\Renderer.cpp">
       <Filter>ソース ファイル\renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="source\shape\Sphere.cpp">
+      <Filter>ソース ファイル\shape</Filter>
+    </ClCompile>
+    <ClCompile Include="source\Acotr\AttackState.cpp">
+      <Filter>ソース ファイル\actor\state</Filter>
+    </ClCompile>
+    <ClCompile Include="source\Acotr\JumpState.cpp">
+      <Filter>ソース ファイル\actor\state</Filter>
+    </ClCompile>
+    <ClCompile Include="source\Acotr\MoveState.cpp">
+      <Filter>ソース ファイル\actor\state</Filter>
+    </ClCompile>
+    <ClCompile Include="source\actor\StandState.cpp">
+      <Filter>ソース ファイル\actor\state</Filter>
+    </ClCompile>
+    <ClCompile Include="source\Acotr\Actor.cpp">
+      <Filter>ソース ファイル\actor</Filter>
+    </ClCompile>
+    <ClCompile Include="source\Acotr\TestActor.cpp">
+      <Filter>ソース ファイル\actor</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

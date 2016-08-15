@@ -60,7 +60,7 @@ const bool Camera::isFrustumCulling(const GSvector3 & center, float radius) cons
 	return !!gsFrustumIsSphereInside(&frustum, &center, radius);
 }
 
-const float Camera::nearMargeDistance(const GSvector3 & ohter, float radius) const
+const float Camera::nearDistance(const GSvector3 & ohter, float radius) const
 {
 	//ohter‚ÆƒJƒƒ‰‚Ì‹——£
 	float dis = ohter.distance(position);

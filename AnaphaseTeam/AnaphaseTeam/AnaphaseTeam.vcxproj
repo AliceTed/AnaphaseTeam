@@ -138,9 +138,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="source\Acotr\Actor.cpp" />
     <ClCompile Include="source\Acotr\AttackState.cpp" />
     <ClCompile Include="source\Acotr\JumpState.cpp" />
     <ClCompile Include="source\Acotr\MoveState.cpp" />
+    <ClCompile Include="source\Acotr\TestActor.cpp" />
     <ClCompile Include="source\actor\Player.cpp" />
     <ClCompile Include="source\actor\StandState.cpp" />
     <ClCompile Include="source\animation\Animation.cpp" />
@@ -161,6 +163,7 @@
     <ClCompile Include="source\scene\each\Load.cpp" />
     <ClCompile Include="source\scene\each\Title.cpp" />
     <ClCompile Include="source\scene\SceneManager.cpp" />
+    <ClCompile Include="source\shape\Sphere.cpp" />
     <ClCompile Include="source\Transform.cpp" />
     <ClCompile Include="Util\BasicShapes.cpp" />
   </ItemGroup>
@@ -173,6 +176,7 @@
     <ClInclude Include="header\actor\MoveState.h" />
     <ClInclude Include="header\actor\Player\Player.h" />
     <ClInclude Include="header\actor\StandState.h" />
+    <ClInclude Include="header\actor\TestActor.h" />
     <ClInclude Include="header\animation\Animation.h" />
     <ClInclude Include="header\animation\AnimationTimer.h" />
     <ClInclude Include="header\array\Array.h" />
@@ -209,6 +213,7 @@
     <ClInclude Include="header\scene\IScene.h" />
     <ClInclude Include="header\scene\SceneManager.h" />
     <ClInclude Include="header\scene\SceneMode.h" />
+    <ClInclude Include="header\shape\Sphere.h" />
     <ClInclude Include="header\Transform.h" />
     <ClInclude Include="Util\BasicShapes.h" />
     <ClInclude Include="Util\EffectGL.h" />

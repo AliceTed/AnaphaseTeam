@@ -2,12 +2,17 @@
 #include "../../../header/renderer/Renderer.h"
 
 #include "../../../header/device/Input.h"
+#include "../../../header/shape/Sphere.h"
+
+#include "../../../header/actor/TestActor.h"
+
+#include "../../../header/math/Random.h"
 Title::Title(const Input* _input)
 	:m_IsEnd(false),
 	m_Input(_input),
 	m_Camera(10, 8, GSvector3(0, 0, 0)),
-	target(0, 0, 0),
-	light(GL_LIGHT0, GSvector3(0, 1, 0))
+	target(0, 0, -10),
+	actorManager()
 {
 }
 
@@ -18,38 +23,30 @@ Title::~Title()
 void Title::initialize()
 {
 	m_IsEnd = false;
+	Math::Random rnd;
+	for (int i = 0; i < 10; i++)
+	{
+		Sphere sphere(GSvector3(rnd(-10,10,i), rnd(-10, 10, i),rnd(-10, 10, i)), rnd(0.3f,1.0f));
+		Actor_Ptr actor = std::make_shared<TestActor>(sphere);
+		actor->initialize();
+		actorManager.add(actor);
+	}
 }
 void Title::update(float deltaTime)
 {
-	target.x += m_Input->horizontal()*0.1f;
+	target.x -= m_Input->horizontal()*0.1f;
 	target.z += m_Input->vertical()*0.1f;
+	target.y += m_Input->ymove()*0.1f;
+
+	actorManager.accept([deltaTime](Actor_Ptr _actor) {_actor->update(deltaTime);});
+	actorManager.remove([](Actor_Ptr _actor)->bool {return _actor->isDead();});
 }
 
 void Title::draw(const Renderer & renderer)
 {
 	m_Camera.lookAt(target, 0);
-	light.lighting();
-
-	GSvector3 pos(0, 0, 0);
-	float radius(2);
-
-	bool isDraw = m_Camera.isFrustumCulling(pos, 2);
-
-	//ƒ¿’l‚ð‰º‚°Žn‚ß‚é‹——£
-	float maxfar = 10.0f;
-
-	if (isDraw)
-	{
-		float marge = m_Camera.nearMargeDistance(pos, radius);
-
-		GScolor color(1, 0, 0, marge / maxfar);
-		renderer.getDraw2D().string(std::to_string(color.a), &GSvector2(100, 0), 20, &GScolor(1, 0, 0, 1));
-
-		renderer.getDraw3D().drawSphere(&pos, radius, color);
-	}
-	std::string str = isDraw ? "Draw" : "Non";
-	renderer.getDraw2D().string(str, &GSvector2(0, 0), 20);
-	renderer.getDraw2D().textrue(TEXTURE_ID::TEST,&GSvector2(100,50));
+	actorManager.accept([&](Actor_Ptr _actor) {_actor->draw(renderer, m_Camera);});
+	renderer.getDraw2D().string(std::to_string(actorManager.size()),&GSvector2(20,20),20);
 }
 
 void Title::finish()

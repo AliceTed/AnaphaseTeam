@@ -1,10 +1,12 @@
 #ifndef _TITLE_H_
 #define _TITLE_H_
 #include "../IScene.h"
-
 #include "../../camera/Camera.h"
-#include "../../light/DirectionalLight.h"
+#include "../../actor/Actor.h"
+#include "../../entity/EntityManager.h"
+#include <memory>
 class Input;
+typedef std::shared_ptr<Actor>Actor_Ptr;
 class Title :public IScene
 {
 public:
@@ -21,8 +23,7 @@ private:
 	const Input* m_Input;
 
 	Camera m_Camera;
-
 	GSvector3 target;
-	DirectionalLight light;
+	Entity::EntityManager<Actor_Ptr> actorManager;
 };
 #endif
