@@ -29,7 +29,8 @@ void Draw2D::textrue(TEXTURE_ID id, const GSvector2 * _position, const GScolor *
 
 void Draw2D::textrue(TEXTURE_ID id, const GSvector2 * _position, const GSrect * _rect, const GScolor * _color) const
 {
-	gsDrawSprite2D(static_cast<GSuint>(id), _position, _rect, NULL, _color, NULL, NULL);
+	Data::CastID cast;
+	gsDrawSprite2D(cast(id), _position, _rect, NULL, _color, NULL, NULL);
 }
 
 void Draw2D::textrue(TEXTURE_ID id, const GSvector2 * _position, const GSvector2 * _scaling, const GScolor * _color) const
