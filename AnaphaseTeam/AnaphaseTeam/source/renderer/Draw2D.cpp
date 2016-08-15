@@ -1,6 +1,7 @@
 #include "../../header/renderer/Draw2D.h"
 #include <sstream>
 #include <iomanip>
+#include "../../header/data/CastID.h"
 Draw2D::Draw2D()
 {
 }
@@ -22,7 +23,8 @@ void Draw2D::textrueShadow(TEXTURE_ID id, const GSvector2 * _position, const GSr
 
 void Draw2D::textrue(TEXTURE_ID id, const GSvector2 * _position, const GScolor * _color) const
 {
-	gsDrawSprite2D(static_cast<GSuint>(id), _position, NULL, NULL, _color, NULL, NULL);
+	Data::CastID cast;
+	gsDrawSprite2D(cast(id), _position, NULL, NULL, _color, NULL, NULL);
 }
 
 void Draw2D::textrue(TEXTURE_ID id, const GSvector2 * _position, const GSrect * _rect, const GScolor * _color) const
