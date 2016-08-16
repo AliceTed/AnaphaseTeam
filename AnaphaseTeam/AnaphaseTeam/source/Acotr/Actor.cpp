@@ -2,7 +2,7 @@
 #include "../../header/camera/Camera.h"
 
 #include"../../header/math/Calculate.h"
-const float Actor::ALPHABLEND_FAR = 10.0f;
+const float Actor::ALPHABLEND_FAR = 2.0f;
 
 Actor::Actor(const Transform & _transform, const Sphere& _sphere)
 	:m_transform(_transform), 

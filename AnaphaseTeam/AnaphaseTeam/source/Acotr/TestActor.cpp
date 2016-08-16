@@ -3,7 +3,12 @@
 #include "../../header/camera/Camera.h"
 #include "../../header/renderer/Renderer.h"
 TestActor::TestActor()
-	:Actor(Transform(),Sphere(GSvector3(0,0,0),0.5f)), target(0, 0, 0)
+	:Actor(Transform(),Sphere(GSvector3(0,0,0),1.0f)),
+	target(0, 0, 0),
+	animation(ANIMATION_ID::KARATE,SKELETON_ID::KARATE,0,
+		AnimationTimer(
+			gsGetEndAnimationTime(static_cast<GSuint>(ANIMATION_ID::KARATE),0)),true
+		)
 {
 }
 
@@ -13,6 +18,7 @@ TestActor::~TestActor()
 
 void TestActor::update(float deltatime)
 {
+	animation.update(deltatime);
 	switch (rand() % 360)
 	{
 	case 0:
@@ -37,16 +43,17 @@ void TestActor::update(float deltatime)
 
 	m_transform.setPosition(m_transform.getPosition().lerp(target, deltatime*0.1f));
 
-	m_Sphere.transfer(m_transform.getPosition());
+	m_Sphere.transfer(m_transform.getPosition()+GSvector3(0,1,0));
 }
 
 void TestActor::draw(const Renderer & _renderer, const Camera & _camera)
 {
 	if (!isInsideView(_camera))
 	{
-		m_isDead = true;
 		return;
 	}
 	alphaBlend(_camera);
-	m_Sphere.draw(_renderer,color);
+	animation.bind();
+	_renderer.getDraw3D().drawMesh(MESH_ID::KARATE,m_transform.getMatrix4(),color);
+	//m_Sphere.draw(_renderer,color);
 }

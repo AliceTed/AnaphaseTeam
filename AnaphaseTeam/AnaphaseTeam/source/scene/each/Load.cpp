@@ -1,6 +1,10 @@
 #include "../../../header/scene/each/Load.h"
 #include "../../../header/data/Loader.h"
 #include "../../../header/renderer/Renderer.h"
+
+#include "../../../header/data/ANIMATION_ID.h"
+#include "../../../header/data/MESH_ID.h"
+#include "../../../header/data/SKELETON_ID.h"
 Load::Load()
 	:m_IsEnd(false)
 {
@@ -42,7 +46,7 @@ const bool Load::isEnd() const
 void Load::loadTextrue()
 {
 	Data::LoadTexture loadTex;
-	loadTex(TEXTURE_ID::TEST,"test");
+	//loadTex(TEXTURE_ID::TEST,"test");
 	//loadTex(TEXTURE_ID::SIZE, "eee");
 }
 void Load::loadSound()
@@ -60,9 +64,9 @@ void Load::loadModel()
 	LoadMesh mesh;
 	LoadAnimation anim;
 	LoadSkeleton skl;
-	LoadOctree oct;
-	//mesh(MESH_ID::SIZE,"mmm");
-	//anim(ANIMATION_ID::KARATE, "nnn");
-	//skl(SKELETON_ID::SIZE,"sss");
+	//LoadOctree oct;
+	mesh(MESH_ID::KARATE,"karate");
+	anim(ANIMATION_ID::KARATE, "karate");
+	skl(SKELETON_ID::KARATE,"karate");
 	//oct(OCTREE_ID::SIZE, "ooo");
 }

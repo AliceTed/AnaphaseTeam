@@ -5,7 +5,7 @@
 #include "../data/OCTREE_ID.h"
 #include "../data/MESH_ID.h"
 #include <gslib.h>
-
+class Transform;
 class Draw3D
 {
 public:
@@ -19,7 +19,8 @@ public:
 		const GSvector3* axis,
 		float direction)const;
 
-	void drawMesh(MESH_ID id,const GSmatrix4& mat)const;
+	void drawMesh(MESH_ID id, const Transform& _transform, const GScolor& _color = GScolor(1.0f, 1.0f, 1.0f, 1.0f))const;
+	void drawMesh(MESH_ID id,const GSmatrix4& mat, const GScolor& _color=GScolor(1.0f,1.0f,1.0f,1.0f))const;
 
 	void drawSky(MESH_ID id, float angle)const;
 

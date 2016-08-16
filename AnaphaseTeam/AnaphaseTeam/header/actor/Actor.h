@@ -18,7 +18,6 @@ public:
 	virtual void update(float deltatime) = 0;
 	virtual void draw(const Renderer& _renderer,const Camera& _camera) = 0;
 	virtual void finish();
-	
 public:
 	const bool isDead()const;
 	

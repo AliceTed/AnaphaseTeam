@@ -4,7 +4,7 @@
 
 enum class SKELETON_ID :unsigned int
 {
-
+	KARATE,
 	SIZE
 };
 
