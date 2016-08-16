@@ -54,6 +54,6 @@ void TestActor::draw(const Renderer & _renderer, const Camera & _camera)
 	}
 	alphaBlend(_camera);
 	animation.bind();
-	_renderer.getDraw3D().drawMesh(MESH_ID::KARATE,m_transform,color);
-	debugSphereDraw(_renderer);
+	_renderer.getDraw3D().drawMesh(MESH_ID::KARATE,m_transform,m_Color);
+	sphereDraw(_renderer);
 }
