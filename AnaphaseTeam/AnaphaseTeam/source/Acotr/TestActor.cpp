@@ -6,7 +6,8 @@ TestActor::TestActor()
 	:Actor(Transform(),Sphere(GSvector3(0,0,0),1.0f)),
 	target(0, 0, 0),
 	animation(ANIMATION_ID::KARATE,SKELETON_ID::KARATE,0,
-		AnimationTimer(
+		AnimationTimer
+		(
 			gsGetEndAnimationTime(static_cast<GSuint>(ANIMATION_ID::KARATE),0)),true
 		)
 {
@@ -42,8 +43,7 @@ void TestActor::update(float deltatime)
 	}
 
 	m_transform.setPosition(m_transform.getPosition().lerp(target, deltatime*0.1f));
-
-	m_Sphere.transfer(m_transform.getPosition()+GSvector3(0,1,0));
+	sphereChases(GSvector3(0, 1, 0));
 }
 
 void TestActor::draw(const Renderer & _renderer, const Camera & _camera)
@@ -54,6 +54,6 @@ void TestActor::draw(const Renderer & _renderer, const Camera & _camera)
 	}
 	alphaBlend(_camera);
 	animation.bind();
-	_renderer.getDraw3D().drawMesh(MESH_ID::KARATE,m_transform.getMatrix4(),color);
-	//m_Sphere.draw(_renderer,color);
+	_renderer.getDraw3D().drawMesh(MESH_ID::KARATE,m_transform,color);
+	debugSphereDraw(_renderer);
 }

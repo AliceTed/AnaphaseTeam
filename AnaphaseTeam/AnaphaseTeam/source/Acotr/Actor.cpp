@@ -37,3 +37,13 @@ const bool Actor::isInsideView(const Camera & _camera) const
 {
 	return m_Sphere.isInsideCameraView(_camera);
 }
+
+void Actor::sphereChases(const GSvector3 & offset)
+{
+	m_Sphere.transfer(m_transform.getPosition() +offset);
+}
+
+void Actor::debugSphereDraw(const Renderer & _renderer)
+{
+	m_Sphere.draw(_renderer, color);
+}

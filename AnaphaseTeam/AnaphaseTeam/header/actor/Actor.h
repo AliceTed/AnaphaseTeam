@@ -24,12 +24,15 @@ public:
 protected:
 	void alphaBlend(const Camera& _camera);
 	const bool isInsideView(const Camera& _camera)const;
+	void sphereChases(const GSvector3 &offset=GSvector3(0,0,0));
+
+	void debugSphereDraw(const Renderer& _renderer);
 protected:
 	Transform m_transform;
 	bool m_isDead;
 
 	GScolor color;
-	/*private:*/protected://デバック描画用
+private:
 	//!カメラ用判定
 	Sphere m_Sphere;
 	static const float ALPHABLEND_FAR;
