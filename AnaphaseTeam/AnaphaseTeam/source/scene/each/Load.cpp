@@ -69,6 +69,10 @@ void Load::loadModel()
 	anim(ANIMATION_ID::KARATE, "karate");
 	skl(SKELETON_ID::KARATE,"karate");
 
+	mesh(MESH_ID::KENDO, "kendo");
+	anim(ANIMATION_ID::KENDO, "kendo");
+	skl(SKELETON_ID::KENDO, "kendo");
+
 	mesh(MESH_ID::SKY, "sky/skydome");
 	LoadOctree oct;
 	oct(OCTREE_ID::KOUTEI, "koutei");

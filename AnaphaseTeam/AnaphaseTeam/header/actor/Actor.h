@@ -35,6 +35,7 @@ public:
 	* @return ‹——£
 	*/
 	const float distanceActor(const Actor& _ohter)const;
+
 public:
 	const bool isDead()const;
 	

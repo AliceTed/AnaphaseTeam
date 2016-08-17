@@ -6,6 +6,7 @@
 #include "../../entity/EntityManager.h"
 #include "../../map/Map.h"
 #include <memory>
+#include "../../actor/TestPlayer.h"
 class Input;
 typedef std::shared_ptr<Actor>Actor_Ptr;
 class Title :public IScene
@@ -28,5 +29,6 @@ private:
 	//Actor_Ptr target;
 	GSvector3 target;
 	Entity::EntityManager<Actor_Ptr> actorManager;
+	TestPlayer player;
 };
 #endif

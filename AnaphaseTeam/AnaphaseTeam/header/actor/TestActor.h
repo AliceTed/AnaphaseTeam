@@ -15,7 +15,5 @@ public:
 private:
 	GSvector3 target;
 	Animation animation;
-
-
 };
 
