@@ -44,6 +44,7 @@ private:
 	// XV
 	virtual void update(float deltaTime) override
 	{
+		m_Renderer.getDraw2D().string("FPS(‚½‚Ô‚ñ):" + std::to_string(60.0f*deltaTime), &GSvector2(500,20), 20);
 		m_SceneManager.update(deltaTime);
 	}
 	// •`‰æ
