@@ -103,6 +103,12 @@
     <Filter Include="ソース ファイル\actor\state">
       <UniqueIdentifier>{d9e47648-a575-4ce5-9744-67c5b1d7719a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ヘッダー ファイル\map">
+      <UniqueIdentifier>{44fc76f1-a64f-4578-9094-160cf249bb25}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\map">
+      <UniqueIdentifier>{c5ec5119-50c6-4057-bc3b-83148361c7bc}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Util\BasicShapes.h">
@@ -255,15 +261,18 @@
     <ClInclude Include="header\actor\TestActor.h">
       <Filter>ヘッダー ファイル\actor</Filter>
     </ClInclude>
+    <ClInclude Include="header\map\Map.h">
+      <Filter>ヘッダー ファイル\map</Filter>
+    </ClInclude>
+    <ClInclude Include="header\shape\Ray.h">
+      <Filter>ヘッダー ファイル\shape</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Util\BasicShapes.cpp">
       <Filter>util</Filter>
     </ClCompile>
     <ClCompile Include="source\main.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="source\Transform.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
     <ClCompile Include="source\light\DirectionalLight.cpp">
@@ -340,6 +349,15 @@
     </ClCompile>
     <ClCompile Include="source\Acotr\TestActor.cpp">
       <Filter>ソース ファイル\actor</Filter>
+    </ClCompile>
+    <ClCompile Include="source\Transform.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="source\map\Map.cpp">
+      <Filter>ソース ファイル\map</Filter>
+    </ClCompile>
+    <ClCompile Include="source\shape\Ray.cpp">
+      <Filter>ソース ファイル\shape</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

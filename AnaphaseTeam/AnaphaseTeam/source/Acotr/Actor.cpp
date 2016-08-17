@@ -2,6 +2,8 @@
 #include "../../header/camera/Camera.h"
 
 #include"../../header/math/Calculate.h"
+#include "../../header/map/Map.h"
+#include "../../header/shape/Ray.h"
 const float Actor::ALPHABLEND_FAR = 2.0f;
 
 Actor::Actor(const Transform & _transform, const Sphere& _sphere)
@@ -19,6 +21,33 @@ void Actor::initialize()
 
 void Actor::finish()
 {
+}
+
+void Actor::collisionGround(const Map& _map)
+{
+	GSvector3 intersect;
+	GSvector3 position = m_transform.getPosition();
+	Ray ray(position);
+	if (!ray.isCollitionMap(_map, &intersect))
+	{
+		return;
+	}
+
+	if (position.y >= intersect.y)
+	{
+		return;
+	}
+	m_transform.setPositionY(intersect.y);
+}
+
+void Actor::cameraChases(Camera & _camera)
+{
+	_camera.lookAt(m_transform.getPosition(), m_transform.getYaw());
+}
+
+const float Actor::cameraDistance(const Camera & _camera) const
+{
+	return _camera.distance(m_transform.getPosition());
 }
 
 const bool Actor::isDead() const

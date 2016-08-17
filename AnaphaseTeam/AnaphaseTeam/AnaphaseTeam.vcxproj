@@ -155,6 +155,7 @@
     <ClCompile Include="source\light\PointLight.cpp" />
     <ClCompile Include="source\light\SpotLight.cpp" />
     <ClCompile Include="source\main.cpp" />
+    <ClCompile Include="source\map\Map.cpp" />
     <ClCompile Include="source\renderer\Draw2D.cpp" />
     <ClCompile Include="source\renderer\Draw3D.cpp" />
     <ClCompile Include="source\renderer\Renderer.cpp" />
@@ -163,6 +164,7 @@
     <ClCompile Include="source\scene\each\Load.cpp" />
     <ClCompile Include="source\scene\each\Title.cpp" />
     <ClCompile Include="source\scene\SceneManager.cpp" />
+    <ClCompile Include="source\shape\Ray.cpp" />
     <ClCompile Include="source\shape\Sphere.cpp" />
     <ClCompile Include="source\Transform.cpp" />
     <ClCompile Include="Util\BasicShapes.cpp" />
@@ -201,6 +203,7 @@
     <ClInclude Include="header\light\DirectionalLight.h" />
     <ClInclude Include="header\light\PointLight.h" />
     <ClInclude Include="header\light\SpotLight.h" />
+    <ClInclude Include="header\map\Map.h" />
     <ClInclude Include="header\math\Calculate.h" />
     <ClInclude Include="header\math\Random.h" />
     <ClInclude Include="header\renderer\Draw2D.h" />
@@ -213,6 +216,7 @@
     <ClInclude Include="header\scene\IScene.h" />
     <ClInclude Include="header\scene\SceneManager.h" />
     <ClInclude Include="header\scene\SceneMode.h" />
+    <ClInclude Include="header\shape\Ray.h" />
     <ClInclude Include="header\shape\Sphere.h" />
     <ClInclude Include="header\Transform.h" />
     <ClInclude Include="Util\BasicShapes.h" />

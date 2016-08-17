@@ -56,7 +56,7 @@ namespace Data
 	{
 	public:
 		template<class ID>
-		void operator ()(ID id, const std::string& name, const std::string& path = "./res/model/", const std::string& extension = ".oct");
+		void operator ()(ID id, const std::string& name, const std::string& path = "./res/octree/", const std::string& extension = ".oct");
 	};
 	class LoadTexture
 	{

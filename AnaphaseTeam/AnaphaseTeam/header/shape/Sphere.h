@@ -5,6 +5,7 @@
 //#include "Shape.h"
 class Renderer;
 class Camera;//CameraManager‚É‚È‚é‚©‚à
+class Map;
 /*struct*/class Sphere//:public Shape
 {
 public:
@@ -19,6 +20,8 @@ public:
 
 	const bool isInsideCameraView(const Camera& _camera)const;
 	const float cameraDistance(const Camera& _camera)const;
+
+	const bool isCollitionMap(const Map& _map, GSvector3* _out_center)const;
 private:
 	GSvector3 center;
 	float radius;

@@ -2,6 +2,7 @@
 
 #include "../../header/renderer/Renderer.h"
 #include "../../header/camera/Camera.h"
+#include "../../header/map/Map.h"
 Sphere::Sphere(const GSvector3& center, float radius)
 	:center(center), radius(radius)
 {
@@ -44,6 +45,11 @@ const bool Sphere::isInsideCameraView(const Camera & _camera) const
 const float Sphere::cameraDistance(const Camera & _camera) const
 {
 	return _camera.nearDistance(center,radius);
+}
+
+const bool Sphere::isCollitionMap(const Map & _map, GSvector3 * _out_center) const
+{
+	return _map.isCollisionSphere(center,radius,_out_center);
 }
 
 //const SHAPETYPE Sphere::getType() const

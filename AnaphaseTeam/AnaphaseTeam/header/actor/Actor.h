@@ -7,6 +7,8 @@
 #pragma once
 #include "../Transform.h"
 #include "../shape/Sphere.h"
+
+class Map;
 class Renderer;
 class Camera;
 class Actor
@@ -18,6 +20,12 @@ public:
 	virtual void update(float deltatime) = 0;
 	virtual void draw(const Renderer& _renderer,const Camera& _camera) = 0;
 	virtual void finish();
+
+	virtual void collisionGround(const Map& _map);
+
+	void cameraChases(Camera& _camera);
+	const float cameraDistance(const Camera& _camera)const;
+
 public:
 	const bool isDead()const;
 	

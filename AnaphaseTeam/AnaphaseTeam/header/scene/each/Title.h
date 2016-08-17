@@ -4,6 +4,7 @@
 #include "../../camera/Camera.h"
 #include "../../actor/Actor.h"
 #include "../../entity/EntityManager.h"
+#include "../../map/Map.h"
 #include <memory>
 class Input;
 typedef std::shared_ptr<Actor>Actor_Ptr;
@@ -21,9 +22,9 @@ public:
 private:
 	bool m_IsEnd;
 	const Input* m_Input;
-
+	Map m_Map;
 	Camera m_Camera;
-	GSvector3 target;
+	Actor_Ptr target;
 	Entity::EntityManager<Actor_Ptr> actorManager;
 };
 #endif

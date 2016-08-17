@@ -51,11 +51,11 @@ void Load::loadTextrue()
 }
 void Load::loadSound()
 {
-	Data::LoadSE loadse;
-	//loadse(SE_ID::SIZE,"bbb",2);
+	/*Data::LoadSE loadse;
+	loadse(SE_ID::SIZE,"bbb",2);
 
 	Data::LoadBGM loadbgm;
-	/*loadbgm(BGM_ID::SIZE, "bbb");*/
+	loadbgm(BGM_ID::SIZE, "bbb");*/
 }
 
 void Load::loadModel()
@@ -64,9 +64,9 @@ void Load::loadModel()
 	LoadMesh mesh;
 	LoadAnimation anim;
 	LoadSkeleton skl;
-	//LoadOctree oct;
+	LoadOctree oct;
 	mesh(MESH_ID::KARATE,"karate");
 	anim(ANIMATION_ID::KARATE, "karate");
 	skl(SKELETON_ID::KARATE,"karate");
-	//oct(OCTREE_ID::SIZE, "ooo");
+	oct(OCTREE_ID::KOUTEI, "koutei");
 }

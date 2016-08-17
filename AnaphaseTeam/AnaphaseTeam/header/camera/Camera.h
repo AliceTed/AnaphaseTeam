@@ -13,6 +13,8 @@ public:
 	const bool isFrustumCulling(const GSvector3& center,float radius )const;
 
 	const float nearDistance(const GSvector3& ohter,float radius)const;
+
+	const float distance(const GSvector3& ohter)const;
 private:
 	float m_near;
 	float m_far;

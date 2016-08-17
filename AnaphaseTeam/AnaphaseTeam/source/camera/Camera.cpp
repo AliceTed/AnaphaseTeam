@@ -67,3 +67,8 @@ const float Camera::nearDistance(const GSvector3 & ohter, float radius) const
 	//‹——£‚Ænear‚Ì·
 	return dis-(m_near+radius);
 }
+
+const float Camera::distance(const GSvector3 & ohter) const
+{
+	return position.distance(ohter);
+}
