@@ -21,7 +21,7 @@ Title::~Title()
 void Title::initialize()
 {
 	m_IsEnd = false;
-	for (int i = 0; i <20; i++)
+	for (int i = 0; i <50; i++)
 	{
 		Actor_Ptr actor = std::make_shared<TestActor>();
 		actor->initialize();
@@ -43,6 +43,7 @@ void Title::draw(const Renderer & renderer)
 	m_Camera.lookAt(target, 0);
 	actorManager.accept([&](Actor_Ptr _actor) {_actor->draw(renderer, m_Camera);});
 	renderer.getDraw2D().string("‘”:"+std::to_string(actorManager.size()),&GSvector2(20,20),20);
+	renderer.getDraw2D().string("•`‰æ”:" + std::to_string(TestActor::DrawCount), &GSvector2(20,50), 20);
 }
 
 void Title::finish()
