@@ -17,7 +17,6 @@ public:
 	~TestPlayer();
 	void update(float deltatime);
 	void draw(const Renderer& _renderer, const Camera& _camera);
-
 	void collisionGround(const Map& _map);
 
 	void jump(float _velocity);

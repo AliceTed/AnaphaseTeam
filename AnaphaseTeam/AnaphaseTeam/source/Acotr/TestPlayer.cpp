@@ -33,9 +33,7 @@ void TestPlayer::update(float deltatime)
 	
 	GSvector3 forward(m_transform.front()*m_Input->vertical());	
 	GSvector3 side(m_transform.left()*m_Input->horizontal());
-	GSvector3 move(forward - side);
-	move *= speed*deltatime;
-	m_transform.translate(move);
+	m_transform.translate((forward - side)*speed*deltatime);
 	
 	sphereChases(GSvector3(0, 1, 0));
 
@@ -74,7 +72,7 @@ void TestPlayer::collisionGround(const Map & _map)
 	{
 		return;
 	}
-	
+	//
 	m_Jump.groundHit();
 
 	//map‚É–„‚ß‚Ü‚ê‚Ä‚¢‚½‚çyÀ•W‚ğŒğ“_‚ÉˆÚ“®
