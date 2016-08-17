@@ -23,6 +23,7 @@ void Title::update(float deltaTime)
 {
 	target.x += m_Input->horizontal()*0.1f;
 	target.z += m_Input->vertical()*0.1f;
+	if (gsGetKeyTrigger(GKEY_SPACE))m_IsEnd = true;
 }
 
 void Title::draw(const Renderer & renderer)

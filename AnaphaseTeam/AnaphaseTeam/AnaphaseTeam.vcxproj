@@ -145,6 +145,7 @@
     <ClCompile Include="source\actor\StandState.cpp" />
     <ClCompile Include="source\animation\Animation.cpp" />
     <ClCompile Include="source\animation\AnimationTimer.cpp" />
+    <ClCompile Include="source\animation\Animator.cpp" />
     <ClCompile Include="source\camera\Camera.cpp" />
     <ClCompile Include="source\data\LoadError.cpp" />
     <ClCompile Include="source\data\Release.cpp" />
@@ -175,11 +176,13 @@
     <ClInclude Include="header\actor\StandState.h" />
     <ClInclude Include="header\animation\Animation.h" />
     <ClInclude Include="header\animation\AnimationTimer.h" />
+    <ClInclude Include="header\animation\Animator.h" />
     <ClInclude Include="header\array\Array.h" />
     <ClInclude Include="header\array\Array2D.h" />
     <ClInclude Include="header\camera\Camera.h" />
     <ClInclude Include="header\data\ANIMATION_ID.h" />
     <ClInclude Include="header\data\BGM_ID.h" />
+    <ClInclude Include="header\data\Model_ID.h" />
     <ClInclude Include="header\data\PathConnect.h" />
     <ClInclude Include="header\data\SKELETON_ID.h" />
     <ClInclude Include="header\data\CastID.h" />

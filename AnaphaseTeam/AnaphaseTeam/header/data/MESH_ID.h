@@ -4,6 +4,7 @@
 #include "BGM_ID.h"
 enum class MESH_ID :unsigned int
 {
+	PLAYER,
 	SIZE
 };
 

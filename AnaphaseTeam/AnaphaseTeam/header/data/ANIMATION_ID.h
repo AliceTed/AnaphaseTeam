@@ -4,6 +4,8 @@
 
 enum class ANIMATION_ID :unsigned int
 {
+	STAND,
+	ATTACK=7,
 	SIZE
 };
 
