@@ -1,0 +1,45 @@
+#include "../../header/actor/TestJump.h"
+#include "../../header/actor/TestPlayer.h"
+
+#include "../../header/math/Calculate.h"
+
+const float TestJump::FirstStepPow=1.2f;
+const float TestJump::SecondStepPow=1.0f;
+const float TestJump::MaxJumpPower = 2.0f;
+TestJump::TestJump()
+	:m_JumpPower(0),
+	m_Acceleration(0.1f),
+	m_State(JUMPSTATE::Non)
+{
+}
+
+TestJump::~TestJump()
+{
+}
+
+void TestJump::jumping(TestPlayer * _player, float deltaTime)
+{
+	if (m_State == JUMPSTATE::Non)return;
+
+	_player->jump(m_JumpPower*deltaTime);
+	Math::Clamp clamp;
+	m_JumpPower = clamp(m_JumpPower - m_Acceleration, -MaxJumpPower, MaxJumpPower);
+}
+
+void TestJump::start()
+{
+	if (m_State == JUMPSTATE::SecondStep)return;
+
+	m_JumpPower = isGround() ? FirstStepPow:SecondStepPow;
+	m_State = isGround() ? JUMPSTATE::FristStep : JUMPSTATE::SecondStep;	
+}
+
+const bool TestJump::isGround() const
+{
+	return m_State==JUMPSTATE::Non;
+}
+
+void TestJump::groundHit()
+{
+	m_State = JUMPSTATE::Non;
+}

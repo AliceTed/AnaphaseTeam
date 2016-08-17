@@ -4,7 +4,6 @@
 
 #include "../../header/device/Input.h"
 
-#include "../../header/math/Calculate.h"
 #include "../../header/camera/Camera.h"
 #include "../../header/shape/Ray.h"
 TestPlayer::TestPlayer(const Input* _input)
@@ -15,8 +14,7 @@ TestPlayer::TestPlayer(const Input* _input)
 		(
 			gsGetEndAnimationTime(static_cast<GSuint>(ANIMATION_ID::KENDO), 20)), true
 		),
-	jumpPower(0),
-	jump(JUMPSTATE::Non)
+	m_Jump()
 {
 }
 
@@ -28,42 +26,24 @@ void TestPlayer::update(float deltatime)
 {
 	animation.update(deltatime);
 	
-
 	m_transform.rotationY(-m_Input->rotate()*deltatime*2);
 
 	float speed(0.3f);
 	float dir = -m_transform.getYaw();
-	Math::Sin sin;
-	Math::Cos cos;
 	
 	GSvector3 forward(m_transform.front()*m_Input->vertical());	
 	GSvector3 side(m_transform.left()*m_Input->horizontal());
 	GSvector3 move(forward - side);
 	move *= speed*deltatime;
-
 	m_transform.translate(move);
 	
 	sphereChases(GSvector3(0, 1, 0));
 
-	if (m_Input->jumpTrigger()&&jump!=JUMPSTATE::SecondStep)
+	if (m_Input->jumpTrigger())
 	{
-		if (jump == JUMPSTATE::Non)
-		{
-			jumpPower = 1.2;
-			jump = JUMPSTATE::FristStep;
-		}
-		else if (jump==JUMPSTATE::FristStep)
-		{
-			jumpPower = 1.0f;
-			jump = JUMPSTATE::SecondStep;
-		}
+		m_Jump.start();
 	}
-	if (jump!=JUMPSTATE::Non)
-	{
-		m_transform.translateY(jumpPower*deltatime);
-		Math::Clamp clamp;
-		jumpPower = clamp(jumpPower - 0.1f, -2.0f,2.0f);
-	}
+	m_Jump.jumping(this,deltatime);
 }
 
 void TestPlayer::draw(const Renderer & _renderer, const Camera & _camera)
@@ -94,7 +74,14 @@ void TestPlayer::collisionGround(const Map & _map)
 	{
 		return;
 	}
-	jump = JUMPSTATE::Non;
+	
+	m_Jump.groundHit();
+
 	//map‚É–„‚ß‚Ü‚ê‚Ä‚¢‚½‚çyÀ•W‚ğŒğ“_‚ÉˆÚ“®
 	m_transform.setPositionY(intersect.y);
+}
+
+void TestPlayer::jump(float _velocity)
+{
+	m_transform.translateY(_velocity);
 }

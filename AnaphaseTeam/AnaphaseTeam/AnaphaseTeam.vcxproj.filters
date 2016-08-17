@@ -270,6 +270,9 @@
     <ClInclude Include="header\actor\TestPlayer.h">
       <Filter>ヘッダー ファイル\actor</Filter>
     </ClInclude>
+    <ClInclude Include="header\actor\TestJump.h">
+      <Filter>ヘッダー ファイル\actor</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Util\BasicShapes.cpp">
@@ -363,6 +366,9 @@
       <Filter>ソース ファイル\shape</Filter>
     </ClCompile>
     <ClCompile Include="source\Acotr\TestPlayer.cpp">
+      <Filter>ソース ファイル\actor</Filter>
+    </ClCompile>
+    <ClCompile Include="source\Acotr\TestJump.cpp">
       <Filter>ソース ファイル\actor</Filter>
     </ClCompile>
   </ItemGroup>

@@ -8,6 +8,7 @@
 #include"Actor.h"
 #include "../animation/Animation.h"
 #include "../animation/AnimationTimer.h"
+#include "TestJump.h"
 class Input;
 class TestPlayer:public Actor
 {
@@ -18,17 +19,12 @@ public:
 	void draw(const Renderer& _renderer, const Camera& _camera);
 
 	void collisionGround(const Map& _map);
+
+	void jump(float _velocity);
 private:
 	const Input* m_Input;
 	Animation animation;
+	TestJump m_Jump;
 
-	float jumpPower;
-	enum class JUMPSTATE
-	{
-		Non,
-		FristStep,
-		SecondStep
-	};
-	JUMPSTATE jump;
 };
 
