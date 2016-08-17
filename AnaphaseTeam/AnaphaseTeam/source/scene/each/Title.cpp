@@ -9,8 +9,6 @@ Title::Title(const Input* _input)
 	:m_IsEnd(false),
 	m_Input(_input),
 	m_Camera(10, 8, GSvector3(0, 5, 0)),
-	target(0, 5, -10),
-	//target(nullptr),
 	actorManager(),
 	m_Map(OCTREE_ID::KOUTEI),
 	player(_input)
@@ -38,9 +36,6 @@ void Title::initialize()
 }
 void Title::update(float deltaTime)
 {
-	target.x -= m_Input->horizontal()*0.1f;
-	target.z += m_Input->vertical()*0.1f;
-	target.y += m_Input->ymove()*0.1f;
 	/*if (m_Input->upTrigger())
 	{
 		target = actorManager.findif([&](Actor_Ptr _actor)

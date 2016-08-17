@@ -27,28 +27,34 @@ TestPlayer::~TestPlayer()
 void TestPlayer::update(float deltatime)
 {
 	animation.update(deltatime);
-	float speed(0.5f);
+	
 
-	m_transform.rotationY(-m_Input->horizontal()*deltatime);
+	m_transform.rotationY(-m_Input->rotate()*deltatime*2);
 
-	float dir = m_transform.getYaw();
+	float speed(0.3f);
+	float dir = -m_transform.getYaw();
 	Math::Sin sin;
 	Math::Cos cos;
-	GSvector3 vel(sin(dir), 0, cos(dir));
-	vel *= m_Input->vertical()*speed*deltatime;
-	m_transform.translate(vel);
+	
+	GSvector3 forward(m_transform.front()*m_Input->vertical());	
+	GSvector3 side(m_transform.left()*m_Input->horizontal());
+	GSvector3 move(forward - side);
+	move *= speed*deltatime;
+
+	m_transform.translate(move);
+	
 	sphereChases(GSvector3(0, 1, 0));
 
-	if (m_Input->upTrigger()&&jump!=JUMPSTATE::SecondStep)
+	if (m_Input->jumpTrigger()&&jump!=JUMPSTATE::SecondStep)
 	{
 		if (jump == JUMPSTATE::Non)
 		{
-			jumpPower = 1.5;
+			jumpPower = 1.2;
 			jump = JUMPSTATE::FristStep;
 		}
 		else if (jump==JUMPSTATE::FristStep)
 		{
-			jumpPower = 1.4f;
+			jumpPower = 1.0f;
 			jump = JUMPSTATE::SecondStep;
 		}
 	}

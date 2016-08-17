@@ -32,15 +32,9 @@ void TestActor::update(float deltatime)
 		target.x -=1;
 		break;
 	case 2:
-		target.y += 1;
-		break;
-	case 3:
-		target.y -=1;
-		break;
-	case 4:
 		target.z +=1;
 		break;
-	case 5:
+	case 3:
 		target.z -=1;
 		break;
 	}
@@ -57,11 +51,10 @@ void TestActor::draw(const Renderer & _renderer, const Camera & _camera)
 	{
 		return;
 	}
-	//
-	DrawCount++;
-	
 	alphaBlend(_camera);
 	animation.bind();
 	_renderer.getDraw3D().drawMesh(MESH_ID::KARATE,m_transform,m_Color);
 	//sphereDraw(_renderer);
+	//
+	DrawCount++;
 }

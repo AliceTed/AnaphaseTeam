@@ -22,18 +22,14 @@ const int Input::vertical()const
 	return f;
 }
 
-const int Input::ymove() const
+const int Input::rotate() const
 {
-	int f = gsGetKeyState(GKEY_Z);
-	f -= gsGetKeyState(GKEY_X);
+	int f = gsGetKeyState(GKEY_E)|gsGetKeyState(GKEY_RIGHT);
+	f -= gsGetKeyState(GKEY_Q)| gsGetKeyState(GKEY_LEFT);
 	return f;
 }
 
-const bool Input::upTrigger()const
+const bool Input::jumpTrigger() const
 {
-	return !!gsGetKeyTrigger(GKEY_UP);
-}
-const bool Input::downTrigger()const
-{
-	return !!gsGetKeyTrigger(GKEY_DOWN);
+	return gsGetKeyTrigger(GKEY_SPACE)==GS_TRUE;
 }

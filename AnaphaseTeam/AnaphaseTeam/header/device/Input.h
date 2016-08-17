@@ -11,9 +11,8 @@ public:
 	//êÇíº
 	const int vertical()const;
 
-	const int ymove()const;
+	const int rotate()const;
 
-	const bool upTrigger()const;
-	const bool downTrigger()const;
+	const bool jumpTrigger()const;
 };
 #endif

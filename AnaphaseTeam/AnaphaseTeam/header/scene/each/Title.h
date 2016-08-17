@@ -26,8 +26,6 @@ private:
 
 	Map m_Map;
 	Camera m_Camera;
-	//Actor_Ptr target;
-	GSvector3 target;
 	Entity::EntityManager<Actor_Ptr> actorManager;
 	TestPlayer player;
 };
