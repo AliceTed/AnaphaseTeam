@@ -55,12 +55,13 @@ void Title::update(float deltaTime)
 }
 
 void Title::draw(const Renderer & renderer)
-{	
+{
+	//renderer.getDraw3D().drawSky(MESH_ID::SKY);
 	m_Camera.lookAt(target, 0);
 	
 	//target->cameraChases(m_Camera);
-
 	m_Map.draw(renderer);
+	
 	actorManager.accept([&](Actor_Ptr _actor) {_actor->draw(renderer, m_Camera);});
 	renderer.getDraw2D().string("‘”:"+std::to_string(actorManager.size()),&GSvector2(20,20),20);
 	renderer.getDraw2D().string("•`‰æ”:" + std::to_string(TestActor::DrawCount), &GSvector2(20,50), 20);	

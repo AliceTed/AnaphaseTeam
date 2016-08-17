@@ -71,6 +71,13 @@ void Draw3D::drawSky(MESH_ID id, float angle)const
 	gsDrawSkyBox(cast(id));
 	glPopMatrix();
 }
+void Draw3D::drawSky(MESH_ID id)const
+{
+	glMatrixMode(GL_MODELVIEW);
+	glLoadIdentity();
+	Data::CastID cast;
+	gsDrawSkyBox(cast(id));
+}
 
 void Draw3D::drawOctree(OCTREE_ID id)const
 {

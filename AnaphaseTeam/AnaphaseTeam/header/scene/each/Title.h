@@ -22,6 +22,7 @@ public:
 private:
 	bool m_IsEnd;
 	const Input* m_Input;
+
 	Map m_Map;
 	Camera m_Camera;
 	//Actor_Ptr target;
