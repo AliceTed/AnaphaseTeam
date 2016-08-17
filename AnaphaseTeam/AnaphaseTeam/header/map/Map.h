@@ -1,6 +1,13 @@
 #pragma once
 #ifndef _MAP_H_
 #define _MAP_H_
+/**
+* @file Map.h
+* @brief octree—pƒNƒ‰ƒX
+* @author ¼”ö—T–ç
+* @date 2016/8/17
+*/
+
 #include "../data/OCTREE_ID.h"
 #include <gslib.h>
 class Ray;

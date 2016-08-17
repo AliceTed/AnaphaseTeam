@@ -26,30 +26,25 @@ void Actor::finish()
 void Actor::collisionGround(const Map& _map)
 {
 	GSvector3 intersect;
+	//Œ»İ‚ÌˆÊ’u‚©‚ç‰º•ûŒü‚ÌRay‚ğì‚é
 	GSvector3 position = m_transform.getPosition();
 	Ray ray(position);
 	if (!ray.isCollitionMap(_map, &intersect))
 	{
 		return;
 	}
-
+	
 	if (position.y >= intersect.y)
 	{
 		return;
 	}
+	//map‚É–„‚ß‚Ü‚ê‚Ä‚¢‚½‚çyÀ•W‚ğŒğ“_‚ÉˆÚ“®
 	m_transform.setPositionY(intersect.y);
 }
-
-void Actor::cameraChases(Camera & _camera)
+const float Actor::distanceActor(const Actor & _ohter) const
 {
-	_camera.lookAt(m_transform.getPosition(), m_transform.getYaw());
+	return m_transform.getPosition().distance(_ohter.m_transform.getPosition());
 }
-
-const float Actor::cameraDistance(const Camera & _camera) const
-{
-	return _camera.distance(m_transform.getPosition());
-}
-
 const bool Actor::isDead() const
 {
 	return m_isDead;

@@ -1,7 +1,14 @@
 #pragma once
 #ifndef _SPHERE_H_
 #define _SPHERE_H_
+/**
+* @file Sphere.h
+* @brief ‹…Œ`ó ƒNƒ‰ƒX
+* @author ¼”ö—T–ç
+* @date 2016/8/14
+*/
 #include <gslib.h>
+
 //#include "Shape.h"
 class Renderer;
 class Camera;//CameraManager‚É‚È‚é‚©‚à

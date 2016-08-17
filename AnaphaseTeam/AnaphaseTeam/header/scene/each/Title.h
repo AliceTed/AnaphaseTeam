@@ -24,7 +24,8 @@ private:
 	const Input* m_Input;
 	Map m_Map;
 	Camera m_Camera;
-	Actor_Ptr target;
+	//Actor_Ptr target;
+	GSvector3 target;
 	Entity::EntityManager<Actor_Ptr> actorManager;
 };
 #endif

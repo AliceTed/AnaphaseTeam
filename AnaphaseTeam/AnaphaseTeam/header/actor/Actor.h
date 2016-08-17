@@ -21,11 +21,20 @@ public:
 	virtual void draw(const Renderer& _renderer,const Camera& _camera) = 0;
 	virtual void finish();
 
+	/**
+	* @fn
+	* @brief Map‚Æ‚ÌÕ“ËŠÖ”
+	* @param (_map) map‚ğæ“¾
+	*/
 	virtual void collisionGround(const Map& _map);
 
-	void cameraChases(Camera& _camera);
-	const float cameraDistance(const Camera& _camera)const;
-
+	/**
+	* @fn
+	* @brief Actor“¯m‚Ì‹——£
+	* @param (_ohter) ‹——£‚ğ‘ª‚éActor
+	* @return ‹——£
+	*/
+	const float distanceActor(const Actor& _ohter)const;
 public:
 	const bool isDead()const;
 	
@@ -47,8 +56,6 @@ protected:
 	* @fn
 	* @brief ƒJƒƒ‰—p‹…‚ğActor‚É’Ç]‚³‚¹‚é
 	* @param (_offset)’²®
-	* @sa QÆ‚·‚×‚«ŠÖ”‚ğ‘‚¯‚ÎƒŠƒ“ƒN‚ª“\‚ê‚é
-	* @detail Ú×‚Èà–¾
 	*/
 	void sphereChases(const GSvector3 &_offset=GSvector3(0,0,0));
 
