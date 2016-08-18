@@ -1,4 +1,4 @@
-#include "Input.h"
+#include "../../header/device/Input.h"
 
 Input::Input()
 {

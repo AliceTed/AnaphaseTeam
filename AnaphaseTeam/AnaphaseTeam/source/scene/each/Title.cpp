@@ -21,8 +21,8 @@ void Title::initialize()
 }
 void Title::update(float deltaTime)
 {
-	target.x += m_Input->horizontal()*0.1f;
-	target.z += m_Input->vertical()*0.1f;
+	//target.x += m_Input->horizontal()*0.1f;
+	//target.z += m_Input->vertical()*0.1f;
 }
 
 void Title::draw(const Renderer & renderer)
