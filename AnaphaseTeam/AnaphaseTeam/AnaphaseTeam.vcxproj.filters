@@ -109,6 +109,12 @@
     <Filter Include="ソース ファイル\map">
       <UniqueIdentifier>{c5ec5119-50c6-4057-bc3b-83148361c7bc}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ヘッダー ファイル\convenient">
+      <UniqueIdentifier>{6f14157c-b4c8-4977-97a4-7d6b5d5979df}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\convenient">
+      <UniqueIdentifier>{d0cf5e72-4097-46d2-af6f-1b6fb3c150d3}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Util\BasicShapes.h">
@@ -273,6 +279,12 @@
     <ClInclude Include="header\actor\TestJump.h">
       <Filter>ヘッダー ファイル\actor</Filter>
     </ClInclude>
+    <ClInclude Include="header\convenient\Timer.h">
+      <Filter>ヘッダー ファイル\convenient</Filter>
+    </ClInclude>
+    <ClInclude Include="header\actor\TestChainMove.h">
+      <Filter>ヘッダー ファイル\actor</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Util\BasicShapes.cpp">
@@ -369,6 +381,12 @@
       <Filter>ソース ファイル\actor</Filter>
     </ClCompile>
     <ClCompile Include="source\Acotr\TestJump.cpp">
+      <Filter>ソース ファイル\actor</Filter>
+    </ClCompile>
+    <ClCompile Include="source\convenient\Timer.cpp">
+      <Filter>ソース ファイル\convenient</Filter>
+    </ClCompile>
+    <ClCompile Include="source\Acotr\TestChainMove.cpp">
       <Filter>ソース ファイル\actor</Filter>
     </ClCompile>
   </ItemGroup>

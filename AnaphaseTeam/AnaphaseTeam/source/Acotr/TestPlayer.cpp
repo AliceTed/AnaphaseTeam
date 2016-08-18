@@ -6,6 +6,9 @@
 
 #include "../../header/camera/Camera.h"
 #include "../../header/shape/Ray.h"
+
+const float TestPlayer::MOVESPEED=0.3f;
+const float TestPlayer::ROTATESPEED = -2.0f;
 TestPlayer::TestPlayer(const Input* _input)
 	:Actor(Transform(), Sphere(GSvector3(0, 0, 0), 1)),
 	m_Input(_input),
@@ -14,7 +17,8 @@ TestPlayer::TestPlayer(const Input* _input)
 		(
 			gsGetEndAnimationTime(static_cast<GSuint>(ANIMATION_ID::KENDO), 20)), true
 		),
-	m_Jump()
+	m_Jump(),
+	m_ChainMove()
 {
 }
 
@@ -25,23 +29,12 @@ TestPlayer::~TestPlayer()
 void TestPlayer::update(float deltatime)
 {
 	animation.update(deltatime);
-	
-	m_transform.rotationY(-m_Input->rotate()*deltatime*2);
 
-	float speed(0.3f);
-	float dir = -m_transform.getYaw();
-	
-	GSvector3 forward(m_transform.front()*m_Input->vertical());	
-	GSvector3 side(m_transform.left()*m_Input->horizontal());
-	m_transform.translate((forward - side)*speed*deltatime);
-	
+	move(deltatime);
+	jump(deltatime);
+	chain(deltatime);
+
 	sphereChases(GSvector3(0, 1, 0));
-
-	if (m_Input->jumpTrigger())
-	{
-		m_Jump.start();
-	}
-	m_Jump.jumping(this,deltatime);
 }
 
 void TestPlayer::draw(const Renderer & _renderer, const Camera & _camera)
@@ -79,7 +72,48 @@ void TestPlayer::collisionGround(const Map & _map)
 	m_transform.setPositionY(intersect.y);
 }
 
-void TestPlayer::jump(float _velocity)
+void TestPlayer::move(float deltaTime)
+{
+	m_transform.rotationY(m_Input->rotate()*deltaTime * ROTATESPEED);
+
+	GSvector3 forward(m_transform.front()*m_Input->vertical());
+	GSvector3 side(m_transform.left()*m_Input->horizontal());
+	m_transform.translate((forward - side)*MOVESPEED*deltaTime);
+}
+
+void TestPlayer::jump(float deltaTime)
+{
+	if (m_Input->jumpTrigger())
+	{
+		m_Jump.start();
+	}
+	m_Jump.jumping(this, deltaTime);
+}
+
+void TestPlayer::chain(float deltaTime)
+{
+	if (m_Input->chainTrigger())
+	{
+		m_ChainMove.start();
+	}
+	m_ChainMove.movement(deltaTime, this);
+}
+
+void TestPlayer::jumping(float _velocity)
 {
 	m_transform.translateY(_velocity);
+}
+
+void TestPlayer::chainMove(const GSvector3 & _target,float _time)
+{
+	//一度加速度にしているが　lerpをそのままsetPosしても良い
+	//GSvector3 pos = m_transform.getPosition();
+	//GSvector3 velocity = pos.lerp(_target, _time) - pos;
+	//m_transform.translate(velocity);
+	
+	/*
+	加速度にすると加算なので外部の影響を受けるが
+	代入なら影響を受けない
+	*/
+	m_transform.setPosition(m_transform.getPosition().lerp(_target, _time));
 }

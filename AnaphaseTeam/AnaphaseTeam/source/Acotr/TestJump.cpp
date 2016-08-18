@@ -21,7 +21,7 @@ void TestJump::jumping(TestPlayer * _player, float deltaTime)
 {
 	if (m_State == JUMPSTATE::Non)return;
 
-	_player->jump(m_JumpPower*deltaTime);
+	_player->jumping(m_JumpPower*deltaTime);
 	Math::Clamp clamp;
 	m_JumpPower = clamp(m_JumpPower - m_Acceleration, -MaxJumpPower, MaxJumpPower);
 }

@@ -33,3 +33,8 @@ const bool Input::jumpTrigger() const
 {
 	return gsGetKeyTrigger(GKEY_SPACE)==GS_TRUE;
 }
+
+const bool Input::chainTrigger() const
+{
+	return gsGetKeyTrigger(GKEY_LSHIFT) == GS_TRUE;
+}

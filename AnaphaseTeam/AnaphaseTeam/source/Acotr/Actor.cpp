@@ -45,6 +45,10 @@ const float Actor::distanceActor(const Actor & _ohter) const
 {
 	return m_transform.getPosition().distance(_ohter.m_transform.getPosition());
 }
+const float Actor::distance(const GSvector3 & _position) const
+{
+	return m_transform.getPosition().distance(_position);
+}
 const bool Actor::isDead() const
 {
 	return m_isDead;

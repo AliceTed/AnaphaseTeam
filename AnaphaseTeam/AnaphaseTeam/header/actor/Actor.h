@@ -35,7 +35,8 @@ public:
 	* @return ‹——£
 	*/
 	const float distanceActor(const Actor& _ohter)const;
-
+	//chainŒvŽZ—p‚É‚ ‚é‚¾‚¯distanceActorˆê‚Â‚É‚µ‚½‚¢
+	const float distance(const GSvector3& _position)const;
 public:
 	const bool isDead()const;
 	

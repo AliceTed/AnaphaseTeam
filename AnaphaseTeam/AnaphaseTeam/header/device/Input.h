@@ -14,5 +14,6 @@ public:
 	const int rotate()const;
 
 	const bool jumpTrigger()const;
+	const bool chainTrigger()const;
 };
 #endif

@@ -9,6 +9,8 @@
 #include "../animation/Animation.h"
 #include "../animation/AnimationTimer.h"
 #include "TestJump.h"
+#include "TestChainMove.h"
+#include "../convenient/Timer.h"
 class Input;
 class TestPlayer:public Actor
 {
@@ -19,11 +21,20 @@ public:
 	void draw(const Renderer& _renderer, const Camera& _camera);
 	void collisionGround(const Map& _map);
 
-	void jump(float _velocity);
+	void move(float deltaTime);
+	void jump(float deltaTime);
+	void chain(float deltaTime);
+
+	void jumping(float _velocity);
+	void chainMove(const GSvector3 & _target, float _time);
 private:
 	const Input* m_Input;
 	Animation animation;
-	TestJump m_Jump;
 
+	TestJump m_Jump;
+	TestChainMove m_ChainMove;
+
+	static const float MOVESPEED;
+	static const float ROTATESPEED;
 };
 
