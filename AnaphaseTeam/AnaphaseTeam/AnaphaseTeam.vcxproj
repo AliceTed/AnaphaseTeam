@@ -148,7 +148,7 @@
     <ClCompile Include="source\camera\Camera.cpp" />
     <ClCompile Include="source\data\LoadError.cpp" />
     <ClCompile Include="source\data\Release.cpp" />
-    <ClCompile Include="source\input\Input.cpp" />
+    <ClCompile Include="source\device\Input.cpp" />
     <ClCompile Include="source\light\DirectionalLight.cpp" />
     <ClCompile Include="source\light\PointLight.cpp" />
     <ClCompile Include="source\light\SpotLight.cpp" />

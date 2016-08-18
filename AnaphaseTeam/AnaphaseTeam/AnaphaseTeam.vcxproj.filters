@@ -129,9 +129,6 @@
     <ClInclude Include="header\data\Loader.h">
       <Filter>ヘッダー ファイル\data</Filter>
     </ClInclude>
-    <ClInclude Include="header\device\Input.h">
-      <Filter>ヘッダー ファイル\device</Filter>
-    </ClInclude>
     <ClInclude Include="header\math\Random.h">
       <Filter>ヘッダー ファイル\math</Filter>
     </ClInclude>
@@ -234,6 +231,9 @@
     <ClInclude Include="header\renderer\Renderer.h">
       <Filter>ヘッダー ファイル\renderer</Filter>
     </ClInclude>
+    <ClInclude Include="header\device\Input.h">
+      <Filter>ヘッダー ファイル\device</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Util\BasicShapes.cpp">
@@ -256,9 +256,6 @@
     </ClCompile>
     <ClCompile Include="source\renderer\Draw2D.cpp">
       <Filter>ソース ファイル\renderer</Filter>
-    </ClCompile>
-    <ClCompile Include="source\input\Input.cpp">
-      <Filter>ソース ファイル\device</Filter>
     </ClCompile>
     <ClCompile Include="source\scene\SceneManager.cpp">
       <Filter>ソース ファイル\scene</Filter>
@@ -310,6 +307,9 @@
     </ClCompile>
     <ClCompile Include="source\renderer\Renderer.cpp">
       <Filter>ソース ファイル\renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="source\device\Input.cpp">
+      <Filter>ソース ファイル\device</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
