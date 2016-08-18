@@ -345,9 +345,9 @@ namespace Math
 		*/
 		const GSvector3 operator ()(const GSvector3& _start, const GSvector3& _v0, float _time, float _gravity)const
 		{
-			GSvector3 result = _start*_time;
-			result.y = _v0.y*_time + 0.5f*_gravity*_time*_time;
-			result = _start + result;
+			GSvector3 vector = _v0*_time;
+			vector.y = _v0.y*_time + 0.5f*_gravity*_time*_time;
+			GSvector3 result = _start + vector;
 			return result;
 		}
 	};
