@@ -47,7 +47,7 @@ void TestPlayer::draw(const Renderer & _renderer, const Camera & _camera)
 	}
 	alphaBlend(_camera);
 	animation.bind();
-	_renderer.getDraw3D().drawMesh(MESH_ID::KENDO,m_transform);
+	_renderer.getDraw3D().drawMesh(MESH_ID::KENDO,m_transform, m_Color);
 }
 
 void TestPlayer::collisionGround(const Map & _map)
