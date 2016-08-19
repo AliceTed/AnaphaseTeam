@@ -43,7 +43,7 @@ void Player::draw(const Renderer& _renderer, const Camera& _camera)
 	m_animator.bind();
 	_renderer.getDraw3D().drawMesh(MODEL_ID::PLAYER, m_transform.getMatrix4());
 }
-void Player::collisionGround(const Map & _map)
+/*void Player::collisionGround(const Map & _map)
 {
 	GSvector3 intersect;
 	//Œ»İ‚ÌˆÊ’u‚©‚ç‰º•ûŒü‚ÌRay‚ğì‚é
@@ -63,7 +63,7 @@ void Player::collisionGround(const Map & _map)
 
 	//map‚É–„‚ß‚Ü‚ê‚Ä‚¢‚½‚çyÀ•W‚ğŒğ“_‚ÉˆÚ“®
 	m_transform.setPositionY(intersect.y);
-}
+}*/
 void Player::finish()
 {
 
@@ -71,19 +71,19 @@ void Player::finish()
 void Player::stand(float deltaTime)
 {
 	m_animator.changeAnimation(ANIMATION_ID::STAND);
-	//if (gsGetKeyState(GKEY_UP) != 0)m_action = std::make_shared<MoveState>();
-	move(deltaTime);
+	if (gsGetKeyState(GKEY_UP) != 0)m_action = std::make_shared<MoveState>();
+	//move(deltaTime);
 }
 void Player::move(float deltaTime)
 {
+
 	m_transform.rotationY(m_Input->rotate()*deltaTime * ROTATESPEED);
 
 	GSvector3 forward(m_transform.front()*m_Input->vertical());
 	GSvector3 side(m_transform.left()*m_Input->horizontal());
 	m_transform.translate((forward - side)*MOVESPEED*deltaTime);
-
-	
-	if (gsGetKeyState(GKEY_UP) != 0)m_animator.changeAnimation(ANIMATION_ID::RUN,true);
+	m_animator.changeAnimation(ANIMATION_ID::RUN, true);
+	if(gsGetKeyState(GKEY_UP)==0)m_animator.changeAnimation(ANIMATION_ID::STAND, true);
 }
 void Player::attack(float deltaTime)
 {

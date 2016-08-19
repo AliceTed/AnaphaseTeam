@@ -21,7 +21,7 @@ public:
 	void initialize();
 	void update(float deltatime);
 	void draw(const Renderer& _renderer, const Camera& _camera);
-	void collisionGround(const Map& _map);
+	//void collisionGround(const Map& _map);
 	void finish();
 	void stand(float deltaTime);
 	void move(float deltaTime);
