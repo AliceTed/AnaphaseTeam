@@ -1,6 +1,6 @@
 #include "../../header/actor/TestChainMove.h"
 #include "../../header/actor/TestPlayer.h"
-
+/*
 const float TestChainMove::MOVESPEED=0.5f;
 TestChainMove::TestChainMove()
 	:m_isChainMove(false),
@@ -20,7 +20,7 @@ void TestChainMove::start()
 	ロックオン中のターゲットに判定(Rayまたは球など)を飛ばし
 	targetを求める
 	m_targetをActorにしたほうがよさげ
-	*/
+	/
 	m_Target = GSvector3(0, 0, 0);
 	m_isChainMove = true;
 	m_Timer.initialize();
@@ -34,3 +34,4 @@ void TestChainMove::movement(float deltaTime, TestPlayer* _player)
 	m_Timer.update(deltaTime / _player->distance(m_Target)*MOVESPEED);
 	m_isChainMove = !m_Timer.isEnd();
 }
+*/

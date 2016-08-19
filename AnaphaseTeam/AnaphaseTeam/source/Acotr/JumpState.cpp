@@ -11,5 +11,5 @@ JumpState::~JumpState()
 
 void JumpState::action(ICharacter* _actor, float deltatime)
 {
-	_actor->jump();
+	_actor->jump(deltatime);
 }

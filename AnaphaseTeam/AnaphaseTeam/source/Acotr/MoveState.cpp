@@ -12,5 +12,5 @@ MoveState::~MoveState()
 
 void MoveState::action(ICharacter* _actor,float deltatime)
 {
-	_actor->move();
+	_actor->move(deltatime);
 }

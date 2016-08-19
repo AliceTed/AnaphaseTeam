@@ -6,5 +6,5 @@ StandState::~StandState()
 {}
 void StandState::action(ICharacter* _actor,float deltatime)
 {
-	_actor->stand();
+	_actor->stand(deltatime);
 }
