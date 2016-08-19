@@ -64,7 +64,8 @@ void TestActor::draw(const Renderer & _renderer, const Camera & _camera)
 
 void TestActor::createCollision(CollisionMediator * _mediator)
 {
-	Shape_Ptr shape = std::make_shared<Sphere>(m_transform.getPosition(), 1.0f);
+	GSvector3 pos(m_transform.getPosition() + GSvector3(0, 0.5f, 0));
+	Shape_Ptr shape = std::make_shared<Sphere>(pos, 1.0f);
 	Obj_Ptr obj = std::make_shared<CollisionObject>(this,shape);
 	_mediator->add(obj);
 }

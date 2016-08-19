@@ -34,6 +34,7 @@ public:
 
 	virtual void createCollision(CollisionMediator* _mediator);
 
+public:
 	/**
 	* @fn
 	* @brief Actor“¯Žm‚Ì‹——£

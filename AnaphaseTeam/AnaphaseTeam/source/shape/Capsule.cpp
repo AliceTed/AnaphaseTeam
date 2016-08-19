@@ -47,7 +47,6 @@ void Capsule::draw(const Renderer & renderer, const GScolor& color)
 	float ele =v.getPitch();
 	
 	Math::ATan aTan;
-	Math::RadToDeg rtd;
 	float dir = aTan(v.x, v.z);
 	renderer.getDraw3D().drawCapsule(&m_Segment.begin(), m_Radius, v.length(), dir, ele,color);
 }
