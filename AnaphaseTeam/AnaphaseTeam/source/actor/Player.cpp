@@ -29,6 +29,7 @@ void Player::initialize()
 void Player::update(float deltatime)
 {
 	m_action->action(this, deltatime);
+	sphereChases(GSvector3(0, 1, 0));
 	m_animator.update(deltatime);
 }
 void Player::draw(const Renderer& _renderer, const Camera& _camera)
@@ -43,27 +44,6 @@ void Player::draw(const Renderer& _renderer, const Camera& _camera)
 	m_animator.bind();
 	_renderer.getDraw3D().drawMesh(MODEL_ID::PLAYER, m_transform.getMatrix4());
 }
-/*void Player::collisionGround(const Map & _map)
-{
-	GSvector3 intersect;
-	//Œ»Ý‚ÌˆÊ’u‚©‚ç‰º•ûŒü‚ÌRay‚ðì‚é
-	GSvector3 position = m_transform.getPosition();
-	Ray ray(position);
-	if (!ray.isCollitionMap(_map, &intersect))
-	{
-		return;
-	}
-
-	if (position.y >= intersect.y)
-	{
-		return;
-	}
-	//
-	//m_Jump.groundHit();
-
-	//map‚É–„‚ßž‚Ü‚ê‚Ä‚¢‚½‚çyÀ•W‚ðŒð“_‚ÉˆÚ“®
-	m_transform.setPositionY(intersect.y);
-}*/
 void Player::finish()
 {
 
@@ -83,7 +63,7 @@ void Player::move(float deltaTime)
 	GSvector3 side(m_transform.left()*m_Input->horizontal());
 	m_transform.translate((forward - side)*MOVESPEED*deltaTime);
 	m_animator.changeAnimation(ANIMATION_ID::RUN, true);
-	if(gsGetKeyState(GKEY_UP)==0)m_animator.changeAnimation(ANIMATION_ID::STAND, true);
+	if (gsGetKeyState(GKEY_UP) == 0)m_animator.changeAnimation(ANIMATION_ID::STAND, true);
 }
 void Player::attack(float deltaTime)
 {
