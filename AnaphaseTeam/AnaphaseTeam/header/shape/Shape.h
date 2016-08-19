@@ -2,7 +2,6 @@
 #ifndef _SHAPE_H_
 #define _SHAPE_H_
 
-#include "SHAPE_TAG.h"
 #include <gslib.h>
 class Renderer;
 

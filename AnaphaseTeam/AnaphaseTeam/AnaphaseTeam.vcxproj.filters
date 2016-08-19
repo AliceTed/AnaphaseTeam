@@ -321,9 +321,6 @@
     <ClInclude Include="header\collision\CollisionTable.h">
       <Filter>ヘッダー ファイル\collision</Filter>
     </ClInclude>
-    <ClInclude Include="header\shape\SHAPE_TAG.h">
-      <Filter>ヘッダー ファイル\shape</Filter>
-    </ClInclude>
     <ClInclude Include="header\actor\Actor_Tag.h">
       <Filter>ヘッダー ファイル\actor</Filter>
     </ClInclude>
