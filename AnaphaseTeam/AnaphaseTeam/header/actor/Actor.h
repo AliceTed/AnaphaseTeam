@@ -6,15 +6,17 @@
 */
 #pragma once
 #include "../Transform.h"
+#include "../data/Model_ID.h"
+#include "../animation/Animator.h"
+class Renderer;
 #include "../shape/Sphere.h"
 
 class Map;
-class Renderer;
 class Camera;
 class Actor
 {
 public:
-	Actor(const Transform &_transform,const Sphere& _sphere);
+	Actor(const Transform &_transform,const MODEL_ID _model_ID,const Sphere& _sphere);
 	virtual ~Actor() {}
 	virtual void initialize();
 	virtual void update(float deltatime) = 0;
@@ -77,4 +79,5 @@ private:
 	Sphere m_Sphere;
 	//!ƒ¿ƒuƒŒƒ“ƒh‚ðŽn‚ß‚é‹——£
 	static const float ALPHABLEND_FAR;
+	Animator m_animator;
 };

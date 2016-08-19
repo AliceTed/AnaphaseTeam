@@ -2,7 +2,7 @@
 #include "../../header/shape/Sphere.h"
 #include "../../header/camera/Camera.h"
 #include "../../header/renderer/Renderer.h"
-//
+/*
 int TestActor::DrawCount = 0;
 TestActor::TestActor()
 	:Actor(Transform(),Sphere(GSvector3(0,0,0),1.0f)),
@@ -58,3 +58,4 @@ void TestActor::draw(const Renderer & _renderer, const Camera & _camera)
 	//
 	DrawCount++;
 }
+*/

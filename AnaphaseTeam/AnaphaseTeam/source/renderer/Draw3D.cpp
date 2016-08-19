@@ -1,6 +1,6 @@
 #include "../../header/renderer/Draw3D.h"
 #include "../../header/data/CastID.h"
-
+#include "../../header/data/Model_ID.h"
 #include"../../header/Transform.h"
 Draw3D::Draw3D()
 {
@@ -55,6 +55,16 @@ void Draw3D::drawMesh(MESH_ID id, const GSmatrix4 & mat,const GScolor& _color) c
 {
 	glPushMatrix();
 	glColor4f(_color.r,_color.g,_color.b,_color.a);
+	glMultMatrixf(mat);
+	Data::CastID cast;
+	gsDrawMesh(cast(id));
+	glPopMatrix();
+}
+
+void Draw3D::drawMesh(MODEL_ID id, const GSmatrix4 & mat, const GScolor & _color) const
+{
+	glPushMatrix();
+	glColor4f(_color.r, _color.g, _color.b, _color.a);
 	glMultMatrixf(mat);
 	Data::CastID cast;
 	gsDrawMesh(cast(id));
