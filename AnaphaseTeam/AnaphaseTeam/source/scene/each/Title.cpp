@@ -11,7 +11,8 @@ Title::Title(const Input* _input)
 	m_Camera(10, 8, GSvector3(0, 5, 0)),
 	actorManager(),
 	m_Map(OCTREE_ID::KOUTEI),
-	player(_input)
+	player(_input),
+	collision()
 {
 }
 
@@ -22,6 +23,7 @@ Title::~Title()
 void Title::initialize()
 {
 	m_IsEnd = false;
+	collision.initialize();
 	for (int i = 0; i <20; i++)
 	{
 		Actor_Ptr actor = std::make_shared<TestActor>();
@@ -45,11 +47,17 @@ void Title::update(float deltaTime)
 	}*/
 	player.update(deltaTime);
 	player.collisionGround(m_Map);
+	player.createCollision(&collision);
 
 	actorManager.accept([deltaTime](Actor_Ptr _actor) {_actor->update(deltaTime);});
 	actorManager.accept([&](Actor_Ptr _actor) {_actor->collisionGround(m_Map);});
+	actorManager.accept([&](Actor_Ptr _actor) {_actor->createCollision(&collision);});
+	
+	collision.update(deltaTime);
 
 	actorManager.remove([](Actor_Ptr _actor)->bool {return _actor->isDead();});
+
+	
 }
 
 void Title::draw(const Renderer & renderer)
@@ -63,7 +71,8 @@ void Title::draw(const Renderer & renderer)
 	
 	actorManager.accept([&](Actor_Ptr _actor) {_actor->draw(renderer, m_Camera);});
 	renderer.getDraw2D().string("‘”:"+std::to_string(actorManager.size()),&GSvector2(20,20),20);
-	renderer.getDraw2D().string("•`‰æ”:" + std::to_string(TestActor::DrawCount), &GSvector2(20,50), 20);	
+	renderer.getDraw2D().string("•`‰æ”:" + std::to_string(TestActor::DrawCount), &GSvector2(20,50), 20);
+	collision.draw(renderer);
 }
 
 void Title::finish()

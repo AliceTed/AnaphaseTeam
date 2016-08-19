@@ -6,11 +6,12 @@
 #include "../../header/shape/Ray.h"
 const float Actor::ALPHABLEND_FAR = 2.0f;
 
-Actor::Actor(const Transform & _transform, const Sphere& _sphere)
+Actor::Actor(const Transform & _transform, const Sphere& _sphere, Actor_Tag _tag)
 	:m_transform(_transform), 
 	m_isDead(false),
 	m_Color(1.0f,1.0f,1.0f,1.0f),
-	m_Sphere(_sphere)
+	m_Sphere(_sphere),
+	m_Tag(_tag)
 {
 }
 void Actor::initialize()
@@ -44,9 +45,12 @@ void Actor::collisionGround(const Map& _map)
 void Actor::collision(const Actor * _other)
 {
 }
+void Actor::createCollision(CollisionMediator * _mediator)
+{
+}
 const float Actor::distanceActor(const Actor & _other) const
 {
-	return m_transform.getPosition().distance(_ohter.m_transform.getPosition());
+	return m_transform.getPosition().distance(_other.m_transform.getPosition());
 }
 const float Actor::distance(const GSvector3 & _position) const
 {
@@ -55,6 +59,10 @@ const float Actor::distance(const GSvector3 & _position) const
 const bool Actor::isSameActor(const Actor * _other) const
 {
 	return this==_other;
+}
+const bool Actor::isSameTag(Actor_Tag _tag) const
+{
+	return m_Tag==_tag;
 }
 const bool Actor::isDead() const
 {

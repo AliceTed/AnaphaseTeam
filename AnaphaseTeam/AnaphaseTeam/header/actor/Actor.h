@@ -7,7 +7,8 @@
 #pragma once
 #include "../Transform.h"
 #include "../shape/Sphere.h"
-
+#include "../actor/Actor_Tag.h"
+class CollisionMediator;
 class Map;
 class Renderer;
 class Camera;
@@ -16,7 +17,7 @@ class Camera;
 class Actor
 {
 public:
-	Actor(const Transform &_transform,const Sphere& _sphere);
+	Actor(const Transform &_transform,const Sphere& _sphere,Actor_Tag _tag);
 	virtual ~Actor() {}
 	virtual void initialize();
 	virtual void update(float deltatime) = 0;
@@ -31,6 +32,8 @@ public:
 	virtual void collisionGround(const Map& _map);
 	virtual void collision(const Actor* _other);
 
+	virtual void createCollision(CollisionMediator* _mediator);
+
 	/**
 	* @fn
 	* @brief Actor同士の距離
@@ -42,6 +45,7 @@ public:
 	const float distance(const GSvector3& _position)const;
 
 	const bool isSameActor(const Actor* _other)const;
+	const bool isSameTag(Actor_Tag _tag)const;
 public:
 	const bool isDead()const;
 	
@@ -77,7 +81,10 @@ protected:
 	bool m_isDead;
 
 	GScolor m_Color;
+
+	Actor_Tag m_Tag;
 private:
+
 	//!カメラ用判定
 	Sphere m_Sphere;
 	//!αブレンドを始める距離

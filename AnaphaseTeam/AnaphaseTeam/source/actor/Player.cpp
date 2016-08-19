@@ -2,7 +2,7 @@
 #include "../../header/actor/MoveState.h"
 #include "../../header/actor/StandState.h"
 Player::Player()
-	:Actor(Transform(),Sphere(GSvector3(0,0,0),0)), m_action(nullptr)
+	:Actor(Transform(),Sphere(GSvector3(0,0,0),0),Actor_Tag::PLAYER), m_action(nullptr)
 {}
 Player::~Player()
 {}

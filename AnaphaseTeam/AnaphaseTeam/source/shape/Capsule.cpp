@@ -40,15 +40,12 @@ const bool Capsule::isCollision(const Shape * _shape) const
 {
 	return _shape->isCollision(this);
 }
-
-
-
-void Capsule::draw(const Renderer & renderer, const GScolor& color = GScolor(1.0f, 1.0f, 1.0f, 1.0f))
+void Capsule::draw(const Renderer & renderer, const GScolor& color)
 {
-	float ele = segment.v().getPitch();
-	float dir = Calculate<float>::radToDeg(std::atan2(segment.v().x,segment.v().z));
+	//float ele = segment.v().getPitch();
+	//float dir = Calculate<float>::radToDeg(std::atan2(segment.v().x,segment.v().z));
 
-	renderer.drawCapsule(&segment.position, radius, segment.v().length(), dir, ele,GScolor(1,0,0,1));
+	//renderer.drawCapsule(&segment.position, radius, segment.v().length(), dir, ele,GScolor(1,0,0,1));
 }
 
 const bool Capsule::isCollisionSphere(const GSvector3 & _center, float _radius) const

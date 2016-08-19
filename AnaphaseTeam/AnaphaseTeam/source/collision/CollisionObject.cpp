@@ -1,6 +1,5 @@
 #include "../../header/collision/CollisionObject.h"
 
-#include "CollisionManager.h"
 #include "../../header/actor/Actor.h"
 
 
@@ -16,7 +15,7 @@ const bool CollisionObject::isCollision(const CollisionObject * other) const
 {
 	if (parent->isSameActor(other->parent))
 	{
-		return;
+		return false;
 	}
 	//if (!parent->isConfirmCollisionTable(collision, other->parent))
 	//{

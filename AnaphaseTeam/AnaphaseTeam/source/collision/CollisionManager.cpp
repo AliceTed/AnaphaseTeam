@@ -44,11 +44,11 @@ void CollisionManager::update(float deltaTime)
 			_obj2->collision(_obj1.get());
 		});
 	});
-	m_Container.clear();
+	//m_Container.clear();
 }
 
 void CollisionManager::draw(const Renderer & renderer)
 {
-	/*m_Container.accept([&](Obj_Ptr _obj) {_obj->draw(renderer);});
-	m_Container.clear();*/
+	m_Container.accept([&](Obj_Ptr _obj) {_obj->draw(renderer);});
+	m_Container.clear();
 }

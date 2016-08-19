@@ -7,10 +7,12 @@
 #include "../../header/camera/Camera.h"
 #include "../../header/shape/Ray.h"
 
+#include "../../header/collision/CollisionMediator.h"
+#include "../../header/shape/Sphere.h"
 const float TestPlayer::MOVESPEED=0.3f;
 const float TestPlayer::ROTATESPEED = -2.0f;
 TestPlayer::TestPlayer(const Input* _input)
-	:Actor(Transform(), Sphere(GSvector3(0, 0, 0), 1)),
+	:Actor(Transform(), Sphere(GSvector3(0, 0, 0), 1), Actor_Tag::PLAYER),
 	m_Input(_input),
 	animation(ANIMATION_ID::KENDO, SKELETON_ID::KENDO, 20,
 		AnimationTimer
@@ -68,6 +70,13 @@ void TestPlayer::collisionGround(const Map & _map)
 
 	//map‚É–„‚ß‚Ü‚ê‚Ä‚¢‚½‚çyÀ•W‚ğŒğ“_‚ÉˆÚ“®
 	m_transform.setPositionY(intersect.y);
+}
+
+void TestPlayer::createCollision(CollisionMediator * _mediator)
+{
+	Shape_Ptr shape = std::make_shared<Sphere>(m_transform.getPosition(), 1.0f);
+	Obj_Ptr obj = std::make_shared<CollisionObject>(this, shape);
+	_mediator->add(obj);
 }
 
 void TestPlayer::move(float deltaTime)

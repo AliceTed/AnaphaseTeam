@@ -183,6 +183,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="header\actor\Actor.h" />
+    <ClInclude Include="header\actor\Actor_Tag.h" />
     <ClInclude Include="header\actor\AttackState.h" />
     <ClInclude Include="header\actor\IActionState.h" />
     <ClInclude Include="header\actor\ICharacter.h" />

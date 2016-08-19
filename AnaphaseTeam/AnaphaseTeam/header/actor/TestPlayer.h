@@ -20,6 +20,7 @@ public:
 	void update(float deltatime);
 	void draw(const Renderer& _renderer, const Camera& _camera);
 	void collisionGround(const Map& _map);
+	void createCollision(CollisionMediator* _mediator);
 
 	void move(float deltaTime);
 	void jump(float deltaTime);
