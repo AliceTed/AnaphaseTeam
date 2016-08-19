@@ -1,5 +1,5 @@
 #pragma once
-#include "../actor/state/IActionState.h"
+#include "IActionState.h"
 class JumpState :public IActionState
 {
 public:

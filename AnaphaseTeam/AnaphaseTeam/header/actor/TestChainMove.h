@@ -1,7 +1,7 @@
 #pragma once
 #include <gslib.h>
 #include "../convenient/Timer.h"
-class TestPlayer;
+class Player;
 class TestChainMove
 {
 public:
@@ -9,7 +9,7 @@ public:
 	~TestChainMove();
 
 	void start();
-	void movement(float deltaTime,TestPlayer* _player);
+	void movement(float deltaTime,Player* _player);
 
 	void fling();
 private:

@@ -1,5 +1,5 @@
 #include "../../header/actor/TestJump.h"
-#include "../../header/actor/TestPlayer.h"
+#include "../../header/actor/Player/Player.h"
 
 #include "../../header/math/Calculate.h"
 
@@ -17,7 +17,7 @@ TestJump::~TestJump()
 {
 }
 
-void TestJump::jumping(TestPlayer * _player, float deltaTime)
+void TestJump::jumping(Player * _player, float deltaTime)
 {
 	if (m_State == JUMPSTATE::Non)return;
 

@@ -1,5 +1,5 @@
 #include "../../header/actor/TestChainMove.h"
-#include "../../header/actor/TestPlayer.h"
+#include "../../header/actor/Player/Player.h"
 
 const float TestChainMove::MOVESPEED=0.5f;
 TestChainMove::TestChainMove()
@@ -26,7 +26,7 @@ void TestChainMove::start()
 	m_Timer.initialize();
 }
 
-void TestChainMove::movement(float deltaTime, TestPlayer* _player)
+void TestChainMove::movement(float deltaTime, Player* _player)
 {
 	if (!m_isChainMove)return;
 

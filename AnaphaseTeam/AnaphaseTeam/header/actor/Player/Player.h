@@ -6,24 +6,35 @@
 *@date 2016/08/12
 */
 #include "../Actor.h"
-#include "../IActionState.h"
+#include "../../animation/Animation.h"
+#include "../../animation/AnimationTimer.h"
+#include "../../actor/state/IActionState.h"
+#include "../TestJump.h"
+#include "../TestChainMove.h"
+#include "../../convenient/Timer.h"
+#include<gslib.h>
 #include <memory>
 #include "../ICharacter.h"
+class Input;
 typedef std::shared_ptr<IActionState> Action_Ptr;
 class Player :public Actor,public ICharacter
 {
 public:
-	Player();
+	Player(const Input* _input);
 	~Player();
 	void initialize();
 	void update(float deltatime);
-	void draw();
+	void draw(const Renderer& _renderer, const Camera& _camera);
+	void collisionGround(const Map& _map);
 	void finish();
-	void stand();
-	void move();
-	void attack();
-	void damage();
-	void jump();
+	void stand(float deltaTime);
+	void attack(float deltaTime);
+	void damage(float deltaTime);
+	void move(float deltaTime);
+	void jump(float deltaTime);
+	void chain(float deltaTime);
+	void jumping(float _velocity);
+	void chainMove(const GSvector3 & _target, float _time);
 	/**
 	* @fn
 	* @brief アクションステートの切り替え関数
@@ -31,5 +42,13 @@ public:
 	*/
 	void actionChange(Action_Ptr _action);
 private:
+	const Input* m_Input;
+	Animation animation;
+
+	TestJump m_Jump;
+	TestChainMove m_ChainMove;
+
+	static const float MOVESPEED;
+	static const float ROTATESPEED;
 	Action_Ptr m_action;
 };

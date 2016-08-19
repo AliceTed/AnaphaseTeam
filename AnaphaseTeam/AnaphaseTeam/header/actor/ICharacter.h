@@ -2,9 +2,9 @@
 
 __interface ICharacter
 {
-	virtual void stand() = 0;
-	virtual void move() = 0;
-	virtual void attack() = 0;
-	virtual void damage() = 0;
-	virtual void jump() = 0;
+	virtual void stand(float deltaTime) = 0;
+	virtual void move(float deltaTime) = 0;
+	virtual void attack(float deltaTime) = 0;
+	virtual void damage(float deltaTime) = 0;
+	virtual void jump(float deltaTime) = 0;
 };

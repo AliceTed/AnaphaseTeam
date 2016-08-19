@@ -7,10 +7,10 @@
 
 Title::Title(const Input* _input)
 	:m_IsEnd(false),
-	m_Input(_input),
 	m_Camera(10, 8, GSvector3(0, 5, 0)),
 	actorManager(),
 	m_Map(OCTREE_ID::KOUTEI),
+	m_Input(_input),
 	player(_input)
 {
 }

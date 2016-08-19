@@ -5,13 +5,13 @@
 * @author ¼”ö—T–ç
 * @date 2016/8/18
 */
-class TestPlayer;
+class Player;
 class TestJump
 {
 public:
 	TestJump();
 	~TestJump();
-	void jumping(TestPlayer* _player,float deltaTime);
+	void jumping(Player* _player,float deltaTime);
 	void start();
 
 	const bool isGround()const;

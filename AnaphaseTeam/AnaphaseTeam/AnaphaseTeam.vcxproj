@@ -138,16 +138,15 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="source\Acotr\Actor.cpp" />
-    <ClCompile Include="source\Acotr\AttackState.cpp" />
-    <ClCompile Include="source\Acotr\JumpState.cpp" />
-    <ClCompile Include="source\Acotr\MoveState.cpp" />
-    <ClCompile Include="source\Acotr\TestActor.cpp" />
-    <ClCompile Include="source\Acotr\TestChainMove.cpp" />
-    <ClCompile Include="source\Acotr\TestJump.cpp" />
-    <ClCompile Include="source\Acotr\TestPlayer.cpp" />
-    <ClCompile Include="source\actor\Player.cpp" />
-    <ClCompile Include="source\actor\StandState.cpp" />
+    <ClCompile Include="source\actor\Actor.cpp" />
+    <ClCompile Include="source\actor\player\Player.cpp" />
+    <ClCompile Include="source\actor\state\AttackState.cpp" />
+    <ClCompile Include="source\actor\state\JumpState.cpp" />
+    <ClCompile Include="source\actor\state\MoveState.cpp" />
+    <ClCompile Include="source\actor\state\StandState.cpp" />
+    <ClCompile Include="source\actor\TestActor.cpp" />
+    <ClCompile Include="source\actor\TestChainMove.cpp" />
+    <ClCompile Include="source\actor\TestJump.cpp" />
     <ClCompile Include="source\animation\Animation.cpp" />
     <ClCompile Include="source\animation\AnimationTimer.cpp" />
     <ClCompile Include="source\camera\Camera.cpp" />
@@ -174,18 +173,18 @@
     <ClCompile Include="Util\BasicShapes.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="FirstStep.h" />
     <ClInclude Include="header\actor\Actor.h" />
-    <ClInclude Include="header\actor\AttackState.h" />
-    <ClInclude Include="header\actor\IActionState.h" />
     <ClInclude Include="header\actor\ICharacter.h" />
-    <ClInclude Include="header\actor\JumpState.h" />
-    <ClInclude Include="header\actor\MoveState.h" />
     <ClInclude Include="header\actor\Player\Player.h" />
-    <ClInclude Include="header\actor\StandState.h" />
+    <ClInclude Include="header\actor\state\AttackState.h" />
+    <ClInclude Include="header\actor\state\IActionState.h" />
+    <ClInclude Include="header\actor\state\JumpState.h" />
+    <ClInclude Include="header\actor\state\MoveState.h" />
+    <ClInclude Include="header\actor\state\StandState.h" />
     <ClInclude Include="header\actor\TestActor.h" />
     <ClInclude Include="header\actor\TestChainMove.h" />
     <ClInclude Include="header\actor\TestJump.h" />
-    <ClInclude Include="header\actor\TestPlayer.h" />
     <ClInclude Include="header\animation\Animation.h" />
     <ClInclude Include="header\animation\AnimationTimer.h" />
     <ClInclude Include="header\array\Array.h" />
@@ -227,6 +226,8 @@
     <ClInclude Include="header\shape\Ray.h" />
     <ClInclude Include="header\shape\Sphere.h" />
     <ClInclude Include="header\Transform.h" />
+    <ClInclude Include="IAirState.h" />
+    <ClInclude Include="jumpControl.h" />
     <ClInclude Include="Util\BasicShapes.h" />
     <ClInclude Include="Util\EffectGL.h" />
     <ClInclude Include="Util\RenderTarget.h" />

@@ -115,6 +115,12 @@
     <Filter Include="ソース ファイル\convenient">
       <UniqueIdentifier>{d0cf5e72-4097-46d2-af6f-1b6fb3c150d3}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ヘッダー ファイル\actor\airState">
+      <UniqueIdentifier>{458efabf-2d15-41af-9a24-ecbdfdeb8ab0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\actor\airState\each">
+      <UniqueIdentifier>{40a343ea-eda7-440a-8689-c95b756cd12e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Util\BasicShapes.h">
@@ -246,21 +252,6 @@
     <ClInclude Include="header\shape\Sphere.h">
       <Filter>ヘッダー ファイル\shape</Filter>
     </ClInclude>
-    <ClInclude Include="header\actor\IActionState.h">
-      <Filter>ヘッダー ファイル\actor\state</Filter>
-    </ClInclude>
-    <ClInclude Include="header\actor\AttackState.h">
-      <Filter>ヘッダー ファイル\actor\state\each</Filter>
-    </ClInclude>
-    <ClInclude Include="header\actor\JumpState.h">
-      <Filter>ヘッダー ファイル\actor\state\each</Filter>
-    </ClInclude>
-    <ClInclude Include="header\actor\MoveState.h">
-      <Filter>ヘッダー ファイル\actor\state\each</Filter>
-    </ClInclude>
-    <ClInclude Include="header\actor\StandState.h">
-      <Filter>ヘッダー ファイル\actor\state\each</Filter>
-    </ClInclude>
     <ClInclude Include="header\actor\ICharacter.h">
       <Filter>ヘッダー ファイル\actor</Filter>
     </ClInclude>
@@ -273,9 +264,6 @@
     <ClInclude Include="header\shape\Ray.h">
       <Filter>ヘッダー ファイル\shape</Filter>
     </ClInclude>
-    <ClInclude Include="header\actor\TestPlayer.h">
-      <Filter>ヘッダー ファイル\actor</Filter>
-    </ClInclude>
     <ClInclude Include="header\actor\TestJump.h">
       <Filter>ヘッダー ファイル\actor</Filter>
     </ClInclude>
@@ -284,6 +272,30 @@
     </ClInclude>
     <ClInclude Include="header\actor\TestChainMove.h">
       <Filter>ヘッダー ファイル\actor</Filter>
+    </ClInclude>
+    <ClInclude Include="jumpControl.h">
+      <Filter>ヘッダー ファイル\actor</Filter>
+    </ClInclude>
+    <ClInclude Include="IAirState.h">
+      <Filter>ヘッダー ファイル\actor\airState</Filter>
+    </ClInclude>
+    <ClInclude Include="FirstStep.h">
+      <Filter>ヘッダー ファイル\actor\airState\each</Filter>
+    </ClInclude>
+    <ClInclude Include="header\actor\state\AttackState.h">
+      <Filter>ヘッダー ファイル\actor\state\each</Filter>
+    </ClInclude>
+    <ClInclude Include="header\actor\state\IActionState.h">
+      <Filter>ヘッダー ファイル\actor\state\each</Filter>
+    </ClInclude>
+    <ClInclude Include="header\actor\state\MoveState.h">
+      <Filter>ヘッダー ファイル\actor\state\each</Filter>
+    </ClInclude>
+    <ClInclude Include="header\actor\state\StandState.h">
+      <Filter>ヘッダー ファイル\actor\state\each</Filter>
+    </ClInclude>
+    <ClInclude Include="header\actor\state\JumpState.h">
+      <Filter>ヘッダー ファイル\actor\state\each</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -332,9 +344,6 @@
     <ClCompile Include="source\camera\Camera.cpp">
       <Filter>ソース ファイル\camera</Filter>
     </ClCompile>
-    <ClCompile Include="source\actor\Player.cpp">
-      <Filter>ソース ファイル\actor\Player</Filter>
-    </ClCompile>
     <ClCompile Include="source\animation\Animation.cpp">
       <Filter>ソース ファイル\animation</Filter>
     </ClCompile>
@@ -350,24 +359,6 @@
     <ClCompile Include="source\shape\Sphere.cpp">
       <Filter>ソース ファイル\shape</Filter>
     </ClCompile>
-    <ClCompile Include="source\Acotr\AttackState.cpp">
-      <Filter>ソース ファイル\actor\state</Filter>
-    </ClCompile>
-    <ClCompile Include="source\Acotr\JumpState.cpp">
-      <Filter>ソース ファイル\actor\state</Filter>
-    </ClCompile>
-    <ClCompile Include="source\Acotr\MoveState.cpp">
-      <Filter>ソース ファイル\actor\state</Filter>
-    </ClCompile>
-    <ClCompile Include="source\actor\StandState.cpp">
-      <Filter>ソース ファイル\actor\state</Filter>
-    </ClCompile>
-    <ClCompile Include="source\Acotr\Actor.cpp">
-      <Filter>ソース ファイル\actor</Filter>
-    </ClCompile>
-    <ClCompile Include="source\Acotr\TestActor.cpp">
-      <Filter>ソース ファイル\actor</Filter>
-    </ClCompile>
     <ClCompile Include="source\Transform.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
@@ -377,17 +368,35 @@
     <ClCompile Include="source\shape\Ray.cpp">
       <Filter>ソース ファイル\shape</Filter>
     </ClCompile>
-    <ClCompile Include="source\Acotr\TestPlayer.cpp">
-      <Filter>ソース ファイル\actor</Filter>
-    </ClCompile>
-    <ClCompile Include="source\Acotr\TestJump.cpp">
-      <Filter>ソース ファイル\actor</Filter>
-    </ClCompile>
     <ClCompile Include="source\convenient\Timer.cpp">
       <Filter>ソース ファイル\convenient</Filter>
     </ClCompile>
-    <ClCompile Include="source\Acotr\TestChainMove.cpp">
+    <ClCompile Include="source\actor\state\AttackState.cpp">
+      <Filter>ソース ファイル\actor\state</Filter>
+    </ClCompile>
+    <ClCompile Include="source\actor\state\JumpState.cpp">
+      <Filter>ソース ファイル\actor\state</Filter>
+    </ClCompile>
+    <ClCompile Include="source\actor\state\MoveState.cpp">
+      <Filter>ソース ファイル\actor\state</Filter>
+    </ClCompile>
+    <ClCompile Include="source\actor\state\StandState.cpp">
+      <Filter>ソース ファイル\actor\state</Filter>
+    </ClCompile>
+    <ClCompile Include="source\actor\Actor.cpp">
       <Filter>ソース ファイル\actor</Filter>
+    </ClCompile>
+    <ClCompile Include="source\actor\TestActor.cpp">
+      <Filter>ソース ファイル\actor</Filter>
+    </ClCompile>
+    <ClCompile Include="source\actor\TestChainMove.cpp">
+      <Filter>ソース ファイル\actor</Filter>
+    </ClCompile>
+    <ClCompile Include="source\actor\TestJump.cpp">
+      <Filter>ソース ファイル\actor</Filter>
+    </ClCompile>
+    <ClCompile Include="source\actor\player\Player.cpp">
+      <Filter>ソース ファイル\actor\Player</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

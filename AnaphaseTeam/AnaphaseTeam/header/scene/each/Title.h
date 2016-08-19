@@ -6,7 +6,8 @@
 #include "../../entity/EntityManager.h"
 #include "../../map/Map.h"
 #include <memory>
-#include "../../actor/TestPlayer.h"
+//#include "../../actor/TestPlayer.h"
+#include "../../actor/Player/Player.h"
 class Input;
 typedef std::shared_ptr<Actor>Actor_Ptr;
 class Title :public IScene
@@ -27,6 +28,6 @@ private:
 	Map m_Map;
 	Camera m_Camera;
 	Entity::EntityManager<Actor_Ptr> actorManager;
-	TestPlayer player;
+	Player player;
 };
 #endif
