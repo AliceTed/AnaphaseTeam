@@ -62,8 +62,12 @@ void Player::move(float deltaTime)
 	GSvector3 forward(m_transform.front()*m_Input->vertical());
 	GSvector3 side(m_transform.left()*m_Input->horizontal());
 	m_transform.translate((forward - side)*MOVESPEED*deltaTime);
-	m_animator.changeAnimation(ANIMATION_ID::RUN, true);
-	if (gsGetKeyState(GKEY_UP) == 0)m_animator.changeAnimation(ANIMATION_ID::STAND, true);
+
+	if (forward.length() > 0) {
+		m_animator.changeAnimation(ANIMATION_ID::RUN, true);
+		return;
+	}
+	m_animator.changeAnimation(ANIMATION_ID::STAND, true);
 }
 void Player::attack(float deltaTime)
 {
