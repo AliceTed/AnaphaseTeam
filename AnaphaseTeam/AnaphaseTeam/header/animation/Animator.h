@@ -34,7 +34,6 @@ public:
 	void changeAnimation(ANIMATION_ID _nextAnimationID, bool _isInit = false);
 private:
 	const MODEL_ID m_modelID;
-	ANIMATION_ID currentAnimationID;
+	ANIMATION_ID m_currentAnimationID;
 	std::map<ANIMATION_ID, Animation_Ptr> m_animationsMap;
-
 };

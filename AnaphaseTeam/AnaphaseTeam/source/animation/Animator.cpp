@@ -1,7 +1,14 @@
+/**
+* @file Animator.cpp
+* @brief 
+* @author ãvèH
+* @date 2016/08/16
+*/
+
 #include "../../header/animation/Animator.h"
 #include <gslib.h>
 Animator::Animator(const MODEL_ID _modelID)
-	:m_modelID(_modelID)
+	:m_modelID(_modelID),m_currentAnimationID()
 {
 }
 Animator::~Animator()
@@ -23,16 +30,20 @@ void Animator::addAnimation(ANIMATION_ID _animationKey,float _animationtime,floa
 }
 void Animator::update(float deltatime)
 {
-	m_animationsMap[currentAnimationID]->update(deltatime);
+	m_animationsMap[m_currentAnimationID]->update(deltatime);
 }
 void Animator::bind()
 {
-	m_animationsMap[currentAnimationID]->bind();
+	m_animationsMap[m_currentAnimationID]->bind();
 	gsBindSkeleton(static_cast<GSuint>(m_modelID));
+
 }
 void Animator::changeAnimation(ANIMATION_ID _nextAnimationID,bool isInit)
 {
-	currentAnimationID = _nextAnimationID;
+	/*ìØÇ∂ï®Ç…ÇÕïœçXÇµÇ»Ç¢*/
+	if (m_currentAnimationID == _nextAnimationID) return;
+
+	m_currentAnimationID = _nextAnimationID;
 	if (isInit)return;
-	m_animationsMap[currentAnimationID]->initialize();
+	m_animationsMap[m_currentAnimationID]->initialize();
 }
