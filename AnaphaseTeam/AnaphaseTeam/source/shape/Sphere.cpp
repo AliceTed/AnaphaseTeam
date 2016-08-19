@@ -3,6 +3,10 @@
 #include "../../header/renderer/Renderer.h"
 #include "../../header/camera/Camera.h"
 #include "../../header/map/Map.h"
+
+//#include "../../header/shape/Ray.h"
+#include "../../header/shape/Capsule.h"
+#include "../../header/shape/Segment.h"
 Sphere::Sphere(const GSvector3& center, float radius)
 	:center(center), radius(radius)
 {
@@ -27,9 +31,30 @@ void Sphere::transfer(const GSvector3 & _position)
 	center = _position;
 }
 
-const bool Sphere::intersects(const Sphere & other) const
+
+//const bool Sphere::isCollision(const Ray * _ray) const
+//{
+//	return _ray->isCollisionSphere(center,radius);
+//}
+
+const bool Sphere::isCollision(const Sphere * _sphere) const
 {
-	return center.distance(other.center) <radius + other.radius;
+	return  center.distance(_sphere->center) <radius + _sphere->radius;
+}
+
+const bool Sphere::isCollision(const Capsule * _capsule) const
+{	
+	return _capsule->isCollisionSphere(center,radius);
+}
+
+const bool Sphere::isCollision(const Segment * _segment) const
+{	
+	return _segment->isCollisionSphere(center,radius);
+}
+
+const bool Sphere::isCollision(const Shape * _shape) const
+{
+	return _shape->isCollision(this);
 }
 
 void Sphere::draw(const Renderer& renderer, const GScolor& color)
@@ -51,8 +76,3 @@ const bool Sphere::isCollitionMap(const Map & _map, GSvector3 * _out_center) con
 {
 	return _map.isCollisionSphere(center,radius,_out_center);
 }
-
-//const SHAPETYPE Sphere::getType() const
-//{
-//	return SHAPETYPE::SHPERE;
-//}

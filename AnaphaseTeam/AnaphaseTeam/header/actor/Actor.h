@@ -11,6 +11,8 @@
 class Map;
 class Renderer;
 class Camera;
+//!　引数のフラグがfalseならリターン
+#define FALSE_RETURN(flg) if(!flg)return;
 class Actor
 {
 public:

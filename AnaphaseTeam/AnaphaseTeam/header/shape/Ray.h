@@ -7,6 +7,7 @@
 * @date 2016/8/17
 */
 class Map;
+//Ray‚Íshape‚ğŒp³‚µ‚Ä‚¢‚È‚¢
 class Ray
 {
 public:
@@ -20,6 +21,7 @@ public:
 	* @param (_intersect) Œğ“_
 	*/
 	const bool isCollitionMap(const Map& _map,GSvector3* _intersect)const;
+	const bool isCollisionSphere(const GSvector3 &_center, float _radius)const;
 private:
 	GSvector3 m_Position;
 	GSvector3 m_Direction;

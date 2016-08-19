@@ -41,10 +41,8 @@ void TestPlayer::draw(const Renderer & _renderer, const Camera & _camera)
 {
 	//éÊÇËÇ†Ç¶Ç∏ñ≥óùÇ‚ÇËí«è]Ç≥ÇπÇÈ
 	const_cast<Camera&>(_camera).lookAt(m_transform.getPosition(), m_transform.getYaw());
-	if (!isInsideView(_camera))
-	{
-		return;
-	}
+
+	FALSE_RETURN(isInsideView(_camera));
 	alphaBlend(_camera);
 	animation.bind();
 	_renderer.getDraw3D().drawMesh(MESH_ID::KENDO,m_transform);
