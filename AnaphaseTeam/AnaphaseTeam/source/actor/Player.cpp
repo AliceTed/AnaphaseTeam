@@ -51,8 +51,7 @@ void Player::finish()
 void Player::stand(float deltaTime)
 {
 	m_animator.changeAnimation(ANIMATION_ID::STAND);
-	if (gsGetKeyState(GKEY_UP) != 0)m_action = std::make_shared<MoveState>();
-	//move(deltaTime);
+	move(deltaTime);
 }
 void Player::move(float deltaTime)
 {
@@ -61,9 +60,11 @@ void Player::move(float deltaTime)
 
 	GSvector3 forward(m_transform.front()*m_Input->vertical());
 	GSvector3 side(m_transform.left()*m_Input->horizontal());
+	GSvector3 moveValue(forward - side);
 	m_transform.translate((forward - side)*MOVESPEED*deltaTime);
 
-	if (forward.length() > 0) {
+	if (moveValue.length() > 0) 
+	{
 		m_animator.changeAnimation(ANIMATION_ID::RUN, true);
 		return;
 	}
