@@ -4,8 +4,8 @@
 
 enum class ANIMATION_ID :unsigned int
 {
-	STAND,
-	RUN,
+	KARATE,
+	KENDO,
 	SIZE
 };
 

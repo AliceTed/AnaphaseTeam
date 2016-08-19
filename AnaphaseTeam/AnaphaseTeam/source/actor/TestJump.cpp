@@ -2,7 +2,7 @@
 #include "../../header/actor/Player/Player.h"
 
 #include "../../header/math/Calculate.h"
-/*
+
 const float TestJump::FirstStepPow=1.2f;
 const float TestJump::SecondStepPow=1.0f;
 const float TestJump::MaxJumpPower = 2.0f;
@@ -43,4 +43,3 @@ void TestJump::groundHit()
 {
 	m_State = JUMPSTATE::Non;
 }
-*/

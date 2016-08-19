@@ -7,6 +7,9 @@
 #pragma once
 #include "../Transform.h"
 #include "../data/Model_ID.h"
+
+#include "../data/ANIMATION_ID.h"
+#include "../data/SKELETON_ID.h"
 #include "../animation/Animator.h"
 class Renderer;
 #include "../shape/Sphere.h"
@@ -17,6 +20,7 @@ class Actor
 {
 public:
 	Actor(const Transform &_transform,const MODEL_ID _model_ID,const Sphere& _sphere);
+	Actor(const Transform &_transform, const ANIMATION_ID _anim_ID,const SKELETON_ID _skelton_ID, const Sphere& _sphere);
 	virtual ~Actor() {}
 	virtual void initialize();
 	virtual void update(float deltatime) = 0;

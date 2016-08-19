@@ -2,18 +2,21 @@
 #include "../../header/shape/Sphere.h"
 #include "../../header/camera/Camera.h"
 #include "../../header/renderer/Renderer.h"
-/*
+
 int TestActor::DrawCount = 0;
 TestActor::TestActor()
-	:Actor(Transform(),Sphere(GSvector3(0,0,0),1.0f)),
+	:Actor(Transform(),ANIMATION_ID::KARATE, SKELETON_ID::KARATE,Sphere(GSvector3(0,0,0),1.0f)),
 	target(0, 0, 0),
-	animation(ANIMATION_ID::KARATE,SKELETON_ID::KARATE,20,
+	m_animator(ANIMATION_ID::KARATE, SKELETON_ID::KARATE)
+	/*animation(ANIMATION_ID::KARATE,SKELETON_ID::KARATE,20,
 		AnimationTimer
 		(
 			gsGetEndAnimationTime(static_cast<GSuint>(ANIMATION_ID::KARATE),20)),true
-		)
+		)*/
 {
 	DrawCount = 0;
+	m_animator.addAnimation_A(PLAYERACTION_ID::STAND, true);
+	m_animator.changeAnimation_A(PLAYERACTION_ID::STAND,false);
 }
 
 TestActor::~TestActor()
@@ -22,7 +25,7 @@ TestActor::~TestActor()
 
 void TestActor::update(float deltatime)
 {
-	animation.update(deltatime);
+	m_animator.update_A(deltatime);
 	switch (rand() % 360)
 	{
 	case 0:
@@ -52,10 +55,9 @@ void TestActor::draw(const Renderer & _renderer, const Camera & _camera)
 		return;
 	}
 	alphaBlend(_camera);
-	animation.bind();
+	m_animator.bind_A();
 	_renderer.getDraw3D().drawMesh(MESH_ID::KARATE,m_transform,m_Color);
 	//sphereDraw(_renderer);
 	//
 	DrawCount++;
 }
-*/

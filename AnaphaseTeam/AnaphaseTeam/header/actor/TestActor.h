@@ -2,6 +2,7 @@
 #include "Actor.h"
 #include "../animation/Animation.h"
 #include "../animation/AnimationTimer.h"
+#include "../animation/Animator.h"
 class TestActor:public Actor
 {
 public:
@@ -14,6 +15,6 @@ public:
 	static int DrawCount;
 private:
 	GSvector3 target;
-	Animation animation;
+	Animator m_animator;
 };
 

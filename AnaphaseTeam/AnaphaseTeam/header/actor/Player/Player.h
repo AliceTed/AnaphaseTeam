@@ -7,6 +7,7 @@
 */
 #include "../Actor.h"
 #include "../../animation/Animation.h"
+#include "../../animation/Animator.h"
 #include "../../animation/AnimationTimer.h"
 #include "../../actor/state/IActionState.h"
 #include "../TestJump.h"
@@ -43,7 +44,7 @@ public:
 	void actionChange(Action_Ptr _action);
 private:
 	const Input* m_Input;
-	Animation animation;
+	Animator m_animator;
 
 	TestJump m_Jump;
 	TestChainMove m_ChainMove;
