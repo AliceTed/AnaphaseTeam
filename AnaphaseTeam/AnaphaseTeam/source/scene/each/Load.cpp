@@ -5,6 +5,7 @@
 #include "../../../header/data/ANIMATION_ID.h"
 #include "../../../header/data/MESH_ID.h"
 #include "../../../header/data/SKELETON_ID.h"
+#include "../../../header/data/Model_ID.h" 
 Load::Load()
 	:m_IsEnd(false)
 {
@@ -65,13 +66,13 @@ void Load::loadModel()
 	LoadAnimation anim;
 	LoadSkeleton skl;
 	
-	mesh(MESH_ID::KARATE,"karate");
-	anim(ANIMATION_ID::KARATE, "karate");
-	skl(SKELETON_ID::KARATE,"karate");
+	mesh(MODEL_ID::KARATE,"karate");
+	anim(MODEL_ID::KARATE, "karate");
+	skl(MODEL_ID::KARATE,"karate");
 
-	mesh(MESH_ID::KENDO, "kendo");
-	anim(ANIMATION_ID::KENDO, "kendo");
-	skl(SKELETON_ID::KENDO, "kendo");
+	mesh(MODEL_ID::PLAYER, "kendo");
+	anim(MODEL_ID::PLAYER, "kendo");
+	skl(MODEL_ID::PLAYER, "kendo");
 
 	mesh(MESH_ID::SKY, "sky/skydome");
 	LoadOctree oct;

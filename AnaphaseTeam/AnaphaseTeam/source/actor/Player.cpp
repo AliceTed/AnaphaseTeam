@@ -7,7 +7,8 @@
 *モデルリソースはコミットしなかったので各自でお願い
 */
 Player::Player()
-	:Actor(Transform(), MODEL_ID::PLAYER), Sphere(GSvector3(0, 0, 0), 0)), m_action(nullptr)
+	:Actor(Transform(), MODEL_ID::PLAYER, Sphere(GSvector3(0, 0, 0), 0)),
+	m_action(nullptr),m_animator(MODEL_ID::PLAYER)
 {}
 Player::~Player()
 {}
@@ -24,10 +25,10 @@ void Player::update(float deltatime)
 	m_action->action(this, deltatime);
 	m_animator.update(deltatime);
 }
-void Player::draw(const Renderer &_renderer)
+void Player::draw(const Renderer& _renderer, const Camera& _camera)
 {
 	m_animator.bind();
-	_renderer.getDraw3D().drawMesh(MESH_ID::PLAYER, m_transform.getMatrix4());
+	_renderer.getDraw3D().drawMesh(MESH_ID::KENDO, m_transform.getMatrix4());
 }
 void Player::finish()
 {

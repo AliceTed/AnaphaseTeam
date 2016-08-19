@@ -285,6 +285,12 @@
     <ClInclude Include="header\actor\TestChainMove.h">
       <Filter>ヘッダー ファイル\actor</Filter>
     </ClInclude>
+    <ClInclude Include="header\data\Model_ID.h">
+      <Filter>ヘッダー ファイル\data\id</Filter>
+    </ClInclude>
+    <ClInclude Include="header\animation\Animator.h">
+      <Filter>ヘッダー ファイル\animation</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Util\BasicShapes.cpp">
@@ -388,6 +394,9 @@
     </ClCompile>
     <ClCompile Include="source\Acotr\TestChainMove.cpp">
       <Filter>ソース ファイル\actor</Filter>
+    </ClCompile>
+    <ClCompile Include="source\animation\Animator.cpp">
+      <Filter>ソース ファイル\animation</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
