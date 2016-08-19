@@ -2,6 +2,7 @@
 #include "../../header/renderer/Renderer.h"
 
 #include "../../header/shape/Sphere.h"
+#include "../../header/shape/Capsule.h"
 Segment::Segment(const GSvector3& _begin, const GSvector3& _vector)
 	:m_begin(_begin), m_vector(_vector)
 {
@@ -23,7 +24,7 @@ const bool Segment::isCollision(const Sphere * _sphere) const
 
 const bool Segment::isCollision(const Capsule * _capsule) const
 {
-	return false;
+	return _capsule->isCollision(this);
 }
 
 const bool Segment::isCollision(const Segment * _segment) const
@@ -44,6 +45,11 @@ void Segment::draw(const Renderer & renderer, const GScolor & color)
 const bool Segment::isCollisionSphere(const GSvector3& _center, float _radius) const
 {
 	return gsCollisionSphereAndLine(&_center,_radius,&m_begin,&end(),NULL)==GS_TRUE;
+}
+
+const bool Segment::isCollisionCapsule(const Segment & _other, float _radius) const
+{
+	return gsCollisionLineAndLine(&m_begin,&end(),&_other.m_begin ,&_other.end(), GS_TRUE,_radius,NULL,NULL) == GS_TRUE;
 }
 
 const GSvector3 Segment::vector() const

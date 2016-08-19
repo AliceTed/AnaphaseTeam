@@ -12,7 +12,6 @@ public:
 	//const bool isCollision(const Ray* _ray)const;
 	const bool isCollision(const Sphere* _sphere)const;
 	const bool isCollision(const Capsule* _capsule)const;
-	//–¢ŽÀ‘•
 	const bool isCollision(const Segment* _segment)const;
 
 	const bool isCollision(const Shape* _shape)const;

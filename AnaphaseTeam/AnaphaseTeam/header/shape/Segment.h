@@ -11,7 +11,6 @@ public:
 	~Segment();
 	//const bool isCollision(const Ray* _ray)const;
 	const bool isCollision(const Sphere* _sphere)const;
-	//–¢À‘•
 	const bool isCollision(const Capsule* _capsule)const;
 	const bool isCollision(const Segment* _segment)const;
 
@@ -19,7 +18,7 @@ public:
 	void draw(const Renderer& renderer, const GScolor& color = GScolor(1.0f, 1.0f, 1.0f, 1.0f));
 
 	const bool isCollisionSphere(const GSvector3& _center,float _radius)const;
-
+	const bool isCollisionCapsule(const Segment& _other, float _radius)const;
 	
 	//I“_æ“¾
 	const GSvector3 end()const;

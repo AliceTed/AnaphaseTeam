@@ -82,9 +82,8 @@ protected:
 	bool m_isDead;
 
 	GScolor m_Color;
-
-	Actor_Tag m_Tag;
 private:
+	Actor_Tag m_Tag;
 
 	//!ƒJƒƒ‰—p”»’è
 	Sphere m_Sphere;

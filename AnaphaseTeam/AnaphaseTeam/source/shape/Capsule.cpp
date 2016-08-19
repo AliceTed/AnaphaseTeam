@@ -34,7 +34,7 @@ const bool Capsule::isCollision(const Capsule * _capsule) const
 
 const bool Capsule::isCollision(const Segment * _segment) const
 {
-	return false;
+	return _segment->isCollisionCapsule(m_Segment,m_Radius);
 }
 
 const bool Capsule::isCollision(const Shape * _shape) const
