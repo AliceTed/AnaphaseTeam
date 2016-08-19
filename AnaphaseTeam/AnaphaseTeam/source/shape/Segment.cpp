@@ -46,6 +46,11 @@ const bool Segment::isCollisionSphere(const GSvector3& _center, float _radius) c
 	return gsCollisionSphereAndLine(&_center,_radius,&m_begin,&end(),NULL)==GS_TRUE;
 }
 
+const GSvector3 Segment::vector() const
+{
+	return m_vector;
+}
+
 const GSvector3 Segment::end() const
 {
 	return m_begin+m_vector;

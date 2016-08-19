@@ -20,10 +20,12 @@ public:
 
 	const bool isCollisionSphere(const GSvector3& _center,float _radius)const;
 
+	
 	//終点取得
 	const GSvector3 end()const;
 	//始点取得(Capsule用)
 	const GSvector3& begin()const;
+	const GSvector3 vector()const;
 private:
 	GSvector3 m_begin;
 	GSvector3 m_vector;

@@ -2,6 +2,7 @@
 #include "../../header/renderer/Renderer.h"
 
 #include "../../header/shape/Sphere.h"
+#include "../../header/math/Calculate.h"
 Capsule::Capsule(const Segment & _segment, float _radius)
 	:m_Segment(_segment),m_Radius(_radius)
 {
@@ -42,10 +43,13 @@ const bool Capsule::isCollision(const Shape * _shape) const
 }
 void Capsule::draw(const Renderer & renderer, const GScolor& color)
 {
-	//float ele = segment.v().getPitch();
-	//float dir = Calculate<float>::radToDeg(std::atan2(segment.v().x,segment.v().z));
-
-	//renderer.drawCapsule(&segment.position, radius, segment.v().length(), dir, ele,GScolor(1,0,0,1));
+	GSvector3 v = m_Segment.vector();
+	float ele =v.getPitch();
+	
+	Math::ATan aTan;
+	Math::RadToDeg rtd;
+	float dir = aTan(v.x, v.z);
+	renderer.getDraw3D().drawCapsule(&m_Segment.begin(), m_Radius, v.length(), dir, ele,color);
 }
 
 const bool Capsule::isCollisionSphere(const GSvector3 & _center, float _radius) const
