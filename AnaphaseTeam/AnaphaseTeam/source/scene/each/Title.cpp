@@ -27,10 +27,10 @@ void Title::initialize()
 		Actor_Ptr actor = std::make_shared<TestActor>();
 		actor->initialize();
 		actorManager.add(actor);
-	}
+}
 	player.initialize();
 	/*target = actorManager.findif([&](Actor_Ptr _actor)
-	{
+{
 		return target != _actor&&_actor->cameraDistance(m_Camera);
 	});*/
 }
@@ -53,14 +53,14 @@ void Title::update(float deltaTime)
 }
 
 void Title::draw(const Renderer & renderer)
-{
+	{
 	renderer.getDraw3D().drawSky(MESH_ID::SKY);
 	//m_Camera.lookAt(target, 0);	
 	player.draw(renderer,m_Camera);
 
 	//target->cameraChases(m_Camera);
 	m_Map.draw(renderer);
-	
+
 	actorManager.accept([&](Actor_Ptr _actor) {_actor->draw(renderer, m_Camera);});
 	renderer.getDraw2D().string("‘”:"+std::to_string(actorManager.size()),&GSvector2(20,20),20);
 	renderer.getDraw2D().string("•`‰æ”:" + std::to_string(TestActor::DrawCount), &GSvector2(20,50), 20);	

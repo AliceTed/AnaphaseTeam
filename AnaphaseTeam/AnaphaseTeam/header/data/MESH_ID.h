@@ -7,6 +7,6 @@ enum class MESH_ID :unsigned int
 	KARATE,
 	KENDO,
 	SKY,
-	SIZE	
+	SIZE
 };
 #endif

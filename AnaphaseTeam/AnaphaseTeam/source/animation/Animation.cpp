@@ -3,8 +3,8 @@
 
 
 Animation::Animation(ANIMATION_ID anim_id, SKELETON_ID bone_id, unsigned int animNo,AnimationTimer timer, bool isLoop)
-	:isLoop(isLoop), animNo(animNo), timer(timer),
-	anim_id(static_cast<unsigned int>(anim_id)), bone_id(static_cast<unsigned int>(bone_id))
+	:m_isLoop(isLoop), m_animNo(animNo), m_timer(timer),
+	m_anim_id(static_cast<unsigned int>(anim_id)), m_bone_id(static_cast<unsigned int>(bone_id))
 {
 
 }
@@ -16,44 +16,44 @@ Animation::~Animation()
 
 void Animation::initialize()
 {
-	timer.initialize();
+	m_timer.initialize();
 }
 
 void Animation::update(float deltaTime)
 {
-	timer.update(deltaTime);
+	m_timer.update(deltaTime);
 	looping();
 }
 void Animation::bind()
 {
-	gsBindAnimation(anim_id, animNo, timer.getTime());
-	gsBindSkeleton(bone_id);
+	gsBindAnimation(m_anim_id, m_animNo, m_timer.getTime());
+	//gsBindSkeleton(m_bone_id);
 }
 
 const bool Animation::getIsEnd() const
 {
-	return (!isLoop)&&timer.getIsEnd();
+	return (!m_isLoop)&&m_timer.getIsEnd();
 }
 
 void Animation::stop()
 {
-	timer.stop();
+	m_timer.stop();
 }
 
 void Animation::start()
 {
-	timer.start();
+	m_timer.start();
 }
 
 void Animation::looping()
 {
-	if (!timer.getIsEnd())
+	if (!m_timer.getIsEnd())
 	{
 		return;
 	}
-	if (!isLoop)
+	if (!m_isLoop)
 	{
 		return;
 	}
-	timer.initialize();
+	m_timer.initialize();
 }
