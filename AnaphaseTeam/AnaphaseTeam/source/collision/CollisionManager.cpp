@@ -1,45 +1,54 @@
-//#include "CollisionManager.h"
-//
-//CollisionManager::CollisionManager()
-//	:objects(),collision()
-//{
-//}
-//
-//CollisionManager::~CollisionManager()
-//{
-//}
-//
-//void CollisionManager::add(CollisionObject * obj)
-//{
-//	objects.add(obj);
-//}
-//
-//void CollisionManager::add(GameObject * parent, Shape * shape, const GSvector3 & offset)
-//{
-//	objects.add(new CollisionObject(parent,shape,offset));
-//}
-//
-//void CollisionManager::initialize()
-//{
-//	objects.clear();
-//}
-//
-//void CollisionManager::update(float deltaTime)
-//{
-//	objects.acceptPair([&](CollisionObject* obj1, CollisionObject* obj2)
-//	{
-//		if (!obj1->isCollision(&collision, obj2))
-//		{
-//			return;
-//		}
-//		obj1->collision(obj2);
-//		obj2->collision(obj1);
-//	});
-//	objects.clear();
-//}
-//
-//void CollisionManager::draw(const Renderer3D& renderer)
-//{
-//	/*objects.accept([&](CollisionObject* obj) {obj->draw(renderer);});
-//	objects.clear();*/
-//}
+#include "../../header/collision/CollisionManager.h"
+
+CollisionManager::CollisionManager()
+	:m_Container()
+{
+}
+
+CollisionManager::~CollisionManager()
+{
+}
+
+void CollisionManager::add(Obj_Ptr _obj)
+{
+	m_Container.add(_obj);
+}
+
+void CollisionManager::initialize()
+{
+	m_Container.clear();
+}
+
+void CollisionManager::update(float deltaTime)
+{
+	/*m_Container.acceptPair([&](CollisionObject* obj1, CollisionObject* obj2)
+	{
+		if (!obj1->isCollision(&collision, obj2))
+		{
+			return;
+		}
+		obj1->collision(obj2);
+		obj2->collision(obj1);
+	});
+	objects.clear();*/
+
+	m_Container.accept([&](Obj_Ptr _obj1)
+	{
+		m_Container.accept([&_obj1](Obj_Ptr _obj2)
+		{
+			if (!_obj1->isCollision(_obj2.get()))
+			{
+				return;
+			}
+			_obj1->collision(_obj2.get());
+			_obj2->collision(_obj1.get());
+		});
+	});
+	m_Container.clear();
+}
+
+void CollisionManager::draw(const Renderer & renderer)
+{
+	/*m_Container.accept([&](Obj_Ptr _obj) {_obj->draw(renderer);});
+	m_Container.clear();*/
+}

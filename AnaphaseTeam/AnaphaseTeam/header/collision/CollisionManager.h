@@ -1,25 +1,25 @@
 #pragma once
 #ifndef _COLLISIONMANAGER_H_
 #define _COLLISIONMANAGER_H_
-#include "../Include/EntityManager.h"
+#include "../entity/EntityManager.h"
 #include "CollisionObject.h"
 
-#include <vector>
 #include "Collision.h"
 #include "CollisionMediator.h"
+#include <memory>
+typedef std::shared_ptr<CollisionObject> Obj_Ptr;
 class CollisionManager:public CollisionMediator
 {
 public:
 	CollisionManager();
 	~CollisionManager();
-	void add(CollisionObject* obj);
-	void add(GameObject* parent, Shape* shape, const GSvector3& offset=GSvector3(0.0f,0.0f,0.0f));
+	void add(Obj_Ptr _obj);
+
 	void initialize();
 	void update(float deltaTime);
-	void draw(const Renderer3D& renderer);
+	void draw(const Renderer& renderer);
 
 private:
-	EntityManager<CollisionObject,std::vector> objects;
-	Collision collision;
+	Entity::EntityManager<Obj_Ptr> m_Container;
 };
 #endif

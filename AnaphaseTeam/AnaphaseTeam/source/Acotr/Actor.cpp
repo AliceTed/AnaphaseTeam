@@ -41,13 +41,20 @@ void Actor::collisionGround(const Map& _map)
 	//map‚É–„‚ß‚Ü‚ê‚Ä‚¢‚½‚çyÀ•W‚ğŒğ“_‚ÉˆÚ“®
 	m_transform.setPositionY(intersect.y);
 }
-const float Actor::distanceActor(const Actor & _ohter) const
+void Actor::collision(const Actor * _other)
+{
+}
+const float Actor::distanceActor(const Actor & _other) const
 {
 	return m_transform.getPosition().distance(_ohter.m_transform.getPosition());
 }
 const float Actor::distance(const GSvector3 & _position) const
 {
 	return m_transform.getPosition().distance(_position);
+}
+const bool Actor::isSameActor(const Actor * _other) const
+{
+	return this==_other;
 }
 const bool Actor::isDead() const
 {

@@ -29,6 +29,7 @@ public:
 	* @param (_map) map‚ðŽæ“¾
 	*/
 	virtual void collisionGround(const Map& _map);
+	virtual void collision(const Actor* _other);
 
 	/**
 	* @fn
@@ -36,9 +37,11 @@ public:
 	* @param (_ohter) ‹——£‚ð‘ª‚éActor
 	* @return ‹——£
 	*/
-	const float distanceActor(const Actor& _ohter)const;
+	const float distanceActor(const Actor& _other)const;
 	//chainŒvŽZ—p‚É‚ ‚é‚¾‚¯distanceActorˆê‚Â‚É‚µ‚½‚¢
 	const float distance(const GSvector3& _position)const;
+
+	const bool isSameActor(const Actor* _other)const;
 public:
 	const bool isDead()const;
 	

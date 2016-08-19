@@ -1,23 +1,24 @@
 #pragma once
 #ifndef _COLLISIONOBJECT_H_
 #define _COLLISIONOBJECT_H_
-#include "Shape.h"
+#include "../shape/Shape.h"
+
 #include <memory>
-class GameObject;
-class Collision;
+class Actor;
+class Renderer;
+typedef std::shared_ptr<Shape> Shape_Ptr;
 class CollisionObject
 {
 public:
-	CollisionObject(GameObject* parent,Shape* shape,const GSvector3& offset=GSvector3(0,0,0));
+	CollisionObject(Actor* parent,Shape_Ptr shape);
 	~CollisionObject();
 
-	const bool isCollision(const Collision* collision,const CollisionObject* other)const;
+	const bool isCollision(const CollisionObject* other)const;
 	void collision(CollisionObject* other);
 
-	void draw(const Renderer3D& renderer);
+	void draw(const Renderer& renderer,const GScolor& _color=GScolor(1,1,1,1));
 private:
-	GSvector3 offset;//基本形状に対してのoffset
-	std::shared_ptr<Shape> shape;//基本形状
-	GameObject* parent;//親クラス
+	Shape_Ptr shape;//基本形状
+	Actor* parent;//親クラス
 };
 #endif
