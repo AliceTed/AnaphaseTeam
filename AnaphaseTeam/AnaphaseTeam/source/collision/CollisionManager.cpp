@@ -29,11 +29,13 @@ void CollisionManager::update(float deltaTime)
 			collision(_obj1, _obj2);
 		});
 	});
+	//描画しない場合(基本しない)draw関数のなか2行をコメントアウト
 	//m_Container.clear();
 }
 
 void CollisionManager::draw(const Renderer & renderer)
 {
+	//描画する場合updateのclearをコメントアウト
 	m_Container.accept([&](Obj_Ptr _obj) {_obj->draw(renderer);});
 	m_Container.clear();
 }
