@@ -29,7 +29,7 @@ const bool Segment::isCollision(const Capsule * _capsule) const
 
 const bool Segment::isCollision(const Segment * _segment) const
 {
-	return gsCollisionLineAndLine(&m_begin,&end(),&_segment->m_begin,&_segment->end(),GS_FALSE, 1.0f,NULL,NULL)==GS_TRUE;
+	return gsCollisionLineAndLine(&m_begin,&end(),&_segment->m_begin,&_segment->end(),GS_FALSE, 1.0f, &GSvector3(), &GSvector3())==GS_TRUE;
 }
 
 const bool Segment::isCollision(const Shape * _shape) const
@@ -39,7 +39,7 @@ const bool Segment::isCollision(const Shape * _shape) const
 
 void Segment::draw(const Renderer & renderer, const GScolor & color)
 {
-	renderer.getDraw3D().drawLine(&m_begin,&end());
+	renderer.getDraw3D().drawLine(&m_begin,&end(),color);
 }
 
 const bool Segment::isCollisionSphere(const GSvector3& _center, float _radius) const
@@ -49,7 +49,7 @@ const bool Segment::isCollisionSphere(const GSvector3& _center, float _radius) c
 
 const bool Segment::isCollisionCapsule(const Segment & _other, float _radius) const
 {
-	return gsCollisionLineAndLine(&m_begin,&end(),&_other.m_begin ,&_other.end(), GS_TRUE,_radius,NULL,NULL) == GS_TRUE;
+	return gsCollisionLineAndLine(&m_begin, &end(), &_other.m_begin, &_other.end(), GS_FALSE, _radius,&GSvector3(), &GSvector3()) == GS_TRUE;
 }
 
 const GSvector3 Segment::vector() const

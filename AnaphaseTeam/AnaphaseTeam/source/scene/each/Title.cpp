@@ -31,20 +31,9 @@ void Title::initialize()
 		actorManager.add(actor);
 	}
 	player.initialize();
-	/*target = actorManager.findif([&](Actor_Ptr _actor)
-	{
-		return target != _actor&&_actor->cameraDistance(m_Camera);
-	});*/
 }
 void Title::update(float deltaTime)
 {
-	/*if (m_Input->upTrigger())
-	{
-		target = actorManager.findif([&](Actor_Ptr _actor)
-		{
-			return target != _actor&&_actor->cameraDistance(m_Camera);
-		});
-	}*/
 	player.update(deltaTime);
 	player.collisionGround(m_Map);
 	player.createCollision(&collision);
@@ -54,10 +43,7 @@ void Title::update(float deltaTime)
 	actorManager.accept([&](Actor_Ptr _actor) {_actor->createCollision(&collision);});
 	
 	collision.update(deltaTime);
-
-	actorManager.remove([](Actor_Ptr _actor)->bool {return _actor->isDead();});
-
-	
+	actorManager.remove([](Actor_Ptr _actor)->bool {return _actor->isDead();});	
 }
 
 void Title::draw(const Renderer & renderer)
@@ -66,9 +52,8 @@ void Title::draw(const Renderer & renderer)
 	//m_Camera.lookAt(target, 0);	
 	player.draw(renderer,m_Camera);
 
-	//target->cameraChases(m_Camera);
 	m_Map.draw(renderer);
-	
+
 	actorManager.accept([&](Actor_Ptr _actor) {_actor->draw(renderer, m_Camera);});
 	renderer.getDraw2D().string("‘”:"+std::to_string(actorManager.size()),&GSvector2(20,20),20);
 	renderer.getDraw2D().string("•`‰æ”:" + std::to_string(TestActor::DrawCount), &GSvector2(20,50), 20);
