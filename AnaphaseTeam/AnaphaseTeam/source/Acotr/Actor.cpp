@@ -4,6 +4,7 @@
 #include"../../header/math/Calculate.h"
 #include "../../header/map/Map.h"
 #include "../../header/shape/Ray.h"
+#include "../../header/collision/CollisionTable.h"
 const float Actor::ALPHABLEND_FAR = 2.0f;
 
 Actor::Actor(const Transform & _transform, const Sphere& _sphere, Actor_Tag _tag)
@@ -63,6 +64,10 @@ const bool Actor::isSameActor(const Actor * _other) const
 const bool Actor::isSameTag(Actor_Tag _tag) const
 {
 	return m_Tag==_tag;
+}
+const bool Actor::isConfirmCollisionTable(const CollisionTable & _table, const Actor * _other) const
+{
+	return _table.isConfirmTag(m_Tag,_other->m_Tag);
 }
 const bool Actor::isDead() const
 {

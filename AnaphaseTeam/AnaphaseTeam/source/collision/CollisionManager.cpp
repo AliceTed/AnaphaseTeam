@@ -1,7 +1,7 @@
 #include "../../header/collision/CollisionManager.h"
 
 CollisionManager::CollisionManager()
-	:m_Container()
+	:m_Container(), m_table()
 {
 }
 
@@ -17,6 +17,7 @@ void CollisionManager::add(Obj_Ptr _obj)
 void CollisionManager::initialize()
 {
 	m_Container.clear();
+	m_table.setNonCollision(Actor_Tag::TEST, Actor_Tag::TEST);
 }
 
 void CollisionManager::update(float deltaTime)
@@ -39,7 +40,7 @@ void CollisionManager::draw(const Renderer & renderer)
 
 void CollisionManager::collision(Obj_Ptr _obj1, Obj_Ptr _obj2)
 {
-	if (!_obj1->isCollision(_obj2.get()))
+	if (!_obj1->isCollision(_obj2.get(),m_table))
 	{
 		return;
 	}

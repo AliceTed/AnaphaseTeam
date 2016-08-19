@@ -1,19 +1,19 @@
 #pragma once
 #ifndef _COLLISIONTABLE_H_
 #define _COLLISIONTABLE_H_
-#include "GAMEOBJECT_TYPE.h"
-#include "Array2D.h"
+#include "../actor/Actor_Tag.h"
+#include "../array/Array2D.h"
 class CollisionTable
 {
 public:
 	CollisionTable();
 	~CollisionTable();
 	
-	void setNonCollision(GAMEOBJECT_TYPE type1,GAMEOBJECT_TYPE type2);
+	void setNonCollision(Actor_Tag _tag1,Actor_Tag _tag2);
 	//îªíËÇçsÇ§Ç»ÇÁtrue
-	const bool isConfirmCollisionTable(GAMEOBJECT_TYPE type1, GAMEOBJECT_TYPE type2)const;
+	const bool isConfirmTag(Actor_Tag _tag1, Actor_Tag _tag2)const;
 private:
-	Array2D<bool> table;
+	Array::Array2D<bool> table;
 };
 
 

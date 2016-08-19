@@ -12,6 +12,7 @@ class CollisionMediator;
 class Map;
 class Renderer;
 class Camera;
+class CollisionTable;
 //!　引数のフラグがfalseならリターン
 #define FALSE_RETURN(flg) if(!flg)return;
 class Actor
@@ -47,6 +48,7 @@ public:
 
 	const bool isSameActor(const Actor* _other)const;
 	const bool isSameTag(Actor_Tag _tag)const;
+	const bool isConfirmCollisionTable(const CollisionTable& _table, const Actor* _other)const;
 public:
 	const bool isDead()const;
 	
