@@ -1,6 +1,8 @@
 #include "../../header/device/Input.h"
 
-Input::Input()
+Input::Input() :
+	m_previousLeftTrigger(false),
+	m_previousRightTrigger(false)
 {
 }
 
@@ -70,4 +72,20 @@ const GSvector2 Input::rightPadAxis() const
 	GSvector2 vector;
 	gsXBoxPadGetRightAxis(0, &vector);
 	return vector;
+}
+
+const bool Input::isJoyLeftTrigger()
+{
+	bool current = gsXBoxPadGetLeftTrigger(0) == 1.0f;
+	bool result = current && !m_previousLeftTrigger;
+	m_previousLeftTrigger = current;
+	return result;
+}
+
+const bool Input::isJoyRightTrigger()
+{
+	bool current = gsXBoxPadGetRightTrigger(0) == 1.0f;
+	bool result = current && !m_previousRightTrigger;
+	m_previousRightTrigger = current;
+	return result;
 }

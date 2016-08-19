@@ -17,7 +17,6 @@ void Player::update(float deltatime)
 }
 void Player::draw()
 {
-
 }
 void Player::finish()
 {
@@ -29,7 +28,6 @@ void Player::stand()
 }
 void Player::move()
 {
-
 }
 void Player::attack()
 {
