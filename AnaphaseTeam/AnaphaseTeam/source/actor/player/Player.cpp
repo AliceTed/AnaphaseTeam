@@ -1,6 +1,7 @@
 #include "../../../header/actor/Player/Player.h"
 #include "../../../header/actor/state/MoveState.h"
 #include "../../../header/actor/state/StandState.h"
+#include "../../../header/actor/state/JumpState.h"
 #include "../../../header/renderer/Renderer.h"
 #include "../../../header/device/Input.h"
 #include "../../../header/camera/Camera.h"
@@ -30,10 +31,11 @@ void Player::update(float deltatime)
 {
 	animation.update(deltatime);
 
-	move(deltatime);
+	/*move(deltatime);
 	jump(deltatime);
-	chain(deltatime);
-
+	chain(deltatime);*/
+	control();
+	m_action->action(this, deltatime);
 	sphereChases(GSvector3(0, 1, 0));
 }
 
@@ -100,19 +102,19 @@ void Player::move(float deltaTime)
 
 void Player::jump(float deltaTime)
 {
-	if (m_Input->jumpTrigger())
+	/*if (m_Input->jumpTrigger())
 	{
 		m_Jump.start();
-	}
+	}*/
 	m_Jump.jumping(this, deltaTime);
 }
 
 void Player::chain(float deltaTime)
 {
-	if (m_Input->chainTrigger())
+	/*if (m_Input->chainTrigger())
 	{
 		m_ChainMove.start();
-	}
+	}*/
 	m_ChainMove.movement(deltaTime, this);
 }
 
@@ -138,4 +140,21 @@ void Player::chainMove(const GSvector3 & _target, float _time)
 void Player::actionChange(Action_Ptr _action)
 {
 	m_action = _action;
+}
+
+void Player::control()
+{
+	if (m_Input->jumpTrigger())
+	{
+		m_Jump.start();
+		actionChange(std::make_shared<JumpState>());
+	}
+	if (m_Input->chainTrigger())
+	{
+		m_ChainMove.start();
+	}
+	if (m_Input->move())
+	{
+		actionChange(std::make_shared<MoveState>());
+	}
 }

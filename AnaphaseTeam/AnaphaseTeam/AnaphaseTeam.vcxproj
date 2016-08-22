@@ -138,6 +138,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="chainMoveState.cpp" />
     <ClCompile Include="source\actor\Actor.cpp" />
     <ClCompile Include="source\actor\player\Player.cpp" />
     <ClCompile Include="source\actor\state\AttackState.cpp" />
@@ -173,6 +174,7 @@
     <ClCompile Include="Util\BasicShapes.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="chainMoveState.h" />
     <ClInclude Include="FirstStep.h" />
     <ClInclude Include="header\actor\Actor.h" />
     <ClInclude Include="header\actor\ICharacter.h" />

@@ -297,6 +297,9 @@
     <ClInclude Include="header\actor\state\JumpState.h">
       <Filter>ヘッダー ファイル\actor\state\each</Filter>
     </ClInclude>
+    <ClInclude Include="chainMoveState.h">
+      <Filter>ヘッダー ファイル\actor\state\each</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Util\BasicShapes.cpp">
@@ -397,6 +400,9 @@
     </ClCompile>
     <ClCompile Include="source\actor\player\Player.cpp">
       <Filter>ソース ファイル\actor\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="chainMoveState.cpp">
+      <Filter>ソース ファイル\actor\state</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

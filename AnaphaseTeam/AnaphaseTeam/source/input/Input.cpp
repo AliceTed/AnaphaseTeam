@@ -29,6 +29,11 @@ const int Input::rotate() const
 	return f;
 }
 
+const bool Input::move() const
+{
+	return vertical() != 0 || horizontal() != 0;
+}
+
 const bool Input::jumpTrigger() const
 {
 	return gsGetKeyTrigger(GKEY_SPACE)==GS_TRUE;

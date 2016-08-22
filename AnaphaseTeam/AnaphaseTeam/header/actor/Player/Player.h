@@ -42,6 +42,8 @@ public:
 	*/
 	void actionChange(Action_Ptr _action);
 private:
+	void control();
+private:
 	const Input* m_Input;
 	Animation animation;
 
