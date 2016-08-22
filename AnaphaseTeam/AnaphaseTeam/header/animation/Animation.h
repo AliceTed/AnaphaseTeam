@@ -5,6 +5,7 @@
 #include "AnimationTimer.h"
 #include "../data/ANIMATION_ID.h"
 #include "../data/SKELETON_ID.h"
+#include "../data/Model_ID.h"
 /*
 animation情報の管理
 
@@ -19,17 +20,24 @@ public:
 	enumなどでアニメーションの番号を管理してるとき用
 	*/
 	template<class T>
-	Animation(ANIMATION_ID anim_id, SKELETON_ID bone_id,T animNo,AnimationTimer timer, bool isLoop=false)
-		:isLoop(isLoop), animNo(static_cast<unsigned int>(animNo)), timer(timer),
-		anim_id(static_cast<unsigned int>(anim_id)),bone_id(static_cast<unsigned int>(bone_id))
+	Animation(ANIMATION_ID _anim_id, SKELETON_ID _bone_id,T _animNo,AnimationTimer _timer, bool _isLoop=false)
+		:m_isLoop(_isLoop), m_animNo(static_cast<unsigned int>(_animNo)), m_timer(_timer),
+		m_anim_id(static_cast<unsigned int>(_anim_id)),m_bone_id(static_cast<unsigned int>(_bone_id))
+	{
+
+	}
+	template<class T>
+	Animation(MODEL_ID _code, T _animNo, AnimationTimer _timer, bool _isLoop = false)
+		: m_isLoop(_isLoop), m_animNo(static_cast<unsigned int>(_animNo)), m_timer(_timer),
+		m_anim_id(static_cast<unsigned int>(_code)), m_bone_id(static_cast<unsigned int>(_code))
 	{
 
 	}
 	/*
 	アニメーション番号をuintで管理していてキャストが必要ないとき用
 	*/
-	Animation(ANIMATION_ID anim_id, SKELETON_ID bone_id, unsigned int animNo,
-		AnimationTimer timer, bool isLoop = false);
+	Animation(ANIMATION_ID _anim_id, SKELETON_ID _bone_id, unsigned int _animNo,
+		AnimationTimer _timer, bool _isLoop = false);
 
 	~Animation();
 	void initialize();
@@ -48,12 +56,12 @@ private:
 
 private:
 	/*trueならループ*/
-	bool isLoop;
-	AnimationTimer timer;
-	unsigned int animNo;
+	bool m_isLoop;
+	AnimationTimer m_timer;
+	unsigned int m_animNo;
 
-	unsigned int anim_id;
-	unsigned int bone_id;
+	unsigned int m_anim_id;
+	unsigned int m_bone_id;
 };
 
 #endif

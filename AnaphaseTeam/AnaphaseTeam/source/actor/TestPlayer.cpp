@@ -6,11 +6,11 @@
 
 #include "../../header/camera/Camera.h"
 #include "../../header/shape/Ray.h"
-
+/*
 const float TestPlayer::MOVESPEED=0.3f;
 const float TestPlayer::ROTATESPEED = -2.0f;
 TestPlayer::TestPlayer(const Input* _input)
-	:Actor(Transform(), Sphere(GSvector3(0, 0, 0), 1)),
+	:Actor(Transform(), MODEL_ID::PLAYER,Sphere(GSvector3(0, 0, 0), 1)),
 	m_Input(_input),
 	animation(ANIMATION_ID::KENDO, SKELETON_ID::KENDO, 20,
 		AnimationTimer
@@ -114,6 +114,7 @@ void TestPlayer::chainMove(const GSvector3 & _target,float _time)
 	/*
 	‰Á‘¬“x‚É‚·‚é‚Æ‰ÁŽZ‚È‚Ì‚ÅŠO•”‚Ì‰e‹¿‚ðŽó‚¯‚é‚ª
 	‘ã“ü‚È‚ç‰e‹¿‚ðŽó‚¯‚È‚¢
-	*/
+	//
 	m_transform.setPosition(m_transform.getPosition().lerp(_target, _time));
 }
+*/

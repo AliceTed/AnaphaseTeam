@@ -6,11 +6,20 @@
 #include "../../header/shape/Ray.h"
 const float Actor::ALPHABLEND_FAR = 2.0f;
 
-Actor::Actor(const Transform & _transform, const Sphere& _sphere)
+Actor::Actor(const Transform & _transform, MODEL_ID _modelID,const Sphere& _sphere)
 	:m_transform(_transform), 
 	m_isDead(false),
 	m_Color(1.0f,1.0f,1.0f,1.0f),
-	m_Sphere(_sphere)
+	m_Sphere(_sphere),
+	m_animator(_modelID)
+{
+}
+Actor::Actor(const Transform & _transform, const ANIMATION_ID _anim_ID, const SKELETON_ID _skelton_ID, const Sphere & _sphere)
+	:m_transform(_transform),
+	m_isDead(false),
+	m_Color(1.0f, 1.0f, 1.0f, 1.0f),
+	m_Sphere(_sphere),
+	m_animator(_anim_ID,_skelton_ID)
 {
 }
 void Actor::initialize()

@@ -297,8 +297,14 @@
     <ClInclude Include="header\actor\state\JumpState.h">
       <Filter>ヘッダー ファイル\actor\state\each</Filter>
     </ClInclude>
-    <ClInclude Include="chainMoveState.h">
-      <Filter>ヘッダー ファイル\actor\state\each</Filter>
+    <ClInclude Include="header\animation\Animator.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="header\data\Model_ID.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="header\data\PLAYERACTION_ID.h">
+      <Filter>ヘッダー ファイル\data\id</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -403,6 +409,9 @@
     </ClCompile>
     <ClCompile Include="chainMoveState.cpp">
       <Filter>ソース ファイル\actor\state</Filter>
+    </ClCompile>
+    <ClCompile Include="source\animation\Animator.cpp">
+      <Filter>ソース ファイル</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
