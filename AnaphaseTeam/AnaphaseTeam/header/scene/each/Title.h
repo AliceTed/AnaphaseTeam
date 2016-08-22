@@ -9,6 +9,9 @@
 #include "../../actor/TestPlayer.h"
 
 #include "../../collision/CollisionManager.h"
+
+#include"../../shape/OBB.h"
+#include "../../shape/./Sphere.h"
 class Input;
 typedef std::shared_ptr<Actor>Actor_Ptr;
 class Title :public IScene
@@ -31,5 +34,8 @@ private:
 	Entity::EntityManager<Actor_Ptr> actorManager;
 	TestPlayer player;
 	CollisionManager collision;
+
+	OBB ob1;
+	Sphere s;
 };
 #endif

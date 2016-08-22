@@ -13,6 +13,8 @@ public:
 	const bool isCollision(const Sphere* _sphere)const;
 	const bool isCollision(const Capsule* _capsule)const;
 	const bool isCollision(const Segment* _segment)const;
+	//–¢ŽÀ‘•
+	const bool isCollision(const OBB* _obb)const;
 
 	const bool isCollision(const Shape* _shape)const;
 

@@ -89,11 +89,11 @@ void Draw3D::drawBox(const GSvector3 * pos, const GSvector3 * radius,
 	const GSvector3 * rot, const GScolor & color)const
 {
 	glPushMatrix();
-
 	glTranslatef(pos->x, pos->y, pos->z);
 	glRotatef(rot->z, 0, 0, 1);
 	glRotatef(rot->x, 1, 0, 0);
 	glRotatef(rot->y, 0, 1, 0);
+
 	glScaled(radius->x * 2, radius->y * 2, radius->z * 2);
 	glMaterialfv(GL_FRONT, GL_DIFFUSE,color);
 	glutSolidCube(1);
