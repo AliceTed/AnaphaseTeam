@@ -13,20 +13,29 @@ class OBB:public Shape
 public:
 	OBB(const GSvector3 &_position,const GSvector3& _radius, const GSvector3& _rotate);
 	~OBB();
-	
-
 	const bool isCollision(const Sphere* _sphere)const;
 	//未実装
 	const bool isCollision(const Capsule* _capsule)const;
 	//未実装
 	const bool isCollision(const Segment* _segment)const;
-
 	const bool isCollision(const OBB* _obb)const;
 
 	const bool isCollision(const Shape* _shape)const;
 	void draw(const Renderer & renderer, const GScolor& color=GScolor(1,1,1,1));
 
 	const bool isCollisionSphere(const GSvector3& _center, float _radius)const;
+	const bool isCollisionSegment()const;
+	const bool TestSegmentOBB(const Segment *_segment)const;
+	
+	void move(const GSvector3& move)
+	{
+		m_position += move;
+	}
+	void rot(const GSvector3& _rot)
+	{
+		m_rotate += _rot;
+		rotateToAxis();
+	}
 private:
 	// 各軸についてはみ出た部分のベクトルを算出
 	const GSvector3 axisProtrudedVector(const GSvector3& _axis,float radius,const GSvector3& _point)const;
@@ -49,6 +58,7 @@ private:
 	const bool compareLengthOBB(const OBB *_other, const GSvector3 vSep, const GSvector3 vDistance)const;
 	//分離軸上で最も遠い頂点までの距離
 	const float farthestDistance(const GSvector3& _vSeq)const;
+
 private:
 	GSvector3 m_radius;//半径
 	GSvector3 m_position;//中心位置

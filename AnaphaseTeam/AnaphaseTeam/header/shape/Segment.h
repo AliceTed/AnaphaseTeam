@@ -26,7 +26,7 @@ public:
 	const GSvector3 end()const;
 	//Žn“_Žæ“¾(Capsule—p)
 	const GSvector3& begin()const;
-	const GSvector3 vector()const;
+	const GSvector3& vector()const;
 
 private:
 	GSvector3 m_begin;

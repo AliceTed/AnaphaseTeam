@@ -58,7 +58,7 @@ const bool Segment::isCollisionCapsule(const Segment & _other, float _radius) co
 	return gsCollisionLineAndLine(&m_begin, &end(), &_other.m_begin, &_other.end(), GS_FALSE, _radius,&GSvector3(), &GSvector3()) == GS_TRUE;
 }
 
-const GSvector3 Segment::vector() const
+const GSvector3& Segment::vector() const
 {
 	return m_vector;
 }

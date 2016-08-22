@@ -11,7 +11,7 @@
 #include "../../collision/CollisionManager.h"
 
 #include"../../shape/OBB.h"
-#include "../../shape/./Sphere.h"
+#include "../../shape/./Segment.h"
 class Input;
 typedef std::shared_ptr<Actor>Actor_Ptr;
 class Title :public IScene
@@ -36,6 +36,6 @@ private:
 	CollisionManager collision;
 
 	OBB ob1;
-	Sphere s;
+	Segment seg;
 };
 #endif

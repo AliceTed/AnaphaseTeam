@@ -1,6 +1,7 @@
 #include "../../header/shape/OBB.h"
 #include "../../header/renderer/Renderer.h"
 #include "../../header/shape/Sphere.h"
+#include "../../header/shape/Segment.h"
 OBB::OBB(const GSvector3 & _position, const GSvector3 & _radius, const GSvector3 & _rotate)
 	:m_position(_position), m_radius(_radius), m_rotate(_rotate)
 {
@@ -14,7 +15,6 @@ void OBB::rotateToAxis()
 {
 	GSmatrix4 mRot;
 	gsMatrix4YawPitchRoll(&mRot, m_rotate.y, m_rotate.x, m_rotate.z);
-
 	m_axisX = mRot*GSvector3(1, 0, 0);
 	m_axisY = mRot*GSvector3(0, 1, 0);
 	m_axisZ = mRot*GSvector3(0, 0, 1);
@@ -23,7 +23,32 @@ void OBB::rotateToAxis()
 const bool OBB::isCollisionSphere(const GSvector3 & _center, float _radius) const
 {
 	//中心点との最短距離が半径以下なら衝突
-	return distance_point(_center)<= _radius;
+	return distance_point(_center) <= _radius;
+}
+const bool OBB::TestSegmentOBB(const Segment * _segment) const
+{
+	//const float EPSILON = 1.175494e-37;
+	GSvector3 m = _segment->end()*0.5f - m_position;
+	GSvector3 d = _segment->vector() - (_segment->end()*0.5f);
+
+	m = GSvector3(m_axisX.dot(m), m_axisY.dot(m), m_axisZ.dot(m));
+	d = GSvector3(m_axisX.dot(d), m_axisY.dot(d), m_axisZ.dot(d));
+
+	float adx = fabsf(d.x);
+	if (fabsf(m.x) > m_radius.x + adx) return false;
+	float ady = fabsf(d.y);
+	if (fabsf(m.y) > m_radius.y + ady) return false;
+	float adz = fabsf(d.z);
+	if (fabsf(m.z) > m_radius.z + adz) return false;
+	//adx += EPSILON;
+	//ady += EPSILON;
+	//adz += EPSILON;
+
+	if (fabsf(m.y * d.z - m.z * d.y) > m_radius.y * adz + m_radius.z * ady) return false;
+	if (fabsf(m.z * d.x - m.x * d.z) > m_radius.x * adz + m_radius.z * adx) return false;
+	if (fabsf(m.x * d.y - m.y * d.x) > m_radius.x * ady + m_radius.y * adx) return false;
+
+	return true;
 }
 
 const bool OBB::isCollision(const Sphere * _sphere) const
@@ -154,7 +179,7 @@ const GSvector3 OBB::axisProtrudedVector(const GSvector3 & _axis, float _radius,
 	float s = (_point - m_position).dot(_axis) / _radius;
 	// sの値から、はみ出した部分があればそのベクトルを加算
 	s = fabs(s);
-	if (s<= 1)return GSvector3(0, 0, 0);
+	if (s <= 1)return GSvector3(0, 0, 0);
 
 	// はみ出した部分のベクトル算出
 	return (1 - s)*_radius*_axis;
