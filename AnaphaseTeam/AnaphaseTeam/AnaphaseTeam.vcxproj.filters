@@ -61,9 +61,6 @@
     <Filter Include="ヘッダー ファイル\data\id">
       <UniqueIdentifier>{0e44e006-9926-4892-8601-12b87d5e09d5}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ヘッダー ファイル\camera">
-      <UniqueIdentifier>{8b26a032-4802-4034-ae6c-fef2d4b00838}</UniqueIdentifier>
-    </Filter>
     <Filter Include="ソース ファイル\camera">
       <UniqueIdentifier>{975d37c5-230f-47f6-a801-9ad3ca6a7302}</UniqueIdentifier>
     </Filter>
@@ -120,6 +117,9 @@
     </Filter>
     <Filter Include="ヘッダー ファイル\collision">
       <UniqueIdentifier>{88d64962-81b3-4480-b0d8-fd12cdd59731}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\collision\camera">
+      <UniqueIdentifier>{8b26a032-4802-4034-ae6c-fef2d4b00838}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -226,7 +226,7 @@
       <Filter>ヘッダー ファイル\data\id</Filter>
     </ClInclude>
     <ClInclude Include="header\camera\Camera.h">
-      <Filter>ヘッダー ファイル\camera</Filter>
+      <Filter>ヘッダー ファイル\collision\camera</Filter>
     </ClInclude>
     <ClInclude Include="header\actor\Actor.h">
       <Filter>ヘッダー ファイル\actor</Filter>

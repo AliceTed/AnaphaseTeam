@@ -40,7 +40,7 @@ const bool Capsule::isCollision(const Segment * _segment) const
 
 const bool Capsule::isCollision(const OBB * _obb) const
 {
-	return false;
+	return _obb->isCollisionCapsule(m_Segment.begin(),m_Segment.vector(),m_Radius);
 }
 
 const bool Capsule::isCollision(const Shape * _shape) const

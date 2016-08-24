@@ -3,7 +3,7 @@
 #define _BOXOBB_H_
 #include <gslib.h>
 #include  "Shape.h"
-#include "../array/Array.h"
+
 class Renderer;
 /*
 OBB
@@ -14,9 +14,7 @@ public:
 	OBB(const GSvector3 &_position,const GSvector3& _radius, const GSvector3& _rotate);
 	~OBB();
 	const bool isCollision(const Sphere* _sphere)const;
-	//未実装
 	const bool isCollision(const Capsule* _capsule)const;
-	//未実装
 	const bool isCollision(const Segment* _segment)const;
 	const bool isCollision(const OBB* _obb)const;
 
@@ -24,8 +22,6 @@ public:
 	void draw(const Renderer & renderer, const GScolor& color=GScolor(1,1,1,1));
 
 	const bool isCollisionSphere(const GSvector3& _center, float _radius)const;
-	const bool isCollisionSegment()const;
-	const bool TestSegmentOBB(const Segment *_segment)const;
 	
 	void move(const GSvector3& move)
 	{
@@ -36,6 +32,9 @@ public:
 		m_rotate += _rot;
 		rotateToAxis();
 	}
+	//判定が緩いけど取りあえず実装(+中身がリファクタ対象)
+	const bool isCollisionSegment(const GSvector3& _begin, const GSvector3& _vector)const;
+	const bool isCollisionCapsule(const GSvector3& _position, const GSvector3 &_vector, float _radius)const;
 private:
 	// 各軸についてはみ出た部分のベクトルを算出
 	const GSvector3 axisProtrudedVector(const GSvector3& _axis,float radius,const GSvector3& _point)const;
@@ -59,6 +58,11 @@ private:
 	//分離軸上で最も遠い頂点までの距離
 	const float farthestDistance(const GSvector3& _vSeq)const;
 
+
+	//slabと線分が平行かどうかを判定し交差するか確認
+	const bool parallel_Slab_Segment(float _radius, float _dir, float _pos)const;
+	//各スラブで線分と交差するか
+	const bool each_Slab_Segment(const GSvector3& _radius,const GSvector3& _dir, const GSvector3& _pos, const GSvector3& _axis)const;
 private:
 	GSvector3 m_radius;//半径
 	GSvector3 m_position;//中心位置

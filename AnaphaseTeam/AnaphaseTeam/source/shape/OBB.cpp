@@ -2,6 +2,7 @@
 #include "../../header/renderer/Renderer.h"
 #include "../../header/shape/Sphere.h"
 #include "../../header/shape/Segment.h"
+#include "../../header/shape/Capsule.h"
 OBB::OBB(const GSvector3 & _position, const GSvector3 & _radius, const GSvector3 & _rotate)
 	:m_position(_position), m_radius(_radius), m_rotate(_rotate)
 {
@@ -25,31 +26,6 @@ const bool OBB::isCollisionSphere(const GSvector3 & _center, float _radius) cons
 	//中心点との最短距離が半径以下なら衝突
 	return distance_point(_center) <= _radius;
 }
-const bool OBB::TestSegmentOBB(const Segment * _segment) const
-{
-	//const float EPSILON = 1.175494e-37;
-	GSvector3 m = _segment->end()*0.5f - m_position;
-	GSvector3 d = _segment->vector() - (_segment->end()*0.5f);
-
-	m = GSvector3(m_axisX.dot(m), m_axisY.dot(m), m_axisZ.dot(m));
-	d = GSvector3(m_axisX.dot(d), m_axisY.dot(d), m_axisZ.dot(d));
-
-	float adx = fabsf(d.x);
-	if (fabsf(m.x) > m_radius.x + adx) return false;
-	float ady = fabsf(d.y);
-	if (fabsf(m.y) > m_radius.y + ady) return false;
-	float adz = fabsf(d.z);
-	if (fabsf(m.z) > m_radius.z + adz) return false;
-	//adx += EPSILON;
-	//ady += EPSILON;
-	//adz += EPSILON;
-
-	if (fabsf(m.y * d.z - m.z * d.y) > m_radius.y * adz + m_radius.z * ady) return false;
-	if (fabsf(m.z * d.x - m.x * d.z) > m_radius.x * adz + m_radius.z * adx) return false;
-	if (fabsf(m.x * d.y - m.y * d.x) > m_radius.x * ady + m_radius.y * adx) return false;
-
-	return true;
-}
 
 const bool OBB::isCollision(const Sphere * _sphere) const
 {
@@ -58,12 +34,12 @@ const bool OBB::isCollision(const Sphere * _sphere) const
 
 const bool OBB::isCollision(const Capsule * _capsule) const
 {
-	return false;
+	return _capsule->isCollision(this);
 }
 
 const bool OBB::isCollision(const Segment * _segment) const
 {
-	return false;
+	return _segment->isCollision(this);
 }
 
 const bool OBB::isCollision(const OBB * _obb) const
@@ -103,6 +79,64 @@ const float OBB::farthestDistance(const GSvector3 & _vSeq)const
 	float z = fabsf(m_axisZ.dot(_vSeq)*m_radius.z);
 	return x + y + z;
 }
+
+
+const bool OBB::parallel_Slab_Segment(float _radius, float _dir, float _pos) const
+{
+	float EPSILON = 5.0f;
+	float l = _radius;
+	if (abs(_dir) < EPSILON)
+	{
+		if (abs(_pos / l) > 1.0)
+		{
+			return false;
+		}
+		return true;
+	}
+
+	float t1 = (-l - _pos) / _dir;
+	float t2 = (l - _pos) / _dir;
+
+	if (t1 > t2)
+	{
+		std::swap(t1, t2);
+	}
+
+	float tmin = 0.0;
+	float tmax = 1.0;
+
+	if (t1 > tmin)
+	{
+		tmin = t1;
+	}
+	if (t2 < tmax)
+	{
+		tmax = t2;
+	}
+	if (tmin > tmax)
+	{
+		return false;
+	}
+	return true;
+}
+
+const bool OBB::each_Slab_Segment(const GSvector3& _radius, const GSvector3 & _dir, const GSvector3 & _pos, const GSvector3& _axis) const
+{
+	//線分の始点をOBBの中心座標分ずらす
+	GSvector3 segPos = _pos - m_position;
+	segPos = segPos.cross(_axis);
+	GSvector3 segDir = _dir.cross(_axis);
+
+	for (int i = 0; i < 3; ++i)
+	{
+		if (!parallel_Slab_Segment(_radius.v[i], segDir.v[i], segPos.v[i]))
+		{
+			return false;
+		}
+	}
+	return true;
+}
+
 
 const bool OBB::axisCompare(const OBB * _other, const GSvector3 & _distance) const
 {
@@ -170,9 +204,24 @@ const bool OBB::crossAxisCompare(const OBB * _other, const GSvector3 & _distance
 
 void OBB::draw(const Renderer & renderer, const GScolor & color)
 {
+	
 	renderer.getDraw3D().drawBox(&m_position, &m_radius, &m_rotate, color);
 }
-
+const bool OBB::isCollisionSegment(const GSvector3& _begin, const GSvector3& _vector) const
+{
+	return each_Slab_Segment(m_radius, _vector, _begin, m_axisX)&&
+		each_Slab_Segment(m_radius, _vector, _begin, m_axisY) &&
+		each_Slab_Segment(m_radius, _vector, _begin, m_axisZ);
+}
+const bool OBB::isCollisionCapsule(const GSvector3 & _position, const GSvector3 & _vector, float _radius)const
+{
+	GSvector3 radius = m_radius + GSvector3(_radius, _radius, _radius);
+	return each_Slab_Segment(radius, _vector, _position, m_axisX)&&
+		each_Slab_Segment(radius, _vector, _position, m_axisY) &&
+		each_Slab_Segment(radius, _vector, _position, m_axisZ)||
+		isCollisionSphere(_position,_radius)||
+		isCollisionSphere(_position+_vector, _radius);
+}
 const GSvector3 OBB::axisProtrudedVector(const GSvector3 & _axis, float _radius, const GSvector3 & _point) const
 {
 	if (_radius <= 0)return GSvector3(0, 0, 0);  // L=0は計算できな

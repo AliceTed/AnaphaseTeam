@@ -35,7 +35,7 @@ const bool Segment::isCollision(const Segment * _segment) const
 
 const bool Segment::isCollision(const OBB * _obb) const
 {
-	return false;
+	return _obb->isCollisionSegment(m_begin,m_vector);
 }
 
 const bool Segment::isCollision(const Shape * _shape) const
@@ -45,7 +45,9 @@ const bool Segment::isCollision(const Shape * _shape) const
 
 void Segment::draw(const Renderer & renderer, const GScolor & color)
 {
-	renderer.getDraw3D().drawLine(&m_begin,&end(),color);
+	renderer.getDraw3D().drawLine(&m_begin,&end(),color,2);
+	renderer.getDraw3D().drawPoint(&end(), 4, { 0,1,0,1 });
+	renderer.getDraw3D().drawPoint(&m_begin, 3, { 0,0,1,1 });
 }
 
 const bool Segment::isCollisionSphere(const GSvector3& _center, float _radius) const

@@ -51,10 +51,10 @@ void Draw3D::drawMesh(MESH_ID id, const Transform & _transform, const GScolor & 
 	glPopMatrix();
 }
 
-void Draw3D::drawMesh(MESH_ID id, const GSmatrix4 & mat,const GScolor& _color) const
+void Draw3D::drawMesh(MESH_ID id, const GSmatrix4 & mat, const GScolor& _color) const
 {
 	glPushMatrix();
-	glColor4f(_color.r,_color.g,_color.b,_color.a);
+	glColor4f(_color.r, _color.g, _color.b, _color.a);
 	glMultMatrixf(mat);
 	Data::CastID cast;
 	gsDrawMesh(cast(id));
@@ -95,7 +95,7 @@ void Draw3D::drawBox(const GSvector3 * pos, const GSvector3 * radius,
 	glRotatef(rot->y, 0, 1, 0);
 
 	glScaled(radius->x * 2, radius->y * 2, radius->z * 2);
-	glMaterialfv(GL_FRONT, GL_DIFFUSE,color);
+	glMaterialfv(GL_FRONT, GL_DIFFUSE, color);
 	glutSolidCube(1);
 
 	glPopMatrix();
@@ -105,7 +105,7 @@ void Draw3D::drawSphere(const GSvector3 * pos, float radius, const GScolor & col
 {
 	glPushMatrix();
 	glTranslated(pos->x, pos->y, pos->z);
-	glMaterialfv(GL_FRONT, GL_DIFFUSE,color);
+	glMaterialfv(GL_FRONT, GL_DIFFUSE, color);
 	glutSolidSphere(radius, 20, 20);
 	glPopMatrix();
 }
@@ -152,6 +152,19 @@ void Draw3D::drawLine(const GSvector3 * p1, const GSvector3 * p2, const GScolor&
 	glBegin(GL_LINES);
 	glVertex3f(p1->x, p1->y, p1->z);
 	glVertex3f(p2->x, p2->y, p2->z);
+	glEnd();
+
+	glPopMatrix();
+}
+
+void Draw3D::drawPoint(const GSvector3 * p, float size, const GScolor& color) const
+{
+	glPushMatrix();
+	glPointSize(size);
+	glMaterialfv(GL_FRONT, GL_DIFFUSE, color);
+	
+	glBegin(GL_POINTS);
+	glVertex3f(p->x, p->y, p->z);
 	glEnd();
 
 	glPopMatrix();

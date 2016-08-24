@@ -14,7 +14,7 @@ Title::Title(const Input* _input)
 	player(_input),
 	collision(),
 	ob1(GSvector3(0, 4, 0),GSvector3(1,1,1), GSvector3(0, 0, 0)),
-	seg(GSvector3(0,4,0),GSvector3(0,1,0))
+	cap(Segment(GSvector3(0,0,0),GSvector3(0,5,0)),1)
 {
 }
 
@@ -72,12 +72,13 @@ void Title::draw(const Renderer & renderer)
 	collision.draw(renderer);
 
 	GScolor c = { 1,1,1,1 };
-	if (ob1.TestSegmentOBB(&seg))
+	//TestSegmentOBB(&seg)
+	if (ob1.isCollision(&cap))
 	{
 		c = { 1,0,0,1 };
 	}
 	ob1.draw(renderer, c);
-	seg.draw(renderer);
+	cap.draw(renderer);
 }
 
 void Title::finish()
