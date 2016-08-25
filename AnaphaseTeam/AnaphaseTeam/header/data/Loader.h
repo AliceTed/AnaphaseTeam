@@ -12,7 +12,7 @@
 #include <gslib.h>
 
 #include "PathConnect.h"
-#include "CastID.h"
+#include "CastID.h"0
 #include "LoadError.h"
 namespace Data
 {
@@ -26,99 +26,126 @@ namespace Data
 		GWAVE_DEFAULT
 		*/
 		template<class ID>
-		void operator ()(ID id, const std::string& name, int max, GWAVEFLAG flag = GWAVE_DEFAULT, const std::string& path = "./res/sound/", const std::string& extension = ".wav");
+		void operator ()(ID _id, const std::string& _name, int _max, GWAVEFLAG _flag = GWAVE_DEFAULT, const std::string& _path = "./res/sound/", const std::string& _extension = ".wav");
 	};
 	class LoadBGM
 	{
 	public:
 		template<class ID>
-		void operator ()(ID id, const std::string& name, const std::string& path = "./res/sound/", const std::string& extension = ".mds");
+		void operator ()(ID _id, const std::string& _name, const std::string& _path = "./res/sound/", const std::string& _extension = ".mds");
 	};
 	class LoadMesh
 	{
 	public:
 		template<class ID>
-		void operator ()(ID id, const std::string& name, const std::string& path = "./res/model/", const std::string& extension = ".msh");
+		void operator ()(ID _id, const std::string& _name, const std::string& _path = "./res/model/", const std::string& _extension = ".msh");
 	};
 	class LoadSkeleton
 	{
 	public:
 		template<class ID>
-		void operator ()(ID id, const std::string& name, const std::string& path = "./res/model/", const std::string& extension = ".skl");
+		void operator ()(ID _id, const std::string& _name, const std::string& _path = "./res/model/", const std::string& _extension = ".skl");
 	};
 	class LoadAnimation
 	{
 	public:
 		template<class ID>
-		void operator ()(ID id, const std::string& name, const std::string& path = "./res/model/", const std::string& extension = ".anm");
+		void operator ()(ID _id, const std::string& _name, const std::string& _path = "./res/model/", const std::string& _extension = ".anm");
 	};
 	class LoadOctree
 	{
 	public:
 		template<class ID>
-		void operator ()(ID id, const std::string& name, const std::string& path = "./res/octree/", const std::string& extension = ".oct");
+		void operator ()(ID _id, const std::string& _name, const std::string& _path = "./res/octree/", const std::string& _extension = ".oct");
 	};
 	class LoadTexture
 	{
 	public:
 		template<class ID>
-		void operator ()(ID id, const std::string& name, const std::string& path = "./res/texture/", const std::string& extension = ".png");
+		void operator ()(ID _id, const std::string& _name, const std::string& _path = "./res/texture/", const std::string& _extension = ".png");
+	};
+
+	class LoadModel
+	{
+	public:
+		/**
+		* @fn
+		* @brief モデル用ロード関数
+		* @param (_id) 管理ID
+		* @param (_name) モデル名
+		* @param (_path) モデルのデータがあるパス
+		* @detail .mshと.anmと.sklの三つのデータをロードする
+		*/
+		template<class ID>
+		void operator()(ID _id, const std::string& _name, const std::string& _path = "./res/model/");
 	};
 }
 template<class ID>
-void Data::LoadSE::operator()(ID _id, const std::string & name, int max, GWAVEFLAG flag, const std::string & path, const std::string & extension)
+void Data::LoadSE::operator()(ID _id, const std::string & _name, int _max, GWAVEFLAG _flag, const std::string & _path, const std::string & _extension)
 {
 	LoadError error;
 	CastID cast;
 	PathConnect connect;
-	error(!!gsLoadSE(cast(_id), connect(name, path, extension).c_str(), max, flag), [&name] { ErrorMessage mes; mes(name, "SE");});
+	error(!!gsLoadSE(cast(_id), connect(_name, _path, _extension).c_str(), _max, flag), [&_name] { ErrorMessage mes; mes(_name, "SE");});
 }
 template<class ID>
-void Data::LoadBGM::operator()(ID _id, const std::string & name, const std::string & path, const std::string & extension)
+void Data::LoadBGM::operator()(ID _id, const std::string & _name, const std::string & _path, const std::string & _extension)
 {
 	LoadError error;
 	CastID cast;
 	PathConnect connect;
-	error(!!gsLoadBGM(cast(_id), connect(name, path, extension).c_str(), GMIDI_LOOP), [&name] { ErrorMessage mes; mes(name, "BGM");});
+	error(!!gsLoadBGM(cast(_id), connect(_name, _path, _extension).c_str(), GMIDI_LOOP), [&_name] { ErrorMessage mes; mes(_name, "BGM");});
 }
 template<class ID>
-void Data::LoadMesh::operator()(ID id, const std::string & name, const std::string & path, const std::string & extension)
+void Data::LoadMesh::operator()(ID _id, const std::string & _name, const std::string & _path, const std::string & _extension)
 {
 	LoadError error;
 	CastID cast;
 	PathConnect connect;
-	error(!!gsLoadMesh(cast(id), connect(name, path, extension).c_str()), [&name] { ErrorMessage mes; mes(name, "Mesh");});
+	error(!!gsLoadMesh(cast(_id), connect(_name, _path, _extension).c_str()), [&_name] { ErrorMessage mes; mes(_name, "Mesh");});
 }
 template<class ID>
-void Data::LoadSkeleton::operator()(ID id, const std::string & name, const std::string & path, const std::string & extension)
+void Data::LoadSkeleton::operator()(ID _id, const std::string & _name, const std::string & _path, const std::string & _extension)
 {
 	LoadError error;
 	CastID cast;
 	PathConnect connect;
-	error(!!gsLoadSkeleton(cast(id), connect(name, path, extension).c_str()), [&name] { ErrorMessage mes; mes(name, "Skeleton");});
+	error(!!gsLoadSkeleton(cast(_id), connect(_name, _path, _extension).c_str()), [&_name] { ErrorMessage mes; mes(_name, "Skeleton");});
 }
 template<class ID>
-void Data::LoadAnimation::operator()(ID id, const std::string & name, const std::string & path, const std::string & extension)
+void Data::LoadAnimation::operator()(ID _id, const std::string & _name, const std::string & _path, const std::string & _extension)
 {
 	LoadError error;
 	CastID cast;
 	PathConnect connect;
-	error(!!gsLoadAnimation(cast(id), connect(name, path, extension).c_str()), [&name] { ErrorMessage mes; mes(name, "Animation");});
+	error(!!gsLoadAnimation(cast(_id), connect(_name, _path, _extension).c_str()), [&_name] { ErrorMessage mes; mes(_name, "Animation");});
 }
 template<class ID>
-void Data::LoadOctree::operator()(ID id, const std::string & name, const std::string & path, const std::string & extension)
+void Data::LoadOctree::operator()(ID _id, const std::string & _name, const std::string & _path, const std::string & _extension)
 {
 	LoadError error;
 	CastID cast;
 	PathConnect connect;
-	error(!!gsLoadOctree(cast(id), connect(name, path, extension).c_str()), [&name] { ErrorMessage mes; mes(name, "Octree");});
+	error(!!gsLoadOctree(cast(_id), connect(_name, _path, _extension).c_str()), [&_name] { ErrorMessage mes; mes(_name, "Octree");});
 }
 template<class ID>
-void Data::LoadTexture::operator()(ID id, const std::string & name, const std::string & path, const std::string & extension)
+void Data::LoadTexture::operator()(ID _id, const std::string & _name, const std::string & _path, const std::string & _extension)
 {
 	LoadError error;
 	CastID cast;
 	PathConnect connect;
-	error(!!gsLoadTexture(cast(id), connect(name, path, extension).c_str()),[&] { ErrorMessage mes; mes(name, "Texture");});
+	error(!!gsLoadTexture(cast(_id), connect(_name, _path, _extension).c_str()),[&] { ErrorMessage mes; mes(_name, "Texture");});
 }
+template<class ID>
+void Data::LoadModel::operator()(ID _id, const std::string & _name, const std::string & _path)
+{
+	LoadMesh mesh;
+	LoadAnimation anim;
+	LoadSkeleton skl;
+
+	mesh(_id,_name,_path);
+	anim(_id, _name, _path);
+	skl(_id, _name, _path);
+}
+
 #endif

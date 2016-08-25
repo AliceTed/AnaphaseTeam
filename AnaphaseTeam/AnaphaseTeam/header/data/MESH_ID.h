@@ -4,8 +4,6 @@
 #include "BGM_ID.h"
 enum class MESH_ID :unsigned int
 {
-	KARATE,
-	KENDO,
 	SKY,
 	SIZE
 };

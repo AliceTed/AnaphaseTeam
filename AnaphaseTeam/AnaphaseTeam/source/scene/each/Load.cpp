@@ -63,16 +63,9 @@ void Load::loadModel()
 {
 	using namespace Data;
 	LoadMesh mesh;
-	LoadAnimation anim;
-	LoadSkeleton skl;
-	
-	mesh(MODEL_ID::KARATE,"karate");
-	anim(MODEL_ID::KARATE, "karate");
-	skl(MODEL_ID::KARATE,"karate");
-
-	mesh(MODEL_ID::PLAYER, "kendo");
-	anim(MODEL_ID::PLAYER, "kendo");
-	skl(MODEL_ID::PLAYER, "kendo");
+	LoadModel model;
+	model(MODEL_ID::KARATE, "karate");
+	model(MODEL_ID::PLAYER,"kendo" );
 
 	mesh(MESH_ID::SKY, "sky/skydome");
 	LoadOctree oct;

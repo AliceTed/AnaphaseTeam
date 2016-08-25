@@ -306,9 +306,6 @@
     <ClInclude Include="header\data\PLAYERACTION_ID.h">
       <Filter>ヘッダー ファイル\data\id</Filter>
     </ClInclude>
-    <ClInclude Include="chainMoveState.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Util\BasicShapes.cpp">
