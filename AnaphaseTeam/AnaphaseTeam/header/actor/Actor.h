@@ -65,6 +65,12 @@ public:
 
 	const bool isSameActor(const Actor* _other)const;
 	const bool isSameTag(Actor_Tag _tag)const;
+	/**
+	* @fn
+	* @brief 判定表から衝突判定を行うactorか判断する
+	* @param (_table) 判定表
+	* @param (_other) 確認するactor
+	*/
 	const bool isConfirmCollisionTable(const CollisionTable& _table, const Actor* _other)const;
 public:
 	const bool isDead()const;
