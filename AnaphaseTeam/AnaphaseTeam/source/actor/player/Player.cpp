@@ -7,17 +7,15 @@
 #include "../../../header/camera/Camera.h"
 #include "../../../header/shape/Ray.h"
 #include "../../../header/data/PLAYERACTION_ID.h"
+
+#include "../../../header/collision/CollisionMediator.h"
+#include "../../../header/shape/Capsule.h"
 const float Player::MOVESPEED = 0.3f;
 const float Player::ROTATESPEED = -2.0f;
 
 Player::Player(const Input* _input)
-	:Actor(Transform(),ANIMATION_ID::KENDO,SKELETON_ID::KENDO,Sphere(GSvector3(0,0,0),0)), m_action(nullptr),
-m_animator(ANIMATION_ID::KENDO,SKELETON_ID::KENDO)
-	/*animation(ANIMATION_ID::KENDO, SKELETON_ID::KENDO, 20,
-		AnimationTimer
-		(
-			gsGetEndAnimationTime(static_cast<GSuint>(ANIMATION_ID::KENDO), 20)), true
-		)*/,
+	:Actor(Transform({0,0,5}), ANIMATION_ID::KENDO, SKELETON_ID::KENDO, Sphere(GSvector3(0, 0, 0), 0), Actor_Tag::PLAYER),
+	m_action(nullptr),
 	m_Jump(),
 	m_ChainMove()
 {}
@@ -28,13 +26,12 @@ void Player::initialize()
 	Actor::initialize();
 	actionChange(std::make_shared<StandState>());
 	m_animator.initialize();
-	m_animator.addAnimation_A(PLAYERACTION_ID::STAND,true);
+	m_animator.addAnimation_A(PLAYERACTION_ID::STAND, true);
 	m_animator.addAnimation_A(PLAYERACTION_ID::RUN, true);
-	m_animator.changeAnimation_A(PLAYERACTION_ID::STAND,false);
+	m_animator.changeAnimation_A(PLAYERACTION_ID::STAND, false);
 }
 void Player::update(float deltatime)
 {
-
 	m_animator.changeAnimation_A(PLAYERACTION_ID::STAND, false);
 	/*move(deltatime);
 	jump(deltatime);
@@ -79,11 +76,13 @@ void Player::collisionGround(const Map & _map)
 	//mapÇ…ñÑÇﬂçûÇ‹ÇÍÇƒÇ¢ÇΩÇÁyç¿ïWÇåì_Ç…à⁄ìÆ
 	m_transform.setPositionY(intersect.y);
 }
-
-void Player::finish()
+void Player::createCollision(CollisionMediator * _mediator)
 {
+	GSvector3 pos(m_transform.getPosition() + GSvector3(0, 0.3f, 0));
+	Shape_Ptr shape = std::make_shared<Capsule>(Segment(pos, GSvector3(0, 0.8f, 0)), 0.5f);
+	Obj_Ptr obj = std::make_shared<CollisionObject>(this, shape);
+	_mediator->add(obj);
 }
-
 void Player::stand(float deltaTime)
 {
 
@@ -104,7 +103,7 @@ void Player::move(float deltaTime)
 	GSvector3 forward(m_transform.front()*m_Input->vertical());
 	GSvector3 side(m_transform.left()*m_Input->horizontal());
 	m_transform.translate((forward - side)*MOVESPEED*deltaTime);
-	if ((forward - side).length() > 0)m_animator.changeAnimation_A(PLAYERACTION_ID::RUN,false);
+	if ((forward - side).length() > 0)m_animator.changeAnimation_A(PLAYERACTION_ID::RUN, false);
 }
 
 void Player::jump(float deltaTime)

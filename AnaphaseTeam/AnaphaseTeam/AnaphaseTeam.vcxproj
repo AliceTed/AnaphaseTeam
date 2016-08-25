@@ -151,7 +151,6 @@
     <ClCompile Include="source\animation\AnimationTimer.cpp" />
     <ClCompile Include="source\animation\Animator.cpp" />
     <ClCompile Include="source\camera\Camera.cpp" />
-    <ClCompile Include="source\collision\Collision.cpp" />
     <ClCompile Include="source\collision\CollisionManager.cpp" />
     <ClCompile Include="source\collision\CollisionObject.cpp" />
     <ClCompile Include="source\collision\CollisionTable.cpp" />
@@ -184,8 +183,6 @@
   <ItemGroup>
     <ClInclude Include="header\actor\Actor.h" />
     <ClInclude Include="header\actor\Actor_Tag.h" />
-    <ClInclude Include="header\actor\AttackState.h" />
-    <ClInclude Include="header\actor\IActionState.h" />
     <ClInclude Include="header\actor\ICharacter.h" />
     <ClInclude Include="header\actor\Player\Player.h" />
     <ClInclude Include="header\actionstate\AttackState.h" />
@@ -202,7 +199,6 @@
     <ClInclude Include="header\array\Array.h" />
     <ClInclude Include="header\array\Array2D.h" />
     <ClInclude Include="header\camera\Camera.h" />
-    <ClInclude Include="header\collision\Collision.h" />
     <ClInclude Include="header\collision\CollisionManager.h" />
     <ClInclude Include="header\collision\CollisionMediator.h" />
     <ClInclude Include="header\collision\CollisionObject.h" />

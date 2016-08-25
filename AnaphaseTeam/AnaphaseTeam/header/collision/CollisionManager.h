@@ -4,7 +4,6 @@
 #include "../entity/EntityManager.h"
 #include "CollisionObject.h"
 
-#include "Collision.h"
 #include "CollisionMediator.h"
 #include "CollisionTable.h"
 #include <memory>

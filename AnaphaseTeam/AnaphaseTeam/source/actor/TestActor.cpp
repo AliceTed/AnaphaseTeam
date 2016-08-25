@@ -8,18 +8,12 @@
 //
 int TestActor::DrawCount = 0;
 TestActor::TestActor()
-	:Actor(Transform(),ANIMATION_ID::KARATE, SKELETON_ID::KARATE,Sphere(GSvector3(0,0,0),1.0f), Actor_Tag::TEST),
-	target(0, 0, 0),
-	m_animator(ANIMATION_ID::KARATE, SKELETON_ID::KARATE)
-	/*animation(ANIMATION_ID::KARATE,SKELETON_ID::KARATE,20,
-		AnimationTimer
-		(
-			gsGetEndAnimationTime(static_cast<GSuint>(ANIMATION_ID::KARATE),20)),true
-		)*/
+	:Actor(Transform(), ANIMATION_ID::KARATE, SKELETON_ID::KARATE, Sphere(GSvector3(0, 0, 0), 1.0f), Actor_Tag::TEST),
+	target(0, 0, 0)
 {
 	DrawCount = 0;
 	m_animator.addAnimation_A(PLAYERACTION_ID::STAND, true);
-	m_animator.changeAnimation_A(PLAYERACTION_ID::STAND,false);
+	m_animator.changeAnimation_A(PLAYERACTION_ID::STAND, false);
 }
 
 TestActor::~TestActor()
@@ -35,13 +29,13 @@ void TestActor::update(float deltatime)
 		target.x += 1;
 		break;
 	case 1:
-		target.x -=1;
+		target.x -= 1;
 		break;
 	case 2:
-		target.z +=1;
+		target.z += 1;
 		break;
 	case 3:
-		target.z -=1;
+		target.z -= 1;
 		break;
 	}
 
@@ -59,7 +53,7 @@ void TestActor::draw(const Renderer & _renderer, const Camera & _camera)
 	}
 	alphaBlend(_camera);
 	m_animator.bind_A();
-	_renderer.getDraw3D().drawMesh(MODEL_ID::KARATE,m_transform.getMatrix4(),m_Color);
+	_renderer.getDraw3D().drawMesh(MODEL_ID::KARATE, m_transform.getMatrix4(), m_Color);
 	//sphereDraw(_renderer);
 	//
 	DrawCount++;
@@ -69,12 +63,12 @@ void TestActor::createCollision(CollisionMediator * _mediator)
 {
 	GSvector3 pos(m_transform.getPosition() + GSvector3(0, 0.5f, 0));
 	Shape_Ptr shape = std::make_shared<Sphere>(pos, 1.0f);
-	Obj_Ptr obj = std::make_shared<CollisionObject>(this,shape);
+	Obj_Ptr obj = std::make_shared<CollisionObject>(this, shape);
 	_mediator->add(obj);
 }
 
 void TestActor::collision(const Actor * _other)
 {
-	if(_other->isSameTag(Actor_Tag::PLAYER))
+	if (_other->isSameTag(Actor_Tag::PLAYER))
 		m_isDead = true;
 }

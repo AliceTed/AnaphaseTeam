@@ -17,6 +17,5 @@ public:
 	static int DrawCount;
 private:
 	GSvector3 target;
-	Animator m_animator;
 };
 

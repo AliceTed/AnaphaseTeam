@@ -23,15 +23,6 @@ public:
 
 	const bool isCollisionSphere(const GSvector3& _center, float _radius)const;
 	
-	void move(const GSvector3& move)
-	{
-		m_position += move;
-	}
-	void rot(const GSvector3& _rot)
-	{
-		m_rotate += _rot;
-		rotateToAxis();
-	}
 	//判定が緩いけど取りあえず実装(+中身がリファクタ対象)
 	const bool isCollisionSegment(const GSvector3& _begin, const GSvector3& _vector)const;
 	const bool isCollisionCapsule(const GSvector3& _position, const GSvector3 &_vector, float _radius)const;

@@ -61,6 +61,9 @@
     <Filter Include="ヘッダー ファイル\data\id">
       <UniqueIdentifier>{0e44e006-9926-4892-8601-12b87d5e09d5}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ヘッダー ファイル\camera">
+      <UniqueIdentifier>{8b26a032-4802-4034-ae6c-fef2d4b00838}</UniqueIdentifier>
+    </Filter>
     <Filter Include="ソース ファイル\camera">
       <UniqueIdentifier>{975d37c5-230f-47f6-a801-9ad3ca6a7302}</UniqueIdentifier>
     </Filter>
@@ -103,15 +106,6 @@
     <Filter Include="ソース ファイル\convenient">
       <UniqueIdentifier>{d0cf5e72-4097-46d2-af6f-1b6fb3c150d3}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ソース ファイル\collision">
-      <UniqueIdentifier>{4e0a9b45-4ac0-4c63-afc4-3354a05ea000}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ヘッダー ファイル\collision">
-      <UniqueIdentifier>{88d64962-81b3-4480-b0d8-fd12cdd59731}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ヘッダー ファイル\collision\camera">
-      <UniqueIdentifier>{8b26a032-4802-4034-ae6c-fef2d4b00838}</UniqueIdentifier>
-    </Filter>
     <Filter Include="ソース ファイル\actionstate">
       <UniqueIdentifier>{a32c18d5-f73c-4d72-bc3f-328397b27dad}</UniqueIdentifier>
     </Filter>
@@ -123,6 +117,12 @@
     </Filter>
     <Filter Include="ヘッダー ファイル\subAction">
       <UniqueIdentifier>{d1453e29-4435-4d3f-a76a-d78410acd7aa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\collision">
+      <UniqueIdentifier>{ca6bbaf5-c38e-4c7e-a0ff-1fff915a52d4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\collision">
+      <UniqueIdentifier>{f353fd22-708f-4db3-b757-7edcf1ab233d}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -226,7 +226,7 @@
       <Filter>ヘッダー ファイル\data\id</Filter>
     </ClInclude>
     <ClInclude Include="header\camera\Camera.h">
-      <Filter>ヘッダー ファイル\collision\camera</Filter>
+      <Filter>ヘッダー ファイル\camera</Filter>
     </ClInclude>
     <ClInclude Include="header\actor\Actor.h">
       <Filter>ヘッダー ファイル\actor</Filter>
@@ -294,6 +294,12 @@
     <ClInclude Include="header\actionstate\StandState.h">
       <Filter>ヘッダー ファイル\actionState</Filter>
     </ClInclude>
+    <ClInclude Include="header\subAction\TestChainMove.h">
+      <Filter>ヘッダー ファイル\subAction</Filter>
+    </ClInclude>
+    <ClInclude Include="header\subAction\TestJump.h">
+      <Filter>ヘッダー ファイル\subAction</Filter>
+    </ClInclude>
     <ClInclude Include="header\shape\AABB.h">
       <Filter>ヘッダー ファイル\shape</Filter>
     </ClInclude>
@@ -309,9 +315,6 @@
     <ClInclude Include="header\shape\Shape.h">
       <Filter>ヘッダー ファイル\shape</Filter>
     </ClInclude>
-    <ClInclude Include="header\collision\Collision.h">
-      <Filter>ヘッダー ファイル\collision</Filter>
-    </ClInclude>
     <ClInclude Include="header\collision\CollisionManager.h">
       <Filter>ヘッダー ファイル\collision</Filter>
     </ClInclude>
@@ -326,12 +329,6 @@
     </ClInclude>
     <ClInclude Include="header\actor\Actor_Tag.h">
       <Filter>ヘッダー ファイル\actor</Filter>
-    </ClInclude>
-    <ClInclude Include="header\subAction\TestChainMove.h">
-      <Filter>ヘッダー ファイル\subAction</Filter>
-    </ClInclude>
-    <ClInclude Include="header\subAction\TestJump.h">
-      <Filter>ヘッダー ファイル\subAction</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -437,11 +434,17 @@
     <ClCompile Include="source\convenient\Transform.cpp">
       <Filter>ソース ファイル\convenient</Filter>
     </ClCompile>
-    <ClCompile Include="source\Acotr\TestChainMove.cpp">
-      <Filter>ソース ファイル\actor</Filter>
+    <ClCompile Include="source\shape\AABB.cpp">
+      <Filter>ソース ファイル\shape</Filter>
     </ClCompile>
-    <ClCompile Include="source\collision\Collision.cpp">
-      <Filter>ソース ファイル\collision</Filter>
+    <ClCompile Include="source\shape\OBB.cpp">
+      <Filter>ソース ファイル\shape</Filter>
+    </ClCompile>
+    <ClCompile Include="source\shape\Segment.cpp">
+      <Filter>ソース ファイル\shape</Filter>
+    </ClCompile>
+    <ClCompile Include="source\shape\Capsule.cpp">
+      <Filter>ソース ファイル\shape</Filter>
     </ClCompile>
     <ClCompile Include="source\collision\CollisionManager.cpp">
       <Filter>ソース ファイル\collision</Filter>
@@ -451,18 +454,6 @@
     </ClCompile>
     <ClCompile Include="source\collision\CollisionTable.cpp">
       <Filter>ソース ファイル\collision</Filter>
-    </ClCompile>
-    <ClCompile Include="source\shape\AABB.cpp">
-      <Filter>ソース ファイル\shape</Filter>
-    </ClCompile>
-    <ClCompile Include="source\shape\Capsule.cpp">
-      <Filter>ソース ファイル\shape</Filter>
-    </ClCompile>
-    <ClCompile Include="source\shape\OBB.cpp">
-      <Filter>ソース ファイル\shape</Filter>
-    </ClCompile>
-    <ClCompile Include="source\shape\Segment.cpp">
-      <Filter>ソース ファイル\shape</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
