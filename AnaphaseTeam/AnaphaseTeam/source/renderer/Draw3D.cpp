@@ -130,3 +130,13 @@ void Draw3D::drawPoint(const GSvector3 * p, float size, const GScolor& color) co
 
 	glPopMatrix();
 }
+
+void Draw3D::drawFog(const GSvector2 & clip, const GScolor & color) const
+{
+	glClearColor(color.r, color.g, color.b, color.a);
+	glEnable(GL_FOG);
+	glFogi(GL_FOG_MODE, GL_LINEAR);
+	glFogf(GL_FOG_START, clip.x);
+	glFogf(GL_FOG_END, clip.y);
+	glFogfv(GL_FOG_COLOR, color);
+}

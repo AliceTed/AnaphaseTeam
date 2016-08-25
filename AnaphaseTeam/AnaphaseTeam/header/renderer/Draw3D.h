@@ -8,6 +8,7 @@
 #include <gslib.h>
 class Transform;
 class Animator;
+
 class Draw3D
 {
 public:
@@ -30,6 +31,12 @@ public:
 
 	void drawPoint(const GSvector3* p, float size = 1.0f, const GScolor& color = GScolor(1.0f, 1.0f, 1.0f, 1.0f))const;
 
-	void drawPlane();
+	/**
+	* @fn
+	* @brief フォグの描画
+	* @param (_clip) フォグのスタートとエンド
+	* @param (_color) 色
+	*/
+	void drawFog(const GSvector2& _clip= GSvector2(150.0f, 200.0f),const GScolor& _color = GScolor(1.0f, 1.0f, 1.0f, 1.0f))const;
 };
 #endif
