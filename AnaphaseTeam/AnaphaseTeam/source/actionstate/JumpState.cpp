@@ -1,5 +1,5 @@
-#include "../../../header/actor/state/JumpState.h"
-#include "../../../header/actor/ICharacter.h"
+#include "../../header/actionstate/JumpState.h"
+#include "../../header/actor/ICharacter.h"
 JumpState::JumpState()
 {
 }

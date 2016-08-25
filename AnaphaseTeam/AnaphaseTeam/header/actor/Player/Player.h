@@ -9,9 +9,9 @@
 #include "../../animation/Animation.h"
 #include "../../animation/Animator.h"
 #include "../../animation/AnimationTimer.h"
-#include "../../actor/state/IActionState.h"
-#include "../TestJump.h"
-#include "../TestChainMove.h"
+#include "../../actionstate/IActionState.h"
+#include "../../subAction/TestJump.h"
+#include "../../subAction/TestChainMove.h"
 #include "../../convenient/Timer.h"
 #include<gslib.h>
 #include <memory>

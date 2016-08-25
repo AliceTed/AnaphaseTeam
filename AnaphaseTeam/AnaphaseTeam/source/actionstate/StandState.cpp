@@ -1,5 +1,5 @@
-#include "../../../header/actor/state/StandState.h"
-#include "../../../header/actor/ICharacter.h"
+#include "../../header/actionstate/StandState.h"
+#include "../../header/actor/ICharacter.h"
 StandState::StandState()
 {}
 StandState::~StandState()

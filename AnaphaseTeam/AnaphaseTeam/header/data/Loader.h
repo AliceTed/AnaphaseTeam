@@ -12,7 +12,7 @@
 #include <gslib.h>
 
 #include "PathConnect.h"
-#include "CastID.h"0
+#include "CastID.h"
 #include "LoadError.h"
 namespace Data
 {

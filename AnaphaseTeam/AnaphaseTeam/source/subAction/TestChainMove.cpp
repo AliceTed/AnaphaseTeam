@@ -1,4 +1,4 @@
-#include "../../header/actor/TestChainMove.h"
+#include "../../header/subAction/TestChainMove.h"
 #include "../../header/actor/Player/Player.h"
 
 const float TestChainMove::MOVESPEED=0.5f;
