@@ -56,7 +56,7 @@ void Title::draw(const Renderer & renderer)
 	actorManager.accept([&](Actor_Ptr _actor) {_actor->draw(renderer, m_Camera);});
 	renderer.getDraw2D().string("‘”:" + std::to_string(actorManager.size()), &GSvector2(20, 20), 20);
 	renderer.getDraw2D().string("•`‰æ”:" + std::to_string(TestActor::DrawCount), &GSvector2(20, 50), 20);
-	collision.draw(renderer);
+	collision.draw(renderer);	
 }
 
 void Title::finish()

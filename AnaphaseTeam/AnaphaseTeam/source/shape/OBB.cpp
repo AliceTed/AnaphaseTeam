@@ -49,6 +49,11 @@ const bool OBB::isCollision(const OBB * _obb) const
 	return axisCompare(_obb, distance);
 }
 
+const bool OBB::isCollision(const AABB * _aabb) const
+{
+	return false;
+}
+
 const bool OBB::isCollision(const Shape * _shape) const
 {
 	return _shape->isCollision(this);
@@ -204,7 +209,6 @@ const bool OBB::crossAxisCompare(const OBB * _other, const GSvector3 & _distance
 
 void OBB::draw(const Renderer & renderer, const GScolor & color)
 {
-	
 	renderer.getDraw3D().drawBox(&m_position, &m_radius, &m_rotate, color);
 }
 const bool OBB::isCollisionSegment(const GSvector3& _begin, const GSvector3& _vector) const
@@ -221,6 +225,11 @@ const bool OBB::isCollisionCapsule(const GSvector3 & _position, const GSvector3 
 		each_Slab_Segment(radius, _vector, _position, m_axisZ)||
 		isCollisionSphere(_position,_radius)||
 		isCollisionSphere(_position+_vector, _radius);
+}
+const bool OBB::isCollisionAABB(const GSvector3 & _position, const GSvector3 & _radius) const
+{
+	OBB other(_position, _radius, GSvector3(0, 0, 0));
+	return isCollision(&other);
 }
 const GSvector3 OBB::axisProtrudedVector(const GSvector3 & _axis, float _radius, const GSvector3 & _point) const
 {

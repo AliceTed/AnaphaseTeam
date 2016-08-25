@@ -8,6 +8,7 @@
 #include "../../header/shape/Capsule.h"
 #include "../../header/shape/Segment.h"
 #include "../../header/shape/OBB.h"
+#include "../../header/shape/AABB.h"
 Sphere::Sphere(const GSvector3& center, float radius)
 	:center(center), radius(radius)
 {
@@ -56,6 +57,11 @@ const bool Sphere::isCollision(const Segment * _segment) const
 const bool Sphere::isCollision(const OBB * _obb) const
 {
 	return _obb->isCollisionSphere(center,radius);
+}
+
+const bool Sphere::isCollision(const AABB * _aabb) const
+{
+	return _aabb->isCollisionSphere(center,radius);
 }
 
 const bool Sphere::isCollision(const Shape * _shape) const

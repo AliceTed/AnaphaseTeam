@@ -1,12 +1,15 @@
 #pragma once
-#ifndef _BOXOBB_H_
-#define _BOXOBB_H_
-#include <gslib.h>
+/**
+*@file OBB.h
+*@drief 有向境界ボックス(Oriented Bounding Box)
+*@author 松尾裕也
+*@date 2016/08/19
+*/
 #include  "Shape.h"
 
 class Renderer;
 /*
-OBB
+回転可能だが他の判定に比べて重い
 */
 class OBB:public Shape
 {
@@ -17,6 +20,7 @@ public:
 	const bool isCollision(const Capsule* _capsule)const;
 	const bool isCollision(const Segment* _segment)const;
 	const bool isCollision(const OBB* _obb)const;
+	const bool isCollision(const AABB* _aabb)const;
 
 	const bool isCollision(const Shape* _shape)const;
 	void draw(const Renderer & renderer, const GScolor& color=GScolor(1,1,1,1));
@@ -26,6 +30,8 @@ public:
 	//判定が緩いけど取りあえず実装(+中身がリファクタ対象)
 	const bool isCollisionSegment(const GSvector3& _begin, const GSvector3& _vector)const;
 	const bool isCollisionCapsule(const GSvector3& _position, const GSvector3 &_vector, float _radius)const;
+	//AABBとの判定のとり方が判らなかったのでAABBの情報をもとにOBBを作り判定をとっている
+	const bool isCollisionAABB(const GSvector3& _position, const GSvector3 & _radius)const;
 private:
 	// 各軸についてはみ出た部分のベクトルを算出
 	const GSvector3 axisProtrudedVector(const GSvector3& _axis,float radius,const GSvector3& _point)const;
@@ -63,5 +69,4 @@ private:
 	GSvector3 m_axisY;  // 分離軸Y
 	GSvector3 m_axisZ;  // 分離軸Z
 };
-#endif
 

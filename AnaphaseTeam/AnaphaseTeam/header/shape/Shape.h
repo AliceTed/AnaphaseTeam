@@ -10,6 +10,7 @@ class Sphere;
 class Capsule;
 class Segment;
 class OBB;
+class AABB;
 class Shape
 {
 public:
@@ -19,6 +20,7 @@ public:
 	virtual const bool isCollision(const Capsule* _capsule)const = 0;
 	virtual const bool isCollision(const Segment* _segment)const = 0;
 	virtual const bool isCollision(const OBB* _obb)const = 0;
+	virtual const bool isCollision(const AABB* _aabb)const = 0;
 
 	virtual const bool isCollision(const Shape* _shape)const = 0;
 

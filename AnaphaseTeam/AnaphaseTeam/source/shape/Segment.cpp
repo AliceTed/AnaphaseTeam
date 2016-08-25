@@ -30,12 +30,17 @@ const bool Segment::isCollision(const Capsule * _capsule) const
 
 const bool Segment::isCollision(const Segment * _segment) const
 {
-	return gsCollisionLineAndLine(&m_begin,&end(),&_segment->m_begin,&_segment->end(),GS_FALSE, 1.0f, &GSvector3(), &GSvector3())==GS_TRUE;
+	return gsCollisionLineAndLine(&m_begin, &end(), &_segment->m_begin, &_segment->end(), GS_FALSE, 1.0f, &GSvector3(), &GSvector3()) == GS_TRUE;
+}
+
+const bool Segment::isCollision(const AABB * _aabb) const
+{
+	return false;
 }
 
 const bool Segment::isCollision(const OBB * _obb) const
 {
-	return _obb->isCollisionSegment(m_begin,m_vector);
+	return _obb->isCollisionSegment(m_begin, m_vector);
 }
 
 const bool Segment::isCollision(const Shape * _shape) const
@@ -45,19 +50,17 @@ const bool Segment::isCollision(const Shape * _shape) const
 
 void Segment::draw(const Renderer & renderer, const GScolor & color)
 {
-	renderer.getDraw3D().drawLine(&m_begin,&end(),color,2);
-	renderer.getDraw3D().drawPoint(&end(), 4, { 0,1,0,1 });
-	renderer.getDraw3D().drawPoint(&m_begin, 3, { 0,0,1,1 });
+	renderer.getDraw3D().drawLine(&m_begin, &end(), color, 2);
 }
 
 const bool Segment::isCollisionSphere(const GSvector3& _center, float _radius) const
 {
-	return gsCollisionSphereAndLine(&_center,_radius,&m_begin,&end(),NULL)==GS_TRUE;
+	return gsCollisionSphereAndLine(&_center, _radius, &m_begin, &end(), NULL) == GS_TRUE;
 }
 
 const bool Segment::isCollisionCapsule(const Segment & _other, float _radius) const
 {
-	return gsCollisionLineAndLine(&m_begin, &end(), &_other.m_begin, &_other.end(), GS_FALSE, _radius,&GSvector3(), &GSvector3()) == GS_TRUE;
+	return gsCollisionLineAndLine(&m_begin, &end(), &_other.m_begin, &_other.end(), GS_FALSE, _radius, &GSvector3(), &GSvector3()) == GS_TRUE;
 }
 
 const GSvector3& Segment::vector() const
@@ -65,9 +68,27 @@ const GSvector3& Segment::vector() const
 	return m_vector;
 }
 
+const bool Segment::isONPoint(const GSvector3 & _point) const
+{
+	if (m_begin == _point)
+	{
+		return true;
+	}
+	GSvector3 v = m_vector;
+	v = v.normalize();
+	GSvector3 pv = _point - m_begin;
+	pv = pv.normalize();
+	//ï˚å¸Ç™à·Ç¡ÇΩÇÁê¸ï™è„Ç≈ÇÕÇ»Ç¢
+	if (v != pv)
+	{
+		return false;
+	}
+	return v.length() <= pv.length();
+}
+
 const GSvector3 Segment::end() const
 {
-	return m_begin+m_vector;
+	return m_begin + m_vector;
 }
 
 const GSvector3& Segment::begin() const

@@ -13,7 +13,7 @@ public:
 	const bool isCollision(const Sphere* _sphere)const;
 	const bool isCollision(const Capsule* _capsule)const;
 	const bool isCollision(const Segment* _segment)const;
-	//未実装
+	const bool isCollision(const AABB* _aabb)const;
 	const bool isCollision(const OBB* _obb)const;
 
 	const bool isCollision(const Shape* _shape)const;
@@ -27,6 +27,8 @@ public:
 	//始点取得(Capsule用)
 	const GSvector3& begin()const;
 	const GSvector3& vector()const;
+	//点が線分上にあるか？
+	const bool isONPoint(const GSvector3& _point)const;
 
 private:
 	GSvector3 m_begin;
