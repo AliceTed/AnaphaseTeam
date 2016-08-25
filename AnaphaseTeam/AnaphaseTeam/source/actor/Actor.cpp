@@ -4,12 +4,15 @@
 #include"../../header/math/Calculate.h"
 #include "../../header/map/Map.h"
 #include "../../header/shape/Ray.h"
+#include "../../header/collision/CollisionTable.h"
 const float Actor::ALPHABLEND_FAR = 2.0f;
 
-Actor::Actor(const Transform & _transform, MODEL_ID _modelID,const Sphere& _sphere)
+Actor::Actor(const Transform & _transform, MODEL_ID _modelID,const Sphere& _sphere, Actor_Tag _tag)
 	:m_transform(_transform), 
 	m_isDead(false),
 	m_Color(1.0f,1.0f,1.0f,1.0f),
+	m_Sphere(_sphere),
+	m_Tag(_tag)
 	m_Sphere(_sphere),
 	m_animator(_modelID)
 {
@@ -50,13 +53,31 @@ void Actor::collisionGround(const Map& _map)
 	//map‚É–„‚ßž‚Ü‚ê‚Ä‚¢‚½‚çyÀ•W‚ðŒð“_‚ÉˆÚ“®
 	m_transform.setPositionY(intersect.y);
 }
-const float Actor::distanceActor(const Actor & _ohter) const
+void Actor::collision(const Actor * _other)
 {
-	return m_transform.getPosition().distance(_ohter.m_transform.getPosition());
+}
+void Actor::createCollision(CollisionMediator * _mediator)
+{
+}
+const float Actor::distanceActor(const Actor & _other) const
+{
+	return m_transform.getPosition().distance(_other.m_transform.getPosition());
 }
 const float Actor::distance(const GSvector3 & _position) const
 {
 	return m_transform.getPosition().distance(_position);
+}
+const bool Actor::isSameActor(const Actor * _other) const
+{
+	return this==_other;
+}
+const bool Actor::isSameTag(Actor_Tag _tag) const
+{
+	return m_Tag==_tag;
+}
+const bool Actor::isConfirmCollisionTable(const CollisionTable & _table, const Actor * _other) const
+{
+	return _table.isConfirmTag(m_Tag,_other->m_Tag);
 }
 const bool Actor::isDead() const
 {

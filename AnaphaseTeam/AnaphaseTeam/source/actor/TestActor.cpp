@@ -3,9 +3,12 @@
 #include "../../header/camera/Camera.h"
 #include "../../header/renderer/Renderer.h"
 
+#include "../../header/collision/CollisionMediator.h"
+#include "../../header/shape/Sphere.h"
+//
 int TestActor::DrawCount = 0;
 TestActor::TestActor()
-	:Actor(Transform(),ANIMATION_ID::KARATE, SKELETON_ID::KARATE,Sphere(GSvector3(0,0,0),1.0f)),
+	:Actor(Transform(),ANIMATION_ID::KARATE, SKELETON_ID::KARATE,Sphere(GSvector3(0,0,0),1.0f), Actor_Tag::TEST),
 	target(0, 0, 0),
 	m_animator(ANIMATION_ID::KARATE, SKELETON_ID::KARATE)
 	/*animation(ANIMATION_ID::KARATE,SKELETON_ID::KARATE,20,
@@ -60,4 +63,18 @@ void TestActor::draw(const Renderer & _renderer, const Camera & _camera)
 	//sphereDraw(_renderer);
 	//
 	DrawCount++;
+}
+
+void TestActor::createCollision(CollisionMediator * _mediator)
+{
+	GSvector3 pos(m_transform.getPosition() + GSvector3(0, 0.5f, 0));
+	Shape_Ptr shape = std::make_shared<Sphere>(pos, 1.0f);
+	Obj_Ptr obj = std::make_shared<CollisionObject>(this,shape);
+	_mediator->add(obj);
+}
+
+void TestActor::collision(const Actor * _other)
+{
+	if(_other->isSameTag(Actor_Tag::PLAYER))
+		m_isDead = true;
 }

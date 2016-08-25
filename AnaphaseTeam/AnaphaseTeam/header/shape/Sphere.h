@@ -7,13 +7,11 @@
 * @author èºîˆóTñÁ
 * @date 2016/8/14
 */
-#include <gslib.h>
+#include "Shape.h"
 
-//#include "Shape.h"
-class Renderer;
 class Camera;//CameraManagerÇ…Ç»ÇÈÇ©Ç‡
 class Map;
-/*struct*/class Sphere//:public Shape
+class Sphere:public Shape
 {
 public:
 	Sphere(const GSvector3& center,float radius);
@@ -21,10 +19,17 @@ public:
 	void expand(float radius);
 	void translate(const GSvector3& _position);
 	void transfer(const GSvector3& _position);
-	const bool intersects(const Sphere& other)const;
-	void draw(const Renderer& renderer,const GScolor& color=GScolor(1.0f, 1.0f, 1.0f, 1.0f));
-	//const SHAPETYPE getType()const;
 
+public:
+	//const bool isCollision(const Ray* _ray)const;
+	const bool isCollision(const Sphere* _sphere)const;
+	const bool isCollision(const Capsule* _capsule)const;
+	const bool isCollision(const Segment* _segment)const;
+	const bool isCollision(const OBB* _obb)const;
+
+	const bool isCollision(const Shape* _shape)const;
+	void draw(const Renderer& renderer,const GScolor& color=GScolor(1.0f, 1.0f, 1.0f, 1.0f));
+public:
 	const bool isInsideCameraView(const Camera& _camera)const;
 	const float cameraDistance(const Camera& _camera)const;
 

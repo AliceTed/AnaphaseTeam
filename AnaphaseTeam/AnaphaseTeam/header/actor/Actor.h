@@ -13,14 +13,19 @@
 #include "../animation/Animator.h"
 class Renderer;
 #include "../shape/Sphere.h"
-
+#include "../actor/Actor_Tag.h"
+class CollisionMediator;
 class Map;
 class Camera;
+class CollisionTable;
+//!　引数のフラグがfalseならリターン
+#define FALSE_RETURN(flg) if(!flg)return;
 class Actor
 {
 public:
-	Actor(const Transform &_transform,const MODEL_ID _model_ID,const Sphere& _sphere);
-	Actor(const Transform &_transform, const ANIMATION_ID _anim_ID,const SKELETON_ID _skelton_ID, const Sphere& _sphere);
+	Actor(const Transform &_transform,const MODEL_ID _model_ID,const Sphere& _sphere, Actor_Tag _tag);
+	Actor(const Transform &_transform, const ANIMATION_ID _anim_ID,const SKELETON_ID _skelton_ID, const Sphere& _sphere, Actor_Tag _tag);
+
 	virtual ~Actor() {}
 	virtual void initialize();
 	virtual void update(float deltatime) = 0;
@@ -33,16 +38,24 @@ public:
 	* @param (_map) mapを取得
 	*/
 	virtual void collisionGround(const Map& _map);
+	virtual void collision(const Actor* _other);
 
+	virtual void createCollision(CollisionMediator* _mediator);
+
+public:
 	/**
 	* @fn
 	* @brief Actor同士の距離
 	* @param (_ohter) 距離を測るActor
 	* @return 距離
 	*/
-	const float distanceActor(const Actor& _ohter)const;
+	const float distanceActor(const Actor& _other)const;
 	//chain計算用にあるだけdistanceActor一つにしたい
 	const float distance(const GSvector3& _position)const;
+
+	const bool isSameActor(const Actor* _other)const;
+	const bool isSameTag(Actor_Tag _tag)const;
+	const bool isConfirmCollisionTable(const CollisionTable& _table, const Actor* _other)const;
 public:
 	const bool isDead()const;
 	
@@ -79,6 +92,8 @@ protected:
 
 	GScolor m_Color;
 private:
+	Actor_Tag m_Tag;
+
 	//!カメラ用判定
 	Sphere m_Sphere;
 	//!αブレンドを始める距離

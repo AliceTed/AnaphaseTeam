@@ -61,9 +61,6 @@
     <Filter Include="ヘッダー ファイル\data\id">
       <UniqueIdentifier>{0e44e006-9926-4892-8601-12b87d5e09d5}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ヘッダー ファイル\camera">
-      <UniqueIdentifier>{8b26a032-4802-4034-ae6c-fef2d4b00838}</UniqueIdentifier>
-    </Filter>
     <Filter Include="ソース ファイル\camera">
       <UniqueIdentifier>{975d37c5-230f-47f6-a801-9ad3ca6a7302}</UniqueIdentifier>
     </Filter>
@@ -105,6 +102,15 @@
     </Filter>
     <Filter Include="ソース ファイル\convenient">
       <UniqueIdentifier>{d0cf5e72-4097-46d2-af6f-1b6fb3c150d3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\collision">
+      <UniqueIdentifier>{4e0a9b45-4ac0-4c63-afc4-3354a05ea000}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\collision">
+      <UniqueIdentifier>{88d64962-81b3-4480-b0d8-fd12cdd59731}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\collision\camera">
+      <UniqueIdentifier>{8b26a032-4802-4034-ae6c-fef2d4b00838}</UniqueIdentifier>
     </Filter>
     <Filter Include="ソース ファイル\actionstate">
       <UniqueIdentifier>{a32c18d5-f73c-4d72-bc3f-328397b27dad}</UniqueIdentifier>
@@ -220,7 +226,7 @@
       <Filter>ヘッダー ファイル\data\id</Filter>
     </ClInclude>
     <ClInclude Include="header\camera\Camera.h">
-      <Filter>ヘッダー ファイル\camera</Filter>
+      <Filter>ヘッダー ファイル\collision\camera</Filter>
     </ClInclude>
     <ClInclude Include="header\actor\Actor.h">
       <Filter>ヘッダー ファイル\actor</Filter>
@@ -287,6 +293,39 @@
     </ClInclude>
     <ClInclude Include="header\actionstate\StandState.h">
       <Filter>ヘッダー ファイル\actionState</Filter>
+    </ClInclude>
+    <ClInclude Include="header\shape\AABB.h">
+      <Filter>ヘッダー ファイル\shape</Filter>
+    </ClInclude>
+    <ClInclude Include="header\shape\Capsule.h">
+      <Filter>ヘッダー ファイル\shape</Filter>
+    </ClInclude>
+    <ClInclude Include="header\shape\OBB.h">
+      <Filter>ヘッダー ファイル\shape</Filter>
+    </ClInclude>
+    <ClInclude Include="header\shape\Segment.h">
+      <Filter>ヘッダー ファイル\shape</Filter>
+    </ClInclude>
+    <ClInclude Include="header\shape\Shape.h">
+      <Filter>ヘッダー ファイル\shape</Filter>
+    </ClInclude>
+    <ClInclude Include="header\collision\Collision.h">
+      <Filter>ヘッダー ファイル\collision</Filter>
+    </ClInclude>
+    <ClInclude Include="header\collision\CollisionManager.h">
+      <Filter>ヘッダー ファイル\collision</Filter>
+    </ClInclude>
+    <ClInclude Include="header\collision\CollisionMediator.h">
+      <Filter>ヘッダー ファイル\collision</Filter>
+    </ClInclude>
+    <ClInclude Include="header\collision\CollisionObject.h">
+      <Filter>ヘッダー ファイル\collision</Filter>
+    </ClInclude>
+    <ClInclude Include="header\collision\CollisionTable.h">
+      <Filter>ヘッダー ファイル\collision</Filter>
+    </ClInclude>
+    <ClInclude Include="header\actor\Actor_Tag.h">
+      <Filter>ヘッダー ファイル\actor</Filter>
     </ClInclude>
     <ClInclude Include="header\subAction\TestChainMove.h">
       <Filter>ヘッダー ファイル\subAction</Filter>
@@ -397,6 +436,33 @@
     </ClCompile>
     <ClCompile Include="source\convenient\Transform.cpp">
       <Filter>ソース ファイル\convenient</Filter>
+    </ClCompile>
+    <ClCompile Include="source\Acotr\TestChainMove.cpp">
+      <Filter>ソース ファイル\actor</Filter>
+    </ClCompile>
+    <ClCompile Include="source\collision\Collision.cpp">
+      <Filter>ソース ファイル\collision</Filter>
+    </ClCompile>
+    <ClCompile Include="source\collision\CollisionManager.cpp">
+      <Filter>ソース ファイル\collision</Filter>
+    </ClCompile>
+    <ClCompile Include="source\collision\CollisionObject.cpp">
+      <Filter>ソース ファイル\collision</Filter>
+    </ClCompile>
+    <ClCompile Include="source\collision\CollisionTable.cpp">
+      <Filter>ソース ファイル\collision</Filter>
+    </ClCompile>
+    <ClCompile Include="source\shape\AABB.cpp">
+      <Filter>ソース ファイル\shape</Filter>
+    </ClCompile>
+    <ClCompile Include="source\shape\Capsule.cpp">
+      <Filter>ソース ファイル\shape</Filter>
+    </ClCompile>
+    <ClCompile Include="source\shape\OBB.cpp">
+      <Filter>ソース ファイル\shape</Filter>
+    </ClCompile>
+    <ClCompile Include="source\shape\Segment.cpp">
+      <Filter>ソース ファイル\shape</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

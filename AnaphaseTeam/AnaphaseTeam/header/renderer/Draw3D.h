@@ -35,5 +35,9 @@ public:
 	void drawCapsule(const GSvector3* pos,	float radius,float hight,float dir,float ele, const GScolor& color=GScolor(1.0f,1.0f,1.0f,1.0f))const;
 
 	void drawLine(const GSvector3* p1, const GSvector3* p2, const GScolor& color = GScolor(1.0f, 1.0f, 1.0f, 1.0f),float size=1.0f)const;
+
+	void drawPoint(const GSvector3* p, float size = 1.0f, const GScolor& color = GScolor(1.0f, 1.0f, 1.0f, 1.0f))const;
+
+	void drawPlane();
 };
 #endif
