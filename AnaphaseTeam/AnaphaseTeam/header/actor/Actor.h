@@ -38,8 +38,18 @@ public:
 	* @param (_map) mapを取得
 	*/
 	virtual void collisionGround(const Map& _map);
+	/**
+	* @fn
+	* @brief 自身が作成した判定用オブジェクトが衝突したら呼ばれる
+	* @param (_other)衝突したactorクラスを取得
+	*/
 	virtual void collision(const Actor* _other);
 
+	/**
+	* @fn
+	* @brief 関数内で判定用オブジェクトを生成出来る
+	* @param (_mediator)判定用オブジェクトを格納できる 
+	*/
 	virtual void createCollision(CollisionMediator* _mediator);
 
 public:
