@@ -2,6 +2,7 @@
 #include "../../header/data/CastID.h"
 #include "../../header/data/Model_ID.h"
 #include"../../header/convenient/Transform.h"
+#include "../../header/animation/Animator.h"
 Draw3D::Draw3D()
 {
 }
@@ -10,64 +11,14 @@ Draw3D::~Draw3D()
 {
 }
 
-void Draw3D::drawMesh(
-	MESH_ID id,
-	const GSvector3 * _position,
-	const GSvector3 * _scaling,
-	const GSvector3 * axis,
-	float direction)const
+void Draw3D::drawMesh(MODEL_ID _id, const Transform & _transform, const Animator & _animator, const GScolor & _color) const
 {
 	glPushMatrix();
-	if (_position != NULL)
-	{
-		glTranslatef(_position->x, _position->y, _position->z);
-	}
-
-	if (axis != NULL)
-	{
-		glRotatef(direction, axis->x, axis->y, axis->z);
-	}
-	else
-	{
-		glRotatef(direction, 0.0f, 1.0f, 0.0f);
-	}
-
-	if (_scaling != NULL)
-	{
-		glScalef(_scaling->x, _scaling->y, _scaling->z);
-	}
-	Data::CastID cast;
-	gsDrawMesh(cast(id));
-	glPopMatrix();
-}
-
-void Draw3D::drawMesh(MESH_ID id, const Transform & _transform, const GScolor & _color) const
-{
-	glPushMatrix();
+	_animator.bind();
 	glColor4f(_color.r, _color.g, _color.b, _color.a);
 	glMultMatrixf(_transform.getMatrix4());
 	Data::CastID cast;
-	gsDrawMesh(cast(id));
-	glPopMatrix();
-}
-
-void Draw3D::drawMesh(MESH_ID id, const GSmatrix4 & mat, const GScolor& _color) const
-{
-	glPushMatrix();
-	glColor4f(_color.r, _color.g, _color.b, _color.a);
-	glMultMatrixf(mat);
-	Data::CastID cast;
-	gsDrawMesh(cast(id));
-	glPopMatrix();
-}
-
-void Draw3D::drawMesh(MODEL_ID id, const GSmatrix4 & mat, const GScolor & _color) const
-{
-	glPushMatrix();
-	glColor4f(_color.r, _color.g, _color.b, _color.a);
-	glMultMatrixf(mat);
-	Data::CastID cast;
-	gsDrawMesh(cast(id));
+	gsDrawMesh(cast(_id));
 	glPopMatrix();
 }
 

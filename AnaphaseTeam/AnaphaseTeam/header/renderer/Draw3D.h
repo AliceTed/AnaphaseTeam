@@ -7,22 +7,14 @@
 #include "../data/Model_ID.h"
 #include <gslib.h>
 class Transform;
+class Animator;
 class Draw3D
 {
 public:
 	Draw3D();
 	~Draw3D();
-	
-	void drawMesh(
-		MESH_ID id,
-		const GSvector3* _position,
-		const GSvector3*  _scaling,
-		const GSvector3* axis,
-		float direction)const;
 
-	void drawMesh(MESH_ID id, const Transform& _transform, const GScolor& _color = GScolor(1.0f, 1.0f, 1.0f, 1.0f))const;
-	void drawMesh(MESH_ID id,const GSmatrix4& mat, const GScolor& _color=GScolor(1.0f,1.0f,1.0f,1.0f))const;
-	void drawMesh(MODEL_ID id, const GSmatrix4& mat, const GScolor& _color = GScolor(1.0f, 1.0f, 1.0f, 1.0f))const;
+	void drawMesh(MODEL_ID _id, const Transform& _transform, const Animator& _animator, const GScolor& _color = GScolor(1.0f, 1.0f, 1.0f, 1.0f))const;
 
 	void drawSky(MESH_ID id, float angle)const;
 	void drawSky(MESH_ID id)const;

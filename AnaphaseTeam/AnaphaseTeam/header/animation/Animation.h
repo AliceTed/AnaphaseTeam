@@ -47,7 +47,7 @@ public:
 	animatorができ次第ボーンのボーンのバインドをアニメータに移動
 	*/
 	//void bind(GSuint anim_id);
-	void bind();
+	void bind()const;
 	const bool getIsEnd()const;
 	void stop();
 	void start();

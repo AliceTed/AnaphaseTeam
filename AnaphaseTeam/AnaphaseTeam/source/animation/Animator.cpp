@@ -32,9 +32,9 @@ void Animator::update(float deltatime)
 {
 	m_animationsMap[m_currentAnimationID]->update(deltatime);
 }
-void Animator::bind()
+void Animator::bind()const
 {
-	m_animationsMap[m_currentAnimationID]->bind();
+	m_animationsMap.at(m_currentAnimationID)->bind();
 	gsBindSkeleton(static_cast<GSuint>(m_modelID));
 
 }

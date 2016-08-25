@@ -30,7 +30,7 @@ public:
 	*/
 	void addAnimation(ANIMATION_ID _animationKey, float _animationtime, float _animationspeed = 1.0f, bool _isLoop = false);
 	void update(float deltatime);
-	void bind();
+	void bind()const;
 	void changeAnimation(ANIMATION_ID _nextAnimationID, bool _isInit = false);
 private:
 	const MODEL_ID m_modelID;

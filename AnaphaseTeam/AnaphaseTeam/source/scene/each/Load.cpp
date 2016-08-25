@@ -46,7 +46,7 @@ const bool Load::isEnd() const
 
 void Load::loadTextrue()
 {
-	Data::LoadTexture loadTex;
+	//Data::LoadTexture loadTex;
 	//loadTex(TEXTURE_ID::TEST,"test");
 	//loadTex(TEXTURE_ID::SIZE, "eee");
 }

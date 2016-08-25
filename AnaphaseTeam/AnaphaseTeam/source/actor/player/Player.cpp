@@ -54,8 +54,7 @@ void Player::draw(const Renderer & _renderer, const Camera & _camera)
 	const_cast<Camera&>(_camera).lookAt(m_transform.getPosition(), m_transform.getYaw());
 	FALSE_RETURN(isInsideView(_camera));
 	alphaBlend(_camera);
-	m_animator.bind();
-	_renderer.getDraw3D().drawMesh(MODEL_ID::PLAYER, m_transform.getMatrix4(), m_Color);
+	_renderer.getDraw3D().drawMesh(MODEL_ID::PLAYER, m_transform,m_animator, m_Color);
 }
 
 void Player::collisionGround(const Map & _map)
