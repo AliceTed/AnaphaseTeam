@@ -330,6 +330,9 @@
     <ClInclude Include="header\actor\Actor_Tag.h">
       <Filter>ヘッダー ファイル\actor</Filter>
     </ClInclude>
+    <ClInclude Include="header\convenient\Point.h">
+      <Filter>ヘッダー ファイル\convenient</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Util\BasicShapes.cpp">
@@ -454,6 +457,9 @@
     </ClCompile>
     <ClCompile Include="source\collision\CollisionTable.cpp">
       <Filter>ソース ファイル\collision</Filter>
+    </ClCompile>
+    <ClCompile Include="source\convenient\Point.cpp">
+      <Filter>ソース ファイル\convenient</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

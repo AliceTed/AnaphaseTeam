@@ -145,6 +145,7 @@
     <ClCompile Include="source\actionstate\MoveState.cpp" />
     <ClCompile Include="source\actionstate\StandState.cpp" />
     <ClCompile Include="source\actor\TestActor.cpp" />
+    <ClCompile Include="source\convenient\Point.cpp" />
     <ClCompile Include="source\subAction\TestChainMove.cpp" />
     <ClCompile Include="source\subAction\TestJump.cpp" />
     <ClCompile Include="source\animation\Animation.cpp" />
@@ -191,6 +192,7 @@
     <ClInclude Include="header\actionstate\MoveState.h" />
     <ClInclude Include="header\actionstate\StandState.h" />
     <ClInclude Include="header\actor\TestActor.h" />
+    <ClInclude Include="header\convenient\Point.h" />
     <ClInclude Include="header\subAction\TestChainMove.h" />
     <ClInclude Include="header\subAction\TestJump.h" />
     <ClInclude Include="header\animation\Animation.h" />
