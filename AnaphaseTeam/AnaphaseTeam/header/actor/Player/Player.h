@@ -5,17 +5,14 @@
 *@author ãvèHâÎ
 *@date 2016/08/12
 */
+#include<gslib.h>
+#include <memory>
 #include "../Actor.h"
-#include "../../animation/Animation.h"
-#include "../../animation/Animator.h"
-#include "../../animation/AnimationTimer.h"
+#include "../ICharacter.h"
+
 #include "../../actionstate/IActionState.h"
 #include "../../subAction/TestJump.h"
 #include "../../subAction/TestChainMove.h"
-#include "../../convenient/Timer.h"
-#include<gslib.h>
-#include <memory>
-#include "../ICharacter.h"
 class Input;
 typedef std::shared_ptr<IActionState> Action_Ptr;
 class Player :public Actor, public ICharacter

@@ -5,10 +5,7 @@
 #include "../../actor/Actor.h"
 #include "../../entity/EntityManager.h"
 #include "../../map/Map.h"
-
-
 #include "../../collision/CollisionManager.h"
-
 #include "../../actor/Player/Player.h"
 class Input;
 typedef std::shared_ptr<Actor>Actor_Ptr;

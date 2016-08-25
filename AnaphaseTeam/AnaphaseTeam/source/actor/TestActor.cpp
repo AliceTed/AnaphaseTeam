@@ -47,10 +47,7 @@ void TestActor::update(float deltatime)
 
 void TestActor::draw(const Renderer & _renderer, const Camera & _camera)
 {
-	if (!isInsideView(_camera))
-	{
-		return;
-	}
+	FALSE_RETURN(isInsideView(_camera));
 	alphaBlend(_camera);
 	m_animator.bind_A();
 	_renderer.getDraw3D().drawMesh(MODEL_ID::KARATE, m_transform.getMatrix4(), m_Color);

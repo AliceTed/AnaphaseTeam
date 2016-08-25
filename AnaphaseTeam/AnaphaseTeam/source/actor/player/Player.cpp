@@ -1,15 +1,19 @@
 #include "../../../header/actor/Player/Player.h"
+
 #include "../../../header/actionstate/MoveState.h"
 #include "../../../header/actionstate/StandState.h"
 #include "../../../header/actionstate/JumpState.h"
+
 #include "../../../header/renderer/Renderer.h"
 #include "../../../header/device/Input.h"
+
 #include "../../../header/camera/Camera.h"
 #include "../../../header/shape/Ray.h"
 #include "../../../header/data/PLAYERACTION_ID.h"
 
 #include "../../../header/collision/CollisionMediator.h"
 #include "../../../header/shape/Capsule.h"
+
 const float Player::MOVESPEED = 0.3f;
 const float Player::ROTATESPEED = -2.0f;
 
@@ -46,10 +50,7 @@ void Player::draw(const Renderer & _renderer, const Camera & _camera)
 {
 	//éÊÇËÇ†Ç¶Ç∏ñ≥óùÇ‚ÇËí«è]Ç≥ÇπÇÈ
 	const_cast<Camera&>(_camera).lookAt(m_transform.getPosition(), m_transform.getYaw());
-	if (!isInsideView(_camera))
-	{
-		return;
-	}
+	FALSE_RETURN(isInsideView(_camera));
 	alphaBlend(_camera);
 	m_animator.bind_A();
 	_renderer.getDraw3D().drawMesh(MODEL_ID::PLAYER, m_transform.getMatrix4(), m_Color);
