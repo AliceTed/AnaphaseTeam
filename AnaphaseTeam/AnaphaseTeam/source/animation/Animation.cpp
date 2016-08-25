@@ -1,8 +1,7 @@
 #include "../../header/animation/Animation.h"
 #include <gslib.h>
 
-
-Animation::Animation(ANIMATION_ID anim_id, SKELETON_ID bone_id, unsigned int animNo,AnimationTimer timer, bool isLoop)
+Animation::Animation(ANIMATION_ID anim_id, SKELETON_ID bone_id, unsigned int animNo, AnimationTimer timer, bool isLoop)
 	:m_isLoop(isLoop), m_animNo(animNo), m_timer(timer),
 	m_anim_id(static_cast<unsigned int>(anim_id)), m_bone_id(static_cast<unsigned int>(bone_id))
 {
@@ -32,7 +31,7 @@ void Animation::bind()
 
 const bool Animation::getIsEnd() const
 {
-	return (!m_isLoop)&&m_timer.getIsEnd();
+	return (!m_isLoop) && m_timer.getIsEnd();
 }
 
 void Animation::stop()

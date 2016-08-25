@@ -18,7 +18,7 @@ const float Player::MOVESPEED = 0.3f;
 const float Player::ROTATESPEED = -2.0f;
 
 Player::Player(const Input* _input)
-	:Actor(Transform({0,0,5}), ANIMATION_ID::KENDO, SKELETON_ID::KENDO, Sphere(GSvector3(0, 0, 0), 0), Actor_Tag::PLAYER),
+	:Actor(Transform({0,0,5}), MODEL_ID::PLAYER, Sphere(GSvector3(0, 0, 0), 0), Actor_Tag::PLAYER),
 	m_action(nullptr),
 	m_Jump(),
 	m_ChainMove()
@@ -30,20 +30,22 @@ void Player::initialize()
 	Actor::initialize();
 	actionChange(std::make_shared<StandState>());
 	m_animator.initialize();
-	m_animator.addAnimation_A(PLAYERACTION_ID::STAND, true);
-	m_animator.addAnimation_A(PLAYERACTION_ID::RUN, true);
-	m_animator.changeAnimation_A(PLAYERACTION_ID::STAND, false);
+
+	m_animator.addAnimation(ANIMATION_ID::STAND, 77.f, 1.0f, true);
+	m_animator.addAnimation(ANIMATION_ID::RUN, 78.f, 1.0f, true);
+
+	m_animator.changeAnimation(ANIMATION_ID::STAND, false);
 }
 void Player::update(float deltatime)
 {
-	m_animator.changeAnimation_A(PLAYERACTION_ID::STAND, false);
+	m_animator.changeAnimation(ANIMATION_ID::STAND, false);
 	/*move(deltatime);
 	jump(deltatime);
 	chain(deltatime);*/
 	control();
 	m_action->action(this, deltatime);
 	sphereChases(GSvector3(0, 1, 0));
-	m_animator.update_A(deltatime);
+	m_animator.update(deltatime);
 }
 
 void Player::draw(const Renderer & _renderer, const Camera & _camera)
@@ -52,7 +54,7 @@ void Player::draw(const Renderer & _renderer, const Camera & _camera)
 	const_cast<Camera&>(_camera).lookAt(m_transform.getPosition(), m_transform.getYaw());
 	FALSE_RETURN(isInsideView(_camera));
 	alphaBlend(_camera);
-	m_animator.bind_A();
+	m_animator.bind();
 	_renderer.getDraw3D().drawMesh(MODEL_ID::PLAYER, m_transform.getMatrix4(), m_Color);
 }
 
@@ -104,7 +106,7 @@ void Player::move(float deltaTime)
 	GSvector3 forward(m_transform.front()*m_Input->vertical());
 	GSvector3 side(m_transform.left()*m_Input->horizontal());
 	m_transform.translate((forward - side)*MOVESPEED*deltaTime);
-	if ((forward - side).length() > 0)m_animator.changeAnimation_A(PLAYERACTION_ID::RUN, false);
+	if ((forward - side).length() > 0)m_animator.changeAnimation(ANIMATION_ID::RUN);
 }
 
 void Player::jump(float deltaTime)

@@ -8,12 +8,12 @@
 //
 int TestActor::DrawCount = 0;
 TestActor::TestActor()
-	:Actor(Transform(), ANIMATION_ID::KARATE, SKELETON_ID::KARATE, Sphere(GSvector3(0, 0, 0), 1.0f), Actor_Tag::TEST),
+	:Actor(Transform(), MODEL_ID::KARATE, Sphere(GSvector3(0, 0, 0), 1.0f), Actor_Tag::TEST),
 	target(0, 0, 0)
 {
 	DrawCount = 0;
-	m_animator.addAnimation_A(PLAYERACTION_ID::STAND, true);
-	m_animator.changeAnimation_A(PLAYERACTION_ID::STAND, false);
+	m_animator.addAnimation(ANIMATION_ID::STAND, true);
+	m_animator.changeAnimation(ANIMATION_ID::STAND, false);
 }
 
 TestActor::~TestActor()
@@ -22,7 +22,7 @@ TestActor::~TestActor()
 
 void TestActor::update(float deltatime)
 {
-	m_animator.update_A(deltatime);
+	m_animator.update(deltatime);
 	switch (rand() % 360)
 	{
 	case 0:
@@ -49,7 +49,7 @@ void TestActor::draw(const Renderer & _renderer, const Camera & _camera)
 {
 	FALSE_RETURN(isInsideView(_camera));
 	alphaBlend(_camera);
-	m_animator.bind_A();
+	m_animator.bind();
 	_renderer.getDraw3D().drawMesh(MODEL_ID::KARATE, m_transform.getMatrix4(), m_Color);
 	//sphereDraw(_renderer);
 	

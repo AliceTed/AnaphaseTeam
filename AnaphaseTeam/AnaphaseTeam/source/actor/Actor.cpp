@@ -16,15 +16,7 @@ Actor::Actor(const Transform & _transform, MODEL_ID _modelID,const Sphere& _sphe
 	m_Tag(_tag)
 {
 }
-Actor::Actor(const Transform & _transform, const ANIMATION_ID _anim_ID, const SKELETON_ID _skelton_ID, const Sphere & _sphere, Actor_Tag _tag)
-	:m_transform(_transform),
-	m_isDead(false),
-	m_Color(1.0f, 1.0f, 1.0f, 1.0f),
-	m_animator(_anim_ID,_skelton_ID),
-	m_Sphere(_sphere),
-	m_Tag(_tag)
-{
-}
+
 void Actor::initialize()
 {
 	m_Color=GScolor(1.0f, 1.0f, 1.0f, 1.0f);
