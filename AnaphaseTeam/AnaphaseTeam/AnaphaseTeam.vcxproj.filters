@@ -315,6 +315,9 @@
     <ClInclude Include="secondStep.h">
       <Filter>ヘッダー ファイル\actor\airState</Filter>
     </ClInclude>
+    <ClInclude Include="chainMoveState.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Util\BasicShapes.cpp">
@@ -415,9 +418,6 @@
     </ClCompile>
     <ClCompile Include="source\actor\player\Player.cpp">
       <Filter>ソース ファイル\actor\Player</Filter>
-    </ClCompile>
-    <ClCompile Include="chainMoveState.cpp">
-      <Filter>ソース ファイル\actor\state</Filter>
     </ClCompile>
     <ClCompile Include="source\animation\Animator.cpp">
       <Filter>ソース ファイル</Filter>
