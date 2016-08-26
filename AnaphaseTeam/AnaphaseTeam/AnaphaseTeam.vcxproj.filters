@@ -124,6 +124,12 @@
     <Filter Include="ヘッダー ファイル\collision">
       <UniqueIdentifier>{f353fd22-708f-4db3-b757-7edcf1ab233d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\subAction\jump">
+      <UniqueIdentifier>{4b068b50-3976-48df-a65b-f17f92332a73}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\subAction\jump">
+      <UniqueIdentifier>{0b567862-2e04-4e65-ba55-670dc7850d5e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Util\BasicShapes.h">
@@ -297,9 +303,6 @@
     <ClInclude Include="header\subAction\TestChainMove.h">
       <Filter>ヘッダー ファイル\subAction</Filter>
     </ClInclude>
-    <ClInclude Include="header\subAction\TestJump.h">
-      <Filter>ヘッダー ファイル\subAction</Filter>
-    </ClInclude>
     <ClInclude Include="header\shape\AABB.h">
       <Filter>ヘッダー ファイル\shape</Filter>
     </ClInclude>
@@ -332,6 +335,12 @@
     </ClInclude>
     <ClInclude Include="header\convenient\Point.h">
       <Filter>ヘッダー ファイル\convenient</Filter>
+    </ClInclude>
+    <ClInclude Include="header\subAction\SubActionManager.h">
+      <Filter>ヘッダー ファイル\subAction</Filter>
+    </ClInclude>
+    <ClInclude Include="header\subAction\TestJump.h">
+      <Filter>ヘッダー ファイル\subAction\jump</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -428,9 +437,6 @@
     <ClCompile Include="source\subAction\TestChainMove.cpp">
       <Filter>ソース ファイル\subAction</Filter>
     </ClCompile>
-    <ClCompile Include="source\subAction\TestJump.cpp">
-      <Filter>ソース ファイル\subAction</Filter>
-    </ClCompile>
     <ClCompile Include="source\animation\Animator.cpp">
       <Filter>ソース ファイル\animation</Filter>
     </ClCompile>
@@ -460,6 +466,12 @@
     </ClCompile>
     <ClCompile Include="source\convenient\Point.cpp">
       <Filter>ソース ファイル\convenient</Filter>
+    </ClCompile>
+    <ClCompile Include="source\subAction\SubActionManager.cpp">
+      <Filter>ソース ファイル\subAction</Filter>
+    </ClCompile>
+    <ClCompile Include="source\subAction\TestJump.cpp">
+      <Filter>ソース ファイル\subAction\jump</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

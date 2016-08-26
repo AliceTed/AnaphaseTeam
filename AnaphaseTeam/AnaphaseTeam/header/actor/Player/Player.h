@@ -13,6 +13,8 @@
 #include "../../actionstate/IActionState.h"
 #include "../../subAction/TestJump.h"
 #include "../../subAction/TestChainMove.h"
+
+#include "../../subAction/SubActionManager.h"
 class Input;
 typedef std::shared_ptr<IActionState> Action_Ptr;
 class Player :public Actor, public ICharacter
@@ -20,9 +22,10 @@ class Player :public Actor, public ICharacter
 public:
 	Player(const Input* _input);
 	~Player();
-	void chain(float deltaTime);
 	void jumping(float _velocity);
 	void chainMove(const GSvector3 & _target, float _time);
+
+	void subActionStart(TestJump* _jump, TestChainMove* _chainMove);
 	/**
 	* @fn
 	* @brief アクションステートの切り替え関数
@@ -49,8 +52,9 @@ private:
 private:
 	const Input* m_Input;
 
-	TestJump m_Jump;
-	TestChainMove m_ChainMove;
+	//TestJump m_Jump;
+	//TestChainMove m_ChainMove;
+	SubActionManager m_SubAction;
 
 	static const float MOVESPEED;
 	static const float ROTATESPEED;

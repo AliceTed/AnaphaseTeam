@@ -20,8 +20,7 @@ const float Player::ROTATESPEED = -2.0f;
 Player::Player(const Input* _input)
 	:Actor(Transform({0,0,5}), MODEL_ID::PLAYER, Sphere(GSvector3(0, 0, 0), 0), Actor_Tag::PLAYER),
 	m_action(nullptr),
-	m_Jump(),
-	m_ChainMove()
+	m_SubAction()
 {}
 Player::~Player()
 {}
@@ -42,7 +41,12 @@ void Player::update(float deltatime)
 	/*move(deltatime);
 	jump(deltatime);
 	chain(deltatime);*/
+
+	m_SubAction.actionStart(this);
+	m_SubAction.action(this,deltatime);
+
 	control();
+
 	m_action->action(this, deltatime);
 	sphereChases(GSvector3(0, 1, 0));
 	m_animator.update(deltatime);
@@ -73,7 +77,7 @@ void Player::collisionGround(const Map & _map)
 		return;
 	}
 	//
-	m_Jump.groundHit();
+	m_SubAction.groundHit();
 
 	//mapに埋め込まれていたらy座標を交点に移動
 	m_transform.setPositionY(intersect.y);
@@ -114,18 +118,8 @@ void Player::jump(float deltaTime)
 	{
 		m_Jump.start();
 	}*/
-	m_Jump.jumping(this, deltaTime);
+	//m_Jump.jumping(this, deltaTime);
 }
-
-void Player::chain(float deltaTime)
-{
-	/*if (m_Input->chainTrigger())
-	{
-		m_ChainMove.start();
-	}*/
-	m_ChainMove.movement(deltaTime, this);
-}
-
 void Player::jumping(float _velocity)
 {
 	m_transform.translateY(_velocity);
@@ -133,16 +127,20 @@ void Player::jumping(float _velocity)
 
 void Player::chainMove(const GSvector3 & _target, float _time)
 {
-	//一度加速度にしているが　lerpをそのままsetPosしても良い
-	//GSvector3 pos = m_transform.getPosition();
-	//GSvector3 velocity = pos.lerp(_target, _time) - pos;
-	//m_transform.translate(velocity);
-
-	/*
-	加速度にすると加算なので外部の影響を受けるが
-	代入なら影響を受けない
-	*/
 	m_transform.setPosition(m_transform.getPosition().lerp(_target, _time));
+}
+
+void Player::subActionStart(TestJump* _jump,TestChainMove* _chainMove)
+{
+	if (m_Input->jumpTrigger())
+	{
+		_jump->start();
+		actionChange(std::make_shared<JumpState>());
+	}
+	if (m_Input->chainTrigger())
+	{
+		_chainMove->start();
+	}
 }
 
 void Player::actionChange(Action_Ptr _action)
@@ -152,15 +150,6 @@ void Player::actionChange(Action_Ptr _action)
 
 void Player::control()
 {
-	if (m_Input->jumpTrigger())
-	{
-		m_Jump.start();
-		actionChange(std::make_shared<JumpState>());
-	}
-	if (m_Input->chainTrigger())
-	{
-		m_ChainMove.start();
-	}
 	if (m_Input->move())
 	{
 		actionChange(std::make_shared<MoveState>());
