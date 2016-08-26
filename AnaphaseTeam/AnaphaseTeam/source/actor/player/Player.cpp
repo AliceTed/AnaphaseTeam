@@ -149,17 +149,23 @@ void Player::actionChange(Action_Ptr _action)
 	m_action = _action;
 }
 
+//void Player::airActionChange(AirAction_Ptr _airAction)
+//{
+//	m_airAction = _airAction;
+//}
+
 void Player::control()
 {
-	if (m_Input->jumpTrigger())
-	{
-		m_Jump.start();
-		actionChange(std::make_shared<JumpState>());
-	}
-	if (m_Input->chainTrigger())
-	{
-		m_ChainMove.start();
-	}
+	//if (m_Input->jumpTrigger())
+	//{
+
+	//	//m_Jump.start();
+	//	//actionChange(std::make_shared<JumpState>());
+	//}
+	//if (m_Input->chainTrigger())
+	//{
+	//	m_ChainMove.start();
+	//}
 	if (m_Input->move())
 	{
 		actionChange(std::make_shared<MoveState>());

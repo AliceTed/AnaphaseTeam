@@ -139,6 +139,10 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="chainMoveState.cpp" />
+    <ClCompile Include="firstStep.cpp" />
+    <ClCompile Include="groundState.cpp" />
+    <ClCompile Include="jumpControl.cpp" />
+    <ClCompile Include="secondStep.cpp" />
     <ClCompile Include="source\actor\Actor.cpp" />
     <ClCompile Include="source\actor\player\Player.cpp" />
     <ClCompile Include="source\actor\state\AttackState.cpp" />
@@ -176,8 +180,11 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="chainMoveState.h" />
-    <ClInclude Include="FirstStep.h" />
+    <ClInclude Include="groundState.h" />
     <ClInclude Include="header\actor\Actor.h" />
+    <ClInclude Include="header\actor\airstate\firstStep.h" />
+    <ClInclude Include="header\actor\airstate\IAirState.h" />
+    <ClInclude Include="header\actor\airstate\jumpControl.h" />
     <ClInclude Include="header\actor\ICharacter.h" />
     <ClInclude Include="header\actor\Player\Player.h" />
     <ClInclude Include="header\actor\state\AttackState.h" />
@@ -232,8 +239,7 @@
     <ClInclude Include="header\shape\Ray.h" />
     <ClInclude Include="header\shape\Sphere.h" />
     <ClInclude Include="header\Transform.h" />
-    <ClInclude Include="IAirState.h" />
-    <ClInclude Include="jumpControl.h" />
+    <ClInclude Include="secondStep.h" />
     <ClInclude Include="Util\BasicShapes.h" />
     <ClInclude Include="Util\EffectGL.h" />
     <ClInclude Include="Util\RenderTarget.h" />

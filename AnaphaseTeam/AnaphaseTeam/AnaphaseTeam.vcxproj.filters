@@ -118,8 +118,8 @@
     <Filter Include="ヘッダー ファイル\actor\airState">
       <UniqueIdentifier>{458efabf-2d15-41af-9a24-ecbdfdeb8ab0}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ヘッダー ファイル\actor\airState\each">
-      <UniqueIdentifier>{40a343ea-eda7-440a-8689-c95b756cd12e}</UniqueIdentifier>
+    <Filter Include="ソース ファイル\actor\airState">
+      <UniqueIdentifier>{24f5ff04-3024-4e2f-afc1-02dce1a1bef7}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -273,15 +273,6 @@
     <ClInclude Include="header\actor\TestChainMove.h">
       <Filter>ヘッダー ファイル\actor</Filter>
     </ClInclude>
-    <ClInclude Include="jumpControl.h">
-      <Filter>ヘッダー ファイル\actor</Filter>
-    </ClInclude>
-    <ClInclude Include="IAirState.h">
-      <Filter>ヘッダー ファイル\actor\airState</Filter>
-    </ClInclude>
-    <ClInclude Include="FirstStep.h">
-      <Filter>ヘッダー ファイル\actor\airState\each</Filter>
-    </ClInclude>
     <ClInclude Include="header\actor\state\AttackState.h">
       <Filter>ヘッダー ファイル\actor\state\each</Filter>
     </ClInclude>
@@ -297,6 +288,9 @@
     <ClInclude Include="header\actor\state\JumpState.h">
       <Filter>ヘッダー ファイル\actor\state\each</Filter>
     </ClInclude>
+    <ClInclude Include="chainMoveState.h">
+      <Filter>ヘッダー ファイル\actor\state\each</Filter>
+    </ClInclude>
     <ClInclude Include="header\animation\Animator.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
@@ -304,7 +298,22 @@
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="header\data\PLAYERACTION_ID.h">
-      <Filter>ヘッダー ファイル\data\id</Filter>
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="header\actor\airstate\IAirState.h">
+      <Filter>ヘッダー ファイル\actor\airState</Filter>
+    </ClInclude>
+    <ClInclude Include="header\actor\airstate\jumpControl.h">
+      <Filter>ヘッダー ファイル\actor\airState</Filter>
+    </ClInclude>
+    <ClInclude Include="header\actor\airstate\firstStep.h">
+      <Filter>ヘッダー ファイル\actor\airState</Filter>
+    </ClInclude>
+    <ClInclude Include="groundState.h">
+      <Filter>ヘッダー ファイル\actor\airState</Filter>
+    </ClInclude>
+    <ClInclude Include="secondStep.h">
+      <Filter>ヘッダー ファイル\actor\airState</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -412,6 +421,18 @@
     </ClCompile>
     <ClCompile Include="source\animation\Animator.cpp">
       <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="firstStep.cpp">
+      <Filter>ソース ファイル\actor\airState</Filter>
+    </ClCompile>
+    <ClCompile Include="jumpControl.cpp">
+      <Filter>ソース ファイル\actor\airState</Filter>
+    </ClCompile>
+    <ClCompile Include="groundState.cpp">
+      <Filter>ソース ファイル\actor\airState</Filter>
+    </ClCompile>
+    <ClCompile Include="secondStep.cpp">
+      <Filter>ソース ファイル\actor\airState</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

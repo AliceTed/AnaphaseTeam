@@ -10,6 +10,7 @@
 #include "../../animation/Animator.h"
 #include "../../animation/AnimationTimer.h"
 #include "../../actor/state/IActionState.h"
+#include "../airstate/IAirState.h"
 #include "../TestJump.h"
 #include "../TestChainMove.h"
 #include "../../convenient/Timer.h"
@@ -18,6 +19,7 @@
 #include "../ICharacter.h"
 class Input;
 typedef std::shared_ptr<IActionState> Action_Ptr;
+//typedef std::shared_ptr<IAirState> AirAction_Ptr;
 class Player :public Actor,public ICharacter
 {
 public:
@@ -36,14 +38,17 @@ public:
 	void chain(float deltaTime);
 	void jumping(float _velocity);
 	void chainMove(const GSvector3 & _target, float _time);
+	
+	
+private:
+	void control();
 	/**
 	* @fn
 	* @brief アクションステートの切り替え関数
 	* @param (_action) 切り替えるアクションのShared_ptr
 	*/
 	void actionChange(Action_Ptr _action);
-private:
-	void control();
+	/*void airActionChange(AirAction_Ptr _airAction);*/
 private:
 	const Input* m_Input;
 	Animator m_animator;
@@ -54,4 +59,5 @@ private:
 	static const float MOVESPEED;
 	static const float ROTATESPEED;
 	Action_Ptr m_action;
+	/*AirAction_Ptr m_airAction;*/
 };
