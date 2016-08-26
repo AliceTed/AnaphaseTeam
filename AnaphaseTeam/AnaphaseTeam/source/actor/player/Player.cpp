@@ -7,6 +7,7 @@
 #include "../../../header/camera/Camera.h"
 #include "../../../header/shape/Ray.h"
 #include "../../../header/data/PLAYERACTION_ID.h"
+#include "../../../header/actor/airstate/firstStep.h"
 const float Player::MOVESPEED = 0.3f;
 const float Player::ROTATESPEED = -2.0f;
 
@@ -40,6 +41,8 @@ void Player::update(float deltatime)
 	jump(deltatime);
 	chain(deltatime);*/
 	control();
+	m_SubAction.actionStart(this);
+	m_SubAction.action(this, deltatime);
 	m_action->action(this, deltatime);
 	sphereChases(GSvector3(0, 1, 0));
 	m_animator.update_A(deltatime);
@@ -56,6 +59,9 @@ void Player::draw(const Renderer & _renderer, const Camera & _camera)
 	alphaBlend(_camera);
 	m_animator.bind_A();
 	_renderer.getDraw3D().drawMesh(MESH_ID::KENDO, m_transform, m_Color);
+
+	m_SubAction.getjumpcontrol().draw();
+
 }
 
 void Player::collisionGround(const Map & _map)
@@ -142,6 +148,21 @@ void Player::chainMove(const GSvector3 & _target, float _time)
 	‘ã“ü‚È‚ç‰e‹¿‚ðŽó‚¯‚È‚¢
 	*/
 	m_transform.setPosition(m_transform.getPosition().lerp(_target, _time));
+}
+
+void Player::subActionStart(jumpControl * _jump, TestChainMove * _chainMove)
+{
+	if (m_Input->jumpTrigger())
+	{
+		/*_jump->start();*/
+		//actionChange(std::make_shared<JumpState>());
+		_jump->airActionChange(std::make_shared<firstStep>());
+		//_jump->start(1.2f);
+	}
+	if (m_Input->chainTrigger())
+	{
+		_chainMove->start();
+	}
 }
 
 void Player::actionChange(Action_Ptr _action)

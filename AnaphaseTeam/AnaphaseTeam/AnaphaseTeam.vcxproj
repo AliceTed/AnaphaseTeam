@@ -176,6 +176,7 @@
     <ClCompile Include="source\shape\Ray.cpp" />
     <ClCompile Include="source\shape\Sphere.cpp" />
     <ClCompile Include="source\Transform.cpp" />
+    <ClCompile Include="subActionManager.cpp" />
     <ClCompile Include="Util\BasicShapes.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -240,6 +241,7 @@
     <ClInclude Include="header\shape\Sphere.h" />
     <ClInclude Include="header\Transform.h" />
     <ClInclude Include="secondStep.h" />
+    <ClInclude Include="subActionManager.h" />
     <ClInclude Include="Util\BasicShapes.h" />
     <ClInclude Include="Util\EffectGL.h" />
     <ClInclude Include="Util\RenderTarget.h" />

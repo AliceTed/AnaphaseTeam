@@ -10,13 +10,13 @@ public:
 	jumpControl();
 	~jumpControl();
 	void initialize();
-	void update(Player * _player, float deltaTime);
 	const bool isGround()const;
 	void groundHit();
 	void jumping(Player* _player, float deltaTime);
 	void start(const float _jumpStepPows);
-private:
 	void airActionChange(AirAction_Ptr _airAction);
+
+	void draw();
 private:
 	float m_JumpPower;
 	float m_Acceleration;

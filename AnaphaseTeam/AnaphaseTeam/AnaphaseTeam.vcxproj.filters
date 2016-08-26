@@ -121,6 +121,12 @@
     <Filter Include="ソース ファイル\actor\airState">
       <UniqueIdentifier>{24f5ff04-3024-4e2f-afc1-02dce1a1bef7}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ヘッダー ファイル\subAction">
+      <UniqueIdentifier>{8bdf0c07-093b-46da-a850-ca511f2967a9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\subAction">
+      <UniqueIdentifier>{eb9dd5e1-dbda-4042-9f93-c4b85a260fdd}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Util\BasicShapes.h">
@@ -318,6 +324,9 @@
     <ClInclude Include="chainMoveState.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
+    <ClInclude Include="subActionManager.h">
+      <Filter>ヘッダー ファイル\subAction</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Util\BasicShapes.cpp">
@@ -433,6 +442,12 @@
     </ClCompile>
     <ClCompile Include="secondStep.cpp">
       <Filter>ソース ファイル\actor\airState</Filter>
+    </ClCompile>
+    <ClCompile Include="chainMoveState.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="subActionManager.cpp">
+      <Filter>ソース ファイル\subAction</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

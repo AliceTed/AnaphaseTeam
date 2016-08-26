@@ -10,7 +10,7 @@ secondStep::~secondStep()
 
 }
 
-void secondStep::airAction(jumpControl* _jumpAction, float deltatime)
+void secondStep::airAction(jumpControl* _jumpAction)
 {
 	_jumpAction->start(SecondStepPow);
 }

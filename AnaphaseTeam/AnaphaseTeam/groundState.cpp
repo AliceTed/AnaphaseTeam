@@ -10,7 +10,7 @@ groundState::~groundState()
 
 }
 
-void groundState::airAction(jumpControl* _jumpAction, float deltatime)
+void groundState::airAction(jumpControl* _jumpAction)
 {
 	_jumpAction->groundHit();
 }

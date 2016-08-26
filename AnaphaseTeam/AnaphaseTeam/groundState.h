@@ -6,5 +6,5 @@ class groundState:public IAirState
 public:
 	groundState();
 	~groundState();
-	void airAction(jumpControl* _jumpAction, float deltatime);
+	void airAction(jumpControl* _jumpAction);
 };

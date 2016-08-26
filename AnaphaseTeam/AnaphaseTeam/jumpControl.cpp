@@ -1,7 +1,11 @@
 #include "header\actor\airstate\jumpControl.h"
 #include "header\actor\Player\Player.h"
 #include "header\math\Calculate.h"
+#include "header\actor\airstate\firstStep.h"
+#include "secondStep.h"
+#include "groundState.h"
 
+#include <string>
 
 const float jumpControl::MaxJumpPower = 2.0f;
 
@@ -18,12 +22,7 @@ jumpControl::~jumpControl()
 
 void jumpControl::initialize()
 {
-}
-
-void jumpControl::update(Player * _player, float deltaTime)
-{
-
-	jumping(_player, deltaTime);
+	airActionChange(std::make_shared<groundState>());
 }
 
 const bool jumpControl::isGround() const
@@ -38,6 +37,7 @@ void jumpControl::groundHit()
 
 void jumpControl::jumping(Player * _player, float deltaTime)
 {
+
 	if (m_State == JUMPSTATE::Non)return;
 
 	_player->jumping(m_JumpPower*deltaTime);
@@ -57,4 +57,12 @@ void jumpControl::start(const float _jumpStepPow)
 void jumpControl::airActionChange(AirAction_Ptr _airAction)
 {
 	m_airAction = _airAction;
+	m_airAction->airAction(this);
+}
+
+void jumpControl::draw()
+{
+	glColor4f(1, 1, 1, 1);
+	gsTextPos(300, 100);
+	gsDrawText(std::to_string(m_JumpPower).c_str());
 }

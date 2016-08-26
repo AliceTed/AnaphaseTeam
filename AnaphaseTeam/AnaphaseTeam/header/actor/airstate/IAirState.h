@@ -1,7 +1,7 @@
 #pragma once
-class jumpontrol;
+class jumpControl;
 __interface IAirState
 {
 public:
-	void airAction(jumpControl* _jumpAction, float deltatime) = 0;
+	void airAction(jumpControl* _jumpAction) = 0;
 };

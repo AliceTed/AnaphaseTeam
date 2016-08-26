@@ -6,7 +6,7 @@ class firstStep:public IAirState
 public:
 	firstStep();
 	~firstStep();
-	void airAction(jumpControl* _jumpAction, float deltatime);
+	void airAction(jumpControl* _jumpAction);
 private:
 	static const float FirstStepPow;
 };
