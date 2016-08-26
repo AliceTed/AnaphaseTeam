@@ -10,7 +10,8 @@
 const float jumpControl::MaxJumpPower = 2.0f;
 
 jumpControl::jumpControl()
-	:m_State(JUMPSTATE::Non)
+	:m_State(JUMPSTATE::Non),
+	m_Acceleration(0.1f)
 {
 
 }
@@ -33,11 +34,11 @@ const bool jumpControl::isGround() const
 void jumpControl::groundHit()
 {
 	m_State = JUMPSTATE::Non;
+	//airActionChange(std::make_shared<groundState>());
 }
 
 void jumpControl::jumping(Player * _player, float deltaTime)
 {
-
 	if (m_State == JUMPSTATE::Non)return;
 
 	_player->jumping(m_JumpPower*deltaTime);
@@ -60,6 +61,7 @@ void jumpControl::airActionChange(AirAction_Ptr _airAction)
 	m_airAction->airAction(this);
 }
 
+//////////////////////////////////////////////////////////////////////////
 void jumpControl::draw()
 {
 	glColor4f(1, 1, 1, 1);

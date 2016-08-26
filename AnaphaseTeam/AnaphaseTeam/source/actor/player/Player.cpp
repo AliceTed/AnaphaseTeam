@@ -19,7 +19,7 @@ m_animator(ANIMATION_ID::KENDO,SKELETON_ID::KENDO)
 		(
 			gsGetEndAnimationTime(static_cast<GSuint>(ANIMATION_ID::KENDO), 20)), true
 		)*/,
-	m_Jump(),
+	//m_Jump(),
 	m_ChainMove()
 {}
 Player::~Player()
@@ -80,7 +80,8 @@ void Player::collisionGround(const Map & _map)
 		return;
 	}
 	//
-	m_Jump.groundHit();
+	//m_Jump.groundHit();
+	m_SubAction.groundHit();
 
 	//map‚É–„‚ßž‚Ü‚ê‚Ä‚¢‚½‚çyÀ•W‚ðŒð“_‚ÉˆÚ“®
 	m_transform.setPositionY(intersect.y);
@@ -119,7 +120,7 @@ void Player::jump(float deltaTime)
 	{
 		m_Jump.start();
 	}*/
-	m_Jump.jumping(this, deltaTime);
+	/*m_Jump.jumping(this, deltaTime);*/
 }
 
 void Player::chain(float deltaTime)
@@ -157,7 +158,6 @@ void Player::subActionStart(jumpControl * _jump, TestChainMove * _chainMove)
 		/*_jump->start();*/
 		//actionChange(std::make_shared<JumpState>());
 		_jump->airActionChange(std::make_shared<firstStep>());
-		//_jump->start(1.2f);
 	}
 	if (m_Input->chainTrigger())
 	{

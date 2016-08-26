@@ -56,7 +56,7 @@ private:
 	const Input* m_Input;
 	Animator m_animator;
 
-	jumpControl m_Jump;
+	//jumpControl m_Jump;
 	TestChainMove m_ChainMove;
 
 	static const float MOVESPEED;
