@@ -130,6 +130,12 @@
     <Filter Include="ヘッダー ファイル\subAction\jump">
       <UniqueIdentifier>{0b567862-2e04-4e65-ba55-670dc7850d5e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ヘッダー ファイル\attack">
+      <UniqueIdentifier>{328d34cd-4811-4531-a39c-8bd461e60ecd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\attack">
+      <UniqueIdentifier>{d6e599da-03b2-4119-96a4-4168092e2de5}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Util\BasicShapes.h">
@@ -342,6 +348,15 @@
     <ClInclude Include="header\subAction\TestJump.h">
       <Filter>ヘッダー ファイル\subAction\jump</Filter>
     </ClInclude>
+    <ClInclude Include="header\attack\ContinuationCombo.h">
+      <Filter>ヘッダー ファイル\attack</Filter>
+    </ClInclude>
+    <ClInclude Include="header\attack\AttackStatus.h">
+      <Filter>ヘッダー ファイル\attack</Filter>
+    </ClInclude>
+    <ClInclude Include="header\actor\AttackActor.h">
+      <Filter>ヘッダー ファイル\actor</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Util\BasicShapes.cpp">
@@ -472,6 +487,12 @@
     </ClCompile>
     <ClCompile Include="source\subAction\TestJump.cpp">
       <Filter>ソース ファイル\subAction\jump</Filter>
+    </ClCompile>
+    <ClCompile Include="source\attack\ContinuationCombo.cpp">
+      <Filter>ソース ファイル\attack</Filter>
+    </ClCompile>
+    <ClCompile Include="source\attack\AttackStatus.cpp">
+      <Filter>ソース ファイル\attack</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

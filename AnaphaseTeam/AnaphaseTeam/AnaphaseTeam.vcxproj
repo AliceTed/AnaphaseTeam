@@ -145,6 +145,8 @@
     <ClCompile Include="source\actionstate\MoveState.cpp" />
     <ClCompile Include="source\actionstate\StandState.cpp" />
     <ClCompile Include="source\actor\TestActor.cpp" />
+    <ClCompile Include="source\attack\AttackStatus.cpp" />
+    <ClCompile Include="source\attack\ContinuationCombo.cpp" />
     <ClCompile Include="source\convenient\Point.cpp" />
     <ClCompile Include="source\subAction\SubActionManager.cpp" />
     <ClCompile Include="source\subAction\TestChainMove.cpp" />
@@ -185,6 +187,7 @@
   <ItemGroup>
     <ClInclude Include="header\actor\Actor.h" />
     <ClInclude Include="header\actor\Actor_Tag.h" />
+    <ClInclude Include="header\actor\AttackActor.h" />
     <ClInclude Include="header\actor\ICharacter.h" />
     <ClInclude Include="header\actor\Player\Player.h" />
     <ClInclude Include="header\actionstate\AttackState.h" />
@@ -193,6 +196,8 @@
     <ClInclude Include="header\actionstate\MoveState.h" />
     <ClInclude Include="header\actionstate\StandState.h" />
     <ClInclude Include="header\actor\TestActor.h" />
+    <ClInclude Include="header\attack\AttackStatus.h" />
+    <ClInclude Include="header\attack\ContinuationCombo.h" />
     <ClInclude Include="header\convenient\Point.h" />
     <ClInclude Include="header\subAction\SubActionManager.h" />
     <ClInclude Include="header\subAction\TestChainMove.h" />

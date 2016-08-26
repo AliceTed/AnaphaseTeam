@@ -5,6 +5,8 @@
 
 #include "../../header/collision/CollisionMediator.h"
 #include "../../header/shape/Sphere.h"
+
+#include "../../header/attack/AttackStatus.h"
 //
 int TestActor::DrawCount = 0;
 TestActor::TestActor()
@@ -69,3 +71,8 @@ void TestActor::collision(const Actor * _other)
 	if (_other->isSameTag(Actor_Tag::PLAYER))
 		m_isDead = true;
 }
+
+void TestActor::beUnderAttack(float _attackPower, float _distanceDecay, const GSvector3 & _blowOffPower)
+{
+}
+

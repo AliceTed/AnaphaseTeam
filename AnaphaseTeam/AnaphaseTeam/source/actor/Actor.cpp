@@ -51,6 +51,10 @@ void Actor::collision(const Actor * _other)
 void Actor::createCollision(CollisionMediator * _mediator)
 {
 }
+const GSvector3 Actor::vectorToFront(const GSvector3 & _vector) const
+{
+	return _vector.cross(m_transform.front());
+}
 const float Actor::distanceActor(const Actor & _other) const
 {
 	return m_transform.getPosition().distance(_other.m_transform.getPosition());

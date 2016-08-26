@@ -55,6 +55,13 @@ public:
 public:
 	/**
 	* @fn
+	* @brief 任意のベクターを自身の正面の向きに変える
+	* @param (_vector) 変換するベクター 
+	* @return 変換したベクター
+	*/
+	const GSvector3 vectorToFront(const GSvector3& _vector)const;
+	/**
+	* @fn
 	* @brief Actor同士の距離
 	* @param (_ohter) 距離を測るActor
 	* @return 距離
