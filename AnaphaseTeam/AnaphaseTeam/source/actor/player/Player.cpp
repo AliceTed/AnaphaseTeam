@@ -8,6 +8,7 @@
 #include "../../../header/shape/Ray.h"
 #include "../../../header/data/PLAYERACTION_ID.h"
 #include "../../../header/actor/airstate/firstStep.h"
+#include "../../../secondStep.h"
 const float Player::MOVESPEED = 0.3f;
 const float Player::ROTATESPEED = -2.0f;
 
@@ -60,6 +61,7 @@ void Player::draw(const Renderer & _renderer, const Camera & _camera)
 	m_animator.bind_A();
 	_renderer.getDraw3D().drawMesh(MESH_ID::KENDO, m_transform, m_Color);
 
+	/////////////////////////////////////////////////////////////////
 	m_SubAction.getjumpcontrol().draw();
 
 }
@@ -153,15 +155,18 @@ void Player::chainMove(const GSvector3 & _target, float _time)
 
 void Player::subActionStart(jumpControl * _jump, TestChainMove * _chainMove)
 {
-	if (m_Input->jumpTrigger())
-	{
-		/*_jump->start();*/
-		//actionChange(std::make_shared<JumpState>());
-		_jump->airActionChange(std::make_shared<firstStep>());
-	}
 	if (m_Input->chainTrigger())
 	{
 		_chainMove->start();
+	}
+	if (m_Input->jumpTrigger())
+	{
+		if (m_SubAction.isfirstJump())
+		{
+			_jump->airActionChange(std::make_shared<secondStep>());
+			return;
+		}
+		_jump->airActionChange(std::make_shared<firstStep>());
 	}
 }
 

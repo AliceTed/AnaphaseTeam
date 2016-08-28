@@ -25,6 +25,12 @@ void subActionManager::groundHit()
 	m_jump.groundHit();
 }
 
+const bool subActionManager::isfirstJump() const
+{
+	return m_jump.isfirstJump();
+}
+
+//////////////////////////////////////////////////////////
 jumpControl subActionManager::getjumpcontrol()
 {
 	return m_jump;

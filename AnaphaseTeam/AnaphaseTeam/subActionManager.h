@@ -11,6 +11,8 @@ public:
 	void actionStart(Player* _player);
 
 	void groundHit();
+	const bool isfirstJump() const;
+
 	jumpControl getjumpcontrol();
 private:
 	TestChainMove m_chainMove;

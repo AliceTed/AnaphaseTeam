@@ -15,6 +15,7 @@ public:
 	void jumping(Player* _player, float deltaTime);
 	void start(const float _jumpStepPows);
 	void airActionChange(AirAction_Ptr _airAction);
+	const bool isfirstJump() const;
 
 	void draw();
 private:

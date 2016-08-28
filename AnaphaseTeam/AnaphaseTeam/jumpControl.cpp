@@ -61,6 +61,11 @@ void jumpControl::airActionChange(AirAction_Ptr _airAction)
 	m_airAction->airAction(this);
 }
 
+const bool jumpControl::isfirstJump() const
+{
+	return m_State == JUMPSTATE::FristStep;
+}
+
 //////////////////////////////////////////////////////////////////////////
 void jumpControl::draw()
 {
