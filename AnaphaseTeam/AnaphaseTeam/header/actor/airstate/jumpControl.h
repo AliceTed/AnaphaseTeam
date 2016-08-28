@@ -1,5 +1,11 @@
+/**
+* @file jumpControl.h
+* @brief ƒWƒƒƒ“ƒv‚Ì§Œä
+* @author a’J’m÷
+* @date 2016/08/29
+*/
 #pragma once
-#include "../airstate/IAirState.h"
+#include "IAirState.h"
 #include<gslib.h>
 #include <memory>
 class Player;
@@ -9,7 +15,6 @@ class jumpControl
 public:
 	jumpControl();
 	~jumpControl();
-	void initialize();
 	const bool isGround()const;
 	void groundHit();
 	void jumping(Player* _player, float deltaTime);
@@ -17,7 +22,6 @@ public:
 	void airActionChange(AirAction_Ptr _airAction);
 	const bool isfirstJump() const;
 
-	void draw();
 private:
 	float m_JumpPower;
 	float m_Acceleration;

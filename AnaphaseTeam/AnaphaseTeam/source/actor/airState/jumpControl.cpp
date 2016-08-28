@@ -1,9 +1,14 @@
-#include "header\actor\airstate\jumpControl.h"
-#include "header\actor\Player\Player.h"
-#include "header\math\Calculate.h"
-#include "header\actor\airstate\firstStep.h"
-#include "secondStep.h"
-#include "groundState.h"
+/**
+* @file jumpControl.cpp
+* @brief ÉWÉÉÉìÉvÇÃêßå‰
+* @author èaíJímé˜
+* @date 2016/08/29
+*/
+#include "../../../header/actor/airstate/jumpControl.h"
+#include "../../../header/actor/Player/Player.h"
+#include "../../../header/math/Calculate.h"
+#include "../../../header/actor/airstate/firstStep.h"
+#include "../../../header/actor/airstate/secondStep.h"
 
 #include <string>
 
@@ -21,11 +26,6 @@ jumpControl::~jumpControl()
 
 }
 
-void jumpControl::initialize()
-{
-	airActionChange(std::make_shared<groundState>());
-}
-
 const bool jumpControl::isGround() const
 {
 	return m_State == JUMPSTATE::Non;
@@ -34,7 +34,6 @@ const bool jumpControl::isGround() const
 void jumpControl::groundHit()
 {
 	m_State = JUMPSTATE::Non;
-	//airActionChange(std::make_shared<groundState>());
 }
 
 void jumpControl::jumping(Player * _player, float deltaTime)
@@ -64,12 +63,4 @@ void jumpControl::airActionChange(AirAction_Ptr _airAction)
 const bool jumpControl::isfirstJump() const
 {
 	return m_State == JUMPSTATE::FristStep;
-}
-
-//////////////////////////////////////////////////////////////////////////
-void jumpControl::draw()
-{
-	glColor4f(1, 1, 1, 1);
-	gsTextPos(300, 100);
-	gsDrawText(std::to_string(m_JumpPower).c_str());
 }

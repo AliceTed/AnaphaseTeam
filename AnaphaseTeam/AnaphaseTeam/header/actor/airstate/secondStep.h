@@ -1,6 +1,13 @@
+/**
+* @file secondStep.h
+* @brief 二段ジャンプ目のステート
+* @author 渋谷知樹
+* @date 2016/08/29
+*/
+
 #pragma once
-#include "header\actor\airstate\IAirState.h"
-#include "header\actor\airstate\jumpControl.h"
+#include "IAirState.h"
+#include "jumpControl.h"
 
 class secondStep:public IAirState
 {

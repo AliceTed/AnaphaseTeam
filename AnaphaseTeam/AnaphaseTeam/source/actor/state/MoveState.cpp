@@ -1,3 +1,9 @@
+/**
+* @file MoveState.cpp
+* @brief 移動のステート
+* @author 渋谷知樹
+* @date 2016/08/29
+*/
 #include "../../../header/actor/state/MoveState.h"
 #include "../../../header/actor/ICharacter.h"
 

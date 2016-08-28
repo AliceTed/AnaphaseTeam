@@ -1,14 +1,13 @@
 #include "../../../header/actor/Player/Player.h"
 #include "../../../header/actor/state/MoveState.h"
 #include "../../../header/actor/state/StandState.h"
-#include "../../../header/actor/state/JumpState.h"
 #include "../../../header/renderer/Renderer.h"
 #include "../../../header/device/Input.h"
 #include "../../../header/camera/Camera.h"
 #include "../../../header/shape/Ray.h"
 #include "../../../header/data/PLAYERACTION_ID.h"
 #include "../../../header/actor/airstate/firstStep.h"
-#include "../../../secondStep.h"
+#include "../../../header/actor/airstate/secondStep.h"
 const float Player::MOVESPEED = 0.3f;
 const float Player::ROTATESPEED = -2.0f;
 
@@ -60,9 +59,6 @@ void Player::draw(const Renderer & _renderer, const Camera & _camera)
 	alphaBlend(_camera);
 	m_animator.bind_A();
 	_renderer.getDraw3D().drawMesh(MESH_ID::KENDO, m_transform, m_Color);
-
-	/////////////////////////////////////////////////////////////////
-	m_SubAction.getjumpcontrol().draw();
 
 }
 
@@ -116,21 +112,8 @@ void Player::move(float deltaTime)
 	if ((forward - side).length() > 0)m_animator.changeAnimation_A(PLAYERACTION_ID::RUN,false);
 }
 
-void Player::jump(float deltaTime)
-{
-	/*if (m_Input->jumpTrigger())
-	{
-		m_Jump.start();
-	}*/
-	/*m_Jump.jumping(this, deltaTime);*/
-}
-
 void Player::chain(float deltaTime)
 {
-	/*if (m_Input->chainTrigger())
-	{
-		m_ChainMove.start();
-	}*/
 	m_ChainMove.movement(deltaTime, this);
 }
 
@@ -175,23 +158,8 @@ void Player::actionChange(Action_Ptr _action)
 	m_action = _action;
 }
 
-//void Player::airActionChange(AirAction_Ptr _airAction)
-//{
-//	m_airAction = _airAction;
-//}
-
 void Player::control()
 {
-	//if (m_Input->jumpTrigger())
-	//{
-
-	//	//m_Jump.start();
-	//	//actionChange(std::make_shared<JumpState>());
-	//}
-	//if (m_Input->chainTrigger())
-	//{
-	//	m_ChainMove.start();
-	//}
 	if (m_Input->move())
 	{
 		actionChange(std::make_shared<MoveState>());

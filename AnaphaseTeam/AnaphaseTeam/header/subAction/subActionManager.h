@@ -1,6 +1,6 @@
 #pragma once
-#include "header\actor\airstate\jumpControl.h"
-#include "header\actor\TestChainMove.h"
+#include "../actor/airstate/jumpControl.h"
+#include "../actor/TestChainMove.h"
 class subActionManager
 {
 public:
@@ -13,7 +13,6 @@ public:
 	void groundHit();
 	const bool isfirstJump() const;
 
-	jumpControl getjumpcontrol();
 private:
 	TestChainMove m_chainMove;
 	jumpControl m_jump;

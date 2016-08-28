@@ -10,18 +10,15 @@
 #include "../../animation/Animator.h"
 #include "../../animation/AnimationTimer.h"
 #include "../../actor/state/IActionState.h"
-//#include "../airstate/IAirState.h"
-//#include "../TestJump.h"
 #include "../TestChainMove.h"
 #include "../../convenient/Timer.h"
 #include<gslib.h>
 #include <memory>
 #include "../ICharacter.h"
 #include "../airstate/jumpControl.h"
-#include "../../../subActionManager.h"
+#include "../../subAction/subActionManager.h"
 class Input;
 typedef std::shared_ptr<IActionState> Action_Ptr;
-//typedef std::shared_ptr<IAirState> AirAction_Ptr;
 class Player :public Actor,public ICharacter
 {
 public:
@@ -36,7 +33,6 @@ public:
 	void attack(float deltaTime);
 	void damage(float deltaTime);
 	void move(float deltaTime);
-	void jump(float deltaTime);
 	void chain(float deltaTime);
 	void jumping(float _velocity);
 	void chainMove(const GSvector3 & _target, float _time);
@@ -51,17 +47,14 @@ private:
 	* @param (_action) êÿÇËë÷Ç¶ÇÈÉAÉNÉVÉáÉìÇÃShared_ptr
 	*/
 	void actionChange(Action_Ptr _action);
-	/*void airActionChange(AirAction_Ptr _airAction);*/
 private:
 	const Input* m_Input;
 	Animator m_animator;
 
-	//jumpControl m_Jump;
 	TestChainMove m_ChainMove;
 
 	static const float MOVESPEED;
 	static const float ROTATESPEED;
 	Action_Ptr m_action;
 	subActionManager m_SubAction;
-	/*AirAction_Ptr m_airAction;*/
 };

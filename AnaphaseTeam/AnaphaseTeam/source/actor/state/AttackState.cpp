@@ -1,4 +1,9 @@
-//#include "../../actor/state/AttackState.h"
+/**
+* @file AttackState.cpp
+* @brief UŒ‚‚ÌƒXƒe[ƒg
+* @author a’J’m÷
+* @date 2016/08/29
+*/
 #include "../../../header/actor/state/AttackState.h"
 #include "../../../header/actor/ICharacter.h"
 
