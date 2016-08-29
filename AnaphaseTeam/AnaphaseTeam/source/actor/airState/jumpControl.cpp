@@ -60,7 +60,12 @@ void jumpControl::airActionChange(AirAction_Ptr _airAction)
 	m_airAction->airAction(this);
 }
 
-const bool jumpControl::isfirstJump() const
+void jumpControl::jump()
 {
-	return m_State == JUMPSTATE::FristStep;
+	if (m_State == JUMPSTATE::FristStep)
+	{
+		airActionChange(std::make_shared<secondStep>());
+		return;
+	}
+	airActionChange(std::make_shared<firstStep>());
 }

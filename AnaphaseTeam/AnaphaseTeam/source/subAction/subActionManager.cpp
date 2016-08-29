@@ -23,11 +23,10 @@ void subActionManager::actionStart(Player * _player)
 
 void subActionManager::groundHit()
 {
-	//m_jump.groundHit();
 	m_jump.airActionChange(std::make_shared<groundState>());
 }
 
-const bool subActionManager::isfirstJump() const
+void subActionManager::jumpStart()
 {
-	return m_jump.isfirstJump();
+	m_jump.jump();
 }

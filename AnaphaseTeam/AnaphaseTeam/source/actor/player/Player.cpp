@@ -6,8 +6,6 @@
 #include "../../../header/camera/Camera.h"
 #include "../../../header/shape/Ray.h"
 #include "../../../header/data/PLAYERACTION_ID.h"
-#include "../../../header/actor/airstate/firstStep.h"
-#include "../../../header/actor/airstate/secondStep.h"
 const float Player::MOVESPEED = 0.3f;
 const float Player::ROTATESPEED = -2.0f;
 
@@ -144,12 +142,7 @@ void Player::subActionStart(jumpControl * _jump, TestChainMove * _chainMove)
 	}
 	if (m_Input->jumpTrigger())
 	{
-		if (m_SubAction.isfirstJump())
-		{
-			_jump->airActionChange(std::make_shared<secondStep>());
-			return;
-		}
-		_jump->airActionChange(std::make_shared<firstStep>());
+		m_SubAction.jumpStart();
 	}
 }
 
