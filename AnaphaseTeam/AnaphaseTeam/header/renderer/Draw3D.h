@@ -7,22 +7,15 @@
 #include "../data/Model_ID.h"
 #include <gslib.h>
 class Transform;
+class Animator;
+
 class Draw3D
 {
 public:
 	Draw3D();
 	~Draw3D();
-	
-	void drawMesh(
-		MESH_ID id,
-		const GSvector3* _position,
-		const GSvector3*  _scaling,
-		const GSvector3* axis,
-		float direction)const;
 
-	void drawMesh(MESH_ID id, const Transform& _transform, const GScolor& _color = GScolor(1.0f, 1.0f, 1.0f, 1.0f))const;
-	void drawMesh(MESH_ID id,const GSmatrix4& mat, const GScolor& _color=GScolor(1.0f,1.0f,1.0f,1.0f))const;
-	void drawMesh(MODEL_ID id, const GSmatrix4& mat, const GScolor& _color = GScolor(1.0f, 1.0f, 1.0f, 1.0f))const;
+	void drawMesh(MODEL_ID _id, const Transform& _transform, const Animator& _animator, const GScolor& _color = GScolor(1.0f, 1.0f, 1.0f, 1.0f))const;
 
 	void drawSky(MESH_ID id, float angle)const;
 	void drawSky(MESH_ID id)const;
@@ -35,5 +28,15 @@ public:
 	void drawCapsule(const GSvector3* pos,	float radius,float hight,float dir,float ele, const GScolor& color=GScolor(1.0f,1.0f,1.0f,1.0f))const;
 
 	void drawLine(const GSvector3* p1, const GSvector3* p2, const GScolor& color = GScolor(1.0f, 1.0f, 1.0f, 1.0f),float size=1.0f)const;
+
+	void drawPoint(const GSvector3* p, float size = 1.0f, const GScolor& color = GScolor(1.0f, 1.0f, 1.0f, 1.0f))const;
+
+	/**
+	* @fn
+	* @brief フォグの描画
+	* @param (_clip) フォグのスタートとエンド
+	* @param (_color) 色
+	*/
+	void drawFog(const GSvector2& _clip= GSvector2(150.0f, 200.0f),const GScolor& _color = GScolor(1.0f, 1.0f, 1.0f, 1.0f))const;
 };
 #endif

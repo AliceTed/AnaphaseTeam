@@ -12,6 +12,12 @@ namespace Data
 		template<class DeleteFunc, class ID>
 		void deleteEach(DeleteFunc deleteFunc, ID size);
 	};
+	class DeleteModel
+	{
+	public:
+		template<class ID>
+		void operator ()(ID _id);
+	};
 }
 #endif
 namespace Data
@@ -24,5 +30,13 @@ namespace Data
 		{
 			deleteFunc(i);
 		}
+	}
+	template<class ID>
+	void DeleteModel::operator()(ID _id)
+	{
+		CastID cast;
+		gsDeleteMesh(cast(_id));
+		gsDeleteAnimation(cast(_id));
+		gsDeleteSkeleton(cast(_id));
 	}
 }

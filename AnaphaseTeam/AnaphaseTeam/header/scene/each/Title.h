@@ -5,8 +5,12 @@
 #include "../../actor/Actor.h"
 #include "../../entity/EntityManager.h"
 #include "../../map/Map.h"
+#include "../../collision/CollisionManager.h"
 #include <memory>
 #include "../../actor/Player/Player.h"
+
+#include "../../shape/AABB.h"
+#include "../../shape/Segment.h"
 class Input;
 typedef std::shared_ptr<Actor>Actor_Ptr;
 class Title :public IScene
@@ -27,6 +31,8 @@ private:
 	Map m_Map;
 	Camera m_Camera;
 	Entity::EntityManager<Actor_Ptr> actorManager;
+	CollisionManager collision;
+
 	Player player;
 };
 #endif

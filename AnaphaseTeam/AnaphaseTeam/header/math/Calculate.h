@@ -150,7 +150,7 @@ namespace Math
 		template<class T>
 		const T operator ()(T _rad)const
 		{
-			return rad * 180.0f / PI;
+			return _rad * 180.0f / PI;
 		}
 	};
 

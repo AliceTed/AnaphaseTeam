@@ -6,6 +6,8 @@
 #include "../../header/data/SE_ID.h"
 #include "../../header/data/TEXTURE_ID.h"
 #include "../../header/data/ANIMATION_ID.h"
+
+#include "../../header/data/Model_ID.h"
 #include <gslib.h>
 namespace Data
 {
@@ -18,5 +20,7 @@ namespace Data
 		deleteEach(gsDeleteAnimation, ANIMATION_ID::SIZE);
 		deleteEach(gsDeleteSkeleton, SKELETON_ID::SIZE);
 		deleteEach(gsDeleteOctree, OCTREE_ID::SIZE);
+		DeleteModel deleteModel;
+		deleteEach(deleteModel, MODEL_ID::SIZE);
 	}
 }
