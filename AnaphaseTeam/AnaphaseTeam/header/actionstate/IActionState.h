@@ -1,6 +1,6 @@
 /**
 * @file IActionState.h
-* @brief 二段ジャンプ目のステート
+* @brief アクションステート
 * @author 渋谷知樹
 * @date 2016/08/29
 */

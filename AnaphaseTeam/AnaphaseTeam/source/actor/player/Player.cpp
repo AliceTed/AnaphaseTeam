@@ -2,6 +2,7 @@
 
 #include "../../../header/actionstate/MoveState.h"
 #include "../../../header/actionstate/StandState.h"
+#include "../../../header/actionstate/JumpState.h"
 #include "../../../header/renderer/Renderer.h"
 #include "../../../header/device/Input.h"
 #include "../../../header/camera/Camera.h"
@@ -107,6 +108,11 @@ void Player::move(float deltaTime)
 	GSvector3 side(m_transform.left()*m_Input->horizontal());
 	m_transform.translate((forward - side)*MOVESPEED*deltaTime);
 	if ((forward - side).length() > 0)m_animator.changeAnimation(ANIMATION_ID::RUN, true);
+	//m_SubAction.action(this, deltaTime);
+}
+
+void Player::jump(float deltaTime)
+{
 	m_SubAction.action(this, deltaTime);
 }
 
@@ -148,6 +154,7 @@ void Player::subActionStart()
 	if (m_Input->jumpTrigger())
 	{
 		m_SubAction.jumpStart();
+		actionChange(std::make_shared<JumpState>());
 	}
 }
 

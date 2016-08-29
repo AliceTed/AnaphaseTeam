@@ -48,6 +48,7 @@ public://ICharacterŽÀ‘•
 	void attack(float deltaTime);
 	void damage(float deltaTime);
 	void move(float deltaTime);
+	void jump(float deltaTime);
 	void chain(float deltaTime);
 	void jumping(float _velocity);
 	void chainMove(const GSvector3 & _target, float _time);
