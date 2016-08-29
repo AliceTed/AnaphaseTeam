@@ -29,6 +29,7 @@ void Player::initialize()
 
 	m_animator.addAnimation(ANIMATION_ID::STAND, 1.0f, true);
 	m_animator.addAnimation(ANIMATION_ID::RUN, 1.0f, true);
+	m_animator.addAnimation(ANIMATION_ID::JUMP, 1.0f, true);
 
 	m_animator.changeAnimation(ANIMATION_ID::STAND, false);
 }
@@ -115,6 +116,7 @@ void Player::chain(float deltaTime)
 }
 void Player::jumping(float _velocity)
 {
+	m_animator.changeAnimation(ANIMATION_ID::JUMP, false);
 	m_transform.translateY(_velocity);
 }
 
@@ -123,18 +125,18 @@ void Player::chainMove(const GSvector3 & _target, float _time)
 	m_transform.setPosition(m_transform.getPosition().lerp(_target, _time));
 }
 
-void Player::subActionStart(jumpControl * _jump, TestChainMove * _chainMove)
-{
-	if (m_Input->chainTrigger())
-	{
-		//	_chainMove->start();
-		m_SubAction.chainMoveStart();
-	}
-	if (m_Input->jumpTrigger())
-	{
-		m_SubAction.jumpStart();
-	}
-}
+//void Player::subActionStart(jumpControl * _jump, TestChainMove * _chainMove)
+//{
+//	if (m_Input->chainTrigger())
+//	{
+//		//	_chainMove->start();
+//		m_SubAction.chainMoveStart();
+//	}
+//	if (m_Input->jumpTrigger())
+//	{
+//		m_SubAction.jumpStart();
+//	}
+//}
 
 void Player::subActionStart()
 {

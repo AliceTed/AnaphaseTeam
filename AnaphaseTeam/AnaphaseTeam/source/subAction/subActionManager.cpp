@@ -18,7 +18,7 @@ void subActionManager::action(Player * _player, float deltaTime)
 
 void subActionManager::actionStart(Player * _player)
 {
-	_player->subActionStart(&m_jump, &m_chainMove);
+	//_player->subActionStart(&m_jump, &m_chainMove);
 }
 
 void subActionManager::groundHit()
