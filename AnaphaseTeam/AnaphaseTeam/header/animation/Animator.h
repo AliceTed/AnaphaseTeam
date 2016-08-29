@@ -28,7 +28,7 @@ public:
 	@fn
 	@breif 引数にAnimationクラスのポインタを入れると呼び出し時長くなるので対策版
 	*/
-	void addAnimation(ANIMATION_ID _animationKey, float _animationtime, float _animationspeed = 1.0f, bool _isLoop = false);
+	void addAnimation(ANIMATION_ID _animationKey, float _animationspeed = 1.0f, bool _isLoop = false);
 	void update(float deltatime);
 	void bind()const;
 	void changeAnimation(ANIMATION_ID _nextAnimationID, bool _isInit = false);

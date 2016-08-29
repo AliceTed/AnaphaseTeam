@@ -30,8 +30,8 @@ void Player::initialize()
 	actionChange(std::make_shared<StandState>());
 	m_animator.initialize();
 
-	m_animator.addAnimation(ANIMATION_ID::STAND, 77.f, 1.0f, true);
-	m_animator.addAnimation(ANIMATION_ID::RUN, 78.f, 1.0f, true);
+	m_animator.addAnimation(ANIMATION_ID::STAND,1.0f,true);
+	m_animator.addAnimation(ANIMATION_ID::RUN,1.0f,true);
 
 	m_animator.changeAnimation(ANIMATION_ID::STAND, false);
 }
@@ -109,7 +109,7 @@ void Player::move(float deltaTime)
 	GSvector3 forward(m_transform.front()*m_Input->vertical());
 	GSvector3 side(m_transform.left()*m_Input->horizontal());
 	m_transform.translate((forward - side)*MOVESPEED*deltaTime);
-	if ((forward - side).length() > 0)m_animator.changeAnimation(ANIMATION_ID::RUN);
+	if ((forward - side).length() > 0)m_animator.changeAnimation(ANIMATION_ID::RUN,true);
 }
 
 void Player::jump(float deltaTime)

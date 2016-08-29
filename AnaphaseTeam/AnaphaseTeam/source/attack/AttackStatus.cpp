@@ -18,5 +18,5 @@ void AttackStatus::giveDamage(Player* _player, TestActor * _other)
 	Math::Clamp clamp;
 	float pow = clamp(m_Power - distance, 0.0f, m_Power);
 
-	_other->beUnderAttack(pow,_player->vectorToFront(m_BlowOff));
+	//_other->beUnderAttack(pow,_player->vectorToFront(m_BlowOff));
 }

@@ -24,9 +24,9 @@ void Animator::addAnimation(ANIMATION_ID _animationKey, Animation_Ptr _animation
 	m_animationsMap[_animationKey] = _animation;
 }
 
-void Animator::addAnimation(ANIMATION_ID _animationKey, float _animationtime, float _animationspeed, bool _isLoop)
+void Animator::addAnimation(ANIMATION_ID _animationKey, float _animationspeed, bool _isLoop)
 {
-	m_animationsMap[_animationKey] = std::make_shared<Animation>(m_modelID, static_cast<unsigned int>(_animationKey), AnimationTimer(_animationtime, _animationspeed), _isLoop);
+	m_animationsMap[_animationKey] = std::make_shared<Animation>(m_modelID, static_cast<unsigned int>(_animationKey), AnimationTimer(gsGetEndAnimationTime(static_cast<GSuint>(m_modelID),static_cast<GSuint>(_animationKey)), _animationspeed), _isLoop);
 }
 void Animator::update(float deltatime)
 {
@@ -38,12 +38,12 @@ void Animator::bind()const
 	gsBindSkeleton(static_cast<GSuint>(m_modelID));
 
 }
-void Animator::changeAnimation(ANIMATION_ID _nextAnimationID, bool isInit)
+void Animator::changeAnimation(ANIMATION_ID _nextAnimationID, bool isNotInit)
 {
 	/*“¯‚¶•¨‚É‚Í•ÏX‚µ‚È‚¢*/
 	if (m_currentAnimationID == _nextAnimationID) return;
 
 	m_currentAnimationID = _nextAnimationID;
-	if (isInit)return;
+	if (isNotInit)return;
 	m_animationsMap[m_currentAnimationID]->initialize();
 }
