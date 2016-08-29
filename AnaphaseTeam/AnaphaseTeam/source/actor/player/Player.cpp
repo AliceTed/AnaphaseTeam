@@ -39,8 +39,8 @@ void Player::update(float deltatime)
 	jump(deltatime);
 	chain(deltatime);*/
 	control();
-	m_SubAction.actionStart(this);
-	m_SubAction.action(this, deltatime);
+	//m_SubAction.actionStart(this);
+	//m_SubAction.action(this, deltatime);
 	m_action->action(this, deltatime);
 	sphereChases(GSvector3(0, 1, 0));
 	m_animator.update_A(deltatime);
@@ -89,7 +89,8 @@ void Player::finish()
 
 void Player::stand(float deltaTime)
 {
-
+	//m_SubAction.actionStart(this);
+	m_SubAction.action(this, deltaTime);
 }
 
 void Player::attack(float deltaTime)
@@ -108,6 +109,9 @@ void Player::move(float deltaTime)
 	GSvector3 side(m_transform.left()*m_Input->horizontal());
 	m_transform.translate((forward - side)*MOVESPEED*deltaTime);
 	if ((forward - side).length() > 0)m_animator.changeAnimation_A(PLAYERACTION_ID::RUN,false);
+
+//	m_SubAction.actionStart(this);
+	m_SubAction.action(this, deltaTime);
 }
 
 void Player::chain(float deltaTime)
@@ -138,7 +142,21 @@ void Player::subActionStart(jumpControl * _jump, TestChainMove * _chainMove)
 {
 	if (m_Input->chainTrigger())
 	{
-		_chainMove->start();
+	//	_chainMove->start();
+		m_SubAction.chainMoveStart();
+	}
+	if (m_Input->jumpTrigger())
+	{
+		m_SubAction.jumpStart();
+	}
+}
+
+void Player::subActionStart()
+{
+	if (m_Input->chainTrigger())
+	{
+		//	_chainMove->start();
+		m_SubAction.chainMoveStart();
 	}
 	if (m_Input->jumpTrigger())
 	{
@@ -153,6 +171,7 @@ void Player::actionChange(Action_Ptr _action)
 
 void Player::control()
 {
+	subActionStart();
 	if (m_Input->move())
 	{
 		actionChange(std::make_shared<MoveState>());

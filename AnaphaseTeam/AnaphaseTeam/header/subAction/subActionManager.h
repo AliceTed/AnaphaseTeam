@@ -13,6 +13,8 @@ public:
 	void groundHit();
 	void jumpStart();
 
+	void chainMoveStart();
+
 private:
 	TestChainMove m_chainMove;
 	jumpControl m_jump;

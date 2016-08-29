@@ -437,8 +437,5 @@
     <ClCompile Include="source\actor\airState\firstStep.cpp">
       <Filter>ソース ファイル\actor\airState</Filter>
     </ClCompile>
-    <ClCompile Include="source\actor\state\chainMoveState.cpp">
-      <Filter>ソース ファイル\actor\state</Filter>
-    </ClCompile>
   </ItemGroup>
 </Project>

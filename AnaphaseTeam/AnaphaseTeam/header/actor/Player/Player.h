@@ -37,6 +37,8 @@ public:
 	void jumping(float _velocity);
 	void chainMove(const GSvector3 & _target, float _time);
 	void subActionStart(jumpControl* _jump, TestChainMove* _chainMove);
+
+	void subActionStart();
 	
 	
 private:

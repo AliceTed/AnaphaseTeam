@@ -145,7 +145,6 @@
     <ClCompile Include="source\actor\airState\secondStep.cpp" />
     <ClCompile Include="source\actor\player\Player.cpp" />
     <ClCompile Include="source\actor\state\AttackState.cpp" />
-    <ClCompile Include="source\actor\state\chainMoveState.cpp" />
     <ClCompile Include="source\actor\state\MoveState.cpp" />
     <ClCompile Include="source\actor\state\StandState.cpp" />
     <ClCompile Include="source\actor\TestActor.cpp" />

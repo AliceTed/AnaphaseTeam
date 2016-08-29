@@ -30,3 +30,8 @@ void subActionManager::jumpStart()
 {
 	m_jump.jump();
 }
+
+void subActionManager::chainMoveStart()
+{
+	m_chainMove.start();
+}
