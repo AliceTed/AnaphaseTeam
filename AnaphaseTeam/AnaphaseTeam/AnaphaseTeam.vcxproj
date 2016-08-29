@@ -59,7 +59,7 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>C:\gslib_2015\gslib_2015\inc;C:\boost\Include\boost_1_57_0;D:\GSLibrary_2015\gslib_2015\gslib_2015\inc;D:\GSLibrary_2015\boost\include\boost-1_57;C:\boost\include\boost-1_57;$(IncludePath)</IncludePath>
+    <IncludePath>C:\gslib_2015\gslib_2015\inc;C:\boost\Include\boost_1_57_0;D:\GSLibrary_2015\gslib_2015\gslib_2015\inc;C:\boost\include\boost-1_57;C:\boost\boost\include\boost-1_57;$(IncludePath)</IncludePath>
     <LibraryPath>C:\gslib_2015\gslib_2015\lib;C:\boost\lib;D:\GSLibrary_2015\gslib_2015\gslib_2015\lib;D:\GSLibrary_2015\boost\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">

@@ -384,6 +384,9 @@
     <ClInclude Include="header\subAction\subActionManager.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
+    <ClInclude Include="header\subAction\subActionManager.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Util\BasicShapes.cpp">
@@ -535,6 +538,9 @@
     </ClCompile>
     <ClCompile Include="source\convenient\Transform.cpp">
       <Filter>ソース ファイル\convenient</Filter>
+    </ClCompile>
+    <ClCompile Include="source\subAction\subActionManager.cpp">
+      <Filter>ソース ファイル</Filter>
     </ClCompile>
     <ClCompile Include="source\subAction\subActionManager.cpp">
       <Filter>ソース ファイル</Filter>
