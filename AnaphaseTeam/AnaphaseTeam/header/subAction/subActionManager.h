@@ -1,6 +1,6 @@
 #pragma once
 #include "../actor/airstate/jumpControl.h"
-#include "../actor/TestChainMove.h"
+#include "../subAction/TestChainMove.h"
 class subActionManager
 {
 public:

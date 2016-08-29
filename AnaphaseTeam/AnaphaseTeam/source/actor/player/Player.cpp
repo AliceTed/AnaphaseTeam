@@ -2,10 +2,9 @@
 
 #include "../../../header/actionstate/MoveState.h"
 #include "../../../header/actionstate/StandState.h"
-#include "../../../header/actionstate/JumpState.h"
 
-#include "../../../header/actor/state/MoveState.h"
-#include "../../../header/actor/state/StandState.h"
+#include "../../../header/actionstate/MoveState.h"
+#include "../../../header/actionstate/StandState.h"
 #include "../../../header/renderer/Renderer.h"
 #include "../../../header/device/Input.h"
 
@@ -22,10 +21,7 @@ const float Player::ROTATESPEED = -2.0f;
 Player::Player(const Input* _input)
 	:Actor(Transform({0,0,5}), MODEL_ID::PLAYER, Sphere(GSvector3(0, 0, 0), 0), Actor_Tag::PLAYER),
 	m_action(nullptr),
-	m_SubAction()
-	:Actor(Transform(),ANIMATION_ID::KENDO,SKELETON_ID::KENDO,Sphere(GSvector3(0,0,0),0)), m_action(nullptr),
-m_animator(ANIMATION_ID::KENDO,SKELETON_ID::KENDO),
-	
+	m_SubAction(),
 	m_ChainMove()
 {}
 Player::~Player()
@@ -47,10 +43,7 @@ void Player::update(float deltatime)
 	/*move(deltatime);
 	jump(deltatime);
 	chain(deltatime);*/
-
-	m_SubAction.actionStart(this);
-	m_SubAction.action(this,deltatime);
-
+	
 	control();
 
 	m_action->action(this, deltatime);
@@ -64,8 +57,8 @@ void Player::draw(const Renderer & _renderer, const Camera & _camera)
 	const_cast<Camera&>(_camera).lookAt(m_transform.getPosition(), m_transform.getYaw());
 	FALSE_RETURN(isInsideView(_camera));
 	alphaBlend(_camera);
-	m_animator.bind_A();
-	_renderer.getDraw3D().drawMesh(MESH_ID::KENDO, m_transform, m_Color);
+	//m_animator.bind();
+	_renderer.getDraw3D().drawMesh(MODEL_ID::KARATE, m_transform,m_animator, m_Color);
 
 }
 

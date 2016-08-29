@@ -4,8 +4,8 @@
 * @author a’J’m÷
 * @date 2016/08/29
 */
-#include "../../../header/actor/state/MoveState.h"
-#include "../../../header/actor/ICharacter.h"
+#include "../../header/actionstate/MoveState.h"
+#include "../../header/actor/ICharacter.h"
 
 
 MoveState::MoveState()
