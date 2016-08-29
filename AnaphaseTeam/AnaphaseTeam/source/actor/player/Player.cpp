@@ -53,7 +53,7 @@ void Player::draw(const Renderer & _renderer, const Camera & _camera)
 	FALSE_RETURN(isInsideView(_camera));
 	alphaBlend(_camera);
 	//m_animator.bind();
-	_renderer.getDraw3D().drawMesh(MODEL_ID::KARATE, m_transform, m_animator, m_Color);
+	_renderer.getDraw3D().drawMesh(MODEL_ID::PLAYER, m_transform, m_animator, m_Color);
 
 }
 

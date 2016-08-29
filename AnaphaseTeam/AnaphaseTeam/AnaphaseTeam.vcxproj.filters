@@ -127,6 +127,12 @@
     <Filter Include="ソース ファイル\subAction">
       <UniqueIdentifier>{eb9dd5e1-dbda-4042-9f93-c4b85a260fdd}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\actor\actionState">
+      <UniqueIdentifier>{2437ca0e-0b72-496d-abbb-7d07a9f3dc28}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\actor\actionState">
+      <UniqueIdentifier>{f13bd0f4-c891-4317-82d9-1783af4289ab}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Util\BasicShapes.h">
@@ -303,19 +309,7 @@
     <ClInclude Include="header\actor\AttackActor.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="header\actionstate\AttackState.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
     <ClInclude Include="header\actionstate\IActionState.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="header\actionstate\JumpState.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="header\actionstate\MoveState.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="header\actionstate\StandState.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="header\attack\AttackStatus.h">
@@ -368,6 +362,18 @@
     </ClInclude>
     <ClInclude Include="header\subAction\subActionManager.h">
       <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="header\actionstate\AttackState.h">
+      <Filter>ヘッダー ファイル\actor\actionState</Filter>
+    </ClInclude>
+    <ClInclude Include="header\actionstate\JumpState.h">
+      <Filter>ヘッダー ファイル\actor\actionState</Filter>
+    </ClInclude>
+    <ClInclude Include="header\actionstate\StandState.h">
+      <Filter>ヘッダー ファイル\actor\actionState</Filter>
+    </ClInclude>
+    <ClInclude Include="header\actionstate\MoveState.h">
+      <Filter>ヘッダー ファイル\actor\actionState</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -464,18 +470,6 @@
     <ClCompile Include="source\actor\airState\firstStep.cpp">
       <Filter>ソース ファイル\actor\airState</Filter>
     </ClCompile>
-    <ClCompile Include="source\actionstate\AttackState.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="source\actionstate\JumpState.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="source\actionstate\MoveState.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="source\actionstate\StandState.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
     <ClCompile Include="source\attack\AttackStatus.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
@@ -520,6 +514,18 @@
     </ClCompile>
     <ClCompile Include="source\subAction\subActionManager.cpp">
       <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="source\actionstate\JumpState.cpp">
+      <Filter>ソース ファイル\actor\actionState</Filter>
+    </ClCompile>
+    <ClCompile Include="source\actionstate\StandState.cpp">
+      <Filter>ソース ファイル\actor\actionState</Filter>
+    </ClCompile>
+    <ClCompile Include="source\actionstate\AttackState.cpp">
+      <Filter>ソース ファイル\actor\actionState</Filter>
+    </ClCompile>
+    <ClCompile Include="source\actionstate\MoveState.cpp">
+      <Filter>ソース ファイル\actor\actionState</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
