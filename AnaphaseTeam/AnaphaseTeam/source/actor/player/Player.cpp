@@ -2,16 +2,11 @@
 
 #include "../../../header/actionstate/MoveState.h"
 #include "../../../header/actionstate/StandState.h"
-
-#include "../../../header/actionstate/MoveState.h"
-#include "../../../header/actionstate/StandState.h"
 #include "../../../header/renderer/Renderer.h"
 #include "../../../header/device/Input.h"
-
 #include "../../../header/camera/Camera.h"
 #include "../../../header/shape/Ray.h"
 #include "../../../header/data/PLAYERACTION_ID.h"
-
 #include "../../../header/collision/CollisionMediator.h"
 #include "../../../header/shape/Capsule.h"
 
@@ -92,7 +87,6 @@ void Player::createCollision(CollisionMediator * _mediator)
 }
 void Player::stand(float deltaTime)
 {
-	//m_SubAction.actionStart(this);
 	m_SubAction.action(this, deltaTime);
 }
 

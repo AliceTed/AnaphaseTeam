@@ -17,10 +17,7 @@
 #include "../Actor.h"
 #include "../ICharacter.h"
 
-#include "../../actionstate/IActionState.h"
 #include "../../subAction/TestJump.h"
-#include "../../subAction/TestChainMove.h"
-
 #include "../../subAction/SubActionManager.h"
 #include "../airstate/jumpControl.h"
 
