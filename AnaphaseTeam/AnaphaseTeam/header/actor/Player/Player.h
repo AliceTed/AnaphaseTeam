@@ -18,7 +18,7 @@
 #include "../ICharacter.h"
 
 #include "../../subAction/TestJump.h"
-#include "../../subAction/SubActionManager.h"
+#include "../../subAction/subActionManager.h"
 #include "../airstate/jumpControl.h"
 
 class Input;
