@@ -17,7 +17,9 @@ Player::Player(const Input* _input)
 	:Actor(Transform({ 0,0,5 }), MODEL_ID::PLAYER, Sphere(GSvector3(0, 0, 0), 0), Actor_Tag::PLAYER),
 	m_action(nullptr),
 	m_SubAction(),
-	m_ChainMove()
+	m_ChainMove(),
+	m_attaclDicision(false),
+	m_attacTime(0.0f)
 {}
 Player::~Player()
 {}
@@ -29,12 +31,19 @@ void Player::initialize()
 
 	m_animator.addAnimation(ANIMATION_ID::STAND, 1.0f, true);
 	m_animator.addAnimation(ANIMATION_ID::RUN, 1.0f, true);
+	m_animator.addAnimation(ANIMATION_ID::ATTACK, 1.0f, true);
 
-	m_animator.changeAnimation(ANIMATION_ID::STAND, false);
+	m_animator.changeAnimation(ANIMATION_ID::STAND, true);
+
+	m_attaclDicision = false;
+	m_attacTime = 0.0f;
 }
 void Player::update(float deltatime)
 {
-	m_animator.changeAnimation(ANIMATION_ID::STAND, false);
+	if (!m_attaclDicision)
+	{
+		m_animator.changeAnimation(ANIMATION_ID::STAND, false);
+	}
 	/*move(deltatime);
 	jump(deltatime);
 	chain(deltatime);*/
@@ -44,6 +53,8 @@ void Player::update(float deltatime)
 	m_action->action(this, deltatime);
 	sphereChases(GSvector3(0, 1, 0));
 	m_animator.update(deltatime);
+
+	attack(deltatime);
 }
 
 void Player::draw(const Renderer & _renderer, const Camera & _camera)
@@ -54,6 +65,7 @@ void Player::draw(const Renderer & _renderer, const Camera & _camera)
 	alphaBlend(_camera);
 	//m_animator.bind();
 	_renderer.getDraw3D().drawMesh(MODEL_ID::PLAYER, m_transform, m_animator, m_Color);
+	_renderer.getDraw2D().string("m_attacTime:" + std::to_string(m_attacTime), &GSvector2(20, 60), 20);
 
 }
 
@@ -92,6 +104,25 @@ void Player::stand(float deltaTime)
 
 void Player::attack(float deltaTime)
 {
+	
+	if (m_Input->attckTrigger())
+	{
+		m_attaclDicision = true;
+		m_animator.changeAnimation(ANIMATION_ID::ATTACK, true);
+	}
+
+	if (m_attaclDicision)
+	{
+		m_attacTime++;
+	}
+
+	if (m_attacTime >= 37.0f)
+	{
+		m_attaclDicision = false;
+		m_animator.addAnimation(ANIMATION_ID::ATTACK, 1.0f, true);
+		m_attacTime = 0;
+	}
+
 }
 
 void Player::damage(float deltaTime)

@@ -43,3 +43,10 @@ const bool Input::chainTrigger() const
 {
 	return gsGetKeyTrigger(GKEY_LSHIFT) == GS_TRUE;
 }
+
+const bool Input::attckTrigger() const
+{
+	return gsGetKeyTrigger(GKEY_K) == GS_TRUE;
+}
+
+

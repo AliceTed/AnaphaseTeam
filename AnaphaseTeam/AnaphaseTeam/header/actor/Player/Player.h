@@ -67,4 +67,7 @@ private:
 	static const float ROTATESPEED;
 	Action_Ptr m_action;
 	subActionManager m_SubAction;
+
+	bool m_attaclDicision;
+	float m_attacTime;
 };
