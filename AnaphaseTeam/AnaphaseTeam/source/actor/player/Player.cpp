@@ -2,6 +2,7 @@
 
 #include "../../../header/actionstate/MoveState.h"
 #include "../../../header/actionstate/StandState.h"
+#include "../../../header/actionstate/AttackState.h"
 #include "../../../header/renderer/Renderer.h"
 #include "../../../header/device/Input.h"
 #include "../../../header/camera/Camera.h"
@@ -17,9 +18,9 @@ Player::Player(const Input* _input)
 	:Actor(Transform({ 0,0,5 }), MODEL_ID::PLAYER, Sphere(GSvector3(0, 0, 0), 0), Actor_Tag::PLAYER),
 	m_action(nullptr),
 	m_SubAction(),
-	m_ChainMove(),
-	m_attaclDicision(false),
-	m_attacTime(0.0f)
+	m_ChainMove()
+	//m_attackDicision(false),
+	//m_attackTime(0.0f)
 {}
 Player::~Player()
 {}
@@ -31,30 +32,32 @@ void Player::initialize()
 
 	m_animator.addAnimation(ANIMATION_ID::STAND, 1.0f, true);
 	m_animator.addAnimation(ANIMATION_ID::RUN, 1.0f, true);
-	m_animator.addAnimation(ANIMATION_ID::ATTACK, 1.0f, true);
+	m_animator.addAnimation(ANIMATION_ID::ATTACK,1.4f);
 
 	m_animator.changeAnimation(ANIMATION_ID::STAND, true);
 
-	m_attaclDicision = false;
-	m_attacTime = 0.0f;
+	//m_attackDicision = false;
+	//m_attackTime = 0.0f;
 }
 void Player::update(float deltatime)
 {
-	if (!m_attaclDicision)
+	/*if (!m_attackDicision)
 	{
 		m_animator.changeAnimation(ANIMATION_ID::STAND, false);
-	}
+	}*/
+
 	/*move(deltatime);
 	jump(deltatime);
 	chain(deltatime);*/
 
-	control();
+	//control();
 
 	m_action->action(this, deltatime);
 	sphereChases(GSvector3(0, 1, 0));
 	m_animator.update(deltatime);
 
-	attack(deltatime);
+	//AttackStateになるとattackが呼ばれる
+	//attack(deltatime);
 }
 
 void Player::draw(const Renderer & _renderer, const Camera & _camera)
@@ -65,7 +68,7 @@ void Player::draw(const Renderer & _renderer, const Camera & _camera)
 	alphaBlend(_camera);
 	//m_animator.bind();
 	_renderer.getDraw3D().drawMesh(MODEL_ID::PLAYER, m_transform, m_animator, m_Color);
-	_renderer.getDraw2D().string("m_attacTime:" + std::to_string(m_attacTime), &GSvector2(20, 60), 20);
+	//_renderer.getDraw2D().string("m_attacTime:" + std::to_string(m_attackTime), &GSvector2(20, 60), 20);
 
 }
 
@@ -99,28 +102,41 @@ void Player::createCollision(CollisionMediator * _mediator)
 }
 void Player::stand(float deltaTime)
 {
+	m_animator.changeAnimation(ANIMATION_ID::STAND, false);
 	m_SubAction.action(this, deltaTime);
+	control();
 }
 
 void Player::attack(float deltaTime)
 {
-	
+	/*AttackStateの時しか呼ばれないので
+	//m_attackDicisionは不要
+	//[1][2]のif文もいらない
+
+	//[1]
 	if (m_Input->attckTrigger())
 	{
-		m_attaclDicision = true;
-		m_animator.changeAnimation(ANIMATION_ID::ATTACK, true);
+		m_attackDicision = true;
+		m_animator.changeAnimation(ANIMATION_ID::ATTACK);
 	}
-
-	if (m_attaclDicision)
+	//[2]
+	if (m_attackDicision)
 	{
-		m_attacTime++;
+		m_attackTime++;
 	}
-
-	if (m_attacTime >= 37.0f)
+	//Animatorのm_animator.isEndAnimationを使えばm_attackTimeを使わずに済む
+	//アニメーションが終わったらSTANDに戻す
+	if (m_attackTime >= 37.0f)
 	{
-		m_attaclDicision = false;
-		m_animator.addAnimation(ANIMATION_ID::ATTACK, 1.0f, true);
-		m_attacTime = 0;
+		m_attackDicision = false;
+		//	m_animator.addAnimation(ANIMATION_ID::ATTACK, 1.0f, true);
+		m_attackTime = 0;
+	}*/
+	//てことで
+	m_animator.changeAnimation(ANIMATION_ID::ATTACK);
+	if (m_animator.isEndAnimation(ANIMATION_ID::ATTACK))
+	{
+		actionChange(std::make_shared<StandState>());
 	}
 
 }
@@ -131,13 +147,15 @@ void Player::damage(float deltaTime)
 
 void Player::move(float deltaTime)
 {
-	m_transform.rotationY(m_Input->rotate()*deltaTime * ROTATESPEED);
+	m_animator.changeAnimation(ANIMATION_ID::RUN, true);
 
+	m_transform.rotationY(m_Input->rotate()*deltaTime * ROTATESPEED);
 	GSvector3 forward(m_transform.front()*m_Input->vertical());
 	GSvector3 side(m_transform.left()*m_Input->horizontal());
 	m_transform.translate((forward - side)*MOVESPEED*deltaTime);
-	if ((forward - side).length() > 0)m_animator.changeAnimation(ANIMATION_ID::RUN, true);
 	m_SubAction.action(this, deltaTime);
+	control();
+	if (m_Input->move() == false) actionChange(std::make_shared<StandState>());
 }
 
 void Player::chain(float deltaTime)
@@ -171,7 +189,6 @@ void Player::subActionStart()
 {
 	if (m_Input->chainTrigger())
 	{
-		//	_chainMove->start();
 		m_SubAction.chainMoveStart();
 	}
 	if (m_Input->jumpTrigger())
@@ -192,4 +209,11 @@ void Player::control()
 	{
 		actionChange(std::make_shared<MoveState>());
 	}
+	/*ボタン押したらAttackStateに切り替わる*/
+	if (m_Input->attckTrigger())
+	{
+		//m_attackDicision = true;
+		actionChange(std::make_shared<AttackState>());
+	}
+
 }
