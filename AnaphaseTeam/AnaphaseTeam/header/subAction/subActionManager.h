@@ -6,7 +6,7 @@ class subActionManager
 public:
 	subActionManager();
 	~subActionManager();
-
+	void jumpInitialize();
 	void action(Player* _player, float deltaTime);
 	void actionStart(Player* _player);
 
@@ -15,6 +15,7 @@ public:
 
 	void chainMoveStart();
 
+	void restrictionFall();
 private:
 	TestChainMove m_chainMove;
 	jumpControl m_jump;

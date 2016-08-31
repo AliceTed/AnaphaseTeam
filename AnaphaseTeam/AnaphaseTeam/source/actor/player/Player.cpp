@@ -30,18 +30,19 @@ void Player::initialize()
 
 	m_animator.addAnimation(ANIMATION_ID::STAND, 1.0f, true);
 	m_animator.addAnimation(ANIMATION_ID::RUN, 1.0f, true);
-	m_animator.addAnimation(ANIMATION_ID::JUMP, 1.0f, true);
+	m_animator.addAnimation(ANIMATION_ID::JUMPUP, 1.0f, true);
+	m_animator.addAnimation(ANIMATION_ID::LANDING);
 
 	m_animator.changeAnimation(ANIMATION_ID::STAND, false);
 }
 void Player::update(float deltatime)
 {
-	m_animator.changeAnimation(ANIMATION_ID::STAND, false);
+	
 	/*move(deltatime);
 	jump(deltatime);
 	chain(deltatime);*/
 
-	control();
+	//control();
 
 	m_action->action(this, deltatime);
 	sphereChases(GSvector3(0, 1, 0));
@@ -56,7 +57,6 @@ void Player::draw(const Renderer & _renderer, const Camera & _camera)
 	alphaBlend(_camera);
 	//m_animator.bind();
 	_renderer.getDraw3D().drawMesh(MODEL_ID::PLAYER, m_transform, m_animator, m_Color);
-
 }
 
 void Player::collisionGround(const Map & _map)
@@ -74,9 +74,9 @@ void Player::collisionGround(const Map & _map)
 	{
 		return;
 	}
-	//
+	
 	m_SubAction.groundHit();
-
+	//m_animator.changeAnimation(ANIMATION_ID::STAND, false);
 	//map‚É–„‚ßž‚Ü‚ê‚Ä‚¢‚½‚çyÀ•W‚ðŒð“_‚ÉˆÚ“®
 	m_transform.setPositionY(intersect.y);
 }
@@ -89,7 +89,14 @@ void Player::createCollision(CollisionMediator * _mediator)
 }
 void Player::stand(float deltaTime)
 {
-	m_SubAction.action(this, deltaTime);
+	//m_SubAction.action(this, deltaTime);
+	//control();
+	subActionStart();
+	m_animator.changeAnimation(ANIMATION_ID::STAND, false);
+	if (m_Input->move())
+	{
+		actionChange(std::make_shared<MoveState>());
+	}
 }
 
 void Player::attack(float deltaTime)
@@ -102,18 +109,23 @@ void Player::damage(float deltaTime)
 
 void Player::move(float deltaTime)
 {
-	m_transform.rotationY(m_Input->rotate()*deltaTime * ROTATESPEED);
-
-	GSvector3 forward(m_transform.front()*m_Input->vertical());
-	GSvector3 side(m_transform.left()*m_Input->horizontal());
-	m_transform.translate((forward - side)*MOVESPEED*deltaTime);
-	if ((forward - side).length() > 0)m_animator.changeAnimation(ANIMATION_ID::RUN, true);
-	//m_SubAction.action(this, deltaTime);
+	movement(deltaTime);
+	subActionStart();
+	m_animator.changeAnimation(ANIMATION_ID::RUN, true);
+	if (!m_Input->move())
+	{
+		actionChange(std::make_shared<StandState>());
+	}
 }
 
 void Player::jump(float deltaTime)
 {
+	/*m_animator.changeAnimation(ANIMATION_ID::JUMP, false);*/
 	m_SubAction.action(this, deltaTime);
+	if (m_Input->jumpTrigger())
+	{
+		m_SubAction.jumpStart();
+	}
 }
 
 void Player::chain(float deltaTime)
@@ -122,7 +134,6 @@ void Player::chain(float deltaTime)
 }
 void Player::jumping(float _velocity)
 {
-	m_animator.changeAnimation(ANIMATION_ID::JUMP, false);
 	m_transform.translateY(_velocity);
 }
 
@@ -131,31 +142,31 @@ void Player::chainMove(const GSvector3 & _target, float _time)
 	m_transform.setPosition(m_transform.getPosition().lerp(_target, _time));
 }
 
-//void Player::subActionStart(jumpControl * _jump, TestChainMove * _chainMove)
-//{
-//	if (m_Input->chainTrigger())
-//	{
-//		//	_chainMove->start();
-//		m_SubAction.chainMoveStart();
-//	}
-//	if (m_Input->jumpTrigger())
-//	{
-//		m_SubAction.jumpStart();
-//	}
-//}
-
 void Player::subActionStart()
 {
 	if (m_Input->chainTrigger())
 	{
 		//	_chainMove->start();
-		m_SubAction.chainMoveStart();
+		//m_SubAction.chainMoveStart();
+		m_SubAction.restrictionFall();
 	}
 	if (m_Input->jumpTrigger())
 	{
-		m_SubAction.jumpStart();
+		m_SubAction.jumpInitialize();
 		actionChange(std::make_shared<JumpState>());
+		m_SubAction.jumpStart();
 	}
+	
+}
+
+void Player::jumpUp()
+{
+	m_animator.changeAnimation(ANIMATION_ID::JUMPUP, false);
+}
+
+void Player::jumpRigor()
+{
+	m_animator.changeAnimation(ANIMATION_ID::LANDING, false);
 }
 
 void Player::actionChange(Action_Ptr _action)
@@ -163,11 +174,20 @@ void Player::actionChange(Action_Ptr _action)
 	m_action = _action;
 }
 
-void Player::control()
+//void Player::control()
+//{
+//	subActionStart();
+//	if (m_Input->move())
+//	{
+//		actionChange(std::make_shared<MoveState>());
+//	}
+//}
+
+void Player::movement(float deltaTime)
 {
-	subActionStart();
-	if (m_Input->move())
-	{
-		actionChange(std::make_shared<MoveState>());
-	}
+	m_transform.rotationY(m_Input->rotate()*deltaTime * ROTATESPEED);
+
+	GSvector3 forward(m_transform.front()*m_Input->vertical());
+	GSvector3 side(m_transform.left()*m_Input->horizontal());
+	m_transform.translate((forward - side)*MOVESPEED*deltaTime);
 }

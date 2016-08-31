@@ -28,13 +28,16 @@ class Player :public Actor, public ICharacter
 public:
 	Player(const Input* _input);
 	~Player();
-	void subActionStart(TestJump* _jump, TestChainMove* _chainMove);
 	/**
 	* @fn
 	* @brief アクションステートの切り替え関数
 	* @param (_action) 切り替えるアクションのShared_ptr
 	*/
 	void actionChange(Action_Ptr _action);
+	void movement(float deltaTime);
+	void subActionStart();
+	void jumpUp();
+	void jumpRigor();
 	
 public://Actor継承　見にくいから分けろ
 	void initialize();
@@ -52,9 +55,8 @@ public://ICharacter実装
 	void chain(float deltaTime);
 	void jumping(float _velocity);
 	void chainMove(const GSvector3 & _target, float _time);
-	void subActionStart(jumpControl* _jump, TestChainMove* _chainMove);
 
-	void subActionStart();
+	
 	
 	
 private:

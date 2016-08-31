@@ -6,8 +6,12 @@
 */
 #pragma once
 class jumpControl;
-__interface IAirState
+class Player;
+class IAirState
 {
 public:
-	void airAction(jumpControl* _jumpAction) = 0;
+	virtual ~IAirState() {}
+	virtual void start(jumpControl* _jumpAction) = 0;
+	virtual void airAction(jumpControl* _jumpAction, Player* _player, float deltaTime) = 0;
+	virtual void next(jumpControl* _control) = 0;
 };

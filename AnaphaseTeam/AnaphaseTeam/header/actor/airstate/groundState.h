@@ -12,5 +12,7 @@ class groundState:public IAirState
 public:
 	groundState();
 	~groundState();
-	void airAction(jumpControl* _jumpAction);
+	void start(jumpControl* _jumpAction);
+	void airAction(jumpControl* _jumpAction, Player* _player, float deltaTime);
+	void next(jumpControl* _control);
 };
