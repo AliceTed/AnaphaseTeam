@@ -32,7 +32,7 @@ void Player::initialize()
 
 	m_animator.addAnimation(ANIMATION_ID::STAND, 1.0f, true);
 	m_animator.addAnimation(ANIMATION_ID::RUN, 1.0f, true);
-	m_animator.addAnimation(ANIMATION_ID::ATTACK,1.4f);
+	m_animator.addAnimation(ANIMATION_ID::ATTACK, 1.4f);
 
 	m_animator.changeAnimation(ANIMATION_ID::STAND, true);
 
@@ -41,23 +41,9 @@ void Player::initialize()
 }
 void Player::update(float deltatime)
 {
-	/*if (!m_attackDicision)
-	{
-		m_animator.changeAnimation(ANIMATION_ID::STAND, false);
-	}*/
-
-	/*move(deltatime);
-	jump(deltatime);
-	chain(deltatime);*/
-
-	//control();
-
 	m_action->action(this, deltatime);
 	sphereChases(GSvector3(0, 1, 0));
 	m_animator.update(deltatime);
-
-	//AttackStateになるとattackが呼ばれる
-	//attack(deltatime);
 }
 
 void Player::draw(const Renderer & _renderer, const Camera & _camera)
@@ -109,30 +95,6 @@ void Player::stand(float deltaTime)
 
 void Player::attack(float deltaTime)
 {
-	/*AttackStateの時しか呼ばれないので
-	//m_attackDicisionは不要
-	//[1][2]のif文もいらない
-
-	//[1]
-	if (m_Input->attckTrigger())
-	{
-		m_attackDicision = true;
-		m_animator.changeAnimation(ANIMATION_ID::ATTACK);
-	}
-	//[2]
-	if (m_attackDicision)
-	{
-		m_attackTime++;
-	}
-	//Animatorのm_animator.isEndAnimationを使えばm_attackTimeを使わずに済む
-	//アニメーションが終わったらSTANDに戻す
-	if (m_attackTime >= 37.0f)
-	{
-		m_attackDicision = false;
-		//	m_animator.addAnimation(ANIMATION_ID::ATTACK, 1.0f, true);
-		m_attackTime = 0;
-	}*/
-	//てことで
 	m_animator.changeAnimation(ANIMATION_ID::ATTACK);
 	if (m_animator.isEndAnimation(ANIMATION_ID::ATTACK))
 	{
