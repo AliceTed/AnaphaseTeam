@@ -9,11 +9,11 @@ RigorState::RigorState()
 RigorState::~RigorState()
 {
 }
-void RigorState::start(jumpControl * _jumpAction)
+void RigorState::start(JumpControl * _jumpAction)
 {
 	m_RigorTimer.initialize();
 }
-void RigorState::airAction(jumpControl * _jumpAction, Player * _player, float deltaTime)
+void RigorState::airAction(JumpControl * _jumpAction, Player * _player, float deltaTime)
 {
 	_player->jumpRigor();
 	m_RigorTimer.update(deltaTime);
@@ -22,6 +22,6 @@ void RigorState::airAction(jumpControl * _jumpAction, Player * _player, float de
 		_player->actionChange(std::make_shared<StandState>());
 	}
 }
-void RigorState::next(jumpControl * _control)
+void RigorState::next(JumpControl * _control)
 {
 }

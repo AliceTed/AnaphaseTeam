@@ -231,6 +231,9 @@
     <ClInclude Include="header\camera\Camera.h">
       <Filter>ヘッダー ファイル\camera</Filter>
     </ClInclude>
+    <ClInclude Include="header\actor\Actor.h">
+      <Filter>ヘッダー ファイル\actor</Filter>
+    </ClInclude>
     <ClInclude Include="header\actor\Player\Player.h">
       <Filter>ヘッダー ファイル\actor\Player</Filter>
     </ClInclude>
@@ -381,9 +384,6 @@
     <ClInclude Include="header\actor\airstate\IAirState.h">
       <Filter>ヘッダー ファイル\actor\airState</Filter>
     </ClInclude>
-    <ClInclude Include="header\actor\airstate\jumpControl.h">
-      <Filter>ヘッダー ファイル\actor\airState</Filter>
-    </ClInclude>
     <ClInclude Include="header\actor\airstate\RestrictionFall.h">
       <Filter>ヘッダー ファイル\actor\airState</Filter>
     </ClInclude>
@@ -396,11 +396,8 @@
     <ClInclude Include="header\actor\airstate\RigorState.h">
       <Filter>ヘッダー ファイル\actor\airState</Filter>
     </ClInclude>
-    <ClInclude Include="header\subAction\subActionManager.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="header\actor\Actor.h">
-      <Filter>ヘッダー ファイル\actor</Filter>
+    <ClInclude Include="header\actor\airstate\JumpControl.h">
+      <Filter>ヘッダー ファイル\actor\airState</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -491,9 +488,6 @@
     <ClCompile Include="source\actor\airState\secondStep.cpp">
       <Filter>ソース ファイル\actor\airState</Filter>
     </ClCompile>
-    <ClCompile Include="source\actor\airState\jumpControl.cpp">
-      <Filter>ソース ファイル\actor\airState</Filter>
-    </ClCompile>
     <ClCompile Include="source\actor\airState\groundState.cpp">
       <Filter>ソース ファイル\actor\airState</Filter>
     </ClCompile>
@@ -572,8 +566,8 @@
     <ClCompile Include="source\subAction\subActionManager.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="source\subAction\subActionManager.cpp">
-      <Filter>ソース ファイル</Filter>
+    <ClCompile Include="source\actor\airState\JumpControl.cpp">
+      <Filter>ソース ファイル\actor\airState</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

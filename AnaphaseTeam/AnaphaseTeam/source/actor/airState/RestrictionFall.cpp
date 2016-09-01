@@ -6,14 +6,14 @@ RestrictionFall::RestrictionFall()
 RestrictionFall::~RestrictionFall()
 {
 }
-void RestrictionFall::start(jumpControl * _jumpAction)
+void RestrictionFall::start(JumpControl * _jumpAction)
 {
 	_jumpAction->start(0);
 }
-void RestrictionFall::airAction(jumpControl * _jumpAction, Player* _player, float deltaTime)
+void RestrictionFall::airAction(JumpControl * _jumpAction, Player* _player, float deltaTime)
 {
 	_jumpAction->jumping(_player, deltaTime);
 }
-void RestrictionFall::next(jumpControl * _control)
+void RestrictionFall::next(JumpControl * _control)
 {
 }

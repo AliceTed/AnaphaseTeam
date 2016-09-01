@@ -5,13 +5,13 @@
 * @date 2016/08/29
 */
 #pragma once
-class jumpControl;
+class JumpControl;
 class Player;
 class IAirState
 {
 public:
 	virtual ~IAirState() {}
-	virtual void start(jumpControl* _jumpAction) = 0;
-	virtual void airAction(jumpControl* _jumpAction, Player* _player, float deltaTime) = 0;
-	virtual void next(jumpControl* _control) = 0;
+	virtual void start(JumpControl* _jumpAction) = 0;
+	virtual void airAction(JumpControl* _jumpAction, Player* _player, float deltaTime) = 0;
+	virtual void next(JumpControl* _control) = 0;
 };

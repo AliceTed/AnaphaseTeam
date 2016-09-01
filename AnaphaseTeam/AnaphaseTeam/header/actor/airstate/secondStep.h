@@ -14,9 +14,9 @@ class secondStep:public IAirState
 public:
 	secondStep();
 	~secondStep();
-	void start(jumpControl* _jumpAction);
-	void airAction(jumpControl* _jumpAction, Player* _player, float deltaTime);
-	void next(jumpControl* _control);
+	void start(JumpControl* _jumpAction);
+	void airAction(JumpControl* _jumpAction, Player* _player, float deltaTime);
+	void next(JumpControl* _control);
 private:
 	static const float SecondStepPow;
 };

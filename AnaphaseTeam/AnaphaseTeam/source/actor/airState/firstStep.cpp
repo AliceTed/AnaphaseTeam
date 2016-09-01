@@ -17,17 +17,17 @@ firstStep::~firstStep()
 {
 
 }
-void firstStep::start(jumpControl * _jumpAction)
+void firstStep::start(JumpControl * _jumpAction)
 {
 	_jumpAction->start(FirstStepPow);
 }
-void firstStep::airAction(jumpControl* _jumpAction, Player* _player, float deltaTime)
+void firstStep::airAction(JumpControl* _jumpAction, Player* _player, float deltaTime)
 {
 	_player->jumpUp();
 	_jumpAction->jumping(_player, deltaTime);
 	_player->movement(deltaTime);
 }
-void firstStep::next(jumpControl * _control)
+void firstStep::next(JumpControl * _control)
 {
 	_control->airActionChange(std::make_shared<secondStep>());
 }

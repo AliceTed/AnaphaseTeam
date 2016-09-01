@@ -12,46 +12,46 @@
 
 #include <string>
 
-const float jumpControl::MaxJumpPower = 2.0f;
+const float JumpControl::MaxJumpPower = 2.0f;
 
-jumpControl::jumpControl()
+JumpControl::JumpControl()
 	:m_Acceleration(0.1f),
 	m_airAction(std::make_shared<groundState>())
 {
 
 }
-jumpControl::~jumpControl()
+JumpControl::~JumpControl()
 {
 
 }
-void jumpControl::update(Player* _player, float deltaTime)
+void JumpControl::update(Player* _player, float deltaTime)
 {
 	m_airAction->airAction(this, _player, deltaTime);
 }
 //着地
-void jumpControl::groundHit()
+void JumpControl::groundHit()
 {
 	airActionChange(std::make_shared<RigorState>());
 }
 //ジャンプの移動量制限
-void jumpControl::jumping(Player * _player, float deltaTime)
+void JumpControl::jumping(Player * _player, float deltaTime)
 {
 	_player->jumping(m_JumpPower*deltaTime);
 	Math::Clamp clamp;
 	m_JumpPower = clamp(m_JumpPower - m_Acceleration, -MaxJumpPower, MaxJumpPower);
 }
 //ジャンプ力設定
-void jumpControl::start(const float _jumpStepPow)
+void JumpControl::start(const float _jumpStepPow)
 {
 	m_JumpPower = _jumpStepPow;
 }
-void jumpControl::airActionChange(AirAction_Ptr _airAction)
+void JumpControl::airActionChange(AirAction_Ptr _airAction)
 {
 	m_airAction = _airAction;
 	m_airAction->start(this);
 }
 //ジャンプに関しての次のエアアクションステートの切り替え
-void jumpControl::jump()
+void JumpControl::jump()
 {
 	m_airAction->next(this);
 }

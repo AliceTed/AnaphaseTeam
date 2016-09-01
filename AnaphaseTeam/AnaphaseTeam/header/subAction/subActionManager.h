@@ -14,5 +14,5 @@ public:
 	void restrictionFall();
 private:
 	TestChainMove m_chainMove;
-	jumpControl m_jump;
+	JumpControl m_jump;
 };

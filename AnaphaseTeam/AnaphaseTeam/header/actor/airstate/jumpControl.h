@@ -1,3 +1,4 @@
+#pragma once
 /**
 * @file jumpControl.h
 * @brief ƒWƒƒƒ“ƒv‚Ì§Œä
@@ -10,11 +11,11 @@
 #include <memory>
 class Player;
 typedef std::shared_ptr<IAirState> AirAction_Ptr;
-class jumpControl
+class JumpControl
 {
 public:
-	jumpControl();
-	~jumpControl();
+	JumpControl();
+	~JumpControl();
 	const bool isGround()const;
 	void update(Player* _player, float deltaTime);
 	void groundHit();

@@ -8,7 +8,6 @@
 #include "../Actor.h"
 #include "../../animation/Animation.h"
 #include "../../animation/Animator.h"
-#include "../../animation/AnimationTimer.h"
 #include "../../actionstate/IActionState.h"
 #include "../../subAction/TestChainMove.h"
 #include "../../convenient/Timer.h"
@@ -30,7 +29,6 @@ public:
 	~Player();
 	void chain(float deltaTime);
 	void chainMove(const GSvector3 & _target, float _time);
-	void subActionStart(jumpControl* _jump, TestChainMove* _chainMove);
 
 	/**
 	* @fn

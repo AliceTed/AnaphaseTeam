@@ -15,13 +15,13 @@ groundState::~groundState()
 {
 
 }
-void groundState::start(jumpControl * _jumpAction)
+void groundState::start(JumpControl * _jumpAction)
 {
 }
-void groundState::airAction(jumpControl* _jumpAction, Player* _player, float deltaTime)
+void groundState::airAction(JumpControl* _jumpAction, Player* _player, float deltaTime)
 {
 }
-void groundState::next(jumpControl * _control)
+void groundState::next(JumpControl * _control)
 {
 	_control->airActionChange(std::make_shared<firstStep>());
 }
