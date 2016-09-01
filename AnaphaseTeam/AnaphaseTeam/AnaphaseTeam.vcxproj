@@ -138,6 +138,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Gun.cpp" />
+    <ClCompile Include="Scythe.cpp" />
     <ClCompile Include="source\actor\Actor.cpp" />
     <ClCompile Include="source\actor\airState\firstStep.cpp" />
     <ClCompile Include="source\actor\airState\groundState.cpp" />
@@ -189,6 +191,7 @@
     <ClCompile Include="Util\BasicShapes.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Gun.h" />
     <ClInclude Include="header\actor\Actor.h" />
     <ClInclude Include="header\actor\airstate\firstStep.h" />
     <ClInclude Include="header\actor\airstate\groundState.h" />
@@ -265,6 +268,8 @@
     <ClInclude Include="header\shape\Shape.h" />
     <ClInclude Include="header\shape\Sphere.h" />
     <ClInclude Include="header\convenient\Transform.h" />
+    <ClInclude Include="IWeapon.h" />
+    <ClInclude Include="Scythe.h" />
     <ClInclude Include="Util\BasicShapes.h" />
     <ClInclude Include="Util\EffectGL.h" />
     <ClInclude Include="Util\RenderTarget.h" />
