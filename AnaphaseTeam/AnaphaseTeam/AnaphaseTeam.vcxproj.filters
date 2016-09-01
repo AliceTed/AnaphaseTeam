@@ -231,9 +231,6 @@
     <ClInclude Include="header\camera\Camera.h">
       <Filter>ヘッダー ファイル\camera</Filter>
     </ClInclude>
-    <ClInclude Include="header\actor\Actor.h">
-      <Filter>ヘッダー ファイル\actor</Filter>
-    </ClInclude>
     <ClInclude Include="header\actor\Player\Player.h">
       <Filter>ヘッダー ファイル\actor\Player</Filter>
     </ClInclude>
@@ -398,6 +395,12 @@
     </ClInclude>
     <ClInclude Include="header\actor\airstate\RigorState.h">
       <Filter>ヘッダー ファイル\actor\airState</Filter>
+    </ClInclude>
+    <ClInclude Include="header\subAction\subActionManager.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="header\actor\Actor.h">
+      <Filter>ヘッダー ファイル\actor</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -565,6 +568,9 @@
     </ClCompile>
     <ClCompile Include="source\actor\airState\RigorState.cpp">
       <Filter>ソース ファイル\actor\airState</Filter>
+    </ClCompile>
+    <ClCompile Include="source\subAction\subActionManager.cpp">
+      <Filter>ソース ファイル</Filter>
     </ClCompile>
     <ClCompile Include="source\subAction\subActionManager.cpp">
       <Filter>ソース ファイル</Filter>

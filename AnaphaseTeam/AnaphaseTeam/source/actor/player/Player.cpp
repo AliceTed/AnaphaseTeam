@@ -3,6 +3,7 @@
 #include "../../../header/actionstate/MoveState.h"
 #include "../../../header/actionstate/StandState.h"
 #include "../../../header/actionstate/JumpState.h"
+#include "../../../header/actionstate/AttackState.h"
 #include "../../../header/renderer/Renderer.h"
 #include "../../../header/device/Input.h"
 #include "../../../header/camera/Camera.h"
@@ -32,8 +33,9 @@ void Player::initialize()
 	m_animator.addAnimation(ANIMATION_ID::RUN, 1.0f, true);
 	m_animator.addAnimation(ANIMATION_ID::JUMPUP, 1.0f, true);
 	m_animator.addAnimation(ANIMATION_ID::LANDING);
+	m_animator.addAnimation(ANIMATION_ID::ATTACK, 1.4f);
 
-	m_animator.changeAnimation(ANIMATION_ID::STAND, false);
+	m_animator.changeAnimation(ANIMATION_ID::STAND, true);
 }
 void Player::update(float deltatime)
 {
@@ -85,10 +87,18 @@ void Player::stand(float deltaTime)
 	{
 		actionChange(std::make_shared<MoveState>());
 	}
+  	control();
 }
 void Player::attack(float deltaTime)
 {
+	m_animator.changeAnimation(ANIMATION_ID::ATTACK);
+	if (m_animator.isEndAnimation(ANIMATION_ID::ATTACK))
+	{
+		actionChange(std::make_shared<StandState>());
 }
+
+}
+
 void Player::damage(float deltaTime)
 {
 }
@@ -101,6 +111,7 @@ void Player::move(float deltaTime)
 	{
 		actionChange(std::make_shared<StandState>());
 	}
+	control();
 }
 void Player::jump(float deltaTime)
 {
@@ -152,7 +163,22 @@ void Player::actionChange(Action_Ptr _action)
 {
 	m_action = _action;
 }
-//ˆÚ“®
+
+void Player::control()
+{
+	/*subActionStart();
+	if (m_Input->move())
+	{
+		actionChange(std::make_shared<MoveState>());
+	}*/
+	/*ƒ{ƒ^ƒ“‰Ÿ‚µ‚½‚çAttackState‚ÉØ‚è‘Ö‚í‚é*/
+	if (m_Input->attckTrigger())
+	{
+		//m_attackDicision = true;
+		actionChange(std::make_shared<AttackState>());
+	}
+}
+
 void Player::movement(float deltaTime)
 {
 	m_transform.rotationY(m_Input->rotate()*deltaTime * ROTATESPEED);
