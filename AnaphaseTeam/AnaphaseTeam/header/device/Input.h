@@ -15,6 +15,7 @@ public:
 
 	const bool jumpTrigger()const;
 	const bool chainTrigger()const;
+	const bool attckTrigger()const;
 
 	//input?
 	const bool move()const;

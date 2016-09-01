@@ -3,6 +3,7 @@
 #include "../../../header/actionstate/MoveState.h"
 #include "../../../header/actionstate/StandState.h"
 #include "../../../header/actionstate/JumpState.h"
+#include "../../../header/actionstate/AttackState.h"
 #include "../../../header/renderer/Renderer.h"
 #include "../../../header/device/Input.h"
 #include "../../../header/camera/Camera.h"
@@ -19,6 +20,8 @@ Player::Player(const Input* _input)
 	m_action(nullptr),
 	m_SubAction(),
 	m_ChainMove()
+	//m_attackDicision(false),
+	//m_attackTime(0.0f)
 {}
 Player::~Player()
 {}
@@ -32,18 +35,15 @@ void Player::initialize()
 	m_animator.addAnimation(ANIMATION_ID::RUN, 1.0f, true);
 	m_animator.addAnimation(ANIMATION_ID::JUMPUP, 1.0f, true);
 	m_animator.addAnimation(ANIMATION_ID::LANDING);
+	m_animator.addAnimation(ANIMATION_ID::ATTACK, 1.4f);
 
-	m_animator.changeAnimation(ANIMATION_ID::STAND, false);
+	m_animator.changeAnimation(ANIMATION_ID::STAND, true);
+
+	//m_attackDicision = false;
+	//m_attackTime = 0.0f;
 }
 void Player::update(float deltatime)
 {
-	
-	/*move(deltatime);
-	jump(deltatime);
-	chain(deltatime);*/
-
-	//control();
-
 	m_action->action(this, deltatime);
 	sphereChases(GSvector3(0, 1, 0));
 	m_animator.update(deltatime);
@@ -74,7 +74,7 @@ void Player::collisionGround(const Map & _map)
 	{
 		return;
 	}
-	
+
 	m_SubAction.groundHit();
 	//m_animator.changeAnimation(ANIMATION_ID::STAND, false);
 	//mapに埋め込まれていたらy座標を交点に移動
@@ -89,18 +89,23 @@ void Player::createCollision(CollisionMediator * _mediator)
 }
 void Player::stand(float deltaTime)
 {
-	//m_SubAction.action(this, deltaTime);
-	//control();
 	subActionStart();
 	m_animator.changeAnimation(ANIMATION_ID::STAND, false);
 	if (m_Input->move())
 	{
 		actionChange(std::make_shared<MoveState>());
+		control();
 	}
 }
 
 void Player::attack(float deltaTime)
 {
+	m_animator.changeAnimation(ANIMATION_ID::ATTACK);
+	if (m_animator.isEndAnimation(ANIMATION_ID::ATTACK))
+	{
+		actionChange(std::make_shared<StandState>());
+	}
+
 }
 
 void Player::damage(float deltaTime)
@@ -156,7 +161,7 @@ void Player::subActionStart()
 		actionChange(std::make_shared<JumpState>());
 		m_SubAction.jumpStart();
 	}
-	
+
 }
 
 void Player::jumpUp()
@@ -174,14 +179,20 @@ void Player::actionChange(Action_Ptr _action)
 	m_action = _action;
 }
 
-//void Player::control()
-//{
-//	subActionStart();
-//	if (m_Input->move())
-//	{
-//		actionChange(std::make_shared<MoveState>());
-//	}
-//}
+void Player::control()
+{
+	/*subActionStart();
+	if (m_Input->move())
+	{
+		actionChange(std::make_shared<MoveState>());
+	}*/
+	/*ボタン押したらAttackStateに切り替わる*/
+	if (m_Input->attckTrigger())
+	{
+		//m_attackDicision = true;
+		actionChange(std::make_shared<AttackState>());
+	}
+}
 
 void Player::movement(float deltaTime)
 {
@@ -190,4 +201,8 @@ void Player::movement(float deltaTime)
 	GSvector3 forward(m_transform.front()*m_Input->vertical());
 	GSvector3 side(m_transform.left()*m_Input->horizontal());
 	m_transform.translate((forward - side)*MOVESPEED*deltaTime);
+	actionChange(std::make_shared<MoveState>());
+}
+
+
 }
