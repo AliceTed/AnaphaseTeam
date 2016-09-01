@@ -20,8 +20,6 @@ Player::Player(const Input* _input)
 	m_action(nullptr),
 	m_SubAction(),
 	m_ChainMove()
-	//m_attackDicision(false),
-	//m_attackTime(0.0f)
 {}
 Player::~Player()
 {}
@@ -38,9 +36,6 @@ void Player::initialize()
 	m_animator.addAnimation(ANIMATION_ID::ATTACK, 1.4f);
 
 	m_animator.changeAnimation(ANIMATION_ID::STAND, true);
-
-	//m_attackDicision = false;
-	//m_attackTime = 0.0f;
 }
 void Player::update(float deltatime)
 {
@@ -94,8 +89,8 @@ void Player::stand(float deltaTime)
 	if (m_Input->move())
 	{
 		actionChange(std::make_shared<MoveState>());
-		control();
 	}
+  	control();
 }
 
 void Player::attack(float deltaTime)
@@ -121,6 +116,7 @@ void Player::move(float deltaTime)
 	{
 		actionChange(std::make_shared<StandState>());
 	}
+	control();
 }
 
 void Player::jump(float deltaTime)
@@ -201,8 +197,4 @@ void Player::movement(float deltaTime)
 	GSvector3 forward(m_transform.front()*m_Input->vertical());
 	GSvector3 side(m_transform.left()*m_Input->horizontal());
 	m_transform.translate((forward - side)*MOVESPEED*deltaTime);
-	actionChange(std::make_shared<MoveState>());
-}
-
-
 }
