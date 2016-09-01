@@ -151,6 +151,7 @@
     <ClCompile Include="source\actionstate\MoveState.cpp" />
     <ClCompile Include="source\actionstate\StandState.cpp" />
     <ClCompile Include="source\actor\TestActor.cpp" />
+    <ClCompile Include="source\animation\AnimatorOne.cpp" />
     <ClCompile Include="source\attack\AttackStatus.cpp" />
     <ClCompile Include="source\attack\ContinuationCombo.cpp" />
     <ClCompile Include="source\convenient\Point.cpp" />
@@ -215,6 +216,7 @@
     <ClInclude Include="header\actor\state\MoveState.h" />
     <ClInclude Include="header\actor\state\StandState.h" />
     <ClInclude Include="header\actor\TestActor.h" />
+    <ClInclude Include="header\animation\AnimatorOne.h" />
     <ClInclude Include="header\attack\AttackStatus.h" />
     <ClInclude Include="header\attack\ContinuationCombo.h" />
     <ClInclude Include="header\convenient\Point.h" />

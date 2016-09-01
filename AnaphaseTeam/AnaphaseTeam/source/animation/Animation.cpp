@@ -56,3 +56,8 @@ void Animation::looping()
 	}
 	m_timer.initialize();
 }
+
+unsigned int Animation::getAnimationNo()
+{
+	return m_animNo;
+}
