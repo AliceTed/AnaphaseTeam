@@ -8,13 +8,9 @@ public:
 	~subActionManager();
 	void jumpInitialize();
 	void action(Player* _player, float deltaTime);
-	void actionStart(Player* _player);
-
 	void groundHit();
 	void jumpStart();
-
 	void chainMoveStart();
-
 	void restrictionFall();
 private:
 	TestChainMove m_chainMove;

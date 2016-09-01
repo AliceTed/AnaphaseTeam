@@ -138,7 +138,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="header\actor\airstate\RigorStateh.cpp" />
     <ClCompile Include="source\actor\Actor.cpp" />
     <ClCompile Include="source\actor\airState\firstStep.cpp" />
     <ClCompile Include="source\actor\airState\groundState.cpp" />
@@ -200,7 +199,7 @@
     <ClInclude Include="header\actor\airstate\IAirState.h" />
     <ClInclude Include="header\actor\airstate\jumpControl.h" />
     <ClInclude Include="header\actor\airstate\RestrictionFall.h" />
-    <ClInclude Include="header\actor\airstate\RigorStateh.h" />
+    <ClInclude Include="header\actor\airstate\RigorState.h" />
     <ClInclude Include="header\actor\airstate\secondStep.h" />
     <ClInclude Include="header\actor\Actor_Tag.h" />
     <ClInclude Include="header\actor\AttackActor.h" />

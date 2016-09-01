@@ -7,10 +7,8 @@
 #include "../../../header/actor/airstate/jumpControl.h"
 #include "../../../header/actor/Player/Player.h"
 #include "../../../header/math/Calculate.h"
-//#include "../../../header/actor/airstate/firstStep.h"
-//#include "../../../header/actor/airstate/secondStep.h"
 #include "../../../header/actor/airstate/groundState.h"
-#include "../../../header/actor/airstate/RigorStateh.h"
+#include "../../../header/actor/airstate/RigorState.h"
 
 #include <string>
 
@@ -22,53 +20,37 @@ jumpControl::jumpControl()
 {
 
 }
-
 jumpControl::~jumpControl()
 {
 
 }
-
-//const bool jumpControl::isGround() const
-//{
-//	return m_State == JUMPSTATE::Non;
-//}
-
 void jumpControl::update(Player* _player, float deltaTime)
 {
 	m_airAction->airAction(this, _player, deltaTime);
 }
-
+//着地
 void jumpControl::groundHit()
 {
-	//m_State = JUMPSTATE::Non;
 	airActionChange(std::make_shared<RigorState>());
 }
-
+//ジャンプの移動量制限
 void jumpControl::jumping(Player * _player, float deltaTime)
 {
-	//if (m_State == JUMPSTATE::Non)return;
-
 	_player->jumping(m_JumpPower*deltaTime);
 	Math::Clamp clamp;
 	m_JumpPower = clamp(m_JumpPower - m_Acceleration, -MaxJumpPower, MaxJumpPower);
 }
-
+//ジャンプ力設定
 void jumpControl::start(const float _jumpStepPow)
 {
-	//if (m_State == JUMPSTATE::SecondStep)return;
-
 	m_JumpPower = _jumpStepPow;
-
-	//m_State = isGround() ? JUMPSTATE::FristStep : JUMPSTATE::SecondStep;	
 }
-
 void jumpControl::airActionChange(AirAction_Ptr _airAction)
 {
 	m_airAction = _airAction;
 	m_airAction->start(this);
-	//m_airAction->airAction(this);
 }
-
+//ジャンプに関しての次のエアアクションステートの切り替え
 void jumpControl::jump()
 {
 	m_airAction->next(this);

@@ -56,11 +56,6 @@ public://ICharacterŽÀ‘•
 	void jumping(float _velocity);
 	void chainMove(const GSvector3 & _target, float _time);
 
-	
-	
-	
-private:
-	void control();
 private:
 	const Input* m_Input;
 

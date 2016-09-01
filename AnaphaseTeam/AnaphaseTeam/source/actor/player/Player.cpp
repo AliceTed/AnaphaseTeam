@@ -37,18 +37,10 @@ void Player::initialize()
 }
 void Player::update(float deltatime)
 {
-	
-	/*move(deltatime);
-	jump(deltatime);
-	chain(deltatime);*/
-
-	//control();
-
 	m_action->action(this, deltatime);
 	sphereChases(GSvector3(0, 1, 0));
 	m_animator.update(deltatime);
 }
-
 void Player::draw(const Renderer & _renderer, const Camera & _camera)
 {
 	//取りあえず無理やり追従させる
@@ -58,7 +50,6 @@ void Player::draw(const Renderer & _renderer, const Camera & _camera)
 	//m_animator.bind();
 	_renderer.getDraw3D().drawMesh(MODEL_ID::PLAYER, m_transform, m_animator, m_Color);
 }
-
 void Player::collisionGround(const Map & _map)
 {
 	GSvector3 intersect;
@@ -76,7 +67,6 @@ void Player::collisionGround(const Map & _map)
 	}
 	
 	m_SubAction.groundHit();
-	//m_animator.changeAnimation(ANIMATION_ID::STAND, false);
 	//mapに埋め込まれていたらy座標を交点に移動
 	m_transform.setPositionY(intersect.y);
 }
@@ -89,8 +79,6 @@ void Player::createCollision(CollisionMediator * _mediator)
 }
 void Player::stand(float deltaTime)
 {
-	//m_SubAction.action(this, deltaTime);
-	//control();
 	subActionStart();
 	m_animator.changeAnimation(ANIMATION_ID::STAND, false);
 	if (m_Input->move())
@@ -98,15 +86,12 @@ void Player::stand(float deltaTime)
 		actionChange(std::make_shared<MoveState>());
 	}
 }
-
 void Player::attack(float deltaTime)
 {
 }
-
 void Player::damage(float deltaTime)
 {
 }
-
 void Player::move(float deltaTime)
 {
 	movement(deltaTime);
@@ -117,17 +102,14 @@ void Player::move(float deltaTime)
 		actionChange(std::make_shared<StandState>());
 	}
 }
-
 void Player::jump(float deltaTime)
 {
-	/*m_animator.changeAnimation(ANIMATION_ID::JUMP, false);*/
 	m_SubAction.action(this, deltaTime);
 	if (m_Input->jumpTrigger())
 	{
 		m_SubAction.jumpStart();
 	}
 }
-
 void Player::chain(float deltaTime)
 {
 	m_ChainMove.movement(deltaTime, this);
@@ -136,12 +118,10 @@ void Player::jumping(float _velocity)
 {
 	m_transform.translateY(_velocity);
 }
-
 void Player::chainMove(const GSvector3 & _target, float _time)
 {
 	m_transform.setPosition(m_transform.getPosition().lerp(_target, _time));
 }
-
 void Player::subActionStart()
 {
 	if (m_Input->chainTrigger())
@@ -158,31 +138,21 @@ void Player::subActionStart()
 	}
 	
 }
-
+//ジャンプ中のアニメーション
 void Player::jumpUp()
 {
 	m_animator.changeAnimation(ANIMATION_ID::JUMPUP, false);
 }
-
+//着地のアニメーション
 void Player::jumpRigor()
 {
 	m_animator.changeAnimation(ANIMATION_ID::LANDING, false);
 }
-
 void Player::actionChange(Action_Ptr _action)
 {
 	m_action = _action;
 }
-
-//void Player::control()
-//{
-//	subActionStart();
-//	if (m_Input->move())
-//	{
-//		actionChange(std::make_shared<MoveState>());
-//	}
-//}
-
+//移動
 void Player::movement(float deltaTime)
 {
 	m_transform.rotationY(m_Input->rotate()*deltaTime * ROTATESPEED);
