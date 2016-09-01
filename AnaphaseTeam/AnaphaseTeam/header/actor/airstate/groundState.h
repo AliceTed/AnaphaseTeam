@@ -7,11 +7,11 @@
 #pragma once
 #include "IAirState.h"
 #include "jumpControl.h"
-class groundState:public IAirState
+class GroundState:public IAirState
 {
 public:
-	groundState();
-	~groundState();
+	GroundState();
+	~GroundState();
 	void start(JumpControl* _jumpAction);
 	void airAction(JumpControl* _jumpAction, Player* _player, float deltaTime);
 	void next(JumpControl* _control);

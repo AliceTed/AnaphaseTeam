@@ -7,21 +7,21 @@
 #include "../../../header/actor/airstate/groundState.h"
 #include "../../../header/actor/airstate/firstStep.h"
 
-groundState::groundState()
+GroundState::GroundState()
 {
 
 }
-groundState::~groundState()
+GroundState::~GroundState()
 {
 
 }
-void groundState::start(JumpControl * _jumpAction)
+void GroundState::start(JumpControl * _jumpAction)
 {
 }
-void groundState::airAction(JumpControl* _jumpAction, Player* _player, float deltaTime)
+void GroundState::airAction(JumpControl* _jumpAction, Player* _player, float deltaTime)
 {
 }
-void groundState::next(JumpControl * _control)
+void GroundState::next(JumpControl * _control)
 {
-	_control->airActionChange(std::make_shared<firstStep>());
+	_control->airActionChange(std::make_shared<FirstStep>());
 }

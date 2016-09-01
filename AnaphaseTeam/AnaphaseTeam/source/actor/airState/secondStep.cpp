@@ -6,26 +6,26 @@
 */
 #include "../../../header/actor/airstate/secondStep.h"
 #include "../../../header/actor/Player/Player.h"
-const float secondStep::SecondStepPow = 1.0f;
-secondStep::secondStep()
+const float SecondStep::SecondStepPow = 1.0f;
+SecondStep::SecondStep()
 {
 
 }
-secondStep::~secondStep()
+SecondStep::~SecondStep()
 {
 
 }
-void secondStep::start(JumpControl * _jumpAction)
+void SecondStep::start(JumpControl * _jumpAction)
 {
 	_jumpAction->start(SecondStepPow);
 }
-void secondStep::airAction(JumpControl* _jumpAction, Player* _player, float deltaTime)
+void SecondStep::airAction(JumpControl* _jumpAction, Player* _player, float deltaTime)
 {
 	_player->jumpUp();
 	_jumpAction->jumping(_player, deltaTime);
 	_player->movement(deltaTime);
 }
-void secondStep::next(JumpControl * _control)
+void SecondStep::next(JumpControl * _control)
 {
 
 }

@@ -16,7 +16,7 @@ const float JumpControl::MaxJumpPower = 2.0f;
 
 JumpControl::JumpControl()
 	:m_Acceleration(0.1f),
-	m_airAction(std::make_shared<groundState>())
+	m_airAction(std::make_shared<GroundState>())
 {
 
 }

@@ -11,7 +11,7 @@ subActionManager::~subActionManager()
 }
 void subActionManager::jumpInitialize()
 {
-	m_jump.airActionChange(std::make_shared<groundState>());
+	m_jump.airActionChange(std::make_shared<GroundState>());
 }
 void subActionManager::action(Player * _player, float deltaTime)
 {

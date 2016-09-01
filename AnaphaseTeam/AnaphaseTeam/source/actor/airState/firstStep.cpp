@@ -8,26 +8,26 @@
 #include "../../../header/actor/Player/Player.h"
 #include "../../../header/actor/airstate/secondStep.h"
 
-const float firstStep::FirstStepPow = 1.2f;
-firstStep::firstStep()
+const float FirstStep::FirstStepPow = 1.2f;
+FirstStep::FirstStep()
 {
 
 }
-firstStep::~firstStep()
+FirstStep::~FirstStep()
 {
 
 }
-void firstStep::start(JumpControl * _jumpAction)
+void FirstStep::start(JumpControl * _jumpAction)
 {
 	_jumpAction->start(FirstStepPow);
 }
-void firstStep::airAction(JumpControl* _jumpAction, Player* _player, float deltaTime)
+void FirstStep::airAction(JumpControl* _jumpAction, Player* _player, float deltaTime)
 {
 	_player->jumpUp();
 	_jumpAction->jumping(_player, deltaTime);
 	_player->movement(deltaTime);
 }
-void firstStep::next(JumpControl * _control)
+void FirstStep::next(JumpControl * _control)
 {
-	_control->airActionChange(std::make_shared<secondStep>());
+	_control->airActionChange(std::make_shared<SecondStep>());
 }

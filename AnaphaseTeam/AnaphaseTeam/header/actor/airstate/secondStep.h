@@ -9,11 +9,11 @@
 #include "IAirState.h"
 #include "jumpControl.h"
 
-class secondStep:public IAirState
+class SecondStep:public IAirState
 {
 public:
-	secondStep();
-	~secondStep();
+	SecondStep();
+	~SecondStep();
 	void start(JumpControl* _jumpAction);
 	void airAction(JumpControl* _jumpAction, Player* _player, float deltaTime);
 	void next(JumpControl* _control);
