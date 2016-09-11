@@ -4,9 +4,9 @@
 * @author a’J’m÷
 * @date 2016/08/29
 */
-#include "../../../header/actor/airstate/firstStep.h"
-#include "../../../header/actor/Player/Player.h"
-#include "../../../header/actor/airstate/secondStep.h"
+#include "../../header/airstate/firstStep.h"
+#include "../../header/actor/Player/Player.h"
+#include "../../header/airstate/secondStep.h"
 
 const float FirstStep::FirstStepPow = 1.2f;
 FirstStep::FirstStep()

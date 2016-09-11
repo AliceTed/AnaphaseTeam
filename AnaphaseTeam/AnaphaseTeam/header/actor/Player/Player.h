@@ -16,9 +16,9 @@
 #include "../Actor.h"
 #include "../ICharacter.h"
 
-#include "../../subAction/TestJump.h"
-#include "../../subAction/subActionManager.h"
-#include "../airstate/jumpControl.h"
+//#include "../../subAction/SubActionManager.h"
+#include "../../../header/subAction/SubActionManager.h"
+#include "../../airstate/JumpControl.h"
 
 class Input;
 typedef std::shared_ptr<IActionState> Action_Ptr;
@@ -59,7 +59,6 @@ private:
 	void control();
 private:
 	const Input* m_Input;
-
 	TestChainMove m_ChainMove;
 	Action_Ptr m_action;
 	subActionManager m_SubAction;

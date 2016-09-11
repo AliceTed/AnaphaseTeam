@@ -4,11 +4,11 @@
 * @author a’J’m÷
 * @date 2016/08/29
 */
-#include "../../../header/actor/airstate/jumpControl.h"
-#include "../../../header/actor/Player/Player.h"
-#include "../../../header/math/Calculate.h"
-#include "../../../header/actor/airstate/groundState.h"
-#include "../../../header/actor/airstate/RigorState.h"
+#include "../../header/airstate/jumpControl.h"
+#include "../../header/actor/Player/Player.h"
+#include "../../header/math/Calculate.h"
+#include "../../header/airstate/groundState.h"
+#include "../../header/airstate/RigorState.h"
 
 #include <string>
 

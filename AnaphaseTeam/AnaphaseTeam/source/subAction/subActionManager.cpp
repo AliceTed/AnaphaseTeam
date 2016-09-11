@@ -1,7 +1,7 @@
 #include "../../header/subAction/subActionManager.h"
 #include "../../header/actor/Player/Player.h"
-#include "../../header/actor/airstate/groundState.h"
-#include "../../header/actor/airstate/RestrictionFall.h"
+#include "../../header/airstate/groundState.h"
+#include "../../header/airstate/RestrictionFall.h"
 subActionManager::subActionManager()
 	:m_jump(), m_chainMove()
 {

@@ -8,7 +8,7 @@
 #pragma once
 #include "IAirState.h"
 #include "jumpControl.h"
-#include "../../../header/convenient/Timer.h"
+#include "../convenient/Timer.h"
 
 class RigorState :public IAirState
 {

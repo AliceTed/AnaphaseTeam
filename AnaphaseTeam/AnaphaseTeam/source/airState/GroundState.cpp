@@ -4,8 +4,8 @@
 * @author a’J’m÷
 * @date 2016/08/29
 */
-#include "../../../header/actor/airstate/groundState.h"
-#include "../../../header/actor/airstate/firstStep.h"
+#include "../../header/airstate/groundState.h"
+#include "../../header/airstate/firstStep.h"
 
 GroundState::GroundState()
 {

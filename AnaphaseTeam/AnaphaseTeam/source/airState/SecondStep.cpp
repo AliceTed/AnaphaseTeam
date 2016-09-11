@@ -4,8 +4,8 @@
 * @author a’J’m÷
 * @date 2016/08/29
 */
-#include "../../../header/actor/airstate/secondStep.h"
-#include "../../../header/actor/Player/Player.h"
+#include "../../header/airstate/SecondStep.h"
+#include "../../header/actor/Player/Player.h"
 const float SecondStep::SecondStepPow = 1.0f;
 SecondStep::SecondStep()
 {

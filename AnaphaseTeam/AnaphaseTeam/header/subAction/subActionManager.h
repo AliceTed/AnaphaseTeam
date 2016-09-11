@@ -1,5 +1,5 @@
 #pragma once
-#include "../actor/airstate/jumpControl.h"
+#include "../airstate/JumpControl.h"
 #include "../subAction/TestChainMove.h"
 class subActionManager
 {

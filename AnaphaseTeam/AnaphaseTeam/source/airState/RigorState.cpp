@@ -1,9 +1,9 @@
-#include "../../../header/actor/airstate/RigorState.h"
-#include "../../../header/actor/Player/Player.h"
-#include "../../../header/actionstate/StandState.h"
+#include "../../header/airstate/RigorState.h"
+#include "../../header/actor/Player/Player.h"
+#include "../../header/actionstate/StandState.h"
 
 RigorState::RigorState()
-	:m_RigorTimer(30)
+	:m_RigorTimer(20)
 {
 }
 RigorState::~RigorState()
