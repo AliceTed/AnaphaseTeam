@@ -15,14 +15,14 @@ SecondStep::~SecondStep()
 {
 
 }
-void SecondStep::start(JumpControl * _jumpAction)
+void SecondStep::start(JumpControl * _control)
 {
-	_jumpAction->start(SecondStepPow);
+	_control->start(SecondStepPow);
 }
-void SecondStep::airAction(JumpControl* _jumpAction, Player* _player, float deltaTime)
+void SecondStep::airAction(JumpControl* _control, Player* _player, float deltaTime)
 {
 	_player->jumpUp();
-	_jumpAction->jumping(_player, deltaTime);
+	_control->jumping(_player, deltaTime);
 	_player->movement(deltaTime);
 }
 void SecondStep::next(JumpControl * _control)

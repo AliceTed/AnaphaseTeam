@@ -12,7 +12,15 @@ class RestrictionFall :public IAirState
 public:
 	RestrictionFall();
 	~RestrictionFall();
-	void start(JumpControl* _jumpAction);
-	void airAction(JumpControl* _jumpAction, Player* _player, float deltaTime);
+	/**
+	* @fn
+	* @brief ジャンプの力を０にする
+	*/
+	void start(JumpControl* _control);
+	/**
+	* @fn
+	* @brief ジャンプ後の落下
+	*/
+	void airAction(JumpControl* _control, Player* _player, float deltaTime);
 	void next(JumpControl* _control);
 };

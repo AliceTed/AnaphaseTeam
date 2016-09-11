@@ -15,10 +15,10 @@ GroundState::~GroundState()
 {
 
 }
-void GroundState::start(JumpControl * _jumpAction)
+void GroundState::start(JumpControl * _control)
 {
 }
-void GroundState::airAction(JumpControl* _jumpAction, Player* _player, float deltaTime)
+void GroundState::airAction(JumpControl* _control, Player* _player, float deltaTime)
 {
 }
 void GroundState::next(JumpControl * _control)

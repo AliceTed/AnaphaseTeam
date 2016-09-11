@@ -12,8 +12,20 @@ class FirstStep:public IAirState
 public:
 	FirstStep();
 	~FirstStep();
-	void start(JumpControl* _jumpAction);
-	void airAction(JumpControl* _jumpAction, Player* _player, float deltaTime);
+	/**
+	* @fn
+	* @brief 一段目のジャンプの力の設定
+	*/
+	void start(JumpControl* _control);
+	/**
+	* @fn
+	* @brief 一段目のジャンプの異動処理
+	*/
+	void airAction(JumpControl* _control, Player* _player, float deltaTime);
+	/**
+	* @fn
+	* @brief 次のairStateをSecondStepにする
+	*/
 	void next(JumpControl* _control);
 private:
 	static const float FirstStepPow;

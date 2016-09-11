@@ -15,8 +15,16 @@ class RigorState :public IAirState
 public:
 	RigorState();
 	~RigorState();
-	void start(JumpControl* _jumpAction);
-	void airAction(JumpControl* _jumpAction, Player* _player, float deltaTime);
+	/**
+	* @fn
+	* @brief 着地硬直の時間の設定
+	*/
+	void start(JumpControl* _control);
+	/**
+	* @fn
+	* @brief 着地のアニメーションと着地時の硬直
+	*/
+	void airAction(JumpControl* _control, Player* _player, float deltaTime);
 	void next(JumpControl* _control);
 private:
 	Timer m_RigorTimer;

@@ -9,11 +9,11 @@ RigorState::RigorState()
 RigorState::~RigorState()
 {
 }
-void RigorState::start(JumpControl * _jumpAction)
+void RigorState::start(JumpControl * _control)
 {
 	m_RigorTimer.initialize();
 }
-void RigorState::airAction(JumpControl * _jumpAction, Player * _player, float deltaTime)
+void RigorState::airAction(JumpControl * _control, Player * _player, float deltaTime)
 {
 	_player->jumpRigor();
 	m_RigorTimer.update(deltaTime);

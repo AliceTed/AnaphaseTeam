@@ -17,14 +17,14 @@ FirstStep::~FirstStep()
 {
 
 }
-void FirstStep::start(JumpControl * _jumpAction)
+void FirstStep::start(JumpControl * _control)
 {
-	_jumpAction->start(FirstStepPow);
+	_control->start(FirstStepPow);
 }
-void FirstStep::airAction(JumpControl* _jumpAction, Player* _player, float deltaTime)
+void FirstStep::airAction(JumpControl* _control, Player* _player, float deltaTime)
 {
 	_player->jumpUp();
-	_jumpAction->jumping(_player, deltaTime);
+	_control->jumping(_player, deltaTime);
 	_player->movement(deltaTime);
 }
 void FirstStep::next(JumpControl * _control)

@@ -14,8 +14,15 @@ class SecondStep:public IAirState
 public:
 	SecondStep();
 	~SecondStep();
-	void start(JumpControl* _jumpAction);
-	void airAction(JumpControl* _jumpAction, Player* _player, float deltaTime);
+	/**
+	* @fn
+	* @brief 二段目のジャンプの力の設定
+	*/
+	void start(JumpControl* _control);
+	/**
+	* @brief ジャンプの移動処理
+	*/
+	void airAction(JumpControl* _control, Player* _player, float deltaTime);
 	void next(JumpControl* _control);
 private:
 	static const float SecondStepPow;
