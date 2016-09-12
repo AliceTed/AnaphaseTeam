@@ -49,7 +49,6 @@ void Player::update(float deltatime)
 	sphereChases(GSvector3(0, 1, 0));
 	m_animator.update(deltatime);
 
-	m_attackManager.update();
 }
 
 void Player::draw(const Renderer & _renderer, const Camera & _camera)
@@ -96,29 +95,22 @@ void Player::stand(float deltaTime)
 {
 	m_animator.changeAnimation(ANIMATION_ID::STAND, false);
 	m_SubAction.action(this, deltaTime);
+	m_attackManager.update(this);
 	control();
 }
 
 void Player::attack(float deltaTime)
 {
-	
-	if (!m_attackManager.scytheAttack())
-	{
-		m_animator.changeAnimation(ANIMATION_ID::ATTACK);
-	}
-
-	if (!m_attackManager.gunAttack())
-	{
-		m_animator.changeAnimation(ANIMATION_ID::GUN);
-	}
-
-	if (m_animator.isEndAnimation(ANIMATION_ID::ATTACK) ||
-		m_animator.isEndAnimation(ANIMATION_ID::GUN))
-	{
+	//m_attackManager.update(this);
+	if (m_animator.isEndAnimation(ANIMATION_ID::ATTACK))
 		actionChange(std::make_shared<StandState>());
-	}
-
 }
+
+void Player::scythAttack()
+{
+	m_animator.changeAnimation(ANIMATION_ID::ATTACK);
+}
+
 
 void Player::damage(float deltaTime)
 {
@@ -134,6 +126,7 @@ void Player::move(float deltaTime)
 	m_transform.translate((forward - side)*MOVESPEED*deltaTime);
 	m_SubAction.action(this, deltaTime);
 	control();
+	m_attackManager.update(this);
 	if (m_Input->move() == false) actionChange(std::make_shared<StandState>());
 }
 
@@ -189,7 +182,7 @@ void Player::control()
 		actionChange(std::make_shared<MoveState>());
 	}
 	/*ƒ{ƒ^ƒ“‰Ÿ‚µ‚½‚çAttackState‚ÉØ‚è‘Ö‚í‚é*/
-	if (m_Input->scytheTrigger()||m_Input->gunTrigger())
+	if (m_Input->scytheTrigger())
 	{
 		actionChange(std::make_shared<AttackState>());
 	}

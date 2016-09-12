@@ -5,9 +5,9 @@
 * @author ¼”ö—T–ç
 * @date 2016/8/26
 */
-#include "../data/ANIMATION_ID.h"
+#include "../../data/ANIMATION_ID.h"
 #include "AttackStatus.h"
-#include "../../header/shape/Shape.h"
+#include "../../../header/shape/Shape.h"
 #include <memory>
 typedef std::shared_ptr<Shape> Shape_Ptr;
 

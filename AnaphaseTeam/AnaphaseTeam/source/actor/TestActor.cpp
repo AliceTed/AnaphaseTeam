@@ -6,7 +6,7 @@
 #include "../../header/collision/CollisionMediator.h"
 #include "../../header/shape/Sphere.h"
 
-#include "../../header/attack/AttackStatus.h"
+#include "../../header/actor/attack/AttackStatus.h"
 //
 int TestActor::DrawCount = 0;
 TestActor::TestActor()
@@ -52,9 +52,9 @@ void TestActor::draw(const Renderer & _renderer, const Camera & _camera)
 	FALSE_RETURN(isInsideView(_camera));
 	alphaBlend(_camera);
 	m_animator.bind();
-	_renderer.getDraw3D().drawMesh(MODEL_ID::KARATE, m_transform,m_animator, m_Color);
+	_renderer.getDraw3D().drawMesh(MODEL_ID::KARATE, m_transform, m_animator, m_Color);
 	//sphereDraw(_renderer);
-	
+
 	DrawCount++;
 }
 

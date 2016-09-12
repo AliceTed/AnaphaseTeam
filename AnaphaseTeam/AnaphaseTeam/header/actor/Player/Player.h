@@ -21,9 +21,9 @@
 #include "../../subAction/subActionManager.h"
 #include "../airstate/jumpControl.h"
 
-#include "../../../Scythe.h"
-#include "../../../Gun.h"
-#include "../../../attackManager.h"
+#include "../../actor/attack/Scythe.h"
+#include "../../actor/attack/Gun.h"
+#include "../../actor/attack/attackManager.h"
 
 class Input;
 typedef std::shared_ptr<IActionState> Action_Ptr;
@@ -38,6 +38,7 @@ public:
 	void subActionStart(jumpControl* _jump, TestChainMove* _chainMove);
 	void subActionStart();
 
+	void scythAttack();
 	/**
 	* @fn
 	* @brief アクションステートの切り替え関数

@@ -1,4 +1,4 @@
-#include "../../header/attack/ContinuationCombo.h"
+#include "../../../header/actor/attack/ContinuationCombo.h"
 
 ContinuationCombo::ContinuationCombo(const AttackStatus & _status, ANIMATION_ID _animation, Shape_Ptr _shape)
 	:m_status(_status), m_Animation(_animation), m_Shape(_shape)

@@ -138,22 +138,22 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="attackManager.cpp" />
-    <ClCompile Include="Gun.cpp" />
-    <ClCompile Include="Scythe.cpp" />
     <ClCompile Include="source\actor\Actor.cpp" />
     <ClCompile Include="source\actor\airState\firstStep.cpp" />
     <ClCompile Include="source\actor\airState\groundState.cpp" />
     <ClCompile Include="source\actor\airState\jumpControl.cpp" />
     <ClCompile Include="source\actor\airState\secondStep.cpp" />
+    <ClCompile Include="source\actor\attack\AttackManager.cpp" />
+    <ClCompile Include="source\actor\attack\AttackStatus.cpp" />
+    <ClCompile Include="source\actor\attack\ContinuationCombo.cpp" />
+    <ClCompile Include="source\actor\attack\Gun.cpp" />
+    <ClCompile Include="source\actor\attack\Scythe.cpp" />
     <ClCompile Include="source\actor\player\Player.cpp" />
     <ClCompile Include="source\actionstate\AttackState.cpp" />
     <ClCompile Include="source\actionstate\JumpState.cpp" />
     <ClCompile Include="source\actionstate\MoveState.cpp" />
     <ClCompile Include="source\actionstate\StandState.cpp" />
     <ClCompile Include="source\actor\TestActor.cpp" />
-    <ClCompile Include="source\attack\AttackStatus.cpp" />
-    <ClCompile Include="source\attack\ContinuationCombo.cpp" />
     <ClCompile Include="source\convenient\Point.cpp" />
     <ClCompile Include="source\convenient\Transform.cpp" />
     <ClCompile Include="source\subAction\subActionManager.cpp" />
@@ -192,8 +192,6 @@
     <ClCompile Include="Util\BasicShapes.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="attackManager.h" />
-    <ClInclude Include="Gun.h" />
     <ClInclude Include="header\actor\Actor.h" />
     <ClInclude Include="header\actor\airstate\firstStep.h" />
     <ClInclude Include="header\actor\airstate\groundState.h" />
@@ -202,6 +200,12 @@
     <ClInclude Include="header\actor\airstate\secondStep.h" />
     <ClInclude Include="header\actor\Actor_Tag.h" />
     <ClInclude Include="header\actor\AttackActor.h" />
+    <ClInclude Include="header\actor\attack\attackManager.h" />
+    <ClInclude Include="header\actor\attack\AttackStatus.h" />
+    <ClInclude Include="header\actor\attack\ContinuationCombo.h" />
+    <ClInclude Include="header\actor\attack\Gun.h" />
+    <ClInclude Include="header\actor\attack\IWeapon.h" />
+    <ClInclude Include="header\actor\attack\Scythe.h" />
     <ClInclude Include="header\actor\ICharacter.h" />
     <ClInclude Include="header\actor\Player\Player.h" />
     <ClInclude Include="header\actionstate\AttackState.h" />
@@ -211,8 +215,6 @@
     <ClInclude Include="header\actionstate\StandState.h" />
     <ClInclude Include="header\actor\state\chainMoveState.h" />
     <ClInclude Include="header\actor\TestActor.h" />
-    <ClInclude Include="header\attack\AttackStatus.h" />
-    <ClInclude Include="header\attack\ContinuationCombo.h" />
     <ClInclude Include="header\convenient\Point.h" />
     <ClInclude Include="header\subAction\subActionManager.h" />
     <ClInclude Include="header\subAction\TestChainMove.h" />
@@ -270,8 +272,6 @@
     <ClInclude Include="header\shape\Shape.h" />
     <ClInclude Include="header\shape\Sphere.h" />
     <ClInclude Include="header\convenient\Transform.h" />
-    <ClInclude Include="IWeapon.h" />
-    <ClInclude Include="Scythe.h" />
     <ClInclude Include="Util\BasicShapes.h" />
     <ClInclude Include="Util\EffectGL.h" />
     <ClInclude Include="Util\RenderTarget.h" />

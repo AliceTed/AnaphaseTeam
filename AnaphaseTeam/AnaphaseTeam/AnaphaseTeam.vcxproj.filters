@@ -133,6 +133,12 @@
     <Filter Include="ヘッダー ファイル\actor\actionState">
       <UniqueIdentifier>{f13bd0f4-c891-4317-82d9-1783af4289ab}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\actor\Attack">
+      <UniqueIdentifier>{b3584a63-29b0-4d6e-a84a-997d34c3d8b3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\actor\Attack">
+      <UniqueIdentifier>{ff5ecd5d-33ad-4631-ac2d-83da52129794}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Util\BasicShapes.h">
@@ -312,12 +318,6 @@
     <ClInclude Include="header\actionstate\IActionState.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="header\attack\AttackStatus.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="header\attack\ContinuationCombo.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
     <ClInclude Include="header\convenient\Point.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
@@ -375,17 +375,23 @@
     <ClInclude Include="header\actionstate\MoveState.h">
       <Filter>ヘッダー ファイル\actor\actionState</Filter>
     </ClInclude>
-    <ClInclude Include="IWeapon.h">
-      <Filter>ヘッダー ファイル</Filter>
+    <ClInclude Include="header\actor\attack\attackManager.h">
+      <Filter>ヘッダー ファイル\actor\Attack</Filter>
     </ClInclude>
-    <ClInclude Include="Scythe.h">
-      <Filter>ヘッダー ファイル</Filter>
+    <ClInclude Include="header\actor\attack\AttackStatus.h">
+      <Filter>ヘッダー ファイル\actor\Attack</Filter>
     </ClInclude>
-    <ClInclude Include="Gun.h">
-      <Filter>ヘッダー ファイル</Filter>
+    <ClInclude Include="header\actor\attack\ContinuationCombo.h">
+      <Filter>ヘッダー ファイル\actor\Attack</Filter>
     </ClInclude>
-    <ClInclude Include="attackManager.h">
-      <Filter>ヘッダー ファイル</Filter>
+    <ClInclude Include="header\actor\attack\Gun.h">
+      <Filter>ヘッダー ファイル\actor\Attack</Filter>
+    </ClInclude>
+    <ClInclude Include="header\actor\attack\IWeapon.h">
+      <Filter>ヘッダー ファイル\actor\Attack</Filter>
+    </ClInclude>
+    <ClInclude Include="header\actor\attack\Scythe.h">
+      <Filter>ヘッダー ファイル\actor\Attack</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -482,12 +488,6 @@
     <ClCompile Include="source\actor\airState\firstStep.cpp">
       <Filter>ソース ファイル\actor\airState</Filter>
     </ClCompile>
-    <ClCompile Include="source\attack\AttackStatus.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="source\attack\ContinuationCombo.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
     <ClCompile Include="source\convenient\Point.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
@@ -539,14 +539,20 @@
     <ClCompile Include="source\actionstate\MoveState.cpp">
       <Filter>ソース ファイル\actor\actionState</Filter>
     </ClCompile>
-    <ClCompile Include="Gun.cpp">
-      <Filter>ソース ファイル</Filter>
+    <ClCompile Include="source\actor\attack\AttackManager.cpp">
+      <Filter>ソース ファイル\actor\Attack</Filter>
     </ClCompile>
-    <ClCompile Include="Scythe.cpp">
-      <Filter>ソース ファイル</Filter>
+    <ClCompile Include="source\actor\attack\AttackStatus.cpp">
+      <Filter>ソース ファイル\actor\Attack</Filter>
     </ClCompile>
-    <ClCompile Include="attackManager.cpp">
-      <Filter>ソース ファイル</Filter>
+    <ClCompile Include="source\actor\attack\ContinuationCombo.cpp">
+      <Filter>ソース ファイル\actor\Attack</Filter>
+    </ClCompile>
+    <ClCompile Include="source\actor\attack\Scythe.cpp">
+      <Filter>ソース ファイル\actor\Attack</Filter>
+    </ClCompile>
+    <ClCompile Include="source\actor\attack\Gun.cpp">
+      <Filter>ソース ファイル\actor\Attack</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
