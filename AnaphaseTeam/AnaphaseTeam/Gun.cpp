@@ -1,10 +1,23 @@
 #include "Gun.h"
 #include "IWeapon.h"
 
-Gun::Gun()
+Gun::Gun(/*MODEL_ID _model_id*/)
+	:m_gunValu(0.0f)
+	//m_animator(_model_id)
 {}
 Gun::~Gun()
 {}
-void Gun::weapon()
+void Gun::initialize()
 {
+	//m_animator.addAnimation(ANIMATION_ID::ATTACK, 1.4f);
 }
+void Gun::update()
+{
+	//animation();
+}
+
+void Gun::animation()
+{
+	//m_animator.changeAnimation(ANIMATION_ID::ATTACK);
+}
+

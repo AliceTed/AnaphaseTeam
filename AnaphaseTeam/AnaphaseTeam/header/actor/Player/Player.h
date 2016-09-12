@@ -21,6 +21,10 @@
 #include "../../subAction/subActionManager.h"
 #include "../airstate/jumpControl.h"
 
+#include "../../../Scythe.h"
+#include "../../../Gun.h"
+#include "../../../attackManager.h"
+
 class Input;
 typedef std::shared_ptr<IActionState> Action_Ptr;
 class Player :public Actor, public ICharacter
@@ -63,10 +67,10 @@ private:
 	Action_Ptr m_action;
 	subActionManager m_SubAction;
 	
-	//Œëš bool m_attaclDicision;
-//	bool m_attackDicision;
-	//Œëš float m_attacTime;
-	//float m_attackTime;
+	//Scythe m_scythe;
+	//Gun m_gun;
+	attackManager m_attackManager;
+
 private://’è”
 	static const float MOVESPEED;
 	static const float ROTATESPEED;

@@ -18,9 +18,10 @@ Player::Player(const Input* _input)
 	:Actor(Transform({ 0,0,5 }), MODEL_ID::PLAYER, Sphere(GSvector3(0, 0, 0), 0), Actor_Tag::PLAYER),
 	m_action(nullptr),
 	m_SubAction(),
-	m_ChainMove()
-	//m_attackDicision(false),
-	//m_attackTime(0.0f)
+	m_ChainMove(),
+	m_attackManager()
+	//m_scythe(MODEL_ID::PLAYER),
+	//m_gun(MODEL_ID::PLAYER)
 {}
 Player::~Player()
 {}
@@ -33,17 +34,22 @@ void Player::initialize()
 	m_animator.addAnimation(ANIMATION_ID::STAND, 1.0f, true);
 	m_animator.addAnimation(ANIMATION_ID::RUN, 1.0f, true);
 	m_animator.addAnimation(ANIMATION_ID::ATTACK, 1.4f);
+	m_animator.addAnimation(ANIMATION_ID::GUN, 1.4f);
+	//m_scythe.initialize();
+	//m_gun.initialize();
+	m_attackManager.initialize();
 
 	m_animator.changeAnimation(ANIMATION_ID::STAND, true);
+	
 
-	//m_attackDicision = false;
-	//m_attackTime = 0.0f;
 }
 void Player::update(float deltatime)
 {
 	m_action->action(this, deltatime);
 	sphereChases(GSvector3(0, 1, 0));
 	m_animator.update(deltatime);
+
+	m_attackManager.update();
 }
 
 void Player::draw(const Renderer & _renderer, const Camera & _camera)
@@ -95,8 +101,19 @@ void Player::stand(float deltaTime)
 
 void Player::attack(float deltaTime)
 {
-	m_animator.changeAnimation(ANIMATION_ID::ATTACK);
-	if (m_animator.isEndAnimation(ANIMATION_ID::ATTACK))
+	
+	if (!m_attackManager.scytheAttack())
+	{
+		m_animator.changeAnimation(ANIMATION_ID::ATTACK);
+	}
+
+	if (!m_attackManager.gunAttack())
+	{
+		m_animator.changeAnimation(ANIMATION_ID::GUN);
+	}
+
+	if (m_animator.isEndAnimation(ANIMATION_ID::ATTACK) ||
+		m_animator.isEndAnimation(ANIMATION_ID::GUN))
 	{
 		actionChange(std::make_shared<StandState>());
 	}
@@ -172,9 +189,8 @@ void Player::control()
 		actionChange(std::make_shared<MoveState>());
 	}
 	/*ƒ{ƒ^ƒ“‰Ÿ‚µ‚½‚çAttackState‚ÉØ‚è‘Ö‚í‚é*/
-	if (m_Input->attckTrigger())
+	if (m_Input->scytheTrigger()||m_Input->gunTrigger())
 	{
-		//m_attackDicision = true;
 		actionChange(std::make_shared<AttackState>());
 	}
 

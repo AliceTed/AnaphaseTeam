@@ -7,7 +7,8 @@ enum class ANIMATION_ID :unsigned int
 	STAND,
 	RUN,
 	SIZE,
-	ATTACK = 17
+	ATTACK = 17,
+	GUN
 };
 
 #endif

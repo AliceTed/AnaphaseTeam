@@ -6,10 +6,18 @@
 */
 #pragma once
 #include "IWeapon.h"
-class Scythe : public IWeapon
+#include "header\animation\Animator.h"
+#include "header\actionstate\IActionState.h"
+//typedef std::shared_ptr<IActionState> Action_Ptr;
+class Scythe //: public IWeapon
 {
 public:
-	Scythe();
+	Scythe(/*MODEL_ID _model_id*/);
 	~Scythe();
-	void weapon();
+	void initialize();
+	void update();
+	void animation();
+private:
+	float m_scytheValu;
+	//Animator m_animator;
 };

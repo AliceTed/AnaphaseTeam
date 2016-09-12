@@ -138,6 +138,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="attackManager.cpp" />
     <ClCompile Include="Gun.cpp" />
     <ClCompile Include="Scythe.cpp" />
     <ClCompile Include="source\actor\Actor.cpp" />
@@ -191,6 +192,7 @@
     <ClCompile Include="Util\BasicShapes.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="attackManager.h" />
     <ClInclude Include="Gun.h" />
     <ClInclude Include="header\actor\Actor.h" />
     <ClInclude Include="header\actor\airstate\firstStep.h" />

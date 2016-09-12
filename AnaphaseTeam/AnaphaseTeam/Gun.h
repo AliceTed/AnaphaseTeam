@@ -6,12 +6,18 @@
 */
 #pragma once
 #include "IWeapon.h"
-class Gun : public IWeapon
+#include "header\animation\Animator.h"
+#include "header\actionstate\IActionState.h"
+class Gun //: public IWeapon
 {
 public:
-	Gun();
+	Gun(/*MODEL_ID _model_id*/);
 	~Gun();
-	void weapon();
-
+	void initialize();
+	void update();
+	void animation();
+private:
+	float m_gunValu;
+	//Animator m_animator;
 };
 
