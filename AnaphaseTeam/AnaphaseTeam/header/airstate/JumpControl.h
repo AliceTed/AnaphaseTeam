@@ -1,4 +1,3 @@
-#pragma once
 /**
 * @file jumpControl.h
 * @brief ƒWƒƒƒ“ƒv‚Ì§Œä

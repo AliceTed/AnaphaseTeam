@@ -1,6 +1,7 @@
 #include "../../header/airstate/RigorState.h"
 #include "../../header/actor/Player/Player.h"
 #include "../../header/actionstate/StandState.h"
+#include "../../header/airstate/GroundState.h"
 
 RigorState::RigorState()
 	:m_RigorTimer(20)
@@ -19,9 +20,11 @@ void RigorState::airAction(JumpControl * _control, Player * _player, float delta
 	m_RigorTimer.update(deltaTime);
 	if (m_RigorTimer.isEnd())
 	{
+		_control->airActionChange(std::make_shared<GroundState>());
 		_player->actionChange(std::make_shared<StandState>());
 	}
 }
 void RigorState::next(JumpControl * _control)
 {
+
 }

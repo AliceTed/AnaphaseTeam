@@ -1,5 +1,4 @@
 #include "../../../header/actor/Player/Player.h"
-
 #include "../../../header/actionstate/MoveState.h"
 #include "../../../header/actionstate/StandState.h"
 #include "../../../header/actionstate/JumpState.h"
@@ -51,6 +50,8 @@ void Player::draw(const Renderer & _renderer, const Camera & _camera)
 	alphaBlend(_camera);
 	//m_animator.bind();
 	_renderer.getDraw3D().drawMesh(MODEL_ID::PLAYER, m_transform, m_animator, m_Color);
+
+	_renderer.getDraw2D().string(std::to_string(m_transform.getPosition().y), &GSvector2(100, 100), 20);
 }
 void Player::collisionGround(const Map & _map)
 {
@@ -67,8 +68,8 @@ void Player::collisionGround(const Map & _map)
 	{
 		return;
 	}
-	
-	m_SubAction.groundHit();
+
+  	m_SubAction.groundHit();
 	//mapに埋め込まれていたらy座標を交点に移動
 	m_transform.setPositionY(intersect.y);
 }
@@ -87,7 +88,7 @@ void Player::stand(float deltaTime)
 	{
 		actionChange(std::make_shared<MoveState>());
 	}
-  	control();
+	control();
 }
 void Player::attack(float deltaTime)
 {
@@ -95,8 +96,7 @@ void Player::attack(float deltaTime)
 	if (m_animator.isEndAnimation(ANIMATION_ID::ATTACK))
 	{
 		actionChange(std::make_shared<StandState>());
-}
-
+	}
 }
 
 void Player::damage(float deltaTime)
@@ -143,11 +143,11 @@ void Player::subActionStart()
 	}
 	if (m_Input->jumpTrigger())
 	{
+		m_transform.translate(GSvector3(0,m_transform.getPosition().y,0));
 		m_SubAction.jumpInitialize();
 		actionChange(std::make_shared<JumpState>());
 		m_SubAction.jumpStart();
 	}
-	
 }
 //ジャンプ中のアニメーション
 void Player::jumpUp()
