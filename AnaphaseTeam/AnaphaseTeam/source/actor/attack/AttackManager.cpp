@@ -5,50 +5,50 @@
 
 
 
-attackManager::attackManager()
+AttackManager::AttackManager()
 	:m_Scythe(),
 	m_Gun(),
 	m_currentKey(),
-	m_attackMap()
+	m_Pattern()
 {
 }
 
-attackManager::~attackManager()
+AttackManager::~AttackManager()
 {
 }
 
-void attackManager::initialize()
+void AttackManager::initialize()
 {
 	m_Scythe.initialize();
 	m_Gun.initialize();
-	m_attackMap.clear();
+	m_Pattern.clear();
 	Shape_Ptr sphere = std::make_shared<Sphere>(GSvector3(0, 0, 0), 0);
 	ContinuationCombo combo(AttackStatus(0.0f, 0.0f, GSvector3(0, 0, 0)), ANIMATION_ID::ATTACK, sphere);
-	m_attackMap.insert(std::make_pair(AttackKey::attack1, combo));
+	m_Pattern.insert(std::make_pair(AttackPattern::ScytheAttack1, combo));
 	ContinuationCombo combo2(AttackStatus(0.0f, 0.0f, GSvector3(0, 0, 0)), ANIMATION_ID::ATTACK2, sphere);
-	m_attackMap.insert(std::make_pair(AttackKey::attack2, combo2));
+	m_Pattern.insert(std::make_pair(AttackPattern::GunAttack, combo2));
 }
 
-void attackManager::update(Player* _player)
+void AttackManager::update(Player* _player)
 {
 	scytheAttack(_player);
 	gunAttack(_player);
 }
 
-void attackManager::scytheAttack(Player* _player)
+void AttackManager::scytheAttack(Player* _player)
 {
 	if (!m_Input->scytheTrigger())return;
-	m_currentKey = AttackKey::attack1;
-	m_attackMap.at(m_currentKey).anime(_player);
+	m_currentKey = AttackPattern::ScytheAttack1;
+	m_Pattern.at(m_currentKey).anime(_player);
 }
 
-void attackManager::gunAttack(Player * _player)
+void AttackManager::gunAttack(Player * _player)
 {
 	if (!m_Input->gunTrigger())return;
-	m_currentKey = AttackKey::attack2;
-	m_attackMap.at(m_currentKey).anime(_player);
+	m_currentKey = AttackPattern::GunAttack;
+	m_Pattern.at(m_currentKey).anime(_player);
 }
-bool attackManager::isEndAttack(Animator* _animator)
+bool AttackManager::isEndAttack(Animator* _animator)
 {
-	return m_attackMap.at(m_currentKey).isEndAnimation(_animator);
+	return m_Pattern.at(m_currentKey).isEndAnimation(_animator);
 }

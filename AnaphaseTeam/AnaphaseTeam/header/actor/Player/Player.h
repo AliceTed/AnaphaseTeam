@@ -67,7 +67,7 @@ private:
 	Action_Ptr m_action;
 	subActionManager m_SubAction;
 
-	attackManager m_attackManager;
+	AttackManager m_attackManager;
 	//ANIMATION_ID m_animetion_id;
 
 private://’è”

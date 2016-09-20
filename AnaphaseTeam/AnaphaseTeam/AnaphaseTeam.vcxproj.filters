@@ -375,9 +375,6 @@
     <ClInclude Include="header\actionstate\MoveState.h">
       <Filter>ヘッダー ファイル\actor\actionState</Filter>
     </ClInclude>
-    <ClInclude Include="header\actor\attack\attackManager.h">
-      <Filter>ヘッダー ファイル\actor\Attack</Filter>
-    </ClInclude>
     <ClInclude Include="header\actor\attack\AttackStatus.h">
       <Filter>ヘッダー ファイル\actor\Attack</Filter>
     </ClInclude>
@@ -391,6 +388,12 @@
       <Filter>ヘッダー ファイル\actor\Attack</Filter>
     </ClInclude>
     <ClInclude Include="header\actor\attack\Scythe.h">
+      <Filter>ヘッダー ファイル\actor\Attack</Filter>
+    </ClInclude>
+    <ClInclude Include="header\actor\attack\AttackPattern.h">
+      <Filter>ヘッダー ファイル\actor\Attack</Filter>
+    </ClInclude>
+    <ClInclude Include="header\actor\attack\AttackManager.h">
       <Filter>ヘッダー ファイル\actor\Attack</Filter>
     </ClInclude>
   </ItemGroup>

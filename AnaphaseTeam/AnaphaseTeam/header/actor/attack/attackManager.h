@@ -9,21 +9,17 @@
 #include "ContinuationCombo.h"
 #include "Scythe.h"
 #include "Gun.h"
+#include "AttackPattern.h"
 #include <unordered_map>
 
-enum class AttackKey
-{
-	attack1,
-	attack2
-};
 
 typedef std::shared_ptr<Shape> Shape_Ptr;
 class Player;
-class attackManager
+class AttackManager
 {
 public:
-	attackManager();
-	~attackManager();
+	AttackManager();
+	~AttackManager();
 	void initialize();
 	void update(Player* _player);
 	void scytheAttack(Player* _player);
@@ -33,8 +29,8 @@ private:
 	const Input* m_Input;
 	Scythe m_Scythe;
 	Gun m_Gun;
-	AttackKey m_currentKey;
-	std::unordered_map<AttackKey, ContinuationCombo> m_attackMap;
+	AttackPattern m_currentKey;
+	std::unordered_map<AttackPattern, ContinuationCombo> m_Pattern;
 
 };
 

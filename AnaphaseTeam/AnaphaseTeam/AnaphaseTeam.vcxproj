@@ -200,7 +200,8 @@
     <ClInclude Include="header\actor\airstate\secondStep.h" />
     <ClInclude Include="header\actor\Actor_Tag.h" />
     <ClInclude Include="header\actor\AttackActor.h" />
-    <ClInclude Include="header\actor\attack\attackManager.h" />
+    <ClInclude Include="header\actor\attack\AttackManager.h" />
+    <ClInclude Include="header\actor\attack\AttackPattern.h" />
     <ClInclude Include="header\actor\attack\AttackStatus.h" />
     <ClInclude Include="header\actor\attack\ContinuationCombo.h" />
     <ClInclude Include="header\actor\attack\Gun.h" />
