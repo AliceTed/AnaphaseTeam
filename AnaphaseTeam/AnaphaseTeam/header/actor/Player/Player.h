@@ -55,6 +55,7 @@ public://ICharacterŽÀ‘•
 	void damage(float deltaTime);
 	void move(float deltaTime);
 	void jump(float deltaTime);
+	void walk(float deltaTime);
 private:
 	void control();
 private:

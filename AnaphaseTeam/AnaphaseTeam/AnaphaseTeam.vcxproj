@@ -142,6 +142,7 @@
     <ClCompile Include="source\actionstate\JumpState.cpp" />
     <ClCompile Include="source\actionstate\MoveState.cpp" />
     <ClCompile Include="source\actionstate\StandState.cpp" />
+    <ClCompile Include="source\actionstate\WalkState.cpp" />
     <ClCompile Include="source\actor\Actor.cpp" />
     <ClCompile Include="source\actor\player\Player.cpp" />
     <ClCompile Include="source\actor\TestActor.cpp" />
@@ -195,6 +196,7 @@
     <ClInclude Include="header\actionstate\JumpState.h" />
     <ClInclude Include="header\actionstate\MoveState.h" />
     <ClInclude Include="header\actionstate\StandState.h" />
+    <ClInclude Include="header\actionstate\WalkState.h" />
     <ClInclude Include="header\actor\Actor.h" />
     <ClInclude Include="header\actor\Actor_Tag.h" />
     <ClInclude Include="header\actor\AttackActor.h" />

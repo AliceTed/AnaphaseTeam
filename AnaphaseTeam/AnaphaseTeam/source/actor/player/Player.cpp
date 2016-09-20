@@ -29,7 +29,9 @@ void Player::initialize()
 	m_animator.initialize();
 
 	m_animator.addAnimation(ANIMATION_ID::STAND, 1.0f, true);
+	
 	m_animator.addAnimation(ANIMATION_ID::RUN, 1.0f, true);
+	m_animator.addAnimation(ANIMATION_ID::WALK, 0.3f, true);
 	m_animator.addAnimation(ANIMATION_ID::JUMPUP, 1.0f, true);
 	m_animator.addAnimation(ANIMATION_ID::LANDING);
 	m_animator.addAnimation(ANIMATION_ID::ATTACK, 1.4f);
@@ -121,6 +123,10 @@ void Player::jump(float deltaTime)
 		m_SubAction.jumpStart();
 	}
 }
+void Player::walk(float deltaTime)
+{
+
+}
 void Player::chain(float deltaTime)
 {
 	m_ChainMove.movement(deltaTime, this);
@@ -135,15 +141,14 @@ void Player::chainMove(const GSvector3 & _target, float _time)
 }
 void Player::subActionStart()
 {
+	GSvector3 nowPosition = GSvector3(0, m_transform.getPosition().y, 0);
 	if (m_Input->chainTrigger())
 	{
-		//	_chainMove->start();
-		//m_SubAction.chainMoveStart();
 		m_SubAction.restrictionFall();
 	}
 	if (m_Input->jumpTrigger())
 	{
-		m_transform.translate(GSvector3(0,m_transform.getPosition().y,0));
+		m_transform.translate(nowPosition);
 		m_SubAction.jumpInitialize();
 		actionChange(std::make_shared<JumpState>());
 		m_SubAction.jumpStart();
@@ -166,15 +171,9 @@ void Player::actionChange(Action_Ptr _action)
 
 void Player::control()
 {
-	/*subActionStart();
-	if (m_Input->move())
-	{
-		actionChange(std::make_shared<MoveState>());
-	}*/
 	/*ƒ{ƒ^ƒ“‰Ÿ‚µ‚½‚çAttackState‚ÉØ‚è‘Ö‚í‚é*/
 	if (m_Input->attckTrigger())
 	{
-		//m_attackDicision = true;
 		actionChange(std::make_shared<AttackState>());
 	}
 }
