@@ -61,3 +61,7 @@ unsigned int Animation::getAnimationNo()
 {
 	return m_animNo;
 }
+const float Animation::getSpeed()const
+{
+	return m_timer.getSpeed();
+}

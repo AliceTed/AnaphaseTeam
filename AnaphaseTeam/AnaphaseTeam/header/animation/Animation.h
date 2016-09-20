@@ -52,6 +52,7 @@ public:
 	void stop();
 	void start();
 	unsigned int getAnimationNo();
+	const float getSpeed() const;
 private:
 	void looping();
 

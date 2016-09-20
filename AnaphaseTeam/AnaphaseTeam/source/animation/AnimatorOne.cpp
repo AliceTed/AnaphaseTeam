@@ -26,7 +26,7 @@ void AnimatorOne::changeAnimation(ANIMATION_ID _animation, bool _isLoop, bool _i
 	if (m_currentAnimation == nullptr)
 		m_currentAnimation = std::make_shared<Animation>(m_modelID, static_cast<unsigned int>(_animation), AnimationTimer(gsGetEndAnimationTime(static_cast<GSuint>(m_modelID), static_cast<GSuint>(_animation)), _animationSpeed), _isLoop);
 	/*今のアニメーションと同じなら変えない*/
-	if (m_currentAnimation->getAnimationNo() == static_cast<unsigned int>(_animation))
+	if (m_currentAnimation->getAnimationNo() == static_cast<unsigned int>(_animation) && _animationSpeed == m_currentAnimation->getSpeed())
 		return;
 
 	m_currentAnimation = std::make_shared<Animation>(m_modelID, static_cast<unsigned int>(_animation), AnimationTimer(gsGetEndAnimationTime(static_cast<GSuint>(m_modelID), static_cast<GSuint>(_animation)), _animationSpeed), _isLoop);

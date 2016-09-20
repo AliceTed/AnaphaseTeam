@@ -378,9 +378,6 @@
     <ClInclude Include="header\subAction\SubActionManager.h">
       <Filter>ヘッダー ファイル\subAction</Filter>
     </ClInclude>
-    <ClInclude Include="header\actionstate\WalkState.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
     <ClInclude Include="header\subAction\subActionManager.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
@@ -553,9 +550,6 @@
     </ClCompile>
     <ClCompile Include="source\subAction\SubActionManager.cpp">
       <Filter>ソース ファイル\subAction</Filter>
-    </ClCompile>
-    <ClCompile Include="source\actionstate\WalkState.cpp">
-      <Filter>ソース ファイル</Filter>
     </ClCompile>
     <ClCompile Include="source\subAction\subActionManager.cpp">
       <Filter>ソース ファイル</Filter>

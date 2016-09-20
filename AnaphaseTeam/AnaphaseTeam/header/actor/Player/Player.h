@@ -36,7 +36,7 @@ public:
 	* @param (_action) Ø‚è‘Ö‚¦‚éƒAƒNƒVƒ‡ƒ“‚ÌShared_ptr
 	*/
 	void actionChange(Action_Ptr _action);
-	void movement(float deltaTime);
+	void movement(float deltaTime, float _speed = MOVESPEED);
 	void subActionStart();
 	void jumping(float _velocity);
 	void jumpUp();
@@ -66,4 +66,5 @@ private:
 private://’è”
 	static const float MOVESPEED;
 	static const float ROTATESPEED;
+	static const float WALKSPEED;
 };

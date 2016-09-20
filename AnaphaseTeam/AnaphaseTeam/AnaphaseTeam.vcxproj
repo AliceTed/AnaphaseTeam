@@ -142,7 +142,6 @@
     <ClCompile Include="source\actionstate\JumpState.cpp" />
     <ClCompile Include="source\actionstate\MoveState.cpp" />
     <ClCompile Include="source\actionstate\StandState.cpp" />
-    <ClCompile Include="source\actionstate\WalkState.cpp" />
     <ClCompile Include="source\actor\Actor.cpp" />
     <ClCompile Include="source\actor\player\Player.cpp" />
     <ClCompile Include="source\actor\TestActor.cpp" />
@@ -152,6 +151,7 @@
     <ClCompile Include="source\airState\RestrictionFall.cpp" />
     <ClCompile Include="source\airState\RigorState.cpp" />
     <ClCompile Include="source\airState\SecondStep.cpp" />
+    <ClCompile Include="source\animation\AnimatorOne.cpp" />
     <ClCompile Include="source\attack\AttackStatus.cpp" />
     <ClCompile Include="source\attack\ContinuationCombo.cpp" />
     <ClCompile Include="source\convenient\Point.cpp" />
@@ -196,7 +196,6 @@
     <ClInclude Include="header\actionstate\JumpState.h" />
     <ClInclude Include="header\actionstate\MoveState.h" />
     <ClInclude Include="header\actionstate\StandState.h" />
-    <ClInclude Include="header\actionstate\WalkState.h" />
     <ClInclude Include="header\actor\Actor.h" />
     <ClInclude Include="header\actor\Actor_Tag.h" />
     <ClInclude Include="header\actor\AttackActor.h" />
@@ -210,6 +209,7 @@
     <ClInclude Include="header\airstate\RestrictionFall.h" />
     <ClInclude Include="header\airstate\RigorState.h" />
     <ClInclude Include="header\airstate\SecondStep.h" />
+    <ClInclude Include="header\animation\AnimatorOne.h" />
     <ClInclude Include="header\attack\AttackStatus.h" />
     <ClInclude Include="header\attack\ContinuationCombo.h" />
     <ClInclude Include="header\convenient\Point.h" />

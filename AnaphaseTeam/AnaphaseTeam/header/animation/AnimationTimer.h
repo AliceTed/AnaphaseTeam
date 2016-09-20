@@ -22,6 +22,8 @@ public:
 	const float getTime()const;
 	const bool getIsEnd()const;
 
+	const float getSpeed() const;
+
 private:
 	float timer;
 	float defTimer;

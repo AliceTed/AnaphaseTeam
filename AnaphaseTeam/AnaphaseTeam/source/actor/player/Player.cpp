@@ -14,6 +14,7 @@
 
 const float Player::MOVESPEED = 0.3f;
 const float Player::ROTATESPEED = -2.0f;
+const float Player::WALKSPEED = 0.1f;
 
 Player::Player(const Input* _input)
 	:Actor(Transform({ 0,0,5 }), MODEL_ID::PLAYER, Sphere(GSvector3(0, 0, 0), 0), Actor_Tag::PLAYER),
@@ -104,14 +105,19 @@ void Player::damage(float deltaTime)
 }
 void Player::move(float deltaTime)
 {
-	movement(deltaTime);
 	subActionStart();
-	m_animatorOne.changeAnimation(ANIMATION_ID::RUN, true,true);
+	control();
 	if (!m_Input->move())
 	{
 		actionChange(std::make_shared<StandState>());
 	}
-	control();
+	if (m_Input->walk())
+	{
+		walk(deltaTime);
+		return;
+	}
+	movement(deltaTime, MOVESPEED);
+	m_animatorOne.changeAnimation(ANIMATION_ID::RUN, true, true);
 }
 void Player::jump(float deltaTime)
 {
@@ -123,7 +129,8 @@ void Player::jump(float deltaTime)
 }
 void Player::walk(float deltaTime)
 {
-
+	movement(deltaTime, WALKSPEED);
+	m_animatorOne.changeAnimation(ANIMATION_ID::RUN, true, true, 0.4f);
 }
 void Player::chain(float deltaTime)
 {
@@ -177,11 +184,11 @@ void Player::control()
 	}
 }
 
-void Player::movement(float deltaTime)
+void Player::movement(float deltaTime, float _speed)
 {
 	m_transform.rotationY(m_Input->rotate()*deltaTime * ROTATESPEED);
 
 	GSvector3 forward(m_transform.front()*m_Input->vertical());
 	GSvector3 side(m_transform.left()*m_Input->horizontal());
-	m_transform.translate((forward - side)*MOVESPEED*deltaTime);
+	m_transform.translate((forward - side)*_speed*deltaTime);
 }
