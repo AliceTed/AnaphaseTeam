@@ -23,10 +23,10 @@ void AttackManager::initialize()
 	m_Gun.initialize();
 	m_Pattern.clear();
 	Shape_Ptr sphere = std::make_shared<Sphere>(GSvector3(0, 0, 0), 0);
-	ContinuationCombo combo(AttackStatus(0.0f, 0.0f, GSvector3(0, 0, 0)), ANIMATION_ID::ATTACK, sphere);
-	m_Pattern.insert(std::make_pair(AttackPattern::ScytheAttack1, combo));
-	ContinuationCombo combo2(AttackStatus(0.0f, 0.0f, GSvector3(0, 0, 0)), ANIMATION_ID::ATTACK2, sphere);
-	m_Pattern.insert(std::make_pair(AttackPattern::GunAttack, combo2));
+	ContinuationCombo scythe(AttackStatus(0.0f, 0.0f, GSvector3(0, 0, 0)), ANIMATION_ID::ATTACK, sphere);
+	m_Pattern.insert(std::make_pair(AttackPattern::ScytheAttack1, scythe));
+	ContinuationCombo gun(AttackStatus(0.0f, 0.0f, GSvector3(0, 0, 0)), ANIMATION_ID::ATTACK2, sphere);
+	m_Pattern.insert(std::make_pair(AttackPattern::GunAttack, gun));
 }
 
 void AttackManager::update(Player* _player)
