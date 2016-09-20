@@ -51,6 +51,7 @@ public:
 	const bool getIsEnd()const;
 	void stop();
 	void start();
+	unsigned int getAnimationNo();
 private:
 	void looping();
 

@@ -1,4 +1,5 @@
 #include "../../../header/actor/Player/Player.h"
+
 #include "../../../header/actionstate/MoveState.h"
 #include "../../../header/actionstate/StandState.h"
 #include "../../../header/actionstate/JumpState.h"
@@ -26,21 +27,21 @@ void Player::initialize()
 {
 	Actor::initialize();
 	actionChange(std::make_shared<StandState>());
-	m_animator.initialize();
+	m_animatorOne.initialize();
 
-	m_animator.addAnimation(ANIMATION_ID::STAND, 1.0f, true);
+	/*m_animator.addAnimation(ANIMATION_ID::STAND, 1.0f, true);
 	m_animator.addAnimation(ANIMATION_ID::RUN, 1.0f, true);
 	m_animator.addAnimation(ANIMATION_ID::JUMPUP, 1.0f, true);
 	m_animator.addAnimation(ANIMATION_ID::LANDING);
-	m_animator.addAnimation(ANIMATION_ID::ATTACK, 1.4f);
+	m_animator.addAnimation(ANIMATION_ID::ATTACK, 1.4f);*/
 
-	m_animator.changeAnimation(ANIMATION_ID::STAND,true);
+	m_animatorOne.changeAnimation(ANIMATION_ID::STAND,true,true);
 }
 void Player::update(float deltatime)
 {
 	m_action->action(this, deltatime);
 	sphereChases(GSvector3(0, 1, 0));
-	m_animator.update(deltatime);
+	m_animatorOne.update(deltatime);
 }
 void Player::draw(const Renderer & _renderer, const Camera & _camera)
 {
@@ -49,7 +50,7 @@ void Player::draw(const Renderer & _renderer, const Camera & _camera)
 	FALSE_RETURN(isInsideView(_camera));
 	alphaBlend(_camera);
 	//m_animator.bind();
-	_renderer.getDraw3D().drawMesh(MODEL_ID::PLAYER, m_transform, m_animator, m_Color);
+	_renderer.getDraw3D().drawMesh(MODEL_ID::PLAYER, m_transform, m_animatorOne, m_Color);
 }
 void Player::collisionGround(const Map & _map)
 {
@@ -81,7 +82,7 @@ void Player::createCollision(CollisionMediator * _mediator)
 void Player::stand(float deltaTime)
 {
 	subActionStart();
-	m_animator.changeAnimation(ANIMATION_ID::STAND, true);
+	m_animatorOne.changeAnimation(ANIMATION_ID::STAND, true,true);
 	if (m_Input->move())
 	{
 		actionChange(std::make_shared<MoveState>());
@@ -90,11 +91,12 @@ void Player::stand(float deltaTime)
 }
 void Player::attack(float deltaTime)
 {
-	m_animator.changeAnimation(ANIMATION_ID::ATTACK);
-	if (m_animator.isEndCurrentAnimation())
+	m_animatorOne.changeAnimation(ANIMATION_ID::ATTACK);
+	if (m_animatorOne.isEndCurrentAnimation())
 	{
 		actionChange(std::make_shared<StandState>());
 }
+
 }
 
 void Player::damage(float deltaTime)
@@ -104,7 +106,7 @@ void Player::move(float deltaTime)
 {
 	movement(deltaTime);
 	subActionStart();
-	m_animator.changeAnimation(ANIMATION_ID::RUN, true);
+	m_animatorOne.changeAnimation(ANIMATION_ID::RUN, true,true);
 	if (!m_Input->move())
 	{
 		actionChange(std::make_shared<StandState>());
@@ -149,16 +151,17 @@ void Player::subActionStart()
 		actionChange(std::make_shared<JumpState>());
 		m_SubAction.jumpStart();
 	}
+	
 }
 //ジャンプ中のアニメーション
 void Player::jumpUp()
 {
-	m_animator.changeAnimation(ANIMATION_ID::JUMPUP, false);
+	m_animatorOne.changeAnimation(ANIMATION_ID::JUMPUP, false);
 }
 //着地のアニメーション
 void Player::jumpRigor()
 {
-	m_animator.changeAnimation(ANIMATION_ID::LANDING, false);
+	m_animatorOne.changeAnimation(ANIMATION_ID::LANDING, false);
 }
 void Player::actionChange(Action_Ptr _action)
 {
