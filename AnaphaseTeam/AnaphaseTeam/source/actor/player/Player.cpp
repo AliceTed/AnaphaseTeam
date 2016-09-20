@@ -29,13 +29,6 @@ void Player::initialize()
 	Actor::initialize();
 	actionChange(std::make_shared<StandState>());
 	m_animatorOne.initialize();
-
-	/*m_animator.addAnimation(ANIMATION_ID::STAND, 1.0f, true);
-	m_animator.addAnimation(ANIMATION_ID::RUN, 1.0f, true);
-	m_animator.addAnimation(ANIMATION_ID::JUMPUP, 1.0f, true);
-	m_animator.addAnimation(ANIMATION_ID::LANDING);
-	m_animator.addAnimation(ANIMATION_ID::ATTACK, 1.4f);*/
-
 	m_animatorOne.changeAnimation(ANIMATION_ID::STAND,true,true);
 }
 void Player::update(float deltatime)
@@ -84,10 +77,7 @@ void Player::stand(float deltaTime)
 {
 	subActionStart();
 	m_animatorOne.changeAnimation(ANIMATION_ID::STAND, true,true);
-	if (m_Input->move())
-	{
-		actionChange(std::make_shared<MoveState>());
-	}
+	moveMotionChange();
   	control();
 }
 void Player::attack(float deltaTime)
@@ -96,8 +86,7 @@ void Player::attack(float deltaTime)
 	if (m_animatorOne.isEndCurrentAnimation())
 	{
 		actionChange(std::make_shared<StandState>());
-}
-
+	}
 }
 
 void Player::damage(float deltaTime)
@@ -107,10 +96,7 @@ void Player::move(float deltaTime)
 {
 	subActionStart();
 	control();
-	if (!m_Input->move())
-	{
-		actionChange(std::make_shared<StandState>());
-	}
+	moveMotionChange();
 	if (m_Input->walk())
 	{
 		walk(deltaTime);
@@ -183,11 +169,23 @@ void Player::control()
 		actionChange(std::make_shared<AttackState>());
 	}
 }
+/**
+* @fn
+* @brief “®‚¢‚Ä‚¢‚ê‚ÎMoveState‚ÉØ‚è‘Ö‚¦A“®‚¢‚Ä‚¢‚È‚¯‚ê‚ÎStandState‚ÉØ‚è‘Ö‚¦‚é
+*/
+void Player::moveMotionChange()
+{
+	if (!m_Input->move())
+	{
+		actionChange(std::make_shared<StandState>());
+		return;
+	}
+	actionChange(std::make_shared<MoveState>());
+}
 
 void Player::movement(float deltaTime, float _speed)
 {
 	m_transform.rotationY(m_Input->rotate()*deltaTime * ROTATESPEED);
-
 	GSvector3 forward(m_transform.front()*m_Input->vertical());
 	GSvector3 side(m_transform.left()*m_Input->horizontal());
 	m_transform.translate((forward - side)*_speed*deltaTime);

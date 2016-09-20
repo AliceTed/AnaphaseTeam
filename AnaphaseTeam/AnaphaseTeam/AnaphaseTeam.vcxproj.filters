@@ -333,9 +333,6 @@
     <ClInclude Include="header\subAction\subActionManager.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="header\subAction\subActionManager.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
     <ClInclude Include="header\subAction\SubActionManager.h">
       <Filter>ヘッダー ファイル\subAction</Filter>
     </ClInclude>
@@ -383,6 +380,9 @@
     </ClInclude>
     <ClInclude Include="header\animation\AnimatorOne.h">
       <Filter>ヘッダー ファイル\animation</Filter>
+    </ClInclude>
+    <ClInclude Include="header\subAction\SubActionManager.h">
+      <Filter>ヘッダー ファイル\subAction</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -512,9 +512,6 @@
     <ClCompile Include="source\subAction\subActionManager.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="source\subAction\subActionManager.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
     <ClCompile Include="source\subAction\SubActionManager.cpp">
       <Filter>ソース ファイル\subAction</Filter>
     </ClCompile>
@@ -556,6 +553,9 @@
     </ClCompile>
     <ClCompile Include="source\animation\AnimatorOne.cpp">
       <Filter>ソース ファイル\animation</Filter>
+    </ClCompile>
+    <ClCompile Include="source\subAction\SubActionManager.cpp">
+      <Filter>ソース ファイル\subAction</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -58,6 +58,7 @@ public://ICharacterŽÀ‘•
 	void walk(float deltaTime);
 private:
 	void control();
+	void moveMotionChange();
 private:
 	const Input* m_Input;
 	TestChainMove m_ChainMove;

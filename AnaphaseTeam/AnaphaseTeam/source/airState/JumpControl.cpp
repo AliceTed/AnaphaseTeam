@@ -10,8 +10,6 @@
 #include "../../header/airstate/groundState.h"
 #include "../../header/airstate/RigorState.h"
 
-#include <string>
-
 const float JumpControl::MaxJumpPower = 2.0f;
 
 JumpControl::JumpControl()
