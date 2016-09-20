@@ -24,6 +24,7 @@
 #include "../../actor/attack/Scythe.h"
 #include "../../actor/attack/Gun.h"
 #include "../../actor/attack/attackManager.h"
+#include "../../data/ANIMATION_ID.h"
 
 class Input;
 typedef std::shared_ptr<IActionState> Action_Ptr;
@@ -37,15 +38,13 @@ public:
 	void chainMove(const GSvector3 & _target, float _time);
 	void subActionStart(jumpControl* _jump, TestChainMove* _chainMove);
 	void subActionStart();
-
-	void scythAttack();
+	void animeID(ANIMATION_ID _animetion_id);
 	/**
 	* @fn
 	* @brief アクションステートの切り替え関数
 	* @param (_action) 切り替えるアクションのShared_ptr
 	*/
 	void actionChange(Action_Ptr _action);
-	
 public://Actor継承
 	void initialize() override;
 	void update(float deltatime) override;
@@ -58,7 +57,7 @@ public://ICharacter実装
 	void attack(float deltaTime);
 	void damage(float deltaTime);
 	void move(float deltaTime);
-	
+
 private:
 	void control();
 private:
@@ -67,10 +66,9 @@ private:
 	TestChainMove m_ChainMove;
 	Action_Ptr m_action;
 	subActionManager m_SubAction;
-	
-	//Scythe m_scythe;
-	//Gun m_gun;
+
 	attackManager m_attackManager;
+	//ANIMATION_ID m_animetion_id;
 
 private://定数
 	static const float MOVESPEED;

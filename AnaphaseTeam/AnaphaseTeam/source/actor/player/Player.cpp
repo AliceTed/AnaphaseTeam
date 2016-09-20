@@ -34,13 +34,14 @@ void Player::initialize()
 	m_animator.addAnimation(ANIMATION_ID::STAND, 1.0f, true);
 	m_animator.addAnimation(ANIMATION_ID::RUN, 1.0f, true);
 	m_animator.addAnimation(ANIMATION_ID::ATTACK, 1.4f);
+	m_animator.addAnimation(ANIMATION_ID::ATTACK2, 1.4f);
+	m_animator.addAnimation(ANIMATION_ID::ATTACK3, 1.4f);
+	m_animator.addAnimation(ANIMATION_ID::ATTACK4, 1.4f);
 	m_animator.addAnimation(ANIMATION_ID::GUN, 1.4f);
-	//m_scythe.initialize();
-	//m_gun.initialize();
 	m_attackManager.initialize();
 
 	m_animator.changeAnimation(ANIMATION_ID::STAND, true);
-	
+
 
 }
 void Player::update(float deltatime)
@@ -91,24 +92,39 @@ void Player::createCollision(CollisionMediator * _mediator)
 	Obj_Ptr obj = std::make_shared<CollisionObject>(this, shape);
 	_mediator->add(obj);
 }
+
 void Player::stand(float deltaTime)
 {
 	m_animator.changeAnimation(ANIMATION_ID::STAND, false);
 	m_SubAction.action(this, deltaTime);
-	m_attackManager.update(this);
+	
 	control();
+	m_attackManager.update(this);
 }
 
 void Player::attack(float deltaTime)
 {
-	//m_attackManager.update(this);
-	if (m_animator.isEndAnimation(ANIMATION_ID::ATTACK))
+	m_attackManager.update(this);
+	if (m_attackManager.isEndAttack(&m_animator))
+	{
 		actionChange(std::make_shared<StandState>());
+	}
+
+
+	//m_attackManager.update(this);
+	/*if (m_animator.isEndAnimation(ANIMATION_ID::ATTACK))
+	{
+		actionChange(std::make_shared<StandState>());
+	}
+	if (m_animator.isEndAnimation(ANIMATION_ID::ATTACK2))
+	{
+		actionChange(std::make_shared<StandState>());
+	}*/
 }
 
-void Player::scythAttack()
+void Player::animeID(ANIMATION_ID _animetion_id)
 {
-	m_animator.changeAnimation(ANIMATION_ID::ATTACK);
+	m_animator.changeAnimation(_animetion_id);
 }
 
 
@@ -182,7 +198,7 @@ void Player::control()
 		actionChange(std::make_shared<MoveState>());
 	}
 	/*ƒ{ƒ^ƒ“‰Ÿ‚µ‚½‚çAttackState‚ÉØ‚è‘Ö‚í‚é*/
-	if (m_Input->scytheTrigger())
+	if (m_Input->attackTrigger())
 	{
 		actionChange(std::make_shared<AttackState>());
 	}

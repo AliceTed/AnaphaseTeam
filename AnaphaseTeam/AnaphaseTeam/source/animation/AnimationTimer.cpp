@@ -45,5 +45,5 @@ const float AnimationTimer::getTime()const
 }
 const bool AnimationTimer::getIsEnd()const
 {
-	return timer >= defTimer;
+	return timer >= defTimer -1.0f;
 }

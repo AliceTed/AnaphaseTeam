@@ -13,12 +13,18 @@ typedef std::shared_ptr<Shape> Shape_Ptr;
 
 class TestActor;
 class Player;
+class Animator;
 class ContinuationCombo
 {
 public:
-	ContinuationCombo(const AttackStatus& _status,ANIMATION_ID _animation,Shape_Ptr _shape);
+	ContinuationCombo(const AttackStatus& _status, ANIMATION_ID _animation, Shape_Ptr _shape);
 	~ContinuationCombo();
-	void openAnAttack(Player* _player,TestActor* _other);
+	void openAnAttack(Player* _player, TestActor* _other);
+	void initialize();
+	void update(Player* _player);
+	void anime(Player* _player);
+
+	bool isEndAnimation(Animator * _animator);
 
 private:
 	//!攻撃ステータス

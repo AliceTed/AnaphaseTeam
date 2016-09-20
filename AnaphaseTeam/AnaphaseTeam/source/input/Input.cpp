@@ -44,6 +44,10 @@ const bool Input::chainTrigger() const
 	return gsGetKeyTrigger(GKEY_LSHIFT) == GS_TRUE;
 }
 
+const bool Input::attackTrigger() const
+{
+	return scytheTrigger() || gunTrigger();
+}
 const bool Input::scytheTrigger() const
 {
 	return gsGetKeyTrigger(GKEY_K) == GS_TRUE;

@@ -15,6 +15,7 @@ public:
 
 	const bool jumpTrigger()const;
 	const bool chainTrigger()const;
+	const bool attackTrigger() const;
 	const bool scytheTrigger()const;
 	const bool gunTrigger()const;
 
