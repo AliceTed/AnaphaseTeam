@@ -29,14 +29,12 @@ void Player::initialize()
 	m_animator.initialize();
 
 	m_animator.addAnimation(ANIMATION_ID::STAND, 1.0f, true);
-	
 	m_animator.addAnimation(ANIMATION_ID::RUN, 1.0f, true);
-	m_animator.addAnimation(ANIMATION_ID::WALK, 0.3f, true);
 	m_animator.addAnimation(ANIMATION_ID::JUMPUP, 1.0f, true);
 	m_animator.addAnimation(ANIMATION_ID::LANDING);
 	m_animator.addAnimation(ANIMATION_ID::ATTACK, 1.4f);
 
-	m_animator.changeAnimation(ANIMATION_ID::STAND, true);
+	m_animator.changeAnimation(ANIMATION_ID::STAND,true);
 }
 void Player::update(float deltatime)
 {
@@ -52,8 +50,6 @@ void Player::draw(const Renderer & _renderer, const Camera & _camera)
 	alphaBlend(_camera);
 	//m_animator.bind();
 	_renderer.getDraw3D().drawMesh(MODEL_ID::PLAYER, m_transform, m_animator, m_Color);
-
-	_renderer.getDraw2D().string(std::to_string(m_transform.getPosition().y), &GSvector2(100, 100), 20);
 }
 void Player::collisionGround(const Map & _map)
 {
@@ -70,8 +66,8 @@ void Player::collisionGround(const Map & _map)
 	{
 		return;
 	}
-
-  	m_SubAction.groundHit();
+	
+	m_SubAction.groundHit();
 	//map‚É–„‚ßž‚Ü‚ê‚Ä‚¢‚½‚çyÀ•W‚ðŒð“_‚ÉˆÚ“®
 	m_transform.setPositionY(intersect.y);
 }
@@ -85,20 +81,20 @@ void Player::createCollision(CollisionMediator * _mediator)
 void Player::stand(float deltaTime)
 {
 	subActionStart();
-	m_animator.changeAnimation(ANIMATION_ID::STAND, false);
+	m_animator.changeAnimation(ANIMATION_ID::STAND, true);
 	if (m_Input->move())
 	{
 		actionChange(std::make_shared<MoveState>());
 	}
-	control();
+  	control();
 }
 void Player::attack(float deltaTime)
 {
 	m_animator.changeAnimation(ANIMATION_ID::ATTACK);
-	if (m_animator.isEndAnimation(ANIMATION_ID::ATTACK))
+	if (m_animator.isEndCurrentAnimation())
 	{
 		actionChange(std::make_shared<StandState>());
-	}
+}
 }
 
 void Player::damage(float deltaTime)
