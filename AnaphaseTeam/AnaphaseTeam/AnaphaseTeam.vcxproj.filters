@@ -139,6 +139,12 @@
     <Filter Include="ソース ファイル\airState">
       <UniqueIdentifier>{24f5ff04-3024-4e2f-afc1-02dce1a1bef7}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\collision">
+      <UniqueIdentifier>{55fa8113-ac6c-48e9-a2fe-1be145a4126a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\collision">
+      <UniqueIdentifier>{3f38fcce-e724-469a-9c50-143871782b19}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Util\BasicShapes.h">
@@ -282,57 +288,6 @@
     <ClInclude Include="header\convenient\Timer.h">
       <Filter>ヘッダー ファイル\convenient</Filter>
     </ClInclude>
-    <ClInclude Include="header\animation\Animator.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="header\data\Model_ID.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="header\data\PLAYERACTION_ID.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="header\actor\Actor_Tag.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="header\actor\AttackActor.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="header\convenient\Point.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="header\subAction\TestChainMove.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="header\collision\CollisionManager.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="header\collision\CollisionMediator.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="header\collision\CollisionObject.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="header\collision\CollisionTable.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="header\shape\AABB.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="header\shape\Capsule.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="header\shape\OBB.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="header\shape\Segment.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="header\shape\Shape.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="header\convenient\Transform.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
     <ClInclude Include="header\subAction\subActionManager.h">
       <Filter>ヘッダー ファイル\subAction</Filter>
     </ClInclude>
@@ -372,15 +327,6 @@
     <ClInclude Include="header\actor\attack\AttackManager.h">
       <Filter>ヘッダー ファイル\actor\Attack</Filter>
     </ClInclude>
-    <ClInclude Include="header\animation\AnimatorOne.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="header\attack\AttackStatus.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="header\attack\ContinuationCombo.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
     <ClInclude Include="header\airstate\JumpControl.h">
       <Filter>ヘッダー ファイル\airState</Filter>
     </ClInclude>
@@ -404,6 +350,57 @@
     </ClInclude>
     <ClInclude Include="header\airstate\RestrictionFall.h">
       <Filter>ヘッダー ファイル\airState</Filter>
+    </ClInclude>
+    <ClInclude Include="header\collision\CollisionManager.h">
+      <Filter>ヘッダー ファイル\collision</Filter>
+    </ClInclude>
+    <ClInclude Include="header\collision\CollisionMediator.h">
+      <Filter>ヘッダー ファイル\collision</Filter>
+    </ClInclude>
+    <ClInclude Include="header\collision\CollisionObject.h">
+      <Filter>ヘッダー ファイル\collision</Filter>
+    </ClInclude>
+    <ClInclude Include="header\collision\CollisionTable.h">
+      <Filter>ヘッダー ファイル\collision</Filter>
+    </ClInclude>
+    <ClInclude Include="header\actor\Actor_Tag.h">
+      <Filter>ヘッダー ファイル\actor</Filter>
+    </ClInclude>
+    <ClInclude Include="header\actor\AttackActor.h">
+      <Filter>ヘッダー ファイル\actor</Filter>
+    </ClInclude>
+    <ClInclude Include="header\data\PLAYERACTION_ID.h">
+      <Filter>ヘッダー ファイル\data\id</Filter>
+    </ClInclude>
+    <ClInclude Include="header\data\Model_ID.h">
+      <Filter>ヘッダー ファイル\data\id</Filter>
+    </ClInclude>
+    <ClInclude Include="header\shape\Capsule.h">
+      <Filter>ヘッダー ファイル\shape</Filter>
+    </ClInclude>
+    <ClInclude Include="header\shape\Segment.h">
+      <Filter>ヘッダー ファイル\shape</Filter>
+    </ClInclude>
+    <ClInclude Include="header\shape\Shape.h">
+      <Filter>ヘッダー ファイル\shape</Filter>
+    </ClInclude>
+    <ClInclude Include="header\animation\Animator.h">
+      <Filter>ヘッダー ファイル\animation</Filter>
+    </ClInclude>
+    <ClInclude Include="header\animation\AnimatorOne.h">
+      <Filter>ヘッダー ファイル\animation</Filter>
+    </ClInclude>
+    <ClInclude Include="header\convenient\Point.h">
+      <Filter>ヘッダー ファイル\convenient</Filter>
+    </ClInclude>
+    <ClInclude Include="header\convenient\Transform.h">
+      <Filter>ヘッダー ファイル\convenient</Filter>
+    </ClInclude>
+    <ClInclude Include="header\attack\AttackStatus.h">
+      <Filter>ヘッダー ファイル\actor\Attack</Filter>
+    </ClInclude>
+    <ClInclude Include="header\attack\ContinuationCombo.h">
+      <Filter>ヘッダー ファイル\actor\Attack</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -485,36 +482,6 @@
     <ClCompile Include="source\actor\player\Player.cpp">
       <Filter>ソース ファイル\actor\Player</Filter>
     </ClCompile>
-    <ClCompile Include="source\animation\Animator.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="source\convenient\Point.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="source\subAction\TestChainMove.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="source\collision\CollisionManager.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="source\collision\CollisionObject.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="source\collision\CollisionTable.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="source\shape\AABB.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="source\shape\Capsule.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="source\shape\OBB.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="source\shape\Segment.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
     <ClCompile Include="source\convenient\Transform.cpp">
       <Filter>ソース ファイル\convenient</Filter>
     </ClCompile>
@@ -537,9 +504,6 @@
       <Filter>ソース ファイル\actor\actionState</Filter>
     </ClCompile>
     <ClCompile Include="source\actor\Actor.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="source\animation\AnimatorOne.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
     <ClCompile Include="source\actor\attack\AttackManager.cpp">
@@ -574,6 +538,30 @@
     </ClCompile>
     <ClCompile Include="source\airState\PreparationState.cpp">
       <Filter>ソース ファイル\airState</Filter>
+    </ClCompile>
+    <ClCompile Include="source\collision\CollisionManager.cpp">
+      <Filter>ソース ファイル\collision</Filter>
+    </ClCompile>
+    <ClCompile Include="source\collision\CollisionObject.cpp">
+      <Filter>ソース ファイル\collision</Filter>
+    </ClCompile>
+    <ClCompile Include="source\collision\CollisionTable.cpp">
+      <Filter>ソース ファイル\collision</Filter>
+    </ClCompile>
+    <ClCompile Include="source\shape\Capsule.cpp">
+      <Filter>ソース ファイル\shape</Filter>
+    </ClCompile>
+    <ClCompile Include="source\shape\Segment.cpp">
+      <Filter>ソース ファイル\shape</Filter>
+    </ClCompile>
+    <ClCompile Include="source\animation\AnimatorOne.cpp">
+      <Filter>ソース ファイル\animation</Filter>
+    </ClCompile>
+    <ClCompile Include="source\animation\Animator.cpp">
+      <Filter>ソース ファイル\animation</Filter>
+    </ClCompile>
+    <ClCompile Include="source\convenient\Point.cpp">
+      <Filter>ソース ファイル\convenient</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

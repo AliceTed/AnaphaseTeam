@@ -138,12 +138,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="source\actor\Actor.cpp" />
     <ClCompile Include="source\actionstate\AttackState.cpp" />
     <ClCompile Include="source\actionstate\JumpState.cpp" />
     <ClCompile Include="source\actionstate\MoveState.cpp" />
     <ClCompile Include="source\actionstate\StandState.cpp" />
-    <ClCompile Include="source\actor\Actor.cpp" />
     <ClCompile Include="source\actor\attack\AttackManager.cpp" />
     <ClCompile Include="source\actor\attack\AttackStatus.cpp" />
     <ClCompile Include="source\actor\attack\ContinuationCombo.cpp" />
@@ -161,7 +159,6 @@
     <ClCompile Include="source\convenient\Point.cpp" />
     <ClCompile Include="source\convenient\Transform.cpp" />
     <ClCompile Include="source\subAction\SubActionManager.cpp" />
-    <ClCompile Include="source\subAction\TestChainMove.cpp" />
     <ClCompile Include="source\animation\Animation.cpp" />
     <ClCompile Include="source\animation\AnimationTimer.cpp" />
     <ClCompile Include="source\animation\Animator.cpp" />
@@ -186,9 +183,7 @@
     <ClCompile Include="source\scene\each\Load.cpp" />
     <ClCompile Include="source\scene\each\Title.cpp" />
     <ClCompile Include="source\scene\SceneManager.cpp" />
-    <ClCompile Include="source\shape\AABB.cpp" />
     <ClCompile Include="source\shape\Capsule.cpp" />
-    <ClCompile Include="source\shape\OBB.cpp" />
     <ClCompile Include="source\shape\Ray.cpp" />
     <ClCompile Include="source\shape\Segment.cpp" />
     <ClCompile Include="source\shape\Sphere.cpp" />
@@ -225,7 +220,6 @@
     <ClInclude Include="header\attack\ContinuationCombo.h" />
     <ClInclude Include="header\convenient\Point.h" />
     <ClInclude Include="header\subAction\SubActionManager.h" />
-    <ClInclude Include="header\subAction\TestChainMove.h" />
     <ClInclude Include="header\animation\Animation.h" />
     <ClInclude Include="header\animation\AnimationTimer.h" />
     <ClInclude Include="header\animation\Animator.h" />
@@ -271,9 +265,7 @@
     <ClInclude Include="header\scene\IScene.h" />
     <ClInclude Include="header\scene\SceneManager.h" />
     <ClInclude Include="header\scene\SceneMode.h" />
-    <ClInclude Include="header\shape\AABB.h" />
     <ClInclude Include="header\shape\Capsule.h" />
-    <ClInclude Include="header\shape\OBB.h" />
     <ClInclude Include="header\shape\Ray.h" />
     <ClInclude Include="header\shape\Segment.h" />
     <ClInclude Include="header\shape\Shape.h" />

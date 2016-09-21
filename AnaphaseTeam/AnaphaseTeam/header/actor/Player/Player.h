@@ -50,8 +50,6 @@ public:
 	const bool isJump() const;
 	const bool isGround() const;
 	const bool isEndAttack() const;
-
-	
 public://ActorŒp³
 	void initialize() override;
 	void update(float deltatime) override;
@@ -75,6 +73,7 @@ private:
 	Action_Ptr m_action;
 	subActionManager m_SubAction;
 	AttackManager m_attackManager;
+	//JumpControl‚ÉˆÚ“®‚Æ–¼‘O‚Ì•ÏX(‹ó’†ó‘Ô‚©‚Ç‚¤‚©‚ğ•\‚·•Ï”~‚·‚é)
 	bool m_GroundHit;
 
 private://’è”
