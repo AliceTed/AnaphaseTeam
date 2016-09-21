@@ -2,9 +2,6 @@
 #include "../../../header/actor/Player/Player.h"
 #include "../../../header/shape/Sphere.h"
 
-
-
-
 AttackManager::AttackManager()
 	:m_Scythe(),
 	m_Gun(),
@@ -25,7 +22,7 @@ void AttackManager::initialize()
 	Shape_Ptr sphere = std::make_shared<Sphere>(GSvector3(0, 0, 0), 0);
 	ContinuationCombo scythe(AttackStatus(0.0f, 0.0f, GSvector3(0, 0, 0)), ANIMATION_ID::ATTACK, sphere);
 	m_Pattern.insert(std::make_pair(AttackPattern::ScytheAttack1, scythe));
-	ContinuationCombo gun(AttackStatus(0.0f, 0.0f, GSvector3(0, 0, 0)), ANIMATION_ID::ATTACK2, sphere);
+	ContinuationCombo gun(AttackStatus(0.0f, 0.0f, GSvector3(0, 0, 0)), ANIMATION_ID::GUN, sphere);
 	m_Pattern.insert(std::make_pair(AttackPattern::GunAttack, gun));
 }
 
@@ -48,6 +45,7 @@ void AttackManager::gunAttack(Player * _player)
 	m_currentKey = AttackPattern::GunAttack;
 	m_Pattern.at(m_currentKey).anime(_player);
 }
+
 bool AttackManager::isEndAttack(Animator* _animator)
 {
 	return m_Pattern.at(m_currentKey).isEndAnimation(_animator);
