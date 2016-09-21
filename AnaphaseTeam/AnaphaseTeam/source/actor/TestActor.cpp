@@ -14,8 +14,9 @@ TestActor::TestActor()
 	target(0, 0, 0)
 {
 	DrawCount = 0;
-	m_animator.addAnimation(ANIMATION_ID::STAND, true);
-	m_animator.changeAnimation(ANIMATION_ID::STAND, false);
+	m_animatorOne.changeAnimation(ANIMATION_ID::STAND, true);
+	//m_animator.addAnimation(ANIMATION_ID::STAND, true);
+	//m_animator.changeAnimation(ANIMATION_ID::STAND, false);
 }
 
 TestActor::~TestActor()
@@ -24,7 +25,7 @@ TestActor::~TestActor()
 
 void TestActor::update(float deltatime)
 {
-	m_animator.update(deltatime);
+//	m_animator.update(deltatime);
 	switch (rand() % 360)
 	{
 	case 0:
@@ -51,10 +52,10 @@ void TestActor::draw(const Renderer & _renderer, const Camera & _camera)
 {
 	FALSE_RETURN(isInsideView(_camera));
 	alphaBlend(_camera);
-	m_animator.bind();
-	_renderer.getDraw3D().drawMesh(MODEL_ID::KARATE, m_transform, m_animator, m_Color);
+	//m_animator.bind();
+	_renderer.getDraw3D().drawMesh(MODEL_ID::KARATE, m_transform,m_animatorOne, m_Color);
 	//sphereDraw(_renderer);
-
+	
 	DrawCount++;
 }
 

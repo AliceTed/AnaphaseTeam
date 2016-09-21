@@ -11,8 +11,10 @@
 #include "../data/ANIMATION_ID.h"
 #include "../data/SKELETON_ID.h"
 #include "../animation/Animator.h"
+#include "../animation/AnimatorOne.h"
 #include "../shape/Sphere.h"
 #include "../actor/Actor_Tag.h"
+
 class Renderer;
 class CollisionMediator;
 class Map;
@@ -114,7 +116,8 @@ protected:
 	bool m_isDead;
 
 	GScolor m_Color;
-	Animator m_animator;
+	//Animator m_animator;
+	AnimatorOne m_animatorOne;
 private:
 	Actor_Tag m_Tag;
 

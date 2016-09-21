@@ -21,5 +21,6 @@ public:
 
 	//input?
 	const bool move()const;
+	const bool walk()const;
 };
 #endif

@@ -6,4 +6,5 @@ __interface ICharacter
 	virtual void move(float deltaTime) = 0;
 	virtual void attack(float deltaTime) = 0;
 	virtual void damage(float deltaTime) = 0;
+	virtual void jump(float deltaTime) = 0;
 };

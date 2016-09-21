@@ -22,8 +22,8 @@ void GamePlay::initialize()
 
 void GamePlay::update(float deltaTime)
 {
-	m_player.update(deltaTime);
 	m_player.collisionGround(m_Map);
+	m_player.update(deltaTime);
 }
 
 void GamePlay::draw(const Renderer & _renderer)

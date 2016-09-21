@@ -8,7 +8,6 @@
 #include "../Actor.h"
 #include "../../animation/Animation.h"
 #include "../../animation/Animator.h"
-#include "../../animation/AnimationTimer.h"
 #include "../../actionstate/IActionState.h"
 #include "../../subAction/TestChainMove.h"
 #include "../../convenient/Timer.h"
@@ -17,9 +16,9 @@
 #include "../Actor.h"
 #include "../ICharacter.h"
 
-#include "../../subAction/TestJump.h"
-#include "../../subAction/subActionManager.h"
-#include "../airstate/jumpControl.h"
+//#include "../../subAction/SubActionManager.h"
+#include "../../../header/subAction/SubActionManager.h"
+#include "../../airstate/JumpControl.h"
 
 #include "../../actor/attack/Scythe.h"
 #include "../../actor/attack/Gun.h"
@@ -34,10 +33,8 @@ public:
 	Player(const Input* _input);
 	~Player();
 	void chain(float deltaTime);
-	void jumping(float _velocity);
 	void chainMove(const GSvector3 & _target, float _time);
-	void subActionStart(jumpControl* _jump, TestChainMove* _chainMove);
-	void subActionStart();
+	//void subActionStart(jumpControl* _jump, TestChainMove* _chainMove);
 	void animeID(ANIMATION_ID _animetion_id);
 	/**
 	* @fn
@@ -45,6 +42,12 @@ public:
 	* @param (_action) êÿÇËë÷Ç¶ÇÈÉAÉNÉVÉáÉìÇÃShared_ptr
 	*/
 	void actionChange(Action_Ptr _action);
+	void movement(float deltaTime, float _speed = MOVESPEED);
+	void subActionStart();
+	void jumping(float _velocity);
+	void jumpUp();
+	void jumpRigor();
+	
 public://Actoråpè≥
 	void initialize() override;
 	void update(float deltatime) override;
@@ -57,12 +60,13 @@ public://ICharacteré¿ëï
 	void attack(float deltaTime);
 	void damage(float deltaTime);
 	void move(float deltaTime);
-
+	void jump(float deltaTime);
+	void walk(float deltaTime);
 private:
 	void control();
+	void moveMotionChange();
 private:
 	const Input* m_Input;
-
 	TestChainMove m_ChainMove;
 	Action_Ptr m_action;
 	subActionManager m_SubAction;
@@ -73,4 +77,5 @@ private:
 private://íËêî
 	static const float MOVESPEED;
 	static const float ROTATESPEED;
+	static const float WALKSPEED;
 };

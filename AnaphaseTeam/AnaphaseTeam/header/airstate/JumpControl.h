@@ -10,28 +10,41 @@
 #include <memory>
 class Player;
 typedef std::shared_ptr<IAirState> AirAction_Ptr;
-class jumpControl
+class JumpControl
 {
 public:
-	jumpControl();
-	~jumpControl();
-	const bool isGround()const;
+	JumpControl();
+	~JumpControl();
+	void update(Player* _player, float deltaTime);
+	/**
+	* @fn
+	* @brief 着地
+	*/
 	void groundHit();
+	/**
+	* @fn
+	* @brief ジャンプ力設定
+	*/
 	void jumping(Player* _player, float deltaTime);
+	/**
+	* @fn
+	* @brief 各airStateから返ってきたジャンプ力を設定
+	*/
 	void start(const float _jumpStepPows);
+	/**
+	* @fn
+	* @brief airStateを切り替える
+	*/
 	void airActionChange(AirAction_Ptr _airAction);
+	/**
+	* @fn
+	* @brief ジャンプに関しての次のエアアクションステートの切り替え
+	*/
 	void jump();
 
 private:
 	float m_JumpPower;
 	float m_Acceleration;
-	enum class JUMPSTATE :unsigned int
-	{
-		Non,
-		FristStep,
-		SecondStep
-	};
-	JUMPSTATE m_State;
 	static const float MaxJumpPower;
 	AirAction_Ptr m_airAction;
 };

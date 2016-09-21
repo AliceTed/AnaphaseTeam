@@ -29,7 +29,7 @@ void ContinuationCombo::anime(Player * _player)
 	_player->animeID(m_Animation);
 }
 
-bool ContinuationCombo::isEndAnimation(Animator *_animator)
+bool ContinuationCombo::isEndAnimation(AnimatorOne *_animator)
 {
-	return _animator->isEndAnimation(m_Animation);
+	return _animator->isEndCurrentAnimation();
 }

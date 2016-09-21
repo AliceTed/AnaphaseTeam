@@ -11,7 +11,7 @@ Actor::Actor(const Transform & _transform, MODEL_ID _modelID,const Sphere& _sphe
 	:m_transform(_transform), 
 	m_isDead(false),
 	m_Color(1.0f,1.0f,1.0f,1.0f),
-	m_animator(_modelID),
+	m_animatorOne(_modelID),
 	m_Sphere(_sphere),
 	m_Tag(_tag)
 {

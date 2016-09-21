@@ -24,7 +24,7 @@ public:
 	void update(Player* _player);
 	void scytheAttack(Player* _player);
 	void gunAttack(Player* _player);
-	bool isEndAttack(Animator * _animator);
+	bool isEndAttack(AnimatorOne * _animator);
 private:
 	const Input* m_Input;
 	Scythe m_Scythe;

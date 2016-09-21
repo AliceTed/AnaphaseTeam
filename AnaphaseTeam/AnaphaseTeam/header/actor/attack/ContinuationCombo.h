@@ -13,7 +13,7 @@ typedef std::shared_ptr<Shape> Shape_Ptr;
 
 class TestActor;
 class Player;
-class Animator;
+class AnimatorOne;
 class ContinuationCombo
 {
 public:
@@ -24,7 +24,7 @@ public:
 	void update(Player* _player);
 	void anime(Player* _player);
 
-	bool isEndAnimation(Animator * _animator);
+	bool isEndAnimation(AnimatorOne * _animator);
 
 private:
 	//!攻撃ステータス

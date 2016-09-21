@@ -6,12 +6,14 @@ enum class ANIMATION_ID :unsigned int
 {
 	STAND,
 	RUN,
-	SIZE,
+	JUMPUP = 4,
+	LANDING,
 	ATTACK = 17,
 	ATTACK2,
 	ATTACK3,
 	ATTACK4,
-	GUN
+	GUN,
+	SIZE
 };
 
 #endif

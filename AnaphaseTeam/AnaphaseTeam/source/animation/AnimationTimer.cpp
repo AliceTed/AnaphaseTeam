@@ -47,3 +47,8 @@ const bool AnimationTimer::getIsEnd()const
 {
 	return timer >= defTimer -1.0f;
 }
+
+const float AnimationTimer::getSpeed()const
+{
+	return speed;
+}
