@@ -51,6 +51,9 @@ void Actor::collision(const Actor * _other)
 void Actor::createCollision(CollisionMediator * _mediator)
 {
 }
+void Actor::inGround()
+{
+}
 const GSvector3 Actor::vectorToFront(const GSvector3 & _vector) const
 {
 	return _vector.cross(m_transform.front());

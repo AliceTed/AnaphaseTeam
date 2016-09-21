@@ -54,6 +54,11 @@ public:
 	*/
 	virtual void createCollision(CollisionMediator* _mediator);
 
+	/**
+	* @fn
+	* @brief ’n–Ê‚É–„‚ß‚Ü‚ê‚½‚Æ‚«‚ÉŒÄ‚Î‚ê‚é
+	*/
+	virtual void inGround();
 public:
 	/**
 	* @fn

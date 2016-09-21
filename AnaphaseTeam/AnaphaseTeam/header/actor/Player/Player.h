@@ -52,7 +52,7 @@ public://Actoråpè≥
 	void initialize() override;
 	void update(float deltatime) override;
 	void draw(const Renderer& _renderer, const Camera& _camera) override;
-	void collisionGround(const Map& _map) override;
+	void inGround() override;
 	void createCollision(CollisionMediator* _mediator) override;
 
 public://ICharacteré¿ëï

@@ -25,8 +25,10 @@ Player::Player(const Input* _input)
 	//m_scythe(MODEL_ID::PLAYER),
 	//m_gun(MODEL_ID::PLAYER)
 {}
+
 Player::~Player()
 {}
+
 void Player::initialize()
 {
 	Actor::initialize();
@@ -35,12 +37,14 @@ void Player::initialize()
 	m_animatorOne.changeAnimation(ANIMATION_ID::STAND, true, true);
 	m_attackManager.initialize();
 }
+
 void Player::update(float deltatime)
 {
 	m_action->action(this, deltatime);
 	sphereChases(GSvector3(0, 1, 0));
 	m_animatorOne.update(deltatime);
 }
+
 void Player::draw(const Renderer & _renderer, const Camera & _camera)
 {
 	//取りあえず無理やり追従させる
@@ -50,26 +54,12 @@ void Player::draw(const Renderer & _renderer, const Camera & _camera)
 	//m_animator.bind();
 	_renderer.getDraw3D().drawMesh(MODEL_ID::PLAYER, m_transform, m_animatorOne, m_Color);
 }
-void Player::collisionGround(const Map & _map)
+
+void Player::inGround()
 {
-	GSvector3 intersect;
-	//現在の位置から下方向のRayを作る
-	GSvector3 position = m_transform.getPosition();
-	Ray ray(position);
-	if (!ray.isCollitionMap(_map, &intersect))
-	{
-		return;
-	}
-
-	if (position.y >= intersect.y)
-	{
-		return;
-	}
-
 	m_SubAction.groundHit();
-	//mapに埋め込まれていたらy座標を交点に移動
-	m_transform.setPositionY(intersect.y);
 }
+
 void Player::createCollision(CollisionMediator * _mediator)
 {
 	GSvector3 pos(m_transform.getPosition() + GSvector3(0, 0.3f, 0));
@@ -86,6 +76,7 @@ void Player::stand(float deltaTime)
 	control();
 	m_attackManager.update(this);
 }
+
 void Player::attack(float deltaTime)
 {
 	m_attackManager.update(this);
@@ -104,6 +95,7 @@ void Player::animeID(ANIMATION_ID _animetion_id)
 void Player::damage(float deltaTime)
 {
 }
+
 void Player::move(float deltaTime)
 {
 	moveMotionChange();
@@ -117,6 +109,7 @@ void Player::move(float deltaTime)
 	movement(deltaTime, MOVESPEED);
 	m_animatorOne.changeAnimation(ANIMATION_ID::RUN, true, true);
 }
+
 void Player::jump(float deltaTime)
 {
 	m_SubAction.action(this, deltaTime);
@@ -125,23 +118,28 @@ void Player::jump(float deltaTime)
 		m_SubAction.jumpStart();
 	}
 }
+
 void Player::walk(float deltaTime)
 {
 	movement(deltaTime, WALKSPEED);
 	m_animatorOne.changeAnimation(ANIMATION_ID::RUN, true, true, 0.4f);
 }
+
 void Player::chain(float deltaTime)
 {
 	m_ChainMove.movement(deltaTime, this);
 }
+
 void Player::jumping(float _velocity)
 {
 	m_transform.translateY(_velocity);
 }
+
 void Player::chainMove(const GSvector3 & _target, float _time)
 {
 	m_transform.setPosition(m_transform.getPosition().lerp(_target, _time));
 }
+
 void Player::subActionStart()
 {
 	GSvector3 nowPosition = GSvector3(0, m_transform.getPosition().y, 0);
@@ -157,16 +155,19 @@ void Player::subActionStart()
 		m_SubAction.jumpStart();
 	}
 }
+
 //ジャンプ中のアニメーション
 void Player::jumpUp()
 {
 	m_animatorOne.changeAnimation(ANIMATION_ID::JUMPUP, true, true);
 }
+
 //着地のアニメーション
 void Player::jumpRigor()
 {
 	m_animatorOne.changeAnimation(ANIMATION_ID::LANDING, true, true);
 }
+
 void Player::actionChange(Action_Ptr _action)
 {
 	m_action = _action;
@@ -180,6 +181,7 @@ void Player::control()
 		actionChange(std::make_shared<AttackState>());
 	}
 }
+
 /**
 * @fn
 * @brief 動いていればMoveStateに切り替え、動いていなければStandStateに切り替える
