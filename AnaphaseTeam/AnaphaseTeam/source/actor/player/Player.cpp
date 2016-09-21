@@ -19,12 +19,14 @@ const float Player::WALKSPEED = 0.1f;
 Player::Player(const Input* _input)
 	:Actor(Transform({ 0,0,5 }), MODEL_ID::PLAYER, Sphere(GSvector3(0, 0, 0), 0), Actor_Tag::PLAYER),
 	m_action(nullptr),
-	m_SubAction(),
+	m_SubAction(this),
 	m_ChainMove(),
-	m_attackManager()
+	m_attackManager(),
+	m_GroundHit(false)
 	//m_scythe(MODEL_ID::PLAYER),
 	//m_gun(MODEL_ID::PLAYER)
-{}
+{
+}
 
 Player::~Player()
 {}
@@ -57,7 +59,8 @@ void Player::draw(const Renderer & _renderer, const Camera & _camera)
 
 void Player::inGround()
 {
-	m_SubAction.groundHit();
+	m_GroundHit = true;
+	//m_SubAction.groundHit();
 }
 
 void Player::createCollision(CollisionMediator * _mediator)
@@ -112,10 +115,10 @@ void Player::move(float deltaTime)
 
 void Player::jump(float deltaTime)
 {
-	m_SubAction.action(this, deltaTime);
-	if (m_Input->jumpTrigger())
+	m_SubAction.update(deltaTime);
+	if (m_SubAction.isEnd())
 	{
-		m_SubAction.jumpStart();
+		actionChange(std::make_shared<StandState>());
 	}
 }
 
@@ -142,17 +145,13 @@ void Player::chainMove(const GSvector3 & _target, float _time)
 
 void Player::subActionStart()
 {
-	GSvector3 nowPosition = GSvector3(0, m_transform.getPosition().y, 0);
-	if (m_Input->chainTrigger())
-	{
-		m_SubAction.restrictionFall();
-	}
 	if (m_Input->jumpTrigger())
 	{
+		GSvector3 nowPosition = GSvector3(0, m_transform.getPosition().y, 0);
 		m_transform.translate(nowPosition);
-		m_SubAction.jumpInitialize();
+		m_SubAction.initialize();
 		actionChange(std::make_shared<JumpState>());
-		m_SubAction.jumpStart();
+		m_GroundHit = false;
 	}
 }
 
@@ -166,6 +165,22 @@ void Player::jumpUp()
 void Player::jumpRigor()
 {
 	m_animatorOne.changeAnimation(ANIMATION_ID::LANDING, true, true);
+}
+
+const bool Player::isJump() const
+{
+	return m_Input->jumpTrigger();
+}
+
+
+const bool Player::isGround() const
+{
+	return m_GroundHit;
+}
+
+const bool Player::isEndAttack() const
+{
+	return m_attackManager.isEndAttack(&m_animatorOne);
 }
 
 void Player::actionChange(Action_Ptr _action)

@@ -1,38 +1,24 @@
 #include "../../header/subAction/subActionManager.h"
 #include "../../header/actor/Player/Player.h"
-#include "../../header/airstate/groundState.h"
-#include "../../header/airstate/RestrictionFall.h"
-subActionManager::subActionManager()
-	:m_jump(), m_chainMove()
+subActionManager::subActionManager(Player* _player)
+	:m_jump(_player)
 {
 }
 subActionManager::~subActionManager()
 {
 }
-void subActionManager::jumpInitialize()
+
+void subActionManager::initialize()
 {
-	m_jump.airActionChange(std::make_shared<GroundState>());
+	m_jump.initialize();
 }
-void subActionManager::action(Player * _player, float deltaTime)
+
+void subActionManager::update(float deltaTime)
 {
-	m_jump.update(_player, deltaTime);
-	//m_chainMove.movement(deltaTime, _player);
+	m_jump.update(deltaTime);
 }
-void subActionManager::groundHit()
+
+const bool subActionManager::isEnd() const
 {
-	m_jump.groundHit();
-}
-//現在のジャンプステートから次のジャンプステートへ移行
-void subActionManager::jumpStart()
-{
-	m_jump.jump();
-}
-void subActionManager::chainMoveStart()
-{
-	m_chainMove.start();
-}
-//硬直落下
-void subActionManager::restrictionFall()
-{
-	m_jump.airActionChange(std::make_shared<RestrictionFall>());
+	return m_jump.isEnd();
 }

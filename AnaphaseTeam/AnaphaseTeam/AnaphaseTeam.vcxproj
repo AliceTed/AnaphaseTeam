@@ -154,8 +154,8 @@
     <ClCompile Include="source\airState\FirstStep.cpp" />
     <ClCompile Include="source\airState\GroundState.cpp" />
     <ClCompile Include="source\airState\JumpControl.cpp" />
+    <ClCompile Include="source\airState\PreparationState.cpp" />
     <ClCompile Include="source\airState\RestrictionFall.cpp" />
-    <ClCompile Include="source\airState\RigorState.cpp" />
     <ClCompile Include="source\airState\SecondStep.cpp" />
     <ClCompile Include="source\animation\AnimatorOne.cpp" />
     <ClCompile Include="source\convenient\Point.cpp" />
@@ -217,8 +217,8 @@
     <ClInclude Include="header\airstate\GroundState.h" />
     <ClInclude Include="header\airstate\IAirState.h" />
     <ClInclude Include="header\airstate\JumpControl.h" />
+    <ClInclude Include="header\airstate\PreparationState.h" />
     <ClInclude Include="header\airstate\RestrictionFall.h" />
-    <ClInclude Include="header\airstate\RigorState.h" />
     <ClInclude Include="header\airstate\SecondStep.h" />
     <ClInclude Include="header\animation\AnimatorOne.h" />
     <ClInclude Include="header\attack\AttackStatus.h" />

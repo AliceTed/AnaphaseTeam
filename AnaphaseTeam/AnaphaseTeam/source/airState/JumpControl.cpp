@@ -8,44 +8,58 @@
 #include "../../header/actor/Player/Player.h"
 #include "../../header/math/Calculate.h"
 #include "../../header/airstate/groundState.h"
-#include "../../header/airstate/RigorState.h"
+#include "../../header/airstate/PreparationState.h"
 
+const float JumpControl::Acceleration = 0.1f;
 const float JumpControl::MaxJumpPower = 2.0f;
-
-JumpControl::JumpControl()
-	:m_Acceleration(0.1f),
-	m_airAction(std::make_shared<GroundState>())
+JumpControl::JumpControl(Player* _player)
+	:m_airAction(std::make_shared<PreparationState>()),
+	m_player(_player),
+	m_isEnd(false)
 {
 
 }
+
 JumpControl::~JumpControl()
 {
 
 }
-void JumpControl::update(Player* _player, float deltaTime)
+
+void JumpControl::initialize()
 {
-	m_airAction->airAction(this, _player, deltaTime);
+	m_isEnd = false;
+	airActionChange(std::make_shared<PreparationState>());
 }
-void JumpControl::groundHit()
+
+void JumpControl::update(float deltaTime)
 {
-	airActionChange(std::make_shared<RigorState>());
+	m_airAction->airAction(this, m_player, deltaTime);
 }
-void JumpControl::jumping(Player * _player, float deltaTime)
-{
-	_player->jumping(m_JumpPower*deltaTime);
-	Math::Clamp clamp;
-	m_JumpPower = clamp(m_JumpPower - m_Acceleration, -MaxJumpPower, MaxJumpPower);
-}
-void JumpControl::start(const float _jumpStepPow)
-{
-	m_JumpPower = _jumpStepPow;
-}
+
 void JumpControl::airActionChange(AirAction_Ptr _airAction)
 {
 	m_airAction = _airAction;
-	m_airAction->start(this);
+	m_airAction->start(this, m_player);
 }
-void JumpControl::jump()
+
+void JumpControl::end()
 {
-	m_airAction->next(this);
+	m_isEnd = true;
+}
+
+const bool JumpControl::isEnd() const
+{
+	return m_isEnd;
+}
+
+void JumpControl::setPower(float _power)
+{
+	m_JumpPower = _power;
+}
+
+void JumpControl::jumping(float deltaTime, Player * _player)
+{
+	_player->jumping(m_JumpPower*deltaTime);
+	Math::Clamp clamp;
+	m_JumpPower = clamp(m_JumpPower - Acceleration, -MaxJumpPower, MaxJumpPower);
 }

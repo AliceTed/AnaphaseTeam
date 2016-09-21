@@ -46,7 +46,7 @@ void AttackManager::gunAttack(Player * _player)
 	m_Pattern.at(m_currentKey).anime(_player);
 }
 
-bool AttackManager::isEndAttack(AnimatorOne* _animator)
+const bool AttackManager::isEndAttack(const AnimatorOne* _animator) const
 {
 	return m_Pattern.at(m_currentKey).isEndAnimation(_animator);
 }

@@ -16,11 +16,15 @@ public:
 	* @fn
 	* @brief ジャンプの力を０にする
 	*/
-	void start(JumpControl* _control);
+	void start(JumpControl* _control, Player* _player);
 	/**
 	* @fn
 	* @brief ジャンプ後の落下
 	*/
 	void airAction(JumpControl* _control, Player* _player, float deltaTime);
-	void next(JumpControl* _control);
+private:
+	void change(JumpControl* _control, Player* _player);
+	AirAction_Ptr next(const Player* _player) const;
+private:
+	static const float Restriction;
 };

@@ -24,7 +24,7 @@ public:
 	void update(Player* _player);
 	void anime(Player* _player);
 
-	bool isEndAnimation(AnimatorOne * _animator);
+	const bool isEndAnimation(const AnimatorOne * _animator) const;
 
 private:
 	//!攻撃ステータス

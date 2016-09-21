@@ -11,7 +11,6 @@ class IAirState
 {
 public:
 	virtual ~IAirState() {}
-	virtual void start(JumpControl* _control) = 0;
+	virtual void start(JumpControl* _control, Player* _player) = 0;
 	virtual void airAction(JumpControl* _control, Player* _player, float deltaTime) = 0;
-	virtual void next(JumpControl* _control) = 0;
 };

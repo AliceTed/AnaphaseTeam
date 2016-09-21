@@ -26,7 +26,7 @@ public:
 	* @fn
 	* @breif 今動いているアニメーションが終わっているか
 	*/
-	bool isEndCurrentAnimation();
+	const bool isEndCurrentAnimation() const;
 	/**
 	* @fn
 	* @breif 指定したアニメーションが終わっているか

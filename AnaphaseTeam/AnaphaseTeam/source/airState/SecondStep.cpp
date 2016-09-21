@@ -5,8 +5,13 @@
 * @date 2016/08/29
 */
 #include "../../header/airstate/SecondStep.h"
+#include "../../header/airstate/RestrictionFall.h"
+#include "../../header/airstate/GroundState.h"
 #include "../../header/actor/Player/Player.h"
+#include "../../header/math/Calculate.h"
+
 const float SecondStep::SecondStepPow = 1.0f;
+
 SecondStep::SecondStep()
 {
 
@@ -15,17 +20,37 @@ SecondStep::~SecondStep()
 {
 
 }
-void SecondStep::start(JumpControl * _control)
+void SecondStep::start(JumpControl * _control, Player* _player)
 {
-	_control->start(SecondStepPow);
+	_control->setPower(SecondStepPow);
 }
 void SecondStep::airAction(JumpControl* _control, Player* _player, float deltaTime)
 {
 	_player->jumpUp();
-	_control->jumping(_player, deltaTime);
 	_player->movement(deltaTime);
+	_control->jumping(deltaTime, _player);
+	change(_control, _player);
 }
-void SecondStep::next(JumpControl * _control)
-{
 
+void SecondStep::change(JumpControl * _control, Player * _player)
+{
+	if (next(_player) == nullptr)
+	{
+		return;
+	}
+	_control->airActionChange(next(_player));
+}
+
+AirAction_Ptr SecondStep::next(const Player * _player) const
+{
+	if (_player->isGround())
+	{
+		return std::make_shared<GroundState>();
+	}
+
+	if (_player->isEndAttack())
+	{
+		return std::make_shared<RestrictionFall>();
+	}
+	return nullptr;
 }

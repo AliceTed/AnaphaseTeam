@@ -16,17 +16,16 @@ public:
 	* @fn
 	* @brief 一段目のジャンプの力の設定
 	*/
-	void start(JumpControl* _control);
+	void start(JumpControl* _control, Player* _player);
 	/**
 	* @fn
 	* @brief 一段目のジャンプの異動処理
 	*/
 	void airAction(JumpControl* _control, Player* _player, float deltaTime);
-	/**
-	* @fn
-	* @brief 次のairStateをSecondStepにする
-	*/
-	void next(JumpControl* _control);
 private:
+	void change(JumpControl* _control, Player* _player);
+	AirAction_Ptr next(const Player* _player) const;
+private:
+	float m_JumpPower;
 	static const float FirstStepPow;
 };

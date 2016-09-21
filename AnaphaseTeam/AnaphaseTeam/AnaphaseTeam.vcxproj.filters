@@ -372,9 +372,6 @@
     <ClInclude Include="header\actor\attack\AttackManager.h">
       <Filter>ヘッダー ファイル\actor\Attack</Filter>
     </ClInclude>
-    <ClInclude Include="header\airstate\RestrictionFall.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
     <ClInclude Include="header\animation\AnimatorOne.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
@@ -402,7 +399,10 @@
     <ClInclude Include="header\airstate\SecondStep.h">
       <Filter>ヘッダー ファイル\airState</Filter>
     </ClInclude>
-    <ClInclude Include="header\airstate\RigorState.h">
+    <ClInclude Include="header\airstate\PreparationState.h">
+      <Filter>ヘッダー ファイル\airState</Filter>
+    </ClInclude>
+    <ClInclude Include="header\airstate\RestrictionFall.h">
       <Filter>ヘッダー ファイル\airState</Filter>
     </ClInclude>
   </ItemGroup>
@@ -563,9 +563,6 @@
     <ClCompile Include="source\airState\RestrictionFall.cpp">
       <Filter>ソース ファイル\airState</Filter>
     </ClCompile>
-    <ClCompile Include="source\airState\RigorState.cpp">
-      <Filter>ソース ファイル\airState</Filter>
-    </ClCompile>
     <ClCompile Include="source\airState\JumpControl.cpp">
       <Filter>ソース ファイル\airState</Filter>
     </ClCompile>
@@ -573,6 +570,9 @@
       <Filter>ソース ファイル\airState</Filter>
     </ClCompile>
     <ClCompile Include="source\airState\GroundState.cpp">
+      <Filter>ソース ファイル\airState</Filter>
+    </ClCompile>
+    <ClCompile Include="source\airState\PreparationState.cpp">
       <Filter>ソース ファイル\airState</Filter>
     </ClCompile>
   </ItemGroup>

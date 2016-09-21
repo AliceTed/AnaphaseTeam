@@ -47,6 +47,10 @@ public:
 	void jumping(float _velocity);
 	void jumpUp();
 	void jumpRigor();
+	const bool isJump() const;
+	const bool isGround() const;
+	const bool isEndAttack() const;
+
 	
 public://Actoråpè≥
 	void initialize() override;
@@ -70,9 +74,8 @@ private:
 	TestChainMove m_ChainMove;
 	Action_Ptr m_action;
 	subActionManager m_SubAction;
-
 	AttackManager m_attackManager;
-	//ANIMATION_ID m_animetion_id;
+	bool m_GroundHit;
 
 private://íËêî
 	static const float MOVESPEED;

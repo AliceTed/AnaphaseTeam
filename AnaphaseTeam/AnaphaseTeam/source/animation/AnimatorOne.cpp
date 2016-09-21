@@ -35,7 +35,7 @@ void AnimatorOne::changeAnimation(ANIMATION_ID _animation, bool _isLoop, bool _i
 		return;
 	m_currentAnimation->initialize();
 }
-bool AnimatorOne::isEndCurrentAnimation()
+const bool AnimatorOne::isEndCurrentAnimation() const
 {
 	return m_currentAnimation->getIsEnd();
 }

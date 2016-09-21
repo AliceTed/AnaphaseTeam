@@ -7,16 +7,14 @@
 #pragma once
 #include "IAirState.h"
 #include "jumpControl.h"
+#include "../convenient/Timer.h"
 class GroundState:public IAirState
 {
 public:
 	GroundState();
 	~GroundState();
-	void start(JumpControl* _control);
+	void start(JumpControl* _control, Player* _player);
 	void airAction(JumpControl* _control, Player* _player, float deltaTime);
-	/**
-	* @fn
-	* @brief ’n–Ê‚É‚¢‚é‚Æ‚«AŸ‚Ìairstate‚ğFirstStep‚É‚·‚é
-	*/
-	void next(JumpControl* _control);
+private:
+	Timer m_RigorTimer;
 };
