@@ -42,6 +42,7 @@ void Actor::collisionGround(const Map& _map)
 	{
 		return;
 	}
+	inGround();
 	//map‚É–„‚ß‚Ü‚ê‚Ä‚¢‚½‚çyÀ•W‚ğŒğ“_‚ÉˆÚ“®
 	m_transform.setPositionY(intersect.y);
 }
