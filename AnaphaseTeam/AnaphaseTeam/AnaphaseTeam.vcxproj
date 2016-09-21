@@ -142,6 +142,7 @@
     <ClCompile Include="source\actionstate\JumpState.cpp" />
     <ClCompile Include="source\actionstate\MoveState.cpp" />
     <ClCompile Include="source\actionstate\StandState.cpp" />
+    <ClCompile Include="source\actor\Actor.cpp" />
     <ClCompile Include="source\actor\attack\AttackManager.cpp" />
     <ClCompile Include="source\actor\attack\AttackStatus.cpp" />
     <ClCompile Include="source\actor\attack\ContinuationCombo.cpp" />

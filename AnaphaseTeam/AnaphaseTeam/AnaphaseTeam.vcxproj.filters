@@ -473,9 +473,6 @@
     <ClCompile Include="source\convenient\Timer.cpp">
       <Filter>ソース ファイル\convenient</Filter>
     </ClCompile>
-    <ClCompile Include="source\actor\Actor.cpp">
-      <Filter>ソース ファイル\actor</Filter>
-    </ClCompile>
     <ClCompile Include="source\actor\TestActor.cpp">
       <Filter>ソース ファイル\actor</Filter>
     </ClCompile>
@@ -562,6 +559,9 @@
     </ClCompile>
     <ClCompile Include="source\convenient\Point.cpp">
       <Filter>ソース ファイル\convenient</Filter>
+    </ClCompile>
+    <ClCompile Include="source\actor\Actor.cpp">
+      <Filter>ソース ファイル\actor</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
