@@ -20,6 +20,9 @@ class CollisionMediator;
 class Map;
 class Camera;
 class CollisionTable;
+
+class Player;
+class TestActor;
 //!　引数のフラグがfalseならリターン
 #define FALSE_RETURN(flg) if(!flg)return;
 class Actor
@@ -45,8 +48,7 @@ public:
 	* @brief 自身が作成した判定用オブジェクトが衝突したら呼ばれる
 	* @param (_other)衝突したactorクラスを取得
 	*/
-	virtual void collision(const Actor* _other);
-
+	virtual void collision(Actor* _other);
 	/**
 	* @fn
 	* @brief 関数内で判定用オブジェクトを生成出来る

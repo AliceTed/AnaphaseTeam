@@ -129,7 +129,7 @@ void Player::walk(float deltaTime)
 
 void Player::avoid(float deltaTime)
 {
-	m_animatorOne.changeAnimation(ANIMATION_ID::STAND);
+	m_animatorOne.changeAnimation(ANIMATION_ID::AVOID);
 	m_SubAction.update(deltaTime);
 	if (m_SubAction.isEnd(SubActionType::AVOID))
 	{

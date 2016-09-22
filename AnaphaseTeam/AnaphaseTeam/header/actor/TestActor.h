@@ -13,8 +13,7 @@ public:
 	void update(float deltatime);
 	void draw(const Renderer& _renderer, const Camera& _camera);
 	void createCollision(CollisionMediator* _mediator);
-	void collision(const Actor* _other);
-
+	void collision(Actor* _other);
 	/*
 	UŒ‚—Í‚Æ‚Á”ò‚Ñ’l‚ğó‚¯æ‚é
 	*/

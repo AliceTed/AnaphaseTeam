@@ -7,6 +7,8 @@
 #include "../../header/shape/Sphere.h"
 
 #include "../../header/attack/AttackStatus.h"
+
+#include "../../header/actor/Player/Player.h"
 //
 int TestActor::DrawCount = 0;
 TestActor::TestActor()
@@ -67,7 +69,7 @@ void TestActor::createCollision(CollisionMediator * _mediator)
 	_mediator->add(obj);
 }
 
-void TestActor::collision(const Actor * _other)
+void TestActor::collision(Actor * _other)
 {
 	if (_other->isSameTag(Actor_Tag::PLAYER))
 		m_isDead = true;

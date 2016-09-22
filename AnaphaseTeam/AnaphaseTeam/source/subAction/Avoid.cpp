@@ -2,7 +2,7 @@
 #include "../../header/actor/Player/Player.h"
 
 const float Avoid::VELOCITY = 15.0f;
-const float Avoid::TIME = 0.3f;
+const float Avoid::TIME = 0.2f;
 Avoid::Avoid(Player* _player)
 	:m_player(_player),
 	m_prebious(0,0,0),
