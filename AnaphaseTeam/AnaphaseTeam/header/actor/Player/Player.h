@@ -9,7 +9,6 @@
 #include "../../animation/Animation.h"
 #include "../../animation/Animator.h"
 #include "../../actionstate/IActionState.h"
-#include "../../subAction/TestChainMove.h"
 #include "../../convenient/Timer.h"
 #include<gslib.h>
 #include <memory>
@@ -69,7 +68,6 @@ private:
 	void moveMotionChange();
 private:
 	const Input* m_Input;
-	TestChainMove m_ChainMove;
 	Action_Ptr m_action;
 	subActionManager m_SubAction;
 	AttackManager m_attackManager;

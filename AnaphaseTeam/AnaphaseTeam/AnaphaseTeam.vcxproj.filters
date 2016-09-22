@@ -100,9 +100,6 @@
     <Filter Include="ヘッダー ファイル\actor\state\each">
       <UniqueIdentifier>{4946e860-a7a5-4d96-a5e3-7c077b525eeb}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ソース ファイル\actor\state">
-      <UniqueIdentifier>{d9e47648-a575-4ce5-9744-67c5b1d7719a}</UniqueIdentifier>
-    </Filter>
     <Filter Include="ヘッダー ファイル\map">
       <UniqueIdentifier>{44fc76f1-a64f-4578-9094-160cf249bb25}</UniqueIdentifier>
     </Filter>

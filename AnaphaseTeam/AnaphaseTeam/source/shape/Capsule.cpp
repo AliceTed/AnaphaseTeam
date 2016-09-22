@@ -2,7 +2,6 @@
 #include "../../header/renderer/Renderer.h"
 
 #include "../../header/shape/Sphere.h"
-#include "../../header/shape/OBB.h"
 #include "../../header/math/Calculate.h"
 Capsule::Capsule(const Segment & _segment, float _radius)
 	:m_Segment(_segment),m_Radius(_radius)
@@ -36,16 +35,6 @@ const bool Capsule::isCollision(const Capsule * _capsule) const
 const bool Capsule::isCollision(const Segment * _segment) const
 {
 	return _segment->isCollisionCapsule(m_Segment,m_Radius);
-}
-
-const bool Capsule::isCollision(const OBB * _obb) const
-{
-	return _obb->isCollisionCapsule(m_Segment.begin(),m_Segment.vector(),m_Radius);
-}
-
-const bool Capsule::isCollision(const AABB * _aabb) const
-{
-	return false;
 }
 
 const bool Capsule::isCollision(const Shape * _shape) const

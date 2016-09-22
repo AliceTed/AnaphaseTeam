@@ -20,7 +20,6 @@ Player::Player(const Input* _input)
 	:Actor(Transform({ 0,0,5 }), MODEL_ID::PLAYER, Sphere(GSvector3(0, 0, 0), 0), Actor_Tag::PLAYER),
 	m_action(nullptr),
 	m_SubAction(this),
-	m_ChainMove(),
 	m_attackManager(),
 	m_GroundHit(false)
 	//m_scythe(MODEL_ID::PLAYER),
@@ -130,7 +129,7 @@ void Player::walk(float deltaTime)
 
 void Player::chain(float deltaTime)
 {
-	m_ChainMove.movement(deltaTime, this);
+	//m_ChainMove.movement(deltaTime, this);
 }
 
 void Player::jumping(float _velocity)

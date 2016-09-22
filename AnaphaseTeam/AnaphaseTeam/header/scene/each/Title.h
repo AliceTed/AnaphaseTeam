@@ -8,9 +8,6 @@
 #include "../../collision/CollisionManager.h"
 #include <memory>
 #include "../../actor/Player/Player.h"
-
-#include "../../shape/AABB.h"
-#include "../../shape/Segment.h"
 class Input;
 typedef std::shared_ptr<Actor>Actor_Ptr;
 class Title :public IScene

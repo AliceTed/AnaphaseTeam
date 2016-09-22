@@ -18,7 +18,7 @@ public:
 	void initialize();
 	void update(float deltaTime);
 	void draw(const Renderer& renderer);
-
+private:
 	void collision(Obj_Ptr _obj1, Obj_Ptr _obj2);
 private:
 	Entity::EntityManager<Obj_Ptr> m_Container;

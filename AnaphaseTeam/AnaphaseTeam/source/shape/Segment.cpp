@@ -3,7 +3,6 @@
 
 #include "../../header/shape/Sphere.h"
 #include "../../header/shape/Capsule.h"
-#include "../../header/shape/OBB.h"
 Segment::Segment(const GSvector3& _begin, const GSvector3& _vector)
 	:m_begin(_begin), m_vector(_vector)
 {
@@ -32,17 +31,6 @@ const bool Segment::isCollision(const Segment * _segment) const
 {
 	return gsCollisionLineAndLine(&m_begin, &end(), &_segment->m_begin, &_segment->end(), GS_FALSE, 1.0f, &GSvector3(), &GSvector3()) == GS_TRUE;
 }
-
-const bool Segment::isCollision(const AABB * _aabb) const
-{
-	return false;
-}
-
-const bool Segment::isCollision(const OBB * _obb) const
-{
-	return _obb->isCollisionSegment(m_begin, m_vector);
-}
-
 const bool Segment::isCollision(const Shape * _shape) const
 {
 	return _shape->isCollision(this);
