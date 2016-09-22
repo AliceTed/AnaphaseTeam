@@ -159,6 +159,7 @@
     <ClCompile Include="source\animation\AnimatorOne.cpp" />
     <ClCompile Include="source\convenient\Point.cpp" />
     <ClCompile Include="source\convenient\Transform.cpp" />
+    <ClCompile Include="source\scene\SceneChange.cpp" />
     <ClCompile Include="source\subAction\SubActionManager.cpp" />
     <ClCompile Include="source\animation\Animation.cpp" />
     <ClCompile Include="source\animation\AnimationTimer.cpp" />
@@ -188,6 +189,11 @@
     <ClCompile Include="source\shape\Ray.cpp" />
     <ClCompile Include="source\shape\Segment.cpp" />
     <ClCompile Include="source\shape\Sphere.cpp" />
+    <ClCompile Include="source\ui\Cursor.cpp" />
+    <ClCompile Include="source\ui\Fade.cpp" />
+    <ClCompile Include="source\ui\ScaleImage.cpp" />
+    <ClCompile Include="source\ui\SelectUI.cpp" />
+    <ClCompile Include="source\ui\TitleUI.cpp" />
     <ClCompile Include="Util\BasicShapes.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -220,6 +226,8 @@
     <ClInclude Include="header\attack\AttackStatus.h" />
     <ClInclude Include="header\attack\ContinuationCombo.h" />
     <ClInclude Include="header\convenient\Point.h" />
+    <ClInclude Include="header\math\TimeLerpVector.h" />
+    <ClInclude Include="header\scene\SceneChange.h" />
     <ClInclude Include="header\subAction\SubActionManager.h" />
     <ClInclude Include="header\animation\Animation.h" />
     <ClInclude Include="header\animation\AnimationTimer.h" />
@@ -272,6 +280,11 @@
     <ClInclude Include="header\shape\Shape.h" />
     <ClInclude Include="header\shape\Sphere.h" />
     <ClInclude Include="header\convenient\Transform.h" />
+    <ClInclude Include="header\ui\Cursor.h" />
+    <ClInclude Include="header\ui\Fade.h" />
+    <ClInclude Include="header\ui\ScaleImage.h" />
+    <ClInclude Include="header\ui\SelectUI.h" />
+    <ClInclude Include="header\ui\TitleUI.h" />
     <ClInclude Include="Util\BasicShapes.h" />
     <ClInclude Include="Util\EffectGL.h" />
     <ClInclude Include="Util\RenderTarget.h" />

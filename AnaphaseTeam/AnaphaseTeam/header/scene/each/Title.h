@@ -1,9 +1,9 @@
 #ifndef _TITLE_H_
 #define _TITLE_H_
 #include "../IScene.h"
-
+#include "../../ui/TitleUI.h"
+#include "../SceneChange.h"
 class Input;
-typedef std::shared_ptr<Actor>Actor_Ptr;
 class Title :public IScene
 {
 public:
@@ -16,9 +16,13 @@ public:
 	const SceneMode next()const;
 	const bool isEnd()const;
 	const bool isExit()const;
-private:
-	bool m_IsEnd;
-	const Input* m_Input;
 
+	void decision(Select _select);
+	void select(SelectUI& _select);
+private:
+	bool m_IsExit;
+	SceneChange m_change;
+	TitleUI m_title;
+	const Input* m_Input;
 };
 #endif

@@ -51,9 +51,13 @@ const bool Load::isExit() const
 
 void Load::loadTextrue()
 {
-	//Data::LoadTexture loadTex;
-	//loadTex(TEXTURE_ID::TEST,"test");
-	//loadTex(TEXTURE_ID::SIZE, "eee");
+	Data::LoadTexture tex;
+	tex(TEXTURE_ID::BLACK, "black");
+	tex(TEXTURE_ID::EXIT, "Exit");
+	tex(TEXTURE_ID::OPTION, "option");
+	tex(TEXTURE_ID::GAMESTART, "GameStart");
+	tex(TEXTURE_ID::CURSOR, "cursor");
+	tex(TEXTURE_ID::TITLE_ROGO, "title_rogo");
 }
 void Load::loadSound()
 {

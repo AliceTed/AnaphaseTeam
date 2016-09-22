@@ -1,17 +1,11 @@
 #include "../../../header/scene/each/Title.h"
 #include "../../../header/renderer/Renderer.h"
-
 #include "../../../header/device/Input.h"
-
-#include "../../../header/actor/TestActor.h"
-
 Title::Title(const Input* _input)
-	:m_IsEnd(false),
-	m_Camera(10, 8, GSvector3(0, 5, 0)),
-	actorManager(),
-	m_Map(OCTREE_ID::KOUTEI),
-	player(_input),
-	collision()
+	:m_Input(_input),
+	m_IsExit(false),
+	m_title(),
+	m_change()
 {
 }
 
@@ -21,59 +15,66 @@ Title::~Title()
 
 void Title::initialize()
 {
-	m_IsEnd = false;
-	collision.initialize();
-	for (int i = 0; i < 20; i++)
-	{
-		Actor_Ptr actor = std::make_shared<TestActor>();
-		actor->initialize();
-		actorManager.add(actor);
-	}
-	player.initialize();
+	m_IsExit = false;
+	m_change.initialize();
+	m_change.begin();
+	m_title.initialize();
 }
 void Title::update(float deltaTime)
 {
-	player.update(deltaTime);
-	player.collisionGround(m_Map);
-	player.createCollision(&collision);
-
-	actorManager.accept([deltaTime](Actor_Ptr _actor) {_actor->update(deltaTime);});
-	actorManager.accept([&](Actor_Ptr _actor) {_actor->collisionGround(m_Map);});
-	actorManager.accept([&](Actor_Ptr _actor) {_actor->createCollision(&collision);});
-
-	collision.update(deltaTime);
-	actorManager.remove([](Actor_Ptr _actor)->bool {return _actor->isDead();});
+	if (m_change.update(deltaTime))return;
+	m_title.update(deltaTime, *this);
 }
 
 void Title::draw(const Renderer & renderer)
 {
-	renderer.getDraw3D().drawSky(MESH_ID::SKY);
-	//m_Camera.lookAt(target, 0);	
-	player.draw(renderer, m_Camera);
-
-	m_Map.draw(renderer);
-	
-	actorManager.accept([&](Actor_Ptr _actor) {_actor->draw(renderer, m_Camera);});
-	renderer.getDraw2D().string("‘”:" + std::to_string(actorManager.size()), &GSvector2(20, 20), 20);
-	renderer.getDraw2D().string("•`‰æ”:" + std::to_string(TestActor::DrawCount), &GSvector2(20, 50), 20);
-	collision.draw(renderer);	
+	m_title.draw(renderer);
+	m_change.draw(renderer);
 }
 
 void Title::finish()
 {
+	m_title.finish();
 }
 
 const SceneMode Title::next() const
 {
-	return SceneMode::GAMEPLAY;
+	return m_change.next();
 }
 
 const bool Title::isEnd() const
 {
-	return m_IsEnd;
+	return m_change.isEnd();
 }
 
 const bool Title::isExit() const
 {
-	return false;
+	return m_IsExit;
+}
+void Title::decision(Select _select)
+{
+	if (!m_Input->jumpTrigger())return;
+	switch (_select)
+	{
+	case Select::GAMESTART:
+		m_change.end(SceneMode::GAMEPLAY);
+		break;
+	case Select::OPTION:
+		m_change.end(SceneMode::TITLE);
+		break;
+	case Select::EXIT:
+		m_IsExit = true;
+		break;
+	}
+}
+void Title::select(SelectUI & _select)
+{
+	if (m_Input->up())
+	{
+		_select.previous();
+	}
+	if (m_Input->down())
+	{
+		_select.next();
+	}
 }

@@ -22,5 +22,9 @@ public:
 	//input?
 	const bool move()const;
 	const bool walk()const;
+
+	const bool up()const;
+	const bool down()const;
+	const bool exit()const;
 };
 #endif

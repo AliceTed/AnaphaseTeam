@@ -142,6 +142,12 @@
     <Filter Include="ヘッダー ファイル\collision">
       <UniqueIdentifier>{3f38fcce-e724-469a-9c50-143871782b19}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\ui">
+      <UniqueIdentifier>{e1c7c17e-ffc4-403f-bd11-65fe45527639}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\ui">
+      <UniqueIdentifier>{16b8cdc1-bfca-404f-be49-f88c761df387}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Util\BasicShapes.h">
@@ -399,6 +405,27 @@
     <ClInclude Include="header\attack\ContinuationCombo.h">
       <Filter>ヘッダー ファイル\actor\Attack</Filter>
     </ClInclude>
+    <ClInclude Include="header\ui\Cursor.h">
+      <Filter>ヘッダー ファイル\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="header\ui\ScaleImage.h">
+      <Filter>ヘッダー ファイル\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="header\ui\SelectUI.h">
+      <Filter>ヘッダー ファイル\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="header\ui\TitleUI.h">
+      <Filter>ヘッダー ファイル\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="header\scene\SceneChange.h">
+      <Filter>ヘッダー ファイル\scene</Filter>
+    </ClInclude>
+    <ClInclude Include="header\ui\Fade.h">
+      <Filter>ヘッダー ファイル\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="header\math\TimeLerpVector.h">
+      <Filter>ヘッダー ファイル\math</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Util\BasicShapes.cpp">
@@ -497,9 +524,6 @@
     <ClCompile Include="source\actionstate\MoveState.cpp">
       <Filter>ソース ファイル\actor\actionState</Filter>
     </ClCompile>
-    <ClCompile Include="source\actor\Actor.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
     <ClCompile Include="source\actor\attack\AttackManager.cpp">
       <Filter>ソース ファイル\actor\Attack</Filter>
     </ClCompile>
@@ -556,6 +580,27 @@
     </ClCompile>
     <ClCompile Include="source\convenient\Point.cpp">
       <Filter>ソース ファイル\convenient</Filter>
+    </ClCompile>
+    <ClCompile Include="source\actor\Actor.cpp">
+      <Filter>ソース ファイル\actor</Filter>
+    </ClCompile>
+    <ClCompile Include="source\ui\Cursor.cpp">
+      <Filter>ソース ファイル\ui</Filter>
+    </ClCompile>
+    <ClCompile Include="source\ui\ScaleImage.cpp">
+      <Filter>ソース ファイル\ui</Filter>
+    </ClCompile>
+    <ClCompile Include="source\ui\SelectUI.cpp">
+      <Filter>ソース ファイル\ui</Filter>
+    </ClCompile>
+    <ClCompile Include="source\ui\TitleUI.cpp">
+      <Filter>ソース ファイル\ui</Filter>
+    </ClCompile>
+    <ClCompile Include="source\scene\SceneChange.cpp">
+      <Filter>ソース ファイル\scene</Filter>
+    </ClCompile>
+    <ClCompile Include="source\ui\Fade.cpp">
+      <Filter>ソース ファイル\ui</Filter>
     </ClCompile>
     <ClCompile Include="source\actor\Actor.cpp">
       <Filter>ソース ファイル\actor</Filter>

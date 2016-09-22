@@ -4,7 +4,12 @@
 
 enum class TEXTURE_ID :unsigned int
 {
-	TEST,
+	BLACK,
+	EXIT,
+	GAMESTART,
+	OPTION,
+	CURSOR,
+	TITLE_ROGO,
 	SIZE
 };
 #endif

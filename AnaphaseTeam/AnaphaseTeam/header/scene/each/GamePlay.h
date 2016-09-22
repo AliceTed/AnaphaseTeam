@@ -29,6 +29,6 @@ private:
 	Camera m_Camera;
 	Entity::EntityManager<Actor_Ptr> actorManager;
 	CollisionManager collision;
-	Player player;
+	Player m_player;
 };
 #endif

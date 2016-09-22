@@ -58,7 +58,8 @@ private:
 		Data::Release release;
 		release();
 	}
-
+private:
+	bool isRunning() { return !m_Input.exit() && !m_SceneManager.isExit(); }
 private:
 	SceneManager m_SceneManager;
 

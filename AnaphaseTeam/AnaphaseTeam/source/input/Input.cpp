@@ -39,6 +39,21 @@ const bool Input::walk() const
 	return gsGetKeyState(GKEY_RSHIFT) == GS_TRUE;
 }
 
+const bool Input::up() const
+{
+	return gsGetKeyTrigger(GKEY_UP) == GS_TRUE;
+}
+
+const bool Input::down() const
+{
+	return gsGetKeyTrigger(GKEY_DOWN) == GS_TRUE;
+}
+
+const bool Input::exit() const
+{
+	return gsGetKeyTrigger(GKEY_ESCAPE) == GS_TRUE;
+}
+
 const bool Input::jumpTrigger() const
 {
 	return gsGetKeyTrigger(GKEY_SPACE)==GS_TRUE;
