@@ -10,15 +10,14 @@
 
 #include "../../header/actor/Player/Player.h"
 //
-int TestActor::DrawCount = 0;
 TestActor::TestActor()
-	:Actor(Transform(), MODEL_ID::KARATE, Sphere(GSvector3(0, 0, 0), 1.0f), Actor_Tag::TEST),
-	target(0, 0, 0)
+	:Actor(
+		Transform(GSvector3(0,0,0), GSvector3(0, 0, 0), GSvector3(1.5f,1.5f,1.5f)),
+		MODEL_ID::BOSS, 
+		Sphere(GSvector3(0,5, 0),10.0f), 
+		Actor_Tag::TEST)
 {
-	DrawCount = 0;
 	m_animatorOne.changeAnimation(ANIMATION_ID::STAND, true);
-	//m_animator.addAnimation(ANIMATION_ID::STAND, true);
-	//m_animator.changeAnimation(ANIMATION_ID::STAND, false);
 }
 
 TestActor::~TestActor()
@@ -27,50 +26,12 @@ TestActor::~TestActor()
 
 void TestActor::update(float deltatime)
 {
-//	m_animator.update(deltatime);
-	switch (rand() % 360)
-	{
-	case 0:
-		target.x += 1;
-		break;
-	case 1:
-		target.x -= 1;
-		break;
-	case 2:
-		target.z += 1;
-		break;
-	case 3:
-		target.z -= 1;
-		break;
-	}
-
-	m_transform.setPosition(m_transform.getPosition().lerp(target, deltatime*0.1f));
-	sphereChases(GSvector3(0, 1, 0));
-	//
-	DrawCount = 0;
+	sphereChases(GSvector3(0,10, 0));
 }
 
 void TestActor::draw(const Renderer & _renderer, const Camera & _camera)
 {
 	FALSE_RETURN(isInsideView(_camera));
 	alphaBlend(_camera);
-	//m_animator.bind();
-	_renderer.getDraw3D().drawMesh(MODEL_ID::KARATE, m_transform,m_animatorOne, m_Color);
-	//sphereDraw(_renderer);
-	
-	DrawCount++;
-}
-
-void TestActor::createCollision(CollisionMediator * _mediator)
-{
-	GSvector3 pos(m_transform.getPosition() + GSvector3(0, 0.5f, 0));
-	Shape_Ptr shape = std::make_shared<Sphere>(pos, 1.0f);
-	Obj_Ptr obj = std::make_shared<CollisionObject>(this, shape);
-	_mediator->add(obj);
-}
-
-void TestActor::collision(Actor * _other)
-{
-	if (_other->isSameTag(Actor_Tag::PLAYER))
-		m_isDead = true;
+	_renderer.getDraw3D().drawMesh(MODEL_ID::BOSS, m_transform,m_animatorOne, m_Color);
 }

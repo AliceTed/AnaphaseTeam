@@ -8,6 +8,8 @@
 #include "../../collision/CollisionManager.h"
 #include <memory>
 #include "../../actor/Player/Player.h"
+
+#include "../../actor/TestActor.h"
 class Input;
 typedef std::shared_ptr<Actor>Actor_Ptr;
 class GamePlay :public IScene
@@ -30,5 +32,6 @@ private:
 	Entity::EntityManager<Actor_Ptr> actorManager;
 	CollisionManager collision;
 	Player m_player;
+	TestActor m_boss;
 };
 #endif

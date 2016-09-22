@@ -73,8 +73,8 @@ void Load::loadModel()
 	using namespace Data;
 	LoadMesh mesh;
 	LoadModel model;
-	model(MODEL_ID::KARATE, "karate");
 	model(MODEL_ID::PLAYER,"kendo" );
+	model(MODEL_ID::BOSS, "boss/bos3");
 
 	mesh(MESH_ID::SKY, "sky/skydome");
 	LoadOctree oct;

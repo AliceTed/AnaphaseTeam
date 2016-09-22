@@ -13,16 +13,6 @@ Draw3D::~Draw3D()
 {
 }
 
-void Draw3D::drawMesh(MODEL_ID _id, const Transform & _transform, const Animator & _animator, const GScolor & _color) const
-{
-	glPushMatrix();
-	_animator.bind();
-	glColor4f(_color.r, _color.g, _color.b, _color.a);
-	glMultMatrixf(_transform.getMatrix4());
-	Data::CastID cast;
-	gsDrawMesh(cast(_id));
-	glPopMatrix();
-}
 void Draw3D::drawMesh(MODEL_ID _id, const Transform & _transform, const AnimatorOne & _animator, const GScolor & _color) const
 {
 	glPushMatrix();
@@ -49,6 +39,7 @@ void Draw3D::drawSky(MESH_ID id)const
 	glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();
 	Data::CastID cast;
+	glColor4f(1.0f, 1.0f, 1.0f, 1.0f);
 	gsDrawSkyBox(cast(id));
 }
 
