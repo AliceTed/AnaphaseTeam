@@ -119,6 +119,7 @@ void Player::jump(float deltaTime)
 	{
 		actionChange(std::make_shared<StandState>());
 	}
+	control();
 }
 
 void Player::walk(float deltaTime)

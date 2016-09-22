@@ -3,19 +3,15 @@
 #include "../../header/camera/Camera.h"
 #include "../../header/renderer/Renderer.h"
 
-#include "../../header/collision/CollisionMediator.h"
-#include "../../header/shape/Sphere.h"
-
-#include "../../header/attack/AttackStatus.h"
-
-#include "../../header/actor/Player/Player.h"
+#include "../../header/math/Calculate.h"
 //
 TestActor::TestActor()
 	:Actor(
-		Transform(GSvector3(0,0,0), GSvector3(0, 0, 0), GSvector3(1.5f,1.5f,1.5f)),
+		Transform(),
 		MODEL_ID::BOSS, 
-		Sphere(GSvector3(0,5, 0),10.0f), 
-		Actor_Tag::TEST)
+		Sphere(GSvector3(0,0, 0),7.0f), 
+		Actor_Tag::TEST),
+	sphs()
 {
 	m_animatorOne.changeAnimation(ANIMATION_ID::STAND, true);
 }
@@ -26,12 +22,58 @@ TestActor::~TestActor()
 
 void TestActor::update(float deltatime)
 {
-	sphereChases(GSvector3(0,10, 0));
+	getSphere();
+	sphereChases(GSvector3(0,7, 0));
 }
 
 void TestActor::draw(const Renderer & _renderer, const Camera & _camera)
 {
 	FALSE_RETURN(isInsideView(_camera));
 	alphaBlend(_camera);
-	_renderer.getDraw3D().drawMesh(MODEL_ID::BOSS, m_transform,m_animatorOne, m_Color);
+	_renderer.getDraw3D().drawMesh(MODEL_ID::BOSS, m_transform, m_animatorOne, m_Color);
+	for each (auto sph in sphs){sph.draw(_renderer);}
+}
+
+void TestActor::getSphere()
+{
+	sphs.clear();
+	std::vector<GSmatrix4> mat = getAnimEachPos();
+
+	sphs.emplace_back(Sphere(getPos(mat, HEAD),2.0f));
+	sphs.emplace_back(Sphere(getPos(mat, LEFTLEG),2.0f));
+	sphs.emplace_back(Sphere(getPos(mat, RIGHTLEG),2.0f));
+}
+
+std::vector<GSmatrix4> TestActor::getAnimEachPos()
+{
+	const GSuint n = gsGetSkeletonNumBones(static_cast<GSuint>(MODEL_ID::BOSS));
+	GSmatrix4 *pmat = new GSmatrix4[n],
+		*mat = new GSmatrix4[n],
+		*animmat = new GSmatrix4[n];
+	for (GSuint i = 0; i < n; i++)
+	{
+		pmat[i] = GS_MATRIX4_IDENTITY;
+	}
+	gsCalculateAnimation(
+		static_cast<GSuint>(MODEL_ID::BOSS),
+		static_cast<GSuint>(ANIMATION_ID::STAND),
+		0, animmat);
+
+	gsCalculateSkeleton(pmat, animmat, mat);
+	std::vector<GSmatrix4> res;
+	for (int i = 0; i <n; i++)
+	{
+		res.emplace_back(mat[i]);
+	}
+	delete[] pmat;
+	delete[] mat;
+	delete[] animmat;
+	return res;
+}
+
+GSvector3 TestActor::getPos(std::vector<GSmatrix4>& _mat, int index)
+{
+	Transform t(_mat[index]);
+	GSmatrix4 m = t.parentSynthesis(m_transform);
+	return m.getPosition();
 }
