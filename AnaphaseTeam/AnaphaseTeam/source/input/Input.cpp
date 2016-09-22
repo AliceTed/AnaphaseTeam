@@ -78,4 +78,9 @@ const bool Input::gunTrigger() const
 	return gsGetKeyTrigger(GKEY_J) == GS_TRUE;
 }
 
+const bool Input::avoidTrigger() const
+{
+	return gsGetKeyTrigger(GKEY_C) == GS_TRUE;
+}
+
 

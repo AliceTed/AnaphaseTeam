@@ -1,5 +1,5 @@
-#include "../../../header/actor/attack/Gun.h"
-#include "../../../header/actor/attack/IWeapon.h"
+#include "../../header/attack/Gun.h"
+#include "../../header/attack/IWeapon.h"
 
 Gun::Gun(/*MODEL_ID _model_id*/)
 	:m_gunValu(0.0f)

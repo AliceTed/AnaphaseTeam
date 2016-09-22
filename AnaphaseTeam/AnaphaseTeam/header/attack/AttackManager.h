@@ -5,7 +5,7 @@
 * @date 2016/09/11
 */
 #pragma once
-#include "../../device/Input.h"
+#include "../device/Input.h"
 #include "ContinuationCombo.h"
 #include "Scythe.h"
 #include "Gun.h"

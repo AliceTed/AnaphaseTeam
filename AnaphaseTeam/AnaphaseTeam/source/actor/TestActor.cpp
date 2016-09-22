@@ -6,7 +6,7 @@
 #include "../../header/collision/CollisionMediator.h"
 #include "../../header/shape/Sphere.h"
 
-#include "../../header/actor/attack/AttackStatus.h"
+#include "../../header/attack/AttackStatus.h"
 //
 int TestActor::DrawCount = 0;
 TestActor::TestActor()

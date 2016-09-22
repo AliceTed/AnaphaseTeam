@@ -6,8 +6,8 @@
 */
 #pragma once
 #include "IWeapon.h"
-#include "../../animation/Animator.h"
-#include "../../actionstate/IActionState.h"
+#include "../animation/Animator.h"
+#include "../actionstate/IActionState.h"
 class Gun //: public IWeapon
 {
 public:

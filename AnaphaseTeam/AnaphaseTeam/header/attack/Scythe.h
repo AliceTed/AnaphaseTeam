@@ -6,8 +6,8 @@
 */
 #pragma once
 #include "IWeapon.h"
-#include "../../animation/Animator.h"
-#include "../../actionstate/IActionState.h"
+#include "../animation/Animator.h"
+#include "../actionstate/IActionState.h"
 //typedef std::shared_ptr<IActionState> Action_Ptr;
 class Scythe //: public IWeapon
 {

@@ -139,15 +139,16 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="source\actionstate\AttackState.cpp" />
+    <ClCompile Include="source\actionstate\AvoidState.cpp" />
     <ClCompile Include="source\actionstate\JumpState.cpp" />
     <ClCompile Include="source\actionstate\MoveState.cpp" />
     <ClCompile Include="source\actionstate\StandState.cpp" />
     <ClCompile Include="source\actor\Actor.cpp" />
-    <ClCompile Include="source\actor\attack\AttackManager.cpp" />
-    <ClCompile Include="source\actor\attack\AttackStatus.cpp" />
-    <ClCompile Include="source\actor\attack\ContinuationCombo.cpp" />
-    <ClCompile Include="source\actor\attack\Gun.cpp" />
-    <ClCompile Include="source\actor\attack\Scythe.cpp" />
+    <ClCompile Include="source\attack\AttackManager.cpp" />
+    <ClCompile Include="source\attack\AttackStatus.cpp" />
+    <ClCompile Include="source\attack\ContinuationCombo.cpp" />
+    <ClCompile Include="source\attack\Gun.cpp" />
+    <ClCompile Include="source\attack\Scythe.cpp" />
     <ClCompile Include="source\actor\player\Player.cpp" />
     <ClCompile Include="source\actor\TestActor.cpp" />
     <ClCompile Include="source\airState\FirstStep.cpp" />
@@ -160,6 +161,7 @@
     <ClCompile Include="source\convenient\Point.cpp" />
     <ClCompile Include="source\convenient\Transform.cpp" />
     <ClCompile Include="source\scene\SceneChange.cpp" />
+    <ClCompile Include="source\subAction\Avoid.cpp" />
     <ClCompile Include="source\subAction\SubActionManager.cpp" />
     <ClCompile Include="source\animation\Animation.cpp" />
     <ClCompile Include="source\animation\AnimationTimer.cpp" />
@@ -198,6 +200,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="header\actionstate\AttackState.h" />
+    <ClInclude Include="header\actionstate\AvoidState.h" />
     <ClInclude Include="header\actionstate\IActionState.h" />
     <ClInclude Include="header\actionstate\JumpState.h" />
     <ClInclude Include="header\actionstate\MoveState.h" />
@@ -205,13 +208,13 @@
     <ClInclude Include="header\actor\Actor.h" />
     <ClInclude Include="header\actor\Actor_Tag.h" />
     <ClInclude Include="header\actor\AttackActor.h" />
-    <ClInclude Include="header\actor\attack\AttackManager.h" />
-    <ClInclude Include="header\actor\attack\AttackPattern.h" />
-    <ClInclude Include="header\actor\attack\AttackStatus.h" />
-    <ClInclude Include="header\actor\attack\ContinuationCombo.h" />
-    <ClInclude Include="header\actor\attack\Gun.h" />
-    <ClInclude Include="header\actor\attack\IWeapon.h" />
-    <ClInclude Include="header\actor\attack\Scythe.h" />
+    <ClInclude Include="header\attack\AttackManager.h" />
+    <ClInclude Include="header\attack\AttackPattern.h" />
+    <ClInclude Include="header\attack\AttackStatus.h" />
+    <ClInclude Include="header\attack\ContinuationCombo.h" />
+    <ClInclude Include="header\attack\Gun.h" />
+    <ClInclude Include="header\attack\IWeapon.h" />
+    <ClInclude Include="header\attack\Scythe.h" />
     <ClInclude Include="header\actor\ICharacter.h" />
     <ClInclude Include="header\actor\Player\Player.h" />
     <ClInclude Include="header\actor\TestActor.h" />
@@ -228,6 +231,7 @@
     <ClInclude Include="header\convenient\Point.h" />
     <ClInclude Include="header\math\TimeLerpVector.h" />
     <ClInclude Include="header\scene\SceneChange.h" />
+    <ClInclude Include="header\subAction\Avoid.h" />
     <ClInclude Include="header\subAction\SubActionManager.h" />
     <ClInclude Include="header\animation\Animation.h" />
     <ClInclude Include="header\animation\AnimationTimer.h" />

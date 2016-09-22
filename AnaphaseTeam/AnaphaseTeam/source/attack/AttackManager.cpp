@@ -1,6 +1,6 @@
-#include "../../../header/actor/attack/attackManager.h"
-#include "../../../header/actor/Player/Player.h"
-#include "../../../header/shape/Sphere.h"
+#include "../../header/attack/attackManager.h"
+#include "../../header/actor/Player/Player.h"
+#include "../../header/shape/Sphere.h"
 
 AttackManager::AttackManager()
 	:m_Scythe(),

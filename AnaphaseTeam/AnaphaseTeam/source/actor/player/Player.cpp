@@ -4,6 +4,7 @@
 #include "../../../header/actionstate/StandState.h"
 #include "../../../header/actionstate/JumpState.h"
 #include "../../../header/actionstate/AttackState.h"
+#include "../../../header/actionstate/AvoidState.h"
 #include "../../../header/renderer/Renderer.h"
 #include "../../../header/device/Input.h"
 #include "../../../header/camera/Camera.h"
@@ -59,7 +60,6 @@ void Player::draw(const Renderer & _renderer, const Camera & _camera)
 void Player::inGround()
 {
 	m_GroundHit = true;
-	//m_SubAction.groundHit();
 }
 
 void Player::createCollision(CollisionMediator * _mediator)
@@ -115,7 +115,7 @@ void Player::move(float deltaTime)
 void Player::jump(float deltaTime)
 {
 	m_SubAction.update(deltaTime);
-	if (m_SubAction.isEnd())
+	if (m_SubAction.isEnd(SubActionType::JUMP))
 	{
 		actionChange(std::make_shared<StandState>());
 	}
@@ -127,30 +127,34 @@ void Player::walk(float deltaTime)
 	m_animatorOne.changeAnimation(ANIMATION_ID::RUN, true, true, 0.4f);
 }
 
-void Player::chain(float deltaTime)
+void Player::avoid(float deltaTime)
 {
-	//m_ChainMove.movement(deltaTime, this);
+	m_animatorOne.changeAnimation(ANIMATION_ID::STAND);
+	m_SubAction.update(deltaTime);
+	if (m_SubAction.isEnd(SubActionType::AVOID))
+	{
+		actionChange(std::make_shared<StandState>());
+	}
 }
-
 void Player::jumping(float _velocity)
 {
 	m_transform.translateY(_velocity);
 }
-
-void Player::chainMove(const GSvector3 & _target, float _time)
-{
-	m_transform.setPosition(m_transform.getPosition().lerp(_target, _time));
-}
-
 void Player::subActionStart()
 {
 	if (m_Input->jumpTrigger())
 	{
 		GSvector3 nowPosition = GSvector3(0, m_transform.getPosition().y, 0);
 		m_transform.translate(nowPosition);
-		m_SubAction.initialize();
+		m_SubAction.initialize(SubActionType::JUMP);
 		actionChange(std::make_shared<JumpState>());
 		m_GroundHit = false;
+	}
+
+	if (m_Input->avoidTrigger())
+	{
+		m_SubAction.initialize(SubActionType::AVOID);
+		actionChange(std::make_shared<AvoidState>());
 	}
 }
 
@@ -164,6 +168,11 @@ void Player::jumpUp()
 void Player::jumpRigor()
 {
 	m_animatorOne.changeAnimation(ANIMATION_ID::LANDING, true, true);
+}
+
+void Player::avoidAction(const GSvector3 & _velocity) 
+{
+	m_transform.translate(_velocity);
 }
 
 const bool Player::isJump() const
@@ -180,6 +189,11 @@ const bool Player::isGround() const
 const bool Player::isEndAttack() const
 {
 	return m_attackManager.isEndAttack(&m_animatorOne);
+}
+
+const GSvector3 Player::inputDirection() const
+{
+	return m_transform.front()+ GSvector3(0,0,0);
 }
 
 void Player::actionChange(Action_Ptr _action)

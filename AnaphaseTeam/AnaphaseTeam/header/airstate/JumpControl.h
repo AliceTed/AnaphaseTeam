@@ -16,12 +16,12 @@ public:
 	~JumpControl();
 	void initialize();
 	void update(float deltaTime);
+	const bool isEnd() const;
+
 	void airActionChange(AirAction_Ptr _airAction);
 	void end();
-	const bool isEnd() const;
 	void setPower(float _power);
 	void jumping(float deltaTime, Player* _player);
-
 private:
 	Player* m_player;
 	AirAction_Ptr m_airAction;

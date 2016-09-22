@@ -18,6 +18,7 @@ public:
 	const bool attackTrigger() const;
 	const bool scytheTrigger()const;
 	const bool gunTrigger()const;
+	const bool avoidTrigger()const;
 
 	//input?
 	const bool move()const;

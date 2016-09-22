@@ -9,7 +9,7 @@
 #include "../../header/actor/Player/Player.h"
 
 GroundState::GroundState()
-	:m_RigorTimer(20)
+	:m_RigorTimer(0.3f)
 {
 
 }

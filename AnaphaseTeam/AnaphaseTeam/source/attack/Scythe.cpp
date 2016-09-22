@@ -1,4 +1,4 @@
-#include "../../../header/actor/attack/Scythe.h"
+#include "../../header/attack/Scythe.h"
 
 Scythe::Scythe(/*MODEL_ID _modekID*/)
 	:m_scytheValu(0.0f)

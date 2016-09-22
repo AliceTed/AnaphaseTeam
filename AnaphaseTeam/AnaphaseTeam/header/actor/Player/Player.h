@@ -19,9 +19,9 @@
 #include "../../../header/subAction/SubActionManager.h"
 #include "../../airstate/JumpControl.h"
 
-#include "../../actor/attack/Scythe.h"
-#include "../../actor/attack/Gun.h"
-#include "../../actor/attack/attackManager.h"
+#include "../../attack/Scythe.h"
+#include "../../attack/Gun.h"
+#include "../../attack/attackManager.h"
 #include "../../data/ANIMATION_ID.h"
 
 class Input;
@@ -31,9 +31,6 @@ class Player :public Actor, public ICharacter
 public:
 	Player(const Input* _input);
 	~Player();
-	void chain(float deltaTime);
-	void chainMove(const GSvector3 & _target, float _time);
-	//void subActionStart(jumpControl* _jump, TestChainMove* _chainMove);
 	void animeID(ANIMATION_ID _animetion_id);
 	/**
 	* @fn
@@ -46,9 +43,12 @@ public:
 	void jumping(float _velocity);
 	void jumpUp();
 	void jumpRigor();
+	void avoidAction(const GSvector3& _velocity);
 	const bool isJump() const;
 	const bool isGround() const;
 	const bool isEndAttack() const;
+	//ì¸óÕï˚å¸
+	const GSvector3 inputDirection()const;
 public://Actoråpè≥
 	void initialize() override;
 	void update(float deltatime) override;
@@ -63,6 +63,7 @@ public://ICharacteré¿ëï
 	void move(float deltaTime);
 	void jump(float deltaTime);
 	void walk(float deltaTime);
+	void avoid(float deltaTime);
 private:
 	void control();
 	void moveMotionChange();

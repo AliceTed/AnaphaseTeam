@@ -94,12 +94,6 @@
     <Filter Include="ヘッダー ファイル\shape">
       <UniqueIdentifier>{d1514622-14bc-42f8-8b00-3f830a4d902e}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ヘッダー ファイル\actor\state">
-      <UniqueIdentifier>{61104c57-671d-43c7-85b4-db3010b8f8be}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ヘッダー ファイル\actor\state\each">
-      <UniqueIdentifier>{4946e860-a7a5-4d96-a5e3-7c077b525eeb}</UniqueIdentifier>
-    </Filter>
     <Filter Include="ヘッダー ファイル\map">
       <UniqueIdentifier>{44fc76f1-a64f-4578-9094-160cf249bb25}</UniqueIdentifier>
     </Filter>
@@ -118,18 +112,6 @@
     <Filter Include="ソース ファイル\subAction">
       <UniqueIdentifier>{eb9dd5e1-dbda-4042-9f93-c4b85a260fdd}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ソース ファイル\actor\actionState">
-      <UniqueIdentifier>{2437ca0e-0b72-496d-abbb-7d07a9f3dc28}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ヘッダー ファイル\actor\actionState">
-      <UniqueIdentifier>{f13bd0f4-c891-4317-82d9-1783af4289ab}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ソース ファイル\actor\Attack">
-      <UniqueIdentifier>{b3584a63-29b0-4d6e-a84a-997d34c3d8b3}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ヘッダー ファイル\actor\Attack">
-      <UniqueIdentifier>{ff5ecd5d-33ad-4631-ac2d-83da52129794}</UniqueIdentifier>
-    </Filter>
     <Filter Include="ヘッダー ファイル\airState">
       <UniqueIdentifier>{458efabf-2d15-41af-9a24-ecbdfdeb8ab0}</UniqueIdentifier>
     </Filter>
@@ -147,6 +129,18 @@
     </Filter>
     <Filter Include="ヘッダー ファイル\ui">
       <UniqueIdentifier>{16b8cdc1-bfca-404f-be49-f88c761df387}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Attack">
+      <UniqueIdentifier>{b3584a63-29b0-4d6e-a84a-997d34c3d8b3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\actionState">
+      <UniqueIdentifier>{2437ca0e-0b72-496d-abbb-7d07a9f3dc28}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\actionState">
+      <UniqueIdentifier>{f13bd0f4-c891-4317-82d9-1783af4289ab}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\Attack">
+      <UniqueIdentifier>{ff5ecd5d-33ad-4631-ac2d-83da52129794}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -298,37 +292,16 @@
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="header\actionstate\AttackState.h">
-      <Filter>ヘッダー ファイル\actor\actionState</Filter>
+      <Filter>ヘッダー ファイル\actionState</Filter>
     </ClInclude>
     <ClInclude Include="header\actionstate\JumpState.h">
-      <Filter>ヘッダー ファイル\actor\actionState</Filter>
+      <Filter>ヘッダー ファイル\actionState</Filter>
     </ClInclude>
     <ClInclude Include="header\actionstate\StandState.h">
-      <Filter>ヘッダー ファイル\actor\actionState</Filter>
+      <Filter>ヘッダー ファイル\actionState</Filter>
     </ClInclude>
     <ClInclude Include="header\actionstate\MoveState.h">
-      <Filter>ヘッダー ファイル\actor\actionState</Filter>
-    </ClInclude>
-    <ClInclude Include="header\actor\attack\AttackStatus.h">
-      <Filter>ヘッダー ファイル\actor\Attack</Filter>
-    </ClInclude>
-    <ClInclude Include="header\actor\attack\ContinuationCombo.h">
-      <Filter>ヘッダー ファイル\actor\Attack</Filter>
-    </ClInclude>
-    <ClInclude Include="header\actor\attack\Gun.h">
-      <Filter>ヘッダー ファイル\actor\Attack</Filter>
-    </ClInclude>
-    <ClInclude Include="header\actor\attack\IWeapon.h">
-      <Filter>ヘッダー ファイル\actor\Attack</Filter>
-    </ClInclude>
-    <ClInclude Include="header\actor\attack\Scythe.h">
-      <Filter>ヘッダー ファイル\actor\Attack</Filter>
-    </ClInclude>
-    <ClInclude Include="header\actor\attack\AttackPattern.h">
-      <Filter>ヘッダー ファイル\actor\Attack</Filter>
-    </ClInclude>
-    <ClInclude Include="header\actor\attack\AttackManager.h">
-      <Filter>ヘッダー ファイル\actor\Attack</Filter>
+      <Filter>ヘッダー ファイル\actionState</Filter>
     </ClInclude>
     <ClInclude Include="header\airstate\JumpControl.h">
       <Filter>ヘッダー ファイル\airState</Filter>
@@ -400,10 +373,10 @@
       <Filter>ヘッダー ファイル\convenient</Filter>
     </ClInclude>
     <ClInclude Include="header\attack\AttackStatus.h">
-      <Filter>ヘッダー ファイル\actor\Attack</Filter>
+      <Filter>ヘッダー ファイル\Attack</Filter>
     </ClInclude>
     <ClInclude Include="header\attack\ContinuationCombo.h">
-      <Filter>ヘッダー ファイル\actor\Attack</Filter>
+      <Filter>ヘッダー ファイル\Attack</Filter>
     </ClInclude>
     <ClInclude Include="header\ui\Cursor.h">
       <Filter>ヘッダー ファイル\ui</Filter>
@@ -425,6 +398,33 @@
     </ClInclude>
     <ClInclude Include="header\math\TimeLerpVector.h">
       <Filter>ヘッダー ファイル\math</Filter>
+    </ClInclude>
+    <ClInclude Include="header\subAction\Avoid.h">
+      <Filter>ヘッダー ファイル\subAction</Filter>
+    </ClInclude>
+    <ClInclude Include="header\attack\AttackManager.h">
+      <Filter>ヘッダー ファイル\Attack</Filter>
+    </ClInclude>
+    <ClInclude Include="header\attack\AttackPattern.h">
+      <Filter>ヘッダー ファイル\Attack</Filter>
+    </ClInclude>
+    <ClInclude Include="header\attack\AttackStatus.h">
+      <Filter>ヘッダー ファイル\actor\Attack</Filter>
+    </ClInclude>
+    <ClInclude Include="header\attack\ContinuationCombo.h">
+      <Filter>ヘッダー ファイル\actor\Attack</Filter>
+    </ClInclude>
+    <ClInclude Include="header\attack\Gun.h">
+      <Filter>ヘッダー ファイル\Attack</Filter>
+    </ClInclude>
+    <ClInclude Include="header\attack\IWeapon.h">
+      <Filter>ヘッダー ファイル\Attack</Filter>
+    </ClInclude>
+    <ClInclude Include="header\attack\Scythe.h">
+      <Filter>ヘッダー ファイル\Attack</Filter>
+    </ClInclude>
+    <ClInclude Include="header\actionstate\AvoidState.h">
+      <Filter>ヘッダー ファイル\actionState</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -513,31 +513,16 @@
       <Filter>ソース ファイル</Filter>
     </ClCompile>
     <ClCompile Include="source\actionstate\JumpState.cpp">
-      <Filter>ソース ファイル\actor\actionState</Filter>
+      <Filter>ソース ファイル\actionState</Filter>
     </ClCompile>
     <ClCompile Include="source\actionstate\StandState.cpp">
-      <Filter>ソース ファイル\actor\actionState</Filter>
+      <Filter>ソース ファイル\actionState</Filter>
     </ClCompile>
     <ClCompile Include="source\actionstate\AttackState.cpp">
-      <Filter>ソース ファイル\actor\actionState</Filter>
+      <Filter>ソース ファイル\actionState</Filter>
     </ClCompile>
     <ClCompile Include="source\actionstate\MoveState.cpp">
-      <Filter>ソース ファイル\actor\actionState</Filter>
-    </ClCompile>
-    <ClCompile Include="source\actor\attack\AttackManager.cpp">
-      <Filter>ソース ファイル\actor\Attack</Filter>
-    </ClCompile>
-    <ClCompile Include="source\actor\attack\AttackStatus.cpp">
-      <Filter>ソース ファイル\actor\Attack</Filter>
-    </ClCompile>
-    <ClCompile Include="source\actor\attack\ContinuationCombo.cpp">
-      <Filter>ソース ファイル\actor\Attack</Filter>
-    </ClCompile>
-    <ClCompile Include="source\actor\attack\Gun.cpp">
-      <Filter>ソース ファイル\actor\Attack</Filter>
-    </ClCompile>
-    <ClCompile Include="source\actor\attack\Scythe.cpp">
-      <Filter>ソース ファイル\actor\Attack</Filter>
+      <Filter>ソース ファイル\actionState</Filter>
     </ClCompile>
     <ClCompile Include="source\airState\SecondStep.cpp">
       <Filter>ソース ファイル\airState</Filter>
@@ -604,6 +589,27 @@
     </ClCompile>
     <ClCompile Include="source\actor\Actor.cpp">
       <Filter>ソース ファイル\actor</Filter>
+    </ClCompile>
+    <ClCompile Include="source\subAction\Avoid.cpp">
+      <Filter>ソース ファイル\subAction</Filter>
+    </ClCompile>
+    <ClCompile Include="source\attack\AttackManager.cpp">
+      <Filter>ソース ファイル\Attack</Filter>
+    </ClCompile>
+    <ClCompile Include="source\attack\AttackStatus.cpp">
+      <Filter>ソース ファイル\Attack</Filter>
+    </ClCompile>
+    <ClCompile Include="source\attack\ContinuationCombo.cpp">
+      <Filter>ソース ファイル\Attack</Filter>
+    </ClCompile>
+    <ClCompile Include="source\attack\Gun.cpp">
+      <Filter>ソース ファイル\Attack</Filter>
+    </ClCompile>
+    <ClCompile Include="source\attack\Scythe.cpp">
+      <Filter>ソース ファイル\Attack</Filter>
+    </ClCompile>
+    <ClCompile Include="source\actionstate\AvoidState.cpp">
+      <Filter>ソース ファイル\actionState</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
