@@ -46,3 +46,8 @@ const bool GamePlay::isEnd() const
 {
 	return false;
 }
+
+const bool GamePlay::isExit() const
+{
+	return false;
+}

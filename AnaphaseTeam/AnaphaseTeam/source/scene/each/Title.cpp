@@ -72,3 +72,8 @@ const bool Title::isEnd() const
 {
 	return m_IsEnd;
 }
+
+const bool Title::isExit() const
+{
+	return false;
+}

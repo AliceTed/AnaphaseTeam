@@ -13,6 +13,7 @@ public:
 	void finish();
 	const SceneMode next()const;
 	const bool isEnd()const;
+	const bool isExit()const;
 private:
 	void loadTextrue();
 	void loadSound();

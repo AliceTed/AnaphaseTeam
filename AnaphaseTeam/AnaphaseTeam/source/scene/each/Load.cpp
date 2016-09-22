@@ -44,6 +44,11 @@ const bool Load::isEnd() const
 	return m_IsEnd;
 }
 
+const bool Load::isExit() const
+{
+	return false;
+}
+
 void Load::loadTextrue()
 {
 	//Data::LoadTexture loadTex;

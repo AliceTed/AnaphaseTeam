@@ -36,3 +36,8 @@ const bool Ending::isEnd() const
 {
 	return m_IsEnd;
 }
+
+const bool Ending::isExit() const
+{
+	return false;
+}

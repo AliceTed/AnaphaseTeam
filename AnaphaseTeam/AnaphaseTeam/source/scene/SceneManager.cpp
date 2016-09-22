@@ -27,6 +27,11 @@ void SceneManager::finish()
 
 }
 
+const bool SceneManager::isExit() const
+{
+	return m_CurrentScene->isExit();
+}
+
 void SceneManager::currentFinish()
 {
 	if (!m_CurrentScene->isEnd())
