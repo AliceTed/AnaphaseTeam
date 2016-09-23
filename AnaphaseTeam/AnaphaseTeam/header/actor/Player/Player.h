@@ -55,7 +55,7 @@ public://Actoråpè≥
 	void draw(const Renderer& _renderer, const Camera& _camera) override;
 	void inGround() override;
 	void createCollision(CollisionMediator* _mediator) override;
-
+	void othercollision(CollisionType _myType, CollisionType _otherType, Actor* _other);
 public://ICharacteré¿ëï
 	void stand(float deltaTime);
 	void attack(float deltaTime);

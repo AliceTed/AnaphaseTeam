@@ -1,6 +1,6 @@
 #include "../../header/attack/ContinuationCombo.h"
 #include "../../header/actor/Player/Player.h"
-
+#include "../../header/collision/CollisionMediator.h"
 ContinuationCombo::ContinuationCombo(const AttackStatus & _status, ANIMATION_ID _animation, Shape_Ptr _shape)
 	:m_status(_status), m_Animation(_animation), m_Shape(_shape)
 {
@@ -28,7 +28,6 @@ void ContinuationCombo::anime(Player * _player)
 {
 	_player->animeID(m_Animation);
 }
-
 const bool ContinuationCombo::isEndAnimation(const AnimatorOne *_animator) const
 {
 	return _animator->isEndCurrentAnimation();

@@ -27,6 +27,14 @@ void Actor::finish()
 {
 }
 
+void Actor::collision(CollisionType _myType, CollisionType _otherType, Player * _other)
+{
+}
+
+void Actor::collision(CollisionType _myType, CollisionType _otherType, TestActor * _other)
+{
+}
+
 void Actor::collisionGround(const Map& _map)
 {
 	GSvector3 intersect;
@@ -46,21 +54,7 @@ void Actor::collisionGround(const Map& _map)
 	//mapÇ…ñÑÇﬂçûÇ‹ÇÍÇƒÇ¢ÇΩÇÁyç¿ïWÇåì_Ç…à⁄ìÆ
 	m_transform.setPositionY(intersect.y);
 }
-void Actor::othercollision(Actor * _other)
-{
-}
-void Actor::othercollision(Player * _other)
-{
-	collision(_other);
-}
-void Actor::othercollision(TestActor * _other)
-{
-	collision(_other);
-}
-void Actor::collision(Player * _other)
-{
-}
-void Actor::collision(TestActor * _other)
+void Actor::collision(Actor * _other)
 {
 }
 void Actor::createCollision(CollisionMediator * _mediator)

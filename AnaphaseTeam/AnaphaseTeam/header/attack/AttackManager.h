@@ -15,6 +15,7 @@
 
 typedef std::shared_ptr<Shape> Shape_Ptr;
 class Player;
+class CollisionMediator;
 class AttackManager
 {
 public:

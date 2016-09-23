@@ -14,6 +14,7 @@ typedef std::shared_ptr<Shape> Shape_Ptr;
 class TestActor;
 class Player;
 class AnimatorOne;
+class CollisionMediator;
 class ContinuationCombo
 {
 public:
@@ -23,7 +24,6 @@ public:
 	void initialize();
 	void update(Player* _player);
 	void anime(Player* _player);
-
 	const bool isEndAnimation(const AnimatorOne * _animator) const;
 
 private:

@@ -20,6 +20,7 @@ void GamePlay::initialize()
 	m_IsEnd = false;
 	m_player.initialize();
 	m_boss.initialize();
+	collision.initialize();
 }
 
 void GamePlay::update(float deltaTime)
@@ -30,6 +31,10 @@ void GamePlay::update(float deltaTime)
 	m_boss.update(deltaTime);
 	m_boss.collisionGround(m_Map);
 
+	m_player.createCollision(&collision);
+	m_boss.createCollision(&collision);
+
+	collision.update(deltaTime);
 
 }
 
@@ -40,6 +45,7 @@ void GamePlay::draw(const Renderer & _renderer)
 	m_Map.draw(_renderer);
 	m_boss.draw(_renderer, m_Camera);
 	
+	collision.draw(_renderer);
 }
 
 void GamePlay::finish()

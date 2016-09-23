@@ -66,8 +66,13 @@ void Player::createCollision(CollisionMediator * _mediator)
 {
 	GSvector3 pos(m_transform.getPosition() + GSvector3(0, 0.3f, 0));
 	Shape_Ptr shape = std::make_shared<Capsule>(Segment(pos, GSvector3(0, 0.8f, 0)), 0.5f);
-	Obj_Ptr obj = std::make_shared<CollisionObject>(this, shape);
+	Obj_Ptr obj = std::make_shared<CollisionObject>(this, shape, CollisionType::PLAYER);
 	_mediator->add(obj);
+}
+
+void Player::othercollision(CollisionType _myType, CollisionType _otherType, Actor * _other)
+{
+	_other->collision(_otherType,_myType, this);
 }
 
 void Player::stand(float deltaTime)

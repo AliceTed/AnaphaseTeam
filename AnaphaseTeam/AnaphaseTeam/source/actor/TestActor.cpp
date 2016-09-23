@@ -4,16 +4,22 @@
 #include "../../header/renderer/Renderer.h"
 
 #include "../../header/math/Calculate.h"
+#include "../../header/collision/CollisionMediator.h"
 //
 TestActor::TestActor()
 	:Actor(
 		Transform(),
-		MODEL_ID::BOSS, 
-		Sphere(GSvector3(0,0, 0),7.0f), 
+		MODEL_ID::BOSS,
+		Sphere(GSvector3(0, 0, 0), 7.0f),
 		Actor_Tag::TEST),
-	sphs()
+	sphs(),
+	point()
 {
 	m_animatorOne.changeAnimation(ANIMATION_ID::STAND, true);
+	for (int i = 0; i < 3; i++)
+	{
+		point.emplace_back(false);
+	}
 }
 
 TestActor::~TestActor()
@@ -23,7 +29,7 @@ TestActor::~TestActor()
 void TestActor::update(float deltatime)
 {
 	getSphere();
-	sphereChases(GSvector3(0,7, 0));
+	sphereChases(GSvector3(0, 7, 0));
 }
 
 void TestActor::draw(const Renderer & _renderer, const Camera & _camera)
@@ -31,18 +37,43 @@ void TestActor::draw(const Renderer & _renderer, const Camera & _camera)
 	FALSE_RETURN(isInsideView(_camera));
 	alphaBlend(_camera);
 	_renderer.getDraw3D().drawMesh(MODEL_ID::BOSS, m_transform, m_animatorOne, m_Color);
-	for each (auto sph in sphs){sph.draw(_renderer);}
-	_renderer.getDraw2D().string(std::to_string(dead), &GSvector2(10, 10), 20);
+	for (unsigned int i = 0; i < sphs.size(); i++)
+	{
+		GScolor c = point[i] ? GScolor(1, 0, 0, 1) : GScolor(1, 1, 1, 1);
+		sphs[i].draw(_renderer, c);
+	}
+}
+void TestActor::createCollision(CollisionMediator * _mediator)
+{
+	for (unsigned int i = 0; i < sphs.size(); i++)
+	{
+		createEachCollsion(_mediator, i);
+	}
 }
 
-void TestActor::othercollision(Actor * _other)
+void TestActor::othercollision(CollisionType _myType, CollisionType _otherType, Actor * _other)
 {
-	_other->othercollision(this);
+	_other->collision(_myType, _otherType, this);
 }
 
-void TestActor::collision(Player * _other)
+void TestActor::collision(CollisionType _myType, CollisionType _otherType, Player * _other)
 {
-	dead = 1;
+	if (_myType == CollisionType::ENEMY_HEAD)
+	{
+		if (point[1] && point[2])
+		{
+			point[0] = true;
+		}
+	}
+
+	if (_myType == CollisionType::ENEMY_LEFT)
+	{
+		point[1] = true;
+	}
+	if (_myType == CollisionType::ENEMY_RIGHT)
+	{
+		point[2] = true;
+	}
 }
 
 void TestActor::getSphere()
@@ -50,9 +81,9 @@ void TestActor::getSphere()
 	sphs.clear();
 	std::vector<GSmatrix4> mat = getAnimEachPos();
 
-	sphs.emplace_back(Sphere(getPos(mat, HEAD),2.0f));
-	sphs.emplace_back(Sphere(getPos(mat, LEFTLEG),2.0f));
-	sphs.emplace_back(Sphere(getPos(mat, RIGHTLEG),2.0f));
+	sphs.emplace_back(Sphere(getPos(mat, HEAD), 2.0f));
+	sphs.emplace_back(Sphere(getPos(mat, LEFTLEG), 2.0f));
+	sphs.emplace_back(Sphere(getPos(mat, RIGHTLEG), 2.0f));
 }
 
 std::vector<GSmatrix4> TestActor::getAnimEachPos()
@@ -72,7 +103,7 @@ std::vector<GSmatrix4> TestActor::getAnimEachPos()
 
 	gsCalculateSkeleton(pmat, animmat, mat);
 	std::vector<GSmatrix4> res;
-	for (int i = 0; i <n; i++)
+	for (int i = 0; i < n; i++)
 	{
 		res.emplace_back(mat[i]);
 	}
@@ -87,4 +118,18 @@ GSvector3 TestActor::getPos(std::vector<GSmatrix4>& _mat, int index)
 	Transform t(_mat[index]);
 	GSmatrix4 m = t.parentSynthesis(m_transform);
 	return m.getPosition();
+}
+
+void TestActor::createEachCollsion(CollisionMediator * _mediator, unsigned int _index)
+{
+	CollisionType type[] =
+	{
+		CollisionType::ENEMY_HEAD,
+		CollisionType::ENEMY_LEFT,
+		CollisionType::ENEMY_RIGHT
+	};
+
+	Shape_Ptr shape = std::make_shared<Sphere>(sphs.at(_index));
+	Obj_Ptr obj = std::make_shared<CollisionObject>(this, shape, type[_index]);
+	_mediator->add(obj);
 }
