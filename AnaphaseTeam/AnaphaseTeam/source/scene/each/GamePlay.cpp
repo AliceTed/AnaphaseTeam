@@ -29,6 +29,8 @@ void GamePlay::update(float deltaTime)
 
 	m_boss.update(deltaTime);
 	m_boss.collisionGround(m_Map);
+
+
 }
 
 void GamePlay::draw(const Renderer & _renderer)

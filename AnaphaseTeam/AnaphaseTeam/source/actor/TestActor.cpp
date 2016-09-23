@@ -32,6 +32,17 @@ void TestActor::draw(const Renderer & _renderer, const Camera & _camera)
 	alphaBlend(_camera);
 	_renderer.getDraw3D().drawMesh(MODEL_ID::BOSS, m_transform, m_animatorOne, m_Color);
 	for each (auto sph in sphs){sph.draw(_renderer);}
+	_renderer.getDraw2D().string(std::to_string(dead), &GSvector2(10, 10), 20);
+}
+
+void TestActor::othercollision(Actor * _other)
+{
+	_other->othercollision(this);
+}
+
+void TestActor::collision(Player * _other)
+{
+	dead = 1;
 }
 
 void TestActor::getSphere()

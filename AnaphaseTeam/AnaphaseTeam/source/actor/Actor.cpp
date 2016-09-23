@@ -46,7 +46,21 @@ void Actor::collisionGround(const Map& _map)
 	//map‚É–„‚ß‚Ü‚ê‚Ä‚¢‚½‚çyÀ•W‚ğŒğ“_‚ÉˆÚ“®
 	m_transform.setPositionY(intersect.y);
 }
-void Actor::collision(Actor * _other)
+void Actor::othercollision(Actor * _other)
+{
+}
+void Actor::othercollision(Player * _other)
+{
+	collision(_other);
+}
+void Actor::othercollision(TestActor * _other)
+{
+	collision(_other);
+}
+void Actor::collision(Player * _other)
+{
+}
+void Actor::collision(TestActor * _other)
 {
 }
 void Actor::createCollision(CollisionMediator * _mediator)

@@ -48,7 +48,12 @@ public:
 	* @brief 自身が作成した判定用オブジェクトが衝突したら呼ばれる
 	* @param (_other)衝突したactorクラスを取得
 	*/
-	virtual void collision(Actor* _other);
+	virtual void othercollision(Actor* _other);
+	virtual void othercollision(Player* _other);
+	virtual void othercollision(TestActor* _other);
+
+	virtual void collision(Player* _other);
+	virtual void collision(TestActor* _other);
 	/**
 	* @fn
 	* @brief 関数内で判定用オブジェクトを生成出来る
