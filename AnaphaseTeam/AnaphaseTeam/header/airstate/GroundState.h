@@ -6,7 +6,6 @@
 */
 #pragma once
 #include "IAirState.h"
-#include "jumpControl.h"
 #include "../convenient/Timer.h"
 class GroundState:public IAirState
 {

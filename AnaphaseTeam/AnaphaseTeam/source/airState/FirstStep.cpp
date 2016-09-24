@@ -10,7 +10,7 @@
 #include "../../header/airstate/GroundState.h"
 #include "../../header/actor/Player/Player.h"
 #include "../../header/math/Calculate.h"
-
+#include "../../header/subAction/JumpControl.h"
 const float FirstStep::FirstStepPow = 1.2f;
 
 FirstStep::FirstStep()
@@ -39,10 +39,7 @@ void FirstStep::airAction(JumpControl* _control, Player* _player, float deltaTim
 void FirstStep::change(JumpControl* _control, Player* _player)
 {
 	AirAction_Ptr action = next(_player);
-	if (action == nullptr)
-	{
-		return;
-	}
+	if (action == nullptr)return;
 	_control->airActionChange(action);
 }
 

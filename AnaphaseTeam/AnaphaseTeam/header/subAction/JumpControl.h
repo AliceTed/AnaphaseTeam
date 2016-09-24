@@ -5,9 +5,8 @@
 * @date 2016/08/29
 */
 #pragma once
-#include "IAirState.h"
+#include "../airstate/IAirState.h"
 #include<gslib.h>
-#include <memory>
 typedef std::shared_ptr<IAirState> AirAction_Ptr;
 class JumpControl
 {

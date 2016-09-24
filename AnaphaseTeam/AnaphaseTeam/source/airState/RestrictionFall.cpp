@@ -2,7 +2,7 @@
 #include "../../header/airstate/GroundState.h"
 #include "../../header/actor/Player/Player.h"
 #include "../../header/math/Calculate.h"
-
+#include "../../header/subAction/JumpControl.h"
 const float RestrictionFall::Restriction = 0.0f;
 
 RestrictionFall::RestrictionFall()
@@ -24,18 +24,8 @@ void RestrictionFall::airAction(JumpControl * _control, Player* _player, float d
 
 void RestrictionFall::change(JumpControl * _control, Player * _player)
 {
-	if (next(_player) == nullptr)
-	{
-		return;
-	}
-	_control->airActionChange(next(_player));
-}
-
-AirAction_Ptr RestrictionFall::next(const Player * _player) const
-{
 	if (_player->isGround())
 	{
-		return std::make_shared<GroundState>();
+		_control->airActionChange(std::make_shared<GroundState>());
 	}
-	return nullptr;
 }

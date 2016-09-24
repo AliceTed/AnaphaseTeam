@@ -154,7 +154,7 @@
     <ClCompile Include="source\actor\TestActor.cpp" />
     <ClCompile Include="source\airState\FirstStep.cpp" />
     <ClCompile Include="source\airState\GroundState.cpp" />
-    <ClCompile Include="source\airState\JumpControl.cpp" />
+    <ClCompile Include="source\subAction\JumpControl.cpp" />
     <ClCompile Include="source\airState\PreparationState.cpp" />
     <ClCompile Include="source\airState\RestrictionFall.cpp" />
     <ClCompile Include="source\airState\SecondStep.cpp" />
@@ -223,7 +223,7 @@
     <ClInclude Include="header\airstate\FirstStep.h" />
     <ClInclude Include="header\airstate\GroundState.h" />
     <ClInclude Include="header\airstate\IAirState.h" />
-    <ClInclude Include="header\airstate\JumpControl.h" />
+    <ClInclude Include="header\subAction\JumpControl.h" />
     <ClInclude Include="header\airstate\PreparationState.h" />
     <ClInclude Include="header\airstate\RestrictionFall.h" />
     <ClInclude Include="header\airstate\SecondStep.h" />

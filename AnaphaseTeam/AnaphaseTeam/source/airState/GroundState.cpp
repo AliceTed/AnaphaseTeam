@@ -7,7 +7,7 @@
 #include "../../header/airstate/groundState.h"
 #include "../../header/airstate/PreparationState.h"
 #include "../../header/actor/Player/Player.h"
-
+#include "../../header/subAction/JumpControl.h"
 GroundState::GroundState()
 	:m_RigorTimer(0.3f)
 {
@@ -28,6 +28,5 @@ void GroundState::airAction(JumpControl* _control, Player* _player, float deltaT
 	if (m_RigorTimer.isEnd())
 	{
 		_control->end();
-		//_control->airActionChange(std::make_shared<PreparationState>());
 	}
 }

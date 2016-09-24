@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../airstate/JumpControl.h"
+#include "../subaction/JumpControl.h"
 #include "Avoid.h"
 enum class SubActionType
 {

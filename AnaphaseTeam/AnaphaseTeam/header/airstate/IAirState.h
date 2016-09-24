@@ -5,6 +5,7 @@
 * @date 2016/08/29
 */
 #pragma once
+#include <memory>
 class JumpControl;
 class Player;
 class IAirState

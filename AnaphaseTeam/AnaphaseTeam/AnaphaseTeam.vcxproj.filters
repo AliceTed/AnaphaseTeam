@@ -303,16 +303,10 @@
     <ClInclude Include="header\actionstate\MoveState.h">
       <Filter>ヘッダー ファイル\actionState</Filter>
     </ClInclude>
-    <ClInclude Include="header\airstate\JumpControl.h">
-      <Filter>ヘッダー ファイル\airState</Filter>
-    </ClInclude>
     <ClInclude Include="header\airstate\FirstStep.h">
       <Filter>ヘッダー ファイル\airState</Filter>
     </ClInclude>
     <ClInclude Include="header\airstate\GroundState.h">
-      <Filter>ヘッダー ファイル\airState</Filter>
-    </ClInclude>
-    <ClInclude Include="header\actionstate\IActionState.h">
       <Filter>ヘッダー ファイル\airState</Filter>
     </ClInclude>
     <ClInclude Include="header\airstate\IAirState.h">
@@ -429,6 +423,12 @@
     <ClInclude Include="header\attack\Attack.h">
       <Filter>ヘッダー ファイル\attack</Filter>
     </ClInclude>
+    <ClInclude Include="header\subAction\JumpControl.h">
+      <Filter>ヘッダー ファイル\subAction</Filter>
+    </ClInclude>
+    <ClInclude Include="header\actionstate\IActionState.h">
+      <Filter>ヘッダー ファイル\actionState</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Util\BasicShapes.cpp">
@@ -533,9 +533,6 @@
     <ClCompile Include="source\airState\RestrictionFall.cpp">
       <Filter>ソース ファイル\airState</Filter>
     </ClCompile>
-    <ClCompile Include="source\airState\JumpControl.cpp">
-      <Filter>ソース ファイル\airState</Filter>
-    </ClCompile>
     <ClCompile Include="source\airState\FirstStep.cpp">
       <Filter>ソース ファイル\airState</Filter>
     </ClCompile>
@@ -616,6 +613,9 @@
     </ClCompile>
     <ClCompile Include="source\attack\Attack.cpp">
       <Filter>ソース ファイル\Attack</Filter>
+    </ClCompile>
+    <ClCompile Include="source\subAction\JumpControl.cpp">
+      <Filter>ソース ファイル\subAction</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

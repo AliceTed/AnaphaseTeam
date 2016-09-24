@@ -6,8 +6,7 @@
 */
 #pragma once
 #include "IAirState.h"
-#include "jumpControl.h"
-
+typedef std::shared_ptr<IAirState> AirAction_Ptr;
 class SecondStep:public IAirState
 {
 public:

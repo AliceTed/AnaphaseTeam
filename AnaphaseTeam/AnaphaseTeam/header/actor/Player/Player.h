@@ -15,9 +15,7 @@
 #include "../Actor.h"
 #include "../ICharacter.h"
 
-//#include "../../subAction/SubActionManager.h"
 #include "../../../header/subAction/SubActionManager.h"
-#include "../../airstate/JumpControl.h"
 
 #include "../../attack/Scythe.h"
 #include "../../attack/Gun.h"

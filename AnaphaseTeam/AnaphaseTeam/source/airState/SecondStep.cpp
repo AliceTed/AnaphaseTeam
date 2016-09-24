@@ -9,9 +9,9 @@
 #include "../../header/airstate/GroundState.h"
 #include "../../header/actor/Player/Player.h"
 #include "../../header/math/Calculate.h"
-
+#include "../../header/subAction/JumpControl.h"
 const float SecondStep::SecondStepPow = 1.0f;
-
+typedef std::shared_ptr<IAirState> AirAction_Ptr;
 SecondStep::SecondStep()
 {
 
@@ -34,11 +34,9 @@ void SecondStep::airAction(JumpControl* _control, Player* _player, float deltaTi
 
 void SecondStep::change(JumpControl * _control, Player * _player)
 {
-	if (next(_player) == nullptr)
-	{
-		return;
-	}
-	_control->airActionChange(next(_player));
+	AirAction_Ptr action = next(_player);
+	if (action == nullptr)return;
+	_control->airActionChange(action);
 }
 
 AirAction_Ptr SecondStep::next(const Player * _player) const
