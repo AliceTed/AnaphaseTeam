@@ -21,7 +21,7 @@ public:
 	~ContinuationCombo();
 	void openAnAttack(Player* _player, TestActor* _other);
 	void initialize();
-	void update(Player* _player);
+	void update(float deltaTime,Player* _player);
 	void anime(Player* _player);
 	const bool isEndAnimation(Player *_player) const;
 

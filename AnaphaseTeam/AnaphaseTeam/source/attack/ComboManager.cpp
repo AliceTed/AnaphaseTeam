@@ -50,7 +50,7 @@ void ComboManager::initialize()
 
 void ComboManager::update(float deltaTime, Player* _player)
 {
-	m_Pattern.at(m_currentKey).anime(_player);
+	m_Pattern.at(m_currentKey).update(deltaTime,_player);
 
 	change(deltaTime, _player);
 	if (_player->isAttack())

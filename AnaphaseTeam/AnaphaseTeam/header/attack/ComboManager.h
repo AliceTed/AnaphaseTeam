@@ -19,13 +19,12 @@ public:
 	void create();
 	void initialize();
 	void update(float deltaTime, Player* _player);
-	
-	const bool isEnd()const;
-	const bool isCurrentEnd(Player* _player) const;
+	const bool isEnd()const;	
 private:	
 	void change(float deltaTime, Player* _player);
 	void combo(float deltaTime);
 	const Combo nextkey()const;
+	const bool isCurrentEnd(Player* _player) const;
 private:
 	bool isStart;//コンボがスタートしたフレームかどうか
 	bool m_isEnd;

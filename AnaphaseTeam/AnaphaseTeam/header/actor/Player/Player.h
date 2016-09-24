@@ -44,11 +44,12 @@ public:
 	void jumpUp();
 	void jumpRigor();
 	void avoidAction(const GSvector3& _velocity);
+
 	const bool isJump() const;
 	const bool isGround() const;
 	const bool isEndAttack() const;
-	const bool isAttack()const;//‹ßÚ—p
-
+	//‹ßÚ—p
+	const bool isAttack()const;
 	const bool isEndAnimation();
 	//“ü—Í•ûŒü
 	const GSvector3 inputDirection()const;

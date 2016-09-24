@@ -22,13 +22,13 @@ void AttackManager::initialize()
 }
 void AttackManager::update(float deltaTime, Player* _player)
 {
-	m_combo.update(deltaTime,_player);
-	//scytheAttack(deltaTime,_player);
+	scytheAttack(deltaTime,_player);
 	//gunAttack(_player);
 }
 
 void AttackManager::scytheAttack(float deltaTime,Player* _player)
 {
+	m_combo.update(deltaTime, _player);
 }
 
 void AttackManager::gunAttack(Player * _player)

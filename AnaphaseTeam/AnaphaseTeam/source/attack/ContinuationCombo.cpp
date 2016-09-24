@@ -19,7 +19,7 @@ void ContinuationCombo::initialize()
 {
 }
 
-void ContinuationCombo::update(Player * _player)
+void ContinuationCombo::update(float deltaTime,Player * _player)
 {
 	anime(_player);
 }

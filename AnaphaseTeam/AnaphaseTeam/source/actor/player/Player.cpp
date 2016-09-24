@@ -81,7 +81,6 @@ void Player::stand(float deltaTime)
 	subActionStart();
 	m_animatorOne.changeAnimation(ANIMATION_ID::STAND, true, true);
 	control();
-	m_attackManager.update(deltaTime,this);
 }
 
 void Player::attack(float deltaTime)
@@ -185,8 +184,6 @@ const bool Player::isJump() const
 {
 	return m_Input->jumpTrigger();
 }
-
-
 const bool Player::isGround() const
 {
 	return m_GroundHit;
