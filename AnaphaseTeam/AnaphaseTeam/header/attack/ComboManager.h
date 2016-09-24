@@ -1,6 +1,6 @@
 #pragma once
 #include "AttackPattern.h"
-#include "ContinuationCombo.h"
+#include "Attack.h"
 #include <unordered_map>
 enum class Combo
 {
@@ -15,20 +15,20 @@ class ComboManager
 public:
 	ComboManager();
 	~ComboManager();
-	//Factorを使えば消える関数
-	void create();
 	void initialize();
+	void reset();
 	void update(float deltaTime, Player* _player);
 	const bool isEnd()const;	
 private:	
+	void create();
 	void change(float deltaTime, Player* _player);
 	void combo(float deltaTime);
 	const Combo nextkey()const;
 	const bool isCurrentEnd(Player* _player) const;
 private:
-	bool isStart;//コンボがスタートしたフレームかどうか
+	bool m_isStart;//コンボがスタートしたフレームかどうか
 	bool m_isEnd;
 	Combo m_currentKey;
 	Combo m_nextKey;
-	std::unordered_map<Combo, ContinuationCombo> m_Pattern;
+	std::unordered_map<Combo, Attack> m_Pattern;
 };

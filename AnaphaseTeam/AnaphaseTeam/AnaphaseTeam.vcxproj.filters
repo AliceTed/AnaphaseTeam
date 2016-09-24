@@ -417,9 +417,6 @@
     <ClInclude Include="header\attack\AttackStatus.h">
       <Filter>ヘッダー ファイル\attack</Filter>
     </ClInclude>
-    <ClInclude Include="header\attack\ContinuationCombo.h">
-      <Filter>ヘッダー ファイル\attack</Filter>
-    </ClInclude>
     <ClInclude Include="header\attack\AttackStatus.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
@@ -427,6 +424,9 @@
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="header\attack\ComboManager.h">
+      <Filter>ヘッダー ファイル\attack</Filter>
+    </ClInclude>
+    <ClInclude Include="header\attack\Attack.h">
       <Filter>ヘッダー ファイル\attack</Filter>
     </ClInclude>
   </ItemGroup>
@@ -602,9 +602,6 @@
     <ClCompile Include="source\attack\AttackStatus.cpp">
       <Filter>ソース ファイル\Attack</Filter>
     </ClCompile>
-    <ClCompile Include="source\attack\ContinuationCombo.cpp">
-      <Filter>ソース ファイル\Attack</Filter>
-    </ClCompile>
     <ClCompile Include="source\attack\Gun.cpp">
       <Filter>ソース ファイル\Attack</Filter>
     </ClCompile>
@@ -615,6 +612,9 @@
       <Filter>ソース ファイル\actionState</Filter>
     </ClCompile>
     <ClCompile Include="source\attack\ComboManager.cpp">
+      <Filter>ソース ファイル\Attack</Filter>
+    </ClCompile>
+    <ClCompile Include="source\attack\Attack.cpp">
       <Filter>ソース ファイル\Attack</Filter>
     </ClCompile>
   </ItemGroup>

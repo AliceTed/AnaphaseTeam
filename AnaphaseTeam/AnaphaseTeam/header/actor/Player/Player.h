@@ -31,26 +31,29 @@ class Player :public Actor, public ICharacter
 public:
 	Player(const Input* _input);
 	~Player();
-	void animeID(ANIMATION_ID _animetion_id);
 	/**
 	* @fn
 	* @brief アクションステートの切り替え関数
 	* @param (_action) 切り替えるアクションのShared_ptr
 	*/
 	void actionChange(Action_Ptr _action);
+
 	void movement(float deltaTime, float _speed = MOVESPEED);
-	void subActionStart();
 	void jumping(float _velocity);
-	void jumpUp();
-	void jumpRigor();
 	void avoidAction(const GSvector3& _velocity);
 
+	void jumpUp();
+	void jumpRigor();
+
+	void attackmotion(Attack& _attack);
+	const bool isEndAttackMotion(const Attack& _attack)const;
+public://入力
 	const bool isJump() const;
 	const bool isGround() const;
 	const bool isEndAttack() const;
 	//近接用
 	const bool isAttack()const;
-	const bool isEndAnimation();
+	const bool isGunAttack()const;
 	//入力方向
 	const GSvector3 inputDirection()const;
 public://Actor継承
@@ -70,6 +73,7 @@ public://ICharacter実装
 	void avoid(float deltaTime);
 private:
 	void control();
+	void subActionStart();
 	void moveMotionChange();
 private:
 	const Input* m_Input;

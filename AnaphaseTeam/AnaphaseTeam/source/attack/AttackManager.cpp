@@ -17,13 +17,12 @@ void AttackManager::initialize()
 {
 	m_Scythe.initialize();
 	m_Gun.initialize();
-	m_combo.create();
 	m_combo.initialize();
 }
 void AttackManager::update(float deltaTime, Player* _player)
 {
 	scytheAttack(deltaTime,_player);
-	//gunAttack(_player);
+	gunAttack(_player);
 }
 
 void AttackManager::scytheAttack(float deltaTime,Player* _player)
@@ -33,6 +32,10 @@ void AttackManager::scytheAttack(float deltaTime,Player* _player)
 
 void AttackManager::gunAttack(Player * _player)
 {
+	if (_player->isGunAttack())
+	{
+		
+	}
 }
 
 const bool AttackManager::isEndAttack() const

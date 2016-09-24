@@ -88,15 +88,14 @@ void Player::attack(float deltaTime)
 	m_attackManager.update(deltaTime,this);
 	if (m_attackManager.isEndAttack())
 	{
+		if (!m_GroundHit)
+		{
+			actionChange(std::make_shared<JumpState>());
+			return;
+		}
 		actionChange(std::make_shared<StandState>());
 	}
 }
-
-void Player::animeID(ANIMATION_ID _animetion_id)
-{
-	m_animatorOne.changeAnimation(_animetion_id);
-}
-
 
 void Player::damage(float deltaTime)
 {
@@ -180,6 +179,16 @@ void Player::avoidAction(const GSvector3 & _velocity)
 	m_transform.translate(_velocity);
 }
 
+void Player::attackmotion(Attack & _attack)
+{
+	_attack.changeMotion(m_animatorOne);
+}
+
+const bool Player::isEndAttackMotion(const Attack & _attack) const
+{
+	return _attack.isEndMotion(m_animatorOne);
+}
+
 const bool Player::isJump() const
 {
 	return m_Input->jumpTrigger();
@@ -199,10 +208,11 @@ const bool Player::isAttack() const
 	return m_Input->scytheTrigger();
 }
 
-const bool Player::isEndAnimation()
+const bool Player::isGunAttack() const
 {
-	return m_animatorOne.isEndCurrentAnimation();
+	return m_Input->gunTrigger();
 }
+
 
 const GSvector3 Player::inputDirection() const
 {

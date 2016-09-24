@@ -147,7 +147,7 @@
     <ClCompile Include="source\attack\AttackManager.cpp" />
     <ClCompile Include="source\attack\AttackStatus.cpp" />
     <ClCompile Include="source\attack\ComboManager.cpp" />
-    <ClCompile Include="source\attack\ContinuationCombo.cpp" />
+    <ClCompile Include="source\attack\Attack.cpp" />
     <ClCompile Include="source\attack\Gun.cpp" />
     <ClCompile Include="source\attack\Scythe.cpp" />
     <ClCompile Include="source\actor\player\Player.cpp" />
@@ -213,7 +213,7 @@
     <ClInclude Include="header\attack\AttackPattern.h" />
     <ClInclude Include="header\attack\AttackStatus.h" />
     <ClInclude Include="header\attack\ComboManager.h" />
-    <ClInclude Include="header\attack\ContinuationCombo.h" />
+    <ClInclude Include="header\attack\Attack.h" />
     <ClInclude Include="header\attack\Gun.h" />
     <ClInclude Include="header\attack\IWeapon.h" />
     <ClInclude Include="header\attack\Scythe.h" />
