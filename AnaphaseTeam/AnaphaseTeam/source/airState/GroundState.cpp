@@ -23,7 +23,7 @@ void GroundState::start(JumpControl * _control, Player* _player)
 }
 void GroundState::airAction(JumpControl* _control, Player* _player, float deltaTime)
 {
-	_player->jumpRigor();
+	_player->jumpMotion(*_control,ANIMATION_ID::LANDING);
 	m_RigorTimer.update(deltaTime);
 	if (m_RigorTimer.isEnd())
 	{

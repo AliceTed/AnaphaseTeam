@@ -7,6 +7,8 @@
 #pragma once
 #include "../airstate/IAirState.h"
 #include<gslib.h>
+#include "../data/ANIMATION_ID.h"
+class AnimatorOne;
 typedef std::shared_ptr<IAirState> AirAction_Ptr;
 class JumpControl
 {
@@ -17,6 +19,7 @@ public:
 	void update(float deltaTime);
 	const bool isEnd() const;
 
+	void changeMotion(AnimatorOne& _animator, ANIMATION_ID _id);
 	void airActionChange(AirAction_Ptr _airAction);
 	void end();
 	void setPower(float _power);

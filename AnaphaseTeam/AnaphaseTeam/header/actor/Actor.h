@@ -60,12 +60,6 @@ public:
 	* @param (_mediator)判定用オブジェクトを格納できる 
 	*/
 	virtual void createCollision(CollisionMediator* _mediator);
-
-	/**
-	* @fn
-	* @brief 地面に埋め込まれたときに呼ばれる
-	*/
-	virtual void inGround();
 public:
 	/**
 	* @fn
@@ -116,6 +110,12 @@ protected:
 	* @param (_renderer)描画機能クラス
 	*/
 	void sphereDraw(const Renderer& _renderer);
+private:
+	/**
+	* @fn
+	* @brief 地面に埋め込まれたときに呼ばれる
+	*/
+	virtual void inGround();
 protected:
 	Transform m_transform;
 	bool m_isDead;

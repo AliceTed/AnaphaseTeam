@@ -40,9 +40,7 @@ public:
 	void jumping(float _velocity);
 	void avoidAction(const GSvector3& _velocity);
 
-	void jumpUp();
-	void jumpRigor();
-
+	void jumpMotion(JumpControl& _control,ANIMATION_ID _id);
 	void attackmotion(Attack& _attack);
 	const bool isEndAttackMotion(const Attack& _attack)const;
 public://ì¸óÕ
@@ -58,9 +56,10 @@ public://Actoråpè≥
 	void initialize() override;
 	void update(float deltatime) override;
 	void draw(const Renderer& _renderer, const Camera& _camera) override;
-	void inGround() override;
 	void createCollision(CollisionMediator* _mediator) override;
 	void othercollision(CollisionType _myType, CollisionType _otherType, Actor* _other);
+private:
+	void inGround() override;
 public://ICharacteré¿ëï
 	void stand(float deltaTime);
 	void attack(float deltaTime);

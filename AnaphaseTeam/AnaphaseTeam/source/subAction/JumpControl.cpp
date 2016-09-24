@@ -7,7 +7,6 @@
 #include "../../header/subaction/jumpControl.h"
 #include "../../header/actor/Player/Player.h"
 #include "../../header/math/Calculate.h"
-#include "../../header/airstate/groundState.h"
 #include "../../header/airstate/PreparationState.h"
 
 const float JumpControl::Acceleration = 0.1f;
@@ -28,12 +27,18 @@ JumpControl::~JumpControl()
 void JumpControl::initialize()
 {
 	m_isEnd = false;
-	airActionChange(std::make_shared<PreparationState>());
+	AirAction_Ptr action = std::make_shared<PreparationState>();
+	airActionChange(action);
 }
 
 void JumpControl::update(float deltaTime)
 {
 	m_airAction->airAction(this, m_player, deltaTime);
+}
+
+void JumpControl::changeMotion(AnimatorOne & _animator, ANIMATION_ID _id)
+{
+	_animator.changeAnimation(_id,true,true);
 }
 
 void JumpControl::airActionChange(AirAction_Ptr _airAction)

@@ -25,12 +25,12 @@ FirstStep::~FirstStep()
 
 void FirstStep::start(JumpControl * _control, Player* _player)
 {
-	_control->setPower(FirstStepPow);
+	_control->setPower(FirstStepPow);	
 }
 
 void FirstStep::airAction(JumpControl* _control, Player* _player, float deltaTime)
 {
-	_player->jumpUp();
+	_player->jumpMotion(*_control,ANIMATION_ID::JUMPUP);
 	_player->movement(deltaTime);
 	_control->jumping(deltaTime, _player);
 	change(_control, _player);

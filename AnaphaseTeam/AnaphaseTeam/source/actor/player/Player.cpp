@@ -162,16 +162,9 @@ void Player::subActionStart()
 	}
 }
 
-//ジャンプ中のアニメーション
-void Player::jumpUp()
+void Player::jumpMotion(JumpControl& _control, ANIMATION_ID _id)
 {
-	m_animatorOne.changeAnimation(ANIMATION_ID::JUMPUP, true, true);
-}
-
-//着地のアニメーション
-void Player::jumpRigor()
-{
-	m_animatorOne.changeAnimation(ANIMATION_ID::LANDING, true, true);
+	_control.changeMotion(m_animatorOne,_id);
 }
 
 void Player::avoidAction(const GSvector3 & _velocity) 
