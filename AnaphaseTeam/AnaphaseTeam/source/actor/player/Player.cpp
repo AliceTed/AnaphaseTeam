@@ -81,12 +81,12 @@ void Player::stand(float deltaTime)
 	subActionStart();
 	m_animatorOne.changeAnimation(ANIMATION_ID::STAND, true, true);
 	control();
-	m_attackManager.update(this);
+	m_attackManager.update(deltaTime,this);
 }
 
 void Player::attack(float deltaTime)
 {
-	m_attackManager.update(this);
+	m_attackManager.update(deltaTime,this);
 	if (m_attackManager.isEndAttack(&m_animatorOne))
 	{
 		actionChange(std::make_shared<StandState>());

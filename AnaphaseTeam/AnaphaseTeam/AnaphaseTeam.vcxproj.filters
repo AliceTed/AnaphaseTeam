@@ -402,12 +402,6 @@
     <ClInclude Include="header\attack\AttackPattern.h">
       <Filter>ヘッダー ファイル\attack</Filter>
     </ClInclude>
-    <ClInclude Include="header\attack\AttackStatus.h">
-      <Filter>ヘッダー ファイル\actor\Attack</Filter>
-    </ClInclude>
-    <ClInclude Include="header\attack\ContinuationCombo.h">
-      <Filter>ヘッダー ファイル\actor\Attack</Filter>
-    </ClInclude>
     <ClInclude Include="header\attack\Gun.h">
       <Filter>ヘッダー ファイル\attack</Filter>
     </ClInclude>
@@ -424,6 +418,15 @@
       <Filter>ヘッダー ファイル\attack</Filter>
     </ClInclude>
     <ClInclude Include="header\attack\ContinuationCombo.h">
+      <Filter>ヘッダー ファイル\attack</Filter>
+    </ClInclude>
+    <ClInclude Include="header\attack\AttackStatus.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="header\attack\ContinuationCombo.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="header\attack\ComboManager.h">
       <Filter>ヘッダー ファイル\attack</Filter>
     </ClInclude>
   </ItemGroup>
@@ -610,6 +613,9 @@
     </ClCompile>
     <ClCompile Include="source\actionstate\AvoidState.cpp">
       <Filter>ソース ファイル\actionState</Filter>
+    </ClCompile>
+    <ClCompile Include="source\attack\ComboManager.cpp">
+      <Filter>ソース ファイル\Attack</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

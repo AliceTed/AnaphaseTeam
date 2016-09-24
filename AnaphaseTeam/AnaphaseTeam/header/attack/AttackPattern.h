@@ -8,6 +8,7 @@
 
 enum class AttackPattern
 {
+	Non,
 	ScytheAttack1,
 	ScytheAttack2,
 	ScytheAttack3,
