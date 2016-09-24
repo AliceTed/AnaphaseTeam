@@ -22,9 +22,8 @@ public:
 	void update(float deltaTime,Player* _player);
 	void scytheAttack(float deltaTime, Player* _player);
 	void gunAttack(Player* _player);
-	const bool isEndAttack(const AnimatorOne * _animator) const;
+	const bool isEndAttack() const;
 private:
-	const Input* m_Input;
 	Scythe m_Scythe;
 	Gun m_Gun;
 	ComboManager m_combo;

@@ -87,7 +87,7 @@ void Player::stand(float deltaTime)
 void Player::attack(float deltaTime)
 {
 	m_attackManager.update(deltaTime,this);
-	if (m_attackManager.isEndAttack(&m_animatorOne))
+	if (m_attackManager.isEndAttack())
 	{
 		actionChange(std::make_shared<StandState>());
 	}
@@ -194,7 +194,17 @@ const bool Player::isGround() const
 
 const bool Player::isEndAttack() const
 {
-	return m_attackManager.isEndAttack(&m_animatorOne);
+	return m_attackManager.isEndAttack();
+}
+
+const bool Player::isAttack() const
+{
+	return m_Input->scytheTrigger();
+}
+
+const bool Player::isEndAnimation()
+{
+	return m_animatorOne.isEndCurrentAnimation();
 }
 
 const GSvector3 Player::inputDirection() const
@@ -213,6 +223,7 @@ void Player::control()
 	if (m_Input->attackTrigger())
 	{
 		actionChange(std::make_shared<AttackState>());
+		m_attackManager.initialize();
 	}
 }
 

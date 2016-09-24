@@ -17,15 +17,19 @@ public:
 	~ComboManager();
 	//Factorを使えば消える関数
 	void create();
-	void initilize();
+	void initialize();
 	void update(float deltaTime, Player* _player);
-	void combo(float deltaTime);
+	
 	const bool isEnd()const;
-	const bool isCurrentEnd(const AnimatorOne * _animator) const;
+	const bool isCurrentEnd(Player* _player) const;
 private:	
+	void change(float deltaTime, Player* _player);
+	void combo(float deltaTime);
 	const Combo nextkey()const;
 private:
+	bool isStart;//コンボがスタートしたフレームかどうか
 	bool m_isEnd;
 	Combo m_currentKey;
+	Combo m_nextKey;
 	std::unordered_map<Combo, ContinuationCombo> m_Pattern;
 };

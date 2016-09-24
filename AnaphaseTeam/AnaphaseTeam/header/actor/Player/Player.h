@@ -47,6 +47,9 @@ public:
 	const bool isJump() const;
 	const bool isGround() const;
 	const bool isEndAttack() const;
+	const bool isAttack()const;//‹ßÚ—p
+
+	const bool isEndAnimation();
 	//“ü—Í•ûŒü
 	const GSvector3 inputDirection()const;
 public://ActorŒp³

@@ -1,9 +1,12 @@
 #include "../../header/attack/ComboManager.h"
 #include "../../header/shape/Sphere.h"
+#include "../../header/actor/Player/Player.h"
 ComboManager::ComboManager()
 	:m_currentKey(Combo::End),
+	m_nextKey(Combo::End),
 	m_Pattern(),
-	m_isEnd(false)
+	m_isEnd(false),
+	isStart(false)
 {
 }
 
@@ -17,13 +20,13 @@ void ComboManager::create()
 
 	Shape_Ptr sphere = std::make_shared<Sphere>(GSvector3(0, 0, 0), 0);
 	const unsigned int size = 3;
-	Combo combo[size] = 
+	Combo combo[size] =
 	{
 		Combo::First,
 		Combo::Second,
 		Combo::Third
 	};
-	ANIMATION_ID animation[size]=
+	ANIMATION_ID animation[size] =
 	{
 		ANIMATION_ID::ATTACK,
 		ANIMATION_ID::ATTACK2,
@@ -37,15 +40,24 @@ void ComboManager::create()
 	}
 }
 
-void ComboManager::initilize()
+void ComboManager::initialize()
 {
-	m_isEnd=false;
-	m_currentKey= Combo::First;
+	m_isEnd = false;
+	isStart = true;
+	m_currentKey = Combo::First;
+	m_nextKey = Combo::End;
 }
 
-void ComboManager::update(float deltaTime,Player* _player)
+void ComboManager::update(float deltaTime, Player* _player)
 {
 	m_Pattern.at(m_currentKey).anime(_player);
+
+	change(deltaTime, _player);
+	if (_player->isAttack())
+	{
+		combo(deltaTime);
+	}
+	isStart = false;
 }
 
 const bool ComboManager::isEnd() const
@@ -53,20 +65,30 @@ const bool ComboManager::isEnd() const
 	return m_isEnd;
 }
 
-const bool ComboManager::isCurrentEnd(const AnimatorOne * _animator) const
+const bool ComboManager::isCurrentEnd(Player* _player) const
 {
-	return m_Pattern.at(m_currentKey).isEndAnimation(_animator);;
+	return m_Pattern.at(m_currentKey).isEndAnimation(_player);
 }
 
-void ComboManager::combo(float deltaTime)
+void ComboManager::change(float deltaTime, Player * _player)
 {
-	Combo next = nextkey();
-	if (next == Combo::End)
+	if (!isCurrentEnd(_player))
+	{
+		return;
+	}
+	if (m_nextKey == Combo::End)
 	{
 		m_isEnd = true;
 		return;
 	}
-	m_currentKey = next;
+	m_currentKey = m_nextKey;
+	m_nextKey = Combo::End;
+}
+
+void ComboManager::combo(float deltaTime)
+{
+	if (isStart)return;
+	m_nextKey = nextkey();
 }
 
 const Combo ComboManager::nextkey() const
