@@ -20,7 +20,6 @@ private:
 
 	std::vector<GSmatrix4> getAnimEachPos();
 	GSvector3 getPos(std::vector<GSmatrix4>& _mat, int index);
-	void createEachCollsion(CollisionMediator* _mediator,unsigned int _index);
 private:
 	std::vector<Sphere> sphs;
 	std::vector<bool>point;

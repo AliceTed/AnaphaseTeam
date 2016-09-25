@@ -3,8 +3,8 @@
 #include "../../header/actor/Actor.h"
 #include "../../header/collision/CollisionTable.h"
 
-CollisionObject::CollisionObject(Actor * parent, Shape_Ptr shape, CollisionType _type)
-	:parent(parent), shape(shape),m_type(_type)
+CollisionObject::CollisionObject(Actor * parent, Shape_Ptr shape, CollisionType _type, const CollisionFunction& _collision)
+	:parent(parent), shape(shape),m_type(_type),m_collision(_collision)
 {
 }
 
@@ -26,7 +26,8 @@ const bool CollisionObject::isCollision(const CollisionObject * other, const Col
 
 void CollisionObject::collision(CollisionObject * other)
 {
-	parent->othercollision(m_type,other->m_type,other->parent);
+	if (m_collision == nullptr)return;
+	m_collision(other->parent, other->m_type);
 }
 
 void CollisionObject::draw(const Renderer & renderer, const GScolor & _color)

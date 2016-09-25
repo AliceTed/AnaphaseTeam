@@ -5,6 +5,8 @@
 
 #include "../../header/math/Calculate.h"
 #include "../../header/collision/CollisionMediator.h"
+
+#include "../../header/actor/Player/Player.h"
 //
 TestActor::TestActor()
 	:Actor(
@@ -45,10 +47,30 @@ void TestActor::draw(const Renderer & _renderer, const Camera & _camera)
 }
 void TestActor::createCollision(CollisionMediator * _mediator)
 {
-	for (unsigned int i = 0; i < sphs.size(); i++)
+	Shape_Ptr shape = std::make_shared<Sphere>(sphs.at(0));
+	Obj_Ptr obj = std::make_shared<CollisionObject>(this, shape, CollisionType::ENEMY_HEAD,
+		[&](Actor* _parent, CollisionType _type)
 	{
-		createEachCollsion(_mediator, i);
-	}
+		if (point[1] && point[2])point[0] = true;
+	});
+	_mediator->add(obj);
+
+	shape = std::make_shared<Sphere>(sphs.at(1));
+	obj = std::make_shared<CollisionObject>(this, shape, CollisionType::ENEMY_LEFT, 
+		[&](Actor* _parent, CollisionType _type) 
+	{
+		point[1] = true;
+	});
+	_mediator->add(obj);
+
+	shape = std::make_shared<Sphere>(sphs.at(2));
+	obj = std::make_shared<CollisionObject>(this, shape, CollisionType::ENEMY_RIGHT,
+		[&](Actor* _parent, CollisionType _type)
+	{
+		point[2] = true;
+	});
+	_mediator->add(obj);
+
 }
 
 void TestActor::othercollision(CollisionType _myType, CollisionType _otherType, Actor * _other)
@@ -58,22 +80,6 @@ void TestActor::othercollision(CollisionType _myType, CollisionType _otherType, 
 
 void TestActor::collision(CollisionType _myType, CollisionType _otherType, Player * _other)
 {
-	if (_myType == CollisionType::ENEMY_HEAD)
-	{
-		if (point[1] && point[2])
-		{
-			point[0] = true;
-		}
-	}
-
-	if (_myType == CollisionType::ENEMY_LEFT)
-	{
-		point[1] = true;
-	}
-	if (_myType == CollisionType::ENEMY_RIGHT)
-	{
-		point[2] = true;
-	}
 }
 
 void TestActor::getSphere()
@@ -118,18 +124,4 @@ GSvector3 TestActor::getPos(std::vector<GSmatrix4>& _mat, int index)
 	Transform t(_mat[index]);
 	GSmatrix4 m = t.parentSynthesis(m_transform);
 	return m.getPosition();
-}
-
-void TestActor::createEachCollsion(CollisionMediator * _mediator, unsigned int _index)
-{
-	CollisionType type[] =
-	{
-		CollisionType::ENEMY_HEAD,
-		CollisionType::ENEMY_LEFT,
-		CollisionType::ENEMY_RIGHT
-	};
-
-	Shape_Ptr shape = std::make_shared<Sphere>(sphs.at(_index));
-	Obj_Ptr obj = std::make_shared<CollisionObject>(this, shape, type[_index]);
-	_mediator->add(obj);
 }

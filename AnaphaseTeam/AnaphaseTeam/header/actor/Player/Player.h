@@ -43,6 +43,7 @@ public:
 	void jumpMotion(JumpControl& _control,ANIMATION_ID _id);
 	void attackmotion(Attack& _attack);
 	const bool isEndAttackMotion(const Attack& _attack)const;
+
 public://“ü—Í
 	const bool isJump() const;
 	const bool isGround() const;

@@ -17,10 +17,11 @@ enum class CollisionType
 	ENEMY_RIGHT,
 	PLAYER_ATTACK
 };
+typedef std::function<void(Actor* _ohter, CollisionType _ohterType)> CollisionFunction;
 class CollisionObject
 {
 public:
-	CollisionObject(Actor* parent,Shape_Ptr shape,CollisionType _type);
+	CollisionObject(Actor* parent,Shape_Ptr shape,CollisionType _type,const CollisionFunction& _collision=nullptr);
 	~CollisionObject();
 
 	const bool isCollision(const CollisionObject* other,const CollisionTable& _table)const;
@@ -31,5 +32,6 @@ private:
 	Shape_Ptr shape;//基本形状
 	Actor* parent;//親クラス
 	CollisionType m_type;
+	CollisionFunction m_collision;
 };
 #endif
