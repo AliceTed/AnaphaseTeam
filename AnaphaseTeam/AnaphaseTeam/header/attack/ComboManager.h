@@ -7,6 +7,8 @@ enum class Combo
 	First,
 	Second,
 	Third,
+	Four,
+
 	End
 };
 
@@ -26,9 +28,10 @@ private:
 	const Combo nextkey()const;
 	const bool isCurrentEnd(Player* _player) const;
 private:
-	bool m_isStart;//コンボがスタートしたフレームかどうか
+	//コンボがスタートしたフレームかどうか
+	bool m_isStart;
 	bool m_isEnd;
 	Combo m_currentKey;
 	Combo m_nextKey;
-	std::unordered_map<Combo, Attack> m_Pattern;
+	std::unordered_map<Combo, Attack> m_container;
 };

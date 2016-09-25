@@ -4,7 +4,7 @@
 ComboManager::ComboManager()
 	:m_currentKey(Combo::End),
 	m_nextKey(Combo::End),
-	m_Pattern(),
+	m_container(),
 	m_isEnd(false),
 	m_isStart(false)
 {
@@ -16,27 +16,29 @@ ComboManager::~ComboManager()
 
 void ComboManager::create()
 {
-	m_Pattern.clear();
+	m_container.clear();
 
 	Shape_Ptr sphere = std::make_shared<Sphere>(GSvector3(0, 0, 0), 0);
-	const unsigned int size = 3;
+	const unsigned int size = 4;
 	Combo combo[size] =
 	{
 		Combo::First,
 		Combo::Second,
-		Combo::Third
+		Combo::Third,
+		Combo::Four
 	};
 	ANIMATION_ID animation[size] =
 	{
 		ANIMATION_ID::ATTACK,
 		ANIMATION_ID::ATTACK2,
-		ANIMATION_ID::ATTACK3
+		ANIMATION_ID::ATTACK3,
+		ANIMATION_ID::ATTACK4
 	};
 	for (unsigned int i = 0; i < size; i++)
 	{
 		AttackStatus status(0.0f, 0.0f, GSvector3(0, 0, 0));
 		Attack attack(status, animation[i], sphere);
-		m_Pattern.insert(std::make_pair(combo[i], attack));
+		m_container.insert(std::make_pair(combo[i], attack));
 	}
 }
 
@@ -56,7 +58,7 @@ void ComboManager::reset()
 
 void ComboManager::update(float deltaTime, Player* _player)
 {
-	m_Pattern.at(m_currentKey).update(deltaTime,_player);
+	m_container.at(m_currentKey).update(deltaTime,_player);
 
 	change(deltaTime, _player);
 	if (_player->isAttack())
@@ -73,7 +75,7 @@ const bool ComboManager::isEnd() const
 
 const bool ComboManager::isCurrentEnd(Player* _player) const
 {
-	return  _player->isEndAttackMotion(m_Pattern.at(m_currentKey));
+	return  _player->isEndAttackMotion(m_container.at(m_currentKey));
 }
 
 void ComboManager::change(float deltaTime, Player * _player)
@@ -97,9 +99,9 @@ void ComboManager::combo(float deltaTime)
 
 const Combo ComboManager::nextkey() const
 {
-	auto itr = m_Pattern.find(m_currentKey);
+	auto itr = m_container.find(m_currentKey);
 	itr++;
-	if (itr == m_Pattern.end())
+	if (itr == m_container.end())
 	{
 		return Combo::End;
 	}
