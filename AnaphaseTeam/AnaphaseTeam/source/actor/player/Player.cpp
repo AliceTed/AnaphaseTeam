@@ -54,7 +54,7 @@ void Player::update(float deltatime)
 
 void Player::draw(const Renderer & _renderer, const Camera & _camera)
 {
-	FALSE_RETURN(isInsideView(_camera));
+	//FALSE_RETURN(isInsideView(_camera));
 	alphaBlend(_camera);
 	//m_animator.bind();
 	_renderer.getDraw3D().drawMesh(MODEL_ID::PLAYER, m_transform, m_animatorOne, m_Color);
@@ -264,8 +264,9 @@ void Player::rotate(float deltaTime, Transform & _transform)
 void Player::movement(float deltaTime, float _speed)
 {
 	Transform transform = m_camera->transform();
-	rotate(deltaTime, transform);
-	int speed =1;
+	if (m_Input->move())
+		rotate(deltaTime, transform);
+	int speed = 1;
 	if (!m_Input->move())speed = 0;
 	GSvector3 forward(m_transform.front()*speed);
 	m_transform.translate(forward*deltaTime*_speed);

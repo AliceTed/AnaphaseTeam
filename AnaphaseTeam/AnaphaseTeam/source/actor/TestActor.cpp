@@ -16,7 +16,7 @@ TestActor::TestActor()
 		Sphere(GSvector3(0, 7, 0), 7.0f),
 		Actor_Tag::TEST),
 	m_points(),
-	m_core(GSvector3(0,0,0),2),
+	m_core(GSvector3(0,0,0),1),
 	m_color(1,1,1,1)
 {
 	
@@ -89,8 +89,8 @@ void TestActor::createPoint()
 {
 	std::vector<GSmatrix4> mat = getAnimEachPos();
 	//add(Sphere(getPos(mat, HEAD), 2.0f), CollisionType::ENEMY_HEAD);
-	add(Sphere(getPos(mat, LEFTLEG), 2.0f), CollisionType::ENEMY_LEFT);
-	add(Sphere(getPos(mat, RIGHTLEG), 2.0f), CollisionType::ENEMY_RIGHT);
+	add(Sphere(getPos(mat, LEFTLEG),1.0f), CollisionType::ENEMY_LEFT);
+	add(Sphere(getPos(mat, RIGHTLEG),1.0f), CollisionType::ENEMY_RIGHT);
 
 	m_core.transfer(getPos(mat, HEAD));
 }

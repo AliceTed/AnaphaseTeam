@@ -59,14 +59,17 @@ void CameraController::special_move1(GSvector3* _target1, GSvector3* _target2, f
 
 	gsVector3ToEleDir(&ele, &dir, &vector);
 
-	pitch = ele;
+	//pitch = ele;
+	pitch = ele+10.0f;
 	yow = dir + 180;
 
 	ACalc::to_rad(&pitch);
 	ACalc::to_rad(&yow);
 
 	ACalc::clamp(&pitch, 0, 360);
-	ACalc::clamp(&distance,10,50);
+	
+	//ãóó£êßå¿
+	ACalc::clamp(&distance,10, 50);
 
 	ACalc::rotate(&target, _target2, pitch, yow, distance * _distance);
 
