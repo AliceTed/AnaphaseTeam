@@ -12,26 +12,35 @@ TestActor::TestActor()
 	:Actor(
 		Transform(),
 		MODEL_ID::BOSS,
-		Sphere(GSvector3(0, 0, 0), 7.0f),
+		Sphere(GSvector3(0, 7, 0), 7.0f),
 		Actor_Tag::TEST),
-	sphs(),
-	point()
+	m_points(),
+	m_core(GSvector3(0,0,0),2),
+	m_color(1,1,1,1)
 {
-	m_animatorOne.changeAnimation(ANIMATION_ID::STAND, true);
-	for (int i = 0; i < 3; i++)
-	{
-		point.emplace_back(false);
-	}
+	
 }
 
 TestActor::~TestActor()
 {
 }
 
+void TestActor::initialize()
+{
+	Actor::initialize();
+	m_animatorOne.changeAnimation(ANIMATION_ID::STAND, true);
+	m_points.clear();
+	createPoint();
+}
+
 void TestActor::update(float deltatime)
 {
-	getSphere();
-	sphereChases(GSvector3(0, 7, 0));
+	std::vector<GSmatrix4> mat = getAnimEachPos();
+	//m_animatorOne.update(deltatime);
+	m_core.transfer(getPos(mat, HEAD));
+	//eachUpdate(deltatime, CollisionType::ENEMY_HEAD, getPos(mat, HEAD));
+	eachUpdate(deltatime, CollisionType::ENEMY_LEFT, getPos(mat,LEFTLEG));
+	eachUpdate(deltatime, CollisionType::ENEMY_RIGHT, getPos(mat,RIGHTLEG));
 }
 
 void TestActor::draw(const Renderer & _renderer, const Camera & _camera)
@@ -39,47 +48,50 @@ void TestActor::draw(const Renderer & _renderer, const Camera & _camera)
 	FALSE_RETURN(isInsideView(_camera));
 	alphaBlend(_camera);
 	_renderer.getDraw3D().drawMesh(MODEL_ID::BOSS, m_transform, m_animatorOne, m_Color);
-	for (unsigned int i = 0; i < sphs.size(); i++)
+	std::for_each(m_points.begin(), m_points.end(),
+		[&](std::pair<const CollisionType, BreakPoint>& point)
 	{
-		GScolor c = point[i] ? GScolor(1, 0, 0, 1) : GScolor(1, 1, 1, 1);
-		sphs[i].draw(_renderer, c);
-	}
+		point.second.draw(_renderer);
+	});
+	m_core.draw(_renderer, m_color);
 }
 void TestActor::createCollision(CollisionMediator * _mediator)
 {
-	Shape_Ptr shape = std::make_shared<Sphere>(sphs.at(0));
+	Shape_Ptr shape = std::make_shared<Sphere>(m_core);
 	Obj_Ptr obj = std::make_shared<CollisionObject>(this, shape, CollisionType::ENEMY_HEAD,
 		[&](Actor* _parent, CollisionType _type)
 	{
-		if (point[1] && point[2])point[0] = true;
+		if (std::all_of(m_points.begin(), m_points.end(), [&](std::pair<const CollisionType, BreakPoint>& point) { return point.second.isBreak(); }))
+		{
+			m_color = GScolor(0, 0, 1, 1);
+		}
 	});
 	_mediator->add(obj);
 
-	shape = std::make_shared<Sphere>(sphs.at(1));
-	obj = std::make_shared<CollisionObject>(this, shape, CollisionType::ENEMY_LEFT, 
-		[&](Actor* _parent, CollisionType _type) 
+	std::for_each(m_points.begin(), m_points.end(),
+		[&](std::pair<const CollisionType, BreakPoint>& point) 
 	{
-		point[1] = true;
+		point.second.createCollision(this,_mediator); 
 	});
-	_mediator->add(obj);
-
-	shape = std::make_shared<Sphere>(sphs.at(2));
-	obj = std::make_shared<CollisionObject>(this, shape, CollisionType::ENEMY_RIGHT,
-		[&](Actor* _parent, CollisionType _type)
-	{
-		point[2] = true;
-	});
-	_mediator->add(obj);
-
 }
-void TestActor::getSphere()
+void TestActor::add(const Sphere & _sphere, CollisionType _type)
 {
-	sphs.clear();
+	BreakPoint point(_sphere, _type);
+	m_points.insert(std::make_pair(_type, point));
+}
+void TestActor::createPoint()
+{
 	std::vector<GSmatrix4> mat = getAnimEachPos();
+	//add(Sphere(getPos(mat, HEAD), 2.0f), CollisionType::ENEMY_HEAD);
+	add(Sphere(getPos(mat, LEFTLEG), 2.0f), CollisionType::ENEMY_LEFT);
+	add(Sphere(getPos(mat, RIGHTLEG), 2.0f), CollisionType::ENEMY_RIGHT);
 
-	sphs.emplace_back(Sphere(getPos(mat, HEAD), 2.0f));
-	sphs.emplace_back(Sphere(getPos(mat, LEFTLEG), 2.0f));
-	sphs.emplace_back(Sphere(getPos(mat, RIGHTLEG), 2.0f));
+	m_core.transfer(getPos(mat, HEAD));
+}
+
+void TestActor::eachUpdate(float deltaTime, CollisionType _type, const GSvector3 & _position)
+{
+	m_points.at(_type).update(deltaTime, _position);
 }
 
 std::vector<GSmatrix4> TestActor::getAnimEachPos()

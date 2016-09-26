@@ -154,6 +154,8 @@
     <ClCompile Include="source\actor\TestActor.cpp" />
     <ClCompile Include="source\airState\FirstStep.cpp" />
     <ClCompile Include="source\airState\GroundState.cpp" />
+    <ClCompile Include="source\enemy\BreakPoint.cpp" />
+    <ClCompile Include="source\enemy\Core.cpp" />
     <ClCompile Include="source\subAction\JumpControl.cpp" />
     <ClCompile Include="source\airState\PreparationState.cpp" />
     <ClCompile Include="source\airState\RestrictionFall.cpp" />
@@ -223,6 +225,8 @@
     <ClInclude Include="header\airstate\FirstStep.h" />
     <ClInclude Include="header\airstate\GroundState.h" />
     <ClInclude Include="header\airstate\IAirState.h" />
+    <ClInclude Include="header\enemy\BreakPoint.h" />
+    <ClInclude Include="header\enemy\Core.h" />
     <ClInclude Include="header\subAction\JumpControl.h" />
     <ClInclude Include="header\airstate\PreparationState.h" />
     <ClInclude Include="header\airstate\RestrictionFall.h" />

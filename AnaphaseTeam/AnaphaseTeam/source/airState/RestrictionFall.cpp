@@ -17,7 +17,7 @@ void RestrictionFall::start(JumpControl * _control, Player* _player)
 }
 void RestrictionFall::airAction(JumpControl * _control, Player* _player, float deltaTime)
 {
-	_player->movement(deltaTime);
+	_player->moving(deltaTime);
 	_control->jumping(deltaTime, _player);
 	change(_control, _player);
 }

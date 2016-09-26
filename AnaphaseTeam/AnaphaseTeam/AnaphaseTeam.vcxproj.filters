@@ -142,6 +142,12 @@
     <Filter Include="ヘッダー ファイル\attack">
       <UniqueIdentifier>{ff5ecd5d-33ad-4631-ac2d-83da52129794}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ヘッダー ファイル\enemy">
+      <UniqueIdentifier>{4f9e3526-2b14-48c0-ac04-52553c8a6b20}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\enemy">
+      <UniqueIdentifier>{8258c6dd-af9a-4b47-b4fd-3f0a6a92f4fa}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Util\BasicShapes.h">
@@ -414,9 +420,6 @@
     <ClInclude Include="header\attack\AttackStatus.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="header\attack\ContinuationCombo.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
     <ClInclude Include="header\attack\ComboManager.h">
       <Filter>ヘッダー ファイル\attack</Filter>
     </ClInclude>
@@ -428,6 +431,12 @@
     </ClInclude>
     <ClInclude Include="header\actionstate\IActionState.h">
       <Filter>ヘッダー ファイル\actionState</Filter>
+    </ClInclude>
+    <ClInclude Include="header\enemy\BreakPoint.h">
+      <Filter>ヘッダー ファイル\enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="header\enemy\Core.h">
+      <Filter>ヘッダー ファイル\enemy</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -616,6 +625,12 @@
     </ClCompile>
     <ClCompile Include="source\subAction\JumpControl.cpp">
       <Filter>ソース ファイル\subAction</Filter>
+    </ClCompile>
+    <ClCompile Include="source\enemy\BreakPoint.cpp">
+      <Filter>ソース ファイル\enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="source\enemy\Core.cpp">
+      <Filter>ソース ファイル\enemy</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
