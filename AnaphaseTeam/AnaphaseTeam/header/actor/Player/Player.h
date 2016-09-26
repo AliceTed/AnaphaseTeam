@@ -40,8 +40,10 @@ public:
 	void attackmotion(Attack& _attack);
 	const bool isEndAttackMotion(const Attack& _attack)const;
 	void moving(float deltaTime,bool isAnimation=true);
+	void control();
 public://
 	const bool isGround() const;
+	const bool isJumpAttack()const;
 	const bool isEndAttack() const;
 public://“ü—Í
 	const bool isJump() const;
@@ -65,7 +67,7 @@ public://ICharacterÀ‘•
 	void jump(float deltaTime);
 	void avoid(float deltaTime);
 private:
-	void control();
+
 	void subActionStart();
 	void moveMotionChange();
 	void movement(float deltaTime, float _speed = MOVESPEED);
@@ -76,7 +78,7 @@ private:
 	AttackManager m_attackManager;
 	//JumpControl‚ÉˆÚ“®‚µ‚½‚¢
 	bool m_isGround;
-
+	bool m_jumpAttack;
 private://’è”
 	static const float MOVESPEED;
 	static const float ROTATESPEED;

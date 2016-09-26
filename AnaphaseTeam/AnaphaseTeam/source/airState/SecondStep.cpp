@@ -29,6 +29,7 @@ void SecondStep::airAction(JumpControl* _control, Player* _player, float deltaTi
 	_player->jumpMotion(*_control,ANIMATION_ID::JUMPUP);
 	_player->moving(deltaTime,false);
 	_control->jumping(deltaTime, _player);
+	_player->control();
 	change(_control, _player);
 }
 
@@ -46,7 +47,7 @@ AirAction_Ptr SecondStep::next(const Player * _player) const
 		return std::make_shared<GroundState>();
 	}
 
-	if (_player->isEndAttack())
+	if (_player->isJumpAttack())
 	{
 		return std::make_shared<RestrictionFall>();
 	}

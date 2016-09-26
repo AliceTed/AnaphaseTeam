@@ -22,7 +22,8 @@ Player::Player(const Input* _input)
 	m_action(nullptr),
 	m_SubAction(this),
 	m_attackManager(),
-	m_isGround(false)
+	m_isGround(false),
+	m_jumpAttack(false)
 	//m_scythe(MODEL_ID::PLAYER),
 	//m_gun(MODEL_ID::PLAYER)
 {
@@ -38,6 +39,7 @@ void Player::initialize()
 	m_animatorOne.initialize();
 	m_animatorOne.changeAnimation(ANIMATION_ID::STAND, true, true);
 	m_attackManager.initialize();
+	m_jumpAttack = false;
 }
 
 void Player::update(float deltatime)
@@ -83,6 +85,7 @@ void Player::attack(float deltaTime)
 	m_attackManager.update(deltaTime,this);
 	if (m_attackManager.isEndAttack())
 	{
+		m_jumpAttack = false;
 		if (!m_isGround)
 		{
 			actionChange(std::make_shared<JumpState>());
@@ -111,7 +114,6 @@ void Player::jump(float deltaTime)
 	{
 		actionChange(std::make_shared<StandState>());
 	}
-	control();
 }
 
 void Player::avoid(float deltaTime)
@@ -189,11 +191,15 @@ const bool Player::isGround() const
 	return m_isGround;
 }
 
+const bool Player::isJumpAttack() const
+{
+	return m_jumpAttack&&m_isGround;
+}
+
 const bool Player::isEndAttack() const
 {
 	return m_attackManager.isEndAttack();
 }
-
 const bool Player::isAttack() const
 {
 	return m_Input->scytheTrigger();
@@ -220,6 +226,7 @@ void Player::control()
 	{
 		actionChange(std::make_shared<AttackState>());
 		m_attackManager.initialize();
+		m_jumpAttack = true;
 	}
 }
 
