@@ -3,7 +3,9 @@
 
 #include <unordered_map>
 #include "../enemy/BreakPoint.h"
+class Player;
 class AttackStatus;
+class CameraController;
 class TestActor:public Actor
 {
 public:
@@ -13,6 +15,7 @@ public:
 	void update(float deltatime);
 	void draw(const Renderer& _renderer, const Camera& _camera);
 	void createCollision(CollisionMediator* _mediator);
+	void look_at(CameraController* _camera,Player* _actor);
 private:
 	void add(const Sphere& _sphere,CollisionType _type);
 	void createPoint();

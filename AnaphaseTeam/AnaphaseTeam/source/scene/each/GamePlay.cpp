@@ -6,8 +6,9 @@ GamePlay::GamePlay(const Input* _input)
 	m_Input(_input),
 	m_Map(OCTREE_ID::KOUTEI),
 	m_Camera(10,8,GSvector3(0,5,0)),
+	m_cameracontroller(&m_Camera),
 	actorManager(),
-	m_player(_input),
+	m_player(_input,&m_Camera),
 	m_boss()
 {
 }
@@ -41,6 +42,7 @@ void GamePlay::update(float deltaTime)
 void GamePlay::draw(const Renderer & _renderer)
 {
 	_renderer.getDraw3D().drawSky(MESH_ID::SKY);
+	m_boss.look_at(&m_cameracontroller, &m_player);
 	m_player.draw(_renderer,m_Camera);
 	m_Map.draw(_renderer);
 	m_boss.draw(_renderer, m_Camera);

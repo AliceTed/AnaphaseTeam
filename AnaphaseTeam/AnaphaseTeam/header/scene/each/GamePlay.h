@@ -10,6 +10,7 @@
 #include "../../actor/Player/Player.h"
 
 #include "../../actor/TestActor.h"
+#include "../../camera/CameraController.h"
 class Input;
 typedef std::shared_ptr<Actor>Actor_Ptr;
 class GamePlay :public IScene
@@ -29,6 +30,7 @@ private:
 	const Input* m_Input;
 	Map m_Map;
 	Camera m_Camera;
+	CameraController m_cameracontroller;
 	Entity::EntityManager<Actor_Ptr> actorManager;
 	CollisionManager collision;
 	Player m_player;

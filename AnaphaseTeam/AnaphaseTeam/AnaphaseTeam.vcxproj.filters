@@ -249,9 +249,6 @@
     <ClInclude Include="header\data\SKELETON_ID.h">
       <Filter>ヘッダー ファイル\data\id</Filter>
     </ClInclude>
-    <ClInclude Include="header\camera\Camera.h">
-      <Filter>ヘッダー ファイル\camera</Filter>
-    </ClInclude>
     <ClInclude Include="header\actor\Actor.h">
       <Filter>ヘッダー ファイル\actor</Filter>
     </ClInclude>
@@ -438,6 +435,21 @@
     <ClInclude Include="header\enemy\Core.h">
       <Filter>ヘッダー ファイル\enemy</Filter>
     </ClInclude>
+    <ClInclude Include="header\camera\ACalc.h">
+      <Filter>ヘッダー ファイル\camera</Filter>
+    </ClInclude>
+    <ClInclude Include="header\camera\Camera.h">
+      <Filter>ヘッダー ファイル\camera</Filter>
+    </ClInclude>
+    <ClInclude Include="header\camera\CameraController.h">
+      <Filter>ヘッダー ファイル\camera</Filter>
+    </ClInclude>
+    <ClInclude Include="header\camera\LookAt.h">
+      <Filter>ヘッダー ファイル\camera</Filter>
+    </ClInclude>
+    <ClInclude Include="header\camera\Perspective.h">
+      <Filter>ヘッダー ファイル\camera</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Util\BasicShapes.cpp">
@@ -481,9 +493,6 @@
     </ClCompile>
     <ClCompile Include="source\data\LoadError.cpp">
       <Filter>ソース ファイル\data</Filter>
-    </ClCompile>
-    <ClCompile Include="source\camera\Camera.cpp">
-      <Filter>ソース ファイル\camera</Filter>
     </ClCompile>
     <ClCompile Include="source\animation\Animation.cpp">
       <Filter>ソース ファイル\animation</Filter>
@@ -631,6 +640,21 @@
     </ClCompile>
     <ClCompile Include="source\enemy\Core.cpp">
       <Filter>ソース ファイル\enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="source\camera\ACalc.cpp">
+      <Filter>ソース ファイル\camera</Filter>
+    </ClCompile>
+    <ClCompile Include="source\camera\Camera.cpp">
+      <Filter>ソース ファイル\camera</Filter>
+    </ClCompile>
+    <ClCompile Include="source\camera\CameraController.cpp">
+      <Filter>ソース ファイル\camera</Filter>
+    </ClCompile>
+    <ClCompile Include="source\camera\LookAt.cpp">
+      <Filter>ソース ファイル\camera</Filter>
+    </ClCompile>
+    <ClCompile Include="source\camera\Perspective.cpp">
+      <Filter>ソース ファイル\camera</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

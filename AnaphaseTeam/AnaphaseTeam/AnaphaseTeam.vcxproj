@@ -154,6 +154,11 @@
     <ClCompile Include="source\actor\TestActor.cpp" />
     <ClCompile Include="source\airState\FirstStep.cpp" />
     <ClCompile Include="source\airState\GroundState.cpp" />
+    <ClCompile Include="source\camera\ACalc.cpp" />
+    <ClCompile Include="source\camera\Camera.cpp" />
+    <ClCompile Include="source\camera\CameraController.cpp" />
+    <ClCompile Include="source\camera\LookAt.cpp" />
+    <ClCompile Include="source\camera\Perspective.cpp" />
     <ClCompile Include="source\enemy\BreakPoint.cpp" />
     <ClCompile Include="source\enemy\Core.cpp" />
     <ClCompile Include="source\subAction\JumpControl.cpp" />
@@ -169,7 +174,6 @@
     <ClCompile Include="source\animation\Animation.cpp" />
     <ClCompile Include="source\animation\AnimationTimer.cpp" />
     <ClCompile Include="source\animation\Animator.cpp" />
-    <ClCompile Include="source\camera\Camera.cpp" />
     <ClCompile Include="source\collision\CollisionManager.cpp" />
     <ClCompile Include="source\collision\CollisionObject.cpp" />
     <ClCompile Include="source\collision\CollisionTable.cpp" />
@@ -225,6 +229,11 @@
     <ClInclude Include="header\airstate\FirstStep.h" />
     <ClInclude Include="header\airstate\GroundState.h" />
     <ClInclude Include="header\airstate\IAirState.h" />
+    <ClInclude Include="header\camera\ACalc.h" />
+    <ClInclude Include="header\camera\Camera.h" />
+    <ClInclude Include="header\camera\CameraController.h" />
+    <ClInclude Include="header\camera\LookAt.h" />
+    <ClInclude Include="header\camera\Perspective.h" />
     <ClInclude Include="header\enemy\BreakPoint.h" />
     <ClInclude Include="header\enemy\Core.h" />
     <ClInclude Include="header\subAction\JumpControl.h" />
@@ -242,7 +251,6 @@
     <ClInclude Include="header\animation\Animator.h" />
     <ClInclude Include="header\array\Array.h" />
     <ClInclude Include="header\array\Array2D.h" />
-    <ClInclude Include="header\camera\Camera.h" />
     <ClInclude Include="header\collision\CollisionManager.h" />
     <ClInclude Include="header\collision\CollisionMediator.h" />
     <ClInclude Include="header\collision\CollisionObject.h" />

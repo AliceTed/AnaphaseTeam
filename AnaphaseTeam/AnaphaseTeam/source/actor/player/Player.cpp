@@ -12,18 +12,21 @@
 #include "../../../header/data/PLAYERACTION_ID.h"
 #include "../../../header/collision/CollisionMediator.h"
 #include "../../../header/shape/Capsule.h"
+#include "../../../header/camera/CameraController.h"
+
 
 const float Player::MOVESPEED = 0.3f;
 const float Player::ROTATESPEED = -2.0f;
 const float Player::WALKSPEED = 0.1f;
 
-Player::Player(const Input* _input)
+Player::Player(const Input* _input, Camera * _camera)
 	:Actor(Transform({ 0,0,5 }), MODEL_ID::PLAYER, Sphere(GSvector3(0, 0, 0), 0), Actor_Tag::PLAYER),
 	m_action(nullptr),
 	m_SubAction(this),
 	m_attackManager(),
 	m_isGround(false),
-	m_jumpAttack(false)
+	m_jumpAttack(false),
+	m_camera(_camera)
 	//m_scythe(MODEL_ID::PLAYER),
 	//m_gun(MODEL_ID::PLAYER)
 {
@@ -51,8 +54,6 @@ void Player::update(float deltatime)
 
 void Player::draw(const Renderer & _renderer, const Camera & _camera)
 {
-	//éÊÇËÇ†Ç¶Ç∏ñ≥óùÇ‚ÇËí«è]Ç≥ÇπÇÈ
-	const_cast<Camera&>(_camera).lookAt(m_transform.getPosition(), m_transform.getYaw());
 	FALSE_RETURN(isInsideView(_camera));
 	alphaBlend(_camera);
 	//m_animator.bind();
@@ -230,6 +231,12 @@ void Player::control()
 	}
 }
 
+void Player::look_at(CameraController * _camera, GSvector3 * _target)
+{
+	GSvector3 target = m_transform.getPosition();
+	_camera->special_move1(&target, _target,10.0f,1.5f);
+}
+
 /**
 * @fn
 * @brief ìÆÇ¢ÇƒÇ¢ÇÍÇŒMoveStateÇ…êÿÇËë÷Ç¶ÅAìÆÇ¢ÇƒÇ¢Ç»ÇØÇÍÇŒStandStateÇ…êÿÇËë÷Ç¶ÇÈ
@@ -246,8 +253,11 @@ void Player::moveMotionChange()
 
 void Player::movement(float deltaTime, float _speed)
 {
-	m_transform.rotationY(m_Input->rotate()*deltaTime * ROTATESPEED);
-	GSvector3 forward(m_transform.front()*m_Input->vertical());
-	GSvector3 side(m_transform.left()*m_Input->horizontal());
-	m_transform.translate((forward - side)*_speed*deltaTime);
+	Transform transform = m_camera->transform();
+	GSvector3 forward(transform.front()*m_Input->vertical());
+	GSvector3 side(transform.left()*m_Input->horizontal());
+	GSvector3 velocity = forward + side;
+	m_transform.translate(velocity*_speed*deltaTime);
+
+	m_transform.setYaw(-velocity.getYaw());
 }

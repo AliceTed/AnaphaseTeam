@@ -20,11 +20,13 @@
 #include "../../data/ANIMATION_ID.h"
 
 class Input;
+class CameraController;
+class TestActor;
 typedef std::shared_ptr<IActionState> Action_Ptr;
 class Player :public Actor, public ICharacter
 {
 public:
-	Player(const Input* _input);
+	Player(const Input* _input,Camera * _camera);
 	~Player();
 	/**
 	* @fn
@@ -41,6 +43,9 @@ public:
 	const bool isEndAttackMotion(const Attack& _attack)const;
 	void moving(float deltaTime,bool isAnimation=true);
 	void control();
+
+	void look_at(CameraController* _camera, GSvector3* _target);
+	
 public://
 	const bool isGround() const;
 	const bool isJumpAttack()const;
@@ -79,6 +84,7 @@ private:
 	//JumpControlÇ…à⁄ìÆÇµÇΩÇ¢
 	bool m_isGround;
 	bool m_jumpAttack;
+	Camera * m_camera;
 private://íËêî
 	static const float MOVESPEED;
 	static const float ROTATESPEED;

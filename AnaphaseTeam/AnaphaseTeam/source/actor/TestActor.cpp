@@ -7,6 +7,7 @@
 #include "../../header/collision/CollisionMediator.h"
 
 #include "../../header/actor/Player/Player.h"
+#include "../../header/camera/CameraController.h"
 //
 TestActor::TestActor()
 	:Actor(
@@ -73,6 +74,11 @@ void TestActor::createCollision(CollisionMediator * _mediator)
 	{
 		point.second.createCollision(this,_mediator); 
 	});
+}
+void TestActor::look_at(CameraController * _camera, Player * _actor)
+{
+	GSvector3 target = m_transform.getPosition();
+	_actor->look_at(_camera,&target);
 }
 void TestActor::add(const Sphere & _sphere, CollisionType _type)
 {
