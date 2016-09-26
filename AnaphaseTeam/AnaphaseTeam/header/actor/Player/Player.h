@@ -16,9 +16,6 @@
 #include "../ICharacter.h"
 
 #include "../../../header/subAction/SubActionManager.h"
-
-#include "../../attack/Scythe.h"
-#include "../../attack/Gun.h"
 #include "../../attack/attackManager.h"
 #include "../../data/ANIMATION_ID.h"
 
@@ -36,13 +33,13 @@ public:
 	*/
 	void actionChange(Action_Ptr _action);
 
-	void movement(float deltaTime, float _speed = MOVESPEED);
 	void jumping(float _velocity);
 	void avoidAction(const GSvector3& _velocity);
 
 	void jumpMotion(JumpControl& _control,ANIMATION_ID _id);
 	void attackmotion(Attack& _attack);
 	const bool isEndAttackMotion(const Attack& _attack)const;
+	void moving(float deltaTime,bool isAnimation=true);
 public://
 	const bool isGround() const;
 	const bool isEndAttack() const;
@@ -66,18 +63,18 @@ public://ICharacteré¿ëï
 	void damage(float deltaTime);
 	void move(float deltaTime);
 	void jump(float deltaTime);
-	void walk(float deltaTime);
 	void avoid(float deltaTime);
 private:
 	void control();
 	void subActionStart();
 	void moveMotionChange();
+	void movement(float deltaTime, float _speed = MOVESPEED);
 private:
 	const Input* m_Input;
 	Action_Ptr m_action;
 	subActionManager m_SubAction;
 	AttackManager m_attackManager;
-	//JumpControlÇ…à⁄ìÆÇ∆ÇµÇΩÇ¢
+	//JumpControlÇ…à⁄ìÆÇµÇΩÇ¢
 	bool m_isGround;
 
 private://íËêî

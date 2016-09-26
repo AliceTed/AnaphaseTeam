@@ -31,7 +31,7 @@ void FirstStep::start(JumpControl * _control, Player* _player)
 void FirstStep::airAction(JumpControl* _control, Player* _player, float deltaTime)
 {
 	_player->jumpMotion(*_control,ANIMATION_ID::JUMPUP);
-	_player->movement(deltaTime);
+	_player->moving(deltaTime,false);
 	_control->jumping(deltaTime, _player);
 	change(_control, _player);
 }

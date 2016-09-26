@@ -101,13 +101,7 @@ void Player::move(float deltaTime)
 	moveMotionChange();
 	subActionStart();
 	control();
-	if (m_Input->walk())
-	{
-		walk(deltaTime);
-		return;
-	}
-	movement(deltaTime, MOVESPEED);
-	m_animatorOne.changeAnimation(ANIMATION_ID::RUN, true, true);
+	moving(deltaTime);
 }
 
 void Player::jump(float deltaTime)
@@ -118,12 +112,6 @@ void Player::jump(float deltaTime)
 		actionChange(std::make_shared<StandState>());
 	}
 	control();
-}
-
-void Player::walk(float deltaTime)
-{
-	movement(deltaTime, WALKSPEED);
-	m_animatorOne.changeAnimation(ANIMATION_ID::RUN, true, true, 0.4f);
 }
 
 void Player::avoid(float deltaTime)
@@ -177,6 +165,21 @@ const bool Player::isEndAttackMotion(const Attack & _attack) const
 	return _attack.isEndMotion(m_animatorOne);
 }
 
+void Player::moving(float deltaTime, bool isAnimation)
+{
+	float speed=0.3f;
+	float time=1.0f;
+	if (m_Input->walk())
+	{
+		speed = 0.1f;
+		time = 0.4f;
+	}
+	movement(deltaTime,speed);
+	if (!isAnimation)return;
+	m_animatorOne.changeAnimation(ANIMATION_ID::RUN, true, true, time);
+}
+
+
 const bool Player::isJump() const
 {
 	return m_Input->jumpTrigger();
@@ -200,8 +203,6 @@ const bool Player::isGunAttack() const
 {
 	return m_Input->gunTrigger();
 }
-
-
 const GSvector3 Player::inputDirection() const
 {
 	return m_transform.front()+ GSvector3(0,0,0);
