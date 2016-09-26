@@ -37,11 +37,6 @@ public:
 	virtual void update(float deltatime) = 0;
 	virtual void draw(const Renderer& _renderer,const Camera& _camera) = 0;
 	virtual void finish();
-
-	virtual void othercollision(CollisionType _myType, CollisionType _otherType,Actor* _other)=0;
-
-	virtual void collision(CollisionType _myType, CollisionType _otherType, Player* _other);
-	virtual void collision(CollisionType _myType, CollisionType _otherType, TestActor* _other);
 	/**
 	* @fn
 	* @brief Map�Ƃ̏Փˊ֐�

@@ -26,15 +26,6 @@ void Actor::initialize()
 void Actor::finish()
 {
 }
-
-void Actor::collision(CollisionType _myType, CollisionType _otherType, Player * _other)
-{
-}
-
-void Actor::collision(CollisionType _myType, CollisionType _otherType, TestActor * _other)
-{
-}
-
 void Actor::collisionGround(const Map& _map)
 {
 	GSvector3 intersect;

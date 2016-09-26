@@ -43,11 +43,11 @@ public:
 	void jumpMotion(JumpControl& _control,ANIMATION_ID _id);
 	void attackmotion(Attack& _attack);
 	const bool isEndAttackMotion(const Attack& _attack)const;
-
-public://入力
-	const bool isJump() const;
+public://
 	const bool isGround() const;
 	const bool isEndAttack() const;
+public://入力
+	const bool isJump() const;
 	//近接用
 	const bool isAttack()const;
 	const bool isGunAttack()const;
@@ -58,7 +58,6 @@ public://Actor継承
 	void update(float deltatime) override;
 	void draw(const Renderer& _renderer, const Camera& _camera) override;
 	void createCollision(CollisionMediator* _mediator) override;
-	void othercollision(CollisionType _myType, CollisionType _otherType, Actor* _other);
 private:
 	void inGround() override;
 public://ICharacter実装
@@ -78,8 +77,8 @@ private:
 	Action_Ptr m_action;
 	subActionManager m_SubAction;
 	AttackManager m_attackManager;
-	//JumpControlに移動と名前の変更(空中状態かどうかを表す変数止する)
-	bool m_GroundHit;
+	//JumpControlに移動としたい
+	bool m_isGround;
 
 private://定数
 	static const float MOVESPEED;

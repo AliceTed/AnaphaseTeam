@@ -72,16 +72,6 @@ void TestActor::createCollision(CollisionMediator * _mediator)
 	_mediator->add(obj);
 
 }
-
-void TestActor::othercollision(CollisionType _myType, CollisionType _otherType, Actor * _other)
-{
-	_other->collision(_myType, _otherType, this);
-}
-
-void TestActor::collision(CollisionType _myType, CollisionType _otherType, Player * _other)
-{
-}
-
 void TestActor::getSphere()
 {
 	sphs.clear();

@@ -13,8 +13,6 @@ public:
 	void update(float deltatime);
 	void draw(const Renderer& _renderer, const Camera& _camera);
 	void createCollision(CollisionMediator* _mediator);
-	void othercollision(CollisionType _myType, CollisionType _otherType, Actor* _other);
-	void collision(CollisionType _myType, CollisionType _otherType, Player* _other);
 private:
 	void getSphere();
 

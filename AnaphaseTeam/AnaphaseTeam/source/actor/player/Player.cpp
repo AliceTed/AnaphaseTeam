@@ -22,7 +22,7 @@ Player::Player(const Input* _input)
 	m_action(nullptr),
 	m_SubAction(this),
 	m_attackManager(),
-	m_GroundHit(false)
+	m_isGround(false)
 	//m_scythe(MODEL_ID::PLAYER),
 	//m_gun(MODEL_ID::PLAYER)
 {
@@ -59,7 +59,7 @@ void Player::draw(const Renderer & _renderer, const Camera & _camera)
 
 void Player::inGround()
 {
-	m_GroundHit = true;
+	m_isGround = true;
 }
 
 void Player::createCollision(CollisionMediator * _mediator)
@@ -68,11 +68,6 @@ void Player::createCollision(CollisionMediator * _mediator)
 	Shape_Ptr shape = std::make_shared<Capsule>(Segment(pos, GSvector3(0, 0.8f, 0)), 0.5f);
 	Obj_Ptr obj = std::make_shared<CollisionObject>(this, shape, CollisionType::PLAYER);
 	_mediator->add(obj);
-}
-
-void Player::othercollision(CollisionType _myType, CollisionType _otherType, Actor * _other)
-{
-	_other->collision(_otherType,_myType, this);
 }
 
 void Player::stand(float deltaTime)
@@ -88,7 +83,7 @@ void Player::attack(float deltaTime)
 	m_attackManager.update(deltaTime,this);
 	if (m_attackManager.isEndAttack())
 	{
-		if (!m_GroundHit)
+		if (!m_isGround)
 		{
 			actionChange(std::make_shared<JumpState>());
 			return;
@@ -152,7 +147,7 @@ void Player::subActionStart()
 		m_transform.translate(nowPosition);
 		m_SubAction.initialize(SubActionType::JUMP);
 		actionChange(std::make_shared<JumpState>());
-		m_GroundHit = false;
+		m_isGround = false;
 	}
 
 	if (m_Input->avoidTrigger())
@@ -188,7 +183,7 @@ const bool Player::isJump() const
 }
 const bool Player::isGround() const
 {
-	return m_GroundHit;
+	return m_isGround;
 }
 
 const bool Player::isEndAttack() const
