@@ -13,7 +13,7 @@
 #include "../../../header/collision/CollisionMediator.h"
 #include "../../../header/shape/Capsule.h"
 #include "../../../header/camera/CameraController.h"
-
+#include "../../../header/math/Calculate.h"
 
 const float Player::MOVESPEED = 0.3f;
 const float Player::ROTATESPEED = -2.0f;
@@ -258,6 +258,7 @@ void Player::movement(float deltaTime, float _speed)
 	GSvector3 side(transform.left()*m_Input->horizontal());
 	GSvector3 velocity = forward + side;
 	m_transform.translate(velocity*_speed*deltaTime);
-
-	m_transform.setYaw(-velocity.getYaw());
+	Math::ATan atan;
+	float degree = atan(velocity.x,velocity.z);
+	m_transform.setYaw(degree);
 }
