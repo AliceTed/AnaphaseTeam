@@ -75,6 +75,7 @@ private:
 
 	void subActionStart();
 	void moveMotionChange();
+	void rotate(float deltaTime,Transform& _transform);
 	void movement(float deltaTime, float _speed = MOVESPEED);
 private:
 	const Input* m_Input;
@@ -85,6 +86,7 @@ private:
 	bool m_isGround;
 	bool m_jumpAttack;
 	Camera * m_camera;
+	bool ismove = false;
 private://íËêî
 	static const float MOVESPEED;
 	static const float ROTATESPEED;

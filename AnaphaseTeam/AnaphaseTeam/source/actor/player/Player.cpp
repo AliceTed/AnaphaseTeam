@@ -83,7 +83,7 @@ void Player::stand(float deltaTime)
 
 void Player::attack(float deltaTime)
 {
-	m_attackManager.update(deltaTime,this);
+	m_attackManager.update(deltaTime, this);
 	if (m_attackManager.isEndAttack())
 	{
 		m_jumpAttack = false;
@@ -150,10 +150,10 @@ void Player::subActionStart()
 
 void Player::jumpMotion(JumpControl& _control, ANIMATION_ID _id)
 {
-	_control.changeMotion(m_animatorOne,_id);
+	_control.changeMotion(m_animatorOne, _id);
 }
 
-void Player::avoidAction(const GSvector3 & _velocity) 
+void Player::avoidAction(const GSvector3 & _velocity)
 {
 	m_transform.translate(_velocity);
 }
@@ -170,14 +170,14 @@ const bool Player::isEndAttackMotion(const Attack & _attack) const
 
 void Player::moving(float deltaTime, bool isAnimation)
 {
-	float speed=0.3f;
-	float time=1.0f;
+	float speed = 0.3f;
+	float time = 1.0f;
 	if (m_Input->walk())
 	{
 		speed = 0.1f;
 		time = 0.4f;
 	}
-	movement(deltaTime,speed);
+	movement(deltaTime, speed);
 	if (!isAnimation)return;
 	m_animatorOne.changeAnimation(ANIMATION_ID::RUN, true, true, time);
 }
@@ -212,7 +212,7 @@ const bool Player::isGunAttack() const
 }
 const GSvector3 Player::inputDirection() const
 {
-	return m_transform.front()+ GSvector3(0,0,0);
+	return m_transform.front() + GSvector3(0, 0, 0);
 }
 
 void Player::actionChange(Action_Ptr _action)
@@ -234,7 +234,7 @@ void Player::control()
 void Player::look_at(CameraController * _camera, GSvector3 * _target)
 {
 	GSvector3 target = m_transform.getPosition();
-	_camera->special_move1(&target, _target,10.0f,1.5f);
+	_camera->special_move1(&target, _target, 10.0f, 1.5f);
 }
 
 /**
@@ -251,14 +251,24 @@ void Player::moveMotionChange()
 	actionChange(std::make_shared<MoveState>());
 }
 
+void Player::rotate(float deltaTime, Transform & _transform)
+{
+	GSvector3 forward(_transform.front()*m_Input->vertical());
+	GSvector3 side(_transform.left()*m_Input->horizontal());
+	GSvector3 velocity = forward + side;
+	Math::ATan atan;
+	float degree = atan(velocity.x, velocity.z);
+	m_transform.setYaw(degree);
+}
+
 void Player::movement(float deltaTime, float _speed)
 {
 	Transform transform = m_camera->transform();
-	GSvector3 forward(transform.front()*m_Input->vertical());
-	GSvector3 side(transform.left()*m_Input->horizontal());
-	GSvector3 velocity = forward + side;
-	m_transform.translate(velocity*_speed*deltaTime);
-	Math::ATan atan;
-	float degree = atan(velocity.x,velocity.z);
-	m_transform.setYaw(degree);
+	rotate(deltaTime, transform);
+	int speed =1;
+	if (!m_Input->move())speed = 0;
+	GSvector3 forward(m_transform.front()*speed);
+	m_transform.translate(forward*deltaTime*_speed);
+
+
 }
