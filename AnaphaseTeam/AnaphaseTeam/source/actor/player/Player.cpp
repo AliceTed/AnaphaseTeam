@@ -144,6 +144,11 @@ void Player::subActionStart()
 	}
 }
 
+void Player::startJump(JumpControl * _control, float _scale)
+{
+	m_status.giveJumpPower(_control,_scale);
+}
+
 void Player::jumpMotion(JumpControl& _control, ANIMATION_ID _id)
 {
 	_control.changeMotion(m_animatorOne, _id);
@@ -166,11 +171,11 @@ const bool Player::isEndAttackMotion(const Attack & _attack) const
 
 void Player::moving(float deltaTime, bool isAnimation)
 {
-	float speed = 0.3f;
+	float speed =m_status.getMoveSpeed(false,false);
 	float time = 1.0f;
 	if (m_Input->walk())
 	{
-		speed = 0.1f;
+		speed = m_status.getWalkSpeed();
 		time = 0.4f;
 	}
 	movement(deltaTime, speed);

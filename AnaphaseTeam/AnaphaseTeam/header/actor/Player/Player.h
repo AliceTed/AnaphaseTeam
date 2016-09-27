@@ -38,6 +38,8 @@ public:
 	void jumping(float _velocity);
 	void avoidAction(const GSvector3& _velocity);
 
+	void startJump(JumpControl* _control,float _scale);
+
 	void jumpMotion(JumpControl& _control,ANIMATION_ID _id);
 	void attackmotion(Attack& _attack);
 	const bool isEndAttackMotion(const Attack& _attack)const;

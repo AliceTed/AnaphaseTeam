@@ -13,7 +13,7 @@ RestrictionFall::~RestrictionFall()
 }
 void RestrictionFall::start(JumpControl * _control, Player* _player)
 {
-	_control->setPower(Restriction);
+	_player->startJump(_control, Restriction);
 }
 void RestrictionFall::airAction(JumpControl * _control, Player* _player, float deltaTime)
 {

@@ -22,7 +22,7 @@ SecondStep::~SecondStep()
 }
 void SecondStep::start(JumpControl * _control, Player* _player)
 {
-	_control->setPower(SecondStepPow);
+	_player->startJump(_control, SecondStepPow);
 }
 void SecondStep::airAction(JumpControl* _control, Player* _player, float deltaTime)
 {

@@ -25,7 +25,7 @@ FirstStep::~FirstStep()
 
 void FirstStep::start(JumpControl * _control, Player* _player)
 {
-	_control->setPower(FirstStepPow);	
+	_player->startJump(_control,FirstStepPow);
 }
 
 void FirstStep::airAction(JumpControl* _control, Player* _player, float deltaTime)

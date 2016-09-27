@@ -7,6 +7,9 @@
 
 #pragma once
 
+//
+class JumpControl;
+//
 class Status
 {
 public:
@@ -36,6 +39,10 @@ public:
 
 	const int getHp();
 
+	//
+	void powerUp();
+	void giveJumpPower(JumpControl* _control,float _scale);
+	//
 private:
 	//! ˆÚ“®‘¬“x(‘–‚è)‘ã“ü—p
 	float m_moveSpeed;
@@ -49,6 +56,10 @@ private:
 
 	int m_hp;
 
+	//
+	//’Ç‰Ájump—Í
+	float m_jumpower;
+	//
 private:
 	//! ˆÚ“®‘¬“x(‘–‚è)
 	static const float MOVESPEED;

@@ -1,11 +1,17 @@
 #include "../../../header/actor/Player/Status.h"
 
+//
+#include "../../../header/subAction/JumpControl.h"
+#include "../../../header/math/Calculate.h"
+//
+
 const float Status::MOVESPEED = 0.3f;
 const float Status::ROTATESPEED = -2.0f;
 const float Status::WALKSPEED = 0.1f;
 const float Status::JUMPPOWER = 1.0f;
 
 Status::Status()
+	:m_jumpower(1.0f)
 {
 }
 
@@ -45,3 +51,15 @@ const int Status::getHp()
 	m_hp = 100;
 	return m_hp;
 }
+
+//
+void Status::powerUp()
+{
+	Math::Clamp clamp;
+	m_jumpower = clamp(m_jumpower + 1.0f, 1.0f, 3.0f);
+}
+void Status::giveJumpPower(JumpControl * _control, float _scale)
+{
+	_control->setPower(m_jumpower*_scale);
+}
+//
