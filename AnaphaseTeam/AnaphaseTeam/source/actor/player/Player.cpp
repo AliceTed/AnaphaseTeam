@@ -18,7 +18,6 @@
 const float Player::MOVESPEED = 0.3f;
 const float Player::ROTATESPEED = -2.0f;
 const float Player::WALKSPEED = 0.1f;
-
 Player::Player(const Input* _input, Camera * _camera)
 	:Actor(Transform({ 0,0,5 }), MODEL_ID::PLAYER, Sphere(GSvector3(0, 0, 0), 0), Actor_Tag::PLAYER),
 	m_action(nullptr),
@@ -50,13 +49,14 @@ void Player::update(float deltatime)
 	m_action->action(this, deltatime);
 	sphereChases(GSvector3(0, 1, 0));
 	m_animatorOne.update(deltatime);
+	//スリープでスローモーション仮実装
+	//Sleep(60);
 }
 
 void Player::draw(const Renderer & _renderer, const Camera & _camera)
 {
 	//FALSE_RETURN(isInsideView(_camera));
 	alphaBlend(_camera);
-	//m_animator.bind();
 	_renderer.getDraw3D().drawMesh(MODEL_ID::PLAYER, m_transform, m_animatorOne, m_Color);
 }
 
