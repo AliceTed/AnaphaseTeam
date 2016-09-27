@@ -11,7 +11,7 @@
 #include "../../header/actor/Player/Player.h"
 #include "../../header/math/Calculate.h"
 #include "../../header/subAction/JumpControl.h"
-const float FirstStep::FirstStepPow = 1.2f;
+const float FirstStep::FirstStepPow = 0.5f;
 
 FirstStep::FirstStep()
 {

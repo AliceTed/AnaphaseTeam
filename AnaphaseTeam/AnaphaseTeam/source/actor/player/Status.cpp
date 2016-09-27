@@ -56,7 +56,7 @@ const int Status::getHp()
 void Status::powerUp()
 {
 	Math::Clamp clamp;
-	m_jumpower = clamp(m_jumpower + 1.0f, 1.0f, 3.0f);
+	m_jumpower = clamp(m_jumpower + 0.2f, 1.0f, 1.4f);
 }
 void Status::giveJumpPower(JumpControl * _control, float _scale)
 {

@@ -10,8 +10,7 @@
 #include "../../header/actor/Player/Player.h"
 #include "../../header/math/Calculate.h"
 #include "../../header/subAction/JumpControl.h"
-const float SecondStep::SecondStepPow = 1.0f;
-typedef std::shared_ptr<IAirState> AirAction_Ptr;
+const float SecondStep::SecondStepPow = 0.5f;
 SecondStep::SecondStep()
 {
 

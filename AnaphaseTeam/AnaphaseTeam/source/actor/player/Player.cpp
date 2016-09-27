@@ -238,6 +238,11 @@ void Player::look_at(CameraController * _camera, GSvector3 * _target)
 	_camera->special_move1(&target, _target, 10.0f, 1.5f);
 }
 
+void Player::buildup()
+{
+	m_status.powerUp();
+}
+
 /**
 * @fn
 * @brief “®‚¢‚Ä‚¢‚ê‚ÎMoveState‚ÉØ‚è‘Ö‚¦A“®‚¢‚Ä‚¢‚È‚¯‚ê‚ÎStandState‚ÉØ‚è‘Ö‚¦‚é

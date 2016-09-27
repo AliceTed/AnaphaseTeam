@@ -9,7 +9,7 @@
 #include "../../header/math/Calculate.h"
 #include "../../header/airstate/PreparationState.h"
 
-const float JumpControl::Acceleration = 0.1f;
+const float JumpControl::Acceleration = 0.05f;
 const float JumpControl::MaxJumpPower = 2.0f;
 JumpControl::JumpControl(Player* _player)
 	:m_airAction(std::make_shared<PreparationState>()),

@@ -48,6 +48,7 @@ public:
 
 	void look_at(CameraController* _camera, GSvector3* _target);
 	
+	void buildup();
 public:
 	const bool isGround() const;
 	const bool isJumpAttack()const;

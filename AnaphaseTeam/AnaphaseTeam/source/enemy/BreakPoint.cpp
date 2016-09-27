@@ -1,6 +1,7 @@
 #include "../../header/enemy/BreakPoint.h"
 #include "../../header/collision/CollisionMediator.h"
 #include "../../header/actor/TestActor.h"
+#include "../../header/actor/Player/Player.h"
 BreakPoint::BreakPoint(const Sphere& _sphere,CollisionType _type)
 	:m_sphere(_sphere), m_color(1, 1, 1, 1),m_type(_type),m_mode(BreakMode::Non)
 	, m_delay(2.0f)
@@ -11,7 +12,7 @@ BreakPoint::~BreakPoint()
 {
 }
 
-void BreakPoint::damage()
+void BreakPoint::damage(Player* _player)
 {
 	if (m_mode == BreakMode::Non)
 	{
@@ -23,6 +24,7 @@ void BreakPoint::damage()
 	{
 		m_color = GScolor(1, 1, 0, 1);
 		m_mode = BreakMode::Break;
+		_player->buildup();
 	}
 }
 void BreakPoint::update(float deltaTime, const GSvector3 & _position)
@@ -39,7 +41,9 @@ void BreakPoint::createCollision(TestActor * _parent, CollisionMediator * _media
 	Obj_Ptr obj = std::make_shared<CollisionObject>(_parent, shape, m_type,
 		[&](Actor* _parent, CollisionType _type)
 	{
-		damage();
+		Player* _player = dynamic_cast<Player*>(_parent);
+		if (_player == nullptr)return;
+		damage(_player);
 	});
 	_mediator->add(obj);
 }

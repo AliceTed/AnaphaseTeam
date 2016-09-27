@@ -11,12 +11,13 @@ enum class BreakMode
 
 class CollisionMediator;
 class TestActor;
+class Player;
 class BreakPoint
 {
 public:
 	BreakPoint(const Sphere& _sphere,CollisionType _type);
 	~BreakPoint();
-	void damage();
+	void damage(Player* _player);
 	void update(float deltaTime,const GSvector3& _position);
 	void createCollision(TestActor* _parent,CollisionMediator * _mediator);
 	void draw(const Renderer& _renderer);
