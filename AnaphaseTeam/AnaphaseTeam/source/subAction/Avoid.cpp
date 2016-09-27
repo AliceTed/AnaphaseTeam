@@ -27,6 +27,8 @@ void Avoid::update(float deltaTime)
 	m_lerp.update(deltaTime);
 	m_player->avoidAction(m_lerp.current() - m_prebious);
 	m_prebious = m_lerp.current();
+	//スリープでスローモーション仮実装
+	Sleep(60);
 }
 
 const bool Avoid::isEnd() const

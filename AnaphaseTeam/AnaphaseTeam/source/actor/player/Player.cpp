@@ -49,8 +49,6 @@ void Player::update(float deltatime)
 	m_action->action(this, deltatime);
 	sphereChases(GSvector3(0, 1, 0));
 	m_animatorOne.update(deltatime);
-	//スリープでスローモーション仮実装
-	//Sleep(60);
 }
 
 void Player::draw(const Renderer & _renderer, const Camera & _camera)
@@ -212,7 +210,7 @@ const bool Player::isGunAttack() const
 }
 const GSvector3 Player::inputDirection() const
 {
-	return m_transform.front() + GSvector3(0, 0, 0);
+	return m_transform.front();
 }
 
 void Player::actionChange(Action_Ptr _action)
