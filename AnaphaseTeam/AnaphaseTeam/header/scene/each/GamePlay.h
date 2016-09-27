@@ -11,6 +11,7 @@
 
 #include "../../actor/TestActor.h"
 #include "../../camera/CameraController.h"
+#include "../SceneChange.h"
 class Input;
 typedef std::shared_ptr<Actor>Actor_Ptr;
 class GamePlay :public IScene
@@ -28,6 +29,7 @@ public:
 private:
 	bool m_IsEnd;
 	const Input* m_Input;
+	SceneChange m_change;
 	Map m_Map;
 	Camera m_Camera;
 	CameraController m_cameracontroller;

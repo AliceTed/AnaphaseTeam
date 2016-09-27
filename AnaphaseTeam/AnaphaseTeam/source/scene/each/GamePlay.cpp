@@ -9,7 +9,8 @@ GamePlay::GamePlay(const Input* _input)
 	m_cameracontroller(&m_Camera),
 	actorManager(),
 	m_player(_input,&m_Camera),
-	m_boss()
+	m_boss(),
+	m_change()
 {
 }
 GamePlay::~GamePlay()
@@ -18,6 +19,8 @@ GamePlay::~GamePlay()
 
 void GamePlay::initialize()
 {
+	m_change.initialize();
+	m_change.begin(2);
 	m_IsEnd = false;
 	m_player.initialize();
 	m_boss.initialize();
@@ -26,17 +29,21 @@ void GamePlay::initialize()
 
 void GamePlay::update(float deltaTime)
 {
-	m_player.update(deltaTime);
 	m_player.collisionGround(m_Map);
-
-	m_boss.update(deltaTime);
 	m_boss.collisionGround(m_Map);
-
+	if (m_change.update(deltaTime))return;
+	m_player.update(deltaTime);
+	
+	m_boss.update(deltaTime);
 	m_player.createCollision(&collision);
 	m_boss.createCollision(&collision);
 
 	collision.update(deltaTime);
 
+	if (m_Input->isJoyTriggerSTART())
+	{
+		m_change.end(SceneMode::GAMEPLAY);
+	}
 }
 
 void GamePlay::draw(const Renderer & _renderer)
@@ -46,9 +53,8 @@ void GamePlay::draw(const Renderer & _renderer)
 	m_player.draw(_renderer,m_Camera);
 	m_boss.draw(_renderer, m_Camera);
 	m_Map.draw(_renderer);
-	
-	
 	collision.draw(_renderer);
+	m_change.draw(_renderer);
 }
 
 void GamePlay::finish()
@@ -57,12 +63,12 @@ void GamePlay::finish()
 
 const SceneMode GamePlay::next() const
 {
-	return SceneMode::ENDING;
+	return m_change.next();
 }
 
 const bool GamePlay::isEnd() const
 {
-	return false;
+	return m_change.isEnd();
 }
 
 const bool GamePlay::isExit() const
