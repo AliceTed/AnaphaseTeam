@@ -32,6 +32,7 @@ void TestActor::initialize()
 	m_animatorOne.changeAnimation(ANIMATION_ID::STAND, true);
 	m_points.clear();
 	createPoint();
+	m_corecolor = GScolor(1, 1, 1, 1);
 }
 
 void TestActor::update(float deltatime)
