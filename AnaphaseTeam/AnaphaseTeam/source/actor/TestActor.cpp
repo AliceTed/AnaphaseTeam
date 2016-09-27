@@ -11,7 +11,7 @@
 //
 TestActor::TestActor()
 	:Actor(
-		Transform(),
+		Transform(GSvector3(0,0,0),GSvector3(0,180,0)),
 		MODEL_ID::BOSS,
 		Sphere(GSvector3(0, 7, 0), 7.0f),
 		Actor_Tag::TEST),

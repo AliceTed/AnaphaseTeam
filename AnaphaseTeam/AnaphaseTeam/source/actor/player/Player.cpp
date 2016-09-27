@@ -19,7 +19,7 @@ const float Player::MOVESPEED = 0.3f;
 const float Player::ROTATESPEED = -2.0f;
 const float Player::WALKSPEED = 0.1f;
 Player::Player(const Input* _input, Camera * _camera)
-	:Actor(Transform({ 0,0,5 }), MODEL_ID::PLAYER, Sphere(GSvector3(0, 0, 0), 0), Actor_Tag::PLAYER),
+	:Actor(Transform({0,0,-30 }), MODEL_ID::PLAYER, Sphere(GSvector3(0, 0, 0), 0), Actor_Tag::PLAYER),
 	m_action(nullptr),
 	m_SubAction(this),
 	m_attackManager(),
