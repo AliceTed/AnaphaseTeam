@@ -86,7 +86,7 @@ private:
 	Status m_status;
 	//JumpControl‚ÉˆÚ“®‚µ‚½‚¢
 	bool m_isGround;
-
+	//–³—‚â‚è
 	bool m_isJumpAttack;
 	Camera * m_camera;
 private://’è”

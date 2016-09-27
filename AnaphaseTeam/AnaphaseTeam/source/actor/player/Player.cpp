@@ -70,6 +70,7 @@ void Player::createCollision(CollisionMediator * _mediator)
 	_mediator->add(obj);
 	if (!m_attackManager.isEnd())
 	{
+		//–³—‚â‚èUŒ‚’†‚É‹…”»’è‚ğƒLƒƒƒ‰‚Ì‘O‚Éì‚é
 		float radius = 1.5f;
 		GSvector3 front = m_transform.front()*(radius*1.5f);
 		GSvector3 pos(m_transform.getPosition() +front);
