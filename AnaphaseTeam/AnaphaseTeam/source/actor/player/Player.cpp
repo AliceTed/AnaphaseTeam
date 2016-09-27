@@ -241,7 +241,7 @@ void Player::control()
 	{
 		actionChange(std::make_shared<AttackState>());
 		m_attackManager.initialize();
-		m_isJumpAttack = true;
+		m_isJumpAttack = !m_isGround;
 	}
 }
 
