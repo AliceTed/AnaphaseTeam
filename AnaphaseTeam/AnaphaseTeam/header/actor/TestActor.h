@@ -26,7 +26,7 @@ private:
 private:
 	std::unordered_map<CollisionType,BreakPoint> m_points;
 	Sphere m_core;
-	GScolor m_color;
+	GScolor m_corecolor;
 	static const int HEAD = 6;
 	static const int LEFTLEG = 56;
 	static const int RIGHTLEG = 61;

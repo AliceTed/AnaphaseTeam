@@ -17,7 +17,7 @@ TestActor::TestActor()
 		Actor_Tag::TEST),
 	m_points(),
 	m_core(GSvector3(0,0,0),1),
-	m_color(1,1,1,1)
+	m_corecolor(1,1,1,1)
 {
 	
 }
@@ -47,14 +47,14 @@ void TestActor::update(float deltatime)
 void TestActor::draw(const Renderer & _renderer, const Camera & _camera)
 {
 	FALSE_RETURN(isInsideView(_camera));
-	alphaBlend(_camera);
+	//alphaBlend(_camera);releaseŽž‚É‚È‚º‚©“§–¾‚É‚È‚é
 	_renderer.getDraw3D().drawMesh(MODEL_ID::BOSS, m_transform, m_animatorOne, m_Color);
 	std::for_each(m_points.begin(), m_points.end(),
 		[&](std::pair<const CollisionType, BreakPoint>& point)
 	{
 		point.second.draw(_renderer);
 	});
-	m_core.draw(_renderer, m_color);
+	m_core.draw(_renderer, m_corecolor);
 }
 void TestActor::createCollision(CollisionMediator * _mediator)
 {
@@ -64,7 +64,7 @@ void TestActor::createCollision(CollisionMediator * _mediator)
 	{
 		if (std::all_of(m_points.begin(), m_points.end(), [&](std::pair<const CollisionType, BreakPoint>& point) { return point.second.isBreak(); }))
 		{
-			m_color = GScolor(0, 0, 1, 1);
+			m_corecolor = GScolor(0, 0, 1, 1);
 		}
 	});
 	_mediator->add(obj);
@@ -117,7 +117,7 @@ std::vector<GSmatrix4> TestActor::getAnimEachPos()
 
 	gsCalculateSkeleton(pmat, animmat, mat);
 	std::vector<GSmatrix4> res;
-	for (int i = 0; i < n; i++)
+	for (GSuint i = 0; i < n; i++)
 	{
 		res.emplace_back(mat[i]);
 	}

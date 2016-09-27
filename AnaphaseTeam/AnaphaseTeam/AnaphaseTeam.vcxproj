@@ -69,6 +69,8 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
+    <IncludePath>C:\gslib_2015\gslib_2015\inc;C:\boost\Include\boost_1_57_0;D:\GSLibrary_2015\gslib_2015\gslib_2015\inc;C:\boost\include\boost-1_57;C:\boost\boost\include\boost-1_57;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\gslib_2015\gslib_2015\lib;C:\boost\lib;D:\GSLibrary_2015\gslib_2015\gslib_2015\lib;D:\GSLibrary_2015\boost\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
@@ -111,6 +113,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
