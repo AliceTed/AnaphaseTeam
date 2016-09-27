@@ -253,7 +253,7 @@ void Player::moveMotionChange()
 
 void Player::rotate(float deltaTime, Transform & _transform)
 {
-	GSvector3 forward(_transform.front()*m_Input->vertical());
+	GSvector3 forward(_transform.front()*-m_Input->vertical());
 	GSvector3 side(_transform.left()*m_Input->horizontal());
 	GSvector3 velocity = forward + side;
 	Math::ATan atan;

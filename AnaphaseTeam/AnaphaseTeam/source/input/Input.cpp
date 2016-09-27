@@ -1,6 +1,8 @@
 #include "../../header/device/Input.h"
 
 Input::Input()
+	:m_previousLeftTrigger(false),
+	m_previousRightTrigger(false)
 {
 }
 const GSvector2 Input::velocity()const
@@ -10,24 +12,14 @@ const GSvector2 Input::velocity()const
 //êÖïΩ	
 const int Input::horizontal()const
 {
-	int f = gsGetKeyState(GKEY_D);
-	f -= gsGetKeyState(GKEY_A);
-	return f;
+	return leftPadAxis().x;
 }
 //êÇíº
 const int Input::vertical()const
 {
-	int f = gsGetKeyState(GKEY_W);
-	f -= gsGetKeyState(GKEY_S);
-	return f;
+	return leftPadAxis().y;
 }
 
-const int Input::rotate() const
-{
-	int f = gsGetKeyState(GKEY_E)|gsGetKeyState(GKEY_RIGHT);
-	f -= gsGetKeyState(GKEY_Q)| gsGetKeyState(GKEY_LEFT);
-	return f;
-}
 
 const bool Input::move() const
 {
@@ -41,27 +33,22 @@ const bool Input::walk() const
 
 const bool Input::up() const
 {
-	return gsGetKeyTrigger(GKEY_UP) == GS_TRUE;
+	return isJoyTriggerUp();
 }
 
 const bool Input::down() const
 {
-	return gsGetKeyTrigger(GKEY_DOWN) == GS_TRUE;
+	return isJoyTriggerDown();
 }
 
 const bool Input::exit() const
 {
-	return gsGetKeyTrigger(GKEY_ESCAPE) == GS_TRUE;
+	return gsGetKeyTrigger(GKEY_ESCAPE) == GS_TRUE|| isJoyTriggerBACK();
 }
 
 const bool Input::jumpTrigger() const
 {
-	return gsGetKeyTrigger(GKEY_SPACE)==GS_TRUE;
-}
-
-const bool Input::chainTrigger() const
-{
-	return gsGetKeyTrigger(GKEY_LSHIFT) == GS_TRUE;
+	return isJoyTriggerA();
 }
 
 const bool Input::attackTrigger() const
@@ -70,7 +57,7 @@ const bool Input::attackTrigger() const
 }
 const bool Input::scytheTrigger() const
 {
-	return gsGetKeyTrigger(GKEY_K) == GS_TRUE;
+	return isJoyTriggerX();
 }
 
 const bool Input::gunTrigger() const
@@ -80,7 +67,109 @@ const bool Input::gunTrigger() const
 
 const bool Input::avoidTrigger() const
 {
-	return gsGetKeyTrigger(GKEY_C) == GS_TRUE;
+	return isJoyTriggerB();
 }
 
 
+
+const bool Input::isJoyTriggerUp() const
+{
+	return !!gsGetJoyTrigger(0, GJOY_UP);
+}
+
+const bool Input::isJoyTriggerDown() const
+{
+	return !!gsGetJoyTrigger(0, GJOY_DOWN);
+}
+
+const bool Input::isJoyTriggerLeft() const
+{
+	return !!gsGetJoyTrigger(0, GJOY_LEFT);
+}
+
+const bool Input::isJoyTriggerRight() const
+{
+	return !!gsGetJoyTrigger(0, GJOY_RIGHT);
+}
+
+const bool Input::isJoyTriggerA() const
+{
+	return !!gsGetJoyTrigger(0, GJOY_BUTTON_1);
+}
+
+const bool Input::isJoyTriggerB() const
+{
+	return !!gsGetJoyTrigger(0, GJOY_BUTTON_2);
+}
+
+const bool Input::isJoyTriggerX() const
+{
+	return !!gsGetJoyTrigger(0, GJOY_BUTTON_3);
+}
+
+const bool Input::isJoyTriggerY() const
+{
+	return !!gsGetJoyTrigger(0, GJOY_BUTTON_4);
+}
+
+const bool Input::isJoyTriggerLB() const
+{
+	return !!gsGetJoyTrigger(0, GJOY_BUTTON_5);
+	gsGetJoyTrigger(0, GJOY_DOWN);
+}
+
+const bool Input::isJoyTriggerRB() const
+{
+	return !!gsGetJoyTrigger(0, GJOY_BUTTON_6);
+}
+
+const bool Input::isJoyTriggerBACK() const
+{
+	return !!gsGetJoyTrigger(0, GJOY_BUTTON_7);
+}
+
+const bool Input::isJoyTriggerSTART() const
+{
+	return !!gsGetJoyTrigger(0, GJOY_BUTTON_8);
+}
+
+const bool Input::isJoyTriggerLeftThrust() const
+{
+	return !!gsGetJoyTrigger(0, GJOY_BUTTON_9);
+}
+
+const bool Input::isJoyTriggerRightThrust() const
+{
+	return !!gsGetJoyTrigger(0, GJOY_BUTTON_10);
+}
+
+const GSvector2 Input::leftPadAxis() const
+{
+	int x,y;
+	gsGetJoyLeftAxis(0,&x,&y);
+	//gsXBoxPadGetLeftAxis(0, &vector);
+	return GSvector2(x,y);
+}
+
+const GSvector2 Input::rightPadAxis() const
+{
+	GSvector2 vector;
+	gsXBoxPadGetRightAxis(0, &vector);
+	return vector;
+}
+
+const bool Input::isJoyLeftTrigger()
+{
+	bool current = gsXBoxPadGetLeftTrigger(0) == 1.0f;
+	bool result = current && !m_previousLeftTrigger;
+	m_previousLeftTrigger = current;
+	return result;
+}
+
+const bool Input::isJoyRightTrigger()
+{
+	bool current = gsXBoxPadGetRightTrigger(0) == 1.0f;
+	bool result = current && !m_previousRightTrigger;
+	m_previousRightTrigger = current;
+	return result;
+}

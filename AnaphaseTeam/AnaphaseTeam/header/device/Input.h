@@ -11,15 +11,12 @@ public:
 	//êÇíº
 	const int vertical()const;
 
-	const int rotate()const;
-
 	const bool jumpTrigger()const;
-	const bool chainTrigger()const;
 	const bool attackTrigger() const;
 	const bool scytheTrigger()const;
 	const bool gunTrigger()const;
 	const bool avoidTrigger()const;
-
+	
 	//input?
 	const bool move()const;
 	const bool walk()const;
@@ -27,5 +24,27 @@ public:
 	const bool up()const;
 	const bool down()const;
 	const bool exit()const;
+
+	const bool isJoyTriggerUp() const;
+	const bool isJoyTriggerDown() const;
+	const bool isJoyTriggerLeft() const;
+	const bool isJoyTriggerRight() const;
+	const bool isJoyTriggerA() const;
+	const bool isJoyTriggerB() const;
+	const bool isJoyTriggerX() const;
+	const bool isJoyTriggerY() const;
+	const bool isJoyTriggerLB() const;
+	const bool isJoyTriggerRB() const;
+	const bool isJoyTriggerBACK() const;
+	const bool isJoyTriggerSTART() const;
+	const bool isJoyTriggerLeftThrust() const;
+	const bool isJoyTriggerRightThrust() const;
+	const GSvector2 leftPadAxis() const;
+	const GSvector2 rightPadAxis() const;
+	const bool isJoyLeftTrigger();
+	const bool isJoyRightTrigger();
+private:
+ 	bool m_previousLeftTrigger;
+	bool m_previousRightTrigger;
 };
 #endif
