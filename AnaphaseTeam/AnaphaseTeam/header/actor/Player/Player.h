@@ -18,7 +18,7 @@
 #include "../../../header/subAction/SubActionManager.h"
 #include "../../attack/attackManager.h"
 #include "../../data/ANIMATION_ID.h"
-
+#include "Status.h"
 class Input;
 class CameraController;
 class TestActor;
@@ -46,7 +46,7 @@ public:
 
 	void look_at(CameraController* _camera, GSvector3* _target);
 	
-public://
+public:
 	const bool isGround() const;
 	const bool isJumpAttack()const;
 	const bool isEndAttack() const;
@@ -82,11 +82,10 @@ private:
 	Action_Ptr m_action;
 	subActionManager m_SubAction;
 	AttackManager m_attackManager;
+	Status m_status;
 	//JumpControlÇ…à⁄ìÆÇµÇΩÇ¢
 	bool m_isGround;
-	bool m_jumpAttack;
 	Camera * m_camera;
-	bool ismove = false;
 private://íËêî
 	static const float MOVESPEED;
 	static const float ROTATESPEED;

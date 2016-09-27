@@ -22,7 +22,7 @@ public:
 	void update(float deltaTime,Player* _player);
 	void scytheAttack(float deltaTime, Player* _player);
 	void gunAttack(Player* _player);
-	const bool isEndAttack() const;
+	const bool isEnd() const;
 private:
 	Scythe m_Scythe;
 	Gun m_Gun;

@@ -38,7 +38,7 @@ void AttackManager::gunAttack(Player * _player)
 	}
 }
 
-const bool AttackManager::isEndAttack() const
+const bool AttackManager::isEnd() const
 {
 	return m_combo.isEnd();
 }

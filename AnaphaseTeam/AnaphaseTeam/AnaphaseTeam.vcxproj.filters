@@ -450,6 +450,9 @@
     <ClInclude Include="header\camera\Perspective.h">
       <Filter>ヘッダー ファイル\camera</Filter>
     </ClInclude>
+    <ClInclude Include="header\actor\Player\Status.h">
+      <Filter>ヘッダー ファイル\actor\Player</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Util\BasicShapes.cpp">
@@ -655,6 +658,9 @@
     </ClCompile>
     <ClCompile Include="source\camera\Perspective.cpp">
       <Filter>ソース ファイル\camera</Filter>
+    </ClCompile>
+    <ClCompile Include="source\actor\player\Status.cpp">
+      <Filter>ソース ファイル\actor\Player</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
