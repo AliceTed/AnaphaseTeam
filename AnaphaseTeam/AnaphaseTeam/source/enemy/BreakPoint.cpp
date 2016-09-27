@@ -41,6 +41,7 @@ void BreakPoint::createCollision(TestActor * _parent, CollisionMediator * _media
 	Obj_Ptr obj = std::make_shared<CollisionObject>(_parent, shape, m_type,
 		[&](Actor* _parent, CollisionType _type)
 	{
+		if (_type != CollisionType::PLAYER_ATTACK)return;
 		Player* _player = dynamic_cast<Player*>(_parent);
 		if (_player == nullptr)return;
 		damage(_player);

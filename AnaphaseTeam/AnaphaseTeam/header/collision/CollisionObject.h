@@ -12,10 +12,10 @@ typedef std::shared_ptr<Shape> Shape_Ptr;
 enum class CollisionType
 {
 	PLAYER,
+	PLAYER_ATTACK,
 	ENEMY_HEAD,
 	ENEMY_LEFT,
-	ENEMY_RIGHT,
-	PLAYER_ATTACK
+	ENEMY_RIGHT
 };
 typedef std::function<void(Actor* _ohter, CollisionType _ohterType)> CollisionFunction;
 class CollisionObject

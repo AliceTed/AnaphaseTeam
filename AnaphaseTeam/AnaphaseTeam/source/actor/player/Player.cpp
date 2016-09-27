@@ -25,9 +25,8 @@ Player::Player(const Input* _input, Camera * _camera)
 	m_attackManager(),
 	m_isGround(false),
 	m_camera(_camera),
-	m_status()
-	//m_scythe(MODEL_ID::PLAYER),
-	//m_gun(MODEL_ID::PLAYER)
+	m_status(),
+	m_isJumpAttack(false)
 {
 }
 
@@ -40,7 +39,8 @@ void Player::initialize()
 	actionChange(std::make_shared<StandState>());
 	m_animatorOne.initialize();
 	m_animatorOne.changeAnimation(ANIMATION_ID::STAND, true, true);
-	m_attackManager.initialize();
+	//m_attackManager.initialize();
+	m_isJumpAttack= false;
 }
 
 void Player::update(float deltatime)
@@ -68,10 +68,25 @@ void Player::createCollision(CollisionMediator * _mediator)
 	Shape_Ptr shape = std::make_shared<Capsule>(Segment(pos, GSvector3(0, 0.8f, 0)), 0.5f);
 	Obj_Ptr obj = std::make_shared<CollisionObject>(this, shape, CollisionType::PLAYER);
 	_mediator->add(obj);
+	if (!m_attackManager.isEnd())
+	{
+		float radius = 1.5f;
+		GSvector3 front = m_transform.front()*(radius*1.5f);
+		GSvector3 pos(m_transform.getPosition() +front);
+		pos.y += 1.0f;
+		Shape_Ptr shape = std::make_shared<Sphere>(pos,radius);
+		Obj_Ptr obj = std::make_shared<CollisionObject>(this, shape, CollisionType::PLAYER_ATTACK);
+		_mediator->add(obj);
+	}
 }
 
 void Player::stand(float deltaTime)
 {
+	if (!m_isGround)
+	{
+		actionChange(std::make_shared<JumpState>());
+		return;
+	}
 	moveMotionChange();
 	subActionStart();
 	m_animatorOne.changeAnimation(ANIMATION_ID::STAND, true, true);
@@ -83,11 +98,6 @@ void Player::attack(float deltaTime)
 	m_attackManager.update(deltaTime, this);
 	if (m_attackManager.isEnd())
 	{
-		if (!m_isGround)
-		{
-			actionChange(std::make_shared<JumpState>());
-			return;
-		}
 		actionChange(std::make_shared<StandState>());
 	}
 }
@@ -109,6 +119,7 @@ void Player::jump(float deltaTime)
 	m_SubAction.update(deltaTime);
 	if (m_SubAction.isEnd(SubActionType::JUMP))
 	{
+		m_isJumpAttack = false;
 		actionChange(std::make_shared<StandState>());
 	}
 }
@@ -196,7 +207,7 @@ const bool Player::isGround() const
 
 const bool Player::isJumpAttack() const
 {
-	return m_attackManager.isEnd()&&m_isGround;
+	return m_isJumpAttack;
 }
 
 const bool Player::isEndAttack() const
@@ -229,6 +240,7 @@ void Player::control()
 	{
 		actionChange(std::make_shared<AttackState>());
 		m_attackManager.initialize();
+		m_isJumpAttack = true;
 	}
 }
 

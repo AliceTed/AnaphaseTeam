@@ -5,7 +5,7 @@ ComboManager::ComboManager()
 	:m_currentKey(Combo::End),
 	m_nextKey(Combo::End),
 	m_container(),
-	m_isEnd(false),
+	m_isEnd(true),
 	m_isStart(false)
 {
 }

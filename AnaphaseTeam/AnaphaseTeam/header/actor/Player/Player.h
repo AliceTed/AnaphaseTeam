@@ -47,7 +47,6 @@ public:
 	void control();
 
 	void look_at(CameraController* _camera, GSvector3* _target);
-	
 	void buildup();
 public:
 	const bool isGround() const;
@@ -75,7 +74,6 @@ public://ICharacterÀ‘•
 	void jump(float deltaTime);
 	void avoid(float deltaTime);
 private:
-
 	void subActionStart();
 	void moveMotionChange();
 	void rotate(float deltaTime,Transform& _transform);
@@ -88,6 +86,8 @@ private:
 	Status m_status;
 	//JumpControl‚ÉˆÚ“®‚µ‚½‚¢
 	bool m_isGround;
+
+	bool m_isJumpAttack;
 	Camera * m_camera;
 private://’è”
 	static const float MOVESPEED;

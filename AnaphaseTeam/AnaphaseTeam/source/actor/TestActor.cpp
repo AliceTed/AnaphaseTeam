@@ -62,6 +62,7 @@ void TestActor::createCollision(CollisionMediator * _mediator)
 	Obj_Ptr obj = std::make_shared<CollisionObject>(this, shape, CollisionType::ENEMY_HEAD,
 		[&](Actor* _parent, CollisionType _type)
 	{
+		if (_type != CollisionType::PLAYER_ATTACK)return;
 		if (std::all_of(m_points.begin(), m_points.end(), [&](std::pair<const CollisionType, BreakPoint>& point) { return point.second.isBreak(); }))
 		{
 			m_corecolor = GScolor(0, 0, 1, 1);
