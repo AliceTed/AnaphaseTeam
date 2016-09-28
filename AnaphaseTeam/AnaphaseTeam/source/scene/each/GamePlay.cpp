@@ -22,9 +22,12 @@ void GamePlay::initialize()
 	m_change.initialize();
 	m_change.begin(2);
 	m_IsEnd = false;
+
+	collision.initialize();
 	m_player.initialize();
 	m_boss.initialize();
-	collision.initialize();
+	m_player.addCollisionGroup(&collision);
+	m_boss.addCollisionGroup(&collision);
 }
 
 void GamePlay::update(float deltaTime)
@@ -32,11 +35,9 @@ void GamePlay::update(float deltaTime)
 	m_player.collisionGround(m_Map);
 	m_boss.collisionGround(m_Map);
 	if (m_change.update(deltaTime))return;
-	m_player.update(deltaTime);
 	
+	m_player.update(deltaTime);
 	m_boss.update(deltaTime);
-	m_player.createCollision(&collision);
-	m_boss.createCollision(&collision);
 
 	collision.update(deltaTime);
 

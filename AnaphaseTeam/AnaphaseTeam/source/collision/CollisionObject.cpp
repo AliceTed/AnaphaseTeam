@@ -17,10 +17,6 @@ const bool CollisionObject::isCollision(const CollisionObject * other, const Col
 	{
 		return false;
 	}
-	if (!parent->isConfirmCollisionTable(_table, other->parent))
-	{
-		return false;
-	}
 	return shape->isCollision(other->shape.get());
 }
 

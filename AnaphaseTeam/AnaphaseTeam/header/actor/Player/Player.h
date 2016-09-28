@@ -63,7 +63,6 @@ public://Actoråpè≥
 	void initialize() override;
 	void update(float deltatime) override;
 	void draw(const Renderer& _renderer, const Camera& _camera) override;
-	void createCollision(CollisionMediator* _mediator) override;
 private:
 	void inGround() override;
 public://ICharacteré¿ëï

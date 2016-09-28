@@ -13,6 +13,11 @@ class Shape
 {
 public:
 	virtual ~Shape() {}
+	//add
+	virtual void translate(const GSvector3& _position)=0;
+	//‘ã“ü
+	virtual void transfer(const GSvector3& _position)=0;
+
 	//virtual const bool isCollision(const Ray* _ray)const = 0;
 	virtual const bool isCollision(const Sphere* _sphere)const = 0;
 	virtual const bool isCollision(const Capsule* _capsule)const = 0;

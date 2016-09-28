@@ -1,7 +1,7 @@
 #include "../../header/collision/CollisionGroup.h"
 
-CollisionGroup::CollisionGroup(Actor_Ptr _actor)
-	:m_container()
+CollisionGroup::CollisionGroup(Actor * _actor)
+	: m_actor(_actor), m_container()
 {
 }
 
@@ -43,19 +43,19 @@ void CollisionGroup::draw(const Renderer & _renderer)
 	for_each(m_container, [&](Collision_Ptr _my) {_my->draw(_renderer);});
 }
 
-void CollisionGroup::for_each(std::vector<Collision_Ptr>& _vector, const std::function<void(Collision_Ptr _collision)>& _func)
+void CollisionGroup::for_each(std::vector<Collision_Ptr>& _vector,std::function<void(Collision_Ptr _collision)> _func)
 {
 	std::for_each(_vector.begin(), _vector.end(), [&](Collision_Ptr _actor) {_func(_actor);});
 }
 
-void CollisionGroup::collision(Collision_Ptr _my, Collision_Ptr _other, Actor_Ptr _actor)
+void CollisionGroup::collision(Collision_Ptr _my, Collision_Ptr _other, Actor* _actor)
 {
 	if (!_my->isCollision(_other.get()))
 	{
-		_my->exit(_actor.get(), _other.get());
-		_other->exit(m_actor.get(), _my.get());
+		_my->exit(_actor, _other.get());
+		_other->exit(m_actor, _my.get());
 		return;
 	}
-	_my->collision(_actor.get(), _other.get());
-	_other->collision(m_actor.get(), _my.get());
+	_my->collision(_actor, _other.get());
+	_other->collision(m_actor, _my.get());
 }

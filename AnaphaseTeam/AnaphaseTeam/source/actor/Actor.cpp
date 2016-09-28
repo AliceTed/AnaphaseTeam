@@ -4,10 +4,10 @@
 #include"../../header/math/Calculate.h"
 #include "../../header/map/Map.h"
 #include "../../header/shape/Ray.h"
-#include "../../header/collision/CollisionTable.h"
+#include "../../header/collision/TestCollisionManager.h"
 const float Actor::ALPHABLEND_FAR = 2.0f;
 
-Actor::Actor(const Transform & _transform, MODEL_ID _modelID,const Sphere& _sphere, Actor_Tag _tag)
+Actor::Actor(const Transform & _transform, MODEL_ID _modelID,const Sphere& _sphere,Actor_Tag _tag)
 	:m_transform(_transform), 
 	m_isDead(false),
 	m_Color(1.0f,1.0f,1.0f,1.0f),
@@ -45,12 +45,17 @@ void Actor::collisionGround(const Map& _map)
 	//map‚É–„‚ßž‚Ü‚ê‚Ä‚¢‚½‚çyÀ•W‚ðŒð“_‚ÉˆÚ“®
 	m_transform.setPositionY(intersect.y);
 }
-void Actor::collision(Actor * _other)
+
+void Actor::setGroup(Group_Ptr _group)
 {
+	m_collision_group = _group;
 }
-void Actor::createCollision(CollisionMediator * _mediator)
+
+void Actor::addCollisionGroup(TestCollisionManager * _manager)
 {
+	_manager->add(m_collision_group);
 }
+
 void Actor::inGround()
 {
 }
@@ -69,10 +74,6 @@ const bool Actor::isSameActor(const Actor * _other) const
 const bool Actor::isSameTag(Actor_Tag _tag) const
 {
 	return m_Tag==_tag;
-}
-const bool Actor::isConfirmCollisionTable(const CollisionTable & _table, const Actor * _other) const
-{
-	return _table.isConfirmTag(m_Tag,_other->m_Tag);
 }
 const bool Actor::isDead() const
 {

@@ -1,31 +1,29 @@
 #pragma once
 #include "../shape/Sphere.h"
-#include "../../header/collision/CollisionObject.h"
-#include "../convenient/Timer.h"
+#include "../collision/CollisionActorType.h"
+#include "../collision/TestCollisionManager.h"
 enum class BreakMode
 {
 	Non,
 	Possible,
 	Break
 };
-
-class CollisionMediator;
+class CollisionGroup;
 class TestActor;
 class Player;
 class BreakPoint
 {
 public:
-	BreakPoint(const Sphere& _sphere,CollisionType _type);
+	BreakPoint(const Sphere& _sphere, CollisionActorType _type);
 	~BreakPoint();
 	void damage(Player* _player);
 	void update(float deltaTime,const GSvector3& _position);
-	void createCollision(TestActor* _parent,CollisionMediator * _mediator);
+	void createCollision(TestActor* _parent, Group_Ptr& _group);
 	void draw(const Renderer& _renderer);
 	const bool isBreak()const;
 private:
-	Timer m_delay;
 	BreakMode m_mode;
 	Sphere m_sphere;
 	GScolor m_color;
-	CollisionType m_type;
+	CollisionActorType m_type;
 };

@@ -12,6 +12,16 @@ Segment::~Segment()
 {
 }
 
+void Segment::translate(const GSvector3 & _position)
+{
+	m_begin += _position;
+}
+
+void Segment::transfer(const GSvector3 & _position)
+{
+	m_begin = _position;
+}
+
 //const bool Segment::isCollision(const Ray * _ray) const
 //{
 //	return gsCollisionLineAndLine;

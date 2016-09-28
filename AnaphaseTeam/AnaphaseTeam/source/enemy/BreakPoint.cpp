@@ -1,10 +1,9 @@
 #include "../../header/enemy/BreakPoint.h"
-#include "../../header/collision/CollisionMediator.h"
+#include "../../header/collision/CollisionGroup.h"
 #include "../../header/actor/TestActor.h"
 #include "../../header/actor/Player/Player.h"
-BreakPoint::BreakPoint(const Sphere& _sphere,CollisionType _type)
-	:m_sphere(_sphere), m_color(1, 1, 1, 1),m_type(_type),m_mode(BreakMode::Non)
-	, m_delay(2.0f)
+BreakPoint::BreakPoint(const Sphere& _sphere, CollisionActorType _type)
+	:m_sphere(_sphere), m_color(1, 1, 1, 1), m_type(_type), m_mode(BreakMode::Non)
 {
 }
 
@@ -18,9 +17,8 @@ void BreakPoint::damage(Player* _player)
 	{
 		m_color = GScolor(1, 0, 0, 1);
 		m_mode = BreakMode::Possible;
-		m_delay.initialize();
 	}
-	if (m_mode == BreakMode::Possible&&m_delay.isEnd())
+	if (m_mode == BreakMode::Possible)
 	{
 		m_color = GScolor(1, 1, 0, 1);
 		m_mode = BreakMode::Break;
@@ -30,30 +28,44 @@ void BreakPoint::damage(Player* _player)
 void BreakPoint::update(float deltaTime, const GSvector3 & _position)
 {
 	m_sphere.transfer(_position);
-	if (m_mode == BreakMode::Possible)
-	{
-		m_delay.update(deltaTime);
-	}
 }
-void BreakPoint::createCollision(TestActor * _parent, CollisionMediator * _mediator)
+void BreakPoint::createCollision(TestActor * _parent, Group_Ptr& _group)
 {
-	Shape_Ptr shape = std::make_shared<Sphere>(m_sphere);
-	Obj_Ptr obj = std::make_shared<CollisionObject>(_parent, shape, m_type,
-		[&](Actor* _parent, CollisionType _type)
+	Shape_Ptr shape = std::make_shared<Sphere>(GSvector3(0, 1, 0), 1);
+	Collision_Ptr obj = std::make_shared<CollisionActor>(shape, m_type);
+	obj->set_collision_enter([&](Actor* _actor, CollisionActorType _type)
 	{
-		if (_type != CollisionType::PLAYER_ATTACK)return;
-		Player* _player = dynamic_cast<Player*>(_parent);
-		if (_player == nullptr)return;
-		damage(_player);
+		if (_type == CollisionActorType::PLAYER)
+		{
+			m_color = GScolor(1, 0, 0, 1);
+		}
 	});
-	_mediator->add(obj);
+	obj->set_collision_stay([&](Actor* _actor, CollisionActorType _type)
+	{
+		if (_type == CollisionActorType::PLAYER)
+		{
+			m_color = GScolor(0, 0, 0, 1);
+		}
+	});
+	obj->set_collision_exit([&](Actor* _actor, CollisionActorType _type)
+	{
+		if (_type != CollisionActorType::PLAYER)return;
+
+		Player* _player = dynamic_cast<Player*>(_actor);
+		if (_player == nullptr)return;
+		m_color = GScolor(1, 1, 0, 1);
+		_player->buildup();
+
+	});
+	obj->set_draw([](const Renderer& _renderer, Shape_Ptr _shape) { _shape->draw(_renderer);});
+	_group->add(obj);
 }
 void BreakPoint::draw(const Renderer& _renderer)
 {
-	m_sphere.draw(_renderer,m_color);
+	m_sphere.draw(_renderer, m_color);
 }
 
 const bool BreakPoint::isBreak() const
 {
-	return m_mode==BreakMode::Break;
+	return m_mode == BreakMode::Break;
 }

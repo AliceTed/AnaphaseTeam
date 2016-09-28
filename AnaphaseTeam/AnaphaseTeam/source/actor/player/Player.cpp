@@ -10,16 +10,20 @@
 #include "../../../header/camera/Camera.h"
 #include "../../../header/shape/Ray.h"
 #include "../../../header/data/PLAYERACTION_ID.h"
-#include "../../../header/collision/CollisionMediator.h"
+
 #include "../../../header/shape/Capsule.h"
 #include "../../../header/camera/CameraController.h"
 #include "../../../header/math/Calculate.h"
-
 const float Player::MOVESPEED = 0.3f;
 const float Player::ROTATESPEED = -2.0f;
 const float Player::WALKSPEED = 0.1f;
 Player::Player(const Input* _input, Camera * _camera)
-	:Actor(Transform({0,0,-30 }), MODEL_ID::PLAYER, Sphere(GSvector3(0, 0, 0), 0), Actor_Tag::PLAYER),
+	:Actor(
+		Transform({0,0,-30 }),
+		MODEL_ID::PLAYER,
+		Sphere(GSvector3(0, 0, 0), 0),
+		Actor_Tag::PLAYER
+		),
 	m_action(nullptr),
 	m_SubAction(this),
 	m_attackManager(),
@@ -36,11 +40,20 @@ Player::~Player()
 void Player::initialize()
 {
 	Actor::initialize();
+	Group_Ptr group = std::make_shared<CollisionGroup>(this);
+	setGroup(group);
 	actionChange(std::make_shared<StandState>());
 	m_animatorOne.initialize();
 	m_animatorOne.changeAnimation(ANIMATION_ID::STAND, true, true);
 	//m_attackManager.initialize();
 	m_isJumpAttack= false;
+
+	GSvector3 pos(m_transform.getPosition() + GSvector3(0, 0.3f, 0));
+	Shape_Ptr shape = std::make_shared<Capsule>(Segment(pos, GSvector3(0, 0.8f, 0)), 0.5f);
+	Collision_Ptr obj = std::make_shared<CollisionActor>(shape,CollisionActorType::PLAYER);
+	obj->set_update([&](float deltaTime, Shape_Ptr _shape) {_shape->transfer(m_transform.getPosition() + GSvector3(0, 0.3f, 0));});
+	obj->set_draw([](const Renderer& _renderer, Shape_Ptr _shape) { _shape->draw(_renderer);});
+	m_collision_group->add(obj);
 }
 
 void Player::update(float deltatime)
@@ -62,24 +75,24 @@ void Player::inGround()
 	m_isGround = true;
 }
 
-void Player::createCollision(CollisionMediator * _mediator)
-{
-	GSvector3 pos(m_transform.getPosition() + GSvector3(0, 0.3f, 0));
-	Shape_Ptr shape = std::make_shared<Capsule>(Segment(pos, GSvector3(0, 0.8f, 0)), 0.5f);
-	Obj_Ptr obj = std::make_shared<CollisionObject>(this, shape, CollisionType::PLAYER);
-	_mediator->add(obj);
-	if (!m_attackManager.isEnd())
-	{
-		//無理やり攻撃中に球判定をキャラの前に作る
-		float radius = 1.5f;
-		GSvector3 front = m_transform.front()*(radius*1.5f);
-		GSvector3 pos(m_transform.getPosition() +front);
-		pos.y += 1.0f;
-		Shape_Ptr shape = std::make_shared<Sphere>(pos,radius);
-		Obj_Ptr obj = std::make_shared<CollisionObject>(this, shape, CollisionType::PLAYER_ATTACK);
-		_mediator->add(obj);
-	}
-}
+//void Player::createCollision(CollisionMediator * _mediator)
+//{
+//	GSvector3 pos(m_transform.getPosition() + GSvector3(0, 0.3f, 0));
+//	Shape_Ptr shape = std::make_shared<Capsule>(Segment(pos, GSvector3(0, 0.8f, 0)), 0.5f);
+//	Obj_Ptr obj = std::make_shared<CollisionObject>(this, shape, CollisionType::PLAYER);
+//	_mediator->add(obj);
+//	if (!m_attackManager.isEnd())
+//	{
+//		//無理やり攻撃中に球判定をキャラの前に作る
+//		float radius = 1.5f;
+//		GSvector3 front = m_transform.front()*(radius*1.5f);
+//		GSvector3 pos(m_transform.getPosition() +front);
+//		pos.y += 1.0f;
+//		Shape_Ptr shape = std::make_shared<Sphere>(pos,radius);
+//		Obj_Ptr obj = std::make_shared<CollisionObject>(this, shape, CollisionType::PLAYER_ATTACK);
+//		_mediator->add(obj);
+//	}
+//}
 
 void Player::stand(float deltaTime)
 {

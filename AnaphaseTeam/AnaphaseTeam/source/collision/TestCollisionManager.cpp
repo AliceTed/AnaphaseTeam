@@ -22,13 +22,14 @@ void TestCollisionManager::initialize()
 void TestCollisionManager::update(float deltaTime)
 {
 	std::for_each(m_container.begin(),m_container.end(),[deltaTime](Group_Ptr _group){_group->update(deltaTime);});
-	for (Group_Itr first = m_container.begin(); first != m_container.end();++first)
+	m_container.at(0)->collision(*m_container.at(1).get());
+	/*for (Group_Itr first = m_container.begin(); first != m_container.end();++first)
 	{
 		for (Group_Itr second = ++first; second != m_container.end(); ++second)
 		{
 			(*first)->collision(*(*second).get());
 		}
-	}
+	}*/
 }
 
 void TestCollisionManager::draw(const Renderer & _renderer)

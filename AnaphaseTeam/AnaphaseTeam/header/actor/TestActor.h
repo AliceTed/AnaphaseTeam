@@ -14,17 +14,16 @@ public:
 	void initialize();
 	void update(float deltatime);
 	void draw(const Renderer& _renderer, const Camera& _camera);
-	void createCollision(CollisionMediator* _mediator);
 	void look_at(CameraController* _camera,Player* _actor);
 private:
-	void add(const Sphere& _sphere,CollisionType _type);
+	void add(const Sphere& _sphere,CollisionActorType _type);
 	void createPoint();
-	void eachUpdate(float deltaTime, CollisionType _type,const GSvector3& _position);
+	void eachUpdate(float deltaTime, CollisionActorType _type,const GSvector3& _position);
 
 	std::vector<GSmatrix4> getAnimEachPos();
 	GSvector3 getPos(std::vector<GSmatrix4>& _mat, int index);
 private:
-	std::unordered_map<CollisionType,BreakPoint> m_points;
+	std::unordered_map<CollisionActorType,BreakPoint> m_points;
 	Sphere m_core;
 	GScolor m_corecolor;
 	static const int HEAD = 6;

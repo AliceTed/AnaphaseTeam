@@ -12,6 +12,16 @@ Capsule::~Capsule()
 {
 }
 
+void Capsule::translate(const GSvector3 & _position)
+{
+	m_Segment.translate(_position);
+}
+
+void Capsule::transfer(const GSvector3 & _position)
+{
+	m_Segment.transfer(_position);
+}
+
 //const bool Capsule::isCollision(const Ray * _ray) const
 //{
 //	return false;

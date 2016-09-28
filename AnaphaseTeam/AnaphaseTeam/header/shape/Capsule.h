@@ -9,6 +9,8 @@ class Capsule:public Shape
 public:
 	Capsule(const Segment& _segment, float radius);
 	~Capsule();
+	void translate(const GSvector3& _position);
+	void transfer(const GSvector3& _position);
 	//const bool isCollision(const Ray* _ray)const;
 	const bool isCollision(const Sphere* _sphere)const;
 	const bool isCollision(const Capsule* _capsule)const;

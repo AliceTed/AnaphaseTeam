@@ -14,23 +14,16 @@
 #include "../animation/AnimatorOne.h"
 #include "../shape/Sphere.h"
 #include "../actor/Actor_Tag.h"
-
-enum class CollisionType;
+#include "../collision/TestCollisionManager.h"
 class Renderer;
-class CollisionMediator;
 class Map;
 class Camera;
-class CollisionTable;
-
-class Player;
-class TestActor;
 //!　引数のフラグがfalseならリターン
 #define FALSE_RETURN(flg) if(!flg)return;
 class Actor
 {
 public:
 	Actor(const Transform &_transform,const MODEL_ID _model_ID,const Sphere& _sphere, Actor_Tag _tag);
-	Actor(const Transform &_transform, const ANIMATION_ID _anim_ID,const SKELETON_ID _skelton_ID, const Sphere& _sphere, Actor_Tag _tag);
 
 	virtual ~Actor() {}
 	virtual void initialize();
@@ -43,19 +36,9 @@ public:
 	* @param (_map) mapを取得
 	*/
 	virtual void collisionGround(const Map& _map);
-	/**
-	* @fn
-	* @brief 自身が作成した判定用オブジェクトが衝突したら呼ばれる
-	* @param (_other)衝突したactorクラスを取得
-	*/
-	virtual void collision(Actor* _other);
-	/**
-	* @fn
-	* @brief 関数内で判定用オブジェクトを生成出来る
-	* @param (_mediator)判定用オブジェクトを格納できる 
-	*/
-	virtual void createCollision(CollisionMediator* _mediator);
 public:
+	void setGroup(Group_Ptr _group);
+	void addCollisionGroup(TestCollisionManager*  _manager);
 	/**
 	* @fn
 	* @brief Actor同士の距離
@@ -68,13 +51,7 @@ public:
 
 	const bool isSameActor(const Actor* _other)const;
 	const bool isSameTag(Actor_Tag _tag)const;
-	/**
-	* @fn
-	* @brief 判定表から衝突判定を行うactorか判断する
-	* @param (_table) 判定表
-	* @param (_other) 確認するactor
-	*/
-	const bool isConfirmCollisionTable(const CollisionTable& _table, const Actor* _other)const;
+
 public:
 	const bool isDead()const;
 	
@@ -118,6 +95,7 @@ protected:
 	GScolor m_Color;
 	//Animator m_animator;
 	AnimatorOne m_animatorOne;
+	Group_Ptr m_collision_group;
 private:
 	Actor_Tag m_Tag;
 
