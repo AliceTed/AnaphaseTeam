@@ -148,6 +148,12 @@
     <Filter Include="ソース ファイル\enemy">
       <UniqueIdentifier>{8258c6dd-af9a-4b47-b4fd-3f0a6a92f4fa}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ヘッダー ファイル\collision\test">
+      <UniqueIdentifier>{01e42122-0405-4ceb-8c9a-6ae1cd2e91a9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\collision\test">
+      <UniqueIdentifier>{5abe7a6d-39fe-484c-8a2b-a34c3bda9ee2}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Util\BasicShapes.h">
@@ -453,6 +459,18 @@
     <ClInclude Include="header\actor\Player\Status.h">
       <Filter>ヘッダー ファイル\actor\Player</Filter>
     </ClInclude>
+    <ClInclude Include="header\collision\CollisionActor.h">
+      <Filter>ヘッダー ファイル\collision\test</Filter>
+    </ClInclude>
+    <ClInclude Include="header\collision\CollisionActorType.h">
+      <Filter>ヘッダー ファイル\collision\test</Filter>
+    </ClInclude>
+    <ClInclude Include="header\collision\TestCollisionManager.h">
+      <Filter>ヘッダー ファイル\collision\test</Filter>
+    </ClInclude>
+    <ClInclude Include="header\collision\CollisionGroup.h">
+      <Filter>ヘッダー ファイル\collision\test</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Util\BasicShapes.cpp">
@@ -661,6 +679,15 @@
     </ClCompile>
     <ClCompile Include="source\actor\player\Status.cpp">
       <Filter>ソース ファイル\actor\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="source\collision\TestCollisionManager.cpp">
+      <Filter>ソース ファイル\collision\test</Filter>
+    </ClCompile>
+    <ClCompile Include="source\collision\CollisionActor.cpp">
+      <Filter>ソース ファイル\collision\test</Filter>
+    </ClCompile>
+    <ClCompile Include="source\collision\CollisionGroup.cpp">
+      <Filter>ソース ファイル\collision\test</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
