@@ -60,7 +60,7 @@ void TestActor::look_at(CameraController * _camera, Player * _actor)
 	_actor->look_at(_camera,&target);
 }
 
-void TestActor::addCollisionGroup(TestCollisionManager * _manager)
+void TestActor::addCollisionGroup(CollisionManager * _manager)
 {
 	_manager->add(m_group);
 }

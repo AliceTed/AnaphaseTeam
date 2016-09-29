@@ -3,6 +3,7 @@
 
 #include <vector>
 #include "../enemy/BreakPoint.h"
+#include "../collision/CollisionManager.h"
 class Player;
 class AttackStatus;
 class CameraController;
@@ -15,7 +16,7 @@ public:
 	void update(float deltatime);
 	void draw(const Renderer& _renderer, const Camera& _camera);
 	void look_at(CameraController* _camera,Player* _actor);
-	void addCollisionGroup(TestCollisionManager*  _manager);
+	void addCollisionGroup(CollisionManager*  _manager);
 private:
 	void createPoint();
 	std::vector<GSvector3> getAnimEachPos();

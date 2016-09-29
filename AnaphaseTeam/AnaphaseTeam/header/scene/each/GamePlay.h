@@ -5,7 +5,7 @@
 #include "../../actor/Actor.h"
 #include "../../entity/EntityManager.h"
 #include "../../map/Map.h"
-#include "../../collision/TestCollisionManager.h"
+#include "../../collision/CollisionManager.h"
 #include <memory>
 #include "../../actor/Player/Player.h"
 
@@ -34,7 +34,7 @@ private:
 	Camera m_Camera;
 	CameraController m_cameracontroller;
 	Entity::EntityManager<Actor_Ptr> actorManager;
-	TestCollisionManager collision;
+	CollisionManager collision;
 	Player m_player;
 	TestActor m_boss;
 };

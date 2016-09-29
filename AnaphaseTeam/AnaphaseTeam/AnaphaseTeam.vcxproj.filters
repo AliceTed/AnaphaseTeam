@@ -450,7 +450,7 @@
     <ClInclude Include="header\collision\CollisionGroup.h">
       <Filter>ヘッダー ファイル\collision</Filter>
     </ClInclude>
-    <ClInclude Include="header\collision\TestCollisionManager.h">
+    <ClInclude Include="header\collision\CollisionManager.h">
       <Filter>ヘッダー ファイル\collision</Filter>
     </ClInclude>
   </ItemGroup>
@@ -659,7 +659,7 @@
     <ClCompile Include="source\collision\CollisionGroup.cpp">
       <Filter>ソース ファイル\collision</Filter>
     </ClCompile>
-    <ClCompile Include="source\collision\TestCollisionManager.cpp">
+    <ClCompile Include="source\collision\CollisionManager.cpp">
       <Filter>ソース ファイル\collision</Filter>
     </ClCompile>
   </ItemGroup>

@@ -4,7 +4,6 @@
 #include"../../header/math/Calculate.h"
 #include "../../header/map/Map.h"
 #include "../../header/shape/Ray.h"
-#include "../../header/collision/TestCollisionManager.h"
 const float Actor::ALPHABLEND_FAR = 2.0f;
 
 Actor::Actor(const Transform & _transform, MODEL_ID _modelID,const Sphere& _sphere,Actor_Tag _tag)
@@ -45,7 +44,7 @@ void Actor::collisionGround(const Map& _map)
 	//map‚É–„‚ß‚Ü‚ê‚Ä‚¢‚½‚çyÀ•W‚ğŒğ“_‚ÉˆÚ“®
 	m_transform.setPositionY(intersect.y);
 }
-void Actor::addCollisionGroup(TestCollisionManager * _manager)
+void Actor::addCollisionGroup(CollisionManager * _manager)
 {
 }
 

@@ -12,7 +12,7 @@
 #include "../animation/AnimatorOne.h"
 #include "../shape/Sphere.h"
 #include "../actor/Actor_Tag.h"
-#include "../collision/TestCollisionManager.h"
+class CollisionManager;
 class Renderer;
 class Map;
 class Camera;
@@ -35,7 +35,12 @@ public:
 	*/
 	virtual void collisionGround(const Map& _map);
 public:
-	virtual void addCollisionGroup(TestCollisionManager*  _manager);
+	/**
+	* @fn
+	* @brief CollisionManagerにグループを追加
+	* @param (_manager) managerを取得
+	*/
+	virtual void addCollisionGroup(CollisionManager*  _manager);
 	/**
 	* @fn
 	* @brief Actor同士の距離
@@ -88,12 +93,10 @@ private:
 protected:
 	Transform m_transform;
 	bool m_isDead;
-
 	GScolor m_Color;
 	AnimatorOne m_animatorOne;
 private:
 	Actor_Tag m_Tag;
-
 	//!カメラ用判定
 	Sphere m_Sphere;
 	//!αブレンドを始める距離

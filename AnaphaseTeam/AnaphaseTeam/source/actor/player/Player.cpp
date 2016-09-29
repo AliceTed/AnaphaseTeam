@@ -36,7 +36,7 @@ Player::Player(const Input* _input, Camera * _camera)
 Player::~Player()
 {}
 
-void Player::addCollisionGroup(TestCollisionManager * _manager)
+void Player::addCollisionGroup(CollisionManager * _manager)
 {
 	_manager->add(m_group);
 }

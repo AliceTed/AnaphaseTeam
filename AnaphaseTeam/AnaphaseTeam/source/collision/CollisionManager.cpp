@@ -1,25 +1,25 @@
-#include "../../header/collision/TestCollisionManager.h"
+#include "../../header/collision/CollisionManager.h"
 
-TestCollisionManager::TestCollisionManager()
+CollisionManager::CollisionManager()
 	:m_container()
 {
 }
 
-TestCollisionManager::~TestCollisionManager()
+CollisionManager::~CollisionManager()
 {
 }
 
-void TestCollisionManager::add(Group_Ptr _group)
+void CollisionManager::add(Group_Ptr _group)
 {
 	m_container.emplace_back(_group);
 }
 
-void TestCollisionManager::initialize()
+void CollisionManager::initialize()
 {
 	m_container.clear();
 }
 
-void TestCollisionManager::update(float deltaTime)
+void CollisionManager::update(float deltaTime)
 {
 	std::for_each(m_container.begin(),m_container.end(),[deltaTime](Group_Ptr _group){_group->update(deltaTime);});
 	std::for_each(m_container.begin(), m_container.end(), [](Group_Ptr _group) {_group->remove();});
@@ -33,7 +33,7 @@ void TestCollisionManager::update(float deltaTime)
 	}
 }
 
-void TestCollisionManager::draw(const Renderer & _renderer)
+void CollisionManager::draw(const Renderer & _renderer)
 {
 	std::for_each(m_container.begin(), m_container.end(), [&_renderer](Group_Ptr _group) {_group->draw(_renderer);});
 }

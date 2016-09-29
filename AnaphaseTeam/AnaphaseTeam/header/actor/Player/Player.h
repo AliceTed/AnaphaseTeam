@@ -19,6 +19,7 @@
 #include "../../attack/attackManager.h"
 #include "../../data/ANIMATION_ID.h"
 #include "Status.h"
+#include "../../collision/CollisionManager.h"
 class Input;
 class CameraController;
 class TestActor;
@@ -28,7 +29,7 @@ class Player :public Actor, public ICharacter
 public:
 	Player(const Input* _input,Camera * _camera);
 	~Player();
-	void addCollisionGroup(TestCollisionManager*  _manager);
+	void addCollisionGroup(CollisionManager*  _manager);
 	/**
 	* @fn
 	* @brief アクションステートの切り替え関数
