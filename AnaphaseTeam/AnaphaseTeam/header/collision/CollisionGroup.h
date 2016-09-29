@@ -10,6 +10,7 @@ public:
 	void add(Collision_Ptr _collision);
 	void initialize();
 	void update(float deltaTime);
+	void remove();
 	void collision(CollisionGroup& _group);
 	void draw(const Renderer& _renderer);
 private:

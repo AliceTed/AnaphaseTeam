@@ -88,6 +88,7 @@ private:
 	//–³—‚â‚è
 	bool m_isJumpAttack;
 	Camera * m_camera;
+	int i=0;
 private://’è”
 	static const float MOVESPEED;
 	static const float ROTATESPEED;

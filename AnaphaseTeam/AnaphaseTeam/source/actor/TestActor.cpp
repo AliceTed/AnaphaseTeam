@@ -36,22 +36,15 @@ void TestActor::initialize()
 	m_points.clear();
 	createPoint();
 	m_corecolor = GScolor(1, 1, 1, 1);
-
-	std::for_each(m_points.begin(), m_points.end(),
-		[&](std::pair<const CollisionActorType, BreakPoint>& point)
-	{
-		point.second.createCollision(this,m_collision_group);
-	});
+	std::for_each(m_points.begin(), m_points.end(), [&](BreakPoint& _point) {_point.createCollision(this,m_collision_group);});
 }
 
 void TestActor::update(float deltatime)
 {
-	std::vector<GSmatrix4> mat = getAnimEachPos();
+	std::vector<GSvector3> pos = getAnimEachPos();
 	//m_animatorOne.update(deltatime);
-	m_core.transfer(getPos(mat, HEAD));
-	//eachUpdate(deltatime, CollisionType::ENEMY_HEAD, getPos(mat, HEAD));
-	eachUpdate(deltatime, CollisionActorType::ENEMY_LEFT, getPos(mat,LEFTLEG));
-	eachUpdate(deltatime, CollisionActorType::ENEMY_RIGHT, getPos(mat,RIGHTLEG));
+	m_core.transfer(pos.at(static_cast<unsigned int>(Element::HEAD)));
+	std::for_each(m_points.begin(), m_points.end(), [&](BreakPoint& _point){_point.update(deltatime,pos);});
 }
 
 void TestActor::draw(const Renderer & _renderer, const Camera & _camera)
@@ -59,59 +52,25 @@ void TestActor::draw(const Renderer & _renderer, const Camera & _camera)
 	FALSE_RETURN(isInsideView(_camera));
 	//alphaBlend(_camera);releaseŽž‚É‚È‚º‚©“§–¾‚É‚È‚é
 	_renderer.getDraw3D().drawMesh(MODEL_ID::BOSS, m_transform, m_animatorOne, m_Color);
-	std::for_each(m_points.begin(), m_points.end(),
-		[&](std::pair<const CollisionActorType, BreakPoint>& point)
-	{
-		point.second.draw(_renderer);
-	});
+	std::for_each(m_points.begin(), m_points.end(), [&](BreakPoint& _point) {_point.draw(_renderer);});
 	m_core.draw(_renderer, m_corecolor);
 }
-//void TestActor::createCollision(CollisionMediator * _mediator)
-//{
-//	Shape_Ptr shape = std::make_shared<Sphere>(m_core);
-//	Obj_Ptr obj = std::make_shared<CollisionObject>(this, shape, CollisionType::ENEMY_HEAD,
-//		[&](Actor* _parent, CollisionType _type)
-//	{
-//		if (_type != CollisionType::PLAYER_ATTACK)return;
-//		if (std::all_of(m_points.begin(), m_points.end(), [&](std::pair<const CollisionType, BreakPoint>& point) { return point.second.isBreak(); }))
-//		{
-//			m_corecolor = GScolor(0, 0, 1, 1);
-//		}
-//	});
-//	_mediator->add(obj);
-//
-//	std::for_each(m_points.begin(), m_points.end(),
-//		[&](std::pair<const CollisionType, BreakPoint>& point) 
-//	{
-//		point.second.createCollision(this,_mediator); 
-//	});
-//}
+
 void TestActor::look_at(CameraController * _camera, Player * _actor)
 {
 	GSvector3 target = m_transform.getPosition();
 	_actor->look_at(_camera,&target);
 }
-void TestActor::add(const Sphere & _sphere, CollisionActorType _type)
-{
-	BreakPoint point(_sphere, _type);
-	m_points.insert(std::make_pair(_type, point));
-}
+
 void TestActor::createPoint()
 {
-	std::vector<GSmatrix4> mat = getAnimEachPos();
-	//add(Sphere(getPos(mat, HEAD), 2.0f), CollisionType::ENEMY_HEAD);
-	add(Sphere(getPos(mat, LEFTLEG),1.0f), CollisionActorType::ENEMY_LEFT);
-	add(Sphere(getPos(mat, RIGHTLEG),1.0f), CollisionActorType::ENEMY_RIGHT);
+	std::vector<GSvector3> pos = getAnimEachPos();
+	m_points.emplace_back(CollisionActorType::ENEMY_LEFT,Element::LEFT_LEG);
+	m_points.emplace_back(CollisionActorType::ENEMY_RIGHT, Element::RIGHT_LEG);
 
-	m_core.transfer(getPos(mat, HEAD));
+	m_core.transfer(pos.at(static_cast<GSuint>(Element::HEAD)));
 }
-
-void TestActor::eachUpdate(float deltaTime, CollisionActorType _type, const GSvector3 & _position)
-{
-	m_points.at(_type).update(deltaTime, _position);
-}
-
-std::vector<GSmatrix4> TestActor::getAnimEachPos()
+std::vector<GSvector3> TestActor::getAnimEachPos()
 {
 	const GSuint n = gsGetSkeletonNumBones(static_cast<GSuint>(MODEL_ID::BOSS));
 	GSmatrix4 *pmat = new GSmatrix4[n],
@@ -127,20 +86,15 @@ std::vector<GSmatrix4> TestActor::getAnimEachPos()
 		0, animmat);
 
 	gsCalculateSkeleton(pmat, animmat, mat);
-	std::vector<GSmatrix4> res;
+	std::vector<GSvector3> res;
 	for (GSuint i = 0; i < n; i++)
 	{
-		res.emplace_back(mat[i]);
+		Transform transform(mat[i]);
+		GSmatrix4 m =transform.parentSynthesis(m_transform);
+		res.emplace_back(m.getPosition());
 	}
 	delete[] pmat;
 	delete[] mat;
 	delete[] animmat;
 	return res;
-}
-
-GSvector3 TestActor::getPos(std::vector<GSmatrix4>& _mat, int index)
-{
-	Transform t(_mat[index]);
-	GSmatrix4 m = t.parentSynthesis(m_transform);
-	return m.getPosition();
 }

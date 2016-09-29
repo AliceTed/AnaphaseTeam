@@ -20,6 +20,9 @@ CollisionActor::~CollisionActor()
 
 void CollisionActor::update(float deltaTime)
 {
+	auto itr = std::remove_if(m_previous.begin(), m_previous.end(), [](CollisionActor* _actor)->bool {return _actor->isDead();});
+	m_previous.erase(itr,m_previous.end());
+
 	if (m_update == nullptr)return;
 	m_update(deltaTime, m_shape);
 }
@@ -47,7 +50,6 @@ void CollisionActor::collision(Actor * _otherActor, CollisionActor * _other)
 
 void CollisionActor::exit(Actor * _otherActor, CollisionActor * _other)
 {
-
 	//‰ß‹Ž‚É‚ ‚é‚©Šm”F‚µ‚ ‚Á‚½‚çíœ‚ÆŒÄ‚Ño‚µ
 	auto itr = std::remove_if(m_previous.begin(), m_previous.end(), [&_other](CollisionActor* _actor)->bool
 	{
@@ -73,7 +75,6 @@ const bool CollisionActor::isDead() const
 	if (m_destroy == nullptr)return false;
 	return m_destroy();
 }
-
 void CollisionActor::set_dead(std::function<const bool()> _function)
 {
 	m_destroy = _function;

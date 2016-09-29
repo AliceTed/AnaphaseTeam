@@ -21,9 +21,12 @@ void CollisionGroup::initialize()
 
 void CollisionGroup::update(float deltaTime)
 {
-	for_each(m_container, [deltaTime](Collision_Ptr _my) {_my->update(deltaTime);});
+	for_each(m_container, [deltaTime](Collision_Ptr _my) {_my->update(deltaTime);});	
+}
 
-	auto itr=std::remove_if(m_container.begin(), m_container.end(),[](Collision_Ptr _my) {return _my->isDead();});
+void CollisionGroup::remove()
+{
+	auto itr = std::remove_if(m_container.begin(), m_container.end(), [](Collision_Ptr _my) {return _my->isDead();});
 	m_container.erase(itr, m_container.end());
 }
 
