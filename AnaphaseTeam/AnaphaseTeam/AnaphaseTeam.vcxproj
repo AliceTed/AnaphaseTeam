@@ -181,9 +181,6 @@
     <ClCompile Include="source\animation\Animation.cpp" />
     <ClCompile Include="source\animation\AnimationTimer.cpp" />
     <ClCompile Include="source\animation\Animator.cpp" />
-    <ClCompile Include="source\collision\CollisionManager.cpp" />
-    <ClCompile Include="source\collision\CollisionObject.cpp" />
-    <ClCompile Include="source\collision\CollisionTable.cpp" />
     <ClCompile Include="source\convenient\Timer.cpp" />
     <ClCompile Include="source\data\LoadError.cpp" />
     <ClCompile Include="source\data\Release.cpp" />
@@ -263,10 +260,6 @@
     <ClInclude Include="header\animation\Animator.h" />
     <ClInclude Include="header\array\Array.h" />
     <ClInclude Include="header\array\Array2D.h" />
-    <ClInclude Include="header\collision\CollisionManager.h" />
-    <ClInclude Include="header\collision\CollisionMediator.h" />
-    <ClInclude Include="header\collision\CollisionObject.h" />
-    <ClInclude Include="header\collision\CollisionTable.h" />
     <ClInclude Include="header\convenient\Timer.h" />
     <ClInclude Include="header\data\ANIMATION_ID.h" />
     <ClInclude Include="header\data\BGM_ID.h" />

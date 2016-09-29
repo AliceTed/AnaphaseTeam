@@ -9,8 +9,6 @@
 #include "../data/Model_ID.h"
 
 #include "../data/ANIMATION_ID.h"
-#include "../data/SKELETON_ID.h"
-#include "../animation/Animator.h"
 #include "../animation/AnimatorOne.h"
 #include "../shape/Sphere.h"
 #include "../actor/Actor_Tag.h"

@@ -1,6 +1,5 @@
 #include "../../header/attack/Attack.h"
 #include "../../header/actor/Player/Player.h"
-#include "../../header/collision/CollisionMediator.h"
 Attack::Attack(const AttackStatus & _status, ANIMATION_ID _animation, Shape_Ptr _shape)
 	:m_status(_status), m_Animation(_animation), m_Shape(_shape)
 {

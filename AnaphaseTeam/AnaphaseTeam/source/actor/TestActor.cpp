@@ -4,7 +4,6 @@
 #include "../../header/renderer/Renderer.h"
 
 #include "../../header/math/Calculate.h"
-#include "../../header/collision/CollisionMediator.h"
 
 #include "../../header/actor/Player/Player.h"
 #include "../../header/camera/CameraController.h"
