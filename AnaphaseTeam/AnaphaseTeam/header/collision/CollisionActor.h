@@ -34,6 +34,7 @@ public:
 	void set_collision_exit( std::function<void(Actor*, CollisionActorType)> _function);
 private:
 	const bool is_find(std::vector<CollisionActor*>& _container, CollisionActor* _other);
+	const bool remove(std::function<bool(CollisionActor*)> function);
 private:
 	Shape_Ptr m_shape;
 	CollisionActorType m_type;

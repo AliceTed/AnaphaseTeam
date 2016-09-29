@@ -15,6 +15,7 @@ public:
 	void update(float deltatime);
 	void draw(const Renderer& _renderer, const Camera& _camera);
 	void look_at(CameraController* _camera,Player* _actor);
+	void addCollisionGroup(TestCollisionManager*  _manager);
 private:
 	void createPoint();
 	std::vector<GSvector3> getAnimEachPos();
@@ -22,5 +23,6 @@ private:
 	std::vector<BreakPoint> m_points;
 	Sphere m_core;
 	GScolor m_corecolor;
+	Group_Ptr m_group;
 };
 

@@ -45,15 +45,8 @@ void Actor::collisionGround(const Map& _map)
 	//map‚É–„‚ßž‚Ü‚ê‚Ä‚¢‚½‚çyÀ•W‚ðŒð“_‚ÉˆÚ“®
 	m_transform.setPositionY(intersect.y);
 }
-
-void Actor::setGroup(Group_Ptr _group)
-{
-	m_collision_group = _group;
-}
-
 void Actor::addCollisionGroup(TestCollisionManager * _manager)
 {
-	_manager->add(m_collision_group);
 }
 
 void Actor::inGround()

@@ -28,6 +28,7 @@ class Player :public Actor, public ICharacter
 public:
 	Player(const Input* _input,Camera * _camera);
 	~Player();
+	void addCollisionGroup(TestCollisionManager*  _manager);
 	/**
 	* @fn
 	* @brief アクションステートの切り替え関数
@@ -88,7 +89,7 @@ private:
 	//無理やり
 	bool m_isJumpAttack;
 	Camera * m_camera;
-	int i=0;
+	Group_Ptr m_group;
 private://定数
 	static const float MOVESPEED;
 	static const float ROTATESPEED;

@@ -21,7 +21,6 @@ public:
 	void createCollision(TestActor* _parent, Group_Ptr& _group);
 	void draw(const Renderer& _renderer);
 private:
-	bool i = false;
 	GSvector3 m_position;
 	Element m_element;
 	GScolor m_color;

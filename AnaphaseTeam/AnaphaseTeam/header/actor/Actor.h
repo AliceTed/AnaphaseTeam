@@ -37,8 +37,7 @@ public:
 	*/
 	virtual void collisionGround(const Map& _map);
 public:
-	void setGroup(Group_Ptr _group);
-	void addCollisionGroup(TestCollisionManager*  _manager);
+	virtual void addCollisionGroup(TestCollisionManager*  _manager);
 	/**
 	* @fn
 	* @brief Actor“¯Žm‚Ì‹——£
@@ -93,9 +92,7 @@ protected:
 	bool m_isDead;
 
 	GScolor m_Color;
-	//Animator m_animator;
 	AnimatorOne m_animatorOne;
-	Group_Ptr m_collision_group;
 private:
 	Actor_Tag m_Tag;
 

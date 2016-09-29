@@ -28,22 +28,25 @@ Player::Player(const Input* _input, Camera * _camera)
 	m_isGround(false),
 	m_camera(_camera),
 	m_status(),
-	m_isJumpAttack(false)
+	m_isJumpAttack(false),
+	m_group(std::make_shared<CollisionGroup>(this))
 {
 }
 
 Player::~Player()
 {}
 
+void Player::addCollisionGroup(TestCollisionManager * _manager)
+{
+	_manager->add(m_group);
+}
+
 void Player::initialize()
 {
 	Actor::initialize();
-	Group_Ptr group = std::make_shared<CollisionGroup>(this);
-	setGroup(group);
 	actionChange(std::make_shared<StandState>());
 	m_animatorOne.initialize();
 	m_animatorOne.changeAnimation(ANIMATION_ID::STAND, true, true);
-	//m_attackManager.initialize();
 	m_isJumpAttack = false;
 }
 
@@ -59,7 +62,6 @@ void Player::draw(const Renderer & _renderer, const Camera & _camera)
 	//FALSE_RETURN(isInsideView(_camera));
 	alphaBlend(_camera);
 	_renderer.getDraw3D().drawMesh(MODEL_ID::PLAYER, m_transform, m_animatorOne, m_Color);
-	_renderer.getDraw2D().string(std::to_string(i), &GSvector2(20, 20), 20);
 }
 
 void Player::inGround()
@@ -235,10 +237,9 @@ void Player::control()
 		pos.y += 1.0f;
 		Shape_Ptr shape = std::make_shared<Sphere>(pos, radius);
 		Collision_Ptr actor= std::make_shared<CollisionActor>(shape, CollisionActorType::PLAYER_ATTACK);
-		i = (int)(actor.get());
 		actor->set_dead([&]()->bool{return m_attackManager.isEnd();});
 		actor->set_draw([](const Renderer& _renderer, Shape_Ptr _shape) { _shape->draw(_renderer);});
-		m_collision_group->add(actor);
+		m_group->add(actor);
 	}
 }
 

@@ -20,9 +20,7 @@ CollisionActor::~CollisionActor()
 
 void CollisionActor::update(float deltaTime)
 {
-	auto itr = std::remove_if(m_previous.begin(), m_previous.end(), [](CollisionActor* _actor)->bool {return _actor->isDead();});
-	m_previous.erase(itr,m_previous.end());
-
+	remove([](CollisionActor* _actor)->bool {return _actor->isDead();});
 	if (m_update == nullptr)return;
 	m_update(deltaTime, m_shape);
 }
@@ -41,8 +39,7 @@ void CollisionActor::collision(Actor * _otherActor, CollisionActor * _other)
 		m_collision_stay(_otherActor, _other->m_type);
 		return;
 	}
-	//‰ß‹Ž‚É‚È‚©‚Á‚½‚ç
-	//“o˜^‚ÆŒÄ‚Ño‚µ
+	//‰ß‹Ž‚É‚È‚©‚Á‚½‚ç,“o˜^‚ÆŒÄ‚Ño‚µ
 	m_previous.emplace_back(_other);
 	if (m_collision_enter == nullptr)return;
 	m_collision_enter(_otherActor, _other->m_type);
@@ -50,15 +47,9 @@ void CollisionActor::collision(Actor * _otherActor, CollisionActor * _other)
 
 void CollisionActor::exit(Actor * _otherActor, CollisionActor * _other)
 {
-	//‰ß‹Ž‚É‚ ‚é‚©Šm”F‚µ‚ ‚Á‚½‚çíœ‚ÆŒÄ‚Ño‚µ
-	auto itr = std::remove_if(m_previous.begin(), m_previous.end(), [&_other](CollisionActor* _actor)->bool
-	{
-		return  _other == _actor;
-	});
-	//‚È‚©‚Á‚½‚ç
-	if (itr == m_previous.end())return;
-
-	m_previous.erase(itr, m_previous.end());
+	//íœ‚µ‚½‚©
+	bool isremove = remove([&_other](CollisionActor* _actor)->bool {return _other == _actor;});
+	if (!isremove)return;
 	if (m_collision_exit == nullptr)return;
 	m_collision_exit(_otherActor, _other->m_type);
 }
@@ -79,7 +70,7 @@ void CollisionActor::set_dead(std::function<const bool()> _function)
 {
 	m_destroy = _function;
 }
-void CollisionActor::set_update( std::function<void(float, Shape_Ptr)> _function)
+void CollisionActor::set_update(std::function<void(float, Shape_Ptr)> _function)
 {
 	m_update = _function;
 }
@@ -95,17 +86,23 @@ void CollisionActor::set_collision_stay(std::function<void(Actor*, CollisionActo
 {
 	m_collision_stay = _function;
 }
-void CollisionActor::set_collision_exit( std::function<void(Actor*, CollisionActorType)> _function)
+void CollisionActor::set_collision_exit(std::function<void(Actor*, CollisionActorType)> _function)
 {
 	m_collision_exit = _function;
 }
 
 const bool CollisionActor::is_find(std::vector<CollisionActor*>& _container, CollisionActor * _other)
 {
-	bool is_any = std::any_of(_container.begin(), _container.end(),
+	return std::any_of(_container.begin(), _container.end(),
 		[&_other](CollisionActor* _actor)
 	{
-		return _other==_actor;
+		return _other == _actor;
 	});
-	return is_any;
+}
+const bool CollisionActor::remove(std::function<bool(CollisionActor*)> function)
+{
+	auto itr = std::remove_if(m_previous.begin(), m_previous.end(), function);
+	if (itr == m_previous.end())return false;
+	m_previous.erase(itr);
+	return true;
 }

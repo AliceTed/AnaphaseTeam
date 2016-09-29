@@ -18,7 +18,8 @@ TestActor::TestActor()
 		),
 	m_points(),
 	m_core(GSvector3(0,0,0),1),
-	m_corecolor(1,1,1,1)
+	m_corecolor(1,1,1,1),
+	m_group(std::make_shared<CollisionGroup>(this))
 {
 	
 }
@@ -30,13 +31,11 @@ TestActor::~TestActor()
 void TestActor::initialize()
 {
 	Actor::initialize();
-	Group_Ptr group = std::make_shared<CollisionGroup>(this);
-	setGroup(group);
 	m_animatorOne.changeAnimation(ANIMATION_ID::STAND, true);
 	m_points.clear();
 	createPoint();
 	m_corecolor = GScolor(1, 1, 1, 1);
-	std::for_each(m_points.begin(), m_points.end(), [&](BreakPoint& _point) {_point.createCollision(this,m_collision_group);});
+	std::for_each(m_points.begin(), m_points.end(), [&](BreakPoint& _point) {_point.createCollision(this,m_group);});
 }
 
 void TestActor::update(float deltatime)
@@ -60,6 +59,11 @@ void TestActor::look_at(CameraController * _camera, Player * _actor)
 {
 	GSvector3 target = m_transform.getPosition();
 	_actor->look_at(_camera,&target);
+}
+
+void TestActor::addCollisionGroup(TestCollisionManager * _manager)
+{
+	_manager->add(m_group);
 }
 
 void TestActor::createPoint()
