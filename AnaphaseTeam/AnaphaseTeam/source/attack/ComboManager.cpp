@@ -58,7 +58,7 @@ void ComboManager::reset()
 
 void ComboManager::update(float deltaTime, Player* _player)
 {
-	m_container.at(m_currentKey).update(deltaTime,_player);
+	m_container.at(m_currentKey).update(deltaTime, _player);
 
 	change(deltaTime, _player);
 	if (_player->isAttack())
@@ -95,6 +95,7 @@ void ComboManager::combo(float deltaTime)
 {
 	if (m_isStart)return;
 	m_nextKey = nextkey();
+
 }
 
 const Combo ComboManager::nextkey() const

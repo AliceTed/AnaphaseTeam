@@ -35,5 +35,5 @@ const bool Attack::isEndMotion(const AnimatorOne & _animator) const
 
 bool Attack::isEndAttackTime(AnimatorOne & _animator)
 {
-	return _animator.isCombo(19);
+	return _animator.isCombo(2.0f);
 }
