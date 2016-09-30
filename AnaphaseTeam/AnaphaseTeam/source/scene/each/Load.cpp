@@ -6,6 +6,8 @@
 #include "../../../header/data/MESH_ID.h"
 #include "../../../header/data/SKELETON_ID.h"
 #include "../../../header/data/Model_ID.h" 
+#include "../../../header/data/SE_ID.h"
+#include "../../../header/data/BGM_ID.h"
 Load::Load()
 	:m_IsEnd(false)
 {
@@ -61,11 +63,11 @@ void Load::loadTextrue()
 }
 void Load::loadSound()
 {
-	/*Data::LoadSE loadse;
-	loadse(SE_ID::SIZE,"bbb",2);
+	Data::LoadSE loadse;
+	//loadse(SE_ID::TITLE,"down",2);
 
 	Data::LoadBGM loadbgm;
-	loadbgm(BGM_ID::SIZE, "bbb");*/
+	//loadbgm(BGM_ID::TITLE, "title");
 }
 
 void Load::loadModel()

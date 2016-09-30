@@ -4,7 +4,7 @@
 
 enum class SE_ID :unsigned int
 {
-
+	TITLE,
 	SIZE
 };
 

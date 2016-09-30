@@ -1,6 +1,7 @@
 #include "../../../header/scene/each/Title.h"
 #include "../../../header/renderer/Renderer.h"
 #include "../../../header/device/Input.h"
+
 Title::Title(const Input* _input)
 	:m_Input(_input),
 	m_IsExit(false),

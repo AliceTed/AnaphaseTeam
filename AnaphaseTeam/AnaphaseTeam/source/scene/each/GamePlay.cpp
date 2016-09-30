@@ -43,7 +43,7 @@ void GamePlay::update(float deltaTime)
 
 	if (m_Input->isJoyTriggerSTART())
 	{
-		m_change.end(SceneMode::GAMEPLAY);
+		m_change.end(SceneMode::GAMECLEAR);
 	}
 }
 

@@ -453,6 +453,9 @@
     <ClInclude Include="header\collision\CollisionManager.h">
       <Filter>ヘッダー ファイル\collision</Filter>
     </ClInclude>
+    <ClInclude Include="header\scene\each\GameClear.h">
+      <Filter>ヘッダー ファイル\scene\each</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Util\BasicShapes.cpp">
@@ -661,6 +664,9 @@
     </ClCompile>
     <ClCompile Include="source\collision\CollisionManager.cpp">
       <Filter>ソース ファイル\collision</Filter>
+    </ClCompile>
+    <ClCompile Include="source\scene\each\GameClear.cpp">
+      <Filter>ソース ファイル\scene\each</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
