@@ -26,6 +26,7 @@ public:
 	
 	void changeMotion(AnimatorOne& _animator);
 	const bool isEndMotion(const AnimatorOne& _animator) const;
+	bool isEndAttackTime(AnimatorOne & _animator);
 private:
 	//!攻撃ステータス
 	AttackStatus m_status;

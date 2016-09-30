@@ -53,6 +53,7 @@ public:
 	void start();
 	unsigned int getAnimationNo();
 	const float getSpeed() const;
+	bool combo(float _limitTime);
 private:
 	void looping();
 

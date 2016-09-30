@@ -65,3 +65,8 @@ const float Animation::getSpeed()const
 {
 	return m_timer.getSpeed();
 }
+
+bool Animation::combo(float _limitTime)
+{
+	return m_timer.getTime()>_limitTime;
+}

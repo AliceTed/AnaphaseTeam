@@ -44,3 +44,8 @@ bool AnimatorOne::isEndAnimation(ANIMATION_ID _animationID)
 {
 	return false;
 }
+
+bool AnimatorOne::isCombo(float _limitTime)
+{
+	return m_currentAnimation->combo(_limitTime);
+}
