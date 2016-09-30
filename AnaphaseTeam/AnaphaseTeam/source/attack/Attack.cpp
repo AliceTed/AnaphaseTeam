@@ -25,7 +25,7 @@ void Attack::motion(Player * _player)
 
 void Attack::changeMotion(AnimatorOne & _animator)
 {
-	_animator.changeAnimation(m_Animation);
+	_animator.changeAnimation(m_Animation, false, false, 2.0f);
 }
 
 const bool Attack::isEndMotion(const AnimatorOne & _animator) const
