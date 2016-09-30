@@ -14,6 +14,4 @@ public:
 	~GroundState();
 	void start(JumpControl* _control, Player* _player);
 	void airAction(JumpControl* _control, Player* _player, float deltaTime);
-private:
-	Timer m_RigorTimer;
 };

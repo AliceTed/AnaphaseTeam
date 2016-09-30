@@ -104,7 +104,7 @@ void Player::move(float deltaTime)
 
 void Player::jump(float deltaTime)
 {
-	m_SubAction.update(deltaTime);
+	m_SubAction.update(deltaTime, SubActionType::JUMP);
 	if (m_SubAction.isEnd(SubActionType::JUMP))
 	{
 		m_isJumpAttack = false;
@@ -115,7 +115,7 @@ void Player::jump(float deltaTime)
 void Player::avoid(float deltaTime)
 {
 	m_animatorOne.changeAnimation(ANIMATION_ID::AVOID);
-	m_SubAction.update(deltaTime);
+	m_SubAction.update(deltaTime, SubActionType::AVOID);
 	if (m_SubAction.isEnd(SubActionType::AVOID))
 	{
 		actionChange(std::make_shared<StandState>());
@@ -136,12 +136,13 @@ void Player::subActionStart()
 		m_isGround = false;
 		return;
 	}
+	avoidStart();
+}
 
-	if (m_Input->avoidTrigger())
-	{
-		m_SubAction.initialize(SubActionType::AVOID);
-		actionChange(std::make_shared<AvoidState>());
-	}
+void Player::moveStart()
+{
+	if (m_Input->move())
+		actionChange(std::make_shared<MoveState>());
 }
 
 void Player::startJump(JumpControl * _control, float _scale)
@@ -189,6 +190,11 @@ const bool Player::isJump() const
 	return m_Input->jumpTrigger();
 }
 
+const bool Player::isAvoid() const
+{
+	return m_Input->avoidTrigger();
+}
+
 const bool Player::isGround() const
 {
 	return m_isGround;
@@ -203,6 +209,12 @@ const bool Player::isEndAttack() const
 {
 	return m_attackManager.isEnd();
 }
+
+const bool Player::isAnimationEnd() const
+{
+	return m_animatorOne.isEndCurrentAnimation();
+}
+
 const bool Player::isAttack() const
 {
 	return m_Input->scytheTrigger();
@@ -237,9 +249,9 @@ void Player::control()
 		GSvector3 pos(m_transform.getPosition() + front);
 		pos.y += 1.0f;
 		Shape_Ptr shape = std::make_shared<Sphere>(pos, radius);
-		Collision_Ptr actor= std::make_shared<CollisionActor>(shape, CollisionActorType::PLAYER_ATTACK);
-		actor->set_dead([&]()->bool{return m_attackManager.isEnd();});
-		actor->set_update([&](float deltaTime, Shape_Ptr _shape) 
+		Collision_Ptr actor = std::make_shared<CollisionActor>(shape, CollisionActorType::PLAYER_ATTACK);
+		actor->set_dead([&]()->bool {return m_attackManager.isEnd(); });
+		actor->set_update([&](float deltaTime, Shape_Ptr _shape)
 		{
 			float radius = 1.5f;
 			GSvector3 front = m_transform.front()*(radius*1.5f);
@@ -247,7 +259,7 @@ void Player::control()
 			pos.y += 1.0f;
 			_shape->transfer(pos);
 		});
-		actor->set_draw([](const Renderer& _renderer, Shape_Ptr _shape) { _shape->draw(_renderer);});
+		actor->set_draw([](const Renderer& _renderer, Shape_Ptr _shape) { _shape->draw(_renderer); });
 		m_group->add(actor);
 	}
 }
@@ -263,18 +275,23 @@ void Player::buildup()
 	m_status.powerUp();
 }
 
+void Player::avoidStart()
+{
+	if (m_Input->avoidTrigger())
+	{
+		m_SubAction.initialize(SubActionType::AVOID);
+		actionChange(std::make_shared<AvoidState>());
+	}
+}
+
 /**
 * @fn
 * @brief “®‚¢‚Ä‚¢‚ê‚ÎMoveState‚ÉØ‚è‘Ö‚¦A“®‚¢‚Ä‚¢‚È‚¯‚ê‚ÎStandState‚ÉØ‚è‘Ö‚¦‚é
 */
 void Player::moveMotionChange()
 {
-	if (!m_Input->move())
-	{
-		actionChange(std::make_shared<StandState>());
-		return;
-	}
-	actionChange(std::make_shared<MoveState>());
+	actionChange(std::make_shared<StandState>());
+	moveStart();
 }
 
 void Player::rotate(float deltaTime, Transform & _transform)

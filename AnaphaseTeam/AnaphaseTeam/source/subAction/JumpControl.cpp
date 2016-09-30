@@ -38,7 +38,7 @@ void JumpControl::update(float deltaTime)
 
 void JumpControl::changeMotion(AnimatorOne & _animator, ANIMATION_ID _id)
 {
-	_animator.changeAnimation(_id,true,true);
+	_animator.changeAnimation(_id);
 }
 
 void JumpControl::airActionChange(AirAction_Ptr _airAction)
