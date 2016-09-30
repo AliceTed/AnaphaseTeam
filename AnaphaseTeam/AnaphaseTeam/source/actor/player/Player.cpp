@@ -83,7 +83,7 @@ void Player::stand(float deltaTime)
 
 void Player::attack(float deltaTime)
 {
-	m_attackManager.update(deltaTime, this);
+	m_attackManager.update(deltaTime, this, &m_animatorOne);
 	if (m_attackManager.isEnd())
 	{
 		actionChange(std::make_shared<StandState>());

@@ -19,15 +19,15 @@ void AttackManager::initialize()
 	m_Gun.initialize();
 	m_combo.initialize();
 }
-void AttackManager::update(float deltaTime, Player* _player)
+void AttackManager::update(float deltaTime, Player* _player, AnimatorOne* _animator)
 {
-	scytheAttack(deltaTime,_player);
+	scytheAttack(deltaTime,_player,_animator);
 	gunAttack(_player);
 }
 
-void AttackManager::scytheAttack(float deltaTime,Player* _player)
+void AttackManager::scytheAttack(float deltaTime,Player* _player, AnimatorOne* _animator)
 {
-	m_combo.update(deltaTime, _player);
+	m_combo.update(deltaTime, _player,_animator);
 }
 
 void AttackManager::gunAttack(Player * _player)

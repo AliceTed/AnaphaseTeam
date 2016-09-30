@@ -1,6 +1,7 @@
 #include "../../header/attack/ComboManager.h"
 #include "../../header/shape/Sphere.h"
 #include "../../header/actor/Player/Player.h"
+#include "../../header/animation/AnimatorOne.h"
 ComboManager::ComboManager()
 	:m_currentKey(Combo::End),
 	m_nextKey(Combo::End),
@@ -56,14 +57,14 @@ void ComboManager::reset()
 	m_nextKey = Combo::End;
 }
 
-void ComboManager::update(float deltaTime, Player* _player)
+void ComboManager::update(float deltaTime, Player* _player, AnimatorOne* _animator)
 {
 	m_container.at(m_currentKey).update(deltaTime, _player);
 
 	change(deltaTime, _player);
 	if (_player->isAttack())
 	{
-		combo(deltaTime);
+		combo(deltaTime,_animator);
 	}
 	m_isStart = false;
 }
@@ -91,11 +92,13 @@ void ComboManager::change(float deltaTime, Player * _player)
 	m_nextKey = Combo::End;
 }
 
-void ComboManager::combo(float deltaTime)
+void ComboManager::combo(float deltaTime,AnimatorOne* _animator)
 {
 	if (m_isStart)return;
-	m_nextKey = nextkey();
-
+	if (_animator->isCombo(0.4f))
+	{
+		m_nextKey = nextkey();
+	}
 }
 
 const Combo ComboManager::nextkey() const
