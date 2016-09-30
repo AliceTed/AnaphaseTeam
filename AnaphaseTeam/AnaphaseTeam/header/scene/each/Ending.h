@@ -1,6 +1,7 @@
 #ifndef _ENDING_H_
 #define _ENDING_H_
 #include "../IScene.h"
+#include "../SceneChange.h"
 class Input;
 class Ending :public IScene
 {
@@ -17,5 +18,6 @@ public:
 private:
 	bool m_IsEnd;
 	const Input* m_Input;
+	SceneChange m_change;
 };
 #endif

@@ -3,7 +3,8 @@
 #include "../../../header/device/Input.h"
 Ending::Ending(const Input* _input)
 	:m_IsEnd(false),
-	m_Input(_input)
+	m_Input(_input),
+	m_change()
 {
 }
 Ending::~Ending()
@@ -13,14 +14,21 @@ Ending::~Ending()
 void Ending::initialize()
 {
 	m_IsEnd = false;
+	m_change.initialize();
+	m_change.begin();
 }
 
 void Ending::update(float deltaTime)
 {
+	if (m_Input->isJoyTriggerA())
+	{
+		m_IsEnd = true;
+	}
 }
 
 void Ending::draw(const Renderer & renderer)
 {
+	renderer.getDraw2D().textrue(TEXTURE_ID::CLEAR, &GSvector2(0, 0));
 }
 
 void Ending::finish()

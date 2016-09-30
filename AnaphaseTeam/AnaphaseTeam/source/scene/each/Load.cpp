@@ -58,6 +58,7 @@ void Load::loadTextrue()
 	tex(TEXTURE_ID::GAMESTART, "GameStart");
 	tex(TEXTURE_ID::CURSOR, "cursor");
 	tex(TEXTURE_ID::TITLE_ROGO, "title_rogo");
+	tex(TEXTURE_ID::CLEAR, "clear");
 }
 void Load::loadSound()
 {
@@ -73,7 +74,7 @@ void Load::loadModel()
 	using namespace Data;
 	LoadMesh mesh;
 	LoadModel model;
-	model(MODEL_ID::PLAYER,"kendo" );
+	model(MODEL_ID::PLAYER, "kendo");
 	model(MODEL_ID::BOSS, "boss/bos3");
 
 	mesh(MESH_ID::SKY, "sky/skydome");
