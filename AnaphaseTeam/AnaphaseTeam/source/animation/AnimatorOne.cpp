@@ -1,7 +1,8 @@
 #include "../../header/animation/AnimatorOne.h"
+#include "../../header/data/CastID.h"
 #include <gslib.h>
 AnimatorOne::AnimatorOne(const MODEL_ID _modelID) :
-	m_modelID(_modelID), m_currentAnimation(nullptr)
+	m_modelID(_modelID), m_currentAnimation(nullptr), m_matrix()
 {}
 AnimatorOne::~AnimatorOne()
 {}
@@ -13,7 +14,6 @@ void AnimatorOne::update(float deltatime)
 {
 	if (m_currentAnimation == nullptr)
 		return;
-
 	m_currentAnimation->update(deltatime);
 }
 void AnimatorOne::bind()const
@@ -43,4 +43,39 @@ const bool AnimatorOne::isEndCurrentAnimation() const
 bool AnimatorOne::isEndAnimation(ANIMATION_ID _animationID)
 {
 	return false;
+}
+
+void AnimatorOne::matrixCalculate(GSmatrix4* _reslut)
+{
+	Data::CastID cast;
+	gsBindSkeleton(cast(m_modelID));
+
+	const GSuint n = getNumBones();//gsGetSkeletonNumBones(static_cast<GSuint>(m_modelID));
+	GSmatrix4 *orientedMat = new GSmatrix4[n];//姿勢変換行列配列
+	GSmatrix4 *animMat = new GSmatrix4[n];//アニメーション行列配列
+	//アニメーションの計算
+	gsCalculateAnimation(
+		cast(m_modelID),
+		m_currentAnimation->getAnimationNo(),
+		m_currentAnimation->getcurrentTime(), animMat);
+	//スケルトン情報の計算
+	gsCalculateSkeleton(NULL, animMat, orientedMat);
+	//スケルトンの位置情報を計算
+	gsSkeletonCalculateTransform(
+		gsGetSkeleton(cast(m_modelID)),
+		_reslut,
+		orientedMat);
+	m_matrix.clear();
+	m_matrix.emplace_back(*_reslut);
+	delete[] orientedMat;
+	delete[] animMat;
+}
+
+const GSuint AnimatorOne::getNumBones()const
+{
+	return gsGetSkeletonNumBones(static_cast<GSuint>(m_modelID));
+}
+const GSmatrix4 AnimatorOne::getMatrix()const
+{
+	return m_matrix.front();
 }

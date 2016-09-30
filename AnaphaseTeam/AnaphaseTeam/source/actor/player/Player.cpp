@@ -15,6 +15,8 @@
 const float Player::MOVESPEED = 0.3f;
 const float Player::ROTATESPEED = -2.0f;
 const float Player::WALKSPEED = 0.1f;
+#include "../../../header/data/CastID.h"
+
 Player::Player(const Input* _input, Camera * _camera)
 	:Actor(
 		Transform({ 0,0,-30 }),
@@ -29,8 +31,10 @@ Player::Player(const Input* _input, Camera * _camera)
 	m_camera(_camera),
 	m_status(),
 	m_isJumpAttack(false),
-	m_group(std::make_shared<CollisionGroup>(this))
+	m_group(std::make_shared<CollisionGroup>(this)),
+	m_matrix()
 {
+	//m_matrix = std::make_shared<GSmatrix4>(new GSmatrix4[m_animatorOne.getNumBones()]);
 }
 
 Player::~Player()
@@ -55,13 +59,14 @@ void Player::update(float deltatime)
 	m_action->action(this, deltatime);
 	sphereChases(GSvector3(0, 1, 0));
 	m_animatorOne.update(deltatime);
+//	m_animatorOne.getAnimMatrix(m_matrix.get());
 }
 
 void Player::draw(const Renderer & _renderer, const Camera & _camera)
 {
-	//FALSE_RETURN(isInsideView(_camera));
+	FALSE_RETURN(isInsideView(_camera));
 	alphaBlend(_camera);
-	_renderer.getDraw3D().drawMesh(MODEL_ID::PLAYER, m_transform, m_animatorOne, m_Color);
+	_renderer.getDraw3D().drawMesh_calcu(MODEL_ID::PLAYER, m_transform, m_matrix.get(),m_animatorOne, m_Color);
 }
 
 void Player::inGround()

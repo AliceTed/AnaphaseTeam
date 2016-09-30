@@ -7,10 +7,12 @@
 * @date 2016/08/16
 * @date 2016/8/30　isEndCurrentAnimationとisEndAnimation追加、コメント記入
 */
+#include<gslib.h>
 #include "../data/Model_ID.h"
 #include <map>
 #include <memory>
 #include "Animation.h"
+#include <vector>
 typedef std::shared_ptr<Animation> Animation_Ptr;
 class AnimatorOne
 {
@@ -21,7 +23,7 @@ public:
 	void initialize();
 	void update(float deltatime);
 	void bind()const;
-	void changeAnimation(ANIMATION_ID _animation, bool _isLoop=false, bool _isNotInit=false, float _animationSpeed = 1.0f);
+	void changeAnimation(ANIMATION_ID _animation, bool _isLoop = false, bool _isNotInit = false, float _animationSpeed = 1.0f);
 	/**
 	* @fn
 	* @breif 今動いているアニメーションが終わっているか
@@ -34,8 +36,12 @@ public:
 	* @detail 指定したものが動作中のアニメーションと違ければTrueを返す
 	*/
 	bool isEndAnimation(ANIMATION_ID _animationID);
+	 void matrixCalculate(GSmatrix4* _reslut);
+	const GSuint getNumBones()const;
+	const GSmatrix4 getMatrix() const;
 private:
 	const MODEL_ID m_modelID;
 	ANIMATION_ID m_currentAnimationID;
 	Animation_Ptr m_currentAnimation;
+	std::vector<GSmatrix4> m_matrix;
 };
