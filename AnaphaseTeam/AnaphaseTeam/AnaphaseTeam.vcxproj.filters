@@ -665,8 +665,8 @@
     <ClCompile Include="source\collision\CollisionManager.cpp">
       <Filter>ソース ファイル\collision</Filter>
     </ClCompile>
-    <ClCompile Include="header\enemy\Lock_on.cpp">
-      <Filter>ソース ファイル</Filter>
+    <ClCompile Include="source\enemy\Lock_on.cpp">
+      <Filter>ソース ファイル\enemy</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
