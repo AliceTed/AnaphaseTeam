@@ -52,8 +52,8 @@ void GamePlay::draw(const Renderer & _renderer)
 	_renderer.getDraw3D().drawSky(MESH_ID::SKY);
 	m_boss.look_at(&m_cameracontroller, &m_player);
 	m_player.draw(_renderer,m_Camera);
-	m_boss.draw(_renderer, m_Camera);
 	m_Map.draw(_renderer);
+	m_boss.draw(_renderer, m_Camera);	
 	collision.draw(_renderer);
 	m_change.draw(_renderer);
 }

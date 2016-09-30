@@ -453,6 +453,9 @@
     <ClInclude Include="header\collision\CollisionManager.h">
       <Filter>ヘッダー ファイル\collision</Filter>
     </ClInclude>
+    <ClInclude Include="header\enemy\Lock_on.h">
+      <Filter>ヘッダー ファイル\enemy</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Util\BasicShapes.cpp">
@@ -661,6 +664,9 @@
     </ClCompile>
     <ClCompile Include="source\collision\CollisionManager.cpp">
       <Filter>ソース ファイル\collision</Filter>
+    </ClCompile>
+    <ClCompile Include="header\enemy\Lock_on.cpp">
+      <Filter>ソース ファイル</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

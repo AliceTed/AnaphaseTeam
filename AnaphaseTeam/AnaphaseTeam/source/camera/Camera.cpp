@@ -98,7 +98,7 @@ const bool Camera::isFrustumCulling(const GSvector3 & center, float radius) cons
 const float Camera::nearDistance(const GSvector3 & ohter, float radius) const
 {
 	//ohter‚ÆƒJƒƒ‰‚Ì‹——£
-	float dis = ohter.distance(position);
+	float dis = ohter.distance(m_look_at.position);
 	//‹——£‚Ænear‚Ì·
 	return dis-(m_perspective.near+radius);
 }

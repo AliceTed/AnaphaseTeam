@@ -141,6 +141,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="header\enemy\Lock_on.cpp" />
     <ClCompile Include="source\actionstate\AttackState.cpp" />
     <ClCompile Include="source\actionstate\AvoidState.cpp" />
     <ClCompile Include="source\actionstate\JumpState.cpp" />
@@ -245,6 +246,7 @@
     <ClInclude Include="header\collision\CollisionManager.h" />
     <ClInclude Include="header\enemy\BreakPoint.h" />
     <ClInclude Include="header\enemy\Core.h" />
+    <ClInclude Include="header\enemy\Lock_on.h" />
     <ClInclude Include="header\subAction\JumpControl.h" />
     <ClInclude Include="header\airstate\PreparationState.h" />
     <ClInclude Include="header\airstate\RestrictionFall.h" />

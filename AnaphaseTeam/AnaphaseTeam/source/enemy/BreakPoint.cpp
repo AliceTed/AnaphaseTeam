@@ -5,7 +5,7 @@
 BreakPoint::BreakPoint(CollisionActorType _type, Element _element)
 	:m_color(1, 1, 1, 1),
 	m_type(_type),
-	m_position(0,0,0),
+	m_position(0, 0, 0),
 	m_element(_element)
 {
 }
@@ -13,6 +13,11 @@ BreakPoint::BreakPoint(CollisionActorType _type, Element _element)
 BreakPoint::~BreakPoint()
 {
 }
+void BreakPoint::lerp(Math::TimeLerpVector<GSvector3>& _lerp, BreakPoint & _end)
+{
+	_lerp.start(m_position,_end.m_position,0.5f);
+}
+
 void BreakPoint::update(float deltaTime,std::vector<GSvector3>& _position)
 {
 	m_position=_position.at(static_cast<unsigned int>(m_element));

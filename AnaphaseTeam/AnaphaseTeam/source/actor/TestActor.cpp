@@ -16,9 +16,9 @@ TestActor::TestActor()
 		Actor_Tag::TEST
 		),
 	m_points(),
-	m_core(GSvector3(0,0,0),1),
-	m_corecolor(1,1,1,1),
-	m_group(std::make_shared<CollisionGroup>(this))
+	m_group(std::make_shared<CollisionGroup>(this)),
+	m_target(0),
+	m_lock_on()
 {
 	
 }
@@ -33,31 +33,35 @@ void TestActor::initialize()
 	m_animatorOne.changeAnimation(ANIMATION_ID::STAND, true);
 	m_points.clear();
 	createPoint();
-	m_corecolor = GScolor(1, 1, 1, 1);
 	std::for_each(m_points.begin(), m_points.end(), [&](BreakPoint& _point) {_point.createCollision(this,m_group);});
+	m_lock_on.start(m_points);
 }
 
 void TestActor::update(float deltatime)
 {
+	if (gsGetKeyTrigger(GKEY_M)==GS_TRUE)
+	{
+		m_lock_on.start(m_points);
+	}
+	m_lock_on.update(deltatime);
 	std::vector<GSvector3> pos = getAnimEachPos();
 	//m_animatorOne.update(deltatime);
-	m_core.transfer(pos.at(static_cast<unsigned int>(Element::HEAD)));
 	std::for_each(m_points.begin(), m_points.end(), [&](BreakPoint& _point){_point.update(deltatime,pos);});
 }
 
 void TestActor::draw(const Renderer & _renderer, const Camera & _camera)
 {
 	FALSE_RETURN(isInsideView(_camera));
-	//alphaBlend(_camera);releaseŽž‚É‚È‚º‚©“§–¾‚É‚È‚é
+	alphaBlend(_camera);
 	_renderer.getDraw3D().drawMesh(MODEL_ID::BOSS, m_transform, m_animatorOne, m_Color);
 	std::for_each(m_points.begin(), m_points.end(), [&](BreakPoint& _point) {_point.draw(_renderer);});
-	m_core.draw(_renderer, m_corecolor);
 }
 
 void TestActor::look_at(CameraController * _camera, Player * _actor)
 {
-	GSvector3 target = m_transform.getPosition();
-	_actor->look_at(_camera,&target);
+	GSvector3 t = m_transform.getPosition();
+	m_lock_on.lock_at(_camera,_actor);
+	//m_points.at(m_target).lock_on(_camera, _actor);
 }
 
 void TestActor::addCollisionGroup(CollisionManager * _manager)
@@ -70,8 +74,6 @@ void TestActor::createPoint()
 	std::vector<GSvector3> pos = getAnimEachPos();
 	m_points.emplace_back(CollisionActorType::ENEMY_LEFT,Element::LEFT_LEG);
 	m_points.emplace_back(CollisionActorType::ENEMY_RIGHT, Element::RIGHT_LEG);
-
-	m_core.transfer(pos.at(static_cast<GSuint>(Element::HEAD)));
 }
 std::vector<GSvector3> TestActor::getAnimEachPos()
 {
