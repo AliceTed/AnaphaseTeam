@@ -134,6 +134,7 @@ void Player::subActionStart()
 		m_SubAction.initialize(SubActionType::JUMP);
 		actionChange(std::make_shared<JumpState>());
 		m_isGround = false;
+		return;
 	}
 
 	if (m_Input->avoidTrigger())

@@ -1,7 +1,7 @@
 #include "../../header/subAction/Avoid.h"
 #include "../../header/actor/Player/Player.h"
 
-const float Avoid::VELOCITY = 15.0f;
+const float Avoid::VELOCITY = 7.5f;
 const float Avoid::TIME = 0.2f;
 Avoid::Avoid(Player* _player)
 	:m_player(_player),
