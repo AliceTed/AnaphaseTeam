@@ -239,6 +239,14 @@ void Player::control()
 		Shape_Ptr shape = std::make_shared<Sphere>(pos, radius);
 		Collision_Ptr actor= std::make_shared<CollisionActor>(shape, CollisionActorType::PLAYER_ATTACK);
 		actor->set_dead([&]()->bool{return m_attackManager.isEnd();});
+		actor->set_update([&](float deltaTime, Shape_Ptr _shape) 
+		{
+			float radius = 1.5f;
+			GSvector3 front = m_transform.front()*(radius*1.5f);
+			GSvector3 pos(m_transform.getPosition() + front);
+			pos.y += 1.0f;
+			_shape->transfer(pos);
+		});
 		actor->set_draw([](const Renderer& _renderer, Shape_Ptr _shape) { _shape->draw(_renderer);});
 		m_group->add(actor);
 	}

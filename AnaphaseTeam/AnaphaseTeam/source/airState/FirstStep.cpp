@@ -11,7 +11,7 @@
 #include "../../header/actor/Player/Player.h"
 #include "../../header/math/Calculate.h"
 #include "../../header/subAction/JumpControl.h"
-const float FirstStep::FirstStepPow = 0.5f;
+const float FirstStep::FirstStepPow = 0.8f;
 
 FirstStep::FirstStep()
 {
@@ -54,11 +54,6 @@ AirAction_Ptr FirstStep::next(const Player * _player)const
 	if (_player->isJump())
 	{
 		return std::make_shared<SecondStep>();
-	}
-
-	if (_player->isJumpAttack())
-	{
-		return std::make_shared<RestrictionFall>();
 	}
 	return nullptr;
 }

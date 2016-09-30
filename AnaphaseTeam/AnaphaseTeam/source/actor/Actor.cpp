@@ -5,6 +5,7 @@
 #include "../../header/map/Map.h"
 #include "../../header/shape/Ray.h"
 const float Actor::ALPHABLEND_FAR = 2.0f;
+const float Actor::GRAVITY = -0.05f;
 
 Actor::Actor(const Transform & _transform, MODEL_ID _modelID,const Sphere& _sphere,Actor_Tag _tag)
 	:m_transform(_transform), 
@@ -35,9 +36,9 @@ void Actor::collisionGround(const Map& _map)
 	{
 		return;
 	}
-	
-	if (position.y >= intersect.y)
+	if (position.y > intersect.y)
 	{
+		m_transform.translateY(GRAVITY);
 		return;
 	}
 	inGround();

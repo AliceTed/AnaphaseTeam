@@ -101,4 +101,6 @@ private:
 	Sphere m_Sphere;
 	//!αブレンドを始める距離
 	static const float ALPHABLEND_FAR;
+	//重力
+	static const float GRAVITY;
 };
