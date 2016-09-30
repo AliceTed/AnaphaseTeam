@@ -45,7 +45,12 @@ bool AnimatorOne::isEndAnimation(ANIMATION_ID _animationID)
 	return false;
 }
 
-bool AnimatorOne::isCombo(float _limitTime)
+const float AnimatorOne::getCurrentAnimationTime() const
 {
-	return m_currentAnimation->combo(_limitTime * 60);
+	return m_currentAnimation->getCurrentTime();
+}
+
+const float AnimatorOne::getCurrentAnimationEndTime() const
+{
+	return m_currentAnimation->getEndTime();
 }

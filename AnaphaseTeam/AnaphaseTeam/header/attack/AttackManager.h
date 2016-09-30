@@ -19,8 +19,8 @@ public:
 	AttackManager();
 	~AttackManager();
 	void initialize();
-	void update(float deltaTime,Player* _player, AnimatorOne* _animator);
-	void scytheAttack(float deltaTime, Player* _player, AnimatorOne* _animator);
+	void update(float deltaTime,Player* _player);
+	void scytheAttack(float deltaTime, Player* _player);
 	void gunAttack(Player* _player);
 	const bool isEnd() const;
 private:

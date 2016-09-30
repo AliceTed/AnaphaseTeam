@@ -34,7 +34,10 @@ public:
 	* @detail 指定したものが動作中のアニメーションと違ければTrueを返す
 	*/
 	bool isEndAnimation(ANIMATION_ID _animationID);
-	bool isCombo(float _limitTime);
+
+	const float getCurrentAnimationTime()const;
+	const float getCurrentAnimationEndTime()const;
+
 	const MODEL_ID m_modelID;
 	ANIMATION_ID m_currentAnimationID;
 	Animation_Ptr m_currentAnimation;

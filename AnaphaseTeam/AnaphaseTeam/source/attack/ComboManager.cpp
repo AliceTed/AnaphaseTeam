@@ -57,14 +57,14 @@ void ComboManager::reset()
 	m_nextKey = Combo::End;
 }
 
-void ComboManager::update(float deltaTime, Player* _player, AnimatorOne* _animator)
+void ComboManager::update(float deltaTime, Player* _player)
 {
 	m_container.at(m_currentKey).update(deltaTime, _player);
 
 	change(deltaTime, _player);
-	if (_player->isAttack())
+	if (_player->isAttack()&&_player->isNextAttack(m_container.at(m_currentKey)))
 	{
-		combo(deltaTime,_animator);
+		combo(deltaTime);
 	}
 	m_isStart = false;
 }
@@ -92,13 +92,10 @@ void ComboManager::change(float deltaTime, Player * _player)
 	m_nextKey = Combo::End;
 }
 
-void ComboManager::combo(float deltaTime,AnimatorOne* _animator)
+void ComboManager::combo(float deltaTime)
 {
 	if (m_isStart)return;
-	if (_animator->isCombo(0.4f))
-	{
-		m_nextKey = nextkey();
-	}
+	m_nextKey = nextkey();
 }
 
 const Combo ComboManager::nextkey() const

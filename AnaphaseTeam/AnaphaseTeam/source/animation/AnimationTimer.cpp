@@ -43,6 +43,10 @@ const float AnimationTimer::getTime()const
 {
 	return timer;
 }
+const float AnimationTimer::getEndTime() const
+{
+	return defTimer;
+}
 const bool AnimationTimer::getIsEnd()const
 {
 	return timer >= defTimer -1.0f;

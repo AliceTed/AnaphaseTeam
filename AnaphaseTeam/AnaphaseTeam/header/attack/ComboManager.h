@@ -13,6 +13,8 @@ enum class Combo
 	End
 };
 
+
+
 class AnimatorOne;
 class ComboManager
 {
@@ -21,12 +23,12 @@ public:
 	~ComboManager();
 	void initialize();
 	void reset();
-	void update(float deltaTime, Player* _player, AnimatorOne* _animator);
+	void update(float deltaTime, Player* _player);
 	const bool isEnd()const;	
 private:	
 	void create();
 	void change(float deltaTime, Player* _player);
-	void combo(float deltaTime,AnimatorOne* _animator);
+	void combo(float deltaTime);
 	const Combo nextkey()const;
 	const bool isCurrentEnd(Player* _player) const;
 private:

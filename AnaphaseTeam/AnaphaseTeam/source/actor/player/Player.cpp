@@ -83,7 +83,7 @@ void Player::stand(float deltaTime)
 
 void Player::attack(float deltaTime)
 {
-	m_attackManager.update(deltaTime, this, &m_animatorOne);
+	m_attackManager.update(deltaTime, this);
 	if (m_attackManager.isEnd())
 	{
 		actionChange(std::make_shared<StandState>());
@@ -162,6 +162,11 @@ void Player::avoidAction(const GSvector3 & _velocity)
 void Player::attackmotion(Attack & _attack)
 {
 	_attack.changeMotion(m_animatorOne);
+}
+
+const bool Player::isNextAttack(Attack & _attack) const
+{
+	return _attack.isNextAttack(m_animatorOne);
 }
 
 const bool Player::isEndAttackMotion(const Attack & _attack) const
