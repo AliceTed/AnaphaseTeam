@@ -1,6 +1,7 @@
 #include "../../header/attack/ComboManager.h"
 #include "../../header/shape/Sphere.h"
 #include "../../header/actor/Player/Player.h"
+#include "../../header/animation/AnimatorOne.h"
 ComboManager::ComboManager()
 	:m_currentKey(Combo::End),
 	m_nextKey(Combo::End),
@@ -58,10 +59,10 @@ void ComboManager::reset()
 
 void ComboManager::update(float deltaTime, Player* _player)
 {
-	m_container.at(m_currentKey).update(deltaTime,_player);
+	m_container.at(m_currentKey).update(deltaTime, _player);
 
 	change(deltaTime, _player);
-	if (_player->isAttack())
+	if (_player->isAttack()&&_player->isNextAttack(m_container.at(m_currentKey)))
 	{
 		combo(deltaTime);
 	}

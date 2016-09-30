@@ -44,3 +44,13 @@ bool AnimatorOne::isEndAnimation(ANIMATION_ID _animationID)
 {
 	return false;
 }
+
+const float AnimatorOne::getCurrentAnimationTime() const
+{
+	return m_currentAnimation->getCurrentTime();
+}
+
+const float AnimatorOne::getCurrentAnimationEndTime() const
+{
+	return m_currentAnimation->getEndTime();
+}

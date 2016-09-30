@@ -65,3 +65,13 @@ const float Animation::getSpeed()const
 {
 	return m_timer.getSpeed();
 }
+
+const float Animation::getEndTime() const
+{
+	return m_timer.getEndTime();
+}
+
+const float Animation::getCurrentTime() const
+{
+	return m_timer.getTime();
+}

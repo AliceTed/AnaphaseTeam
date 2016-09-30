@@ -21,7 +21,7 @@ void AttackManager::initialize()
 }
 void AttackManager::update(float deltaTime, Player* _player)
 {
-	scytheAttack(deltaTime,_player);
+	scytheAttack(deltaTime, _player);
 	gunAttack(_player);
 }
 

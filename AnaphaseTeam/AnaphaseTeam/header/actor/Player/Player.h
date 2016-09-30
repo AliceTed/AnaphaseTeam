@@ -44,6 +44,7 @@ public:
 
 	void jumpMotion(JumpControl& _control,ANIMATION_ID _id);
 	void attackmotion(Attack& _attack);
+	const bool isNextAttack(Attack& _attack)const;
 	const bool isEndAttackMotion(const Attack& _attack)const;
 	void moving(float deltaTime,bool isAnimation=true);
 	void control();

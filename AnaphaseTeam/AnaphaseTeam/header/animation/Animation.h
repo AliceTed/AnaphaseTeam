@@ -53,6 +53,9 @@ public:
 	void start();
 	unsigned int getAnimationNo();
 	const float getSpeed() const;
+	//Å‘åŠÔ
+	const float getEndTime()const;
+	const float getCurrentTime()const;
 private:
 	void looping();
 

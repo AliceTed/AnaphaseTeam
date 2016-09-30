@@ -1,6 +1,7 @@
 #pragma once
 #include "AttackPattern.h"
 #include "Attack.h"
+#include "ComboManager.h"
 #include <unordered_map>
 enum class Combo
 {
@@ -12,6 +13,9 @@ enum class Combo
 	End
 };
 
+
+
+class AnimatorOne;
 class ComboManager
 {
 public:

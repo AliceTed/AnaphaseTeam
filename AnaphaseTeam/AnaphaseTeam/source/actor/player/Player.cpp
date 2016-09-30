@@ -164,6 +164,11 @@ void Player::attackmotion(Attack & _attack)
 	_attack.changeMotion(m_animatorOne);
 }
 
+const bool Player::isNextAttack(Attack & _attack) const
+{
+	return _attack.isNextAttack(m_animatorOne);
+}
+
 const bool Player::isEndAttackMotion(const Attack & _attack) const
 {
 	return _attack.isEndMotion(m_animatorOne);

@@ -25,7 +25,9 @@ public:
 	void motion(Player* _player);
 	
 	void changeMotion(AnimatorOne& _animator);
+	const bool isNextAttack(const AnimatorOne& _animator)const;
 	const bool isEndMotion(const AnimatorOne& _animator) const;
+	//bool isEndAttackTime(AnimatorOne * _animator);
 private:
 	//!攻撃ステータス
 	AttackStatus m_status;
