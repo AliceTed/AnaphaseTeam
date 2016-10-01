@@ -59,6 +59,9 @@ void Load::loadTextrue()
 	tex(TEXTURE_ID::CURSOR, "cursor");
 	tex(TEXTURE_ID::TITLE_ROGO, "title_rogo");
 	tex(TEXTURE_ID::CLEAR, "clear");
+	tex(TEXTURE_ID::OPTION_BACKGROUND, "option_background");
+	tex(TEXTURE_ID::PAD_A, "pad");
+	tex(TEXTURE_ID::PAD_B, "pad");
 }
 void Load::loadSound()
 {

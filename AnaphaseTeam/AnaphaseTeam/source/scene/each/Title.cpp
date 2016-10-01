@@ -60,7 +60,7 @@ void Title::decision(Select _select)
 		m_change.end(SceneMode::GAMEPLAY);
 		break;
 	case Select::OPTION:
-		m_change.end(SceneMode::TITLE);
+		m_change.end(SceneMode::OPTION);
 		break;
 	case Select::EXIT:
 		m_IsExit = true;

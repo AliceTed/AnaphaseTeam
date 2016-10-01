@@ -1,11 +1,11 @@
 #pragma once
 #include "../SceneChange.h"
 #include "../IScene.h"
-class Input;
+class GameDevice;
 class Option :public IScene
 {
 public:
-	Option(Input* _input);
+	Option(GameDevice* _device);
 	~Option();
 	void initialize();
 	void update(float deltaTime);
@@ -15,6 +15,6 @@ public:
 	const bool isEnd()const;
 	const bool isExit()const;
 private:
-	Input* m_input;
+	GameDevice* m_device;
 	SceneChange m_change;
 };
