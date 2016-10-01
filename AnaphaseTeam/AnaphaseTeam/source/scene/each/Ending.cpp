@@ -1,9 +1,9 @@
 #include "../../../header/scene/each/Ending.h"
 #include "../../../header/renderer/Renderer.h"
-#include "../../../header/device/Input.h"
-Ending::Ending(const Input* _input)
+#include "../../../header/device/GameDevice.h"
+Ending::Ending(GameDevice* _device)
 	:m_IsEnd(false),
-	m_Input(_input),
+	m_device(_device),
 	m_change()
 {
 }
@@ -20,7 +20,8 @@ void Ending::initialize()
 
 void Ending::update(float deltaTime)
 {
-	if (m_Input->isJoyTriggerA())
+	//Œˆ’èƒ{ƒ^ƒ“ì‚Á‚Ä‚à‚¢‚¢‚©‚à
+	if (m_device->input()->jump())
 	{
 		m_IsEnd = true;
 	}

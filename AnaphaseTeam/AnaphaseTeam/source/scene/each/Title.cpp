@@ -1,8 +1,8 @@
 #include "../../../header/scene/each/Title.h"
 #include "../../../header/renderer/Renderer.h"
-#include "../../../header/device/Input.h"
-Title::Title(const Input* _input)
-	:m_Input(_input),
+#include "../../../header/device/GameDevice.h"
+Title::Title(GameDevice* _device)
+	:m_device(_device),
 	m_IsExit(false),
 	m_title(),
 	m_change()
@@ -53,7 +53,7 @@ const bool Title::isExit() const
 }
 void Title::decision(Select _select)
 {
-	if (!m_Input->jumpTrigger())return;
+	if (!m_device->input()->jump())return;
 	switch (_select)
 	{
 	case Select::GAMESTART:
@@ -69,11 +69,11 @@ void Title::decision(Select _select)
 }
 void Title::select(SelectUI & _select)
 {
-	if (m_Input->up())
+	if (m_device->input()->up())
 	{
 		_select.previous();
 	}
-	if (m_Input->down())
+	if (m_device->input()->down())
 	{
 		_select.next();
 	}

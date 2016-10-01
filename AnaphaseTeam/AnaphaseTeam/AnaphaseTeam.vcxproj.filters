@@ -456,6 +456,24 @@
     <ClInclude Include="header\enemy\Lock_on.h">
       <Filter>ヘッダー ファイル\enemy</Filter>
     </ClInclude>
+    <ClInclude Include="header\scene\each\Option.h">
+      <Filter>ヘッダー ファイル\scene\each</Filter>
+    </ClInclude>
+    <ClInclude Include="header\device\IInputPattern.h">
+      <Filter>ヘッダー ファイル\device</Filter>
+    </ClInclude>
+    <ClInclude Include="header\device\InputPattern_A.h">
+      <Filter>ヘッダー ファイル\device</Filter>
+    </ClInclude>
+    <ClInclude Include="header\device\InputPattern_B.h">
+      <Filter>ヘッダー ファイル\device</Filter>
+    </ClInclude>
+    <ClInclude Include="header\device\InputContorol.h">
+      <Filter>ヘッダー ファイル\device</Filter>
+    </ClInclude>
+    <ClInclude Include="header\device\GameDevice.h">
+      <Filter>ヘッダー ファイル\device</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Util\BasicShapes.cpp">
@@ -475,9 +493,6 @@
     </ClCompile>
     <ClCompile Include="source\renderer\Draw2D.cpp">
       <Filter>ソース ファイル\renderer</Filter>
-    </ClCompile>
-    <ClCompile Include="source\input\Input.cpp">
-      <Filter>ソース ファイル\device</Filter>
     </ClCompile>
     <ClCompile Include="source\scene\SceneManager.cpp">
       <Filter>ソース ファイル\scene</Filter>
@@ -667,6 +682,24 @@
     </ClCompile>
     <ClCompile Include="source\enemy\Lock_on.cpp">
       <Filter>ソース ファイル\enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="source\scene\each\Option.cpp">
+      <Filter>ソース ファイル\scene\each</Filter>
+    </ClCompile>
+    <ClCompile Include="source\device\Input.cpp">
+      <Filter>ソース ファイル\device</Filter>
+    </ClCompile>
+    <ClCompile Include="source\device\InputPattern_A.cpp">
+      <Filter>ソース ファイル\device</Filter>
+    </ClCompile>
+    <ClCompile Include="source\device\InputPattern_B.cpp">
+      <Filter>ソース ファイル\device</Filter>
+    </ClCompile>
+    <ClCompile Include="source\device\InputContorol.cpp">
+      <Filter>ソース ファイル\device</Filter>
+    </ClCompile>
+    <ClCompile Include="source\device\GameDevice.cpp">
+      <Filter>ソース ファイル\device</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -20,14 +20,14 @@
 #include "../../data/ANIMATION_ID.h"
 #include "Status.h"
 #include "../../collision/CollisionManager.h"
-class Input;
+class GameDevice;
 class CameraController;
 class TestActor;
 typedef std::shared_ptr<IActionState> Action_Ptr;
 class Player :public Actor, public ICharacter
 {
 public:
-	Player(const Input* _input,Camera * _camera);
+	Player(GameDevice* _device,Camera * _camera);
 	~Player();
 	void addCollisionGroup(CollisionManager*  _manager);
 	/**
@@ -81,7 +81,7 @@ private:
 	void rotate(float deltaTime,Transform& _transform);
 	void movement(float deltaTime, float _speed = MOVESPEED);
 private:
-	const Input* m_Input;
+	GameDevice* m_device;
 	Action_Ptr m_action;
 	subActionManager m_SubAction;
 	AttackManager m_attackManager;

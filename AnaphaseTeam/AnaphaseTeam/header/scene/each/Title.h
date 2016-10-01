@@ -3,11 +3,11 @@
 #include "../IScene.h"
 #include "../../ui/TitleUI.h"
 #include "../SceneChange.h"
-class Input;
+class GameDevice;
 class Title :public IScene
 {
 public:
-	Title(const Input* _input);
+	Title(GameDevice* _device);
 	~Title();
 	void initialize();
 	void update(float deltaTime);
@@ -23,6 +23,6 @@ private:
 	bool m_IsExit;
 	SceneChange m_change;
 	TitleUI m_title;
-	const Input* m_Input;
+	GameDevice* m_device;
 };
 #endif

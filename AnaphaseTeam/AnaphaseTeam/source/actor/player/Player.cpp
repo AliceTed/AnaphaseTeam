@@ -6,7 +6,7 @@
 #include "../../../header/actionstate/AttackState.h"
 #include "../../../header/actionstate/AvoidState.h"
 #include "../../../header/renderer/Renderer.h"
-#include "../../../header/device/Input.h"
+#include "../../../header/device/GameDevice.h"
 #include "../../../header/camera/Camera.h"
 #include "../../../header/shape/Ray.h"
 #include "../../../header/data/PLAYERACTION_ID.h"
@@ -15,13 +15,14 @@
 const float Player::MOVESPEED = 0.3f;
 const float Player::ROTATESPEED = -2.0f;
 const float Player::WALKSPEED = 0.1f;
-Player::Player(const Input* _input, Camera * _camera)
+Player::Player(GameDevice* _device, Camera * _camera)
 	:Actor(
 		Transform({ 0,0,-30 }),
 		MODEL_ID::PLAYER,
 		Sphere(GSvector3(0, 0, 0), 0),
 		Actor_Tag::PLAYER
 		),
+	m_device(_device),
 	m_action(nullptr),
 	m_SubAction(this),
 	m_attackManager(),
@@ -127,7 +128,7 @@ void Player::jumping(float _velocity)
 }
 void Player::subActionStart()
 {
-	if (m_Input->jumpTrigger())
+	if (m_device->input()->jump())
 	{
 		GSvector3 nowPosition = GSvector3(0, m_transform.getPosition().y, 0);
 		m_transform.translate(nowPosition);
@@ -137,7 +138,7 @@ void Player::subActionStart()
 		return;
 	}
 
-	if (m_Input->avoidTrigger())
+	if (m_device->input()->avoid())
 	{
 		m_SubAction.initialize(SubActionType::AVOID);
 		actionChange(std::make_shared<AvoidState>());
@@ -178,7 +179,7 @@ void Player::moving(float deltaTime, bool isAnimation)
 {
 	float speed = m_status.getMoveSpeed(false, false);
 	float time = 1.0f;
-	if (m_Input->walk())
+	if (m_device->input()->walk())
 	{
 		speed = m_status.getWalkSpeed();
 		time = 0.4f;
@@ -191,7 +192,7 @@ void Player::moving(float deltaTime, bool isAnimation)
 
 const bool Player::isJump() const
 {
-	return m_Input->jumpTrigger();
+	return m_device->input()->jump();
 }
 
 const bool Player::isGround() const
@@ -210,12 +211,12 @@ const bool Player::isEndAttack() const
 }
 const bool Player::isAttack() const
 {
-	return m_Input->scytheTrigger();
+	return m_device->input()->scythe();
 }
 
 const bool Player::isGunAttack() const
 {
-	return m_Input->gunTrigger();
+	return m_device->input()->gun();
 }
 const GSvector3 Player::inputDirection() const
 {
@@ -230,7 +231,7 @@ void Player::actionChange(Action_Ptr _action)
 void Player::control()
 {
 	/*ƒ{ƒ^ƒ“‰Ÿ‚µ‚½‚çAttackState‚ÉØ‚è‘Ö‚í‚é*/
-	if (m_Input->attackTrigger())
+	if (m_device->input()->attack())
 	{
 		actionChange(std::make_shared<AttackState>());
 		m_attackManager.initialize();
@@ -266,7 +267,7 @@ void Player::buildup()
 */
 void Player::moveMotionChange()
 {
-	if (!m_Input->move())
+	if (!m_device->input()->move())
 	{
 		actionChange(std::make_shared<StandState>());
 		return;
@@ -276,8 +277,9 @@ void Player::moveMotionChange()
 
 void Player::rotate(float deltaTime, Transform & _transform)
 {
-	GSvector3 forward(_transform.front()*-m_Input->vertical());
-	GSvector3 side(_transform.left()*m_Input->horizontal());
+	GSvector2 dir = m_device->input()->velocity();
+	GSvector3 forward(_transform.front()*-dir.y);
+	GSvector3 side(_transform.left()*dir.x);
 	GSvector3 velocity = forward + side;
 	Math::ATan atan;
 	float degree = atan(velocity.x, velocity.z);
@@ -287,10 +289,10 @@ void Player::rotate(float deltaTime, Transform & _transform)
 void Player::movement(float deltaTime, float _speed)
 {
 	Transform transform = m_camera->transform();
-	if (m_Input->move())
+	if (m_device->input()->move())
 		rotate(deltaTime, transform);
 	int speed = 1;
-	if (!m_Input->move())speed = 0;
+	if (!m_device->input()->move())speed = 0;
 	GSvector3 forward(m_transform.front()*speed);
 	m_transform.translate(forward*deltaTime*_speed);
 

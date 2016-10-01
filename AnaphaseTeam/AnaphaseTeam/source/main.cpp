@@ -11,16 +11,15 @@
 #include "../header/scene/each/Ending.h"
 
 #include "../header/renderer/Renderer.h"
-#include "../header/device/Input.h"
-
-
+#include "../header/device/GameDevice.h"
 class MyGame : public gslib::Game
 {
 public:
 	MyGame()
 		:Game(),
 		m_SceneManager(),
-		m_Renderer()
+		m_Renderer(),
+		m_device()
 	{
 	}
 
@@ -33,9 +32,9 @@ private:
 		無名作成( add(id,std::make_shared<Scene>()) )
 		*/
 		std::shared_ptr<IScene>load = std::make_shared<Load>();
-		std::shared_ptr<IScene>title = std::make_shared<Title>(&m_Input);
-		std::shared_ptr<IScene>gameplay = std::make_shared<GamePlay>(&m_Input);
-		std::shared_ptr<IScene>ending = std::make_shared<Ending>(&m_Input);
+		std::shared_ptr<IScene>title = std::make_shared<Title>(&m_device);
+		std::shared_ptr<IScene>gameplay = std::make_shared<GamePlay>(&m_device);
+		std::shared_ptr<IScene>ending = std::make_shared<Ending>(&m_device);
 		m_SceneManager.add(SceneMode::LOAD, load);
 		m_SceneManager.add(SceneMode::TITLE, title);
 		m_SceneManager.add(SceneMode::GAMEPLAY, gameplay);
@@ -59,14 +58,14 @@ private:
 		release();
 	}
 private:
-	bool isRunning() { return !m_Input.exit() && !m_SceneManager.isExit(); }
+	bool isRunning() { return !m_device.input()->exit() && !m_SceneManager.isExit(); }
 private:
 	SceneManager m_SceneManager;
 
 	//以下デバイスクラスでまとめる予定
 	//本当はインターフェイス作りたいが変更時面倒
 	Renderer m_Renderer;
-	Input m_Input;
+	GameDevice m_device;
 };
 
 int main()

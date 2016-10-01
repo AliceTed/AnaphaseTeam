@@ -5,26 +5,6 @@ class Input
 {
 public:
 	Input();
-	const GSvector2 velocity()const;
-	//êÖïΩ
-	const int horizontal()const;
-	//êÇíº
-	const int vertical()const;
-
-	const bool jumpTrigger()const;
-	const bool attackTrigger() const;
-	const bool scytheTrigger()const;
-	const bool gunTrigger()const;
-	const bool avoidTrigger()const;
-	
-	//input?
-	const bool move()const;
-	const bool walk()const;
-
-	const bool up()const;
-	const bool down()const;
-	const bool exit()const;
-
 	const bool isJoyTriggerUp() const;
 	const bool isJoyTriggerDown() const;
 	const bool isJoyTriggerLeft() const;
@@ -43,6 +23,7 @@ public:
 	const GSvector2 rightPadAxis() const;
 	const bool isJoyLeftTrigger();
 	const bool isJoyRightTrigger();
+	const bool isEscapeTrigger()const;
 private:
  	bool m_previousLeftTrigger;
 	bool m_previousRightTrigger;

@@ -12,12 +12,12 @@
 #include "../../actor/TestActor.h"
 #include "../../camera/CameraController.h"
 #include "../SceneChange.h"
-class Input;
+class GameDevice;
 typedef std::shared_ptr<Actor>Actor_Ptr;
 class GamePlay :public IScene
 {
 public:
-	GamePlay(const Input* _input);
+	GamePlay(GameDevice* _device);
 	~GamePlay();
 	void initialize();
 	void update(float deltaTime);
@@ -28,7 +28,7 @@ public:
 	const bool isExit()const;
 private:
 	bool m_IsEnd;
-	const Input* m_Input;
+	GameDevice* m_device;
 	SceneChange m_change;
 	Map m_Map;
 	Camera m_Camera;

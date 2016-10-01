@@ -1,14 +1,14 @@
 #include "../../../header/scene/each/GamePlay.h"
 #include "../../../header/renderer/Renderer.h"
-#include "../../../header/device/Input.h"
-GamePlay::GamePlay(const Input* _input)
+#include "../../../header/device/GameDevice.h"
+GamePlay::GamePlay(GameDevice* _device)
 	:m_IsEnd(false),
-	m_Input(_input),
+	m_device(_device),
 	m_Map(OCTREE_ID::KOUTEI),
 	m_Camera(10,8,GSvector3(0,5,0)),
 	m_cameracontroller(&m_Camera),
 	actorManager(),
-	m_player(_input,&m_Camera),
+	m_player(_device,&m_Camera),
 	m_boss(),
 	m_change()
 {
@@ -41,15 +41,15 @@ void GamePlay::update(float deltaTime)
 
 	collision.update(deltaTime);
 
-	if (m_Input->isJoyTriggerSTART())
+	/*if (m_device->input()->reset())
 	{
 		m_change.end(SceneMode::GAMEPLAY);
-	}
+	}*/
 
-	if (m_Input->isJoyTriggerY())
+	/*if (m_Input->isJoyTriggerY())
 	{
 		m_change.end(SceneMode::ENDING);
-	}
+	}*/
 }
 
 void GamePlay::draw(const Renderer & _renderer)
