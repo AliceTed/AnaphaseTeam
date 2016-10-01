@@ -173,6 +173,7 @@
     <ClCompile Include="source\enemy\Lock_on.cpp" />
     <ClCompile Include="source\device\InputPattern_A.cpp" />
     <ClCompile Include="source\device\InputPattern_B.cpp" />
+    <ClCompile Include="source\scene\each\Opening.cpp" />
     <ClCompile Include="source\scene\each\Option.cpp" />
     <ClCompile Include="source\subAction\JumpControl.cpp" />
     <ClCompile Include="source\airState\PreparationState.cpp" />
@@ -257,6 +258,7 @@
     <ClInclude Include="header\enemy\BreakPoint.h" />
     <ClInclude Include="header\enemy\Core.h" />
     <ClInclude Include="header\enemy\Lock_on.h" />
+    <ClInclude Include="header\scene\each\Opening.h" />
     <ClInclude Include="header\scene\each\Option.h" />
     <ClInclude Include="header\subAction\JumpControl.h" />
     <ClInclude Include="header\airstate\PreparationState.h" />

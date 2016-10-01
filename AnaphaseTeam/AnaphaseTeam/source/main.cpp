@@ -6,6 +6,7 @@
 
 #include "../header/scene/SceneManager.h"
 #include "../header/scene/each/Load.h"
+#include "../header/scene/each/Opening.h"
 #include "../header/scene/each/Option.h"
 #include "../header/scene/each/Title.h"
 #include "../header/scene/each/GamePlay.h"
@@ -33,11 +34,13 @@ private:
 		ñ≥ñºçÏê¨( add(id,std::make_shared<Scene>()) )
 		*/
 		std::shared_ptr<IScene>load = std::make_shared<Load>();
+		std::shared_ptr<IScene>opening= std::make_shared<Opening>(&m_device);
 		std::shared_ptr<IScene>title = std::make_shared<Title>(&m_device);
 		std::shared_ptr<IScene>option = std::make_shared<Option>(&m_device);
 		std::shared_ptr<IScene>gameplay = std::make_shared<GamePlay>(&m_device);
 		std::shared_ptr<IScene>ending = std::make_shared<Ending>(&m_device);
 		m_SceneManager.add(SceneMode::LOAD, load);
+		m_SceneManager.add(SceneMode::OPENING, opening);
 		m_SceneManager.add(SceneMode::TITLE, title);
 		m_SceneManager.add(SceneMode::OPTION, option);
 		m_SceneManager.add(SceneMode::GAMEPLAY, gameplay);

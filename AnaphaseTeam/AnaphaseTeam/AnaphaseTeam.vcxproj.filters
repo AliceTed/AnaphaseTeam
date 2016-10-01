@@ -474,6 +474,9 @@
     <ClInclude Include="header\device\GameDevice.h">
       <Filter>ヘッダー ファイル\device</Filter>
     </ClInclude>
+    <ClInclude Include="header\scene\each\Opening.h">
+      <Filter>ヘッダー ファイル\scene\each</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Util\BasicShapes.cpp">
@@ -700,6 +703,9 @@
     </ClCompile>
     <ClCompile Include="source\device\GameDevice.cpp">
       <Filter>ソース ファイル\device</Filter>
+    </ClCompile>
+    <ClCompile Include="source\scene\each\Opening.cpp">
+      <Filter>ソース ファイル\scene\each</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

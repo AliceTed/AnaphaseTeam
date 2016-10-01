@@ -2,6 +2,7 @@
 enum class SceneMode
 {
 	LOAD,
+	OPENING,
 	TITLE,
 	OPTION,
 	GAMEPLAY,

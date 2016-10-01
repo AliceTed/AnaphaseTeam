@@ -14,6 +14,7 @@ enum class TEXTURE_ID :unsigned int
 	OPTION_BACKGROUND,
 	PAD_A,
 	PAD_B,
+	ROGO,
 	SIZE
 };
 #endif

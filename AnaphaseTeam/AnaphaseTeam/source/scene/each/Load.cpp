@@ -36,7 +36,7 @@ void Load::finish()
 
 const SceneMode Load::next() const
 {
-	return SceneMode::TITLE;
+	return SceneMode::OPENING;
 }
 
 const bool Load::isEnd() const
@@ -62,6 +62,7 @@ void Load::loadTextrue()
 	tex(TEXTURE_ID::OPTION_BACKGROUND, "option_background");
 	tex(TEXTURE_ID::PAD_A, "pad");
 	tex(TEXTURE_ID::PAD_B, "pad");
+	tex(TEXTURE_ID::ROGO, "rogo");
 }
 void Load::loadSound()
 {
