@@ -64,7 +64,7 @@ void Load::loadTextrue()
 void Load::loadSound()
 {
 	Data::LoadSE loadse;
-	//loadse(SE_ID::TITLE,"down",2);
+	loadse(SE_ID::TITLE,"down",2);
 
 	Data::LoadBGM loadbgm;
 	//loadbgm(BGM_ID::TITLE, "title");

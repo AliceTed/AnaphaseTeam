@@ -1,9 +1,12 @@
 #include "../../../header/scene/each/Title.h"
 #include "../../../header/renderer/Renderer.h"
 #include "../../../header/device/Input.h"
+#include "../../../header/sound/Sound.h"
+#include "../../../header/data/SE_ID.h"
 
-Title::Title(const Input* _input)
+Title::Title(const Input* _input, const Sound* _sound)
 	:m_Input(_input),
+	m_Sound(_sound),
 	m_IsExit(false),
 	m_title(),
 	m_change()
@@ -23,6 +26,7 @@ void Title::initialize()
 }
 void Title::update(float deltaTime)
 {
+	m_Sound->playSE(SE_ID::TITLE);
 	if (m_change.update(deltaTime))return;
 	m_title.update(deltaTime, *this);
 }

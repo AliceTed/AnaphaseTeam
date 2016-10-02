@@ -169,6 +169,7 @@
     <ClCompile Include="source\enemy\BreakPoint.cpp" />
     <ClCompile Include="source\enemy\Core.cpp" />
     <ClCompile Include="source\scene\each\GameClear.cpp" />
+    <ClCompile Include="source\sound\Sound.cpp" />
     <ClCompile Include="source\subAction\JumpControl.cpp" />
     <ClCompile Include="source\airState\PreparationState.cpp" />
     <ClCompile Include="source\airState\RestrictionFall.cpp" />
@@ -247,6 +248,7 @@
     <ClInclude Include="header\enemy\BreakPoint.h" />
     <ClInclude Include="header\enemy\Core.h" />
     <ClInclude Include="header\scene\each\GameClear.h" />
+    <ClInclude Include="header\sound\Sound.h" />
     <ClInclude Include="header\subAction\JumpControl.h" />
     <ClInclude Include="header\airstate\PreparationState.h" />
     <ClInclude Include="header\airstate\RestrictionFall.h" />

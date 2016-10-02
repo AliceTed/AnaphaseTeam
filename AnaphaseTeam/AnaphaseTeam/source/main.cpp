@@ -13,6 +13,7 @@
 
 #include "../header/renderer/Renderer.h"
 #include "../header/device/Input.h"
+#include "../header/sound/Sound.h"
 
 
 class MyGame : public gslib::Game
@@ -34,7 +35,7 @@ private:
 		無名作成( add(id,std::make_shared<Scene>()) )
 		*/
 		std::shared_ptr<IScene>load = std::make_shared<Load>();
-		std::shared_ptr<IScene>title = std::make_shared<Title>(&m_Input);
+		std::shared_ptr<IScene>title = std::make_shared<Title>(&m_Input, &m_Sound);
 		std::shared_ptr<IScene>gameplay = std::make_shared<GamePlay>(&m_Input);
 		std::shared_ptr<IScene>ending = std::make_shared<Ending>(&m_Input);
 		std::shared_ptr<IScene>gameclear = std::make_shared<GameClear>(&m_Input);
@@ -70,6 +71,7 @@ private:
 	//本当はインターフェイス作りたいが変更時面倒
 	Renderer m_Renderer;
 	Input m_Input;
+	Sound m_Sound;
 };
 
 int main()

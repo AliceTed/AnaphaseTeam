@@ -4,10 +4,11 @@
 #include "../../ui/TitleUI.h"
 #include "../SceneChange.h"
 class Input;
+class Sound;
 class Title :public IScene
 {
 public:
-	Title(const Input* _input);
+	Title(const Input* _input, const Sound* _sound);
 	~Title();
 	void initialize();
 	void update(float deltaTime);
@@ -24,5 +25,6 @@ private:
 	SceneChange m_change;
 	TitleUI m_title;
 	const Input* m_Input;
+	const Sound* m_Sound;
 };
 #endif
