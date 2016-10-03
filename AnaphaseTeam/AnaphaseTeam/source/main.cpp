@@ -9,6 +9,7 @@
 #include "../header/scene/each/Title.h"
 #include "../header/scene/each/GamePlay.h"
 #include "../header/scene/each/Ending.h"
+#include "../header/scene/each/GameOver.h"
 
 #include "../header/renderer/Renderer.h"
 #include "../header/device/Input.h"
@@ -36,10 +37,12 @@ private:
 		std::shared_ptr<IScene>title = std::make_shared<Title>(&m_Input);
 		std::shared_ptr<IScene>gameplay = std::make_shared<GamePlay>(&m_Input);
 		std::shared_ptr<IScene>ending = std::make_shared<Ending>(&m_Input);
+		std::shared_ptr<IScene>gameover = std::make_shared<GameOver>(&m_Input);
 		m_SceneManager.add(SceneMode::LOAD, load);
 		m_SceneManager.add(SceneMode::TITLE, title);
 		m_SceneManager.add(SceneMode::GAMEPLAY, gameplay);
 		m_SceneManager.add(SceneMode::ENDING, ending);
+		m_SceneManager.add(SceneMode::GAMEOVER, gameover);
 		m_SceneManager.change(SceneMode::LOAD);
 	}
 	// çXêV

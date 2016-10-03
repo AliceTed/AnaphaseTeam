@@ -1,13 +1,12 @@
-#ifndef _ENDING_H_
-#define _ENDING_H_
+#pragma once
 #include "../IScene.h"
 #include "../SceneChange.h"
 class Input;
-class Ending :public IScene
+class GameOver :public IScene
 {
 public:
-	Ending(const Input* _input);
-	~Ending();
+	GameOver(const Input* _input);
+	~GameOver();
 	void initialize();
 	void update(float _deltaTime);
 	void draw(const Renderer& _renderer);
@@ -20,4 +19,3 @@ private:
 	const Input* m_Input;
 	SceneChange m_change;
 };
-#endif

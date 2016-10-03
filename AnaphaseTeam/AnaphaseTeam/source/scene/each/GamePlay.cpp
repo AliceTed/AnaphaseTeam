@@ -1,4 +1,5 @@
 #include "../../../header/scene/each/GamePlay.h"
+#include "../../../header/scene/each/Ending.h"
 #include "../../../header/renderer/Renderer.h"
 #include "../../../header/device/Input.h"
 GamePlay::GamePlay(const Input* _input)
