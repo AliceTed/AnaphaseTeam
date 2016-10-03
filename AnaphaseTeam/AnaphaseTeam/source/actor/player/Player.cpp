@@ -217,6 +217,12 @@ const bool Player::isGunAttack() const
 {
 	return m_Input->gunTrigger();
 }
+
+const bool Player::isChargeAttack() const
+{
+	return m_Input->chargeState();
+}
+
 const GSvector3 Player::inputDirection() const
 {
 	return m_transform.front();

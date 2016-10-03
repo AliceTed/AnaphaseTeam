@@ -7,7 +7,10 @@ ComboManager::ComboManager()
 	m_nextKey(Combo::End),
 	m_container(),
 	m_isEnd(true),
-	m_isStart(false)
+	m_isStart(false),
+	m_chargeKey(true),
+	chargeTime(0.0f)
+
 {
 }
 
@@ -36,7 +39,7 @@ void ComboManager::create()
 		ANIMATION_ID::ATTACK3,
 		ANIMATION_ID::ATTACK4,
 		ANIMATION_ID::CHARGEATTACK
-		
+
 	};
 	for (unsigned int i = 0; i < size; i++)
 	{
@@ -62,12 +65,23 @@ void ComboManager::reset()
 
 void ComboManager::update(float deltaTime, Player* _player)
 {
-	m_container.at(m_currentKey).update(deltaTime, _player);
+	_player->isChargeAttack();
+	m_chargeKey = _player->isChargeAttack();
 
+	m_container.at(m_currentKey).update(deltaTime, _player);
 	change(deltaTime, _player);
-	if (_player->isAttack()&&_player->isNextAttack(m_container.at(m_currentKey)))
+
+	if (m_chargeKey)
+	{
+		chargeTime++;
+	}
+	if (!m_chargeKey &&  chargeTime >= 4 && _player->isNextAttack(m_container.at(m_currentKey)))
 	{
 		combo(deltaTime);
+	}
+	if (!m_chargeKey)
+	{
+		chargeTime = 0.0f;
 	}
 	m_isStart = false;
 }
@@ -99,18 +113,20 @@ void ComboManager::combo(float deltaTime)
 {
 	if (m_isStart)return;
 	m_nextKey = nextkey();
-	
+
 }
 
 const Combo ComboManager::nextkey() const
 {
 	auto itr = m_container.find(m_currentKey);
 	itr++;
-	if (itr == m_container.find(Combo::ChargeAttack))
+	if (itr == m_container.find(m_currentKey))
 	{
-		//return Combo::End;
 		return Combo::ChargeAttack;
 	}
-	//if()
+	if (itr == m_container.end())
+	{
+		return Combo::End;
+	}
 	return itr->first;
 }

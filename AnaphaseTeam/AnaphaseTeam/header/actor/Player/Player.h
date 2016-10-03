@@ -60,6 +60,7 @@ public://“ü—Í
 	//‹ßÚ—p
 	const bool isAttack()const;
 	const bool isGunAttack()const;
+	const bool isChargeAttack() const;
 	//“ü—Í•ûŒü
 	const GSvector3 inputDirection()const;
 public://ActorŒp³

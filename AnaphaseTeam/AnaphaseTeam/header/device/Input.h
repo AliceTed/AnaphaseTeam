@@ -15,6 +15,7 @@ public:
 	const bool attackTrigger() const;
 	const bool scytheTrigger()const;
 	const bool gunTrigger()const;
+	const bool chargeState() const;
 	const bool avoidTrigger()const;
 	
 	//input?
@@ -32,6 +33,7 @@ public:
 	const bool isJoyTriggerA() const;
 	const bool isJoyTriggerB() const;
 	const bool isJoyTriggerX() const;
+	const bool isJoyStateX() const;
 	const bool isJoyTriggerY() const;
 	const bool isJoyTriggerLB() const;
 	const bool isJoyTriggerRB() const;

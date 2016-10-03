@@ -2,6 +2,7 @@
 #include "AttackPattern.h"
 #include "Attack.h"
 #include "ComboManager.h"
+#include "../device/Input.h"
 #include <unordered_map>
 enum class Combo
 {
@@ -36,4 +37,7 @@ private:
 	Combo m_currentKey;
 	Combo m_nextKey;
 	std::unordered_map<Combo, Attack> m_container;
+	
+	bool m_chargeKey;
+	float chargeTime;
 };

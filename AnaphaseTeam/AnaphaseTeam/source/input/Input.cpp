@@ -55,6 +55,7 @@ const bool Input::attackTrigger() const
 {
 	return scytheTrigger() || gunTrigger();
 }
+
 const bool Input::scytheTrigger() const
 {
 	return isJoyTriggerX();
@@ -68,6 +69,11 @@ const bool Input::gunTrigger() const
 const bool Input::avoidTrigger() const
 {
 	return isJoyTriggerB();
+}
+
+const bool Input::chargeState() const
+{
+	return isJoyStateX();
 }
 
 
@@ -102,9 +108,16 @@ const bool Input::isJoyTriggerB() const
 	return !!gsGetJoyTrigger(0, GJOY_BUTTON_2);
 }
 
+
+
 const bool Input::isJoyTriggerX() const
 {
 	return !!gsGetJoyTrigger(0, GJOY_BUTTON_3);
+}
+
+const bool Input::isJoyStateX() const
+{
+	return gsGetJoyState(0, GJOY_BUTTON_3);
 }
 
 const bool Input::isJoyTriggerY() const
