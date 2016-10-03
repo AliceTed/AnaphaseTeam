@@ -142,11 +142,11 @@
     <Filter Include="ヘッダー ファイル\attack">
       <UniqueIdentifier>{ff5ecd5d-33ad-4631-ac2d-83da52129794}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ヘッダー ファイル\enemy">
-      <UniqueIdentifier>{4f9e3526-2b14-48c0-ac04-52553c8a6b20}</UniqueIdentifier>
+    <Filter Include="ヘッダー ファイル\actor\Enemy">
+      <UniqueIdentifier>{e243ef29-ddaf-462f-a8f6-12850c1685bf}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ソース ファイル\enemy">
-      <UniqueIdentifier>{8258c6dd-af9a-4b47-b4fd-3f0a6a92f4fa}</UniqueIdentifier>
+    <Filter Include="ソース ファイル\actor\Enemy">
+      <UniqueIdentifier>{323bfc0e-052b-4f87-83eb-863867de3785}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -417,12 +417,6 @@
     <ClInclude Include="header\actionstate\IActionState.h">
       <Filter>ヘッダー ファイル\actionState</Filter>
     </ClInclude>
-    <ClInclude Include="header\enemy\BreakPoint.h">
-      <Filter>ヘッダー ファイル\enemy</Filter>
-    </ClInclude>
-    <ClInclude Include="header\enemy\Core.h">
-      <Filter>ヘッダー ファイル\enemy</Filter>
-    </ClInclude>
     <ClInclude Include="header\camera\ACalc.h">
       <Filter>ヘッダー ファイル\camera</Filter>
     </ClInclude>
@@ -452,6 +446,15 @@
     </ClInclude>
     <ClInclude Include="header\collision\CollisionManager.h">
       <Filter>ヘッダー ファイル\collision</Filter>
+    </ClInclude>
+    <ClInclude Include="header\actor\Enemy\Enemy.h">
+      <Filter>ヘッダー ファイル\actor\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="header\actor\Enemy\BreakPoint.h">
+      <Filter>ヘッダー ファイル\actor\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="header\actor\Enemy\Core.h">
+      <Filter>ヘッダー ファイル\actor\Enemy</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -629,12 +632,6 @@
     <ClCompile Include="source\subAction\JumpControl.cpp">
       <Filter>ソース ファイル\subAction</Filter>
     </ClCompile>
-    <ClCompile Include="source\enemy\BreakPoint.cpp">
-      <Filter>ソース ファイル\enemy</Filter>
-    </ClCompile>
-    <ClCompile Include="source\enemy\Core.cpp">
-      <Filter>ソース ファイル\enemy</Filter>
-    </ClCompile>
     <ClCompile Include="source\camera\ACalc.cpp">
       <Filter>ソース ファイル\camera</Filter>
     </ClCompile>
@@ -661,6 +658,15 @@
     </ClCompile>
     <ClCompile Include="source\collision\CollisionManager.cpp">
       <Filter>ソース ファイル\collision</Filter>
+    </ClCompile>
+    <ClCompile Include="source\actor\Enemy\Enemy.cpp">
+      <Filter>ソース ファイル\actor\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="source\actor\Enemy\BreakPoint.cpp">
+      <Filter>ソース ファイル\actor\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="source\actor\Enemy\Core.cpp">
+      <Filter>ソース ファイル\actor\Enemy</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

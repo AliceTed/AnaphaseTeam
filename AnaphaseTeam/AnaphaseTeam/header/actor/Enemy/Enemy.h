@@ -1,29 +1,32 @@
 #pragma once
-#include "Actor.h"
 
 #include <vector>
-#include "../actor/Enemy/BreakPoint.h"
-#include "../collision/CollisionManager.h"
+#include "../Actor.h"
+#include "../Enemy/BreakPoint.h"
+#include "../../collision/CollisionManager.h"
+using namespace std;
+
 class Player;
 class AttackStatus;
 class CameraController;
-class TestActor:public Actor
+
+class Enemy : public Actor
 {
 public:
-	TestActor();
-	~TestActor();
+	Enemy();
+	~Enemy();
 	void initialize();
 	void update(float deltatime);
 	void draw(const Renderer& _renderer, const Camera& _camera);
-	void look_at(CameraController* _camera,Player* _actor);
+	void look_at(CameraController* _camera, Player* _player);
 	void addCollisionGroup(CollisionManager*  _manager);
 private:
 	void createPoint();
-	std::vector<GSvector3> getAnimEachPos();
+	vector<GSvector3> getAnimEachPos();
 private:
-	std::vector<BreakPoint> m_points;
+	vector<BreakPoint> m_points;
 	Sphere m_core;
 	GScolor m_corecolor;
 	Group_Ptr m_group;
-};
 
+};

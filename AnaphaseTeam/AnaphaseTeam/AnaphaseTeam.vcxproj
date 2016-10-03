@@ -147,6 +147,9 @@
     <ClCompile Include="source\actionstate\MoveState.cpp" />
     <ClCompile Include="source\actionstate\StandState.cpp" />
     <ClCompile Include="source\actor\Actor.cpp" />
+    <ClCompile Include="source\actor\Enemy\BreakPoint.cpp" />
+    <ClCompile Include="source\actor\Enemy\Core.cpp" />
+    <ClCompile Include="source\actor\Enemy\Enemy.cpp" />
     <ClCompile Include="source\actor\player\Status.cpp" />
     <ClCompile Include="source\attack\AttackManager.cpp" />
     <ClCompile Include="source\attack\AttackStatus.cpp" />
@@ -166,8 +169,6 @@
     <ClCompile Include="source\collision\CollisionActor.cpp" />
     <ClCompile Include="source\collision\CollisionGroup.cpp" />
     <ClCompile Include="source\collision\CollisionManager.cpp" />
-    <ClCompile Include="source\enemy\BreakPoint.cpp" />
-    <ClCompile Include="source\enemy\Core.cpp" />
     <ClCompile Include="source\subAction\JumpControl.cpp" />
     <ClCompile Include="source\airState\PreparationState.cpp" />
     <ClCompile Include="source\airState\RestrictionFall.cpp" />
@@ -219,6 +220,9 @@
     <ClInclude Include="header\actor\Actor.h" />
     <ClInclude Include="header\actor\Actor_Tag.h" />
     <ClInclude Include="header\actor\AttackActor.h" />
+    <ClInclude Include="header\actor\Enemy\BreakPoint.h" />
+    <ClInclude Include="header\actor\Enemy\Core.h" />
+    <ClInclude Include="header\actor\Enemy\Enemy.h" />
     <ClInclude Include="header\actor\Player\Status.h" />
     <ClInclude Include="header\attack\AttackManager.h" />
     <ClInclude Include="header\attack\AttackPattern.h" />
@@ -243,8 +247,6 @@
     <ClInclude Include="header\collision\CollisionActorType.h" />
     <ClInclude Include="header\collision\CollisionGroup.h" />
     <ClInclude Include="header\collision\CollisionManager.h" />
-    <ClInclude Include="header\enemy\BreakPoint.h" />
-    <ClInclude Include="header\enemy\Core.h" />
     <ClInclude Include="header\subAction\JumpControl.h" />
     <ClInclude Include="header\airstate\PreparationState.h" />
     <ClInclude Include="header\airstate\RestrictionFall.h" />

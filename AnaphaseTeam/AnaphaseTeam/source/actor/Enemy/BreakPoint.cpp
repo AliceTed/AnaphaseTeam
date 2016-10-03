@@ -1,7 +1,8 @@
-#include "../../header/enemy/BreakPoint.h"
-#include "../../header/collision/CollisionGroup.h"
-#include "../../header/actor/TestActor.h"
-#include "../../header/actor/Player/Player.h"
+#include "../../../header/actor/Enemy/BreakPoint.h"
+#include "../../../header/collision/CollisionGroup.h"
+#include "../../../header/actor/Enemy/Enemy.h"
+#include "../../../header/actor/Player/Player.h"
+
 BreakPoint::BreakPoint(CollisionActorType _type, Element _element)
 	:m_color(1, 1, 1, 1),
 	m_type(_type),
@@ -17,7 +18,7 @@ void BreakPoint::update(float deltaTime,std::vector<GSvector3>& _position)
 {
 	m_position=_position.at(static_cast<unsigned int>(m_element));
 }
-void BreakPoint::createCollision(TestActor * _parent, Group_Ptr& _group)
+void BreakPoint::createCollision(Enemy * _parent, Group_Ptr& _group)
 {
 	Shape_Ptr shape = std::make_shared<Sphere>(GSvector3(0, 1, 0), 1);
 	Collision_Ptr obj = std::make_shared<CollisionActor>(shape, m_type);

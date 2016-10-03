@@ -34,7 +34,7 @@ void TestActor::initialize()
 	m_points.clear();
 	createPoint();
 	m_corecolor = GScolor(1, 1, 1, 1);
-	std::for_each(m_points.begin(), m_points.end(), [&](BreakPoint& _point) {_point.createCollision(this,m_group);});
+	//std::for_each(m_points.begin(), m_points.end(), [&](BreakPoint& _point) {_point.createCollision(this,m_group);});
 }
 
 void TestActor::update(float deltatime)
