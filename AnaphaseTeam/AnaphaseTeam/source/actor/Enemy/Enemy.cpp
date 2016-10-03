@@ -27,7 +27,7 @@ Enemy::~Enemy()
 void Enemy::initialize()
 {
 	Actor::initialize();
-	m_animatorOne.changeAnimation(ANIMATION_ID::STAND, true);
+	m_animatorOne.changeAnimation((ANIMATION_ID)0, true);
 	m_points.clear();
 	createPoint();
 	m_corecolor = GScolor(1, 1, 1, 1);
@@ -36,9 +36,12 @@ void Enemy::initialize()
 
 void Enemy::update(float deltatime)
 {
-	vector<GSvector3> pos = getAnimEachPos();
+	//m_animatorOne.update(deltatime);
+	pos = getAnimEachPos();
 	m_core.transfer(pos.at(static_cast<unsigned int>(Element::HEAD)));
 	for_each(m_points.begin(), m_points.end(), [&](BreakPoint& _point) {_point.update(deltatime, pos); });
+
+	enemyAttack();
 }
 
 void Enemy::draw(const Renderer& _renderer, const Camera& _camera)
@@ -97,4 +100,19 @@ vector<GSvector3> Enemy::getAnimEachPos()
 	delete[] mat;
 	delete[] animmat;
 	return res;
+}
+
+void Enemy::enemyAttack()
+{
+	if (gsGetKeyTrigger(GKEY_E))
+	{
+		m_animatorOne.changeAnimation((ANIMATION_ID)0);
+
+		Shape_Ptr shape = std::make_shared<Sphere>(GSvector3(0, 1, 1), 1);
+		Collision_Ptr actor = std::make_shared<CollisionActor>(shape, CollisionActorType::ENEMY_ATTACK);
+		actor->set_update([&](float deltaTime, Shape_Ptr _shape) { _shape->transfer(pos.at(static_cast<GSuint>(63))); });
+		actor->set_dead([&]()->bool {return m_animatorOne.isEndCurrentAnimation(); });
+		actor->set_draw([](const Renderer& _renderer, Shape_Ptr _shape) { _shape->draw(_renderer); });
+		m_group->add(actor);
+	}
 }

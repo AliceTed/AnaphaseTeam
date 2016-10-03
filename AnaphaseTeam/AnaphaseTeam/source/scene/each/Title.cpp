@@ -53,7 +53,8 @@ const bool Title::isExit() const
 }
 void Title::decision(Select _select)
 {
-	if (!m_Input->jumpTrigger())return;
+	//if (!m_Input->jumpTrigger())return;
+	if (!m_Input->gunTrigger())return;
 	switch (_select)
 	{
 	case Select::GAMESTART:

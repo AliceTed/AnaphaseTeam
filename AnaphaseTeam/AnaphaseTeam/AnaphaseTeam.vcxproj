@@ -158,7 +158,6 @@
     <ClCompile Include="source\attack\Gun.cpp" />
     <ClCompile Include="source\attack\Scythe.cpp" />
     <ClCompile Include="source\actor\player\Player.cpp" />
-    <ClCompile Include="source\actor\TestActor.cpp" />
     <ClCompile Include="source\airState\FirstStep.cpp" />
     <ClCompile Include="source\airState\GroundState.cpp" />
     <ClCompile Include="source\camera\ACalc.cpp" />
@@ -234,7 +233,6 @@
     <ClInclude Include="header\attack\Scythe.h" />
     <ClInclude Include="header\actor\ICharacter.h" />
     <ClInclude Include="header\actor\Player\Player.h" />
-    <ClInclude Include="header\actor\TestActor.h" />
     <ClInclude Include="header\airstate\FirstStep.h" />
     <ClInclude Include="header\airstate\GroundState.h" />
     <ClInclude Include="header\airstate\IAirState.h" />

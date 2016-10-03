@@ -6,7 +6,7 @@
 * @date 2016/8/26
 */
 #include <gslib.h>
-class TestActor;
+class Enemy;
 class Player;
 class AttackStatus
 {
@@ -15,7 +15,7 @@ public:
 	~AttackStatus();
 
 	//ˆĞ—Í‚Æ‚Á”ò‚Ñ‚ğ“n‚·
-	void giveDamage(Player* _player,TestActor* _other);
+	void giveDamage(Player* _player, Enemy* _other);
 private:
 	//!UŒ‚—Í
 	float m_Power;

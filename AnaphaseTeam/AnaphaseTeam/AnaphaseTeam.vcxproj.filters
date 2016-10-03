@@ -276,9 +276,6 @@
     <ClInclude Include="header\actor\ICharacter.h">
       <Filter>ヘッダー ファイル\actor</Filter>
     </ClInclude>
-    <ClInclude Include="header\actor\TestActor.h">
-      <Filter>ヘッダー ファイル\actor</Filter>
-    </ClInclude>
     <ClInclude Include="header\map\Map.h">
       <Filter>ヘッダー ファイル\map</Filter>
     </ClInclude>
@@ -523,9 +520,6 @@
     </ClCompile>
     <ClCompile Include="source\convenient\Timer.cpp">
       <Filter>ソース ファイル\convenient</Filter>
-    </ClCompile>
-    <ClCompile Include="source\actor\TestActor.cpp">
-      <Filter>ソース ファイル\actor</Filter>
     </ClCompile>
     <ClCompile Include="source\actor\player\Player.cpp">
       <Filter>ソース ファイル\actor\Player</Filter>

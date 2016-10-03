@@ -10,7 +10,6 @@
 #include "../../actor/Player/Player.h"
 #include "../../actor/Enemy/Enemy.h"
 
-#include "../../actor/TestActor.h"
 #include "../../camera/CameraController.h"
 #include "../SceneChange.h"
 class Input;
@@ -38,6 +37,5 @@ private:
 	CollisionManager collision;
 	Player m_player;
 	Enemy m_boss;
-	//TestActor m_boss;
 };
 #endif

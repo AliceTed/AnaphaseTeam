@@ -26,4 +26,7 @@ private:
 	Element m_element;
 	GScolor m_color;
 	CollisionActorType m_type;
+
+	Shape_Ptr shape;
+	Collision_Ptr obj;
 };

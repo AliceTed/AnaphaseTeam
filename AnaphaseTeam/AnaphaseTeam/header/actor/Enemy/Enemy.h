@@ -23,10 +23,14 @@ public:
 private:
 	void createPoint();
 	vector<GSvector3> getAnimEachPos();
+
+	void enemyAttack();
 private:
 	vector<BreakPoint> m_points;
 	Sphere m_core;
 	GScolor m_corecolor;
 	Group_Ptr m_group;
+
+	vector<GSvector3> pos;
 
 };
