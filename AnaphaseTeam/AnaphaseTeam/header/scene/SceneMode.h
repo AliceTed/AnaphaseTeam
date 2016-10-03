@@ -7,4 +7,5 @@ enum class SceneMode
 	OPTION,
 	GAMEPLAY,
 	ENDING,
+	GAMECLEAR
 };

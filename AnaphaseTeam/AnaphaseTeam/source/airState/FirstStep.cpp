@@ -11,7 +11,9 @@
 #include "../../header/actor/Player/Player.h"
 #include "../../header/math/Calculate.h"
 #include "../../header/subAction/JumpControl.h"
-const float FirstStep::FirstStepPow = 0.5f;
+
+#include "../../header/actionstate/AvoidState.h"
+const float FirstStep::FirstStepPow = 0.6f;
 
 FirstStep::FirstStep()
 {
@@ -33,6 +35,7 @@ void FirstStep::airAction(JumpControl* _control, Player* _player, float deltaTim
 	_player->jumpMotion(*_control,ANIMATION_ID::JUMPUP);
 	_player->moving(deltaTime,false);
 	_player->control();
+	_player->avoidStart();
 	_control->jumping(deltaTime, _player);
 	change(_control, _player);
 }
@@ -55,10 +58,6 @@ AirAction_Ptr FirstStep::next(const Player * _player)const
 	{
 		return std::make_shared<SecondStep>();
 	}
-
-	if (_player->isJumpAttack())
-	{
-		return std::make_shared<RestrictionFall>();
-	}
+	
 	return nullptr;
 }

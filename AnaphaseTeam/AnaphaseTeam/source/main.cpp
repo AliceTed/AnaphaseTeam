@@ -11,6 +11,7 @@
 #include "../header/scene/each/Title.h"
 #include "../header/scene/each/GamePlay.h"
 #include "../header/scene/each/Ending.h"
+#include "../header/scene/each/GameClear.h"
 
 #include "../header/renderer/Renderer.h"
 #include "../header/device/GameDevice.h"
@@ -39,12 +40,14 @@ private:
 		std::shared_ptr<IScene>option = std::make_shared<Option>(&m_device);
 		std::shared_ptr<IScene>gameplay = std::make_shared<GamePlay>(&m_device);
 		std::shared_ptr<IScene>ending = std::make_shared<Ending>(&m_device);
+		std::shared_ptr<IScene>gameclaer = std::make_shared<GameClear>(&m_device);
 		m_SceneManager.add(SceneMode::LOAD, load);
 		m_SceneManager.add(SceneMode::OPENING, opening);
 		m_SceneManager.add(SceneMode::TITLE, title);
 		m_SceneManager.add(SceneMode::OPTION, option);
 		m_SceneManager.add(SceneMode::GAMEPLAY, gameplay);
 		m_SceneManager.add(SceneMode::ENDING, ending);
+		m_SceneManager.add(SceneMode::GAMECLEAR, gameclaer);
 		m_SceneManager.change(SceneMode::LOAD);
 	}
 	// çXêV

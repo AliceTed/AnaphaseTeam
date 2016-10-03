@@ -22,9 +22,9 @@ void subActionManager::initialize(SubActionType _type)
 	m_current = _type;
 }
 
-void subActionManager::update(float deltaTime)
+void subActionManager::update(float deltaTime, SubActionType _type)
 {
-	switch (m_current)
+	switch (_type)
 	{
 	case SubActionType::JUMP:
 		m_jump.update(deltaTime);

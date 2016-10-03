@@ -148,6 +148,12 @@
     <Filter Include="ソース ファイル\enemy">
       <UniqueIdentifier>{8258c6dd-af9a-4b47-b4fd-3f0a6a92f4fa}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\sound">
+      <UniqueIdentifier>{54112614-80e8-4287-a556-b1104c893424}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\sound">
+      <UniqueIdentifier>{0987a836-559e-45cd-8830-af758ae73437}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Util\BasicShapes.h">

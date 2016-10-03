@@ -86,7 +86,7 @@ void Data::LoadSE::operator()(ID _id, const std::string & _name, int _max, GWAVE
 	LoadError error;
 	CastID cast;
 	PathConnect connect;
-	error(!!gsLoadSE(cast(_id), connect(_name, _path, _extension).c_str(), _max, flag), [&_name] { ErrorMessage mes; mes(_name, "SE");});
+	error(!!gsLoadSE(cast(_id), connect(_name, _path, _extension).c_str(), _max, _flag), [&_name] { ErrorMessage mes; mes(_name, "SE");});
 }
 template<class ID>
 void Data::LoadBGM::operator()(ID _id, const std::string & _name, const std::string & _path, const std::string & _extension)

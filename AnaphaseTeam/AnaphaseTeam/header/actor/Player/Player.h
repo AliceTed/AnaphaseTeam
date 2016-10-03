@@ -51,12 +51,18 @@ public:
 
 	void look_at(CameraController* _camera, GSvector3* _target);
 	void buildup();
+
+	void avoidStart();
+	void subActionStart();
+	void moveStart();
 public:
 	const bool isGround() const;
 	const bool isJumpAttack()const;
 	const bool isEndAttack() const;
+	const bool isAnimationEnd() const;
 public://ì¸óÕ
 	const bool isJump() const;
+	const bool isAvoid() const;
 	//ãﬂê⁄óp
 	const bool isAttack()const;
 	const bool isGunAttack()const;
@@ -76,7 +82,6 @@ public://ICharacteré¿ëï
 	void jump(float deltaTime);
 	void avoid(float deltaTime);
 private:
-	void subActionStart();
 	void moveMotionChange();
 	void rotate(float deltaTime,Transform& _transform);
 	void movement(float deltaTime, float _speed = MOVESPEED);
