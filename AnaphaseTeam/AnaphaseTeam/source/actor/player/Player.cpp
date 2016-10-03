@@ -88,6 +88,7 @@ void Player::stand(float deltaTime)
 
 void Player::attack(float deltaTime)
 {
+	m_animatorOne.getMatrix();
 	m_attackManager.update(deltaTime, this);
 	if (m_attackManager.isEnd())
 	{
