@@ -9,11 +9,9 @@ enum class Combo
 	Second,
 	Third,
 	Four,
-
-	End
+	End,
+	ChargeAttack
 };
-
-
 
 class AnimatorOne;
 class ComboManager

@@ -20,20 +20,23 @@ void ComboManager::create()
 	m_container.clear();
 
 	Shape_Ptr sphere = std::make_shared<Sphere>(GSvector3(0, 0, 0), 0);
-	const unsigned int size = 4;
+	const unsigned int size = 5;
 	Combo combo[size] =
 	{
 		Combo::First,
 		Combo::Second,
 		Combo::Third,
-		Combo::Four
+		Combo::Four,
+		Combo::ChargeAttack
 	};
 	ANIMATION_ID animation[size] =
 	{
 		ANIMATION_ID::ATTACK,
 		ANIMATION_ID::ATTACK2,
 		ANIMATION_ID::ATTACK3,
-		ANIMATION_ID::ATTACK4
+		ANIMATION_ID::ATTACK4,
+		ANIMATION_ID::CHARGEATTACK
+		
 	};
 	for (unsigned int i = 0; i < size; i++)
 	{
@@ -96,15 +99,18 @@ void ComboManager::combo(float deltaTime)
 {
 	if (m_isStart)return;
 	m_nextKey = nextkey();
+	
 }
 
 const Combo ComboManager::nextkey() const
 {
 	auto itr = m_container.find(m_currentKey);
 	itr++;
-	if (itr == m_container.end())
+	if (itr == m_container.find(Combo::ChargeAttack))
 	{
-		return Combo::End;
+		//return Combo::End;
+		return Combo::ChargeAttack;
 	}
+	//if()
 	return itr->first;
 }
