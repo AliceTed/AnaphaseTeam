@@ -1,6 +1,7 @@
 #include "../../../header/scene/each/Title.h"
 #include "../../../header/renderer/Renderer.h"
 #include "../../../header/device/GameDevice.h"
+#include "../../../header/data/BGM_ID.h"
 Title::Title(GameDevice* _device)
 	:m_device(_device),
 	m_IsExit(false),
@@ -22,6 +23,7 @@ void Title::initialize()
 }
 void Title::update(float deltaTime)
 {
+	m_device->sound().playBGM(BGM_ID::TITLE);
 	if (m_change.update(deltaTime))return;
 	m_title.update(deltaTime, *this);
 }
