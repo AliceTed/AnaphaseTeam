@@ -18,5 +18,9 @@ public://ƒAƒNƒVƒ‡ƒ“
 public:
 	virtual const bool up() = 0;
 	virtual const bool down() = 0;
+	virtual const bool right() = 0;
+	virtual const bool left() = 0;
 	virtual const bool exit() = 0;
+public://debug
+	virtual const bool reset() = 0;
 };

@@ -59,7 +59,22 @@ const bool InputPattern_B::down()
 	return false;
 }
 
+const bool InputPattern_B::right()
+{
+	return false;
+}
+
+const bool InputPattern_B::left()
+{
+	return false;
+}
+
 const bool InputPattern_B::exit()
+{
+	return false;
+}
+
+const bool InputPattern_B::reset()
 {
 	return false;
 }

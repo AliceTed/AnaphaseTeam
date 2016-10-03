@@ -167,7 +167,6 @@
     <ClCompile Include="source\collision\CollisionGroup.cpp" />
     <ClCompile Include="source\collision\CollisionManager.cpp" />
     <ClCompile Include="source\device\GameDevice.cpp" />
-    <ClCompile Include="source\device\InputContorol.cpp" />
     <ClCompile Include="source\enemy\BreakPoint.cpp" />
     <ClCompile Include="source\enemy\Core.cpp" />
     <ClCompile Include="source\enemy\Lock_on.cpp" />
@@ -213,6 +212,7 @@
     <ClCompile Include="source\ui\Fade.cpp" />
     <ClCompile Include="source\ui\ScaleImage.cpp" />
     <ClCompile Include="source\ui\SelectUI.cpp" />
+    <ClCompile Include="source\ui\SlideImage.cpp" />
     <ClCompile Include="source\ui\TitleUI.cpp" />
     <ClCompile Include="Util\BasicShapes.cpp" />
   </ItemGroup>
@@ -252,7 +252,6 @@
     <ClInclude Include="header\collision\CollisionManager.h" />
     <ClInclude Include="header\device\GameDevice.h" />
     <ClInclude Include="header\device\IInputPattern.h" />
-    <ClInclude Include="header\device\InputContorol.h" />
     <ClInclude Include="header\device\InputPattern_A.h" />
     <ClInclude Include="header\device\InputPattern_B.h" />
     <ClInclude Include="header\enemy\BreakPoint.h" />
@@ -320,6 +319,7 @@
     <ClInclude Include="header\ui\Fade.h" />
     <ClInclude Include="header\ui\ScaleImage.h" />
     <ClInclude Include="header\ui\SelectUI.h" />
+    <ClInclude Include="header\ui\SlideImage.h" />
     <ClInclude Include="header\ui\TitleUI.h" />
     <ClInclude Include="Util\BasicShapes.h" />
     <ClInclude Include="Util\EffectGL.h" />

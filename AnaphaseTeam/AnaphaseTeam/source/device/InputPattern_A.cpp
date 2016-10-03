@@ -59,7 +59,22 @@ const bool InputPattern_A::down()
 	return m_input->isJoyTriggerDown();
 }
 
+const bool InputPattern_A::right()
+{
+	return m_input->isJoyTriggerRight();
+}
+
+const bool InputPattern_A::left()
+{
+	return m_input->isJoyTriggerLeft();
+}
+
 const bool InputPattern_A::exit()
 {
 	return m_input->isJoyTriggerBACK()||m_input->isEscapeTrigger();
+}
+
+const bool InputPattern_A::reset()
+{
+	return m_input->isJoyTriggerSTART();
 }

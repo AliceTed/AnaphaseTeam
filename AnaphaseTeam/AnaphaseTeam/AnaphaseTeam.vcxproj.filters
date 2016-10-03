@@ -468,14 +468,14 @@
     <ClInclude Include="header\device\InputPattern_B.h">
       <Filter>ヘッダー ファイル\device</Filter>
     </ClInclude>
-    <ClInclude Include="header\device\InputContorol.h">
-      <Filter>ヘッダー ファイル\device</Filter>
-    </ClInclude>
     <ClInclude Include="header\device\GameDevice.h">
       <Filter>ヘッダー ファイル\device</Filter>
     </ClInclude>
     <ClInclude Include="header\scene\each\Opening.h">
       <Filter>ヘッダー ファイル\scene\each</Filter>
+    </ClInclude>
+    <ClInclude Include="header\ui\SlideImage.h">
+      <Filter>ヘッダー ファイル\ui</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -698,14 +698,14 @@
     <ClCompile Include="source\device\InputPattern_B.cpp">
       <Filter>ソース ファイル\device</Filter>
     </ClCompile>
-    <ClCompile Include="source\device\InputContorol.cpp">
-      <Filter>ソース ファイル\device</Filter>
-    </ClCompile>
     <ClCompile Include="source\device\GameDevice.cpp">
       <Filter>ソース ファイル\device</Filter>
     </ClCompile>
     <ClCompile Include="source\scene\each\Opening.cpp">
       <Filter>ソース ファイル\scene\each</Filter>
+    </ClCompile>
+    <ClCompile Include="source\ui\SlideImage.cpp">
+      <Filter>ソース ファイル\ui</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -21,7 +21,11 @@ public://ƒAƒNƒVƒ‡ƒ“
 public:
 	const bool up();
 	const bool down();
+	const bool right();
+	const bool left();
 	const bool exit();
+public:
+	const bool reset();
 private:
 	Input* m_input;
 };

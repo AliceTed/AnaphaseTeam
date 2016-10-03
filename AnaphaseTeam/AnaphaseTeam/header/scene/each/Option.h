@@ -1,6 +1,8 @@
 #pragma once
 #include "../SceneChange.h"
 #include "../IScene.h"
+#include "../../ui/SlideImage.h"
+#include <vector>
 class GameDevice;
 class Option :public IScene
 {
@@ -17,4 +19,5 @@ public:
 private:
 	GameDevice* m_device;
 	SceneChange m_change;
+	std::vector<SlideImage> m_image;
 };

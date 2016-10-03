@@ -9,9 +9,11 @@ public:
 	GameDevice();
 	~GameDevice();
 	Input_Ptr& input();
+
 private:
 	//!input‹@”\
 	Input m_input;
 	//!input‚Ìpattern
 	Input_Ptr m_pattern;
+
 };
