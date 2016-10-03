@@ -3,6 +3,7 @@
 #include "../../../header/device/Input.h"
 #include "../../../header/sound/Sound.h"
 #include "../../../header/data/SE_ID.h"
+#include "../../../header/data/BGM_ID.h"
 
 Title::Title(const Input* _input, const Sound* _sound)
 	:m_Input(_input),
@@ -26,7 +27,8 @@ void Title::initialize()
 }
 void Title::update(float deltaTime)
 {
-	m_Sound->playSE(SE_ID::TITLE);
+	//m_Sound->playBGM(BGM_ID::TITLE);
+	
 	if (m_change.update(deltaTime))return;
 	m_title.update(deltaTime, *this);
 }
@@ -39,6 +41,7 @@ void Title::draw(const Renderer & renderer)
 
 void Title::finish()
 {
+	m_Sound->stopSE(SE_ID::TITLE);
 	m_title.finish();
 }
 
@@ -76,10 +79,12 @@ void Title::select(SelectUI & _select)
 {
 	if (m_Input->up())
 	{
+		m_Sound->playSE(SE_ID::TITLE);
 		_select.previous();
 	}
 	if (m_Input->down())
 	{
+		m_Sound->playSE(SE_ID::TITLE);
 		_select.next();
 	}
 }

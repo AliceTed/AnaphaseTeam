@@ -67,7 +67,7 @@ void Load::loadSound()
 	loadse(SE_ID::TITLE,"down",2);
 
 	Data::LoadBGM loadbgm;
-	//loadbgm(BGM_ID::TITLE, "title");
+	loadbgm(BGM_ID::TITLE, "a");
 }
 
 void Load::loadModel()

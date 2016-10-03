@@ -8,7 +8,7 @@ public:
 	Sound();
 	~Sound();
 	const void playBGM(BGM_ID _bgmID) const;
-	const void stopBGM(BGM_ID _bgmID) const;
+	const void stopBGM() const;
 	const void playSE(SE_ID _seID) const;
 	const void stopSE(SE_ID _seID) const;
 };
