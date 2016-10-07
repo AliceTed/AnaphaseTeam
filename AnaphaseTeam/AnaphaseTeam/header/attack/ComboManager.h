@@ -27,8 +27,8 @@ public:
 private:	
 	void create();
 	void change(float deltaTime, Player* _player);
-	void combo(float deltaTime);
-	const Combo nextkey()const;
+	void combo(float deltaTime,Player* _player);
+	const Combo nextkey() const;
 	const bool isCurrentEnd(Player* _player) const;
 private:
 	//コンボがスタートしたフレームかどうか
@@ -39,5 +39,7 @@ private:
 	std::unordered_map<Combo, Attack> m_container;
 	
 	bool m_chargeKey;
-	float chargeTime;
+	bool m_isKeyRelease;
+	float m_chargeTime;
+	float 
 };

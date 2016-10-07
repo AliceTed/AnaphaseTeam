@@ -8,8 +8,9 @@ ComboManager::ComboManager()
 	m_container(),
 	m_isEnd(true),
 	m_isStart(false),
-	m_chargeKey(true),
-	chargeTime(0.0f)
+	m_chargeKey(false),
+	m_isKeyRelease(false),
+	m_chargeTime(0.0f)
 
 {
 }
@@ -59,30 +60,32 @@ void ComboManager::reset()
 {
 	m_isEnd = false;
 	m_isStart = true;
+	m_chargeTime = 0;
+	m_chargeKey = false;
+	m_isKeyRelease = false;
 	m_currentKey = Combo::First;
 	m_nextKey = Combo::End;
 }
 
 void ComboManager::update(float deltaTime, Player* _player)
 {
-	_player->isChargeAttack();
-	m_chargeKey = _player->isChargeAttack();
+	if (m_isKeyRelease == false)
+	{
+		m_isKeyRelease = _player->isChargeAttack() == false;
+	}
+
 
 	m_container.at(m_currentKey).update(deltaTime, _player);
-	change(deltaTime, _player);
 
-	if (m_chargeKey)
+	if (_player->isChargeAttack())
 	{
-		chargeTime++;
+		m_chargeTime++;
 	}
-	if (!m_chargeKey &&  chargeTime >= 4 && _player->isNextAttack(m_container.at(m_currentKey)))
+	if (_player->isNextAttack(m_container.at(m_currentKey)))
 	{
-		combo(deltaTime);
+		combo(deltaTime, _player);
 	}
-	if (!m_chargeKey)
-	{
-		chargeTime = 0.0f;
-	}
+	change(deltaTime, _player);
 	m_isStart = false;
 }
 
@@ -93,13 +96,12 @@ const bool ComboManager::isEnd() const
 
 const bool ComboManager::isCurrentEnd(Player* _player) const
 {
-	return  _player->isEndAttackMotion(m_container.at(m_currentKey));
+	return  m_isKeyRelease&&_player->isEndAttackMotion(m_container.at(m_currentKey));
 }
 
 void ComboManager::change(float deltaTime, Player * _player)
 {
 	if (!isCurrentEnd(_player))return;
-
 	if (m_nextKey == Combo::End)
 	{
 		m_isEnd = true;
@@ -107,22 +109,36 @@ void ComboManager::change(float deltaTime, Player * _player)
 	}
 	m_currentKey = m_nextKey;
 	m_nextKey = Combo::End;
+	m_isKeyRelease = false;
+	m_chargeKey = false;
+	m_chargeTime = 0;
 }
 
-void ComboManager::combo(float deltaTime)
+void ComboManager::combo(float deltaTime, Player* _player)
 {
 	if (m_isStart)return;
-	m_nextKey = nextkey();
+	if (_player->isAttack())
+	{
+		m_nextKey = nextkey();
+		m_chargeKey = true;
+		return;
+	}
+	if (m_chargeKey == true)return;
+	if (m_isKeyRelease&& m_chargeTime >= 20.0f)
+	{
+		m_nextKey = Combo::ChargeAttack;
+	}
 
 }
+
 
 const Combo ComboManager::nextkey() const
 {
 	auto itr = m_container.find(m_currentKey);
 	itr++;
-	if (itr == m_container.find(m_currentKey))
+	if (itr == m_container.find(Combo::ChargeAttack))
 	{
-		return Combo::ChargeAttack;
+		return Combo::End;
 	}
 	if (itr == m_container.end())
 	{

@@ -32,7 +32,7 @@ const bool Attack::isNextAttack(const AnimatorOne & _animator) const
 {
 	float end = _animator.getCurrentAnimationEndTime();
 	float current = _animator.getCurrentAnimationTime();
-	float limit = 20.0f;
+	float limit = 25.0f;
 	return (end- limit)<=current;
 }
 
