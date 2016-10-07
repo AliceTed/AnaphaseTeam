@@ -40,7 +40,7 @@ public:
 			return;
 		m_currentAnimation->initialize();
 	}
-	//	void changeAnimation(ANIMATION_ID _animation, bool _isLoop = false, bool _isNotInit = false, float _animationSpeed = 1.0f);
+//	void changeAnimation(ANIMATION_ID _animation, bool _isLoop = false, bool _isNotInit = false, float _animationSpeed = 1.0f);
 
 	/**
 	* @fn

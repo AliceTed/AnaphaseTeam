@@ -2,7 +2,7 @@
 #include "../../header/data/CastID.h"
 #include <gslib.h>
 AnimatorOne::AnimatorOne(const MODEL_ID _modelID) :
-	m_modelID(_modelID), m_currentAnimation(nullptr), m_matrix(), m_mat()
+	m_modelID(_modelID), m_currentAnimation(nullptr), m_matrix(),m_mat()
 {}
 AnimatorOne::~AnimatorOne()
 {}
@@ -23,18 +23,18 @@ void AnimatorOne::bind()const
 }
 /*void AnimatorOne::changeAnimation(ANIMATION_ID _animation, bool _isLoop, bool _isNotInit, float _animationSpeed)
 {
-Data::CastID cast;
-if (m_currentAnimation == nullptr)
-m_currentAnimation = std::make_shared<Animation>(m_modelID,cast(_animation), AnimationTimer(gsGetEndAnimationTime(cast(m_modelID),cast(_animation)), _animationSpeed), _isLoop);
-///*今のアニメーションと同じなら変えない
-if (m_currentAnimation->getAnimationNo() == static_cast<unsigned int>(_animation) && _animationSpeed == m_currentAnimation->getSpeed())
-return;
+	Data::CastID cast;
+	if (m_currentAnimation == nullptr)
+		m_currentAnimation = std::make_shared<Animation>(m_modelID,cast(_animation), AnimationTimer(gsGetEndAnimationTime(cast(m_modelID),cast(_animation)), _animationSpeed), _isLoop);
+	///*今のアニメーションと同じなら変えない
+	if (m_currentAnimation->getAnimationNo() == static_cast<unsigned int>(_animation) && _animationSpeed == m_currentAnimation->getSpeed())
+		return;
 
-m_currentAnimation = std::make_shared<Animation>(m_modelID,cast(_animation), AnimationTimer(gsGetEndAnimationTime(cast(m_modelID),cast(_animation)), _animationSpeed), _isLoop);
-///*物によっては切り替え時に初期化しない
-if (_isNotInit)
-return;
-m_currentAnimation->initialize();
+	m_currentAnimation = std::make_shared<Animation>(m_modelID,cast(_animation), AnimationTimer(gsGetEndAnimationTime(cast(m_modelID),cast(_animation)), _animationSpeed), _isLoop);
+	///*物によっては切り替え時に初期化しない
+	if (_isNotInit)
+		return;
+	m_currentAnimation->initialize();
 }*/
 const bool AnimatorOne::isEndCurrentAnimation() const
 {
@@ -54,7 +54,7 @@ void AnimatorOne::matrixCalculate(GSmatrix4* _reslut)
 	const GSuint n = getNumBones();//gsGetSkeletonNumBones(static_cast<GSuint>(m_modelID));
 	GSmatrix4 *orientedMat = new GSmatrix4[n];//姿勢変換行列配列
 	GSmatrix4 *animMat = new GSmatrix4[n];//アニメーション行列配列
-										  //アニメーションの計算
+	//アニメーションの計算
 	gsCalculateAnimation(
 		cast(m_modelID),
 		m_currentAnimation->getAnimationNo(),

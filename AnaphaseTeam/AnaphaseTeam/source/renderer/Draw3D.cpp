@@ -23,7 +23,18 @@ void Draw3D::drawMesh(MODEL_ID _id, const Transform & _transform, const Animator
 	gsDrawMesh(cast(_id));
 	glPopMatrix();
 }
-
+void Draw3D::drawMesh_calcu(MODEL_ID _id, const Transform & _transform,GSmatrix4* _matrix,  AnimatorOne & _animator, const GScolor & _color) const
+{
+	Data::CastID cast;
+	glPushMatrix();
+	GSmatrix4* mat = new GSmatrix4[_animator.getNumBones()];
+	_animator.matrixCalculate(mat);
+	glColor4f(_color.r, _color.g, _color.b, _color.a);
+	glMultMatrixf(_transform.getMatrix4());
+	gsMeshDrawSkin(gsGetMesh(cast(_id)),mat);
+	glPopMatrix();
+	delete[] mat;
+}
 void Draw3D::drawSky(MESH_ID id, float angle)const
 {
 	glMatrixMode(GL_MODELVIEW);

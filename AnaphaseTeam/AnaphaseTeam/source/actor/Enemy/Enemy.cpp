@@ -96,6 +96,7 @@ vector<GSvector3> Enemy::getAnimEachPos()
 		GSmatrix4 m = transform.parentSynthesis(m_transform);
 		res.emplace_back(m.getPosition());
 	}
+
 	delete[] pmat;
 	delete[] mat;
 	delete[] animmat;
