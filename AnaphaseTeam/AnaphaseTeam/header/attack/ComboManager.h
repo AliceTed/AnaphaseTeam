@@ -41,5 +41,4 @@ private:
 	bool m_chargeKey;
 	bool m_isKeyRelease;
 	float m_chargeTime;
-	float 
 };

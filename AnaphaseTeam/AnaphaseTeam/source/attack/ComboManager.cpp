@@ -123,7 +123,7 @@ void ComboManager::combo(float deltaTime, Player* _player)
 		m_chargeKey = true;
 		return;
 	}
-	if (m_chargeKey == true)return;
+	if (m_chargeKey == true||m_currentKey==Combo::ChargeAttack)return;
 	if (m_isKeyRelease&& m_chargeTime >= 20.0f)
 	{
 		m_nextKey = Combo::ChargeAttack;
