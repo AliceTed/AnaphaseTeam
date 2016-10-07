@@ -1,7 +1,7 @@
 #pragma once
 
 #include "../subaction/JumpControl.h"
-#include "Avoid.h"
+#include "../subAction/Avoid.h"
 enum class SubActionType
 {
 	NON,
@@ -17,6 +17,7 @@ public:
 	void initialize(SubActionType _type);
 	void update(float deltaTime, SubActionType _type);
 	const bool isEnd(SubActionType _type) const;
+	void jumpPowerOff();
 
 private:
 	JumpControl m_jump;

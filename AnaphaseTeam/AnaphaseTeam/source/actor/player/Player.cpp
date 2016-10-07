@@ -84,6 +84,7 @@ void Player::stand(float deltaTime)
 
 void Player::attack(float deltaTime)
 {
+	m_SubAction.jumpPowerOff();
 	m_attackManager.update(deltaTime, this);
 	if (m_attackManager.isEnd())
 	{
@@ -117,6 +118,7 @@ void Player::avoid(float deltaTime)
 {
 	m_animatorOne.changeAnimation(ANIMATION_ID::AVOID);
 	m_SubAction.update(deltaTime, SubActionType::AVOID);
+	m_SubAction.jumpPowerOff();
 	if (m_SubAction.isEnd(SubActionType::AVOID))
 	{
 		actionChange(std::make_shared<StandState>());
@@ -149,6 +151,29 @@ void Player::moveStart()
 {
 	if (m_device->input()->move())
 		actionChange(std::make_shared<MoveState>());
+}
+void Player::justAvoid(Avoid* _avoid)
+{
+	float radius = 1.5f;
+	GSvector3 pos(m_transform.getPosition());
+	pos.y += 1.0f;
+	Shape_Ptr shape = std::make_shared<Sphere>(pos, radius);
+	Collision_Ptr actor = std::make_shared<CollisionActor>(shape, CollisionActorType::JUSTAVOID);
+	actor->set_update([&](float deltaTime, Shape_Ptr _shape)
+	{
+		float radius = 1.5f;
+		GSvector3 pos(m_transform.getPosition());
+		pos.y += 1.0f;
+		_shape->transfer(pos);
+	});
+
+	actor->set_collision_enter([=](Actor* _actor, CollisionActorType _type)
+	{
+		_avoid->justAvoidCheck();
+	});
+	actor->set_dead([=]()->bool {return _avoid->isjustTimeEnd(); });
+	actor->set_draw([](const Renderer& _renderer, Shape_Ptr _shape) { _shape->draw(_renderer); });
+	m_group->add(actor);
 }
 void Player::startJump(JumpControl * _control, float _scale)
 {
@@ -192,51 +217,6 @@ void Player::moving(float deltaTime, bool isAnimation)
 	movement(deltaTime, speed);
 	if (!isAnimation)return;
 	m_animatorOne.changeAnimation(ANIMATION_ID::RUN, true, true, time);
-}
-
-
-const bool Player::isJump() const
-{
-	return m_device->input()->jump();
-}
-
-const bool Player::isAvoid() const
-{
-	return m_device->input()->avoid();
-}
-
-const bool Player::isGround() const
-{
-	return m_isGround;
-}
-
-const bool Player::isJumpAttack() const
-{
-	return m_isJumpAttack;
-}
-
-const bool Player::isEndAttack() const
-{
-	return m_attackManager.isEnd();
-}
-
-const bool Player::isAnimationEnd() const
-{
-	return m_animatorOne.isEndCurrentAnimation();
-}
-
-const bool Player::isAttack() const
-{
-	return m_device->input()->scythe();
-}
-
-const bool Player::isGunAttack() const
-{
-	return m_device->input()->gun();
-}
-const GSvector3 Player::inputDirection() const
-{
-	return m_transform.front();
 }
 
 void Player::actionChange(Action_Ptr _action)
@@ -327,6 +307,48 @@ void Player::movement(float deltaTime, float _speed)
 	if (!m_device->input()->move())speed = 0;
 	GSvector3 forward(m_transform.front()*speed);
 	m_transform.translate(forward*deltaTime*_speed);
+}
 
+const bool Player::isJump() const
+{
+	return m_device->input()->jump();
+}
 
+const bool Player::isAvoid() const
+{
+	return m_device->input()->avoid();
+}
+
+const bool Player::isGround() const
+{
+	return m_isGround;
+}
+
+const bool Player::isJumpAttack() const
+{
+	return m_isJumpAttack;
+}
+
+const bool Player::isEndAttack() const
+{
+	return m_attackManager.isEnd();
+}
+
+const bool Player::isAnimationEnd() const
+{
+	return m_animatorOne.isEndCurrentAnimation();
+}
+
+const bool Player::isAttack() const
+{
+	return m_device->input()->scythe();
+}
+
+const bool Player::isGunAttack() const
+{
+	return m_device->input()->gun();
+}
+const GSvector3 Player::inputDirection() const
+{
+	return m_transform.front();
 }

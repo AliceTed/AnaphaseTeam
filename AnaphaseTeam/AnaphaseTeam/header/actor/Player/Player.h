@@ -55,6 +55,8 @@ public:
 	void avoidStart();
 	void subActionStart();
 	void moveStart();
+
+	void justAvoid(Avoid* _avoid);
 public:
 	const bool isGround() const;
 	const bool isJumpAttack()const;
