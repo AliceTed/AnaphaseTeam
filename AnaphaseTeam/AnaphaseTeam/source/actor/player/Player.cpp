@@ -297,3 +297,8 @@ void Player::movement(float deltaTime, float _speed)
 
 
 }
+
+const GSvector3 Player::getPosition() const
+{
+	return m_transform.getPosition();
+}

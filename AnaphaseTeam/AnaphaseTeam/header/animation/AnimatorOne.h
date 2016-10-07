@@ -57,10 +57,13 @@ public:
 	void matrixCalculate(GSmatrix4* _reslut);
 	const GSuint getNumBones()const;
 	const GSmatrix4 getMatrix() const;
+	const std::vector<GSmatrix4> getMatrixVector() const;
+
 private:
 	const MODEL_ID m_modelID;
 	ANIMATION_ID m_currentAnimationID;
 	Animation_Ptr m_currentAnimation;
 	std::vector<GSmatrix4> m_matrix;
 	GSmatrix4 m_mat;
+
 };

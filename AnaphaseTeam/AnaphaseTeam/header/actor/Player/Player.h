@@ -80,6 +80,9 @@ private:
 	void rotate(float deltaTime,Transform& _transform);
 	void movement(float deltaTime, float _speed = MOVESPEED);
 
+public:
+	const GSvector3 getPosition() const;
+
 private:
 	const Input* m_Input;
 	Action_Ptr m_action;

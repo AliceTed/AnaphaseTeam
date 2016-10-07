@@ -2,7 +2,7 @@
 #include "../../header/data/CastID.h"
 #include <gslib.h>
 AnimatorOne::AnimatorOne(const MODEL_ID _modelID) :
-	m_modelID(_modelID), m_currentAnimation(nullptr), m_matrix(),m_mat()
+	m_modelID(_modelID), m_currentAnimation(nullptr), m_matrix(), m_mat()
 {}
 AnimatorOne::~AnimatorOne()
 {}
@@ -68,7 +68,11 @@ void AnimatorOne::matrixCalculate(GSmatrix4* _reslut)
 		orientedMat);
 	m_mat = *_reslut;
 	m_matrix.clear();
-	m_matrix.emplace_back(*_reslut);
+	for (GSuint i = 0; i < n; i++)
+	{
+		//m_matrix.emplace_back(_reslut[i]);
+		m_matrix.emplace_back(orientedMat[i]);
+	}
 	delete[] orientedMat;
 	delete[] animMat;
 }
@@ -80,4 +84,9 @@ const GSuint AnimatorOne::getNumBones()const
 const GSmatrix4 AnimatorOne::getMatrix()const
 {
 	return m_mat;
+}
+
+const std::vector<GSmatrix4> AnimatorOne::getMatrixVector() const
+{
+	return m_matrix;
 }

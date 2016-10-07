@@ -16,7 +16,9 @@ Enemy::Enemy() :
 	m_points(),
 	m_core(GSvector3(0, 0, 0), 1),
 	m_corecolor(1, 1, 1, 1),
-	m_group(make_shared<CollisionGroup>(this))
+	m_group(make_shared<CollisionGroup>(this)),
+
+	m_color(1, 1, 1, 1)
 {
 }
 
@@ -27,19 +29,21 @@ Enemy::~Enemy()
 void Enemy::initialize()
 {
 	Actor::initialize();
-	m_animatorOne.changeAnimation((ANIMATION_ID)1, true);
-	m_points.clear();
-	createPoint();
+	m_animatorOne.changeAnimation((ANIMATION_ID)0, true);
+	//m_points.clear();
+	//createPoint();
 	m_corecolor = GScolor(1, 1, 1, 1);
-	for_each(m_points.begin(), m_points.end(), [&](BreakPoint& _point) {_point.createCollision(this, m_group); });
+	//for_each(m_points.begin(), m_points.end(), [&](BreakPoint& _point) {_point.createCollision(this, m_group); });
+
+	m_color = GScolor(1, 1, 1, 1);
 }
 
 void Enemy::update(float deltatime)
 {
 	m_animatorOne.update(deltatime);
 	pos = getAnimEachPos();
-	m_core.transfer(pos.at(static_cast<unsigned int>(Element::HEAD)));
-	for_each(m_points.begin(), m_points.end(), [&](BreakPoint& _point) {_point.update(deltatime, pos); });
+	//m_core.transfer(pos.at(static_cast<unsigned int>(Element::HEAD)));
+	//for_each(m_points.begin(), m_points.end(), [&](BreakPoint& _point) {_point.update(deltatime, pos); });
 
 	enemyAttack();
 }
@@ -47,15 +51,17 @@ void Enemy::update(float deltatime)
 void Enemy::draw(const Renderer& _renderer, const Camera& _camera)
 {
 	FALSE_RETURN(isInsideView(_camera));
-	_renderer.getDraw3D().drawMesh(MODEL_ID::BOSS, m_transform, m_animatorOne, m_Color);
-	for_each(m_points.begin(), m_points.end(), [&](BreakPoint& _point) {_point.draw(_renderer); });
-	m_core.draw(_renderer, m_corecolor);
+	_renderer.getDraw3D().drawMesh_calcu(MODEL_ID::BOSS, m_transform, m_matrix.get(), m_animatorOne, m_Color);
+	//for_each(m_points.begin(), m_points.end(), [&](BreakPoint& _point) {_point.draw(_renderer); });
+	//m_core.draw(_renderer, m_corecolor);
 }
 
 void Enemy::look_at(CameraController* _camera, Player* _player)
 {
 	GSvector3 target = m_transform.getPosition();
 	_player->look_at(_camera, &target);
+
+	dirCalc(_player);
 }
 
 void Enemy::addCollisionGroup(CollisionManager* _manager)
@@ -74,43 +80,15 @@ void Enemy::createPoint()
 
 vector<GSvector3> Enemy::getAnimEachPos()
 {
-	const GSuint n = gsGetSkeletonNumBones(static_cast<GSuint>(MODEL_ID::BOSS));
-	GSmatrix4
-		*pmat = new GSmatrix4[n],
-		*mat = new GSmatrix4[n],
-		*animmat = new GSmatrix4[n];
-	for (GSuint i = 0; i < n; i++)
-	{
-		pmat[i] = GS_MATRIX4_IDENTITY;
-	}
-	gsCalculateAnimation(
-		static_cast<GSuint>(MODEL_ID::BOSS),
-		static_cast<GSuint>(ANIMATION_ID::STAND),
-		0, animmat);
-
-	gsCalculateSkeleton(pmat, animmat, mat);
+	const GSuint n = m_animatorOne.getNumBones();
 	vector<GSvector3> res;
 	for (GSuint i = 0; i < n; i++)
 	{
-		Transform transform(mat[i]);
+		Transform transform(m_animatorOne.getMatrixVector()[i]);
 		GSmatrix4 m = transform.parentSynthesis(m_transform);
 		res.emplace_back(m.getPosition());
 	}
-
-	delete[] pmat;
-	delete[] mat;
-	delete[] animmat;
 	return res;
-
-	/*const GSuint n = m_animatorOne.getNumBones();
-	vector<GSvector3> res;
-	for (GSuint i = 0; i < n; i++)
-	{
-		Transform transform(mat[i]);
-		GSmatrix4 m = transform.parentSynthesis(m_transform);
-		res.emplace_back(m.getPosition());
-	}
-	return res;*/
 }
 
 void Enemy::enemyAttack()
@@ -121,9 +99,23 @@ void Enemy::enemyAttack()
 
 		Shape_Ptr shape = std::make_shared<Sphere>(GSvector3(0, 1, 1), 1);
 		Collision_Ptr actor = std::make_shared<CollisionActor>(shape, CollisionActorType::ENEMY_ATTACK);
-		actor->set_update([&](float deltaTime, Shape_Ptr _shape) { _shape->transfer(pos.at(static_cast<GSuint>(63))); });
-		actor->set_dead([&]()->bool {return m_animatorOne.isEndCurrentAnimation(); });
-		actor->set_draw([](const Renderer& _renderer, Shape_Ptr _shape) { _shape->draw(_renderer); });
+		actor->set_collision_enter([&](Actor* _actor, CollisionActorType _type)
+		{
+			Player* _player = dynamic_cast<Player*>(_actor);
+			if (_player == nullptr)return;
+			m_color = GScolor(1, 0, 0, 1);
+		});
+		actor->set_update([&](float deltaTime, Shape_Ptr _shape) { _shape->transfer(pos.at(static_cast<GSuint>(64))); });
+		//actor->set_dead([&]()->bool {return m_animatorOne.isEndCurrentAnimation(); });
+		actor->set_draw([&](const Renderer& _renderer, Shape_Ptr _shape) { _shape->draw(_renderer, m_color); });
 		m_group->add(actor);
 	}
+}
+
+void Enemy::dirCalc(Player* _player)
+{
+	GSvector3 vector = _player->getPosition() - m_transform.getPosition();
+	float radian = atan2(vector.x, vector.z);
+	float degree = radian * 180.0f / M_PI;
+	m_transform.setYaw(degree);
 }
