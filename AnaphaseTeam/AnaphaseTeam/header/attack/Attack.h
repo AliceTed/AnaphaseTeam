@@ -9,31 +9,36 @@
 #include "AttackStatus.h"
 #include "../../header/shape/Shape.h"
 #include <memory>
+#include "../../header/collision/CollisionManager.h"
 typedef std::shared_ptr<Shape> Shape_Ptr;
 
 class TestActor;
 class Player;
 class CollisionMediator;
 class AnimatorOne;
+
+class Transform;
 class Attack
 {
 public:
 	Attack(const AttackStatus& _status, ANIMATION_ID _animation, Shape_Ptr _shape);
 	~Attack();
-	void initialize();
+	void initialize(Player* _player);
 	void update(float deltaTime,Player* _player);
 	void motion(Player* _player);
 	
 	void changeMotion(AnimatorOne& _animator);
 	const bool isNextAttack(const AnimatorOne& _animator)const;
 	const bool isEndMotion(const AnimatorOne& _animator) const;
+	void range(Group_Ptr _group, Transform& _transform, std::function<bool()> _isDead);
 	//bool isEndAttackTime(AnimatorOne * _animator);
 private:
 	//!攻撃ステータス
 	AttackStatus m_status;
 	//!アニメーション
 	ANIMATION_ID m_Animation;
-
 	//判定用形状
 	Shape_Ptr m_Shape;
+
+
 };

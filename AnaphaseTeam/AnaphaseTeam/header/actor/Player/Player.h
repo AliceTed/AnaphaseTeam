@@ -57,6 +57,7 @@ public:
 	void moveStart();
 
 	void justAvoid(Avoid* _avoid);
+	void attackRange(Attack* _attack);
 public:
 	const bool isGround() const;
 	const bool isJumpAttack()const;

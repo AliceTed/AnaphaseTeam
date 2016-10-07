@@ -19,7 +19,7 @@ void ComboManager::create()
 {
 	m_container.clear();
 
-	Shape_Ptr sphere = std::make_shared<Sphere>(GSvector3(0, 0, 0), 0);
+	
 	const unsigned int size = 4;
 	Combo combo[size] =
 	{
@@ -38,7 +38,7 @@ void ComboManager::create()
 	for (unsigned int i = 0; i < size; i++)
 	{
 		AttackStatus status(0.0f, 0.0f, GSvector3(0, 0, 0));
-		Attack attack(status, animation[i], sphere);
+		Attack attack(status, animation[i], std::make_shared<Sphere>(GSvector3(0, 0, 0), 1+i));
 		m_container.insert(std::make_pair(combo[i], attack));
 	}
 }
@@ -47,6 +47,7 @@ void ComboManager::initialize()
 {
 	create();
 	reset();
+
 }
 
 void ComboManager::reset()
@@ -59,6 +60,10 @@ void ComboManager::reset()
 
 void ComboManager::update(float deltaTime, Player* _player)
 {
+	if (m_isStart)
+	{
+		m_container.at(m_currentKey).initialize(_player);
+	}
 	m_container.at(m_currentKey).update(deltaTime, _player);
 
 	change(deltaTime, _player);
@@ -90,6 +95,7 @@ void ComboManager::change(float deltaTime, Player * _player)
 	}
 	m_currentKey = m_nextKey;
 	m_nextKey = Combo::End;
+	m_container.at(m_currentKey).initialize(_player);
 }
 
 void ComboManager::combo(float deltaTime)
