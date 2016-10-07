@@ -27,7 +27,7 @@ Enemy::~Enemy()
 void Enemy::initialize()
 {
 	Actor::initialize();
-	m_animatorOne.changeAnimation((ANIMATION_ID)0, true);
+	m_animatorOne.changeAnimation((ANIMATION_ID)1, true);
 	m_points.clear();
 	createPoint();
 	m_corecolor = GScolor(1, 1, 1, 1);
@@ -36,7 +36,7 @@ void Enemy::initialize()
 
 void Enemy::update(float deltatime)
 {
-	//m_animatorOne.update(deltatime);
+	m_animatorOne.update(deltatime);
 	pos = getAnimEachPos();
 	m_core.transfer(pos.at(static_cast<unsigned int>(Element::HEAD)));
 	for_each(m_points.begin(), m_points.end(), [&](BreakPoint& _point) {_point.update(deltatime, pos); });
@@ -100,11 +100,21 @@ vector<GSvector3> Enemy::getAnimEachPos()
 	delete[] mat;
 	delete[] animmat;
 	return res;
+
+	/*const GSuint n = m_animatorOne.getNumBones();
+	vector<GSvector3> res;
+	for (GSuint i = 0; i < n; i++)
+	{
+		Transform transform(mat[i]);
+		GSmatrix4 m = transform.parentSynthesis(m_transform);
+		res.emplace_back(m.getPosition());
+	}
+	return res;*/
 }
 
 void Enemy::enemyAttack()
 {
-	if (gsGetKeyTrigger(GKEY_E))
+	if (gsGetKeyState(GKEY_E))
 	{
 		m_animatorOne.changeAnimation((ANIMATION_ID)0);
 
