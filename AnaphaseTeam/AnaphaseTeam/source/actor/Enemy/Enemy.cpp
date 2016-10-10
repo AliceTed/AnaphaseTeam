@@ -46,7 +46,7 @@ void Enemy::update(float deltatime)
 	//m_core.transfer(pos.at(static_cast<unsigned int>(Element::HEAD)));
 	//for_each(m_points.begin(), m_points.end(), [&](BreakPoint& _point) {_point.update(deltatime, pos); });
 
-	m_value = rand() / 500;
+	m_value = rand();
 	enemyAttack();
 }
 
@@ -63,7 +63,7 @@ void Enemy::look_at(CameraController* _camera, Player* _player)
 	GSvector3 target = m_transform.getPosition();
 	_player->look_at(_camera, &target);
 
-	if (m_value == 0)
+	if (m_value % 50 == 0)
 		dirCalc(_player);
 }
 
@@ -99,7 +99,7 @@ void Enemy::enemyAttack()
 	Shape_Ptr shape = std::make_shared<Sphere>(GSvector3(0, 1, 1), 1);
 	Collision_Ptr actor = std::make_shared<CollisionActor>(shape, CollisionActorType::ENEMY_ATTACK);
 
-	if (m_value % 300 == 1)
+	if (m_value % 100 == 0)
 	{
 		m_state = State::ATTACK;
 
