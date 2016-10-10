@@ -1,6 +1,7 @@
 #pragma once
 
 #include <vector>
+#include <memory>
 #include "../Actor.h"
 #include "../Enemy/BreakPoint.h"
 #include "../../collision/CollisionManager.h"
@@ -13,6 +14,13 @@ using namespace std;
 class Player;
 class AttackStatus;
 class CameraController;
+
+
+enum class State
+{
+	STAND,
+	ATTACK
+};
 
 class Enemy : public Actor
 {
@@ -39,5 +47,6 @@ private:
 	vector<GSvector3> pos;
 	std::shared_ptr<GSmatrix4> m_matrix;
 	GScolor m_color;
-
+	int m_value;
+	State m_state;
 };
