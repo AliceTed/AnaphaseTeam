@@ -23,7 +23,7 @@ void ComboManager::create()
 	m_container.clear();
 
 	Shape_Ptr sphere = std::make_shared<Sphere>(GSvector3(0, 0, 0), 0);
-	const unsigned int size = 5;
+	const unsigned int size =5;
 	Combo combo[size] =
 	{
 		Combo::First,
@@ -52,7 +52,6 @@ void ComboManager::initialize()
 {
 	create();
 	reset();
-	m_chargeAttack.initialize();
 }
 
 void ComboManager::reset()
@@ -143,6 +142,7 @@ const Combo ComboManager::nextkey() const
 	}
 	return itr->second.next();
 }
+
 void ComboManager::AttackEnd()
 {
 	m_isEnd = true;
