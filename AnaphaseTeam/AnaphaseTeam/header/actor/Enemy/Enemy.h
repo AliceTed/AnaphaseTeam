@@ -14,6 +14,13 @@ class Player;
 class AttackStatus;
 class CameraController;
 
+
+enum class State
+{
+	STAND,
+	ATTACK
+};
+
 class Enemy : public Actor
 {
 public:
@@ -39,5 +46,6 @@ private:
 	vector<GSvector3> pos;
 	std::shared_ptr<GSmatrix4> m_matrix;
 	GScolor m_color;
-
+	int m_value;
+	State m_state;
 };

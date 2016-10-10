@@ -17,8 +17,8 @@ Enemy::Enemy() :
 	m_core(GSvector3(0, 0, 0), 1),
 	m_corecolor(1, 1, 1, 1),
 	m_group(make_shared<CollisionGroup>(this)),
-
-	m_color(1, 1, 1, 1)
+	m_color(1, 1, 1, 1),
+	m_state(State::STAND)
 {
 }
 
@@ -29,13 +29,14 @@ Enemy::~Enemy()
 void Enemy::initialize()
 {
 	Actor::initialize();
-	m_animatorOne.changeAnimation((ANIMATION_ID)0, true);
+	m_animatorOne.changeAnimation((ANIMATION_ID)1, true);
 	//m_points.clear();
 	//createPoint();
 	m_corecolor = GScolor(1, 1, 1, 1);
 	//for_each(m_points.begin(), m_points.end(), [&](BreakPoint& _point) {_point.createCollision(this, m_group); });
 
 	m_color = GScolor(1, 1, 1, 1);
+	m_state = State::STAND;
 }
 
 void Enemy::update(float deltatime)
@@ -45,6 +46,7 @@ void Enemy::update(float deltatime)
 	//m_core.transfer(pos.at(static_cast<unsigned int>(Element::HEAD)));
 	//for_each(m_points.begin(), m_points.end(), [&](BreakPoint& _point) {_point.update(deltatime, pos); });
 
+	m_value = rand() / 500;
 	enemyAttack();
 }
 
@@ -61,7 +63,8 @@ void Enemy::look_at(CameraController* _camera, Player* _player)
 	GSvector3 target = m_transform.getPosition();
 	_player->look_at(_camera, &target);
 
-	dirCalc(_player);
+	if (m_value == 0)
+		dirCalc(_player);
 }
 
 void Enemy::addCollisionGroup(CollisionManager* _manager)
@@ -93,12 +96,14 @@ vector<GSvector3> Enemy::getAnimEachPos()
 
 void Enemy::enemyAttack()
 {
-	if (gsGetKeyState(GKEY_E))
-	{
-		m_animatorOne.changeAnimation((ANIMATION_ID)0);
+	Shape_Ptr shape = std::make_shared<Sphere>(GSvector3(0, 1, 1), 1);
+	Collision_Ptr actor = std::make_shared<CollisionActor>(shape, CollisionActorType::ENEMY_ATTACK);
 
-		Shape_Ptr shape = std::make_shared<Sphere>(GSvector3(0, 1, 1), 1);
-		Collision_Ptr actor = std::make_shared<CollisionActor>(shape, CollisionActorType::ENEMY_ATTACK);
+	if (gsGetKeyTrigger(GKEY_E))
+	{
+		m_state = State::ATTACK;
+
+		m_animatorOne.changeAnimation((ANIMATION_ID)0);
 		actor->set_collision_enter([&](Actor* _actor, CollisionActorType _type)
 		{
 			Player* _player = dynamic_cast<Player*>(_actor);
@@ -106,16 +111,24 @@ void Enemy::enemyAttack()
 			m_color = GScolor(1, 0, 0, 1);
 		});
 		actor->set_update([&](float deltaTime, Shape_Ptr _shape) { _shape->transfer(pos.at(static_cast<GSuint>(64))); });
-		//actor->set_dead([&]()->bool {return m_animatorOne.isEndCurrentAnimation(); });
+		actor->set_dead([&]()->bool { return m_state == State::STAND; });
 		actor->set_draw([&](const Renderer& _renderer, Shape_Ptr _shape) { _shape->draw(_renderer, m_color); });
 		m_group->add(actor);
+	}
+	if (m_animatorOne.isEndCurrentAnimation())
+	{
+		m_state = State::STAND;
+		m_animatorOne.changeAnimation(ANIMATION_ID(1), true);
 	}
 }
 
 void Enemy::dirCalc(Player* _player)
 {
-	GSvector3 vector = _player->getPosition() - m_transform.getPosition();
-	float radian = atan2(vector.x, vector.z);
-	float degree = radian * 180.0f / M_PI;
-	m_transform.setYaw(degree);
+	if (m_state == State::STAND)
+	{
+		GSvector3 vector = _player->getPosition() - m_transform.getPosition();
+		float radian = atan2(vector.x, vector.z);
+		float degree = radian * 180.0f / M_PI;
+		m_transform.setYaw(degree);
+	}
 }
