@@ -4,18 +4,17 @@
 #include "ComboManager.h"
 #include "../device/Input.h"
 #include <unordered_map>
-enum class Combo
+#include "ECombo.h"
+#include "ChargeAttack.h"
+class AnimatorOne;
+
+class IComboMadiator
 {
-	First,
-	Second,
-	Third,
-	Four,
-	End,
-	ChargeAttack
+public:
+	virtual void  AttackEnd()=0;
 };
 
-class AnimatorOne;
-class ComboManager
+class ComboManager:public IComboMadiator
 {
 public:
 	ComboManager();
@@ -23,22 +22,23 @@ public:
 	void initialize();
 	void reset();
 	void update(float deltaTime, Player* _player);
+	void comboOrCharge(float deltaTime, Player * _player);
 	const bool isEnd()const;	
 private:	
 	void create();
 	void change(float deltaTime, Player* _player);
 	void combo(float deltaTime,Player* _player);
 	const Combo nextkey() const;
+	void AttackEnd();
 	const bool isCurrentEnd(Player* _player) const;
+	const bool chargeEnd() const;
 private:
 	//コンボがスタートしたフレームかどうか
 	bool m_isStart;
 	bool m_isEnd;
+	bool m_ChargeDecision;
 	Combo m_currentKey;
 	Combo m_nextKey;
 	std::unordered_map<Combo, Attack> m_container;
-	
-	bool m_chargeKey;
-	bool m_isKeyRelease;
-	float m_chargeTime;
+	ChargeAttack m_chargeAttack;
 };

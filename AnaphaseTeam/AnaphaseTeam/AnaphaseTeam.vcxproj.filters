@@ -456,6 +456,18 @@
     <ClInclude Include="header\scene\each\GameOver.h">
       <Filter>ヘッダー ファイル\scene\each</Filter>
     </ClInclude>
+    <ClInclude Include="header\attack\ChargeAttack.h">
+      <Filter>ヘッダー ファイル\attack</Filter>
+    </ClInclude>
+    <ClInclude Include="header\attack\ECombo.h">
+      <Filter>ヘッダー ファイル\attack</Filter>
+    </ClInclude>
+    <ClInclude Include="header\attack\ComboAttack.h">
+      <Filter>ヘッダー ファイル\attack</Filter>
+    </ClInclude>
+    <ClInclude Include="header\attack\IAttack.h">
+      <Filter>ヘッダー ファイル\attack</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Util\BasicShapes.cpp">
@@ -667,6 +679,12 @@
     </ClCompile>
     <ClCompile Include="source\scene\each\GameOver.cpp">
       <Filter>ソース ファイル\scene\each</Filter>
+    </ClCompile>
+    <ClCompile Include="source\attack\ChargeAttack.cpp">
+      <Filter>ソース ファイル\Attack</Filter>
+    </ClCompile>
+    <ClCompile Include="source\attack\ComboAttack.cpp">
+      <Filter>ソース ファイル\Attack</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -1,7 +1,7 @@
 #include "../../header/attack/Attack.h"
 #include "../../header/actor/Player/Player.h"
-Attack::Attack(const AttackStatus & _status, ANIMATION_ID _animation, Shape_Ptr _shape)
-	:m_status(_status), m_Animation(_animation), m_Shape(_shape)
+Attack::Attack(const AttackStatus & _status, ANIMATION_ID _animation,Combo next, Shape_Ptr _shape)
+	:m_status(_status), m_Animation(_animation),m_nextCombo(next), m_Shape(_shape)
 {
 }
 
@@ -40,5 +40,8 @@ const bool Attack::isEndMotion(const AnimatorOne & _animator) const
 {
 	return _animator.isEndCurrentAnimation();
 }
-
+const Combo Attack::next()const
+{
+	return m_nextCombo;
+}
 

@@ -1,10 +1,5 @@
 #pragma once
-/**
-* @file ContinuationCombo.h
-* @brief 連続コンボ用単発攻撃
-* @author 松尾裕也
-* @date 2016/8/26
-*/
+
 #include "../data/ANIMATION_ID.h"
 #include "AttackStatus.h"
 #include "../../header/shape/Shape.h"
@@ -12,25 +7,22 @@
 #include "ECombo.h"
 #include "IAttack.h"
 typedef std::shared_ptr<Shape> Shape_Ptr;
-
-class TestActor;
 class Player;
 class CollisionMediator;
 class AnimatorOne;
-
-class Attack:public IAttack
+class ComboAttack:IAttack
 {
 public:
-	Attack(const AttackStatus& _status, ANIMATION_ID _animation,Combo next, Shape_Ptr _shape);
-	~Attack();
+	ComboAttack(const AttackStatus& _status, ANIMATION_ID _animation, Combo next, Shape_Ptr _shape);
+	~ComboAttack();
 	void initialize();
-	void update(float deltaTime,Player* _player);
+	void update(float deltaTime, Player* _player);
 	void motion(Player* _player);
-	
+
 	void changeMotion(AnimatorOne& _animator);
 	const bool isNextAttack(const AnimatorOne& _animator)const;
 	const bool isEndMotion(const AnimatorOne& _animator) const;
-	const Combo next()const ;
+	const Combo next()const;
 	//bool isEndAttackTime(AnimatorOne * _animator);
 private:
 	//!攻撃ステータス

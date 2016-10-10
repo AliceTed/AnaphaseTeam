@@ -150,6 +150,8 @@
     <ClCompile Include="source\actor\player\Status.cpp" />
     <ClCompile Include="source\attack\AttackManager.cpp" />
     <ClCompile Include="source\attack\AttackStatus.cpp" />
+    <ClCompile Include="source\attack\ChargeAttack.cpp" />
+    <ClCompile Include="source\attack\ComboAttack.cpp" />
     <ClCompile Include="source\attack\ComboManager.cpp" />
     <ClCompile Include="source\attack\Attack.cpp" />
     <ClCompile Include="source\attack\Gun.cpp" />
@@ -224,9 +226,13 @@
     <ClInclude Include="header\attack\AttackManager.h" />
     <ClInclude Include="header\attack\AttackPattern.h" />
     <ClInclude Include="header\attack\AttackStatus.h" />
+    <ClInclude Include="header\attack\ChargeAttack.h" />
+    <ClInclude Include="header\attack\ComboAttack.h" />
     <ClInclude Include="header\attack\ComboManager.h" />
     <ClInclude Include="header\attack\Attack.h" />
+    <ClInclude Include="header\attack\ECombo.h" />
     <ClInclude Include="header\attack\Gun.h" />
+    <ClInclude Include="header\attack\IAttack.h" />
     <ClInclude Include="header\attack\IWeapon.h" />
     <ClInclude Include="header\attack\Scythe.h" />
     <ClInclude Include="header\actor\ICharacter.h" />
