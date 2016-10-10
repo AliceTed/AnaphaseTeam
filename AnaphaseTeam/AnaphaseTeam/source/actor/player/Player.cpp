@@ -30,8 +30,7 @@ Player::Player(GameDevice* _device, Camera * _camera)
 	m_camera(_camera),
 	m_status(),
 	m_isJumpAttack(false),
-	m_group(std::make_shared<CollisionGroup>(this)),
-	m_matrix()
+	m_group(std::make_shared<CollisionGroup>(this))
 {
 	//m_matrix = std::make_shared<GSmatrix4>(new GSmatrix4[m_animatorOne.getNumBones()]);
 }
@@ -65,7 +64,7 @@ void Player::draw(const Renderer & _renderer, const Camera & _camera)
 {
 	FALSE_RETURN(isInsideView(_camera));
 	alphaBlend(_camera);
-	_renderer.getDraw3D().drawMesh_calcu(MODEL_ID::PLAYER, m_transform, m_matrix.get(),m_animatorOne, m_Color);
+	_renderer.getDraw3D().drawMesh_calcu(MODEL_ID::PLAYER, m_transform,m_animatorOne, m_Color);
 }
 
 void Player::inGround()

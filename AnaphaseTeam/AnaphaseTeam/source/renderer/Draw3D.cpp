@@ -23,7 +23,7 @@ void Draw3D::drawMesh(MODEL_ID _id, const Transform & _transform, const Animator
 	gsDrawMesh(cast(_id));
 	glPopMatrix();
 }
-void Draw3D::drawMesh_calcu(MODEL_ID _id, const Transform & _transform,GSmatrix4* _matrix,  AnimatorOne & _animator, const GScolor & _color) const
+void Draw3D::drawMesh_calcu(MODEL_ID _id, const Transform & _transform,  AnimatorOne & _animator, const GScolor & _color) const
 {
 	Data::CastID cast;
 	glPushMatrix();

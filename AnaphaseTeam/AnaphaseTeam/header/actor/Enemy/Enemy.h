@@ -45,7 +45,6 @@ private:
 	GScolor m_corecolor;
 	Group_Ptr m_group;
 	vector<GSvector3> pos;
-	std::shared_ptr<GSmatrix4> m_matrix;
 	GScolor m_color;
 	int m_value;
 	State m_state;

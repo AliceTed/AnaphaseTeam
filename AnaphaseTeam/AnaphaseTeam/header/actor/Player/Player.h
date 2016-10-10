@@ -97,7 +97,6 @@ private:
 	//–³—‚â‚è
 	bool m_isJumpAttack;
 	Camera * m_camera;
-	std::shared_ptr<GSmatrix4> m_matrix;
 	Group_Ptr m_group;
 private://’è”
 	static const float MOVESPEED;

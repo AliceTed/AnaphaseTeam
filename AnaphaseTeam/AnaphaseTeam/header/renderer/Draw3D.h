@@ -15,7 +15,7 @@ public:
 	Draw3D();
 	~Draw3D();
 	void drawMesh(MODEL_ID _id, const Transform & _transform, const AnimatorOne & _animator, const GScolor & _color = GScolor(1.0f, 1.0f, 1.0f, 1.0f)) const;
-	void drawMesh_calcu(MODEL_ID _id, const Transform & _transform,GSmatrix4* _matrix,  AnimatorOne & _animator, const GScolor & _color = GScolor(1.0f, 1.0f, 1.0f, 1.0f)) const;
+	void drawMesh_calcu(MODEL_ID _id, const Transform & _transform,  AnimatorOne & _animator, const GScolor & _color = GScolor(1.0f, 1.0f, 1.0f, 1.0f)) const;
 
 	void drawSky(MESH_ID id, float angle)const;
 	void drawSky(MESH_ID id)const;

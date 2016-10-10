@@ -53,7 +53,7 @@ void Enemy::update(float deltatime)
 void Enemy::draw(const Renderer& _renderer, const Camera& _camera)
 {
 	FALSE_RETURN(isInsideView(_camera));
-	_renderer.getDraw3D().drawMesh_calcu(MODEL_ID::BOSS, m_transform, m_matrix.get(), m_animatorOne, m_Color);
+	_renderer.getDraw3D().drawMesh_calcu(MODEL_ID::BOSS, m_transform, m_animatorOne, m_Color);
 	//for_each(m_points.begin(), m_points.end(), [&](BreakPoint& _point) {_point.draw(_renderer); });
 	//m_core.draw(_renderer, m_corecolor);
 }
@@ -99,7 +99,7 @@ void Enemy::enemyAttack()
 	Shape_Ptr shape = std::make_shared<Sphere>(GSvector3(0, 1, 1), 1);
 	Collision_Ptr actor = std::make_shared<CollisionActor>(shape, CollisionActorType::ENEMY_ATTACK);
 
-	if (gsGetKeyTrigger(GKEY_E))
+	if (m_value % 300 == 1)
 	{
 		m_state = State::ATTACK;
 
