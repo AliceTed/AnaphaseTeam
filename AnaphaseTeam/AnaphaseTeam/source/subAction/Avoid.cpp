@@ -56,3 +56,27 @@ bool Avoid::isjustTimeEnd()
 	return m_justTime.isEnd();
 }
 
+void Avoid::justAvoidRange(Group_Ptr _group, Transform & _transform)
+{
+	float radius = 1.5f;
+	GSvector3 pos(_transform.getPosition());
+	pos.y += 1.0f;
+	Shape_Ptr shape = std::make_shared<Sphere>(pos, radius);
+	Collision_Ptr actor = std::make_shared<CollisionActor>(shape, CollisionActorType::JUSTAVOID);
+	actor->set_update([&](float deltaTime, Shape_Ptr _shape)
+	{
+		float radius = 1.5f;
+		GSvector3 pos(_transform.getPosition());
+		pos.y += 1.0f;
+		_shape->transfer(pos);
+	});
+
+	actor->set_collision_enter([=](Actor* _actor, CollisionActorType _type)
+	{
+		justAvoidCheck();
+	});
+	actor->set_dead([=]()->bool {return isjustTimeEnd(); });
+	actor->set_draw([](const Renderer& _renderer, Shape_Ptr _shape) { _shape->draw(_renderer); });
+	_group->add(actor);
+}
+

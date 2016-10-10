@@ -1,7 +1,8 @@
-#include "../../header/enemy/BreakPoint.h"
-#include "../../header/collision/CollisionGroup.h"
-#include "../../header/actor/TestActor.h"
-#include "../../header/actor/Player/Player.h"
+#include "../../../header/actor/Enemy/BreakPoint.h"
+#include "../../../header/collision/CollisionGroup.h"
+#include "../../../header/actor/Enemy/Enemy.h"
+#include "../../../header/actor/Player/Player.h"
+
 BreakPoint::BreakPoint(CollisionActorType _type, Element _element)
 	:m_color(1, 1, 1, 1),
 	m_type(_type),
@@ -20,12 +21,12 @@ void BreakPoint::lerp(Math::TimeLerpVector<GSvector3>& _lerp, BreakPoint & _end)
 
 void BreakPoint::update(float deltaTime,std::vector<GSvector3>& _position)
 {
-	m_position=_position.at(static_cast<unsigned int>(m_element));
+	m_position = _position.at(static_cast<unsigned int>(m_element));
 }
-void BreakPoint::createCollision(TestActor * _parent, Group_Ptr& _group)
+void BreakPoint::createCollision(Enemy * _parent, Group_Ptr& _group)
 {
-	Shape_Ptr shape = std::make_shared<Sphere>(GSvector3(0, 1, 0), 1);
-	Collision_Ptr obj = std::make_shared<CollisionActor>(shape, m_type);
+	shape = std::make_shared<Sphere>(GSvector3(0, 1, 0), 1);
+	obj = std::make_shared<CollisionActor>(shape, m_type);
 	obj->set_collision_enter([&](Actor* _actor, CollisionActorType _type)
 	{
 		Player* _player = dynamic_cast<Player*>(_actor);
@@ -33,8 +34,8 @@ void BreakPoint::createCollision(TestActor * _parent, Group_Ptr& _group)
 		m_color = GScolor(1, 0, 0, 1);
 		_player->buildup();
 	});
-	obj->set_update([&](float deltaTime, Shape_Ptr _shape) {_shape->transfer(m_position);});
-	obj->set_draw([&](const Renderer& _renderer, Shape_Ptr _shape) { _shape->draw(_renderer, m_color);});
+	obj->set_update([&](float deltaTime, Shape_Ptr _shape) {_shape->transfer(m_position); });
+	obj->set_draw([&](const Renderer& _renderer, Shape_Ptr _shape) { _shape->draw(_renderer, m_color); });
 	_group->add(obj);
 }
 void BreakPoint::draw(const Renderer& _renderer)

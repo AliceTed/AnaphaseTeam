@@ -36,26 +36,20 @@ public:
 	* @param (_action) êÿÇËë÷Ç¶ÇÈÉAÉNÉVÉáÉìÇÃShared_ptr
 	*/
 	void actionChange(Action_Ptr _action);
-
 	void jumping(float _velocity);
 	void avoidAction(const GSvector3& _velocity);
-
 	void startJump(JumpControl* _control,float _scale);
-
 	void jumpMotion(JumpControl& _control,ANIMATION_ID _id);
 	void attackmotion(Attack& _attack);
 	const bool isNextAttack(Attack& _attack)const;
 	const bool isEndAttackMotion(const Attack& _attack)const;
 	void moving(float deltaTime,bool isAnimation=true);
 	void control();
-
 	void look_at(CameraController* _camera, GSvector3* _target);
 	void buildup();
-
 	void avoidStart();
 	void subActionStart();
 	void moveStart();
-
 	void justAvoid(Avoid* _avoid);
 	void attackRange(Attack* _attack);
 public:
@@ -88,6 +82,10 @@ private:
 	void moveMotionChange();
 	void rotate(float deltaTime,Transform& _transform);
 	void movement(float deltaTime, float _speed = MOVESPEED);
+
+public:
+	const GSvector3 getPosition() const;
+
 private:
 	GameDevice* m_device;
 	Action_Ptr m_action;
@@ -99,6 +97,7 @@ private:
 	//ñ≥óùÇ‚ÇË
 	bool m_isJumpAttack;
 	Camera * m_camera;
+	std::shared_ptr<GSmatrix4> m_matrix;
 	Group_Ptr m_group;
 private://íËêî
 	static const float MOVESPEED;

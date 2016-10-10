@@ -1,6 +1,6 @@
 #pragma once
 #include <gslib.h>
-#include "BreakPoint.h"
+#include "../../header/actor/Enemy/BreakPoint.h"
 #include "../math/TimeLerpVector.h"
 class Player;
 class CameraController;

@@ -20,9 +20,9 @@ public:
 	enumなどでアニメーションの番号を管理してるとき用
 	*/
 	template<class T>
-	Animation(ANIMATION_ID _anim_id, SKELETON_ID _bone_id,T _animNo,AnimationTimer _timer, bool _isLoop=false)
+	Animation(ANIMATION_ID _anim_id, SKELETON_ID _bone_id, T _animNo, AnimationTimer _timer, bool _isLoop = false)
 		:m_isLoop(_isLoop), m_animNo(static_cast<unsigned int>(_animNo)), m_timer(_timer),
-		m_anim_id(static_cast<unsigned int>(_anim_id)),m_bone_id(static_cast<unsigned int>(_bone_id))
+		m_anim_id(static_cast<unsigned int>(_anim_id)), m_bone_id(static_cast<unsigned int>(_bone_id))
 	{
 
 	}

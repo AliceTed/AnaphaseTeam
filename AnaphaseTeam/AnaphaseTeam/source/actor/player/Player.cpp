@@ -30,8 +30,10 @@ Player::Player(GameDevice* _device, Camera * _camera)
 	m_camera(_camera),
 	m_status(),
 	m_isJumpAttack(false),
-	m_group(std::make_shared<CollisionGroup>(this))
+	m_group(std::make_shared<CollisionGroup>(this)),
+	m_matrix()
 {
+	//m_matrix = std::make_shared<GSmatrix4>(new GSmatrix4[m_animatorOne.getNumBones()]);
 }
 
 Player::~Player()
@@ -56,13 +58,14 @@ void Player::update(float deltatime)
 	m_action->action(this, deltatime);
 	sphereChases(GSvector3(0, 1, 0));
 	m_animatorOne.update(deltatime);
+//	m_animatorOne.getAnimMatrix(m_matrix.get());
 }
 
 void Player::draw(const Renderer & _renderer, const Camera & _camera)
 {
-	//FALSE_RETURN(isInsideView(_camera));
+	FALSE_RETURN(isInsideView(_camera));
 	alphaBlend(_camera);
-	_renderer.getDraw3D().drawMesh(MODEL_ID::PLAYER, m_transform, m_animatorOne, m_Color);
+	_renderer.getDraw3D().drawMesh_calcu(MODEL_ID::PLAYER, m_transform, m_matrix.get(),m_animatorOne, m_Color);
 }
 
 void Player::inGround()
@@ -154,26 +157,7 @@ void Player::moveStart()
 }
 void Player::justAvoid(Avoid* _avoid)
 {
-	float radius = 1.5f;
-	GSvector3 pos(m_transform.getPosition());
-	pos.y += 1.0f;
-	Shape_Ptr shape = std::make_shared<Sphere>(pos, radius);
-	Collision_Ptr actor = std::make_shared<CollisionActor>(shape, CollisionActorType::JUSTAVOID);
-	actor->set_update([&](float deltaTime, Shape_Ptr _shape)
-	{
-		float radius = 1.5f;
-		GSvector3 pos(m_transform.getPosition());
-		pos.y += 1.0f;
-		_shape->transfer(pos);
-	});
-
-	actor->set_collision_enter([=](Actor* _actor, CollisionActorType _type)
-	{
-		_avoid->justAvoidCheck();
-	});
-	actor->set_dead([=]()->bool {return _avoid->isjustTimeEnd(); });
-	actor->set_draw([](const Renderer& _renderer, Shape_Ptr _shape) { _shape->draw(_renderer); });
-	m_group->add(actor);
+	_avoid->justAvoidRange(m_group, m_transform);
 }
 void Player::attackRange(Attack* _attack)
 {
@@ -336,4 +320,8 @@ const bool Player::isGunAttack() const
 const GSvector3 Player::inputDirection() const
 {
 	return m_transform.front();
+}
+const GSvector3 Player::getPosition() const
+{
+	return m_transform.getPosition();
 }

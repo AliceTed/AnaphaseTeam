@@ -4,6 +4,7 @@ enum class CollisionActorType
 {
 	PLAYER,
 	PLAYER_ATTACK,
+	ENEMY_ATTACK,
 	JUSTAVOID,
 	ENEMY_HEAD,
 	ENEMY_LEFT,

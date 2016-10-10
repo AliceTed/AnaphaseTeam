@@ -4,7 +4,6 @@ Attack::Attack(const AttackStatus & _status, ANIMATION_ID _animation, Shape_Ptr 
 	:m_status(_status), m_Animation(_animation), m_Shape(_shape)
 {
 }
-
 Attack::~Attack()
 {
 
@@ -14,22 +13,18 @@ void Attack::initialize(Player* _player)
 	motion(_player);
 	_player->attackRange(this);
 }
-
 void Attack::update(float deltaTime,Player * _player)
 {
 	motion(_player);
 }
-
 void Attack::motion(Player * _player)
 {
 	_player->attackmotion(*this);
 }
-
 void Attack::changeMotion(AnimatorOne & _animator)
 {
 	_animator.changeAnimation(m_Animation, false, false, 2.0f);
 }
-
 const bool Attack::isNextAttack(const AnimatorOne & _animator) const
 {
 	float end = _animator.getCurrentAnimationEndTime();
@@ -37,12 +32,10 @@ const bool Attack::isNextAttack(const AnimatorOne & _animator) const
 	float limit = 20.0f;
 	return (end- limit)<=current;
 }
-
 const bool Attack::isEndMotion(const AnimatorOne & _animator) const
 {
 	return _animator.isEndCurrentAnimation();
 }
-
 void Attack::range(Group_Ptr _group, Transform & _transform, std::function<bool()> _isDead)
 {
 	//–³—‚â‚èUŒ‚’†‚É‹…”»’è‚ğƒLƒƒƒ‰‚Ì‘O‚Éì‚é
