@@ -39,6 +39,10 @@ const bool InputPattern_A::scythe()
 	return m_input->isJoyTriggerX();
 }
 
+const bool InputPattern_A::charge()
+{
+	return m_input->isJoyStateX();
+}
 const bool InputPattern_A::gun()
 {
 	return m_input->isJoyTriggerB();

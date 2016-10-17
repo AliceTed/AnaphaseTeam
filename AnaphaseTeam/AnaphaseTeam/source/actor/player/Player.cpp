@@ -200,7 +200,7 @@ const bool Player::isEndAttackMotion(const IAttack & _attack) const
 
 const bool Player::isChargeAttack() const
 {
-	return false;
+	return m_device->input()->charge();
 }
 
 
@@ -226,7 +226,7 @@ void Player::actionChange(Action_Ptr _action)
 void Player::control()
 {
 	/*ƒ{ƒ^ƒ“‰Ÿ‚µ‚½‚çAttackState‚ÉØ‚è‘Ö‚í‚é*/
-	if (m_device->input()->attack())
+	if (m_device->input()->scythe())
 	{
 		actionChange(std::make_shared<AttackState>());
 		m_attackManager.initialize();
