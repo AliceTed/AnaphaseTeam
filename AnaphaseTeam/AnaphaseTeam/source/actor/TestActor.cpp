@@ -40,7 +40,7 @@ void TestActor::initialize()
 void TestActor::update(float deltatime)
 {
 	std::vector<GSvector3> pos = getAnimEachPos();
-	//m_animatorOne.update(deltatime);
+	m_animatorOne.update(deltatime);
 	m_core.transfer(pos.at(static_cast<unsigned int>(Element::HEAD)));
 	std::for_each(m_points.begin(), m_points.end(), [&](BreakPoint& _point){_point.update(deltatime,pos);});
 }

@@ -102,7 +102,7 @@ void ComboManager::change(float deltaTime, Player * _player)
 	if (!isCurrentEnd(_player))return;
 	if (m_chargeAttack.isStart())
 	{
-		m_chargeAttack.EndAttack(_player, this);
+		m_chargeAttack.endAttack(_player, this);
 		return;
 	}
 	if (m_nextKey == Combo::End)
@@ -129,7 +129,7 @@ void ComboManager::combo(float deltaTime, Player* _player)
 	if (m_ChargeDecision)
 	{
 		if (!m_chargeAttack.isStart())
-			m_chargeAttack.AttackStart();
+			m_chargeAttack.attackStart(20.0f);
 	}
 }
 

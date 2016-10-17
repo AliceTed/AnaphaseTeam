@@ -19,12 +19,13 @@ public:
 	~ChargeAttack();
 	void initialize();
 	void update(float deltaTime, Player* _player);
-	void EndAttack(Player* _player,IComboMadiator * _manager);
+	void endAttack(Player* _player,IComboMadiator * _manager);
 	const bool isChargeEnd()const;
 	const bool isStart() const;
-	void AttackStart();
+	void attackStart(float _chargeTime);
 	void motion(Player* _player);
 
+	void chargeStart(Player* _player);
 	void changeMotion(AnimatorOne& _animator);
 	const bool isNextAttack(const AnimatorOne& _animator)const;
 	const bool isEndMotion(const AnimatorOne& _animator) const;

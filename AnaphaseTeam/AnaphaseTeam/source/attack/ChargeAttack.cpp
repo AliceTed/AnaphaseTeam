@@ -19,18 +19,14 @@ void ChargeAttack::initialize()
 }
 void ChargeAttack::update(float deltaTime, Player* _player)
 {
-	m_isKeyPushNow = _player->isChargeAttack();
-	if (m_isKeyPushNow)
-	{
-		m_chargeTime++;
-	}
+	chargeStart(_player);
 
 	if (m_isStart)
 		motion(_player);
 	m_isFirstFrame = false;
 
 }
-void ChargeAttack::EndAttack(Player* _player, IComboMadiator* _manager)
+void ChargeAttack::endAttack(Player* _player, IComboMadiator* _manager)
 {
 	if (m_isFirstFrame == true)
 		return;
@@ -50,9 +46,9 @@ const bool ChargeAttack::isStart()const
 	return m_isStart;
 }
 
-void ChargeAttack::AttackStart()
+void ChargeAttack::attackStart(float _chargeTime)
 {
-	if (m_chargeTime <= 20.0f)return;
+	if (m_chargeTime <= _chargeTime)return;
 	if (m_isKeyPushNow)return;
 	m_isStart = true;
 	m_isFirstFrame = true;
@@ -61,6 +57,15 @@ void ChargeAttack::AttackStart()
 void ChargeAttack::motion(Player* _player)
 {
 	_player->attackmotion(*this);
+}
+
+void ChargeAttack::chargeStart(Player * _player)
+{
+	m_isKeyPushNow = _player->isChargeAttack();
+	if (m_isKeyPushNow)
+	{
+		m_chargeTime++;
+	}
 }
 
 void ChargeAttack::changeMotion(AnimatorOne& _animator)

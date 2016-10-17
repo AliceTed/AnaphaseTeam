@@ -49,6 +49,7 @@ private:
 	virtual void update(float deltaTime) override
 	{
 		m_SceneManager.update(deltaTime);
+		
 	}
 	// •`‰æ
 	virtual void draw() override
