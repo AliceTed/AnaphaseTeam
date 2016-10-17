@@ -10,21 +10,26 @@ typedef std::shared_ptr<IAirState> AirAction_Ptr;
 class SecondStep:public IAirState
 {
 public:
-	SecondStep();
+	SecondStep(JumpControl* _control, Player* _player);
 	~SecondStep();
 	/**
 	* @fn
 	* @brief 二段目のジャンプの力の設定
 	*/
-	void start(JumpControl* _control, Player* _player);
+	void start();
 	/**
 	* @brief ジャンプの移動処理
 	*/
-	void airAction(JumpControl* _control, Player* _player, float deltaTime);
+	void update(float deltaTime);
+	const bool isEnd() const;
+	std::shared_ptr<IAirState> next() const;
 private:
-	void change(JumpControl* _control, Player* _player);
-	AirAction_Ptr next(const Player* _player) const;
+	void change();
 private:
 	float m_JumpPower;
 	static const float SecondStepPow;
+	bool m_isEnd;
+	AirAction_Ptr m_next;
+	JumpControl* m_control;
+	Player* m_player;
 };

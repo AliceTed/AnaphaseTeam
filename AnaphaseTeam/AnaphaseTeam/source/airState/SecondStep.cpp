@@ -11,7 +11,10 @@
 #include "../../header/math/Calculate.h"
 #include "../../header/subAction/JumpControl.h"
 const float SecondStep::SecondStepPow = 0.6f;
-SecondStep::SecondStep()
+SecondStep::SecondStep(JumpControl* _control, Player* _player)
+	:m_isEnd(false),
+	m_control(_control),
+	m_player(_player)
 {
 
 }
@@ -19,33 +22,37 @@ SecondStep::~SecondStep()
 {
 
 }
-void SecondStep::start(JumpControl * _control, Player* _player)
+void SecondStep::start()
 {
-	_player->startJump(_control, SecondStepPow);
+	m_isEnd = false;
+	m_player->startJump(m_control, SecondStepPow);
 }
-void SecondStep::airAction(JumpControl* _control, Player* _player, float deltaTime)
+void SecondStep::update(float deltaTime)
 {
-	_player->jumpMotion(*_control,ANIMATION_ID::JUMPUP);
-	_player->moving(deltaTime,false);
-	_player->control();
-	_player->avoidStart();
-	_control->jumping(deltaTime, _player);
-	change(_control, _player);
-}
-
-void SecondStep::change(JumpControl * _control, Player * _player)
-{
-	AirAction_Ptr action = next(_player);
-	if (action == nullptr)return;
-	_control->airActionChange(action);
+	m_player->jumpMotion(*m_control,ANIMATION_ID::JUMPUP);
+	m_player->moving(deltaTime,false);
+	m_player->control();
+	m_player->avoidStart();
+	m_control->jumping(deltaTime, m_player);
+	change();
 }
 
-AirAction_Ptr SecondStep::next(const Player * _player) const
+const bool SecondStep::isEnd() const
 {
-	if (_player->isGround())
+	return m_isEnd;
+}
+
+std::shared_ptr<IAirState> SecondStep::next() const
+{
+	return m_next;
+}
+
+void SecondStep::change()
+{
+	if (m_player->isGround())
 	{
-		return std::make_shared<GroundState>();
+		m_isEnd = true;
+		m_next = std::make_shared<GroundState>(m_control, m_player);
 	}
-
-	return nullptr;
 }
+

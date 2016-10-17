@@ -47,6 +47,10 @@ const bool subActionManager::isEnd(SubActionType _type) const
 	return false;
 }
 
+/**
+* @fn
+* @brief ƒWƒƒƒ“ƒv—Í‚ð‚O‚É‚·‚é
+*/
 void subActionManager::jumpPowerOff()
 {
 	m_jump.setPower(0);

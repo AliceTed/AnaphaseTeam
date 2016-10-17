@@ -15,7 +15,6 @@ public:
 	void initialize();
 	void update(float deltaTime);
 	const bool isEnd()const;
-	void justAvoidCheck();
 	bool isjustTimeEnd();
 	void justAvoidRange(Group_Ptr _group, Transform & _transform);
 	

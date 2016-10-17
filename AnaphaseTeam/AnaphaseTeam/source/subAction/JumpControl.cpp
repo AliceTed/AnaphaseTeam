@@ -12,7 +12,7 @@
 const float JumpControl::Acceleration = 0.05f;
 const float JumpControl::MaxJumpPower = 2.0f;
 JumpControl::JumpControl(Player* _player)
-	:m_airAction(std::make_shared<PreparationState>()),
+	:m_airAction(nullptr),
 	m_player(_player),
 	m_isEnd(false)
 {
@@ -27,29 +27,46 @@ JumpControl::~JumpControl()
 void JumpControl::initialize()
 {
 	m_isEnd = false;
-	AirAction_Ptr action = std::make_shared<PreparationState>();
-	airActionChange(action);
+	AirAction_Ptr action = std::make_shared<PreparationState>(this, m_player);
+	change(action);
 }
 
 void JumpControl::update(float deltaTime)
 {
-	m_airAction->airAction(this, m_player, deltaTime);
+	m_airAction->update(deltaTime);
+	airActionChange();
 }
 
-void JumpControl::changeMotion(AnimatorOne & _animator, ANIMATION_ID _id)
+/**
+* @fn
+* @brief アニメーションの変更（ジャンプ）
+*/
+void JumpControl::changeMotion(AnimatorOne & _animator, ANIMATION_ID _id, float _animSpeed)
 {
-	_animator.changeAnimation(_id);
+	_animator.changeAnimation(_id,false,false,_animSpeed);
+}
+/**
+* @fn
+* @brief ジャンプ時のステート切り替え
+*/
+void JumpControl::airActionChange()
+{
+	if (!m_airAction->isEnd()) {
+		return;
+	}
+	AirAction_Ptr next = m_airAction->next();
+	if (next == nullptr)//!next
+	{
+		m_isEnd = true;
+		return;
+	}
+	change(next);
 }
 
-void JumpControl::airActionChange(AirAction_Ptr _airAction)
+void JumpControl::change(AirAction_Ptr _next)
 {
-	m_airAction = _airAction;
-	m_airAction->start(this, m_player);
-}
-
-void JumpControl::end()
-{
-	m_isEnd = true;
+	m_airAction = _next;
+	m_airAction->start();
 }
 
 const bool JumpControl::isEnd() const
@@ -62,6 +79,10 @@ void JumpControl::setPower(float _power)
 	m_JumpPower = _power;
 }
 
+/**
+* @fn
+* @brief プレイヤーのｙ方向の移動
+*/
 void JumpControl::jumping(float deltaTime, Player * _player)
 {
 	_player->jumping(m_JumpPower*deltaTime);

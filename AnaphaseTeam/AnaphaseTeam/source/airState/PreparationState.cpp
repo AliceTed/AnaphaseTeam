@@ -3,7 +3,10 @@
 #include "../../header/subaction/JumpControl.h"
 #include "../../header/actor/Player/Player.h"
 
-PreparationState::PreparationState()
+PreparationState::PreparationState(JumpControl* _control, Player* _player)
+	:m_isEnd(false),
+	m_control(_control),
+	m_player(_player)
 {
 }
 
@@ -11,12 +14,26 @@ PreparationState::~PreparationState()
 {
 }
 
-void PreparationState::start(JumpControl * _control, Player* _player)
+void PreparationState::start()
 {
+	m_isEnd = false;
+}
+/**
+* @fn
+* @brief FirstStep�Ɉڍs
+*/
+void PreparationState::update(float deltaTime)
+{
+	m_isEnd = true;
+	m_next = std::make_shared<FirstStep>(m_control, m_player);
 }
 
-void PreparationState::airAction(JumpControl * _control, Player * _player, float deltaTime)
+const bool PreparationState::isEnd() const
 {
-	AirAction_Ptr next = std::make_shared<FirstStep>();
-	_control->airActionChange(next);
+	return m_isEnd;
+}
+
+std::shared_ptr<IAirState> PreparationState::next() const
+{
+	return m_next;
 }

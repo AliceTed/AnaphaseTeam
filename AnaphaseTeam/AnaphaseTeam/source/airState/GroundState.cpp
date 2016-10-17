@@ -8,7 +8,11 @@
 #include "../../header/airstate/PreparationState.h"
 #include "../../header/actor/Player/Player.h"
 #include "../../header/subAction/JumpControl.h"
-GroundState::GroundState()
+const float GroundState::ANIMSPEED = 1.5f;
+GroundState::GroundState(JumpControl* _control, Player* _player)
+	:m_isEnd(false),
+	m_control(_control),
+	m_player(_player)
 {
 
 }
@@ -16,18 +20,32 @@ GroundState::~GroundState()
 {
 
 }
-void GroundState::start(JumpControl * _control, Player* _player)
+void GroundState::start()
 {
-
+	m_isEnd = false;
 }
-void GroundState::airAction(JumpControl* _control, Player* _player, float deltaTime)
+/**
+* @fn
+* @brief ジャンプ後の着地時の行動
+*/
+void GroundState::update(float deltaTime)
 {
-	_player->moveStart();
-	_player->control();
-	_player->subActionStart();
-	_player->jumpMotion(*_control, ANIMATION_ID::LANDING);
-	if (_player->isAnimationEnd())
+	m_player->moveStart();
+	m_player->control();
+	//m_player->subActionStart();
+	m_player->jumpMotion(*m_control, ANIMATION_ID::LANDING, ANIMSPEED);
+	if (m_player->isAnimationEnd())
 	{
-		_control->end();
+		m_isEnd = true;
 	}
+}
+
+const bool GroundState::isEnd() const
+{
+	return m_isEnd;
+}
+
+std::shared_ptr<IAirState> GroundState::next() const
+{
+	return nullptr;
 }

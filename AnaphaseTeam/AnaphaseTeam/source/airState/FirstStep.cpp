@@ -15,7 +15,10 @@
 #include "../../header/actionstate/AvoidState.h"
 const float FirstStep::FirstStepPow = 0.6f;
 
-FirstStep::FirstStep()
+FirstStep::FirstStep(JumpControl* _control, Player* _player)
+	:m_isEnd(false),
+	m_control(_control),
+	m_player(_player)
 {
 
 }
@@ -24,40 +27,50 @@ FirstStep::~FirstStep()
 {
 
 }
-
-void FirstStep::start(JumpControl * _control, Player* _player)
+/**
+* @fn
+* @brief ステート変更時のジャンプ力の設定
+*/
+void FirstStep::start()
 {
-	_player->startJump(_control,FirstStepPow);
+	m_isEnd = false;
+	m_player->startJump(m_control, FirstStepPow);
+}
+/**
+* @fn
+* @brief ジャンプ一段目の行動
+*/
+void FirstStep::update(float deltaTime)
+{
+	m_player->jumpMotion(*m_control, ANIMATION_ID::JUMPUP);
+	m_player->moving(deltaTime, false);
+	m_player->control();
+	m_player->avoidStart();
+	m_control->jumping(deltaTime, m_player);
+	change();
 }
 
-void FirstStep::airAction(JumpControl* _control, Player* _player, float deltaTime)
+const bool FirstStep::isEnd() const
 {
-	_player->jumpMotion(*_control,ANIMATION_ID::JUMPUP);
-	_player->moving(deltaTime,false);
-	_player->control();
-	_player->avoidStart();
-	_control->jumping(deltaTime, _player);
-	change(_control, _player);
+	return m_isEnd;
 }
 
-void FirstStep::change(JumpControl* _control, Player* _player)
+std::shared_ptr<IAirState> FirstStep::next() const
 {
-	AirAction_Ptr action = next(_player);
-	if (action == nullptr)return;
-	_control->airActionChange(action);
+	return m_next;
 }
 
-AirAction_Ptr FirstStep::next(const Player * _player)const
+void FirstStep::change()
 {
-	if (_player->isGround())
+	if (m_player->isGround())
 	{
-		return std::make_shared<GroundState>();
+		m_isEnd = true;
+		m_next = std::make_shared<GroundState>(m_control, m_player);
 	}
 
-	if (_player->isJump())
+	if (m_player->isJump())
 	{
-		return std::make_shared<SecondStep>();
+		m_isEnd = true;
+		m_next = std::make_shared<SecondStep>(m_control, m_player);
 	}
-	
-	return nullptr;
 }

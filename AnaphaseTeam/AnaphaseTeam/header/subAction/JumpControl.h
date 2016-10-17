@@ -18,12 +18,12 @@ public:
 	void initialize();
 	void update(float deltaTime);
 	const bool isEnd() const;
-
-	void changeMotion(AnimatorOne& _animator, ANIMATION_ID _id);
-	void airActionChange(AirAction_Ptr _airAction);
-	void end();
+	void changeMotion(AnimatorOne& _animator, ANIMATION_ID _id, float _animSpeed = 1.0f);
 	void setPower(float _power);
 	void jumping(float deltaTime, Player* _player);
+private:
+	void airActionChange();
+	void change(AirAction_Ptr _next);
 private:
 	Player* m_player;
 	AirAction_Ptr m_airAction;

@@ -10,8 +10,15 @@
 class GroundState:public IAirState
 {
 public:
-	GroundState();
+	GroundState(JumpControl* _control, Player* _player);
 	~GroundState();
-	void start(JumpControl* _control, Player* _player);
-	void airAction(JumpControl* _control, Player* _player, float deltaTime);
+	void start();
+	void update(float deltaTime);
+	const bool isEnd() const;
+	std::shared_ptr<IAirState> next() const;
+private:
+	bool m_isEnd;
+	JumpControl* m_control;
+	Player* m_player;
+	static const float ANIMSPEED;
 };

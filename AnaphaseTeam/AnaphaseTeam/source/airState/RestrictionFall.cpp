@@ -5,28 +5,43 @@
 #include "../../header/subAction/JumpControl.h"
 const float RestrictionFall::Restriction = 0.0f;
 
-RestrictionFall::RestrictionFall()
+RestrictionFall::RestrictionFall(JumpControl* _control, Player* _player)
+	:m_isEnd(false),
+	m_control(_control),
+	m_player(_player)
 {
 }
 RestrictionFall::~RestrictionFall()
 {
 }
-void RestrictionFall::start(JumpControl * _control, Player* _player)
+void RestrictionFall::start()
 {
-	_player->startJump(_control, Restriction);
+	m_isEnd = false;
+	m_player->startJump(m_control, Restriction);
 }
-void RestrictionFall::airAction(JumpControl * _control, Player* _player, float deltaTime)
+void RestrictionFall::update(float deltaTime)
 {
-	_player->jumpMotion(*_control,ANIMATION_ID::LANDING);
-	_player->moving(deltaTime);
-	_control->jumping(deltaTime, _player);
-	change(_control, _player);
+	m_player->jumpMotion(*m_control,ANIMATION_ID::LANDING);
+	m_player->moving(deltaTime);
+	m_control->jumping(deltaTime, m_player);
+	change();
 }
 
-void RestrictionFall::change(JumpControl * _control, Player * _player)
+const bool RestrictionFall::isEnd() const
 {
-	if (_player->isGround())
+	return m_isEnd;
+}
+
+std::shared_ptr<IAirState> RestrictionFall::next() const
+{
+	return m_next;
+}
+
+void RestrictionFall::change()
+{
+	if (m_player->isGround())
 	{
-		_control->airActionChange(std::make_shared<GroundState>());
+		m_isEnd = true;
+		m_next = std::make_shared<GroundState>(m_control, m_player);
 	}
 }

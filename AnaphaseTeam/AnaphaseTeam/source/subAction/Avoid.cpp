@@ -46,16 +46,18 @@ const bool Avoid::isEnd() const
 	return m_lerp.isEnd();
 }
 
-void Avoid::justAvoidCheck()
-{
-	m_justAvoidFlg = true;
-}
-
+/**
+* @fn
+* @brief ジャスト回避用当たり判定があるかどうか
+*/
 bool Avoid::isjustTimeEnd()
 {
 	return m_justTime.isEnd();
 }
-
+/**
+* @fn
+* @brief ジャスト回避の当たり判定
+*/
 void Avoid::justAvoidRange(Group_Ptr _group, Transform & _transform)
 {
 	float radius = 1.5f;
@@ -73,7 +75,7 @@ void Avoid::justAvoidRange(Group_Ptr _group, Transform & _transform)
 
 	actor->set_collision_enter([=](Actor* _actor, CollisionActorType _type)
 	{
-		justAvoidCheck();
+		m_justAvoidFlg = true;
 	});
 	actor->set_dead([=]()->bool {return isjustTimeEnd(); });
 	actor->set_draw([](const Renderer& _renderer, Shape_Ptr _shape) { _shape->draw(_renderer); });

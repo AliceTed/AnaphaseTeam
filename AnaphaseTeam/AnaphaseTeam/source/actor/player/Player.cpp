@@ -57,7 +57,7 @@ void Player::update(float deltatime)
 	m_action->action(this, deltatime);
 	sphereChases(GSvector3(0, 1, 0));
 	m_animatorOne.update(deltatime);
-//	m_animatorOne.getAnimMatrix(m_matrix.get());
+	//	m_animatorOne.getAnimMatrix(m_matrix.get());
 }
 
 void Player::draw(const Renderer & _renderer, const Camera & _camera)
@@ -71,6 +71,7 @@ void Player::inGround()
 {
 	m_isGround = true;
 }
+
 void Player::stand(float deltaTime)
 {
 	if (!m_isGround)
@@ -126,10 +127,12 @@ void Player::avoid(float deltaTime)
 		actionChange(std::make_shared<StandState>());
 	}
 }
+
 void Player::jumping(float _velocity)
 {
 	m_transform.translateY(_velocity);
 }
+
 void Player::subActionStart()
 {
 	if (m_device->input()->jump())
@@ -142,34 +145,37 @@ void Player::subActionStart()
 		return;
 	}
 
-
 	if (m_device->input()->avoid())
 	{
 		m_SubAction.initialize(SubActionType::AVOID);
 		actionChange(std::make_shared<AvoidState>());
 	}
 }
+
 void Player::moveStart()
 {
 	if (m_device->input()->move())
 		actionChange(std::make_shared<MoveState>());
 }
+
 void Player::justAvoid(Avoid* _avoid)
 {
 	_avoid->justAvoidRange(m_group, m_transform);
 }
+
 void Player::attackRange(Attack* _attack)
 {
 	_attack->range(m_group, m_transform, [=]()->bool {return isEndAttackMotion(*_attack); });
 }
+
 void Player::startJump(JumpControl * _control, float _scale)
 {
 	m_status.giveJumpPower(_control, _scale);
 }
 
-void Player::jumpMotion(JumpControl& _control, ANIMATION_ID _id)
+void Player::jumpMotion(JumpControl& _control, ANIMATION_ID _id, float _animSpeed)
 {
-	_control.changeMotion(m_animatorOne, _id);
+	_control.changeMotion(m_animatorOne, _id, _animSpeed);
 }
 
 void Player::avoidAction(const GSvector3 & _velocity)
