@@ -18,18 +18,19 @@ void Ending::initialize()
 	m_change.begin();
 }
 
-void Ending::update(float deltaTime)
+void Ending::update(float _deltaTime)
 {
 	//Œˆ’èƒ{ƒ^ƒ“ì‚Á‚Ä‚à‚¢‚¢‚©‚à
 	if (m_device->input()->jump())
 	{
-		m_IsEnd = true;
+		m_change.end(SceneMode::TITLE);
 	}
 }
 
-void Ending::draw(const Renderer & renderer)
+void Ending::draw(const Renderer & _renderer)
 {
-	renderer.getDraw2D().textrue(TEXTURE_ID::CLEAR, &GSvector2(0, 0));
+	_renderer.getDraw2D().textrue(TEXTURE_ID::CLEAR, &GSvector2(0, 0));
+	m_change.draw(_renderer);
 }
 
 void Ending::finish()
@@ -38,12 +39,12 @@ void Ending::finish()
 
 const SceneMode Ending::next() const
 {
-	return SceneMode::TITLE;
+	return m_change.next();
 }
 
 const bool Ending::isEnd() const
 {
-	return m_IsEnd;
+	return m_change.isEnd();
 }
 
 const bool Ending::isExit() const

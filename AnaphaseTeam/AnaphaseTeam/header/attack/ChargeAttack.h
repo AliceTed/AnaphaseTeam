@@ -1,38 +1,40 @@
 #pragma once
-/**
-* @file ContinuationCombo.h
-* @brief 連続コンボ用単発攻撃
-* @author 松尾裕也
-* @date 2016/8/26
-*/
+
 #include "../data/ANIMATION_ID.h"
 #include "AttackStatus.h"
 #include "../../header/shape/Shape.h"
 #include <memory>
-#include "ECombo.h"
+#include"ECombo.h"
 #include "IAttack.h"
-typedef std::shared_ptr<Shape> Shape_Ptr;
-
-class TestActor;
+class IComboMadiator;
 class Player;
 class CollisionMediator;
 class AnimatorOne;
+typedef std::shared_ptr<Shape> Shape_Ptr;
 
-class Attack:public IAttack
+class ChargeAttack:IAttack
 {
 public:
-	Attack(const AttackStatus& _status, ANIMATION_ID _animation,Combo next, Shape_Ptr _shape);
-	~Attack();
-	void initialize(Player* _player);
-	void update(float deltaTime,Player* _player);
+	ChargeAttack(const AttackStatus& _status, ANIMATION_ID _animation, Shape_Ptr _shape);
+	~ChargeAttack();
+	void initialize();
+	void update(float deltaTime, Player* _player);
+	void endAttack(Player* _player,IComboMadiator * _manager);
+	const bool isChargeEnd()const;
+	const bool isStart() const;
+	void attackStart(float _chargeTime);
 	void motion(Player* _player);
-	
+
+	void chargeStart(Player* _player);
 	void changeMotion(AnimatorOne& _animator);
 	const bool isNextAttack(const AnimatorOne& _animator)const;
 	const bool isEndMotion(const AnimatorOne& _animator) const;
-	const Combo next()const ;
-	//bool isEndAttackTime(AnimatorOne * _animator);
 private:
+	bool m_chargeKey;
+	bool m_isKeyPushNow;
+	float m_chargeTime;
+	bool m_isStart;
+	bool m_isFirstFrame;
 	//!攻撃ステータス
 	AttackStatus m_status;
 	//!アニメーション
@@ -41,6 +43,4 @@ private:
 	Combo m_nextCombo;
 	//判定用形状
 	Shape_Ptr m_Shape;
-
-
 };

@@ -12,6 +12,7 @@ public:
 	const bool isJoyTriggerA() const;
 	const bool isJoyTriggerB() const;
 	const bool isJoyTriggerX() const;
+	const bool isJoyStateX() const;
 	const bool isJoyTriggerY() const;
 	const bool isJoyTriggerLB() const;
 	const bool isJoyTriggerRB() const;

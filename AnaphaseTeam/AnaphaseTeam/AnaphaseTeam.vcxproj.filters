@@ -483,6 +483,9 @@
     <ClInclude Include="header\actor\Enemy\Core.h">
       <Filter>ヘッダー ファイル\actor\Enemy</Filter>
     </ClInclude>
+    <ClInclude Include="header\attack\ChargeAttack.h">
+      <Filter>ヘッダー ファイル\attack</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Util\BasicShapes.cpp">
@@ -718,6 +721,9 @@
     </ClCompile>
     <ClCompile Include="source\actor\Enemy\Core.cpp">
       <Filter>ソース ファイル\actor\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="source\attack\ChargeAttack.cpp">
+      <Filter>ソース ファイル\Attack</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

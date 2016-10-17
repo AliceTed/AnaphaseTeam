@@ -1,13 +1,12 @@
-#ifndef _ENDING_H_
-#define _ENDING_H_
+#pragma once
 #include "../IScene.h"
 #include "../SceneChange.h"
-class GameDevice;
-class Ending :public IScene
+class Input;
+class GameOver :public IScene
 {
 public:
-	Ending(GameDevice* _device);
-	~Ending();
+	GameOver(const Input* _input);
+	~GameOver();
 	void initialize();
 	void update(float _deltaTime);
 	void draw(const Renderer& _renderer);
@@ -17,7 +16,6 @@ public:
 	const bool isExit()const;
 private:
 	bool m_IsEnd;
-	GameDevice* m_device;
+	const Input* m_Input;
 	SceneChange m_change;
 };
-#endif

@@ -153,6 +153,7 @@
     <ClCompile Include="source\actor\player\Status.cpp" />
     <ClCompile Include="source\attack\AttackManager.cpp" />
     <ClCompile Include="source\attack\AttackStatus.cpp" />
+    <ClCompile Include="source\attack\ChargeAttack.cpp" />
     <ClCompile Include="source\attack\ComboManager.cpp" />
     <ClCompile Include="source\attack\Attack.cpp" />
     <ClCompile Include="source\attack\Gun.cpp" />
@@ -235,6 +236,7 @@
     <ClInclude Include="header\attack\AttackManager.h" />
     <ClInclude Include="header\attack\AttackPattern.h" />
     <ClInclude Include="header\attack\AttackStatus.h" />
+    <ClInclude Include="header\attack\ChargeAttack.h" />
     <ClInclude Include="header\attack\ComboManager.h" />
     <ClInclude Include="header\attack\Attack.h" />
     <ClInclude Include="header\attack\Gun.h" />

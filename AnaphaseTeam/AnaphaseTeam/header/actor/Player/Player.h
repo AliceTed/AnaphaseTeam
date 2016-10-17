@@ -40,9 +40,9 @@ public:
 	void avoidAction(const GSvector3& _velocity);
 	void startJump(JumpControl* _control,float _scale);
 	void jumpMotion(JumpControl& _control,ANIMATION_ID _id, float _animSpeed = 1.0f);
-	void attackmotion(Attack& _attack);
-	const bool isNextAttack(Attack& _attack)const;
-	const bool isEndAttackMotion(const Attack& _attack)const;
+	void attackmotion(IAttack& _attack);
+	const bool isNextAttack(IAttack& _attack)const;
+	const bool isEndAttackMotion(const IAttack& _attack)const;
 	void moving(float deltaTime,bool isAnimation=true);
 	void control();
 	void look_at(CameraController* _camera, GSvector3* _target);
@@ -63,6 +63,7 @@ public://“ü—Í
 	//‹ßÚ—p
 	const bool isAttack()const;
 	const bool isGunAttack()const;
+	const bool isChargeAttack() const;
 	//“ü—Í•ûŒü
 	const GSvector3 inputDirection()const;
 public://ActorŒp³

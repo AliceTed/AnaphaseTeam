@@ -165,7 +165,7 @@ void Player::justAvoid(Avoid* _avoid)
 
 void Player::attackRange(Attack* _attack)
 {
-	_attack->range(m_group, m_transform, [=]()->bool {return isEndAttackMotion(*_attack); });
+	//_attack->range(m_group, m_transform, [=]()->bool {return isEndAttackMotion(*_attack); });
 }
 
 void Player::startJump(JumpControl * _control, float _scale)
@@ -183,20 +183,26 @@ void Player::avoidAction(const GSvector3 & _velocity)
 	m_transform.translate(_velocity);
 }
 
-void Player::attackmotion(Attack & _attack)
+void Player::attackmotion(IAttack & _attack)
 {
 	_attack.changeMotion(m_animatorOne);
 }
 
-const bool Player::isNextAttack(Attack & _attack) const
+const bool Player::isNextAttack(IAttack & _attack) const
 {
 	return _attack.isNextAttack(m_animatorOne);
 }
 
-const bool Player::isEndAttackMotion(const Attack & _attack) const
+const bool Player::isEndAttackMotion(const IAttack & _attack) const
 {
 	return _attack.isEndMotion(m_animatorOne);
 }
+
+const bool Player::isChargeAttack() const
+{
+	return false;
+}
+
 
 void Player::moving(float deltaTime, bool isAnimation)
 {
