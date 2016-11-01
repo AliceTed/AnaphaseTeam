@@ -11,7 +11,8 @@ GamePlay::GamePlay(GameDevice* _device)
 	actorManager(),
 	m_player(_device,&m_Camera),
 	m_boss(),
-	m_change()
+	m_change(),
+	m_enemy()
 {
 }
 GamePlay::~GamePlay()
@@ -27,8 +28,10 @@ void GamePlay::initialize()
 	collision.initialize();
 	m_player.initialize();
 	m_boss.initialize();
+	m_enemy.initialize();
 	m_player.addCollisionGroup(&collision);
 	m_boss.addCollisionGroup(&collision);
+	m_enemy.addCollisionGroup(&collision);
 }
 
 void GamePlay::update(float deltaTime)
@@ -60,6 +63,7 @@ void GamePlay::draw(const Renderer & _renderer)
 	m_player.draw(_renderer,m_Camera);
 	m_Map.draw(_renderer);
 	m_boss.draw(_renderer, m_Camera);
+	m_enemy.draw(_renderer, m_Camera);
 	collision.draw(_renderer);
 	m_change.draw(_renderer);
 }

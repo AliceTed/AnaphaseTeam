@@ -20,6 +20,7 @@
 #include "../../data/ANIMATION_ID.h"
 #include "Status.h"
 #include "../../collision/CollisionManager.h"
+#include "Gauge.h"
 class GameDevice;
 class CameraController;
 class TestActor;
@@ -52,6 +53,7 @@ public:
 	void moveStart();
 	void justAvoid(Avoid* _avoid);
 	void attackRange(Attack* _attack);
+	void gaugeUp(float _scale);
 public:
 	const bool isGround() const;
 	const bool isJumpAttack()const;
@@ -79,6 +81,7 @@ public://ICharacteré¿ëï
 	void move(float deltaTime);
 	void jump(float deltaTime);
 	void avoid(float deltaTime);
+	void createColision();
 private:
 	void moveMotionChange();
 	void rotate(float deltaTime,Transform& _transform);
@@ -93,6 +96,7 @@ private:
 	subActionManager m_SubAction;
 	AttackManager m_attackManager;
 	Status m_status;
+	Gauge m_Gauge;
 	//JumpControlÇ…à⁄ìÆÇµÇΩÇ¢
 	bool m_isGround;
 	//ñ≥óùÇ‚ÇË

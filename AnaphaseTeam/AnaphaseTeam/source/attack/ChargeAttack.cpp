@@ -68,7 +68,7 @@ void ChargeAttack::chargeStart(Player * _player)
 	}
 }
 
-void ChargeAttack::changeMotion(AnimatorOne& _animator)
+void ChargeAttack::changeMotion(AnimatorOne& _animator, float _speed)
 {
 	_animator.changeAnimation(m_Animation, false, false, 1.5f);
 }

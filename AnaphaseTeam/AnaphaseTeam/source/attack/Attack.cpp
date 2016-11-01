@@ -21,9 +21,9 @@ void Attack::motion(Player * _player)
 {
 	_player->attackmotion(*this);
 }
-void Attack::changeMotion(AnimatorOne & _animator)
+void Attack::changeMotion(AnimatorOne & _animator, float _speed)
 {
-	_animator.changeAnimation(m_Animation, false, false,1.5f);
+	_animator.changeAnimation(m_Animation, false, false,_speed);
 }
 const bool Attack::isNextAttack(const AnimatorOne & _animator) const
 {

@@ -12,6 +12,7 @@
 #include "../../../header/data/PLAYERACTION_ID.h"
 #include "../../../header/camera/CameraController.h"
 #include "../../../header/math/Calculate.h"
+#include "../../../header/shape/Capsule.h"
 const float Player::MOVESPEED = 0.3f;
 const float Player::ROTATESPEED = -2.0f;
 const float Player::WALKSPEED = 0.1f;
@@ -30,7 +31,8 @@ Player::Player(GameDevice* _device, Camera * _camera)
 	m_camera(_camera),
 	m_status(),
 	m_isJumpAttack(false),
-	m_group(std::make_shared<CollisionGroup>(this))
+	m_group(std::make_shared<CollisionGroup>(this)),
+	m_Gauge()
 {
 	//m_matrix = std::make_shared<GSmatrix4>(new GSmatrix4[m_animatorOne.getNumBones()]);
 }
@@ -50,6 +52,9 @@ void Player::initialize()
 	m_animatorOne.initialize();
 	m_animatorOne.changeAnimation(ANIMATION_ID::STAND, true, true);
 	m_isJumpAttack = false;
+	createColision();
+	m_Gauge.initialize();
+	m_status.initialize();
 }
 
 void Player::update(float deltatime)
@@ -57,6 +62,9 @@ void Player::update(float deltatime)
 	m_action->action(this, deltatime);
 	sphereChases(GSvector3(0, 1, 0));
 	m_animatorOne.update(deltatime);
+	
+	m_Gauge.update();
+	m_status.change(m_Gauge);
 	//	m_animatorOne.getAnimMatrix(m_matrix.get());
 }
 
@@ -65,6 +73,7 @@ void Player::draw(const Renderer & _renderer, const Camera & _camera)
 	FALSE_RETURN(isInsideView(_camera));
 	alphaBlend(_camera);
 	_renderer.getDraw3D().drawMesh_calcu(MODEL_ID::PLAYER, m_transform,m_animatorOne, m_Color);
+	m_Gauge.draw(_renderer);
 }
 
 void Player::inGround()
@@ -128,6 +137,20 @@ void Player::avoid(float deltaTime)
 	}
 }
 
+void Player::createColision()
+{
+	//Segment segment = Segment(m_transform.getPosition(), GSvector3(0, -0.1f, 0));
+	Shape_Ptr shape = std::make_shared<Capsule>(Segment( m_transform.getPosition(),GSvector3(0,0.8f,0)), 0.5f);
+	Collision_Ptr obj = std::make_shared<CollisionActor>(shape, CollisionActorType::PLAYER);
+	obj->set_update([&](float deltaTime, Shape_Ptr _shape) 
+	{
+		GSvector3 target = m_transform.getPosition() + GSvector3(0.0f, 0.5f, 0.0f);
+		_shape->transfer(target);
+	});
+	obj->set_draw([&](const Renderer& _renderer, Shape_Ptr _shape) { _shape->draw(_renderer); });
+	m_group->add(obj);
+}
+
 void Player::jumping(float _velocity)
 {
 	m_transform.translateY(_velocity);
@@ -145,10 +168,13 @@ void Player::subActionStart()
 		return;
 	}
 
+	//ゲージの消費テスト
 	if (m_device->input()->avoid())
 	{
-		m_SubAction.initialize(SubActionType::AVOID);
-		actionChange(std::make_shared<AvoidState>());
+		m_Gauge.down(25);
+		/*m_SubAction.initialize(SubActionType::AVOID);
+		actionChange(std::make_shared<AvoidState>());*/
+
 	}
 }
 
@@ -168,9 +194,14 @@ void Player::attackRange(Attack* _attack)
 	//_attack->range(m_group, m_transform, [=]()->bool {return isEndAttackMotion(*_attack); });
 }
 
+void Player::gaugeUp(float _scale)
+{
+	m_Gauge.up(_scale);
+}
+
 void Player::startJump(JumpControl * _control, float _scale)
 {
-	m_status.giveJumpPower(_control, _scale);
+	_control->setPower(_scale);
 }
 
 void Player::jumpMotion(JumpControl& _control, ANIMATION_ID _id, float _animSpeed)
@@ -185,7 +216,7 @@ void Player::avoidAction(const GSvector3 & _velocity)
 
 void Player::attackmotion(IAttack & _attack)
 {
-	_attack.changeMotion(m_animatorOne);
+	_attack.changeMotion(m_animatorOne,m_status.attackSpeed() );
 }
 
 const bool Player::isNextAttack(IAttack & _attack) const
@@ -206,14 +237,14 @@ const bool Player::isChargeAttack() const
 
 void Player::moving(float deltaTime, bool isAnimation)
 {
-	float speed = m_status.getMoveSpeed(false, false);
+	//float speed = m_status.getMoveSpeed(false, false);
 	float time = 1.0f;
 	if (m_device->input()->walk())
 	{
-		speed = m_status.getWalkSpeed();
+		//speed = m_status.getWalkSpeed();
 		time = 0.4f;
 	}
-	movement(deltaTime, speed);
+	movement(deltaTime, 0.5f);
 	if (!isAnimation)return;
 	m_animatorOne.changeAnimation(ANIMATION_ID::RUN, true, true, time);
 }
@@ -231,6 +262,7 @@ void Player::control()
 		actionChange(std::make_shared<AttackState>());
 		m_attackManager.initialize();
 		m_isJumpAttack = !m_isGround;
+		m_Gauge.up(10.0f);
 	}
 }
 
@@ -242,16 +274,16 @@ void Player::look_at(CameraController * _camera, GSvector3 * _target)
 
 void Player::buildup()
 {
-	m_status.powerUp();
+	//m_status.powerUp();
 }
 
 void Player::avoidStart()
 {
-	if (m_device->input()->avoid())
+	/*if (m_device->input()->avoid())
 	{
 		m_SubAction.initialize(SubActionType::AVOID);
 		actionChange(std::make_shared<AvoidState>());
-	}
+	}*/
 }
 
 /**

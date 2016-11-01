@@ -111,10 +111,12 @@ void ComboManager::change(float deltaTime, Player * _player)
 		m_isEnd = true;
 		return;
 	}
+	_player->gaugeUp(10);
 	m_ChargeDecision = true;
 	m_currentKey = m_nextKey;
 	m_nextKey = Combo::End;
 	m_chargeAttack.initialize();
+
 }
 
 void ComboManager::combo(float deltaTime, Player* _player)

@@ -8,6 +8,7 @@
 #include "../../collision/CollisionManager.h"
 #include <memory>
 #include "../../actor/Player/Player.h"
+#include "../../actor/Boss/Boss.h"
 #include "../../actor/Enemy/Enemy.h"
 
 #include "../../camera/CameraController.h"
@@ -36,6 +37,7 @@ private:
 	Entity::EntityManager<Actor_Ptr> actorManager;
 	CollisionManager collision;
 	Player m_player;
-	Enemy m_boss;
+	Boss m_boss;
+	Enemy m_enemy;
 };
 #endif

@@ -1,6 +1,6 @@
-#include "../../../header/actor/Enemy/BreakPoint.h"
+#include "../../../header/actor/Boss/BreakPoint.h"
 #include "../../../header/collision/CollisionGroup.h"
-#include "../../../header/actor/Enemy/Enemy.h"
+#include "../../../header/actor/Boss/Boss.h"
 #include "../../../header/actor/Player/Player.h"
 
 BreakPoint::BreakPoint(CollisionActorType _type, Element _element)
@@ -23,7 +23,7 @@ void BreakPoint::update(float deltaTime,std::vector<GSvector3>& _position)
 {
 	m_position = _position.at(static_cast<unsigned int>(m_element));
 }
-void BreakPoint::createCollision(Enemy * _parent, Group_Ptr& _group)
+void BreakPoint::createCollision(Boss * _parent, Group_Ptr& _group)
 {
 	shape = std::make_shared<Sphere>(GSvector3(0, 1, 0), 1);
 	obj = std::make_shared<CollisionActor>(shape, m_type);

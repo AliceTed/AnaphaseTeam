@@ -26,7 +26,7 @@ public:
 	void motion(Player* _player);
 
 	void chargeStart(Player* _player);
-	void changeMotion(AnimatorOne& _animator);
+	void changeMotion(AnimatorOne& _animator, float _speed);
 	const bool isNextAttack(const AnimatorOne& _animator)const;
 	const bool isEndMotion(const AnimatorOne& _animator) const;
 private:
