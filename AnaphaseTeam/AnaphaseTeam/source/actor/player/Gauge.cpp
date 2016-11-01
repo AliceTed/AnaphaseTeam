@@ -60,7 +60,6 @@ void Gauge::downOneGauge()
 
 float Gauge::scale(float def)
 {
-	//return def*(m_gauge*0.05f);
 	return log(def+(m_gauge*0.1f));
 }
 
