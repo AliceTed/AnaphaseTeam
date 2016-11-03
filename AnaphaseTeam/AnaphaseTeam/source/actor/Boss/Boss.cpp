@@ -72,6 +72,11 @@ void Boss::addCollisionGroup(CollisionManager* _manager)
 	_manager->add(m_group);
 }
 
+const GSvector3 Boss::getPosition() const
+{
+	return m_transform.getPosition();
+}
+
 void Boss::createPoint()
 {
 	vector<GSvector3> pos = getAnimEachPos();

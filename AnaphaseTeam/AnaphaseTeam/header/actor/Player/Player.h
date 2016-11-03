@@ -24,6 +24,7 @@
 class GameDevice;
 class CameraController;
 class TestActor;
+class Boss;
 typedef std::shared_ptr<IActionState> Action_Ptr;
 class Player :public Actor, public ICharacter
 {
@@ -54,6 +55,7 @@ public:
 	void justAvoid(Avoid* _avoid);
 	void attackRange(Attack* _attack);
 	void gaugeUp(float _scale);
+	void attackhoming(Boss* _boss);
 public:
 	const bool isGround() const;
 	const bool isJumpAttack()const;

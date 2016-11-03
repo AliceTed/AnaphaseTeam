@@ -13,6 +13,8 @@
 #include "../../../header/camera/CameraController.h"
 #include "../../../header/math/Calculate.h"
 #include "../../../header/shape/Capsule.h"
+
+#include "../../../header/actor/Boss/Boss.h"
 const float Player::MOVESPEED = 0.3f;
 const float Player::ROTATESPEED = -2.0f;
 const float Player::WALKSPEED = 0.1f;
@@ -196,6 +198,24 @@ void Player::attackRange(Attack* _attack)
 void Player::gaugeUp(float _scale)
 {
 	m_Gauge.up(_scale);
+}
+
+void Player::attackhoming(Boss * _boss)
+{
+	if (m_attackManager.isEnd())
+	{
+		return;
+	}
+	if (isAnimationEnd())
+	{
+		GSvector3 vector = _boss->getPosition() - m_transform.getPosition();
+		float radian = atan2(vector.x, vector.z);
+		float degree = radian * 180.0f / M_PI;
+		m_transform.setYaw(degree);
+
+		GSvector3 forward(m_transform.front() * 1);
+		m_transform.translate(forward);
+	}
 }
 
 void Player::startJump(JumpControl * _control, float _scale)

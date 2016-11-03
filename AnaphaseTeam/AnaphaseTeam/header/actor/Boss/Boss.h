@@ -32,6 +32,10 @@ public:
 	void draw(const Renderer& _renderer, const Camera& _camera);
 	void look_at(CameraController* _camera, Player* _player);
 	void addCollisionGroup(CollisionManager*  _manager);
+
+public:
+	const GSvector3 getPosition() const;
+
 private:
 	void createPoint();
 	vector<GSvector3> getAnimEachPos();

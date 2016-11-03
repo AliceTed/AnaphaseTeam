@@ -45,6 +45,8 @@ void GamePlay::update(float deltaTime)
 
 	collision.update(deltaTime);
 
+	m_player.attackhoming(&m_boss);
+
 	/*if (m_device->input()->reset())
 	{
 		m_change.end(SceneMode::GAMEPLAY);
