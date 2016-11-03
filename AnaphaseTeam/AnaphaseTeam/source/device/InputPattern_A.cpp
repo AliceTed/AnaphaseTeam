@@ -50,7 +50,22 @@ const bool InputPattern_A::gun()
 
 const bool InputPattern_A::avoid()
 {
-	return m_input->isJoyTriggerRB();
+	return m_input->isJoyRightTrigger();
+}
+
+const bool InputPattern_A::chargeAttack1()
+{
+	return m_input->isJoyTriggerB() && m_input->isJoyTriggerRB();
+}
+
+const bool InputPattern_A::chargeAttack2()
+{
+	return m_input->isJoyTriggerX() && m_input->isJoyTriggerRB();
+}
+
+const bool InputPattern_A::chargeAttack3()
+{
+	return m_input->isJoyTriggerY() && m_input->isJoyTriggerRB();
 }
 
 const bool InputPattern_A::up()

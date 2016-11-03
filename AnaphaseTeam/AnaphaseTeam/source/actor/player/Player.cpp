@@ -168,12 +168,11 @@ void Player::subActionStart()
 		return;
 	}
 
-	//ゲージの消費テスト
 	if (m_device->input()->avoid())
 	{
-		m_Gauge.down(25);
-		/*m_SubAction.initialize(SubActionType::AVOID);
-		actionChange(std::make_shared<AvoidState>());*/
+		m_SubAction.initialize(SubActionType::AVOID);
+		actionChange(std::make_shared<AvoidState>());
+		m_Gauge.down(5);
 
 	}
 }
@@ -256,6 +255,22 @@ void Player::actionChange(Action_Ptr _action)
 
 void Player::control()
 {
+	///////////////////////////////////////////////////////////
+	if (m_device->input()->chargeAttack1())
+	{
+		m_Gauge.downGauge(1);
+		return;
+	}
+	if (m_device->input()->chargeAttack2())
+	{
+		m_Gauge.downGauge(2);
+		return;
+	}
+	if (m_device->input()->chargeAttack3())
+	{
+		m_Gauge.downGauge(3);
+		return;
+	}
 	/*ボタン押したらAttackStateに切り替わる*/
 	if (m_device->input()->scythe())
 	{
@@ -264,6 +279,7 @@ void Player::control()
 		m_isJumpAttack = !m_isGround;
 		m_Gauge.up(10.0f);
 	}
+	
 }
 
 void Player::look_at(CameraController * _camera, GSvector3 * _target)

@@ -16,6 +16,9 @@ public://ƒAƒNƒVƒ‡ƒ“
 	virtual const bool charge() = 0;
 	virtual const bool gun() = 0;
 	virtual const bool avoid() = 0;
+	virtual const bool chargeAttack1() = 0;
+	virtual const bool chargeAttack2() = 0;
+	virtual const bool chargeAttack3() = 0;
 public:
 	virtual const bool up() = 0;
 	virtual const bool down() = 0;

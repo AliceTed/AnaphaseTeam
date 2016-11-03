@@ -1,7 +1,7 @@
 #include "../../header/subAction/Avoid.h"
 #include "../../header/actor/Player/Player.h"
 
-const float Avoid::VELOCITY = 7.5f;
+const float Avoid::VELOCITY = 4.5f;
 const float Avoid::TIME = 0.2f;
 Avoid::Avoid(Player* _player)
 	:m_player(_player),
@@ -60,7 +60,8 @@ bool Avoid::isjustTimeEnd()
 */
 void Avoid::justAvoidRange(Group_Ptr _group, Transform & _transform)
 {
-	float radius = 1.5f;
+
+	/*float radius = 1.5f;
 	GSvector3 pos(_transform.getPosition());
 	pos.y += 1.0f;
 	Shape_Ptr shape = std::make_shared<Sphere>(pos, radius);
@@ -79,6 +80,6 @@ void Avoid::justAvoidRange(Group_Ptr _group, Transform & _transform)
 	});
 	actor->set_dead([=]()->bool {return isjustTimeEnd(); });
 	actor->set_draw([](const Renderer& _renderer, Shape_Ptr _shape) { _shape->draw(_renderer); });
-	_group->add(actor);
+	_group->add(actor);*/
 }
 

@@ -5,9 +5,8 @@
 enum RankGauge
 {
 	ZERO = 0,
-	FIRST = 25,
-	SECOND = 50,
-	THIRD = 75,
+	FIRST = 33,
+	SECOND = 66,
 	MAX = 100
 };
 
@@ -21,7 +20,7 @@ public:
 	void draw(const Renderer& _renderer);
 	void up(float _scale);
 	void down(float _scale);
-	void downOneGauge();
+	void downGauge(int _rank);
 
 	float scale(float def);
 private:

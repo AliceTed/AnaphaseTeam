@@ -7,7 +7,7 @@
 
 const float Gauge::MAXGAUGE = 100.0f;
 const float Gauge::MINGAUGE = 0.0f;
-const float Gauge::ONEGAUGE = 25.0f;
+const float Gauge::ONEGAUGE = 33.0f;
 
 Gauge::Gauge()
 	:m_gauge(ONEGAUGE),
@@ -16,7 +16,6 @@ Gauge::Gauge()
 	rankvector.emplace_back(RankGauge::ZERO);
 	rankvector.emplace_back(RankGauge::FIRST);
 	rankvector.emplace_back(RankGauge::SECOND);
-	rankvector.emplace_back(RankGauge::THIRD);
 	rankvector.emplace_back(RankGauge::MAX);
 }
 
@@ -47,15 +46,23 @@ void Gauge::up(float _scale)
 {
 	add(_scale);
 }
-
+////////////////////////////////////////////////////
 void Gauge::down(float _scale)
 {
+	if (_scale > m_gauge)
+	{
+		return;
+	}
 	add(-_scale);
 }
-
-void Gauge::downOneGauge()
+//////////////////////////////////////////////////////
+void Gauge::downGauge(int _rank)
 {
-	add(-ONEGAUGE);
+	if (ONEGAUGE * _rank > m_gauge)
+	{
+		return;
+	}
+	add(-ONEGAUGE * _rank);
 }
 
 float Gauge::scale(float def)
