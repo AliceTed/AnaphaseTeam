@@ -231,7 +231,7 @@ void Player::actionChange(Action_Ptr _action)
 void Player::control()
 {
 	/*ƒ{ƒ^ƒ“‰Ÿ‚µ‚½‚çAttackState‚ÉØ‚è‘Ö‚í‚é*/
-	if (m_Input->strengthAttackTrigger())
+	if (m_Input->weakAttackTrigger())
 	{
 		actionChange(std::make_shared<AttackState>());
 		m_attackManager.initialize();
@@ -243,9 +243,9 @@ void Player::control()
 		GSvector3 pos(m_transform.getPosition() + front);
 		pos.y += 1.0f;
 		Shape_Ptr shape = std::make_shared<Sphere>(pos, radius);
-		Collision_Ptr actor= std::make_shared<CollisionActor>(shape, CollisionActorType::PLAYER_ATTACK);
-		actor->set_dead([&]()->bool{return m_attackManager.isEnd();});
-		actor->set_draw([](const Renderer& _renderer, Shape_Ptr _shape) { _shape->draw(_renderer);});
+		Collision_Ptr actor = std::make_shared<CollisionActor>(shape, CollisionActorType::PLAYER_ATTACK);
+		actor->set_dead([&]()->bool {return m_attackManager.isEnd(); });
+		actor->set_draw([](const Renderer& _renderer, Shape_Ptr _shape) { _shape->draw(_renderer); });
 		m_group->add(actor);
 	}
 }
