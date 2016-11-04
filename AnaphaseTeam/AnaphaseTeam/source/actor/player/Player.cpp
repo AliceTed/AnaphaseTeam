@@ -66,7 +66,6 @@ void Player::update(float deltatime)
 	sphereChases(GSvector3(0, 1, 0));
 	m_animatorOne.update(deltatime);
 	
-	m_Gauge.update();
 	m_status.change(m_Gauge);
 	//	m_animatorOne.getAnimMatrix(m_matrix.get());
 }
@@ -283,17 +282,17 @@ void Player::control()
 	///////////////////////////////////////////////////////////
 	if (m_device->input()->gaugeAttack1())
 	{
-		m_Gauge.downGauge(1);
+		m_Gauge.downGauge(RankGauge::FIRST);
 		return;
 	}
 	if (m_device->input()->gaugeAttack2())
 	{
-		m_Gauge.downGauge(2);
+		m_Gauge.downGauge(RankGauge::SECOND);
 		return;
 	}
 	if (m_device->input()->gaugeAttack3())
 	{
-		m_Gauge.downGauge(3);
+		m_Gauge.downGauge(RankGauge::THIRD);
 		return;
 	}
 	/*ƒ{ƒ^ƒ“‰Ÿ‚µ‚½‚çAttackState‚ÉØ‚è‘Ö‚í‚é*/
