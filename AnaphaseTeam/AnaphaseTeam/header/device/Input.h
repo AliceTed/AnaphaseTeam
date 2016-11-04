@@ -16,6 +16,8 @@ public:
 	const bool isJoyTriggerY() const;
 	const bool isJoyTriggerLB() const;
 	const bool isJoyTriggerRB() const;
+	const bool isJoyStateLB() const;
+	const bool isJoyStateRB() const;
 	const bool isJoyTriggerBACK() const;
 	const bool isJoyTriggerSTART() const;
 	const bool isJoyTriggerLeftThrust() const;

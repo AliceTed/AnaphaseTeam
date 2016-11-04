@@ -19,9 +19,9 @@ public://ƒAƒNƒVƒ‡ƒ“
 	const bool charge();
 	const bool gun();
 	const bool avoid();
-	const bool chargeAttack1();
-	const bool chargeAttack2();
-	const bool chargeAttack3();
+	const bool gaugeAttack1();
+	const bool gaugeAttack2();
+	const bool gaugeAttack3();
 public:
 	const bool up();
 	const bool down();

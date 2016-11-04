@@ -206,7 +206,7 @@ void Player::attackhoming(Boss * _boss)
 	{
 		return;
 	}
-	if (isAnimationEnd())
+	if (isAttack())
 	{
 		GSvector3 vector = _boss->getPosition() - m_transform.getPosition();
 		float radian = atan2(vector.x, vector.z);
@@ -276,17 +276,17 @@ void Player::actionChange(Action_Ptr _action)
 void Player::control()
 {
 	///////////////////////////////////////////////////////////
-	if (m_device->input()->chargeAttack1())
+	if (m_device->input()->gaugeAttack1())
 	{
 		m_Gauge.downGauge(1);
 		return;
 	}
-	if (m_device->input()->chargeAttack2())
+	if (m_device->input()->gaugeAttack2())
 	{
 		m_Gauge.downGauge(2);
 		return;
 	}
-	if (m_device->input()->chargeAttack3())
+	if (m_device->input()->gaugeAttack3())
 	{
 		m_Gauge.downGauge(3);
 		return;

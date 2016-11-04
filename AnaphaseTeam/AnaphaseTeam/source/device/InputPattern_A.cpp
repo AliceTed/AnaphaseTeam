@@ -53,19 +53,19 @@ const bool InputPattern_A::avoid()
 	return m_input->isJoyRightTrigger();
 }
 
-const bool InputPattern_A::chargeAttack1()
+const bool InputPattern_A::gaugeAttack1()
 {
-	return m_input->isJoyTriggerB() && m_input->isJoyTriggerRB();
+	return m_input->isJoyTriggerB() && m_input->isJoyStateRB();
 }
 
-const bool InputPattern_A::chargeAttack2()
+const bool InputPattern_A::gaugeAttack2()
 {
-	return m_input->isJoyTriggerX() && m_input->isJoyTriggerRB();
+	return m_input->isJoyTriggerX() && m_input->isJoyStateRB();
 }
 
-const bool InputPattern_A::chargeAttack3()
+const bool InputPattern_A::gaugeAttack3()
 {
-	return m_input->isJoyTriggerY() && m_input->isJoyTriggerRB();
+	return m_input->isJoyTriggerY() && m_input->isJoyStateRB();
 }
 
 const bool InputPattern_A::up()
