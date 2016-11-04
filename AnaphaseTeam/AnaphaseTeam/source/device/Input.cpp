@@ -45,7 +45,7 @@ const bool Input::isJoyTriggerX() const
 
 const bool Input::isJoyStateX() const
 {
-	return gsGetJoyState(0, GJOY_BUTTON_3);
+	return gsGetJoyState(0, GJOY_BUTTON_3) == GS_TRUE;
 }
 
 const bool Input::isJoyTriggerY() const

@@ -47,13 +47,14 @@ void Gauge::up(float _scale)
 	add(_scale);
 }
 ////////////////////////////////////////////////////
-void Gauge::down(float _scale)
+bool Gauge::down(float _scale)
 {
 	if (_scale > m_gauge)
 	{
-		return;
+		return false;
 	}
 	add(-_scale);
+	return true;
 }
 //////////////////////////////////////////////////////
 void Gauge::downGauge(int _rank)

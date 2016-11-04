@@ -19,7 +19,7 @@ public:
 	void update();
 	void draw(const Renderer& _renderer);
 	void up(float _scale);
-	void down(float _scale);
+	bool down(float _scale);
 	void downGauge(int _rank);
 
 	float scale(float def);

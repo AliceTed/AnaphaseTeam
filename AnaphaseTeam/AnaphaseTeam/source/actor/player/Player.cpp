@@ -172,10 +172,11 @@ void Player::subActionStart()
 
 	if (m_device->input()->avoid())
 	{
-		m_SubAction.initialize(SubActionType::AVOID);
-		actionChange(std::make_shared<AvoidState>());
-		m_Gauge.down(5);
-
+		if (m_Gauge.down(5))
+		{
+			m_SubAction.initialize(SubActionType::AVOID);
+			actionChange(std::make_shared<AvoidState>());
+		}
 	}
 }
 

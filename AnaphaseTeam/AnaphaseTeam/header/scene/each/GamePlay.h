@@ -10,6 +10,7 @@
 #include "../../actor/Player/Player.h"
 #include "../../actor/Boss/Boss.h"
 #include "../../actor/Enemy/Enemy.h"
+#include "../../camera/LockOn.h"
 
 #include "../../camera/CameraController.h"
 #include "../SceneChange.h"
@@ -34,10 +35,12 @@ private:
 	Map m_Map;
 	Camera m_Camera;
 	CameraController m_cameracontroller;
-	Entity::EntityManager<Actor_Ptr> actorManager;
+	//Entity::EntityManager<Actor_Ptr> actorManager;
 	CollisionManager collision;
 	Player m_player;
-	Boss m_boss;
+	vector<Boss> m_enemys;
 	Enemy m_enemy;
+	LockOn m_lockon;
+
 };
 #endif

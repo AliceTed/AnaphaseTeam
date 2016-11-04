@@ -52,7 +52,7 @@ void ComboManager::initialize()
 {
 	create();
 	reset();
-
+	                                                        
 }
 
 void ComboManager::reset()

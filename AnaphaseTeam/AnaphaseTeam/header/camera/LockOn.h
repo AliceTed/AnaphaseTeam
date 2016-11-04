@@ -13,6 +13,8 @@
 #include "../../header/actor/Player/Player.h"
 using namespace std;
 
+class CameraController;
+
 class LockOn
 {
 public:
@@ -22,9 +24,9 @@ public:
 	* @brief ˆê”Ô‹ß‚¢“G‚ğ’T‚·
 	* @detail Enemy‚ª‘¶İ‚µ‚Ä‚¢‚È‚¢‚Ì‚Å‰¼‚Å‚·
 	*/
-	void nearEnemyFind();
-	void addPlayer();
-	void addEnemy();
+	void nearEnemyFind(vector<Boss>& _enemys);
+	void addPlayer(Player* _player);
+	void look_at(CameraController* _camera, vector<Boss>& _enemys);
 
 private:
 	//! Player‚ÆEnemy‚Æ‚Ì‹——£
@@ -32,5 +34,5 @@ private:
 	//! ‹‚ß‚½‹——£‚ÌŠi”[—pvector
 	vector<float> m_distanceStoreVector;
 	Player* m_player;
-	vector<Boss*> m_Enemys;
+	int index;
 };
