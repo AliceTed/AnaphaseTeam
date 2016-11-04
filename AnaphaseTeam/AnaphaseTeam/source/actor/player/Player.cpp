@@ -208,19 +208,14 @@ const bool Player::isEndAttack() const
 {
 	return m_attackManager.isEnd();
 }
-const bool Player::isAttack() const
+const bool Player::isStrengthAttack() const
 {
-	return m_Input->scytheTrigger();
+	return m_Input->strengthAttackTrigger();
 }
 
-const bool Player::isGunAttack() const
+const bool Player::isWeakAttack() const
 {
-	return m_Input->gunTrigger();
-}
-
-const bool Player::isChargeAttack() const
-{
-	return m_Input->chargeState();
+	return m_Input->weakAttackTrigger();
 }
 
 const GSvector3 Player::inputDirection() const
@@ -236,7 +231,7 @@ void Player::actionChange(Action_Ptr _action)
 void Player::control()
 {
 	/*ƒ{ƒ^ƒ“‰Ÿ‚µ‚½‚çAttackState‚ÉØ‚è‘Ö‚í‚é*/
-	if (m_Input->attackTrigger())
+	if (m_Input->strengthAttackTrigger())
 	{
 		actionChange(std::make_shared<AttackState>());
 		m_attackManager.initialize();

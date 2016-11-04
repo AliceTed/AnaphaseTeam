@@ -12,10 +12,8 @@ public:
 	const int vertical()const;
 
 	const bool jumpTrigger()const;
-	const bool attackTrigger() const;
-	const bool scytheTrigger()const;
-	const bool gunTrigger()const;
-	const bool chargeState() const;
+	const bool strengthAttackTrigger() const;
+	const bool weakAttackTrigger()const;
 	const bool avoidTrigger()const;
 	
 	//input?

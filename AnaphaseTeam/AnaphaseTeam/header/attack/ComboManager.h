@@ -2,10 +2,14 @@
 #include "AttackPattern.h"
 #include "Attack.h"
 #include "ComboManager.h"
-#include "../device/Input.h"
-#include <unordered_map>
+#include "ComboPattern.h"
 #include "ECombo.h"
 #include "ChargeAttack.h"
+
+#include "../device/Input.h"
+
+#include <unordered_map>
+
 class AnimatorOne;
 
 class IComboMadiator
@@ -29,6 +33,7 @@ private:
 	void change(float deltaTime, Player* _player);
 	void combo(float deltaTime,Player* _player);
 	const Combo nextkey() const;
+	//const ComboPattern currentCombo(std::unordered_map<ComboPattern, std::unordered_map<Combo, Attack>>& _map, const std::string& _key);
 	void AttackEnd();
 	const bool isCurrentEnd(Player* _player) const;
 	const bool chargeEnd() const;
@@ -39,6 +44,9 @@ private:
 	bool m_ChargeDecision;
 	Combo m_currentKey;
 	Combo m_nextKey;
-	std::unordered_map<Combo, Attack> m_container;
+	ComboPattern m_currentCombo;
+	std::unordered_map<Combo, Attack> m_attackContainer;
+	std::unordered_map<Combo, Attack> m_attackContainer2;
+	std::unordered_map<ComboPattern,std::unordered_map<Combo, Attack>> m_comboContainer;
 	ChargeAttack m_chargeAttack;
 };

@@ -12,8 +12,8 @@ ChargeAttack::~ChargeAttack()
 }
 void ChargeAttack::initialize()
 {
-	m_isStart = false;
-	m_chargeTime = 0;
+	//m_isStart = false;
+	//m_chargeTime = 0;
 	m_isKeyPushNow = true;
 	m_isFirstFrame = false;
 }
@@ -21,8 +21,8 @@ void ChargeAttack::update(float deltaTime, Player* _player)
 {
 	chargeStart(_player);
 
-	if (m_isStart)
-		motion(_player);
+	//if (m_isStart)
+	motion(_player);
 	m_isFirstFrame = false;
 
 }
@@ -46,10 +46,10 @@ const bool ChargeAttack::isStart()const
 	return m_isStart;
 }
 
-void ChargeAttack::attackStart(float _chargeTime)
+void ChargeAttack::attackStart()
 {
-	if (m_chargeTime <= _chargeTime)return;
-	if (m_isKeyPushNow)return;
+	//if (m_chargeTime <= _chargeTime)return;
+	//if (m_isKeyPushNow)return;
 	m_isStart = true;
 	m_isFirstFrame = true;
 }
@@ -61,11 +61,11 @@ void ChargeAttack::motion(Player* _player)
 
 void ChargeAttack::chargeStart(Player * _player)
 {
-	m_isKeyPushNow = _player->isChargeAttack();
-	if (m_isKeyPushNow)
-	{
-		m_chargeTime++;
-	}
+	/*m_isKeyPushNow = _player->isWeakAttack();*/
+	//if (m_isKeyPushNow)
+	//{
+	//	m_chargeTime++;
+	//}
 }
 
 void ChargeAttack::changeMotion(AnimatorOne& _animator)
