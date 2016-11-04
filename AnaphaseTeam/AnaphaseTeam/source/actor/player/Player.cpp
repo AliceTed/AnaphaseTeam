@@ -34,7 +34,8 @@ Player::Player(GameDevice* _device, Camera * _camera)
 	m_status(),
 	m_isJumpAttack(false),
 	m_group(std::make_shared<CollisionGroup>(this)),
-	m_Gauge()
+	m_Gauge(),
+	m_avoid(this)
 {
 	//m_matrix = std::make_shared<GSmatrix4>(new GSmatrix4[m_animatorOne.getNumBones()]);
 }
@@ -131,9 +132,11 @@ void Player::jump(float deltaTime)
 void Player::avoid(float deltaTime)
 {
 	m_animatorOne.changeAnimation(ANIMATION_ID::AVOID);
-	m_SubAction.update(deltaTime, SubActionType::AVOID);
-	m_SubAction.jumpPowerOff();
-	if (m_SubAction.isEnd(SubActionType::AVOID))
+	//m_SubAction.update(deltaTime, SubActionType::AVOID);
+	m_avoid.update(deltaTime);
+	//m_SubAction.jumpPowerOff();
+	//if (m_SubAction.isEnd(SubActionType::AVOID))
+	if (m_avoid.isEnd())
 	{
 		actionChange(std::make_shared<StandState>());
 	}
@@ -174,7 +177,8 @@ void Player::subActionStart()
 	{
 		if (m_Gauge.down(5))
 		{
-			m_SubAction.initialize(SubActionType::AVOID);
+			//m_SubAction.initialize(SubActionType::AVOID);
+			m_avoid.initialize();
 			actionChange(std::make_shared<AvoidState>());
 		}
 	}

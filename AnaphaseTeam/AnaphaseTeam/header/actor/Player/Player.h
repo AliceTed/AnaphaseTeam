@@ -105,6 +105,8 @@ private:
 	bool m_isJumpAttack;
 	Camera * m_camera;
 	Group_Ptr m_group;
+
+	Avoid m_avoid;
 private://íËêî
 	static const float MOVESPEED;
 	static const float ROTATESPEED;
