@@ -5,7 +5,6 @@
 ComboManager::ComboManager()
 	:m_current(AttackStatus(0, 0, GSvector3()), ANIMATION_ID::ATTACK, Combo::End, Combo::End),
 	m_next(Combo::End),
-	/*m_attackContainer(),*/
 	m_attackPattern(),
 	m_isEnd(false)
 {
@@ -21,15 +20,27 @@ void ComboManager::create()
 
 	AttackStatus status(0.0f, 0.0f, GSvector3(0, 0, 0));
 
-	Attack attack(status, ANIMATION_ID::ATTACK, Combo::Second, Combo::Second);
-	Attack attack1(status, ANIMATION_ID::ATTACK2, Combo::Third, Combo::End);
-	Attack attack2(status, ANIMATION_ID::ATTACK3, Combo::Four, Combo::End);
-	Attack attack3(status, ANIMATION_ID::ATTACK4, Combo::End, Combo::End);
+	//
+	Attack QFirst(status, ANIMATION_ID::ATTACK, Combo::QSecond, Combo::QSSecond);
+	m_attackPattern.insert(std::make_pair(Combo::QFirst, QFirst));
 
-	m_attackPattern.insert(std::make_pair(Combo::First, attack));
-	m_attackPattern.insert(std::make_pair(Combo::Second, attack1));
-	m_attackPattern.insert(std::make_pair(Combo::Third, attack2));
-	m_attackPattern.insert(std::make_pair(Combo::Four, attack3));
+	//
+	Attack QSecond(status, ANIMATION_ID::ATTACK2, Combo::QThird, Combo::End);
+	Attack QSSecond(status, ANIMATION_ID::ATTACK5, Combo::SQThird, Combo::End);
+	m_attackPattern.insert(std::make_pair(Combo::QSecond, QSecond));
+	m_attackPattern.insert(std::make_pair(Combo::QSSecond, QSSecond));
+
+	//
+	Attack QThird(status, ANIMATION_ID::ATTACK3, Combo::QFour, Combo::End);
+	Attack SQThird(status, ANIMATION_ID::ATTACK6, Combo::SQFour, Combo::End);
+	m_attackPattern.insert(std::make_pair(Combo::QThird, QThird));
+	m_attackPattern.insert(std::make_pair(Combo::SQThird, SQThird));
+	//
+	Attack QFour(status, ANIMATION_ID::ATTACK4, Combo::End, Combo::End);
+	Attack SQFour(status, ANIMATION_ID::FATTACK, Combo::End, Combo::End);
+	m_attackPattern.insert(std::make_pair(Combo::QFour, QFour));
+	m_attackPattern.insert(std::make_pair(Combo::SQFour, SQFour));
+
 
 
 }
@@ -43,7 +54,7 @@ void ComboManager::initialize()
 void ComboManager::reset()
 {
 	m_isEnd = false;
-	m_current = m_attackPattern.at(Combo::First);
+	m_current = m_attackPattern.at(Combo::QFirst);
 	m_next = Combo::End;
 }
 void ComboManager::update(float deltaTime, Player* _player)
