@@ -17,6 +17,7 @@ void AttackManager::initialize()
 {
 	m_combo.initialize();
 }
+
 void AttackManager::update(float deltaTime, Player* _player)
 {
 	m_combo.update(deltaTime, _player);

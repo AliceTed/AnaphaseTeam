@@ -26,7 +26,7 @@ void ComboManager::create()
 	m_attackPattern.insert(std::make_pair(Combo::Q, Q));
 	m_attackPattern.insert(std::make_pair(Combo::S, S));
 
-	//Qだけのコンボ
+	//QQQQコンボ
 	Attack QQ(status, ANIMATION_ID::ATTACK2, Combo::QQQ, Combo::End);
 	Attack QQQ(status, ANIMATION_ID::ATTACK3, Combo::QQQQ, Combo::End);
 	Attack QQQQ(status, ANIMATION_ID::ATTACK4, Combo::End, Combo::End);
@@ -124,8 +124,3 @@ const bool ComboManager::isCurrentEnd(Player* _player) const
 {
 	return _player->isEndAttackMotion(m_current);
 }
-
-
-
-
-
