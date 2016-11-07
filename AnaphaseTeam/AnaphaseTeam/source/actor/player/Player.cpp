@@ -208,14 +208,15 @@ const bool Player::isEndAttack() const
 {
 	return m_attackManager.isEnd();
 }
-const bool Player::isStrengthAttack() const
+
+const bool Player::isSlowAttack() const
 {
-	return m_Input->strengthAttackTrigger();
+	return m_Input->slowAttackTrigger();
 }
 
-const bool Player::isWeakAttack() const
+const bool Player::isQuickAttack() const
 {
-	return m_Input->weakAttackTrigger();
+	return m_Input->quickAttackTrigger();
 }
 
 const GSvector3 Player::inputDirection() const
@@ -231,11 +232,12 @@ void Player::actionChange(Action_Ptr _action)
 void Player::control()
 {
 	/*ボタン押したらAttackStateに切り替わる*/
-	if (m_Input->weakAttackTrigger())
+	if (m_Input->quickAttackTrigger())
 	{
 		actionChange(std::make_shared<AttackState>());
 		m_attackManager.initialize();
 		m_isJumpAttack = !m_isGround;
+		m_attackManager.Start(true);
 
 		//無理やり攻撃中に球判定をキャラの前に作る
 		float radius = 1.5f;
@@ -248,6 +250,27 @@ void Player::control()
 		actor->set_draw([](const Renderer& _renderer, Shape_Ptr _shape) { _shape->draw(_renderer); });
 		m_group->add(actor);
 	}
+
+	if (m_Input->slowAttackTrigger())
+	{
+		actionChange(std::make_shared<AttackState>());
+		m_attackManager.initialize();
+		m_isJumpAttack = !m_isGround;
+		m_attackManager.Start(false);
+
+		//無理やり攻撃中に球判定をキャラの前に作る
+		float radius = 1.5f;
+		GSvector3 front = m_transform.front()*(radius*1.5f);
+		GSvector3 pos(m_transform.getPosition() + front);
+		pos.y += 1.0f;
+		Shape_Ptr shape = std::make_shared<Sphere>(pos, radius);
+		Collision_Ptr actor = std::make_shared<CollisionActor>(shape, CollisionActorType::PLAYER_ATTACK);
+		actor->set_dead([&]()->bool {return m_attackManager.isEnd(); });
+		actor->set_draw([](const Renderer& _renderer, Shape_Ptr _shape) { _shape->draw(_renderer); });
+		m_group->add(actor);
+	}
+
+
 }
 
 void Player::look_at(CameraController * _camera, GSvector3 * _target)

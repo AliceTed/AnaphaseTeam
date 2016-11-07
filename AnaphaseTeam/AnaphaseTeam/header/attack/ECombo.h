@@ -7,6 +7,7 @@ enum class Combo
 	QThird,
 	QFour,
 
+	SFirst,
 	SSecond,
 	SThird,
 	SFour,
@@ -18,6 +19,25 @@ enum class Combo
 	QSSecond,
 	QSThird,
 	QSFour,
+
+	Q,
+	QQ,
+	QQQ,
+	QQQQ,
+
+	S,
+	SS,
+	SSS,
+	SSSS,
+
+	QS,
+	QSS,
+	QSSS,
+
+	SQ,
+	SQQ,
+	SQQQ,
+
 
 	End,
 };

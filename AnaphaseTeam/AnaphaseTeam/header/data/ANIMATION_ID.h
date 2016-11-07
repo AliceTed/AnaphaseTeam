@@ -15,9 +15,9 @@ enum class ANIMATION_ID :unsigned int
 	ATTACK4,
 	ATTACK5,
 	ATTACK6,
-	FATTACK = 23,
+	FATTACK,
 
-	SIZE
+	SIZE = 99
 };
 
 #endif

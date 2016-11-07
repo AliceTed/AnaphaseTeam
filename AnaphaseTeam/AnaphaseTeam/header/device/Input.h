@@ -12,8 +12,9 @@ public:
 	const int vertical()const;
 
 	const bool jumpTrigger()const;
-	const bool strengthAttackTrigger() const;
-	const bool weakAttackTrigger()const;
+	const bool attackTrigger() const;
+	const bool slowAttackTrigger() const;
+	const bool quickAttackTrigger()const;
 	const bool avoidTrigger()const;
 	
 	//input?

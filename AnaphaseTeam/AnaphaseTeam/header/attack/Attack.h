@@ -28,10 +28,8 @@ public:
 	void changeMotion(AnimatorOne& _animator);
 	const bool isNextAttack(const AnimatorOne& _animator)const;
 	const bool isEndMotion(const AnimatorOne& _animator) const;
-	//const Combo next()const;
 	const Combo weakAttackNext() const;
 	const Combo strengthAttackNext() const;
-	//bool isEndAttackTime(AnimatorOne * _animator);
 private:
 	//!攻撃ステータス
 	AttackStatus m_status;

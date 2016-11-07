@@ -58,8 +58,8 @@ public:
 public://“ü—Í
 	const bool isJump() const;
 	//‹ßÚ—p
-	const bool isStrengthAttack()const;
-	const bool isWeakAttack()const;
+	const bool isSlowAttack()const;
+	const bool isQuickAttack()const;
 	//“ü—Í•ûŒü
 	const GSvector3 inputDirection()const;
 public://ActorŒp³

@@ -51,12 +51,17 @@ const bool Input::jumpTrigger() const
 	return isJoyTriggerA();
 }
 
-const bool Input::strengthAttackTrigger() const
+const bool Input::attackTrigger() const
+{
+	return isJoyTriggerX() || isJoyTriggerY();
+}
+
+const bool Input::slowAttackTrigger() const
 {
 	return  isJoyTriggerY();
 }
 
-const bool Input::weakAttackTrigger() const
+const bool Input::quickAttackTrigger() const
 {
 	return isJoyTriggerX();
 }

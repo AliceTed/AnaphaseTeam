@@ -24,9 +24,10 @@ public:
 	ComboManager();
 	~ComboManager();
 	void initialize();
+	void Start(bool attackChange);
 	void reset();
 	void update(float deltaTime, Player* _player);
-	const bool isEnd()const;	
+	const bool isEnd()const;
 private:	
 	void next(Combo _next);
 	void change();
@@ -36,6 +37,6 @@ private:
 	bool m_isEnd;
 	Attack m_current;
 	Combo m_next;
-	//Attack m_attackCurrentKey;
 	std::unordered_map<Combo, Attack> m_attackPattern;
+
 };
