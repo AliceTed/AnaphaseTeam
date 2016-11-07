@@ -89,6 +89,6 @@ private:
 	Animation_Ptr m_nextAnimation;
 	static const unsigned int BONELENGTH=256;
 	LerpData m_lerpData;
-	std::getMatrixVector()<GSmatrix4> m_matPtr;
+	std::unique_ptr<GSmatrix4> m_matPtr;
 	std::vector<GSmatrix4> m_matrix;
 };
