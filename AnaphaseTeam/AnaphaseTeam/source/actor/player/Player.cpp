@@ -35,7 +35,7 @@ Player::Player(GameDevice* _device, Camera * _camera)
 	m_isJumpAttack(false),
 	m_group(std::make_shared<CollisionGroup>(this)),
 	m_Gauge(),
-	m_avoid(this)
+	m_avoid(this), degree(0.0f)
 {
 	//m_matrix = std::make_shared<GSmatrix4>(new GSmatrix4[m_animatorOne.getNumBones()]);
 }
@@ -76,6 +76,8 @@ void Player::draw(const Renderer & _renderer, const Camera & _camera)
 	alphaBlend(_camera);
 	_renderer.getDraw3D().drawMesh_calcu(MODEL_ID::PLAYER, m_transform,m_animatorOne, m_Color);
 	m_Gauge.draw(_renderer);
+	_renderer.getDraw2D().string(std::to_string(degree), &GSvector2(20, 20), 30);
+	_renderer.getDraw2D().string(std::to_string(m_transform.getYaw()), &GSvector2(20, 40), 30);
 }
 
 void Player::inGround()
@@ -151,7 +153,7 @@ void Player::createColision()
 		GSvector3 target = m_transform.getPosition() + GSvector3(0.0f, 0.5f, 0.0f);
 		_shape->transfer(target);
 	});
-	obj->set_draw([&](const Renderer& _renderer, Shape_Ptr _shape) { _shape->draw(_renderer); });
+	//obj->set_draw([&](const Renderer& _renderer, Shape_Ptr _shape) { _shape->draw(_renderer); });
 	m_group->add(obj);
 }
 
@@ -204,7 +206,7 @@ void Player::gaugeUp(float _scale)
 	m_Gauge.up(_scale);
 }
 
-void Player::attackhoming(Boss * _boss)
+void Player::attackhoming(Boss * _enemy)
 {
 	if (m_attackManager.isEnd())
 	{
@@ -212,12 +214,18 @@ void Player::attackhoming(Boss * _boss)
 	}
 	if (isAttack())
 	{
-		GSvector3 vector = _boss->getPosition() - m_transform.getPosition();
-		float radian = atan2(vector.x, vector.z);
-		float degree = radian * 180.0f / M_PI;
-		m_transform.setYaw(degree);
+		Math::Clamp clamp;
 
-		GSvector3 forward(m_transform.front() * 1);
+		GSvector3 vector = _enemy->getPosition() - m_transform.getPosition();
+		float radian = atan2(vector.x, vector.z);
+		degree = radian * 180.0f / M_PI;
+		degree -= m_transform.getYaw();
+		degree = clamp(degree, -130.0f, 130.0f);
+		m_transform.rotationY(degree);
+
+		float attack_distance = 1.0f;
+		attack_distance = clamp(m_Gauge.scale(attack_distance), 1.0f, 5.0f);
+		GSvector3 forward(m_transform.front() * attack_distance);
 		m_transform.translate(forward);
 	}
 }

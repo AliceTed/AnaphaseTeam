@@ -25,6 +25,7 @@ class GameDevice;
 class CameraController;
 class TestActor;
 class Boss;
+
 typedef std::shared_ptr<IActionState> Action_Ptr;
 class Player :public Actor, public ICharacter
 {
@@ -105,6 +106,9 @@ private:
 	bool m_isJumpAttack;
 	Camera * m_camera;
 	Group_Ptr m_group;
+
+
+	float degree;
 
 	Avoid m_avoid;
 private://íËêî
