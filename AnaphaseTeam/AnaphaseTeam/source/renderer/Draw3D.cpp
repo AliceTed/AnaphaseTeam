@@ -27,13 +27,13 @@ void Draw3D::drawMesh_calcu(MODEL_ID _id, const Transform & _transform,  Animato
 {
 	Data::CastID cast;
 	glPushMatrix();
-	GSmatrix4* mat = new GSmatrix4[_animator.getNumBones()];
-	_animator.matrixCalculate(mat);
+	//GSmatrix4* mat = new GSmatrix4[256];
+	std::unique_ptr<GSmatrix4> mat = std::unique_ptr<GSmatrix4>(_animator.matrixCalculate());
 	glColor4f(_color.r, _color.g, _color.b, _color.a);
 	glMultMatrixf(_transform.getMatrix4());
-	gsMeshDrawSkin(gsGetMesh(cast(_id)),mat);
+	gsMeshDrawSkin(gsGetMesh(cast(_id)),mat.get());
 	glPopMatrix();
-	delete[] mat;
+	mat.release();
 }
 void Draw3D::drawSky(MESH_ID id, float angle)const
 {

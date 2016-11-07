@@ -30,8 +30,9 @@ void Enemy::initialize()
 {
 	Actor::initialize();
 	m_animatorOne.changeAnimation((ANIMATION_ID)1, true);
+	//m_animatorOne.lerpBegin(ANIMATION_ID(1),true,true);
 	//m_points.clear();
-	//createPoint();
+	createPoint();
 	m_corecolor = GScolor(1, 1, 1, 1);
 	//for_each(m_points.begin(), m_points.end(), [&](BreakPoint& _point) {_point.createCollision(this, m_group); });
 
@@ -55,7 +56,7 @@ void Enemy::draw(const Renderer& _renderer, const Camera& _camera)
 	FALSE_RETURN(isInsideView(_camera));
 	_renderer.getDraw3D().drawMesh_calcu(MODEL_ID::BOSS, m_transform, m_animatorOne, m_Color);
 	//for_each(m_points.begin(), m_points.end(), [&](BreakPoint& _point) {_point.draw(_renderer); });
-	//m_core.draw(_renderer, m_corecolor);
+	m_core.draw(_renderer, m_corecolor);
 }
 
 void Enemy::look_at(CameraController* _camera, Player* _player)
@@ -87,7 +88,7 @@ vector<GSvector3> Enemy::getAnimEachPos()
 	vector<GSvector3> res;
 	for (GSuint i = 0; i < n; i++)
 	{
-		Transform transform(m_animatorOne.getMatrixVector()[i]);
+		Transform transform(m_animatorOne.getMat()[i]);
 		GSmatrix4 m = transform.parentSynthesis(m_transform);
 		res.emplace_back(m.getPosition());
 	}
@@ -102,7 +103,7 @@ void Enemy::enemyAttack()
 	if (m_value % 100 == 0)
 	{
 		m_state = State::ATTACK;
-
+		//m_animatorOne.lerpBegin(ANIMATION_ID(0),true);
 		m_animatorOne.changeAnimation((ANIMATION_ID)0);
 		actor->set_collision_enter([&](Actor* _actor, CollisionActorType _type)
 		{
@@ -118,6 +119,7 @@ void Enemy::enemyAttack()
 	if (m_animatorOne.isEndCurrentAnimation())
 	{
 		m_state = State::STAND;
+		//m_animatorOne.lerpBegin(ANIMATION_ID(1), true,true);
 		m_animatorOne.changeAnimation(ANIMATION_ID(1), true);
 	}
 }

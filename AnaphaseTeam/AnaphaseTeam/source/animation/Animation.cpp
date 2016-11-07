@@ -1,13 +1,6 @@
 #include "../../header/animation/Animation.h"
 #include <gslib.h>
 
-Animation::Animation(ANIMATION_ID anim_id, SKELETON_ID bone_id, unsigned int animNo, AnimationTimer timer, bool isLoop)
-	:m_isLoop(isLoop), m_animNo(animNo), m_timer(timer),
-	m_anim_id(static_cast<unsigned int>(anim_id)), m_bone_id(static_cast<unsigned int>(bone_id))
-{
-
-}
-
 Animation::~Animation()
 {
 
@@ -23,6 +16,7 @@ void Animation::update(float deltaTime)
 	m_timer.update(deltaTime);
 	looping();
 }
+//Žg‚Á‚Ä‚È‚¢
 void Animation::bind()const
 {
 	gsBindAnimation(m_anim_id, m_animNo, m_timer.getTime());

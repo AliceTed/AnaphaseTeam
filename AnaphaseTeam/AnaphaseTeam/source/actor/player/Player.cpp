@@ -82,6 +82,7 @@ void Player::stand(float deltaTime)
 	moveMotionChange();
 	subActionStart();
 	m_animatorOne.changeAnimation(ANIMATION_ID::STAND, true, true);
+	//m_animatorOne.lerpBegin(ANIMATION_ID::STAND, false, true);
 	control();
 }
 
@@ -120,6 +121,7 @@ void Player::jump(float deltaTime)
 void Player::avoid(float deltaTime)
 {
 	m_animatorOne.changeAnimation(ANIMATION_ID::AVOID);
+	//m_animatorOne.lerpBegin(ANIMATION_ID::AVOID, true);
 	m_SubAction.update(deltaTime, SubActionType::AVOID);
 	m_SubAction.jumpPowerOff();
 	if (m_SubAction.isEnd(SubActionType::AVOID))
@@ -216,6 +218,7 @@ void Player::moving(float deltaTime, bool isAnimation)
 	movement(deltaTime, speed);
 	if (!isAnimation)return;
 	m_animatorOne.changeAnimation(ANIMATION_ID::RUN, true, true, time);
+	//m_animatorOne.lerpBegin(ANIMATION_ID::RUN, false, true);
 }
 
 void Player::actionChange(Action_Ptr _action)
