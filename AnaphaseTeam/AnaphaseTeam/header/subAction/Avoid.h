@@ -6,7 +6,7 @@
 #include "../../header/collision/CollisionManager.h"
 
 class Player;
-class Transform;
+struct Transform;
 class Avoid
 {
 public:

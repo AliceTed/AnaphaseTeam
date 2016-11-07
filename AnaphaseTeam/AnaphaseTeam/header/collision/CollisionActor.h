@@ -11,16 +11,19 @@
 #include <algorithm>
 #include "../shape/Shape.h"
 #include "CollisionActorType.h"
+#include "Hit.h"
+#include "../../header/collision/Hit.h"
 class Actor;
 class Renderer;
 typedef std::shared_ptr<Shape> Shape_Ptr;
+
 class CollisionActor
 {
 public:
 	CollisionActor(Shape_Ptr _shape, CollisionActorType _type);
 	~CollisionActor();
 	void update(float deltaTime);
-	const bool isCollision(CollisionActor* _other)const;
+	const bool isCollision(CollisionActor* _other);
 	void collision(Actor* _otherActor, CollisionActor* _other);
 	void exit(Actor * _otherActor, CollisionActor * _other);
 	void draw(const Renderer& _renderer);
@@ -29,13 +32,14 @@ public:
 	void set_dead(std::function<const bool()> _function);
 	void set_update(std::function<void(float, Shape_Ptr)> _function);
 	void set_draw(std::function<void(const Renderer&, Shape_Ptr)> _function);
-	void set_collision_enter( std::function<void(Actor*, CollisionActorType)> _function);
-	void set_collision_stay(std::function<void(Actor*, CollisionActorType)> _function);
-	void set_collision_exit( std::function<void(Actor*, CollisionActorType)> _function);
+	void set_collision_enter( std::function<void(Hit* _hit)> _function);
+	void set_collision_stay(std::function<void(Hit* _hit)> _function);
+	void set_collision_exit( std::function<void(Hit* _hit)> _function);
 private:
 	const bool is_find(std::vector<CollisionActor*>& _container, CollisionActor* _other);
 	const bool remove(std::function<bool(CollisionActor*)> function);
 private:
+	Hit m_hit;
 	Shape_Ptr m_shape;
 	CollisionActorType m_type;
 	std::vector<CollisionActor*>m_previous;
@@ -43,7 +47,7 @@ private:
 	std::function<const bool()>m_destroy;
 	std::function<void(float, Shape_Ptr)>m_update;
 	std::function<void(const Renderer&,Shape_Ptr)>m_draw;
-	std::function<void(Actor*, CollisionActorType)>m_collision_enter;
-	std::function<void(Actor*, CollisionActorType)>m_collision_stay;
-	std::function<void(Actor*, CollisionActorType)>m_collision_exit;
+	std::function<void(Hit* _hit)>m_collision_enter;
+	std::function<void(Hit* _hit)>m_collision_stay;
+	std::function<void(Hit* _hit)>m_collision_exit;
 };

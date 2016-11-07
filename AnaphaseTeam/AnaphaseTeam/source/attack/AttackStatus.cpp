@@ -1,5 +1,5 @@
 #include "../../header/attack/AttackStatus.h"
-#include "../../header/actor/Enemy/Enemy.h"
+#include "../../header/actor/Boss/Boss.h"
 #include "../../header/actor/Player/Player.h"
 
 #include "../../header/math/Calculate.h"
@@ -12,7 +12,7 @@ AttackStatus::~AttackStatus()
 {
 }
 
-void AttackStatus::giveDamage(Player* _player, Enemy * _other)
+void AttackStatus::giveDamage(Player* _player, Boss * _other)
 {
 	float distance = _player->distanceActor(*_other);
 	Math::Clamp clamp;

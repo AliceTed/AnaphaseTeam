@@ -15,6 +15,9 @@ public://ƒAƒNƒVƒ‡ƒ“
 	virtual const bool slowAttackTrigger()=0;
 	virtual const bool quickAttackTrigger()=0;
 	virtual const bool avoid() = 0;
+	virtual const bool gaugeAttack1() = 0;
+	virtual const bool gaugeAttack2() = 0;
+	virtual const bool gaugeAttack3() = 0;
 public:
 	virtual const bool up() = 0;
 	virtual const bool down() = 0;

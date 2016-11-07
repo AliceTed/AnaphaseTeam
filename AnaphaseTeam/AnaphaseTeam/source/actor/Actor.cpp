@@ -38,12 +38,13 @@ void Actor::collisionGround(const Map& _map)
 	}
 	if (position.y > intersect.y)
 	{
-		m_transform.translateY(GRAVITY);
+		//m_transform.translateY(GRAVITY);
+		m_transform.translate_up(GRAVITY);
 		return;
 	}
 	inGround();
 	//map‚É–„‚ß‚Ü‚ê‚Ä‚¢‚½‚çyÀ•W‚ğŒğ“_‚ÉˆÚ“®
-	m_transform.setPositionY(intersect.y);
+	m_transform.m_translate.y = intersect.y;
 }
 void Actor::addCollisionGroup(CollisionManager * _manager)
 {

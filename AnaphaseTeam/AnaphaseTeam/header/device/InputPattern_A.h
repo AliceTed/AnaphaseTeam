@@ -18,6 +18,9 @@ public://ƒAƒNƒVƒ‡ƒ“
 	const bool slowAttackTrigger();
 	const bool quickAttackTrigger();
 	const bool avoid();
+	const bool gaugeAttack1();
+	const bool gaugeAttack2();
+	const bool gaugeAttack3();
 public:
 	const bool up();
 	const bool down();

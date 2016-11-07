@@ -10,7 +10,7 @@ enum class Element:unsigned int
 	RIGHT_LEG = 61
 };
 class CollisionGroup;
-class Enemy;
+class Boss;
 class Player;
 class CameraController;
 class BreakPoint
@@ -20,7 +20,7 @@ public:
 	~BreakPoint();
 	void lerp(Math::TimeLerpVector<GSvector3>& _lerp,BreakPoint& _end);
 	void update(float deltaTime, std::vector<GSvector3>& _position);
-	void createCollision(Enemy* _parent, Group_Ptr& _group);
+	void createCollision(Boss* _parent, Group_Ptr& _group);
 	void draw(const Renderer& _renderer);
 private:
 	GSvector3 m_position;

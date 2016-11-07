@@ -11,8 +11,7 @@
 #include "Perspective.h"
 #include "LookAt.h"
 
-//
-#include "../convenient/Transform.h"
+#include "../../header/transform/Transform.h"
 class Camera
 {
 	Perspective m_perspective;

@@ -6,7 +6,7 @@
 #include "../data/MESH_ID.h"
 #include "../data/Model_ID.h"
 #include <gslib.h>
-class Transform;
+struct Transform;
 class Animator;
 class AnimatorOne;
 class Draw3D

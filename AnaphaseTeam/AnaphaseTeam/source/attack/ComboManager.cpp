@@ -18,7 +18,7 @@ void ComboManager::create()
 {
 	m_attackPattern.clear();
 
-	AttackStatus status(0.0f, 0.0f, GSvector3(0, 0, 0));
+		AttackStatus status(0.0f, 0.0f, GSvector3(0, 0, 0));
 
 	//Å‰
 	Attack Q(status, ANIMATION_ID::ATTACK, Combo::QQ, Combo::QS);
@@ -48,7 +48,7 @@ void ComboManager::create()
 	m_attackPattern.insert(std::make_pair(Combo::SQ, SQ));
 	m_attackPattern.insert(std::make_pair(Combo::SQQ, SQQ));
 
-}
+	}
 
 void ComboManager::initialize()
 {
@@ -67,7 +67,7 @@ void ComboManager::Start(bool _attackChange)
 	if (_attackChange)
 	{
 		m_current = m_attackPattern.at(Combo::Q);
-	}
+}
 
 	if (!_attackChange)
 	{
@@ -80,14 +80,14 @@ void ComboManager::update(float deltaTime, Player* _player)
 	if (_player->isNextAttack(m_current))
 	{
 		if (_player->isQuickAttack())
-		{
+{
 			next(m_current.weakAttackNext());
-		}
+}
 
 		if (_player->isSlowAttack())
-		{
+{
 			next(m_current.strengthAttackNext());
-		}
+}
 	}
 
 	m_current.update(deltaTime, _player);
@@ -100,12 +100,12 @@ void ComboManager::update(float deltaTime, Player* _player)
 
 
 const bool ComboManager::isEnd() const
-{
+	{
 	return m_isEnd;
-}
+	}
 
 void ComboManager::next(Combo _next)
-{
+	{
 	if (_next == Combo::End)return;
 	m_next = _next;
 }

@@ -113,7 +113,7 @@ const bool Input::isJoyTriggerX() const
 
 const bool Input::isJoyStateX() const
 {
-	return gsGetJoyState(0, GJOY_BUTTON_3);
+	return gsGetJoyState(0, GJOY_BUTTON_3) == GS_TRUE;
 }
 
 const bool Input::isJoyTriggerY() const
@@ -129,6 +129,16 @@ const bool Input::isJoyTriggerLB() const
 const bool Input::isJoyTriggerRB() const
 {
 	return gsGetJoyTrigger(0, GJOY_BUTTON_6) == GS_TRUE;
+}
+
+const bool Input::isJoyStateLB() const
+{
+	return gsGetJoyState(0, GJOY_BUTTON_5) == GS_TRUE;
+}
+
+const bool Input::isJoyStateRB() const
+{
+	return gsGetJoyState(0, GJOY_BUTTON_6) == GS_TRUE;
 }
 
 const bool Input::isJoyTriggerBACK() const

@@ -1,7 +1,7 @@
 #include "../../header/renderer/Draw3D.h"
 #include "../../header/data/CastID.h"
 #include "../../header/data/Model_ID.h"
-#include"../../header/convenient/Transform.h"
+#include"../../header/transform/Transform.h"
 #include "../../header/animation/Animator.h"
 #include "../../header/animation/AnimatorOne.h"
 
@@ -18,7 +18,7 @@ void Draw3D::drawMesh(MODEL_ID _id, const Transform & _transform, const Animator
 	glPushMatrix();
 	_animator.bind();
 	glColor4f(_color.r, _color.g, _color.b, _color.a);
-	glMultMatrixf(_transform.getMatrix4());
+	glMultMatrixf(_transform.matrix());
 	Data::CastID cast;
 	gsDrawMesh(cast(_id));
 	glPopMatrix();
@@ -30,8 +30,8 @@ void Draw3D::drawMesh_calcu(MODEL_ID _id, const Transform & _transform,  Animato
 	//GSmatrix4* mat = new GSmatrix4[256];
 	std::unique_ptr<GSmatrix4> mat = std::unique_ptr<GSmatrix4>(_animator.matrixCalculate());
 	glColor4f(_color.r, _color.g, _color.b, _color.a);
-	glMultMatrixf(_transform.getMatrix4());
-	gsMeshDrawSkin(gsGetMesh(cast(_id)),mat.get());
+	glMultMatrixf(_transform.matrix());
+	gsMeshDrawSkin(gsGetMesh(cast(_id)),mat);
 	glPopMatrix();
 	mat.release();
 }
