@@ -47,10 +47,10 @@ void GamePlay::update(float deltaTime)
 		m_change.end(SceneMode::GAMEPLAY);
 	}*/
 
-	/*if (m_Input->isJoyTriggerY())
-	{
-		m_change.end(SceneMode::ENDING);
-	}*/
+	//if (m_Input->isJoyTriggerY())
+	//{
+	//	m_change.end(SceneMode::ENDING);
+	//}
 }
 
 void GamePlay::draw(const Renderer & _renderer)

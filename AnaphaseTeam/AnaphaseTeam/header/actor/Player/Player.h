@@ -61,9 +61,8 @@ public://“ü—Í
 	const bool isJump() const;
 	const bool isAvoid() const;
 	//‹ßÚ—p
-	const bool isAttack()const;
-	const bool isGunAttack()const;
-	const bool isChargeAttack() const;
+	const bool isSlowAttack()const;
+	const bool isQuickAttack()const;
 	//“ü—Í•ûŒü
 	const GSvector3 inputDirection()const;
 public://ActorŒp³

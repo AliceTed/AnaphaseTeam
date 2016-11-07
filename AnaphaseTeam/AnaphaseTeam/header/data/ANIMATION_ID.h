@@ -8,15 +8,16 @@ enum class ANIMATION_ID :unsigned int
 	RUN,
 	JUMPUP = 4,
 	LANDING,
-	AVOID=9,
+	AVOID = 9,
 	ATTACK = 17,
 	ATTACK2,
 	ATTACK3,
 	ATTACK4,
-	GUN,
-	CHARGEATTACK = 23,
+	ATTACK5,
+	ATTACK6,
+	FATTACK,
 
-	SIZE
+	SIZE = 99
 };
 
 #endif

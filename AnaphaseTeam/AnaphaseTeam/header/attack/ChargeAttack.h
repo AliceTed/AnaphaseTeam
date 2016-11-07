@@ -22,7 +22,7 @@ public:
 	void endAttack(Player* _player,IComboMadiator * _manager);
 	const bool isChargeEnd()const;
 	const bool isStart() const;
-	void attackStart(float _chargeTime);
+	void attackStart();
 	void motion(Player* _player);
 
 	void chargeStart(Player* _player);

@@ -239,6 +239,8 @@
     <ClInclude Include="header\attack\ChargeAttack.h" />
     <ClInclude Include="header\attack\ComboManager.h" />
     <ClInclude Include="header\attack\Attack.h" />
+    <ClInclude Include="header\attack\ComboPattern.h" />
+    <ClInclude Include="header\attack\ECombo.h" />
     <ClInclude Include="header\attack\Gun.h" />
     <ClInclude Include="header\attack\IWeapon.h" />
     <ClInclude Include="header\attack\Scythe.h" />

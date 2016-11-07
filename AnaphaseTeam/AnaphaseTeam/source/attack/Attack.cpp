@@ -1,7 +1,7 @@
 #include "../../header/attack/Attack.h"
 #include "../../header/actor/Player/Player.h"
-Attack::Attack(const AttackStatus & _status, ANIMATION_ID _animation,Combo next, Shape_Ptr _shape)
-	:m_status(_status), m_Animation(_animation),m_nextCombo(next), m_Shape(_shape)
+Attack::Attack(const AttackStatus & _status, ANIMATION_ID _animation, Combo _Qnext, Combo _Snext)
+	:m_status(_status), m_Animation(_animation), m_nextQCombo(_Qnext),m_nexySCombo(_Snext)
 {
 }
 Attack::~Attack()
@@ -13,7 +13,8 @@ void Attack::initialize(Player* _player)
 	motion(_player);
 	_player->attackRange(this);
 }
-void Attack::update(float deltaTime,Player * _player)
+
+void Attack::update(float deltaTime, Player * _player)
 {
 	motion(_player);
 }
@@ -31,14 +32,21 @@ const bool Attack::isNextAttack(const AnimatorOne & _animator) const
 	float end = _animator.getCurrentAnimationEndTime();
 	float current = _animator.getCurrentAnimationTime();
 	float limit = 25.0f;
-	return (end- limit)<=current;
+	return (end - limit) <= current;
 }
 const bool Attack::isEndMotion(const AnimatorOne & _animator) const
 {
 	return _animator.isEndCurrentAnimation();
 }
-const Combo Attack::next()const
+
+const Combo Attack::weakAttackNext() const
 {
-	return m_nextCombo;
+	return m_nextQCombo;
 }
+
+const Combo Attack::strengthAttackNext() const
+{
+	return m_nexySCombo;
+}
+
 

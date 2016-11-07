@@ -12,9 +12,8 @@ public://ˆÚ“®
 public://ƒAƒNƒVƒ‡ƒ“
 	virtual const bool jump() = 0;
 	virtual const bool attack() = 0;
-	virtual const bool scythe() = 0;
-	virtual const bool charge() = 0;
-	virtual const bool gun() = 0;
+	virtual const bool slowAttackTrigger()=0;
+	virtual const bool quickAttackTrigger()=0;
 	virtual const bool avoid() = 0;
 public:
 	virtual const bool up() = 0;

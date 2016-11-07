@@ -15,9 +15,8 @@ public://ˆÚ“®
 public://ƒAƒNƒVƒ‡ƒ“
 	const bool jump();
 	const bool attack();
-	const bool scythe();
-	const bool charge();
-	const bool gun();
+	const bool slowAttackTrigger();
+	const bool quickAttackTrigger();
 	const bool avoid();
 public:
 	const bool up();

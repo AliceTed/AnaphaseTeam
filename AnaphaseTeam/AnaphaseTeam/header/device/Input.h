@@ -5,6 +5,26 @@ class Input
 {
 public:
 	Input();
+	const GSvector2 velocity()const;
+	//êÖïΩ
+	const int horizontal()const;
+	//êÇíº
+	const int vertical()const;
+
+	const bool jumpTrigger()const;
+	const bool attackTrigger() const;
+	const bool slowAttackTrigger() const;
+	const bool quickAttackTrigger()const;
+	const bool avoidTrigger()const;
+	
+	//input?
+	const bool move()const;
+	const bool walk()const;
+
+	const bool up()const;
+	const bool down()const;
+	const bool exit()const;
+
 	const bool isJoyTriggerUp() const;
 	const bool isJoyTriggerDown() const;
 	const bool isJoyTriggerLeft() const;

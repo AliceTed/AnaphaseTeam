@@ -5,6 +5,74 @@ Input::Input()
 	m_previousRightTrigger(false)
 {
 }
+const GSvector2 Input::velocity()const
+{
+	return GSvector2(horizontal(),vertical());
+}
+//êÖïΩ	
+const int Input::horizontal()const
+{
+	return leftPadAxis().x;
+}
+//êÇíº
+const int Input::vertical()const
+{
+	return leftPadAxis().y;
+}
+
+
+const bool Input::move() const
+{
+	return vertical() != 0 || horizontal() != 0;
+}
+
+const bool Input::walk() const
+{
+	return gsGetKeyState(GKEY_RSHIFT) == GS_TRUE;
+}
+
+const bool Input::up() const
+{
+	return isJoyTriggerUp();
+}
+
+const bool Input::down() const
+{
+	return isJoyTriggerDown();
+}
+
+const bool Input::exit() const
+{
+	return gsGetKeyTrigger(GKEY_ESCAPE) == GS_TRUE|| isJoyTriggerBACK();
+}
+
+const bool Input::jumpTrigger() const
+{
+	return isJoyTriggerA();
+}
+
+const bool Input::attackTrigger() const
+{
+	return isJoyTriggerX() || isJoyTriggerY();
+}
+
+const bool Input::slowAttackTrigger() const
+{
+	return  isJoyTriggerY();
+}
+
+const bool Input::quickAttackTrigger() const
+{
+	return isJoyTriggerX();
+}
+
+const bool Input::avoidTrigger() const
+{
+	return isJoyTriggerB();
+}
+
+
+
 
 const bool Input::isJoyTriggerUp() const
 {

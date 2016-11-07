@@ -31,21 +31,18 @@ const bool InputPattern_A::jump()
 
 const bool InputPattern_A::attack()
 {
-	return scythe()||gun();
+	return slowAttackTrigger()||quickAttackTrigger();
 }
 
-const bool InputPattern_A::scythe()
+
+const bool InputPattern_A::slowAttackTrigger()
+{
+	return  m_input->isJoyTriggerY();
+}
+
+const bool InputPattern_A::quickAttackTrigger()
 {
 	return m_input->isJoyTriggerX();
-}
-
-const bool InputPattern_A::charge()
-{
-	return m_input->isJoyStateX();
-}
-const bool InputPattern_A::gun()
-{
-	return m_input->isJoyTriggerB();
 }
 
 const bool InputPattern_A::avoid()

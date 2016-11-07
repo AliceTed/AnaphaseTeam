@@ -486,6 +486,9 @@
     <ClInclude Include="header\attack\ChargeAttack.h">
       <Filter>ヘッダー ファイル\attack</Filter>
     </ClInclude>
+    <ClInclude Include="header\attack\ComboPattern.h">
+      <Filter>ヘッダー ファイル\attack</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Util\BasicShapes.cpp">
