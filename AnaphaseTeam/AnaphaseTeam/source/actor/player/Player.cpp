@@ -20,7 +20,7 @@ const float Player::ROTATESPEED = -2.0f;
 const float Player::WALKSPEED = 0.1f;
 Player::Player(GameDevice* _device, Camera * _camera)
 	:Actor(
-		Transform({ 0,0,-30 }),
+		Transform({ 0,0,-30 }, GSquaternion(0, 0, 0, 1)),
 		MODEL_ID::PLAYER,
 		Sphere(GSvector3(0, 0, 0), 0),
 		Actor_Tag::PLAYER
@@ -65,7 +65,7 @@ void Player::update(float deltatime)
 	m_action->action(this, deltatime);
 	sphereChases(GSvector3(0, 1, 0));
 	m_animatorOne.update(deltatime);
-	
+
 	m_status.change(m_Gauge);
 	//	m_animatorOne.getAnimMatrix(m_matrix.get());
 }
@@ -74,7 +74,7 @@ void Player::draw(const Renderer & _renderer, const Camera & _camera)
 {
 	FALSE_RETURN(isInsideView(_camera));
 	alphaBlend(_camera);
-	_renderer.getDraw3D().drawMesh_calcu(MODEL_ID::PLAYER, m_transform,m_animatorOne, m_Color);
+	_renderer.getDraw3D().drawMesh_calcu(MODEL_ID::PLAYER, m_transform, m_animatorOne, m_Color);
 	m_Gauge.draw(_renderer);
 	_renderer.getDraw2D().string(std::to_string(degree), &GSvector2(20, 20), 30);
 	_renderer.getDraw2D().string(std::to_string(m_transform.getYaw()), &GSvector2(20, 40), 30);
@@ -146,9 +146,9 @@ void Player::avoid(float deltaTime)
 void Player::createColision()
 {
 	//Segment segment = Segment(m_transform.getPosition(), GSvector3(0, -0.1f, 0));
-	Shape_Ptr shape = std::make_shared<Capsule>(Segment( m_transform.getPosition(),GSvector3(0,0.8f,0)), 0.5f);
+	Shape_Ptr shape = std::make_shared<Capsule>(Segment(m_transform.getPosition(), GSvector3(0, 0.8f, 0)), 0.5f);
 	Collision_Ptr obj = std::make_shared<CollisionActor>(shape, CollisionActorType::PLAYER);
-	obj->set_update([&](float deltaTime, Shape_Ptr _shape) 
+	obj->set_update([&](float deltaTime, Shape_Ptr _shape)
 	{
 		GSvector3 target = m_transform.getPosition() + GSvector3(0.0f, 0.5f, 0.0f);
 		_shape->transfer(target);
@@ -159,7 +159,7 @@ void Player::createColision()
 
 void Player::jumping(float _velocity)
 {
-	m_transform.translateY(_velocity);
+	m_transform.translate_up(_velocity);
 }
 
 void Player::subActionStart()
@@ -215,16 +215,17 @@ void Player::attackhoming(Boss * _enemy)
 	if (isAttack())
 	{
 		Math::Clamp clamp;
+		Math::Wrap wrap;
 
 		GSvector3 vector = _enemy->getPosition() - m_transform.getPosition();
 		float radian = atan2(vector.x, vector.z);
 		degree = radian * 180.0f / M_PI;
-		degree -= m_transform.getYaw();
-		degree = clamp(degree, -130.0f, 130.0f);
-		m_transform.rotationY(degree);
+		//degree = clamp(degree, -130.0f, 130.0f);
+		m_transform.m_rotate = GSquaternion(degree, { 0,1,0 });
 
 		float attack_distance = 1.0f;
 		attack_distance = clamp(m_Gauge.scale(attack_distance), 1.0f, 5.0f);
+		attack_distance = clamp(attack_distance, 0.0f, distanceActor(*_enemy)-3.0f);
 		GSvector3 forward(m_transform.front() * attack_distance);
 		m_transform.translate(forward);
 	}
@@ -247,7 +248,7 @@ void Player::avoidAction(const GSvector3 & _velocity)
 
 void Player::attackmotion(IAttack & _attack)
 {
-	_attack.changeMotion(m_animatorOne,m_status.attackSpeed() );
+	_attack.changeMotion(m_animatorOne, m_status.attackSpeed());
 }
 
 const bool Player::isNextAttack(IAttack & _attack) const
@@ -311,7 +312,7 @@ void Player::control()
 		m_isJumpAttack = !m_isGround;
 		m_Gauge.up(10.0f);
 	}
-	
+
 }
 
 void Player::look_at(CameraController * _camera, GSvector3 * _target)
@@ -355,7 +356,7 @@ void Player::rotate(float deltaTime, Transform & _transform)
 	GSvector3 velocity = forward + side;
 	Math::ATan atan;
 	float degree = atan(velocity.x, velocity.z);
-	m_transform.setYaw(degree);
+	m_transform.m_rotate = GSquaternion(degree, GSvector3(0, 1, 0));
 }
 
 void Player::movement(float deltaTime, float _speed)

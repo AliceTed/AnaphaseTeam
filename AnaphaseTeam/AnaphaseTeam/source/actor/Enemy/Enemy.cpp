@@ -3,7 +3,7 @@
 
 Enemy::Enemy()
 	:Actor(
-		Transform({ 10,0.5f,-30 }),
+		Transform({ 10,0.5f,-30 }, GSquaternion(0,0,0,0)),
 		MODEL_ID::PLAYER,
 		Sphere(GSvector3(0, 0, 0), 0),
 		Actor_Tag::PLAYER

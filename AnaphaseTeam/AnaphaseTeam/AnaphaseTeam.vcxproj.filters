@@ -154,6 +154,12 @@
     <Filter Include="ヘッダー ファイル\actor\Enemy">
       <UniqueIdentifier>{3c53bf53-57cc-48d0-bf51-5f3a4a1b2d22}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\transform">
+      <UniqueIdentifier>{de7a1e9d-d1e3-44f7-99fe-73df8fb283c0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\transform">
+      <UniqueIdentifier>{1cac667a-7706-4899-88f1-8521269775bd}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Util\BasicShapes.h">
@@ -357,9 +363,6 @@
     <ClInclude Include="header\convenient\Point.h">
       <Filter>ヘッダー ファイル\convenient</Filter>
     </ClInclude>
-    <ClInclude Include="header\convenient\Transform.h">
-      <Filter>ヘッダー ファイル\convenient</Filter>
-    </ClInclude>
     <ClInclude Include="header\ui\Cursor.h">
       <Filter>ヘッダー ファイル\ui</Filter>
     </ClInclude>
@@ -501,6 +504,18 @@
     <ClInclude Include="header\camera\LockOn.h">
       <Filter>ヘッダー ファイル\camera</Filter>
     </ClInclude>
+    <ClInclude Include="header\transform\Quaternion_Utility.h">
+      <Filter>ヘッダー ファイル\transform</Filter>
+    </ClInclude>
+    <ClInclude Include="header\transform\ToString.h">
+      <Filter>ヘッダー ファイル\transform</Filter>
+    </ClInclude>
+    <ClInclude Include="header\transform\Transform.h">
+      <Filter>ヘッダー ファイル\transform</Filter>
+    </ClInclude>
+    <ClInclude Include="header\collision\Hit.h">
+      <Filter>ヘッダー ファイル\collision</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Util\BasicShapes.cpp">
@@ -568,9 +583,6 @@
     </ClCompile>
     <ClCompile Include="source\actor\player\Player.cpp">
       <Filter>ソース ファイル\actor\Player</Filter>
-    </ClCompile>
-    <ClCompile Include="source\convenient\Transform.cpp">
-      <Filter>ソース ファイル\convenient</Filter>
     </ClCompile>
     <ClCompile Include="source\subAction\subActionManager.cpp">
       <Filter>ソース ファイル\subAction</Filter>
@@ -748,6 +760,15 @@
     </ClCompile>
     <ClCompile Include="source\camera\LockOn.cpp">
       <Filter>ソース ファイル\camera</Filter>
+    </ClCompile>
+    <ClCompile Include="source\transform\Quaternion_Utility.cpp">
+      <Filter>ソース ファイル\transform</Filter>
+    </ClCompile>
+    <ClCompile Include="source\transform\Transform.cpp">
+      <Filter>ソース ファイル\transform</Filter>
+    </ClCompile>
+    <ClCompile Include="source\collision\Hit.cpp">
+      <Filter>ソース ファイル\collision</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

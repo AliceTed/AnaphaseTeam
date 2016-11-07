@@ -4,7 +4,7 @@
 
 #include <gslib.h>
 class Renderer;
-
+struct Hit;
 //class Ray;
 class Sphere;
 class Capsule;
@@ -19,11 +19,11 @@ public:
 	virtual void transfer(const GSvector3& _position)=0;
 
 	//virtual const bool isCollision(const Ray* _ray)const = 0;
-	virtual const bool isCollision(const Sphere* _sphere)const = 0;
-	virtual const bool isCollision(const Capsule* _capsule)const = 0;
-	virtual const bool isCollision(const Segment* _segment)const = 0;
+	virtual const bool isCollision(const Sphere* _sphere,Hit* _hit)const = 0;
+	virtual const bool isCollision(const Capsule* _capsule, Hit* _hit)const = 0;
+	virtual const bool isCollision(const Segment* _segment, Hit* _hit)const = 0;
 
-	virtual const bool isCollision(const Shape* _shape)const = 0;
+	virtual const bool isCollision(const Shape* _shape, Hit* _hit)const = 0;
 
 	virtual void draw(const Renderer& _renderer, const GScolor& color = GScolor(1.0f, 1.0f, 1.0f, 1.0f)) = 0;
 };

@@ -27,9 +27,9 @@ void BreakPoint::createCollision(Boss * _parent, Group_Ptr& _group)
 {
 	shape = std::make_shared<Sphere>(GSvector3(0, 1, 0), 1);
 	obj = std::make_shared<CollisionActor>(shape, m_type);
-	obj->set_collision_enter([&](Actor* _actor, CollisionActorType _type)
+	obj->set_collision_enter([&](Hit* _hit)
 	{
-		Player* _player = dynamic_cast<Player*>(_actor);
+		Player* _player = dynamic_cast<Player*>(_hit->m_paremt);
 		if (_player == nullptr)return;
 		m_color = GScolor(1, 0, 0, 1);
 		_player->buildup();

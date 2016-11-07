@@ -5,7 +5,7 @@
 *@date 2016/08/11
 */
 #pragma once
-#include "../convenient/Transform.h"
+#include "../../header/transform/Transform.h"
 #include "../data/Model_ID.h"
 
 #include "../data/ANIMATION_ID.h"
@@ -16,6 +16,8 @@ class CollisionManager;
 class Renderer;
 class Map;
 class Camera;
+
+struct TransForm;
 //!　引数のフラグがfalseならリターン
 #define FALSE_RETURN(flg) if(!flg)return;
 class Actor

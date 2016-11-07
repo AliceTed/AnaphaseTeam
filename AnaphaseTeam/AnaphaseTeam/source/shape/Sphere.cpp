@@ -7,6 +7,7 @@
 //#include "../../header/shape/Ray.h"
 #include "../../header/shape/Capsule.h"
 #include "../../header/shape/Segment.h"
+#include "../../header/collision/Hit.h"
 Sphere::Sphere(const GSvector3& center, float radius)
 	:center(center), radius(radius)
 {
@@ -37,24 +38,27 @@ void Sphere::transfer(const GSvector3 & _position)
 //	return _ray->isCollisionSphere(center,radius);
 //}
 
-const bool Sphere::isCollision(const Sphere * _sphere) const
+const bool Sphere::isCollision(const Sphere * _sphere, Hit* _hit) const
 {
-	return  center.distance(_sphere->center) <radius + _sphere->radius;
+	GSvector3 v = center - _sphere->center;
+	v.normalize();
+	_hit->m_intersect= v*radius;
+	return center.distance(_sphere->center) <radius + _sphere->radius;
 }
 
-const bool Sphere::isCollision(const Capsule * _capsule) const
+const bool Sphere::isCollision(const Capsule * _capsule, Hit* _hit) const
 {	
-	return _capsule->isCollisionSphere(center,radius);
+	return _capsule->isCollisionSphere(center,radius, _hit);
 }
 
-const bool Sphere::isCollision(const Segment * _segment) const
+const bool Sphere::isCollision(const Segment * _segment, Hit* _hit) const
 {	
-	return _segment->isCollisionSphere(center,radius);
+	return _segment->isCollisionSphere(center,radius, _hit);
 }
 
-const bool Sphere::isCollision(const Shape * _shape) const
+const bool Sphere::isCollision(const Shape * _shape, Hit* _hit) const
 {
-	return _shape->isCollision(this);
+	return _shape->isCollision(this,_hit);
 }
 
 void Sphere::draw(const Renderer& renderer, const GScolor& color)

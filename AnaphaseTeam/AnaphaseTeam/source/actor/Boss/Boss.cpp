@@ -8,7 +8,7 @@
 
 Boss::Boss() :
 	Actor(
-		Transform(GSvector3(0, 0, 0), GSvector3(0, 180, 0)),
+		Transform({ 0,0,0 }, GSquaternion(0, 0, 0, 1)),
 		MODEL_ID::BOSS,
 		Sphere(GSvector3(0, 7, 0), 7.0f),
 		Actor_Tag::BOSS
@@ -93,7 +93,7 @@ vector<GSvector3> Boss::getAnimEachPos()
 	for (GSuint i = 0; i < n; i++)
 	{
 		Transform transform(m_animatorOne.getMatrixVector()[i]);
-		GSmatrix4 m = transform.parentSynthesis(m_transform);
+		GSmatrix4 m = transform.parent_synthesis(m_transform).matrix();
 		res.emplace_back(m.getPosition());
 	}
 	return res;
@@ -109,9 +109,9 @@ void Boss::enemyAttack()
 		m_state = State::ATTACK;
 
 		m_animatorOne.changeAnimation((ANIMATION_ID)0);
-		actor->set_collision_enter([&](Actor* _actor, CollisionActorType _type)
+		actor->set_collision_enter([&](Hit* hit)
 		{
-			Player* _player = dynamic_cast<Player*>(_actor);
+			Player* _player = dynamic_cast<Player*>(hit->m_paremt);
 			if (_player == nullptr)return;
 			m_color = GScolor(1, 0, 0, 1);
 		});
@@ -134,6 +134,6 @@ void Boss::dirCalc(Player* _player)
 		GSvector3 vector = _player->getPosition() - m_transform.getPosition();
 		float radian = atan2(vector.x, vector.z);
 		float degree = radian * 180.0f / M_PI;
-		m_transform.setYaw(degree);
+		m_transform.m_rotate = GSquaternion(degree, GSvector3(0, 1, 0));
 	}
 }

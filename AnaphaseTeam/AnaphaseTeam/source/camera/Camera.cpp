@@ -112,7 +112,7 @@ const Transform Camera::transform() const
 {
 	//yaw‰ñ“]‚¾‚¯
  	GSvector3 vec=m_look_at.target - m_look_at.position;
-	return Transform(position,GSvector3(0,vec.getYaw(),0));
+	return Transform(vec.getYaw(),GSvector3(0,1,0), position);
 }
 
 void Camera::update_perspective(const Perspective* _perspective) const
