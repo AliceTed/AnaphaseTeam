@@ -20,35 +20,33 @@ void ComboManager::create()
 
 	AttackStatus status(0.0f, 0.0f, GSvector3(0, 0, 0));
 
-	//
-	Attack QFirst(status, ANIMATION_ID::ATTACK, Combo::QSecond, Combo::QSSecond);
-	Attack SFirst(status, ANIMATION_ID::FATTACK, Combo::End, Combo::SSecond);
-	m_attackPattern.insert(std::make_pair(Combo::QFirst, QFirst));
-	m_attackPattern.insert(std::make_pair(Combo::SFirst, SFirst));
+	//最初
+	Attack Q(status, ANIMATION_ID::ATTACK, Combo::QQ, Combo::QS);
+	Attack S(status, ANIMATION_ID::ATTACK3, Combo::SQ, Combo::End);
+	m_attackPattern.insert(std::make_pair(Combo::Q, Q));
+	m_attackPattern.insert(std::make_pair(Combo::S, S));
 
-	//
-	Attack QSecond(status, ANIMATION_ID::ATTACK2, Combo::QThird, Combo::End);
-	Attack SSecond(status, ANIMATION_ID::ATTACK5, Combo::End, Combo::SThird);
-	Attack QSSecond(status, ANIMATION_ID::ATTACK5, Combo::SQThird, Combo::End);
-	m_attackPattern.insert(std::make_pair(Combo::QSecond, QSecond));
-	m_attackPattern.insert(std::make_pair(Combo::SSecond, SSecond));
-	m_attackPattern.insert(std::make_pair(Combo::QSSecond, QSSecond));
+	//Qだけのコンボ
+	Attack QQ(status, ANIMATION_ID::ATTACK2, Combo::QQQ, Combo::End);
+	Attack QQQ(status, ANIMATION_ID::ATTACK3, Combo::QQQQ, Combo::End);
+	Attack QQQQ(status, ANIMATION_ID::ATTACK4, Combo::End, Combo::End);
+	m_attackPattern.insert(std::make_pair(Combo::QQ, QQ));
+	m_attackPattern.insert(std::make_pair(Combo::QQQ, QQQ));
+	m_attackPattern.insert(std::make_pair(Combo::QQQQ, QQQQ));
+	
+	//QSQQコンボ
+	Attack QS(status, ANIMATION_ID::ATTACK5, Combo::QSQ, Combo::End);
+	Attack QSQ(status, ANIMATION_ID::ATTACK6, Combo::QSQQ, Combo::End);
+	Attack QSQQ(status, ANIMATION_ID::FATTACK, Combo::End, Combo::End);
+	m_attackPattern.insert(std::make_pair(Combo::QS, QS));
+	m_attackPattern.insert(std::make_pair(Combo::QSQ, QSQ));
+	m_attackPattern.insert(std::make_pair(Combo::QSQQ, QSQQ));
 
-	//
-	Attack QThird(status, ANIMATION_ID::ATTACK3, Combo::QFour, Combo::End);
-	Attack SThird(status, ANIMATION_ID::ATTACK6, Combo::End, Combo::End);
-	Attack SQThird(status, ANIMATION_ID::ATTACK6, Combo::SQFour, Combo::End);
-	m_attackPattern.insert(std::make_pair(Combo::QThird, QThird));
-	m_attackPattern.insert(std::make_pair(Combo::SThird, SThird));
-	m_attackPattern.insert(std::make_pair(Combo::SQThird, SQThird));
-
-	//
-	Attack QFour(status, ANIMATION_ID::ATTACK4, Combo::End, Combo::End);
-	Attack SQFour(status, ANIMATION_ID::FATTACK, Combo::End, Combo::End);
-	m_attackPattern.insert(std::make_pair(Combo::QFour, QFour));
-	m_attackPattern.insert(std::make_pair(Combo::SQFour, SQFour));
-
-
+	//SQQコンボ
+	Attack SQ(status, ANIMATION_ID::ATTACK, Combo::SQQ, Combo::End);
+	Attack SQQ(status, ANIMATION_ID::ATTACK5, Combo::End, Combo::End);
+	m_attackPattern.insert(std::make_pair(Combo::SQ, SQ));
+	m_attackPattern.insert(std::make_pair(Combo::SQQ, SQQ));
 
 }
 
@@ -67,12 +65,12 @@ void ComboManager::Start(bool _attackChange)
 {
 	if (_attackChange)
 	{
-		m_current = m_attackPattern.at(Combo::QFirst);
+		m_current = m_attackPattern.at(Combo::Q);
 	}
 
 	if (!_attackChange)
 	{
-		m_current = m_attackPattern.at(Combo::SFirst);
+		m_current = m_attackPattern.at(Combo::S);
 	}
 }
 

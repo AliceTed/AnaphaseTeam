@@ -15,8 +15,6 @@ AttackManager::~AttackManager()
 
 void AttackManager::initialize()
 {
-	m_Scythe.initialize();
-	m_Gun.initialize();
 	m_combo.initialize();
 }
 void AttackManager::update(float deltaTime, Player* _player)

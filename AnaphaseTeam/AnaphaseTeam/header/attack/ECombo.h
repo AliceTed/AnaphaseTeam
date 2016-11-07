@@ -34,9 +34,16 @@ enum class Combo
 	QSS,
 	QSSS,
 
+	QSQ,
+	QSQQ,
+
 	SQ,
 	SQQ,
 	SQQQ,
+
+	SQS,
+	SQSS,
+
 
 
 	End,
