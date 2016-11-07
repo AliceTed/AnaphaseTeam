@@ -213,7 +213,7 @@ void Player::attackhoming(Boss * _enemy)
 	{
 		return;
 	}
-	if (isAttack())
+	if (m_device->input()->attack())
 	{
 		Math::Clamp clamp;
 		Math::Wrap wrap;

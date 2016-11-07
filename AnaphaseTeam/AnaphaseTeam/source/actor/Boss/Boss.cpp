@@ -92,7 +92,7 @@ vector<GSvector3> Boss::getAnimEachPos()
 	vector<GSvector3> res;
 	for (GSuint i = 0; i < n; i++)
 	{
-		Transform transform(m_animatorOne.getMatrixVector()[i]);
+		Transform transform(m_animatorOne.getMat()[i]);
 		GSmatrix4 m = transform.parent_synthesis(m_transform).matrix();
 		res.emplace_back(m.getPosition());
 	}

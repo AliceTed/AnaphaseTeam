@@ -78,6 +78,7 @@ public:
 	GSmatrix4 * matrixCalculate();
 	const GSuint getNumBones()const;
 	const GSmatrix4 * getMat() const;
+	const std::vector<GSmatrix4> getMatrixVector() const;
 	const float getCurrentAnimationTime()const;
 	const float getCurrentAnimationEndTime()const;
 
@@ -88,5 +89,6 @@ private:
 	Animation_Ptr m_nextAnimation;
 	static const unsigned int BONELENGTH=256;
 	LerpData m_lerpData;
-	std::unique_ptr<GSmatrix4> m_matPtr;
+	std::getMatrixVector()<GSmatrix4> m_matPtr;
+	std::vector<GSmatrix4> m_matrix;
 };

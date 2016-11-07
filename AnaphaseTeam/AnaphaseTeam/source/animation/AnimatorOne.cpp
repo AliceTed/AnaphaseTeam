@@ -130,6 +130,8 @@ GSmatrix4* AnimatorOne::matrixCalculate()
 		m_matPtr.get(),
 		orientedMat.get());
 
+	m_matrix.clear();
+
 	return m_matPtr.get();
 }
 const GSuint AnimatorOne::getNumBones()const
@@ -140,6 +142,11 @@ const GSuint AnimatorOne::getNumBones()const
 const GSmatrix4* AnimatorOne::getMat()const
 {
 	return m_matPtr.get();
+}
+
+const std::vector<GSmatrix4> AnimatorOne::getMatrixVector() const
+{
+	return m_matrix;
 }
 
 const float AnimatorOne::getCurrentAnimationTime() const

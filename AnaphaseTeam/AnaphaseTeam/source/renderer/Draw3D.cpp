@@ -31,7 +31,7 @@ void Draw3D::drawMesh_calcu(MODEL_ID _id, const Transform & _transform,  Animato
 	std::unique_ptr<GSmatrix4> mat = std::unique_ptr<GSmatrix4>(_animator.matrixCalculate());
 	glColor4f(_color.r, _color.g, _color.b, _color.a);
 	glMultMatrixf(_transform.matrix());
-	gsMeshDrawSkin(gsGetMesh(cast(_id)),mat);
+	gsMeshDrawSkin(gsGetMesh(cast(_id)),mat.get());
 	glPopMatrix();
 	mat.release();
 }
