@@ -54,7 +54,7 @@ public:
 	void initialize();
 	void update(float deltatime);
 	void bind()const;
-	void changeAnimation(ANIMATION_ID _animation, bool _isLoop = false, bool _isNotInit = false, float _animationSpeed = 1.0f);
+	void changeAnimation(ANIMATION_ID _animation,  bool _isLerp=true,bool _isLoop = false, bool _isNotInit = false, float _animationSpeed = 1.0f);
 	void change(Animation_Ptr _next);
 	/**
 	* @fn

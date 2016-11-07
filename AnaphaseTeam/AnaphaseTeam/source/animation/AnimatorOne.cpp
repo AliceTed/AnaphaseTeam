@@ -46,7 +46,7 @@ bool AnimatorOne::isEndAnimation(ANIMATION_ID _animationID)
 	return false;
 }
 
-void AnimatorOne::changeAnimation(ANIMATION_ID _animation, bool _isLoop, bool _isNotInit, float _animationSpeed)
+void AnimatorOne::changeAnimation(ANIMATION_ID _animation,bool _isLerp ,bool _isLoop, bool _isNotInit, float _animationSpeed)
 {
 	Data::CastID cast;
 	if (m_currentAnimation == nullptr)
@@ -54,14 +54,16 @@ void AnimatorOne::changeAnimation(ANIMATION_ID _animation, bool _isLoop, bool _i
 	///*今のアニメーションと同じなら変えない
 	if (m_currentAnimation->getAnimationNo() == static_cast<unsigned int>(_animation) && _animationSpeed == m_currentAnimation->getSpeed())
 		return;
-
-	lerpBegin(_animation, !_isNotInit, _isLoop);
-	/*m_currentAnimation = std::make_shared<Animation>(m_modelID, cast(_animation), AnimationTimer(gsGetEndAnimationTime(cast(m_modelID), cast(_animation)), _animationSpeed), _isLoop);
+	if (_isLerp)
+	{
+		lerpBegin(_animation, !_isNotInit, _isLoop);
+		return;
+	}
+	m_currentAnimation = std::make_shared<Animation>(m_modelID, cast(_animation), AnimationTimer(gsGetEndAnimationTime(cast(m_modelID), cast(_animation)), _animationSpeed), _isLoop);
 	///*物によっては切り替え時に初期化しない
 	if (_isNotInit)
 		return;
 	m_currentAnimation->initialize();
-	*/
 }
 
 
