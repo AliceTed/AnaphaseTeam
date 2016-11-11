@@ -190,7 +190,7 @@ void Player::attackmotion(IAttack & _attack)
 	_attack.changeMotion(m_animatorOne);
 }
 
-const bool Player::isNextAttack(IAttack & _attack) const
+const bool Player::isNextAttack(const IAttack & _attack) const
 {
 	return _attack.isNextAttack(m_animatorOne);
 }
@@ -199,8 +199,6 @@ const bool Player::isEndAttackMotion(const IAttack & _attack) const
 {
 	return _attack.isEndMotion(m_animatorOne);
 }
-
-
 
 void Player::moving(float deltaTime, bool isAnimation)
 {

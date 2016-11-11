@@ -25,7 +25,6 @@ void Attack::motion(Player * _player)
 void Attack::changeMotion(AnimatorOne & _animator)
 {
 	_animator.changeAnimation(m_Animation,true, false, false,5.0f,1.5f);
-	//_animator.lerpBegin(m_Animation, true, false);
 }
 const bool Attack::isNextAttack(const AnimatorOne & _animator) const
 {
@@ -48,5 +47,3 @@ const Combo Attack::strengthAttackNext() const
 {
 	return m_nexySCombo;
 }
-
-
