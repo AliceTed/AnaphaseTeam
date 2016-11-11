@@ -26,7 +26,8 @@ public:
 	*/
 	void nearEnemyFind(vector<Boss>& _enemys);
 	void addPlayer(Player* _player);
-	void look_at(CameraController* _camera, vector<Boss>& _enemys);
+	void look_at(CameraController* _camera);
+	void homing();
 
 private:
 	//! Player‚ÆEnemy‚Æ‚Ì‹——£
@@ -34,5 +35,6 @@ private:
 	//! ‹‚ß‚½‹——£‚ÌŠi”[—pvector
 	vector<float> m_distanceStoreVector;
 	Player* m_player;
-	int index;
+	Boss* m_target;
+
 };

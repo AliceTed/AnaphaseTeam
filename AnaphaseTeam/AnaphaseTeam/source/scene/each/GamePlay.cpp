@@ -8,11 +8,11 @@ GamePlay::GamePlay(GameDevice* _device)
 	m_Map(OCTREE_ID::KOUTEI),
 	m_Camera(10,8,GSvector3(0,5,0)),
 	m_cameracontroller(&m_Camera),
-	m_player(_device,&m_Camera),
 	m_enemys(),
 	m_change(),
 	m_enemy(),
-	m_lockon()
+	m_lockon(),
+	m_player(_device, &m_Camera, &m_lockon)
 {
 }
 GamePlay::~GamePlay()
@@ -46,14 +46,13 @@ void GamePlay::update(float deltaTime)
 	m_player.collisionGround(m_Map);
 	m_enemys[0].collisionGround(m_Map);
 	if (m_change.update(deltaTime))return;
-	
+	m_lockon.nearEnemyFind(m_enemys);
 	m_player.update(deltaTime);
 	m_enemys[0].update(deltaTime);
 
 	collision.update(deltaTime);
 
 	//m_player.attackhoming(&m_lockon.get(m_enemys));
-	m_lockon.nearEnemyFind(m_enemys);
 
 	/*if (m_device->input()->reset())
 	{
@@ -70,7 +69,7 @@ void GamePlay::draw(const Renderer & _renderer)
 {
 	_renderer.getDraw3D().drawSky(MESH_ID::SKY);
 	//m_enemys[0].look_at(&m_cameracontroller, &m_player);
-	m_lockon.look_at(&m_cameracontroller, m_enemys);
+	m_lockon.look_at(&m_cameracontroller);
 	m_player.draw(_renderer,m_Camera);
 	m_Map.draw(_renderer);
 	m_enemys[0].draw(_renderer, m_Camera);

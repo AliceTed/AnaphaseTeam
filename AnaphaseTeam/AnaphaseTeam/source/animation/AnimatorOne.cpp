@@ -3,7 +3,7 @@
 #include <gslib.h>
 AnimatorOne::AnimatorOne(const MODEL_ID _modelID) :
 	m_modelID(_modelID), m_currentAnimation(nullptr),
-	m_nextAnimation(nullptr), m_matPtr(std::unique_ptr<GSmatrix4>(new GSmatrix4[256]))
+	m_nextAnimation(nullptr), m_matPtr(std::shared_ptr<GSmatrix4>(new GSmatrix4[256],std::default_delete<GSmatrix4 []>()))
 {}
 AnimatorOne::~AnimatorOne()
 {}

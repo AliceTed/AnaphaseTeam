@@ -14,7 +14,7 @@ Gauge::~Gauge()
 
 void Gauge::initialize()
 {
-	m_gauge = 150;
+	m_gauge = 1000;
 }
 
 void Gauge::draw(const Renderer& _renderer)

@@ -25,12 +25,13 @@ class GameDevice;
 class CameraController;
 class TestActor;
 class Boss;
+class LockOn;
 
 typedef std::shared_ptr<IActionState> Action_Ptr;
 class Player :public Actor, public ICharacter
 {
 public:
-	Player(GameDevice* _device,Camera * _camera);
+	Player(GameDevice* _device,Camera * _camera, LockOn* _lockon);
 	~Player();
 	void addCollisionGroup(CollisionManager*  _manager);
 	/**
@@ -57,6 +58,7 @@ public:
 	void attackRange(Attack* _attack);
 	void gaugeUp(float _scale);
 	void attackhoming(Boss* _boss);
+	void homing();
 public:
 	const bool isGround() const;
 	const bool isJumpAttack()const;
@@ -106,7 +108,7 @@ private:
 	Camera * m_camera;
 	Group_Ptr m_group;
 
-
+	LockOn* m_lockon;
 	float degree;
 
 	Avoid m_avoid;

@@ -2,7 +2,7 @@
 
 LockOn::LockOn()
 	:m_player(nullptr),
-	index(0)
+	m_target(nullptr)
 {
 }
 
@@ -30,10 +30,10 @@ void LockOn::nearEnemyFind(vector<Boss>& _enemys)
 	//m_target = &(*_enemys.begin());
 	//Å¬’l‚Ì—v‘f”Ô†‚ğæ“¾
 	vector<float>::iterator itr = min_element(m_distanceStoreVector.begin(), m_distanceStoreVector.end());
-	index = distance(m_distanceStoreVector.begin(), itr);
+	m_target = &_enemys[distance(m_distanceStoreVector.begin(), itr)];
 	
 	//‚±‚ÌŒãAæ“¾‚µ‚½”Ô†‚ÌEnemy‚ğ•Ô‚·
-	m_player->attackhoming(&_enemys[index]);
+	//m_player->attackhoming(&_enemys[index]);
 }
 
 void LockOn::addPlayer(Player * _player)
@@ -41,11 +41,16 @@ void LockOn::addPlayer(Player * _player)
 	m_player = _player;
 }
 
-void LockOn::look_at(CameraController * _camera, vector<Boss>& _enemys)
+void LockOn::look_at(CameraController * _camera)
 {
-	if (&_enemys[index] == nullptr)
+	if (m_target == nullptr)
 	{
 		return;
 	}
-	_enemys[index].look_at(_camera, m_player);
+	m_target->look_at(_camera, m_player);
+}
+
+void LockOn::homing()
+{
+	m_player->attackhoming(m_target);
 }
