@@ -14,6 +14,7 @@
 
 #include "../../camera/CameraController.h"
 #include "../SceneChange.h"
+#include "../../actor/Enemy/EnemyManager.h"
 class GameDevice;
 typedef std::shared_ptr<Actor>Actor_Ptr;
 class GamePlay :public IScene
@@ -38,8 +39,7 @@ private:
 	//Entity::EntityManager<Actor_Ptr> actorManager;
 	CollisionManager collision;
 	Player m_player;
-	vector<Boss> m_enemys;
-	Enemy m_enemy;
+	EnemyManager m_enemys;
 	LockOn m_lockon;
 
 };

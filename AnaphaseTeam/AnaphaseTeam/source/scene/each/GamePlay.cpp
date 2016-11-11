@@ -10,7 +10,6 @@ GamePlay::GamePlay(GameDevice* _device)
 	m_cameracontroller(&m_Camera),
 	m_enemys(),
 	m_change(),
-	m_enemy(),
 	m_lockon(),
 	m_player(_device, &m_Camera, &m_lockon)
 {
@@ -28,27 +27,27 @@ void GamePlay::initialize()
 	collision.initialize();
 	m_player.initialize();
 	//m_boss.initialize();
-	m_enemys.clear();
+	m_enemys.initialize();
+	Enemy e(Transform(0, { 0,0,0 }, { 0,0,0 }));
+	e.addCollisionGroup(&collision);
+	m_enemys.add(e);
+
 	Boss boss;
 	boss.initialize();
 	boss.addCollisionGroup(&collision);
-	m_enemys.emplace_back(boss);
-	m_enemy.initialize();
 	m_player.addCollisionGroup(&collision);
-	//m_boss.addCollisionGroup(&collision);
-	m_enemy.addCollisionGroup(&collision);
-
 	m_lockon.addPlayer(&m_player);
 }
 
 void GamePlay::update(float deltaTime)
 {
 	m_player.collisionGround(m_Map);
-	m_enemys[0].collisionGround(m_Map);
+	m_enemys.collisionGround(m_Map);
 	if (m_change.update(deltaTime))return;
-	m_lockon.nearEnemyFind(m_enemys);
+	// m_enemys;
+	//m_lockon.nearEnemyFind(m_enemys);
 	m_player.update(deltaTime);
-	m_enemys[0].update(deltaTime);
+	m_enemys.update(deltaTime);
 
 	collision.update(deltaTime);
 
@@ -72,8 +71,7 @@ void GamePlay::draw(const Renderer & _renderer)
 	m_lockon.look_at(&m_cameracontroller);
 	m_player.draw(_renderer,m_Camera);
 	m_Map.draw(_renderer);
-	m_enemys[0].draw(_renderer, m_Camera);
-	m_enemy.draw(_renderer, m_Camera);
+	m_enemys.draw(_renderer, m_Camera);
 	collision.draw(_renderer);
 	m_change.draw(_renderer);
 }

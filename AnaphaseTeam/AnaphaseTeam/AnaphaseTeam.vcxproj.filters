@@ -528,6 +528,9 @@
     <ClInclude Include="header\collision\WeaponCollision.h">
       <Filter>ヘッダー ファイル\collision</Filter>
     </ClInclude>
+    <ClInclude Include="header\actor\Enemy\EnemyManager.h">
+      <Filter>ヘッダー ファイル\actor\Enemy</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Util\BasicShapes.cpp">
@@ -787,6 +790,9 @@
     </ClCompile>
     <ClCompile Include="source\collision\WeaponCollision.cpp">
       <Filter>ソース ファイル\collision</Filter>
+    </ClCompile>
+    <ClCompile Include="source\actor\Enemy\EnemyManager.cpp">
+      <Filter>ソース ファイル\actor\Enemy</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

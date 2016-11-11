@@ -147,15 +147,15 @@ void Player::avoid(float deltaTime)
 void Player::createColision()
 {
 	//Segment segment = Segment(m_transform.getPosition(), GSvector3(0, -0.1f, 0));
-	Shape_Ptr shape = std::make_shared<Capsule>(Segment(m_transform.getPosition(), GSvector3(0, 0.8f, 0)), 0.5f);
-	Collision_Ptr obj = std::make_shared<CollisionActor>(shape, CollisionActorType::PLAYER);
-	obj->set_update([&](float deltaTime, Shape_Ptr _shape)
-	{
-		GSvector3 target = m_transform.getPosition() + GSvector3(0.0f, 0.5f, 0.0f);
-		_shape->transfer(target);
-	});
-	//obj->set_draw([&](const Renderer& _renderer, Shape_Ptr _shape) { _shape->draw(_renderer); });
-	m_group->add(obj);
+	//Shape_Ptr shape = std::make_shared<Capsule>(Segment(m_transform.getPosition(), GSvector3(0, 0.8f, 0)), 0.5f);
+	//Collision_Ptr obj = std::make_shared<CollisionActor>(shape, CollisionActorType::PLAYER);
+	//obj->set_update([&](float deltaTime, Shape_Ptr _shape)
+	//{
+	//	GSvector3 target = m_transform.getPosition() + GSvector3(0.0f, 0.5f, 0.0f);
+	//	_shape->transfer(target);
+	//});
+	////obj->set_draw([&](const Renderer& _renderer, Shape_Ptr _shape) { _shape->draw(_renderer); });
+	//m_group->add(obj);
 }
 
 void Player::jumping(float _velocity)
@@ -347,25 +347,25 @@ void Player::control()
 		m_attackManager.Start(true);
 		m_lockon->homing();
 
-		////無理やり攻撃中に球判定をキャラの前に作る
-		float radius = 1.5f;
-		GSvector3 front = m_transform.front()*(radius*1.5f);
-		GSvector3 pos(m_transform.getPosition() + front);
-		pos.y += 1.0f;
-		Shape_Ptr shape = std::make_shared<Sphere>(pos, radius);
-		Collision_Ptr actor = std::make_shared<CollisionActor>(shape, CollisionActorType::PLAYER_ATTACK);
-		//actor->set_update([&](float deltaTime, Shape_Ptr _shape) { _shape->transfer(pos); });
-		actor->set_update([&](float deltaTime, Shape_Ptr _shape)
-		{
-			float radius = 1.5f;
-			GSvector3 front = m_transform.front()*(radius*1.5f);
-			GSvector3 pos(m_transform.getPosition() + front);
-			pos.y += 1.0f;
-			_shape->transfer(pos);
-		});
-		actor->set_dead([&]()->bool {return m_attackManager.isEnd(); });
-		actor->set_draw([](const Renderer& _renderer, Shape_Ptr _shape) { _shape->draw(_renderer); });
-		m_group->add(actor);
+		//////無理やり攻撃中に球判定をキャラの前に作る
+		//float radius = 1.5f;
+		//GSvector3 front = m_transform.front()*(radius*1.5f);
+		//GSvector3 pos(m_transform.getPosition() + front);
+		//pos.y += 1.0f;
+		//Shape_Ptr shape = std::make_shared<Sphere>(pos, radius);
+		//Collision_Ptr actor = std::make_shared<CollisionActor>(shape, CollisionActorType::PLAYER_ATTACK);
+		////actor->set_update([&](float deltaTime, Shape_Ptr _shape) { _shape->transfer(pos); });
+		//actor->set_update([&](float deltaTime, Shape_Ptr _shape)
+		//{
+		//	float radius = 1.5f;
+		//	GSvector3 front = m_transform.front()*(radius*1.5f);
+		//	GSvector3 pos(m_transform.getPosition() + front);
+		//	pos.y += 1.0f;
+		//	_shape->transfer(pos);
+		//});
+		//actor->set_dead([&]()->bool {return m_attackManager.isEnd(); });
+		//actor->set_draw([](const Renderer& _renderer, Shape_Ptr _shape) { _shape->draw(_renderer); });
+		//m_group->add(actor);
 	}
 
 	if (m_device->input()->slowAttackTrigger())
