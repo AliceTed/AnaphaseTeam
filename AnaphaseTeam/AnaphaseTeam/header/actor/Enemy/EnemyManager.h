@@ -7,7 +7,7 @@ public:
 	EnemyManager();
 	~EnemyManager() = default;
 	void initialize();
-	void add(Enemy& _enemy);
+	void add(const Enemy& _enemy);
 	void update(float deltaTime);
 	void collisionGround(const Map& _map);
 	void draw(const Renderer& _renderer,const Camera& _camera);

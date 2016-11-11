@@ -17,7 +17,6 @@ class Enemy :public Actor
 {
 public:
 	Enemy(const Transform& _transform);
-	~Enemy() = default;
 	void addCollisionGroup(CollisionManager*  _manager)override;
 	void initialize() override;
 	void update(float deltatime)override;
