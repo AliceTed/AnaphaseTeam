@@ -468,9 +468,6 @@
     <ClInclude Include="header\attack\ChargeAttack.h">
       <Filter>ヘッダー ファイル\attack</Filter>
     </ClInclude>
-    <ClInclude Include="header\actor\Boss\BreakPoint.h">
-      <Filter>ヘッダー ファイル\actor\Boss</Filter>
-    </ClInclude>
     <ClInclude Include="header\actor\Boss\Core.h">
       <Filter>ヘッダー ファイル\actor\Boss</Filter>
     </ClInclude>
@@ -742,9 +739,6 @@
     </ClCompile>
     <ClCompile Include="source\attack\ChargeAttack.cpp">
       <Filter>ソース ファイル\Attack</Filter>
-    </ClCompile>
-    <ClCompile Include="source\actor\Boss\BreakPoint.cpp">
-      <Filter>ソース ファイル\actor\Boss</Filter>
     </ClCompile>
     <ClCompile Include="source\actor\Boss\Core.cpp">
       <Filter>ソース ファイル\actor\Boss</Filter>

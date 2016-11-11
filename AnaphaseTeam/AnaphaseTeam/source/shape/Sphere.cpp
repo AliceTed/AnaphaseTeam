@@ -7,7 +7,6 @@
 //#include "../../header/shape/Ray.h"
 #include "../../header/shape/Capsule.h"
 #include "../../header/shape/Segment.h"
-#include "../../header/collision/Hit.h"
 Sphere::Sphere(const GSvector3& center, float radius)
 	:center(center), radius(radius)
 {
@@ -38,45 +37,46 @@ void Sphere::transfer(const GSvector3 & _position)
 //	return _ray->isCollisionSphere(center,radius);
 //}
 
-const bool Sphere::isCollision(const Sphere * _sphere, Hit* _hit) const
+const bool Sphere::isCollision(const Sphere * _sphere, GSvector3* _out) const
 {
-	GSvector3 v = center - _sphere->center;
+	//intersect
+	GSvector3 v = _sphere->center - center;
 	v.normalize();
-	_hit->m_intersect= v*radius;
-	return center.distance(_sphere->center) <radius + _sphere->radius;
+	*_out = center + (v*radius);
+	return  center.distance(_sphere->center) <radius + _sphere->radius;
 }
 
-const bool Sphere::isCollision(const Capsule * _capsule, Hit* _hit) const
-{	
-	return _capsule->isCollisionSphere(center,radius, _hit);
-}
-
-const bool Sphere::isCollision(const Segment * _segment, Hit* _hit) const
-{	
-	return _segment->isCollisionSphere(center,radius, _hit);
-}
-
-const bool Sphere::isCollision(const Shape * _shape, Hit* _hit) const
+const bool Sphere::isCollision(const Capsule * _capsule, GSvector3* _out) const
 {
-	return _shape->isCollision(this,_hit);
+	return _capsule->isCollisionSphere(center, radius, _out);
+}
+
+const bool Sphere::isCollision(const Segment * _segment, GSvector3* _out) const
+{
+	return _segment->isCollisionSphere(center, radius, _out);
+}
+
+const bool Sphere::isCollision(const Shape * _shape, GSvector3* _out) const
+{
+	return _shape->isCollision(this, _out);
 }
 
 void Sphere::draw(const Renderer& renderer, const GScolor& color)
 {
-	renderer.getDraw3D().drawSphere(&center,radius,color);
+	renderer.getDraw3D().drawSphere(&center, radius, color);
 }
 
 const bool Sphere::isInsideCameraView(const Camera & _camera) const
 {
-	return _camera.isFrustumCulling(center,radius);
+	return _camera.isFrustumCulling(center, radius);
 }
 
 const float Sphere::cameraDistance(const Camera & _camera) const
 {
-	return _camera.nearDistance(center,radius);
+	return _camera.nearDistance(center, radius);
 }
 
 const bool Sphere::isCollitionMap(const Map & _map, GSvector3 * _out_center) const
 {
-	return _map.isCollisionSphere(center,radius,_out_center);
+	return _map.isCollisionSphere(center, radius, _out_center);
 }

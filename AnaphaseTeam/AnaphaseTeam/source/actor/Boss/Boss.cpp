@@ -13,7 +13,6 @@ Boss::Boss() :
 		Sphere(GSvector3(0, 7, 0), 7.0f),
 		Actor_Tag::BOSS
 		),
-	m_points(),
 	m_core(GSvector3(0, 0, 0), 1),
 	m_corecolor(1, 1, 1, 1),
 	m_group(make_shared<CollisionGroup>(this)),
@@ -77,15 +76,6 @@ const GSvector3 Boss::getPosition() const
 	return m_transform.getPosition();
 }
 
-void Boss::createPoint()
-{
-	vector<GSvector3> pos = getAnimEachPos();
-	m_points.emplace_back(CollisionActorType::ENEMY_LEFT, Element::LEFT_LEG);
-	m_points.emplace_back(CollisionActorType::ENEMY_RIGHT, Element::RIGHT_LEG);
-
-	m_core.transfer(pos.at(static_cast<GSuint>(Element::HEAD)));
-}
-
 vector<GSvector3> Boss::getAnimEachPos()
 {
 	const GSuint n = m_animatorOne.getNumBones();
@@ -102,14 +92,14 @@ vector<GSvector3> Boss::getAnimEachPos()
 void Boss::enemyAttack()
 {
 	Shape_Ptr shape = std::make_shared<Sphere>(GSvector3(0, 1, 1), 1);
-	Collision_Ptr actor = std::make_shared<CollisionActor>(shape, CollisionActorType::ENEMY_ATTACK);
+//	Collision_Ptr actor = std::make_shared<CollisionActor>(shape, Collision_Tag::ENEMY_ATTACK);
 
 	if (m_value % 100 == 0)
 	{
 		m_state = State::ATTACK;
 
 		m_animatorOne.changeAnimation((ANIMATION_ID)0);
-		actor->set_collision_enter([&](Hit* hit)
+	/*	actor->set_collision_enter([&](Hit* hit)
 		{
 			Player* _player = dynamic_cast<Player*>(hit->m_paremt);
 			if (_player == nullptr)return;
@@ -118,7 +108,7 @@ void Boss::enemyAttack()
 		actor->set_update([&](float deltaTime, Shape_Ptr _shape) { _shape->transfer(pos.at(static_cast<GSuint>(64))); });
 		actor->set_dead([&]()->bool { return m_state == State::STAND; });
 		actor->set_draw([&](const Renderer& _renderer, Shape_Ptr _shape) { _shape->draw(_renderer, m_color); });
-		m_group->add(actor);
+		m_group->add(actor);*/
 	}
 	if (m_animatorOne.isEndCurrentAnimation())
 	{
