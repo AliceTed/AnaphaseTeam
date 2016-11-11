@@ -12,7 +12,7 @@ const float GroundState::ANIMSPEED = 1.5f;
 GroundState::GroundState(JumpControl* _control, Player* _player)
 	:m_isEnd(false),
 	m_control(_control),
-	m_player(_player)
+	m_player(_player),m_timer(0.0f)
 {
 
 }
@@ -23,6 +23,7 @@ GroundState::~GroundState()
 void GroundState::start()
 {
 	m_isEnd = false;
+	m_timer = 0.f;
 }
 /**
 * @fn
@@ -34,7 +35,8 @@ void GroundState::update(float deltaTime)
 	m_player->control();
 	//m_player->subActionStart();
 	m_player->jumpMotion(*m_control, ANIMATION_ID::LANDING, ANIMSPEED);
-	if (m_player->isAnimationEnd())
+	m_timer += deltaTime*0.1f;
+	if (m_timer>1.0f)
 	{
 		m_isEnd = true;
 	}

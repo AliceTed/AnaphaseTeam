@@ -48,7 +48,7 @@ void Player::initialize()
 	Actor::initialize();
 	actionChange(std::make_shared<StandState>());
 	m_animatorOne.initialize();
-	m_animatorOne.changeAnimation(ANIMATION_ID::STAND,true, true, true);
+	m_animatorOne.changeAnimation(ANIMATION_ID::STAND, true, true, true);
 	m_isJumpAttack = false;
 }
 
@@ -64,7 +64,7 @@ void Player::draw(const Renderer & _renderer, const Camera & _camera)
 {
 	FALSE_RETURN(isInsideView(_camera));
 	alphaBlend(_camera);
-	_renderer.getDraw3D().drawMesh_calcu(MODEL_ID::PLAYER, m_transform,m_animatorOne, m_Color);
+	_renderer.getDraw3D().drawMesh_calcu(MODEL_ID::PLAYER, m_transform, m_animatorOne, m_Color);
 }
 
 void Player::inGround()
@@ -81,7 +81,7 @@ void Player::stand(float deltaTime)
 	}
 	moveMotionChange();
 	subActionStart();
-	m_animatorOne.changeAnimation(ANIMATION_ID::STAND,true, true, true);
+	m_animatorOne.changeAnimation(ANIMATION_ID::STAND, true, true, true);
 	//m_animatorOne.lerpBegin(ANIMATION_ID::STAND, false, true);
 	control();
 }
@@ -213,7 +213,7 @@ void Player::moving(float deltaTime, bool isAnimation)
 	}
 	movement(deltaTime, speed);
 	if (!isAnimation)return;
-	m_animatorOne.changeAnimation(ANIMATION_ID::RUN,true, true, true, time);
+	m_animatorOne.changeAnimation(ANIMATION_ID::RUN, true, true, true, time);
 }
 
 
@@ -260,7 +260,7 @@ void Player::actionChange(Action_Ptr _action)
 void Player::control()
 {
 	/*ƒ{ƒ^ƒ“‰Ÿ‚µ‚½‚çAttackState‚ÉØ‚è‘Ö‚í‚é*/
-	if (m_device-> input()->quickAttackTrigger())
+	if (m_device->input()->quickAttackTrigger())
 	{
 		actionChange(std::make_shared<AttackState>());
 		m_attackManager.initialize();

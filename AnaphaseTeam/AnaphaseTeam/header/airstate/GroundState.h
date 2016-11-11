@@ -20,5 +20,6 @@ private:
 	bool m_isEnd;
 	JumpControl* m_control;
 	Player* m_player;
+	float m_timer;
 	static const float ANIMSPEED;
 };
