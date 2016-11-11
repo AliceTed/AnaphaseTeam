@@ -120,7 +120,7 @@ void Player::jump(float deltaTime)
 
 void Player::avoid(float deltaTime)
 {
-	m_animatorOne.changeAnimation(ANIMATION_ID::AVOID,true);
+	m_animatorOne.changeAnimationLerp(ANIMATION_ID::AVOID);
 	//m_animatorOne.lerpBegin(ANIMATION_ID::AVOID, true);
 	m_SubAction.update(deltaTime, SubActionType::AVOID);
 	m_SubAction.jumpPowerOff();

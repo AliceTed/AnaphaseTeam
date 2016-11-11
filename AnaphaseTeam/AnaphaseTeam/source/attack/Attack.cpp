@@ -24,7 +24,7 @@ void Attack::motion(Player * _player)
 }
 void Attack::changeMotion(AnimatorOne & _animator)
 {
-	_animator.changeAnimation(m_Animation,false, false, false,1.5f);
+	_animator.changeAnimation(m_Animation,false, false, false,1.0f,1.5f);
 	//_animator.lerpBegin(m_Animation, true, false);
 }
 const bool Attack::isNextAttack(const AnimatorOne & _animator) const

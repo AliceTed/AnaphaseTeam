@@ -29,7 +29,7 @@ Enemy::~Enemy()
 void Enemy::initialize()
 {
 	Actor::initialize();
-	m_animatorOne.changeAnimation((ANIMATION_ID)1, true);
+	m_animatorOne.changeAnimationLerp((ANIMATION_ID)1);
 	//m_animatorOne.lerpBegin(ANIMATION_ID(1),true,true);
 	//m_points.clear();
 	createPoint();
@@ -104,7 +104,7 @@ void Enemy::enemyAttack()
 	{
 		m_state = State::ATTACK;
 		//m_animatorOne.lerpBegin(ANIMATION_ID(0),true);
-		m_animatorOne.changeAnimation((ANIMATION_ID)0);
+		m_animatorOne.changeAnimationLerp((ANIMATION_ID)0);
 		actor->set_collision_enter([&](Actor* _actor, CollisionActorType _type)
 		{
 			Player* _player = dynamic_cast<Player*>(_actor);
@@ -120,7 +120,7 @@ void Enemy::enemyAttack()
 	{
 		m_state = State::STAND;
 		//m_animatorOne.lerpBegin(ANIMATION_ID(1), true,true);
-		m_animatorOne.changeAnimation(ANIMATION_ID(1), true);
+		m_animatorOne.changeAnimationLerp(ANIMATION_ID(1));
 	}
 }
 

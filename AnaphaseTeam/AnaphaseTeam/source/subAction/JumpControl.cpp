@@ -43,7 +43,7 @@ void JumpControl::update(float deltaTime)
 */
 void JumpControl::changeMotion(AnimatorOne & _animator, ANIMATION_ID _id, float _animSpeed)
 {
-	_animator.changeAnimation(_id,true,false,false,_animSpeed);
+	_animator.changeAnimationLerp(_id);
 	//_animator.lerpBegin(_id, true, false);
 }
 /**
