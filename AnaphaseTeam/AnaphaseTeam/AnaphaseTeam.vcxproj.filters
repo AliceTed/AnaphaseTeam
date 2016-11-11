@@ -160,6 +160,9 @@
     <Filter Include="ヘッダー ファイル\transform">
       <UniqueIdentifier>{1cac667a-7706-4899-88f1-8521269775bd}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\math">
+      <UniqueIdentifier>{c6db7672-616f-45dd-93c7-3bb1966819f5}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Util\BasicShapes.h">
@@ -468,9 +471,6 @@
     <ClInclude Include="header\attack\ChargeAttack.h">
       <Filter>ヘッダー ファイル\attack</Filter>
     </ClInclude>
-    <ClInclude Include="header\actor\Boss\Core.h">
-      <Filter>ヘッダー ファイル\actor\Boss</Filter>
-    </ClInclude>
     <ClInclude Include="header\actor\Boss\Boss.h">
       <Filter>ヘッダー ファイル\actor\Boss</Filter>
     </ClInclude>
@@ -482,9 +482,6 @@
     </ClInclude>
     <ClInclude Include="header\sound\Sound.h">
       <Filter>ヘッダー ファイル\device</Filter>
-    </ClInclude>
-    <ClInclude Include="header\enemy\Lock_on.h">
-      <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="header\camera\LockOn.h">
       <Filter>ヘッダー ファイル\camera</Filter>
@@ -740,9 +737,6 @@
     <ClCompile Include="source\attack\ChargeAttack.cpp">
       <Filter>ソース ファイル\Attack</Filter>
     </ClCompile>
-    <ClCompile Include="source\actor\Boss\Core.cpp">
-      <Filter>ソース ファイル\actor\Boss</Filter>
-    </ClCompile>
     <ClCompile Include="source\actor\Boss\Boss.cpp">
       <Filter>ソース ファイル\actor\Boss</Filter>
     </ClCompile>
@@ -754,9 +748,6 @@
     </ClCompile>
     <ClCompile Include="source\sound\Sound.cpp">
       <Filter>ソース ファイル\device</Filter>
-    </ClCompile>
-    <ClCompile Include="source\enemy\Lock_on.cpp">
-      <Filter>ソース ファイル</Filter>
     </ClCompile>
     <ClCompile Include="source\camera\LockOn.cpp">
       <Filter>ソース ファイル\camera</Filter>
@@ -787,6 +778,9 @@
     </ClCompile>
     <ClCompile Include="source\actor\Enemy\EnemyManager.cpp">
       <Filter>ソース ファイル\actor\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="source\math\Random.cpp">
+      <Filter>ソース ファイル\math</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

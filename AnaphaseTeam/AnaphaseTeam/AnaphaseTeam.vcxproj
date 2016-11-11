@@ -148,7 +148,6 @@
     <ClCompile Include="source\actionstate\StandState.cpp" />
     <ClCompile Include="source\actor\Actor.cpp" />
     <ClCompile Include="source\actor\Boss\Boss.cpp" />
-    <ClCompile Include="source\actor\Boss\Core.cpp" />
     <ClCompile Include="source\actor\Enemy\Enemy.cpp" />
     <ClCompile Include="source\actor\Enemy\EnemyManager.cpp" />
     <ClCompile Include="source\actor\player\Gauge.cpp" />
@@ -176,9 +175,9 @@
     <ClCompile Include="source\collision\HitInformation.cpp" />
     <ClCompile Include="source\collision\WeaponCollision.cpp" />
     <ClCompile Include="source\device\GameDevice.cpp" />
-    <ClCompile Include="source\enemy\Lock_on.cpp" />
     <ClCompile Include="source\device\InputPattern_A.cpp" />
     <ClCompile Include="source\device\InputPattern_B.cpp" />
+    <ClCompile Include="source\math\Random.cpp" />
     <ClCompile Include="source\scene\each\Opening.cpp" />
     <ClCompile Include="source\scene\each\Option.cpp" />
     <ClCompile Include="source\scene\each\GameClear.cpp" />
@@ -237,7 +236,6 @@
     <ClInclude Include="header\actor\Actor_Tag.h" />
     <ClInclude Include="header\actor\AttackActor.h" />
     <ClInclude Include="header\actor\Boss\Boss.h" />
-    <ClInclude Include="header\actor\Boss\Core.h" />
     <ClInclude Include="header\actor\Enemy\Enemy.h" />
     <ClInclude Include="header\actor\Enemy\EnemyManager.h" />
     <ClInclude Include="header\actor\Player\Gauge.h" />
@@ -275,7 +273,6 @@
     <ClInclude Include="header\device\IInputPattern.h" />
     <ClInclude Include="header\device\InputPattern_A.h" />
     <ClInclude Include="header\device\InputPattern_B.h" />
-    <ClInclude Include="header\enemy\Lock_on.h" />
     <ClInclude Include="header\scene\each\Opening.h" />
     <ClInclude Include="header\scene\each\Option.h" />
     <ClInclude Include="header\scene\each\GameClear.h" />
