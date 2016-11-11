@@ -13,5 +13,7 @@ public:
 	void update(float deltaTime);
 	void draw(const Renderer& _renderer);
 private:
+	void collision();
+private:
 	Group m_container;
 };

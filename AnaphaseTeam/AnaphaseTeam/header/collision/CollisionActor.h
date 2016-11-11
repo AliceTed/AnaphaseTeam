@@ -1,53 +1,52 @@
 #pragma once
 /**
 * @file CollisionActor.h
-* @brief 新しい判定オブジェクト
+* @brief 判定オブジェクトクラスの元
 * @author 松尾裕也
-* @date 2016/9/28
+* @date 2016/11/09
 */
-#include <functional>
 #include <memory>
 #include <vector>
-#include <algorithm>
+#include <functional>
 #include "../shape/Shape.h"
-#include "CollisionActorType.h"
-#include "Hit.h"
-#include "../../header/collision/Hit.h"
+#include "Collision_Tag.h"
 class Actor;
 class Renderer;
-typedef std::shared_ptr<Shape> Shape_Ptr;
-
+struct HitInformation;
+class CollisionActor;
+typedef std::shared_ptr<CollisionActor> Collision_Ptr;
 class CollisionActor
 {
 public:
-	CollisionActor(Shape_Ptr _shape, CollisionActorType _type);
-	~CollisionActor();
+	CollisionActor(Shape* _shape,Collision_Tag _tag);
+	virtual ~CollisionActor();
+	
 	void update(float deltaTime);
-	const bool isCollision(CollisionActor* _other);
-	void collision(Actor* _otherActor, CollisionActor* _other);
-	void exit(Actor * _otherActor, CollisionActor * _other);
-	void draw(const Renderer& _renderer);
+	void draw(const Renderer& _renderer);	
+	void collision(Collision_Ptr&  _other, HitInformation& _hit);
+	void exit(Collision_Ptr& _other, HitInformation& _hit);
+	const bool isCollision(Collision_Ptr&  _other, HitInformation* _out1, HitInformation* _out2)const;
 	const bool isDead()const;
-public:
-	void set_dead(std::function<const bool()> _function);
-	void set_update(std::function<void(float, Shape_Ptr)> _function);
-	void set_draw(std::function<void(const Renderer&, Shape_Ptr)> _function);
-	void set_collision_enter( std::function<void(Hit* _hit)> _function);
-	void set_collision_stay(std::function<void(Hit* _hit)> _function);
-	void set_collision_exit( std::function<void(Hit* _hit)> _function);
+protected:
+	void destroy();
 private:
-	const bool is_find(std::vector<CollisionActor*>& _container, CollisionActor* _other);
-	const bool remove(std::function<bool(CollisionActor*)> function);
+	virtual void doUpdate(float deltaTime);
+	virtual void doDraw(const Renderer& _renderer);
+	virtual void collision_Enter(HitInformation& _hit);
+	virtual void collision_Stay(HitInformation& _hit);
+	virtual void collision_Exit(HitInformation& _hit);
 private:
-	Hit m_hit;
+	//previousに指定のactorがあるか
+	const bool isPreviousFind(Collision_Ptr& _other);
+	//previousに指定actorがあれば削除しtrueを返す
+	const bool isPreviousRemove(Collision_Ptr&  _other);
+	//previousの指定条件に合う要素を削除(erase)しtrueを返す
+	const bool previousRemove(std::function<bool(Collision_Ptr&)> _func);
+protected:
+	typedef std::shared_ptr<Shape> Shape_Ptr;
 	Shape_Ptr m_shape;
-	CollisionActorType m_type;
-	std::vector<CollisionActor*>m_previous;
 private:
-	std::function<const bool()>m_destroy;
-	std::function<void(float, Shape_Ptr)>m_update;
-	std::function<void(const Renderer&,Shape_Ptr)>m_draw;
-	std::function<void(Hit* _hit)>m_collision_enter;
-	std::function<void(Hit* _hit)>m_collision_stay;
-	std::function<void(Hit* _hit)>m_collision_exit;
+	bool m_isDead;
+	std::vector<Collision_Ptr>m_previous;
+	Collision_Tag m_tag;
 };

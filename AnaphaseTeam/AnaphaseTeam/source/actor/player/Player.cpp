@@ -12,7 +12,6 @@
 #include "../../../header/data/PLAYERACTION_ID.h"
 #include "../../../header/camera/CameraController.h"
 #include "../../../header/math/Calculate.h"
-#include "../../../header/shape/Capsule.h"
 
 #include "../../../header/actor/Boss/Boss.h"
 #include "../../../header/camera/LockOn.h"

@@ -441,18 +441,6 @@
     <ClInclude Include="header\actor\Player\Status.h">
       <Filter>ヘッダー ファイル\actor\Player</Filter>
     </ClInclude>
-    <ClInclude Include="header\collision\CollisionActor.h">
-      <Filter>ヘッダー ファイル\collision</Filter>
-    </ClInclude>
-    <ClInclude Include="header\collision\CollisionActorType.h">
-      <Filter>ヘッダー ファイル\collision</Filter>
-    </ClInclude>
-    <ClInclude Include="header\collision\CollisionGroup.h">
-      <Filter>ヘッダー ファイル\collision</Filter>
-    </ClInclude>
-    <ClInclude Include="header\collision\CollisionManager.h">
-      <Filter>ヘッダー ファイル\collision</Filter>
-    </ClInclude>
     <ClInclude Include="header\scene\each\Option.h">
       <Filter>ヘッダー ファイル\scene\each</Filter>
     </ClInclude>
@@ -513,11 +501,32 @@
     <ClInclude Include="header\transform\Transform.h">
       <Filter>ヘッダー ファイル\transform</Filter>
     </ClInclude>
-    <ClInclude Include="header\collision\Hit.h">
-      <Filter>ヘッダー ファイル\collision</Filter>
-    </ClInclude>
     <ClInclude Include="header\attack\ComboPattern.h">
       <Filter>ヘッダー ファイル\attack</Filter>
+    </ClInclude>
+    <ClInclude Include="header\attack\ECombo.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="header\collision\Collision_Tag.h">
+      <Filter>ヘッダー ファイル\collision</Filter>
+    </ClInclude>
+    <ClInclude Include="header\collision\CollisionActor.h">
+      <Filter>ヘッダー ファイル\collision</Filter>
+    </ClInclude>
+    <ClInclude Include="header\collision\CollisionGroup.h">
+      <Filter>ヘッダー ファイル\collision</Filter>
+    </ClInclude>
+    <ClInclude Include="header\collision\CollisionManager.h">
+      <Filter>ヘッダー ファイル\collision</Filter>
+    </ClInclude>
+    <ClInclude Include="header\collision\EnemyCollision.h">
+      <Filter>ヘッダー ファイル\collision</Filter>
+    </ClInclude>
+    <ClInclude Include="header\collision\HitInformation.h">
+      <Filter>ヘッダー ファイル\collision</Filter>
+    </ClInclude>
+    <ClInclude Include="header\collision\WeaponCollision.h">
+      <Filter>ヘッダー ファイル\collision</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -704,15 +713,6 @@
     <ClCompile Include="source\actor\player\Status.cpp">
       <Filter>ソース ファイル\actor\Player</Filter>
     </ClCompile>
-    <ClCompile Include="source\collision\CollisionActor.cpp">
-      <Filter>ソース ファイル\collision</Filter>
-    </ClCompile>
-    <ClCompile Include="source\collision\CollisionGroup.cpp">
-      <Filter>ソース ファイル\collision</Filter>
-    </ClCompile>
-    <ClCompile Include="source\collision\CollisionManager.cpp">
-      <Filter>ソース ファイル\collision</Filter>
-    </ClCompile>
     <ClCompile Include="source\scene\each\Option.cpp">
       <Filter>ソース ファイル\scene\each</Filter>
     </ClCompile>
@@ -770,7 +770,22 @@
     <ClCompile Include="source\transform\Transform.cpp">
       <Filter>ソース ファイル\transform</Filter>
     </ClCompile>
-    <ClCompile Include="source\collision\Hit.cpp">
+    <ClCompile Include="source\collision\CollisionActor.cpp">
+      <Filter>ソース ファイル\collision</Filter>
+    </ClCompile>
+    <ClCompile Include="source\collision\CollisionGroup.cpp">
+      <Filter>ソース ファイル\collision</Filter>
+    </ClCompile>
+    <ClCompile Include="source\collision\CollisionManager.cpp">
+      <Filter>ソース ファイル\collision</Filter>
+    </ClCompile>
+    <ClCompile Include="source\collision\EnemyCollision.cpp">
+      <Filter>ソース ファイル\collision</Filter>
+    </ClCompile>
+    <ClCompile Include="source\collision\HitInformation.cpp">
+      <Filter>ソース ファイル\collision</Filter>
+    </ClCompile>
+    <ClCompile Include="source\collision\WeaponCollision.cpp">
       <Filter>ソース ファイル\collision</Filter>
     </ClCompile>
   </ItemGroup>

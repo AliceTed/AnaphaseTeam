@@ -172,7 +172,9 @@
     <ClCompile Include="source\collision\CollisionActor.cpp" />
     <ClCompile Include="source\collision\CollisionGroup.cpp" />
     <ClCompile Include="source\collision\CollisionManager.cpp" />
-    <ClCompile Include="source\collision\Hit.cpp" />
+    <ClCompile Include="source\collision\EnemyCollision.cpp" />
+    <ClCompile Include="source\collision\HitInformation.cpp" />
+    <ClCompile Include="source\collision\WeaponCollision.cpp" />
     <ClCompile Include="source\device\GameDevice.cpp" />
     <ClCompile Include="source\enemy\Lock_on.cpp" />
     <ClCompile Include="source\device\InputPattern_A.cpp" />
@@ -263,10 +265,12 @@
     <ClInclude Include="header\camera\LookAt.h" />
     <ClInclude Include="header\camera\Perspective.h" />
     <ClInclude Include="header\collision\CollisionActor.h" />
-    <ClInclude Include="header\collision\CollisionActorType.h" />
     <ClInclude Include="header\collision\CollisionGroup.h" />
     <ClInclude Include="header\collision\CollisionManager.h" />
-    <ClInclude Include="header\collision\Hit.h" />
+    <ClInclude Include="header\collision\Collision_Tag.h" />
+    <ClInclude Include="header\collision\EnemyCollision.h" />
+    <ClInclude Include="header\collision\HitInformation.h" />
+    <ClInclude Include="header\collision\WeaponCollision.h" />
     <ClInclude Include="header\device\GameDevice.h" />
     <ClInclude Include="header\device\IInputPattern.h" />
     <ClInclude Include="header\device\InputPattern_A.h" />
