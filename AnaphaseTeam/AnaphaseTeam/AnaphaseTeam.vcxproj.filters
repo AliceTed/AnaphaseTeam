@@ -160,6 +160,12 @@
     <Filter Include="ヘッダー ファイル\transform">
       <UniqueIdentifier>{1cac667a-7706-4899-88f1-8521269775bd}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\actor\Player\specialSkill">
+      <UniqueIdentifier>{c0592eba-d6ba-4757-ad12-fca0f45c1f0c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\actor\Player\specialSkill">
+      <UniqueIdentifier>{d0cdda7b-e670-4bce-8fa6-16d63201e6e4}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Util\BasicShapes.h">
@@ -519,6 +525,15 @@
     <ClInclude Include="header\attack\ComboPattern.h">
       <Filter>ヘッダー ファイル\attack</Filter>
     </ClInclude>
+    <ClInclude Include="header\attack\ECombo.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="header\actor\Player\specialSkill\Recovery.h">
+      <Filter>ヘッダー ファイル\actor\Player\specialSkill</Filter>
+    </ClInclude>
+    <ClInclude Include="header\actor\Player\specialSkill\SpecialSkillManager.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Util\BasicShapes.cpp">
@@ -772,6 +787,12 @@
     </ClCompile>
     <ClCompile Include="source\collision\Hit.cpp">
       <Filter>ソース ファイル\collision</Filter>
+    </ClCompile>
+    <ClCompile Include="source\actor\player\specialSkill\Recovery.cpp">
+      <Filter>ソース ファイル\actor\Player\specialSkill</Filter>
+    </ClCompile>
+    <ClCompile Include="source\actor\player\specialSkill\SpecialSkillManager.cpp">
+      <Filter>ソース ファイル\actor\Player\specialSkill</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

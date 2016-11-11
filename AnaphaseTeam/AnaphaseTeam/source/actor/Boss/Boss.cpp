@@ -35,13 +35,33 @@ void Boss::initialize()
 	m_corecolor = GScolor(1, 1, 1, 1);
 	//for_each(m_points.begin(), m_points.end(), [&](BreakPoint& _point) {_point.createCollision(this, m_group); });
 
+	Shape_Ptr shape = std::make_shared<Sphere>(GSvector3(0, 1, 1), 1);
+	Collision_Ptr actor = std::make_shared<CollisionActor>(shape, CollisionActorType::ENEMY_ATTACK);
+
+	actor->set_collision_enter([&](Hit* hit)
+	{
+		Player* _player = dynamic_cast<Player*>(hit->m_paremt);
+		if (_player == nullptr)return;
+		
+		m_color = GScolor(1, 0, 0, 1);
+	});
+	actor->set_update([&](float deltaTime, Shape_Ptr _shape)
+	{
+		_shape->transfer(GSvector3(0,3,-25)); 
+
+	});
+	//actor->set_dead([&]()->bool { return m_state == State::STAND; });
+	actor->set_draw([&](const Renderer& _renderer, Shape_Ptr _shape) { _shape->draw(_renderer); });
+	m_group->add(actor);
+
+
 	m_color = GScolor(1, 1, 1, 1);
 	m_state = State::STAND;
 }
 
 void Boss::update(float deltatime)
 {
-	m_animatorOne.update(deltatime);
+	//m_animatorOne.update(deltatime);
 	pos = getAnimEachPos();
 	//m_core.transfer(pos.at(static_cast<unsigned int>(Element::HEAD)));
 	//for_each(m_points.begin(), m_points.end(), [&](BreakPoint& _point) {_point.update(deltatime, pos); });

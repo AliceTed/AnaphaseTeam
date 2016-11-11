@@ -152,6 +152,8 @@
     <ClCompile Include="source\actor\Boss\Core.cpp" />
     <ClCompile Include="source\actor\Enemy\Enemy.cpp" />
     <ClCompile Include="source\actor\player\Gauge.cpp" />
+    <ClCompile Include="source\actor\player\specialSkill\Recovery.cpp" />
+    <ClCompile Include="source\actor\player\specialSkill\SpecialSkillManager.cpp" />
     <ClCompile Include="source\actor\player\Status.cpp" />
     <ClCompile Include="source\attack\AttackManager.cpp" />
     <ClCompile Include="source\attack\AttackStatus.cpp" />
@@ -239,6 +241,8 @@
     <ClInclude Include="header\actor\Boss\Core.h" />
     <ClInclude Include="header\actor\Enemy\Enemy.h" />
     <ClInclude Include="header\actor\Player\Gauge.h" />
+    <ClInclude Include="header\actor\Player\specialSkill\Recovery.h" />
+    <ClInclude Include="header\actor\Player\specialSkill\SpecialSkillManager.h" />
     <ClInclude Include="header\actor\Player\Status.h" />
     <ClInclude Include="header\attack\AttackManager.h" />
     <ClInclude Include="header\attack\AttackPattern.h" />

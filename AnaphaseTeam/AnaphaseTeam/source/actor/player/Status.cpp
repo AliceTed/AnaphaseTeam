@@ -3,6 +3,7 @@
 
 Status::Status()
 	:def(1.0f),
+	m_hp(100),
 	m_AttackSpeed(def)
 {
 }
@@ -24,4 +25,19 @@ void Status::change(Gauge & _gauge)
 float Status::attackSpeed()
 {
 	return m_AttackSpeed;
+}
+
+float Status::getHp()
+{
+	return m_hp;
+}
+
+void Status::down()
+{
+	m_hp -= 10;
+}
+
+void Status::add()
+{
+	m_hp += 10;
 }

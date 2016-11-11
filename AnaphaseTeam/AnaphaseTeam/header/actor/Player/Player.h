@@ -21,6 +21,7 @@
 #include "Status.h"
 #include "../../collision/CollisionManager.h"
 #include "Gauge.h"
+#include "specialSkill/SpecialSkillManager.h"
 class GameDevice;
 class CameraController;
 class TestActor;
@@ -112,6 +113,8 @@ private:
 	float degree;
 
 	Avoid m_avoid;
+	SpecialSkillManager m_SpecialSkillManager;
+
 private://íËêî
 	static const float MOVESPEED;
 	static const float ROTATESPEED;

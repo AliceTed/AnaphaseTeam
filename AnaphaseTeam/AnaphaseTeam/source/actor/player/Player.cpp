@@ -36,7 +36,8 @@ Player::Player(GameDevice* _device, Camera * _camera, LockOn* _lockon)
 	m_isJumpAttack(false),
 	m_group(std::make_shared<CollisionGroup>(this)),
 	m_Gauge(),
-	m_avoid(this), degree(0.0f), m_lockon(_lockon)
+	m_avoid(this), degree(0.0f), m_lockon(_lockon),
+	m_SpecialSkillManager()
 {
 	//m_matrix = std::make_shared<GSmatrix4>(new GSmatrix4[m_animatorOne.getNumBones()]);
 }
@@ -59,6 +60,7 @@ void Player::initialize()
 	createColision();
 	m_Gauge.initialize();
 	m_status.initialize();
+	m_SpecialSkillManager.initialize(SPECIALTYPE::NONE);
 }
 
 void Player::update(float deltatime)
@@ -69,6 +71,7 @@ void Player::update(float deltatime)
 
 	m_status.change(m_Gauge);
 	//	m_animatorOne.getAnimMatrix(m_matrix.get());
+	m_SpecialSkillManager.update(deltatime);
 }
 
 void Player::draw(const Renderer & _renderer, const Camera & _camera)
@@ -79,6 +82,7 @@ void Player::draw(const Renderer & _renderer, const Camera & _camera)
 	m_Gauge.draw(_renderer);
 	_renderer.getDraw2D().string(std::to_string(degree), &GSvector2(20, 20), 30);
 	_renderer.getDraw2D().string(std::to_string(m_transform.getYaw()), &GSvector2(20, 40), 30);
+	_renderer.getDraw2D().string(std::to_string(m_status.getHp()), &GSvector2(200, 60), 30);
 }
 
 void Player::inGround()
@@ -134,7 +138,7 @@ void Player::jump(float deltaTime)
 
 void Player::avoid(float deltaTime)
 {
-	m_animatorOne.changeAnimation(ANIMATION_ID::AVOID);
+	m_animatorOne.changeAnimation(ANIMATION_ID::AVOID, false);
 	//m_SubAction.update(deltaTime, SubActionType::AVOID);
 	m_avoid.update(deltaTime);
 	//m_SubAction.jumpPowerOff();
@@ -150,12 +154,16 @@ void Player::createColision()
 	//Segment segment = Segment(m_transform.getPosition(), GSvector3(0, -0.1f, 0));
 	Shape_Ptr shape = std::make_shared<Capsule>(Segment(m_transform.getPosition(), GSvector3(0, 0.8f, 0)), 0.5f);
 	Collision_Ptr obj = std::make_shared<CollisionActor>(shape, CollisionActorType::PLAYER);
+	obj->set_collision_enter([&](Hit* hit)
+	{
+		//m_status.down();
+	});
 	obj->set_update([&](float deltaTime, Shape_Ptr _shape)
 	{
 		GSvector3 target = m_transform.getPosition() + GSvector3(0.0f, 0.5f, 0.0f);
 		_shape->transfer(target);
 	});
-	//obj->set_draw([&](const Renderer& _renderer, Shape_Ptr _shape) { _shape->draw(_renderer); });
+	obj->set_draw([&](const Renderer& _renderer, Shape_Ptr _shape) { _shape->draw(_renderer); });
 	m_group->add(obj);
 }
 
@@ -180,9 +188,9 @@ void Player::subActionStart()
 	{
 		if (m_Gauge.down(5))
 		{
-			//m_SubAction.initialize(SubActionType::AVOID);
-			//m_avoid.initialize();
-			//actionChange(std::make_shared<AvoidState>());
+			m_SubAction.initialize(SubActionType::AVOID);
+			m_avoid.initialize();
+			actionChange(std::make_shared<AvoidState>());
 		}
 	}
 }
@@ -327,6 +335,7 @@ void Player::control()
 	if (m_device->input()->gaugeAttack1())
 	{
 		m_Gauge.downGauge(RankGauge::FIRST);
+		m_SpecialSkillManager.initialize(SPECIALTYPE::RECOVERY);
 		return;
 	}
 	if (m_device->input()->gaugeAttack2())
@@ -356,6 +365,7 @@ void Player::control()
 		Shape_Ptr shape = std::make_shared<Sphere>(pos, radius);
 		Collision_Ptr actor = std::make_shared<CollisionActor>(shape, CollisionActorType::PLAYER_ATTACK);
 		//actor->set_update([&](float deltaTime, Shape_Ptr _shape) { _shape->transfer(pos); });
+		actor->set_collision_enter([&](Hit* hit) {m_SpecialSkillManager.recovery(m_status); });
 		actor->set_update([&](float deltaTime, Shape_Ptr _shape)
 		{
 			float radius = 1.5f;
