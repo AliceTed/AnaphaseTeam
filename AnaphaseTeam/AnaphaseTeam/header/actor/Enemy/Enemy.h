@@ -4,7 +4,7 @@
 class EnemyCollision;
 class Player;
 //æ‚è‚ ‚¦‚¸enum‚Åó‘Ô•ª‚¯
-enum class STATE
+enum class ESTATE
 {
 	SPAWN,
 	STAND,
@@ -30,5 +30,5 @@ private:
 	const bool isDamageState()const;
 private:
 	Group_Ptr m_group;
-	STATE m_state;
+	ESTATE m_state;
 };

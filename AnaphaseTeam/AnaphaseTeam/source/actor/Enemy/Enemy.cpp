@@ -7,7 +7,7 @@ Enemy::Enemy(const Transform & _transform)
 		Sphere(GSvector3(0, 0, 0), 1.0f),
 		Actor_Tag::ENEMY),
 	m_group(std::make_shared<CollisionGroup>(this)),
-	m_state(STATE::SPAWN)
+	m_state(ESTATE::SPAWN)
 {
 }
 void Enemy::addCollisionGroup(CollisionManager * _manager)
@@ -19,7 +19,7 @@ void Enemy::initialize()
 	Collision_Ptr actor = std::make_shared<EnemyCollision>(this);
 	m_group->add(actor);
 	//m_animator.start(Animation(static_cast<GSuint>(ENEMY_ANIMATION::SPAWN)));
-	m_state = STATE::SPAWN;
+	m_state = ESTATE::SPAWN;
 }
 void Enemy::update(float deltatime)
 {
@@ -45,7 +45,7 @@ void Enemy::collisionChase(EnemyCollision * _collision)
 void Enemy::damage(Player * _player)
 {
 	if (!isDamageState())return;
-	m_state = STATE::DAMAGE;
+	m_state = ESTATE::DAMAGE;
 	//m_animator.start(Animation(static_cast<GSuint>(ENEMY_ANIMATION::DAMAGE)));
 	m_transform.translate_front(-0.1f);
 }
@@ -55,14 +55,14 @@ void Enemy::state()
 	Math::Random rand;
 	switch (m_state)
 	{
-	case STATE::SPAWN:
+	case ESTATE::SPAWN:
 		/*if (m_animator.isEnd())
 		{
 			m_state = STATE::STAND;
 			m_animator.start(Animation(static_cast<GSuint>(ENEMY_ANIMATION::IDEL), true));
 		}*/
 		break;
-	case STATE::STAND:
+	case ESTATE::STAND:
 
 		/*if (rand(0, 120) == 0)
 		{
@@ -70,7 +70,7 @@ void Enemy::state()
 			m_animator.start(Animation(static_cast<GSuint>(ENEMY_ANIMATION::WALK), true));
 		}*/
 		break;
-	case STATE::MOVE:
+	case ESTATE::MOVE:
 		/*if (rand(0, 120) == 0)
 		{
 			m_state = STATE::STAND;
@@ -78,9 +78,9 @@ void Enemy::state()
 		}*/
 		//m_transform.translate_front(1.0f);
 		break;
-	case STATE::ATTACK:
+	case ESTATE::ATTACK:
 		break;
-	case STATE::DAMAGE:
+	case ESTATE::DAMAGE:
 		/*if (m_animator.isEnd())
 		{
 			m_state = STATE::STAND;
@@ -92,5 +92,5 @@ void Enemy::state()
 
 const bool Enemy::isDamageState() const
 {
-	return m_state == STATE::STAND || m_state == STATE::MOVE || m_state == STATE::ATTACK;
+	return m_state == ESTATE::STAND || m_state == ESTATE::MOVE || m_state == ESTATE::ATTACK;
 }

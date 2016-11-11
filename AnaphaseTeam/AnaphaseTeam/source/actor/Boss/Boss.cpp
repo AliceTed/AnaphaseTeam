@@ -91,7 +91,7 @@ vector<GSvector3> Boss::getAnimEachPos()
 
 void Boss::enemyAttack()
 {
-	Shape_Ptr shape = std::make_shared<Sphere>(GSvector3(0, 1, 1), 1);
+	//Shape_Ptr shape = std::make_shared<Sphere>(GSvector3(0, 1, 1), 1);
 //	Collision_Ptr actor = std::make_shared<CollisionActor>(shape, Collision_Tag::ENEMY_ATTACK);
 
 	if (m_value % 100 == 0)

@@ -34,6 +34,6 @@ void EnemyManager::draw(const Renderer & _renderer, const Camera& _camera)
 
 void EnemyManager::remove()
 {
-	auto itr = std::remove_if(m_enemys.begin(), m_enemys.end(), [](Enemy& _enemy)->bool {return _enemy.isDead();});
-	m_enemys.erase(itr, m_enemys.end());
+	/*auto itr = std::remove_if(m_enemys.begin(), m_enemys.end(), [](Enemy& _enemy)->bool {return _enemy.isDead();});
+	m_enemys.erase(itr, m_enemys.end());*/
 }
