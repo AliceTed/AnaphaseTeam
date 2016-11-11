@@ -35,7 +35,8 @@ Player::Player(GameDevice* _device, Camera * _camera, LockOn* _lockon)
 	m_isJumpAttack(false),
 	m_group(std::make_shared<CollisionGroup>(this)),
 	m_Gauge(),
-	m_avoid(this), degree(0.0f), m_lockon(_lockon)
+	m_avoid(this), degree(0.0f), m_lockon(_lockon),
+	m_scythe()
 {
 	//m_matrix = std::make_shared<GSmatrix4>(new GSmatrix4[m_animatorOne.getNumBones()]);
 }
@@ -58,6 +59,8 @@ void Player::initialize()
 	createColision();
 	m_Gauge.initialize();
 	m_status.initialize();
+	m_scythe.initialize();
+	m_scythe.addCollision(m_group.get());	
 }
 
 void Player::update(float deltatime)
@@ -65,7 +68,7 @@ void Player::update(float deltatime)
 	m_action->action(this, deltatime);
 	sphereChases(GSvector3(0, 1, 0));
 	m_animatorOne.update(deltatime);
-
+	m_scythe.update(deltatime, m_animatorOne, m_transform);
 	m_status.change(m_Gauge);
 	//	m_animatorOne.getAnimMatrix(m_matrix.get());
 }
@@ -76,6 +79,7 @@ void Player::draw(const Renderer & _renderer, const Camera & _camera)
 	alphaBlend(_camera);
 	_renderer.getDraw3D().drawMesh_calcu(MODEL_ID::PLAYER, m_transform, m_animatorOne, m_Color);
 	m_Gauge.draw(_renderer);
+	m_scythe.draw(_renderer);
 	_renderer.getDraw2D().string(std::to_string(degree), &GSvector2(20, 20), 30);
 	_renderer.getDraw2D().string(std::to_string(m_transform.getYaw()), &GSvector2(20, 40), 30);
 }
@@ -377,7 +381,7 @@ void Player::control()
 		m_lockon->homing();
 
 		//–³—‚â‚èUŒ‚’†‚É‹…”»’è‚ðƒLƒƒƒ‰‚Ì‘O‚Éì‚é
-		float radius = 1.5f;
+	/*	float radius = 1.5f;
 		GSvector3 front = m_transform.front()*(radius*1.5f);
 		GSvector3 pos(m_transform.getPosition() + front);
 		pos.y += 1.0f;
@@ -386,7 +390,7 @@ void Player::control()
 		actor->set_dead([&]()->bool {return m_attackManager.isEnd(); });
 		actor->set_draw([](const Renderer& _renderer, Shape_Ptr _shape) { _shape->draw(_renderer); });
 		m_group->add(actor);
-		m_Gauge.up(10.0f);
+		m_Gauge.up(10.0f);*/
 	}
 
 }

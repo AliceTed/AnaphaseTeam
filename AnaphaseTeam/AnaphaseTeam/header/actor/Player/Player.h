@@ -20,6 +20,7 @@
 #include "../../data/ANIMATION_ID.h"
 #include "Status.h"
 #include "../../collision/CollisionManager.h"
+#include "../../attack/Scythe.h"
 #include "Gauge.h"
 class GameDevice;
 class CameraController;
@@ -110,6 +111,8 @@ private:
 
 	LockOn* m_lockon;
 	float degree;
+
+	Scythe m_scythe;
 
 	Avoid m_avoid;
 private://íËêî
