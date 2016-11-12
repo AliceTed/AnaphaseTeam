@@ -10,13 +10,13 @@ class Recovery
 public:
 	Recovery();
 	~Recovery();
-	void initialize();
+	void initialize(Gauge* _gauge);
 	void update(float deltaTime);
 	void add(Status& _status);
 	const bool isEnd() const;
 
 private:
 	Timer m_limitTimer;
-	Gauge* m_gauge;
+	//Gauge* m_gauge;
 
 };

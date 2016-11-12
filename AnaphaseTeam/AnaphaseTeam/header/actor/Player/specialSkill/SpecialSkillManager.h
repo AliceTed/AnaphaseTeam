@@ -8,11 +8,12 @@ enum class SPECIALTYPE
 };
 
 class Status;
+class Gauge;
 
 class SpecialSkillManager
 {
 public:
-	SpecialSkillManager();
+	SpecialSkillManager(Gauge& _gauge);
 	~SpecialSkillManager();
 	void initialize(SPECIALTYPE _specialType);
 	void update(float deltaTime);
@@ -21,4 +22,5 @@ public:
 private:
 	Recovery m_recovery;
 	SPECIALTYPE m_type;
+	Gauge& m_gauge;
 };

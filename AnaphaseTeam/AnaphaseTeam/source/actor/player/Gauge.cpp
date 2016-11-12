@@ -50,7 +50,7 @@ void Gauge::downGauge(RankGauge _rankGauge)
 
 float Gauge::scale(float def)
 {
-	return log(def+(m_gauge*0.01f));
+	return log(m_gauge*0.01f + def);
 }
 
 void Gauge::add(float _point)

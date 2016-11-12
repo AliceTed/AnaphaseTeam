@@ -1,7 +1,8 @@
 #include "../../../../header/actor/Player/specialSkill/SpecialSkillManager.h"
 
-SpecialSkillManager::SpecialSkillManager() :
-	m_recovery()
+SpecialSkillManager::SpecialSkillManager(Gauge& _gauge) :
+	m_recovery(),
+	m_gauge(_gauge)
 {
 }
 
@@ -16,7 +17,7 @@ void SpecialSkillManager::initialize(SPECIALTYPE _specialType)
 	case SPECIALTYPE::NONE:
 		break;
 	case SPECIALTYPE::RECOVERY:
-		m_recovery.initialize();
+		m_recovery.initialize(&m_gauge);
 		break;
 	}
 	m_type = _specialType;

@@ -11,9 +11,12 @@ Recovery::~Recovery()
 {
 }
 
-void Recovery::initialize()
+void Recovery::initialize(Gauge* _gauge)
 {
-	if (m_gauge->down(150))return;
+	if (!_gauge->down((float)RankGauge::FIRST))
+	{
+		return;
+	}
 	m_limitTimer.initialize();
 }
 
@@ -24,7 +27,10 @@ void Recovery::update(float deltaTime)
 
 void Recovery::add(Status & _status)
 {
-	if (!m_limitTimer.isEnd()) _status.add();
+	if (!m_limitTimer.isEnd())
+	{
+		_status.add();
+	}
 }
 
 const bool Recovery::isEnd() const

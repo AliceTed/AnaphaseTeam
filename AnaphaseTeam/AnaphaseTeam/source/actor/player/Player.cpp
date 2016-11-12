@@ -37,7 +37,7 @@ Player::Player(GameDevice* _device, Camera * _camera, LockOn* _lockon)
 	m_group(std::make_shared<CollisionGroup>(this)),
 	m_Gauge(),
 	m_avoid(this), degree(0.0f), m_lockon(_lockon),
-	m_SpecialSkillManager()
+	m_SpecialSkillManager(m_Gauge)
 {
 	//m_matrix = std::make_shared<GSmatrix4>(new GSmatrix4[m_animatorOne.getNumBones()]);
 }
@@ -83,6 +83,7 @@ void Player::draw(const Renderer & _renderer, const Camera & _camera)
 	_renderer.getDraw2D().string(std::to_string(degree), &GSvector2(20, 20), 30);
 	_renderer.getDraw2D().string(std::to_string(m_transform.getYaw()), &GSvector2(20, 40), 30);
 	_renderer.getDraw2D().string(std::to_string(m_status.getHp()), &GSvector2(200, 60), 30);
+	_renderer.getDraw2D().string(std::to_string(m_Gauge.scale(3.0f)), &GSvector2(200, 80), 30);
 }
 
 void Player::inGround()
@@ -334,9 +335,9 @@ void Player::control()
 	///////////////////////////////////////////////////////////
 	if (m_device->input()->gaugeAttack1())
 	{
-		m_Gauge.downGauge(RankGauge::FIRST);
+		//m_Gauge.downGauge(RankGauge::FIRST);
 		m_SpecialSkillManager.initialize(SPECIALTYPE::RECOVERY);
-		return;
+		//return;
 	}
 	if (m_device->input()->gaugeAttack2())
 	{
@@ -397,7 +398,8 @@ void Player::control()
 		actor->set_dead([&]()->bool {return m_attackManager.isEnd(); });
 		actor->set_draw([](const Renderer& _renderer, Shape_Ptr _shape) { _shape->draw(_renderer); });
 		m_group->add(actor);
-		m_Gauge.up(10.0f);
+		//m_Gauge.up(10.0f);
+		m_Gauge.up(150.0f);
 	}
 
 }

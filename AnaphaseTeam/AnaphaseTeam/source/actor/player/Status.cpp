@@ -2,7 +2,7 @@
 #include"../../../header/actor/Player/Gauge.h"
 
 Status::Status()
-	:def(1.0f),
+	:def(3.0f),
 	m_hp(100),
 	m_AttackSpeed(def)
 {
