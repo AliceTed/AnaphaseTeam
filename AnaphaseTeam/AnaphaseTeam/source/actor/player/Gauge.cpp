@@ -5,7 +5,7 @@
 
 Gauge::Gauge()
 	:m_gauge(150),
-	max(m_gauge)
+	m_lerpmax(m_gauge)
 {
 }
 
@@ -16,7 +16,7 @@ Gauge::~Gauge()
 void Gauge::initialize()
 {
 	m_gauge = 1000;
-	max = m_gauge;
+	m_lerpmax = m_gauge;
 }
 
 void Gauge::draw(const Renderer& _renderer)
@@ -28,8 +28,12 @@ void Gauge::draw(const Renderer& _renderer)
 
 void Gauge::up(float _scale)
 {
-	max = m_gauge;
+	if ((int)m_gauge != (int)m_lerpmax)
+	{
+		return;
+	}
 	add(_scale);
+	m_lerpmax = m_gauge;
 }
 
 bool Gauge::down(float _scale)
@@ -38,8 +42,12 @@ bool Gauge::down(float _scale)
 	{
 		return false;
 	}
+	if ((int)m_gauge != (int)m_lerpmax)
+	{
+		return false;
+	}
 	//add(-_scale);
-	max = m_gauge - _scale;
+	m_lerpmax = m_gauge - _scale;
 
 	return true;
 }
@@ -55,12 +63,12 @@ void Gauge::downGauge(RankGauge _rankGauge)
 
 void Gauge::update(float deltatime)
 {
-	lerp(&m_gauge, &m_gauge, &max, deltatime * 0.1f);
+	lerp(&m_gauge, &m_gauge, &m_lerpmax, deltatime * 0.1f);
 }
 
 float Gauge::scale(float def)
 {
-	return log(m_gauge*0.01f + def);
+	return log(m_lerpmax*0.01f + def);
 }
 
 void Gauge::add(float _point)

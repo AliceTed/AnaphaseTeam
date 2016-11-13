@@ -369,8 +369,9 @@ void Player::control()
 	}
 	if (m_device->input()->gaugeAttack3())
 	{
-		m_Gauge.downGauge(RankGauge::THIRD);
-		return;
+		//m_Gauge.downGauge(RankGauge::THIRD);
+		m_Gauge.down((float)RankGauge::THIRD);
+		//return;
 	}
 	/*ƒ{ƒ^ƒ“‰Ÿ‚µ‚½‚çAttackState‚ÉØ‚è‘Ö‚í‚é*/
 	if (m_device->input()->quickAttackTrigger())
