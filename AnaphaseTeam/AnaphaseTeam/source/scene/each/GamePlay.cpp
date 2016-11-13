@@ -28,9 +28,9 @@ void GamePlay::initialize()
 	m_player.initialize();
 	//m_boss.initialize();
 	m_enemys.initialize();
-	Enemy* e=new Enemy(Transform(0, { 0,0,0 }, { 0,0,0 }));
-	e->addCollisionGroup(&collision);
-	m_enemys.add(e);
+	//Enemy* e=new Enemy(Transform(0, { 0,0,0 }, { 0,0,0 }));
+	//e->addCollisionGroup(&collision);
+	//m_enemys.add(e);
 
 	Boss boss;
 	boss.initialize();

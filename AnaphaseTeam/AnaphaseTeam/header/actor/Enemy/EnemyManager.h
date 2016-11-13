@@ -8,6 +8,8 @@ class EnemyManager
 public:
 	EnemyManager();
 	~EnemyManager() = default;
+	//ムーブコンストラクタ
+	EnemyManager(EnemyManager&&) = default;
 	void initialize();
 	void add(Enemy* _enemy);
 	void update(float deltaTime);
