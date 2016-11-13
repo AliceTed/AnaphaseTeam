@@ -357,13 +357,13 @@ void Player::control()
 	{
 		//m_Gauge.downGauge(RankGauge::FIRST);
 		m_SpecialSkillManager.initialize(SPECIALTYPE::RECOVERY);
-		return;
+		//return;
 	}
 	if (m_device->input()->gaugeAttack2())
 	{
 		//m_Gauge.downGauge(RankGauge::SECOND);
 		m_SpecialSkillManager.initialize(SPECIALTYPE::SUPERARMOR);
-		return;
+		//return;
 	}
 	if (m_device->input()->gaugeAttack3())
 	{
@@ -420,7 +420,7 @@ void Player::control()
 		actor->set_draw([](const Renderer& _renderer, Shape_Ptr _shape) { _shape->draw(_renderer); });
 		m_group->add(actor);
 		//m_Gauge.up(10.0f);
-		m_Gauge.up(150.0f);
+		m_Gauge.up(250.0f);
 	}
 
 }

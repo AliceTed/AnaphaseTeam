@@ -35,7 +35,11 @@ bool Gauge::down(float _scale)
 	{
 		return false;
 	}
-	add(-_scale);
+	//add(-_scale);
+	float num = m_gauge;
+	float max = m_gauge - _scale;
+	lerp(&m_gauge, &m_gauge, &max, 1);
+
 	return true;
 }
 
@@ -58,4 +62,9 @@ void Gauge::add(float _point)
 	Math::Clamp clamp;
 	m_gauge = clamp(m_gauge + _point, 0.0f, (float)RankGauge::MAX);
 	
+}
+
+void Gauge::lerp(float * out, const float * min, const float * max, float time)
+{
+	*out = LERP(time, *min, *max);
 }

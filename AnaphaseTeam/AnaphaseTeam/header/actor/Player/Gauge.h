@@ -25,6 +25,7 @@ public:
 	float scale(float def);
 private:
 	void add(float _point);
+	void lerp(float* out, const float* min, const float* max, float time);
 private:
 	float m_gauge;
 };
