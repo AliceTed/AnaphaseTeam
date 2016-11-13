@@ -531,8 +531,14 @@
     <ClInclude Include="header\actor\Player\specialSkill\Recovery.h">
       <Filter>ヘッダー ファイル\actor\Player\specialSkill</Filter>
     </ClInclude>
+    <ClInclude Include="header\actionstate\DamageState.h">
+      <Filter>ヘッダー ファイル\actionState</Filter>
+    </ClInclude>
     <ClInclude Include="header\actor\Player\specialSkill\SpecialSkillManager.h">
-      <Filter>ヘッダー ファイル</Filter>
+      <Filter>ヘッダー ファイル\actor\Player\specialSkill</Filter>
+    </ClInclude>
+    <ClInclude Include="header\actor\Player\specialSkill\SuperArmor.h">
+      <Filter>ヘッダー ファイル\actor\Player\specialSkill</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -792,6 +798,12 @@
       <Filter>ソース ファイル\actor\Player\specialSkill</Filter>
     </ClCompile>
     <ClCompile Include="source\actor\player\specialSkill\SpecialSkillManager.cpp">
+      <Filter>ソース ファイル\actor\Player\specialSkill</Filter>
+    </ClCompile>
+    <ClCompile Include="source\actionstate\DamageState.cpp">
+      <Filter>ソース ファイル\actionState</Filter>
+    </ClCompile>
+    <ClCompile Include="source\actor\player\specialSkill\SuperArmor.cpp">
       <Filter>ソース ファイル\actor\Player\specialSkill</Filter>
     </ClCompile>
   </ItemGroup>

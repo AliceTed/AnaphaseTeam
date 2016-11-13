@@ -1,10 +1,12 @@
 #pragma once
-#include"../../../../header/actor/Player/specialSkill/Recovery.h"
+#include "../../../../header/actor/Player/specialSkill/Recovery.h"
+#include "../../../../header/actor/Player/specialSkill/SuperArmor.h"
 
 enum class SPECIALTYPE
 {
 	NONE,
-	RECOVERY
+	RECOVERY,
+	SUPERARMOR
 };
 
 class Status;
@@ -19,8 +21,10 @@ public:
 	void update(float deltaTime);
 	const bool isEnd(SPECIALTYPE _specialType) const;
 	void recovery(Status& _status);
+	bool isSuperArmor();
 private:
 	Recovery m_recovery;
+	SuperArmor m_superArmor;
 	SPECIALTYPE m_type;
 	Gauge& m_gauge;
 };

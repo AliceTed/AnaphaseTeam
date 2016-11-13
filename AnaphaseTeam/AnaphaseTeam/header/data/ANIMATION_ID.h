@@ -9,6 +9,7 @@ enum class ANIMATION_ID :unsigned int
 	JUMPUP = 4,
 	LANDING,
 	AVOID = 9,
+	DAMAGE = 11,
 	ATTACK = 17,
 	ATTACK2,
 	ATTACK3,

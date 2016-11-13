@@ -143,6 +143,7 @@
   <ItemGroup>
     <ClCompile Include="source\actionstate\AttackState.cpp" />
     <ClCompile Include="source\actionstate\AvoidState.cpp" />
+    <ClCompile Include="source\actionstate\DamageState.cpp" />
     <ClCompile Include="source\actionstate\JumpState.cpp" />
     <ClCompile Include="source\actionstate\MoveState.cpp" />
     <ClCompile Include="source\actionstate\StandState.cpp" />
@@ -154,6 +155,7 @@
     <ClCompile Include="source\actor\player\Gauge.cpp" />
     <ClCompile Include="source\actor\player\specialSkill\Recovery.cpp" />
     <ClCompile Include="source\actor\player\specialSkill\SpecialSkillManager.cpp" />
+    <ClCompile Include="source\actor\player\specialSkill\SuperArmor.cpp" />
     <ClCompile Include="source\actor\player\Status.cpp" />
     <ClCompile Include="source\attack\AttackManager.cpp" />
     <ClCompile Include="source\attack\AttackStatus.cpp" />
@@ -229,6 +231,7 @@
   <ItemGroup>
     <ClInclude Include="header\actionstate\AttackState.h" />
     <ClInclude Include="header\actionstate\AvoidState.h" />
+    <ClInclude Include="header\actionstate\DamageState.h" />
     <ClInclude Include="header\actionstate\IActionState.h" />
     <ClInclude Include="header\actionstate\JumpState.h" />
     <ClInclude Include="header\actionstate\MoveState.h" />
@@ -243,6 +246,7 @@
     <ClInclude Include="header\actor\Player\Gauge.h" />
     <ClInclude Include="header\actor\Player\specialSkill\Recovery.h" />
     <ClInclude Include="header\actor\Player\specialSkill\SpecialSkillManager.h" />
+    <ClInclude Include="header\actor\Player\specialSkill\SuperArmor.h" />
     <ClInclude Include="header\actor\Player\Status.h" />
     <ClInclude Include="header\attack\AttackManager.h" />
     <ClInclude Include="header\attack\AttackPattern.h" />

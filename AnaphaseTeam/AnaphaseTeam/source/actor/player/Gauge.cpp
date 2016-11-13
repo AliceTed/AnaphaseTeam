@@ -53,8 +53,16 @@ float Gauge::scale(float def)
 	return log(m_gauge*0.01f + def);
 }
 
+void Gauge::update(float deltatime)
+{
+
+	m_gauge = LERP(0.1f, m_gauge, m_gauge - 150.0f);
+	
+}
+
 void Gauge::add(float _point)
 {
 	Math::Clamp clamp;
 	m_gauge = clamp(m_gauge + _point, 0.0f, (float)RankGauge::MAX);
+	
 }

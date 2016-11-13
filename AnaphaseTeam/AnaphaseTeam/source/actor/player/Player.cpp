@@ -4,6 +4,7 @@
 #include "../../../header/actionstate/StandState.h"
 #include "../../../header/actionstate/JumpState.h"
 #include "../../../header/actionstate/AttackState.h"
+#include "../../../header/actionstate/DamageState.h"
 #include "../../../header/actionstate/AvoidState.h"
 #include "../../../header/renderer/Renderer.h"
 #include "../../../header/device/GameDevice.h"
@@ -37,7 +38,8 @@ Player::Player(GameDevice* _device, Camera * _camera, LockOn* _lockon)
 	m_group(std::make_shared<CollisionGroup>(this)),
 	m_Gauge(),
 	m_avoid(this), degree(0.0f), m_lockon(_lockon),
-	m_SpecialSkillManager(m_Gauge)
+	m_SpecialSkillManager(m_Gauge),
+	m_currentAction(nullptr)
 {
 	//m_matrix = std::make_shared<GSmatrix4>(new GSmatrix4[m_animatorOne.getNumBones()]);
 }
@@ -72,6 +74,7 @@ void Player::update(float deltatime)
 	m_status.change(m_Gauge);
 	//	m_animatorOne.getAnimMatrix(m_matrix.get());
 	m_SpecialSkillManager.update(deltatime);
+	m_Gauge.update(deltatime);
 }
 
 void Player::draw(const Renderer & _renderer, const Camera & _camera)
@@ -93,6 +96,7 @@ void Player::inGround()
 
 void Player::stand(float deltaTime)
 {
+	m_currentAction = std::make_shared<StandState>();
 	if (!m_isGround)
 	{
 		actionChange(std::make_shared<JumpState>());
@@ -107,6 +111,7 @@ void Player::stand(float deltaTime)
 
 void Player::attack(float deltaTime)
 {
+	m_currentAction = std::make_shared<AttackState>();
 	m_SubAction.jumpPowerOff();
 	m_attackManager.update(deltaTime, this);
 	if (m_attackManager.isEnd())
@@ -117,10 +122,23 @@ void Player::attack(float deltaTime)
 
 void Player::damage(float deltaTime)
 {
+
+	if (m_SpecialSkillManager.isSuperArmor())
+	{
+		actionChange(m_currentAction);
+		return;
+	}
+	m_currentAction = std::make_shared<DamageState>();
+	m_animatorOne.changeAnimation(ANIMATION_ID::DAMAGE, false);
+	if (isAnimationEnd())
+	{
+		actionChange(std::make_shared<StandState>());
+	}
 }
 
 void Player::move(float deltaTime)
 {
+	m_currentAction = std::make_shared<MoveState>();
 	moving(deltaTime);
 	moveMotionChange();
 	subActionStart();
@@ -129,6 +147,7 @@ void Player::move(float deltaTime)
 
 void Player::jump(float deltaTime)
 {
+	m_currentAction = std::make_shared<JumpState>();
 	m_SubAction.update(deltaTime, SubActionType::JUMP);
 	if (m_SubAction.isEnd(SubActionType::JUMP))
 	{
@@ -139,6 +158,7 @@ void Player::jump(float deltaTime)
 
 void Player::avoid(float deltaTime)
 {
+	m_currentAction = std::make_shared<AvoidState>();
 	m_animatorOne.changeAnimation(ANIMATION_ID::AVOID, false);
 	//m_SubAction.update(deltaTime, SubActionType::AVOID);
 	m_avoid.update(deltaTime);
@@ -164,7 +184,7 @@ void Player::createColision()
 		GSvector3 target = m_transform.getPosition() + GSvector3(0.0f, 0.5f, 0.0f);
 		_shape->transfer(target);
 	});
-	obj->set_draw([&](const Renderer& _renderer, Shape_Ptr _shape) { _shape->draw(_renderer); });
+	//obj->set_draw([&](const Renderer& _renderer, Shape_Ptr _shape) { _shape->draw(_renderer); });
 	m_group->add(obj);
 }
 
@@ -187,12 +207,13 @@ void Player::subActionStart()
 
 	if (m_device->input()->avoid())
 	{
-		if (m_Gauge.down(5))
+		actionChange(std::make_shared<DamageState>());
+		/*if (m_Gauge.down(5))
 		{
 			m_SubAction.initialize(SubActionType::AVOID);
 			m_avoid.initialize();
 			actionChange(std::make_shared<AvoidState>());
-		}
+		}*/
 	}
 }
 
@@ -337,11 +358,12 @@ void Player::control()
 	{
 		//m_Gauge.downGauge(RankGauge::FIRST);
 		m_SpecialSkillManager.initialize(SPECIALTYPE::RECOVERY);
-		//return;
+		return;
 	}
 	if (m_device->input()->gaugeAttack2())
 	{
-		m_Gauge.downGauge(RankGauge::SECOND);
+		//m_Gauge.downGauge(RankGauge::SECOND);
+		m_SpecialSkillManager.initialize(SPECIALTYPE::SUPERARMOR);
 		return;
 	}
 	if (m_device->input()->gaugeAttack3())

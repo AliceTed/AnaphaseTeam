@@ -23,6 +23,7 @@ public:
 	void downGauge(RankGauge _rankGauge);
 
 	float scale(float def);
+	void update(float deltatime);
 private:
 	void add(float _point);
 private:

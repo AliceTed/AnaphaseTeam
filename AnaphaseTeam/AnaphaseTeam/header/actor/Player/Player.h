@@ -112,6 +112,7 @@ private:
 	LockOn* m_lockon;
 	float degree;
 
+	Action_Ptr m_currentAction;
 	Avoid m_avoid;
 	SpecialSkillManager m_SpecialSkillManager;
 
