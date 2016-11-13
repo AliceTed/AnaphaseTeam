@@ -21,6 +21,7 @@ public:
 	void up(float _scale);
 	bool down(float _scale);
 	void downGauge(RankGauge _rankGauge);
+	void update(float deltatime);
 
 	float scale(float def);
 private:
@@ -28,4 +29,5 @@ private:
 	void lerp(float* out, const float* min, const float* max, float time);
 private:
 	float m_gauge;
+	float max;
 };

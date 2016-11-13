@@ -4,7 +4,8 @@
 #include <math.h>
 
 Gauge::Gauge()
-	:m_gauge(150)
+	:m_gauge(150),
+	max(m_gauge)
 {
 }
 
@@ -15,6 +16,7 @@ Gauge::~Gauge()
 void Gauge::initialize()
 {
 	m_gauge = 1000;
+	max = m_gauge;
 }
 
 void Gauge::draw(const Renderer& _renderer)
@@ -26,6 +28,7 @@ void Gauge::draw(const Renderer& _renderer)
 
 void Gauge::up(float _scale)
 {
+	max = m_gauge;
 	add(_scale);
 }
 
@@ -36,9 +39,7 @@ bool Gauge::down(float _scale)
 		return false;
 	}
 	//add(-_scale);
-	float num = m_gauge;
-	float max = m_gauge - _scale;
-	lerp(&m_gauge, &m_gauge, &max, 1);
+	max = m_gauge - _scale;
 
 	return true;
 }
@@ -50,6 +51,11 @@ void Gauge::downGauge(RankGauge _rankGauge)
 		return;
 	}
 	add(-(float)_rankGauge);
+}
+
+void Gauge::update(float deltatime)
+{
+	lerp(&m_gauge, &m_gauge, &max, deltatime * 0.1f);
 }
 
 float Gauge::scale(float def)

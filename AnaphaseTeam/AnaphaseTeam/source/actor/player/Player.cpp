@@ -74,6 +74,8 @@ void Player::update(float deltatime)
 	m_status.change(m_Gauge);
 	//	m_animatorOne.getAnimMatrix(m_matrix.get());
 	m_SpecialSkillManager.update(deltatime);
+
+	m_Gauge.update(deltatime);
 }
 
 void Player::draw(const Renderer & _renderer, const Camera & _camera)
