@@ -15,13 +15,6 @@ namespace Math
 	public:
 		/**
 		* @fn
-		* @brief 乱数を取得する
-		* @param (_seed) シード値
-		* @return 乱数
-		*/
-		const unsigned int operator () (unsigned int _seed = 0)const;
-		/**
-		* @fn
 		* @brief 範囲内の乱数を取得する
 		* @param (_min) 最小値
 		* @param (_max) 最大値

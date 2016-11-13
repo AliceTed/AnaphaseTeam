@@ -28,8 +28,8 @@ void GamePlay::initialize()
 	m_player.initialize();
 	//m_boss.initialize();
 	m_enemys.initialize();
-	Enemy e(Transform(0, { 0,0,0 }, { 0,0,0 }));
-	e.addCollisionGroup(&collision);
+	Enemy* e=new Enemy(Transform(0, { 0,0,0 }, { 0,0,0 }));
+	e->addCollisionGroup(&collision);
 	m_enemys.add(e);
 
 	Boss boss;
@@ -50,6 +50,7 @@ void GamePlay::update(float deltaTime)
 	m_enemys.update(deltaTime);
 
 	collision.update(deltaTime);
+
 
 	//m_player.attackhoming(&m_lockon.get(m_enemys));
 
