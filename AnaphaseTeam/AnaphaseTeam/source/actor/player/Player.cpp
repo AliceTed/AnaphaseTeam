@@ -163,7 +163,7 @@ void Player::jump(float deltaTime)
 void Player::avoid(float deltaTime)
 {
 	m_currentAction = std::make_shared<AvoidState>();
-	m_animatorOne.changeAnimation(static_cast<GSuint>(ANIMATION_ID::AVOID), true);
+	m_animatorOne.changeAnimation(static_cast<GSuint>(ANIMATION_ID::STAND), true);
 	m_avoid.update(deltaTime);
 	if (m_avoid.isEnd())
 	{

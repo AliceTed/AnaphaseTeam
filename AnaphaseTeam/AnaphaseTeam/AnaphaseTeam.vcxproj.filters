@@ -267,9 +267,6 @@
     <ClInclude Include="header\data\TEXTURE_ID.h">
       <Filter>ヘッダー ファイル\data\id</Filter>
     </ClInclude>
-    <ClInclude Include="header\data\SKELETON_ID.h">
-      <Filter>ヘッダー ファイル\data\id</Filter>
-    </ClInclude>
     <ClInclude Include="header\actor\Actor.h">
       <Filter>ヘッダー ファイル\actor</Filter>
     </ClInclude>

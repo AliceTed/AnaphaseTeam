@@ -35,16 +35,20 @@ void ComboManager::create()
 	m_attackPattern.insert(std::make_pair(Combo::QQQQ, QQQQ));
 
 	//QSQQコンボ
-	Attack QS(status, ANIMATION_ID::ATTACK5, Combo::QSQ, Combo::End);
+	/*Attack QS(status, ANIMATION_ID::ATTACK5, Combo::QSQ, Combo::End);
 	Attack QSQ(status, ANIMATION_ID::ATTACK6, Combo::QSQQ, Combo::End);
-	Attack QSQQ(status, ANIMATION_ID::FATTACK, Combo::End, Combo::End);
+	Attack QSQQ(status, ANIMATION_ID::FATTACK, Combo::End, Combo::End);*/
+	Attack QS(status, ANIMATION_ID::ATTACK, Combo::QSQ, Combo::End);
+	Attack QSQ(status, ANIMATION_ID::ATTACK2, Combo::QSQQ, Combo::End);
+	Attack QSQQ(status, ANIMATION_ID::ATTACK3, Combo::End, Combo::End);
 	m_attackPattern.insert(std::make_pair(Combo::QS, QS));
 	m_attackPattern.insert(std::make_pair(Combo::QSQ, QSQ));
 	m_attackPattern.insert(std::make_pair(Combo::QSQQ, QSQQ));
 
 	//SQQコンボ
 	Attack SQ(status, ANIMATION_ID::ATTACK, Combo::SQQ, Combo::End);
-	Attack SQQ(status, ANIMATION_ID::ATTACK5, Combo::End, Combo::End);
+	//Attack SQQ(status, ANIMATION_ID::ATTACK5, Combo::End, Combo::End);
+	Attack SQQ(status, ANIMATION_ID::ATTACK, Combo::End, Combo::End);
 	m_attackPattern.insert(std::make_pair(Combo::SQ, SQ));
 	m_attackPattern.insert(std::make_pair(Combo::SQQ, SQQ));
 

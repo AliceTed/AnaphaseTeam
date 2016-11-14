@@ -308,7 +308,6 @@
     <ClInclude Include="header\data\Model_ID.h" />
     <ClInclude Include="header\data\PathConnect.h" />
     <ClInclude Include="header\data\PLAYERACTION_ID.h" />
-    <ClInclude Include="header\data\SKELETON_ID.h" />
     <ClInclude Include="header\data\CastID.h" />
     <ClInclude Include="header\data\Loader.h" />
     <ClInclude Include="header\data\LoadError.h" />

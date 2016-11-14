@@ -65,6 +65,7 @@ const bool SpecialSkillManager::isEnd(SPECIALTYPE _specialType) const
 		return m_specialAttack.isEnd();
 		break;
 	}
+	return true;
 }
 void SpecialSkillManager::recovery(Status& _status)
 {
