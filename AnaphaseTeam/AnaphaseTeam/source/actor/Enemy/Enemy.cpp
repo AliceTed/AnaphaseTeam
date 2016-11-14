@@ -3,9 +3,9 @@
 #include "../../../header/collision/EnemyCollision.h"
 #include "../../../header/math/Random.h"
 #include "../../../header/actor/Player/Player.h"
-
+#include "../../../header/data/ENEMY_ANIMATION.h"
 Enemy::Enemy(const Transform & _transform)
-	:Actor(_transform, MODEL_ID::PLAYER,
+	:Actor(_transform, MODEL_ID::ENEMY,
 		Sphere(GSvector3(0, 0, 0), 1.0f),
 		Actor_Tag::ENEMY),
 	m_group(std::make_shared<CollisionGroup>(this)),
@@ -20,7 +20,7 @@ void Enemy::initialize()
 {
 	Collision_Ptr actor = std::make_shared<EnemyCollision>(this);
 	m_group->add(actor);
-	m_animatorOne.changeAnimation(static_cast<GSuint>(ANIMATION_ID::STAND));
+	m_animatorOne.changeAnimation(static_cast<GSuint>(ENEMY_ANIMATION::SPAWN));
 	m_state = ESTATE::SPAWN;
 }
 void Enemy::update(float deltatime)
@@ -58,11 +58,11 @@ void Enemy::state()
 	switch (m_state)
 	{
 	case ESTATE::SPAWN:
-		/*if (m_animator.isEnd())
+		if (m_animatorOne.isEndCurrentAnimation())
 		{
-			m_state = STATE::STAND;
-			m_animator.start(Animation(static_cast<GSuint>(ENEMY_ANIMATION::IDEL), true));
-		}*/
+			m_state = ESTATE::SPAWN;
+			m_animatorOne.changeAnimation(static_cast<GSuint>(ENEMY_ANIMATION::STAND));
+		}
 		break;
 	case ESTATE::STAND:
 

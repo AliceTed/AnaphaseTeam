@@ -4,7 +4,6 @@
 enum class MODEL_ID :unsigned int
 {
 	PLAYER=static_cast<unsigned int>(MESH_ID::SIZE),
-	BOSS,
 	ENEMY,
 	SIZE
 };

@@ -546,6 +546,9 @@
     <ClInclude Include="header\actor\Player\specialSkill\SpecialAttack.h">
       <Filter>ヘッダー ファイル\actor\Player\specialSkill</Filter>
     </ClInclude>
+    <ClInclude Include="header\data\ENEMY_ANIMATION.h">
+      <Filter>ヘッダー ファイル\data\id</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Util\BasicShapes.cpp">

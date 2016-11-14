@@ -279,6 +279,7 @@
     <ClInclude Include="header\collision\EnemyCollision.h" />
     <ClInclude Include="header\collision\HitInformation.h" />
     <ClInclude Include="header\collision\WeaponCollision.h" />
+    <ClInclude Include="header\data\ENEMY_ANIMATION.h" />
     <ClInclude Include="header\device\GameDevice.h" />
     <ClInclude Include="header\device\IInputPattern.h" />
     <ClInclude Include="header\device\InputPattern_A.h" />

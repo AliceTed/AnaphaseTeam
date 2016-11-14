@@ -9,7 +9,7 @@
 Boss::Boss() :
 	Actor(
 		Transform({ 0,0,0 }, GSquaternion(0, 0, 0, 1)),
-		MODEL_ID::BOSS,
+		MODEL_ID::ENEMY,
 		Sphere(GSvector3(0, 7, 0), 7.0f),
 		Actor_Tag::BOSS
 		),
