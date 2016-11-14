@@ -57,7 +57,7 @@ void Player::initialize()
 	Actor::initialize();
 	actionChange(std::make_shared<StandState>());
 	m_animatorOne.initialize();
-	m_animatorOne.changeAnimation(ANIMATION_ID::STAND, true, true);
+	m_animatorOne.changeAnimation(ANIMATION_ID::STAND, true, true, true);
 	m_isJumpAttack = false;
 	createColision();
 	m_Gauge.initialize();
@@ -105,7 +105,7 @@ void Player::stand(float deltaTime)
 	}
 	moveMotionChange();
 	subActionStart();
-	m_animatorOne.changeAnimation(ANIMATION_ID::STAND, false, true, true);
+	m_animatorOne.changeAnimation(ANIMATION_ID::STAND, true, true, true);
 	//m_animatorOne.lerpBegin(ANIMATION_ID::STAND, false, true);
 	control();
 }
@@ -128,7 +128,7 @@ void Player::damage(float deltaTime)
 	{
 		actionChange(m_currentAction);
 		return;
-	}
+}
 	m_currentAction = std::make_shared<DamageState>();
 	m_animatorOne.changeAnimation(ANIMATION_ID::DAMAGE, false);
 	if (isAnimationEnd())
@@ -160,7 +160,7 @@ void Player::jump(float deltaTime)
 void Player::avoid(float deltaTime)
 {
 	m_currentAction = std::make_shared<AvoidState>();
-	m_animatorOne.changeAnimation(ANIMATION_ID::AVOID, false);
+	m_animatorOne.changeAnimation(ANIMATION_ID::AVOID, true);
 	//m_SubAction.update(deltaTime, SubActionType::AVOID);
 	m_avoid.update(deltaTime);
 	//m_SubAction.jumpPowerOff();
@@ -208,13 +208,13 @@ void Player::subActionStart()
 
 	if (m_device->input()->avoid())
 	{
-		actionChange(std::make_shared<DamageState>());
-		/*if (m_Gauge.down(5))
+		//actionChange(std::make_shared<DamageState>());
+		if (m_Gauge.down(5))
 		{
-			m_SubAction.initialize(SubActionType::AVOID);
+		m_SubAction.initialize(SubActionType::AVOID);
 			m_avoid.initialize();
-			actionChange(std::make_shared<AvoidState>());
-		}*/
+		actionChange(std::make_shared<AvoidState>());
+		}
 	}
 }
 
@@ -285,7 +285,7 @@ void Player::attackmotion(IAttack & _attack)
 	_attack.changeMotion(m_animatorOne, m_status.attackSpeed());
 }
 
-const bool Player::isNextAttack(IAttack & _attack) const
+const bool Player::isNextAttack(const IAttack & _attack) const
 {
 	return _attack.isNextAttack(m_animatorOne);
 }
@@ -294,8 +294,6 @@ const bool Player::isEndAttackMotion(const IAttack & _attack) const
 {
 	return _attack.isEndMotion(m_animatorOne);
 }
-
-
 
 void Player::moving(float deltaTime, bool isAnimation)
 {
@@ -308,7 +306,7 @@ void Player::moving(float deltaTime, bool isAnimation)
 	}
 	movement(deltaTime, 0.5f);
 	if (!isAnimation)return;
-	m_animatorOne.changeAnimation(ANIMATION_ID::RUN, false, true, true, time);
+	m_animatorOne.changeAnimation(ANIMATION_ID::RUN, true, true, true, time);
 }
 
 

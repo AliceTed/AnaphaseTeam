@@ -43,12 +43,10 @@ void JumpControl::update(float deltaTime)
 */
 void JumpControl::changeMotion(AnimatorOne & _animator, ANIMATION_ID _id, float _animSpeed)
 {
-	_animator.changeAnimation(_id,false,false,_animSpeed);
-	//_animator.lerpBegin(_id, true, false);
+	_animator.changeAnimation(_id,true,false,false,0.0f,_animSpeed);
 }
 /**
-* @fn
-* @brief ジャンプ時のステート切り替え
+* @fn ジャンプ時のステート切り替え
 */
 void JumpControl::airActionChange()
 {

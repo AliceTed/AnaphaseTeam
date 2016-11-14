@@ -47,5 +47,3 @@ const Combo Attack::strengthAttackNext() const
 {
 	return m_nexySCombo;
 }
-
-

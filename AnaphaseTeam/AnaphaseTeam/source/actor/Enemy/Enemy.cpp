@@ -3,7 +3,7 @@
 
 Enemy::Enemy()
 	:Actor(
-		Transform({ 10,0.5f,-30 }, GSquaternion(0,0,0,0)),
+		Transform({ 10,0.5f,-30 }, GSquaternion(0, 0, 0, 0)),
 		MODEL_ID::PLAYER,
 		Sphere(GSvector3(0, 0, 0), 0),
 		Actor_Tag::PLAYER
@@ -21,7 +21,7 @@ void Enemy::initialize()
 {
 	Actor::initialize();
 	m_animatorOne.initialize();
-	m_animatorOne.changeAnimation(ANIMATION_ID::STAND, true, true);
+	m_animatorOne.changeAnimation(ANIMATION_ID(0));
 }
 
 void Enemy::update(float deltatime)
@@ -46,21 +46,19 @@ void Enemy::move(float deltaTime)
 }
 
 void Enemy::attack(float deltaTime)
-	{
+{
 }
 
 void Enemy::damage(float deltaTime)
-	{
+{
 }
 
-void Enemy::jump(float deltaTime)
-		{
-	}
-
 void Enemy::avoid(float deltaTime)
-	{
+{
 }
 
 void Enemy::createColision()
-	{
+{
 }
+void Enemy::jump(float deltaTime)
+{}

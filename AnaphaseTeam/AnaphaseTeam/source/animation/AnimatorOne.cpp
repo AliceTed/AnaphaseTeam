@@ -31,17 +31,22 @@ bool AnimatorOne::isEndAnimation(ANIMATION_ID _animationID)
 	return false;
 }
 
-void AnimatorOne::changeAnimation(ANIMATION_ID _animation,bool _isLerp ,bool _isLoop, bool _isNotInit, float _animationSpeed)
+void AnimatorOne::changeAnimationLerp(ANIMATION_ID _animation)
+{
+	changeAnimation(_animation, true, false, false, 10.0f, 1.0f);
+}
+void AnimatorOne::changeAnimation(ANIMATION_ID _animation, bool _isLerp, bool _isLoop, bool _isNotInit, float _lerpTime, float _animationSpeed)
 {
 	Data::CastID cast;
-	if (m_currentAnimation == nullptr)
+	if (!m_currentAnimation)
 		m_currentAnimation = std::make_shared<Animation>(m_modelID, cast(_animation), AnimationTimer(gsGetEndAnimationTime(cast(m_modelID), cast(_animation)), _animationSpeed), _isLoop);
 	///*今のアニメーションと同じなら変えない
 	if (m_currentAnimation->getAnimationNo() == static_cast<unsigned int>(_animation) && _animationSpeed == m_currentAnimation->getSpeed())
 		return;
 	if (_isLerp)
 	{
-		lerpBegin(_animation, !_isNotInit, _isLoop);
+		lerpBegin(_animation, !_isNotInit, _isLoop, _lerpTime, _animationSpeed);
+	//	m_currentAnimation = std::make_shared<Animation>(m_modelID, cast(_animation), AnimationTimer(gsGetEndAnimationTime(cast(m_modelID), cast(_animation)), _animationSpeed), _isLoop);
 		return;
 	}
 	m_currentAnimation = std::make_shared<Animation>(m_modelID, cast(_animation), AnimationTimer(gsGetEndAnimationTime(cast(m_modelID), cast(_animation)), _animationSpeed), _isLoop);
@@ -51,7 +56,6 @@ void AnimatorOne::changeAnimation(ANIMATION_ID _animation,bool _isLerp ,bool _is
 	m_currentAnimation->initialize();
 }
 
-
 void AnimatorOne::change(Animation_Ptr _next)
 {
 	m_currentAnimation = m_nextAnimation;
@@ -59,12 +63,14 @@ void AnimatorOne::change(Animation_Ptr _next)
 	{
 		m_currentAnimation->initialize();
 	}
+	m_nextAnimation = nullptr;
 }
-void AnimatorOne::lerpBegin(ANIMATION_ID _anim, bool _init, bool _loop,float _animSpeed)
+void AnimatorOne::lerpBegin(ANIMATION_ID _anim, bool _init, bool _loop, float _lerpTime, float _animSpeed)
 {
 	m_lerpData.m_startTime = m_currentAnimation->getCurrentTime();
 	m_lerpData.m_endTime = 0;
 	m_lerpData.m_nextInit = _init;
+	m_lerpData.m_lerpTime = _lerpTime;
 	m_nextAnimation = std::make_shared<Animation>(m_modelID, static_cast<unsigned int>(_anim), AnimationTimer(gsGetEndAnimationTime(static_cast<unsigned int>(m_modelID), static_cast<unsigned int>(_anim)), _animSpeed), _loop);
 }
 
@@ -97,7 +103,7 @@ void AnimatorOne::animationCaluculate(GSmatrix4* _animMat)
 void AnimatorOne::animationCaluculateLerp(GSmatrix4* _animMat)
 {
 	Data::CastID cast;
-	
+
 	gsCalculateAnimationLerp(cast(m_modelID), m_currentAnimation->getAnimationNo(), m_lerpData.m_startTime,
 		cast(m_modelID), m_nextAnimation->getAnimationNo(), m_lerpData.m_endTime, m_lerpData.m_time / m_lerpData.m_lerpTime, _animMat);
 	m_lerpData.timerUpdate();

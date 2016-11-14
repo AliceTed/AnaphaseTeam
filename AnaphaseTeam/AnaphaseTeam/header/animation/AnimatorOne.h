@@ -54,7 +54,9 @@ public:
 	void initialize();
 	void update(float deltatime);
 	void bind()const;
-	void changeAnimation(ANIMATION_ID _animation,  bool _isLerp=true,bool _isLoop = false, bool _isNotInit = false, float _animationSpeed = 1.0f);
+	void changeAnimationLerp(ANIMATION_ID _animation);
+	void changeAnimation(ANIMATION_ID _animation, bool _isLerp = true, bool _isLoop = false, bool _isNotInit = false,float _lerpTime=10.0f, float _animationSpeed = 1.0f);
+
 	void change(Animation_Ptr _next);
 	/**
 	* @fn
@@ -68,7 +70,7 @@ public:
 	* @detail 指定したものが動作中のアニメーションと違ければTrueを返す
 	*/
 	bool isEndAnimation(ANIMATION_ID _animationID);
-	void lerpBegin(ANIMATION_ID _anim, bool _init=false, bool _loop=false, float _animSpeed=1.0f);
+	void lerpBegin(ANIMATION_ID _anim, bool _init=false, bool _loop=false,float _lerpTime=10.0f, float _animSpeed=1.0f);
 	/*
 	@fn アニメーション行列の計算
 	*/
