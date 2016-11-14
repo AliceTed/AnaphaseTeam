@@ -52,7 +52,7 @@ void Enemy::damage(Player * _player)
 
 void Enemy::state()
 {
-	Math::Random rand;
+	//Math::Random rand;
 	switch (m_state)
 	{
 	case ESTATE::SPAWN:
@@ -94,5 +94,3 @@ const bool Enemy::isDamageState() const
 {
 	return m_state == ESTATE::STAND || m_state == ESTATE::MOVE || m_state == ESTATE::ATTACK;
 }
-void Enemy::jump(float deltaTime)
-{}

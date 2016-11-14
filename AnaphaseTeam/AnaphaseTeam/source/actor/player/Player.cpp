@@ -405,22 +405,23 @@ void Player::control()
 		m_isJumpAttack = !m_isGround;
 		m_attackManager.Start(false);
 		m_lockon->homing();
-
-		//無理やり攻撃中に球判定をキャラの前に作る
-	/*	float radius = 1.5f;
-		GSvector3 front = m_transform.front()*(radius*1.5f);
-		GSvector3 pos(m_transform.getPosition() + front);
-		pos.y += 1.0f;
-		Shape_Ptr shape = std::make_shared<Sphere>(pos, radius);
-		Collision_Ptr actor = std::make_shared<CollisionActor>(shape, CollisionActorType::PLAYER_ATTACK);
-		actor->set_dead([&]()->bool {return m_attackManager.isEnd(); });
-		actor->set_draw([](const Renderer& _renderer, Shape_Ptr _shape) { _shape->draw(_renderer); });
-		m_group->add(actor);
-		//m_Gauge.up(10.0f);
-		m_Gauge.up(250.0f);
 	}
-
 }
+		//無理やり攻撃中に球判定をキャラの前に作る
+//		float radius = 1.5f;
+//		GSvector3 front = m_transform.front()*(radius*1.5f);
+//		GSvector3 pos(m_transform.getPosition() + front);
+//		pos.y += 1.0f;
+//		Shape_Ptr shape = std::make_shared<Sphere>(pos, radius);
+//		Collision_Ptr actor = std::make_shared<CollisionActor>(shape, CollisionActorType::PLAYER_ATTACK);
+//		actor->set_dead([&]()->bool {return m_attackManager.isEnd(); });
+//		actor->set_draw([](const Renderer& _renderer, Shape_Ptr _shape) { _shape->draw(_renderer); });
+//		m_group->add(actor);
+//		//m_Gauge.up(10.0f);
+//		m_Gauge.up(250.0f);
+//	}
+//
+//}
 
 void Player::look_at(CameraController * _camera, GSvector3 * _target)
 {
@@ -435,11 +436,11 @@ void Player::buildup()
 
 void Player::avoidStart()
 {
-	/*if (m_device->input()->avoid())
+	if (m_device->input()->avoid())
 	{
 		m_SubAction.initialize(SubActionType::AVOID);
 		actionChange(std::make_shared<AvoidState>());
-	}*/
+	}
 }
 
 /**
@@ -454,7 +455,6 @@ void Player::moveMotionChange()
 	}
 	moveStart();
 }
-
 void Player::rotate(float deltaTime, Transform & _transform)
 {
 	GSvector2 dir = m_device->input()->velocity();

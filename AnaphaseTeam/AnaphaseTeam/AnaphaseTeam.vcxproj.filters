@@ -167,7 +167,7 @@
       <UniqueIdentifier>{d0cdda7b-e670-4bce-8fa6-16d63201e6e4}</UniqueIdentifier>
     </Filter>
     <Filter Include="ソース ファイル\math">
-      <UniqueIdentifier>{c6db7672-616f-45dd-93c7-3bb1966819f5}</UniqueIdentifier>
+      <UniqueIdentifier>{cfe83fe5-37e3-4713-adef-911f2563b574}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -450,6 +450,15 @@
     <ClInclude Include="header\actor\Player\Status.h">
       <Filter>ヘッダー ファイル\actor\Player</Filter>
     </ClInclude>
+    <ClInclude Include="header\collision\CollisionActor.h">
+      <Filter>ヘッダー ファイル\collision</Filter>
+    </ClInclude>
+    <ClInclude Include="header\collision\CollisionGroup.h">
+      <Filter>ヘッダー ファイル\collision</Filter>
+    </ClInclude>
+    <ClInclude Include="header\collision\CollisionManager.h">
+      <Filter>ヘッダー ファイル\collision</Filter>
+    </ClInclude>
     <ClInclude Include="header\scene\each\Option.h">
       <Filter>ヘッダー ファイル\scene\each</Filter>
     </ClInclude>
@@ -507,33 +516,6 @@
     <ClInclude Include="header\attack\ECombo.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="header\collision\Collision_Tag.h">
-      <Filter>ヘッダー ファイル\collision</Filter>
-    </ClInclude>
-    <ClInclude Include="header\collision\CollisionActor.h">
-      <Filter>ヘッダー ファイル\collision</Filter>
-    </ClInclude>
-    <ClInclude Include="header\collision\CollisionGroup.h">
-      <Filter>ヘッダー ファイル\collision</Filter>
-    </ClInclude>
-    <ClInclude Include="header\collision\CollisionManager.h">
-      <Filter>ヘッダー ファイル\collision</Filter>
-    </ClInclude>
-    <ClInclude Include="header\collision\EnemyCollision.h">
-      <Filter>ヘッダー ファイル\collision</Filter>
-    </ClInclude>
-    <ClInclude Include="header\collision\HitInformation.h">
-      <Filter>ヘッダー ファイル\collision</Filter>
-    </ClInclude>
-    <ClInclude Include="header\collision\WeaponCollision.h">
-      <Filter>ヘッダー ファイル\collision</Filter>
-    </ClInclude>
-    <ClInclude Include="header\actor\Enemy\EnemyManager.h">
-      <Filter>ヘッダー ファイル\actor\Enemy</Filter>
-    </ClInclude>
-    <ClInclude Include="header\attack\ECombo.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
     <ClInclude Include="header\actor\Player\specialSkill\Recovery.h">
       <Filter>ヘッダー ファイル\actor\Player\specialSkill</Filter>
     </ClInclude>
@@ -545,6 +527,21 @@
     </ClInclude>
     <ClInclude Include="header\actor\Player\specialSkill\SuperArmor.h">
       <Filter>ヘッダー ファイル\actor\Player\specialSkill</Filter>
+    </ClInclude>
+    <ClInclude Include="header\collision\Collision_Tag.h">
+      <Filter>ヘッダー ファイル\collision</Filter>
+    </ClInclude>
+    <ClInclude Include="header\collision\EnemyCollision.h">
+      <Filter>ヘッダー ファイル\collision</Filter>
+    </ClInclude>
+    <ClInclude Include="header\collision\WeaponCollision.h">
+      <Filter>ヘッダー ファイル\collision</Filter>
+    </ClInclude>
+    <ClInclude Include="header\collision\HitInformation.h">
+      <Filter>ヘッダー ファイル\collision</Filter>
+    </ClInclude>
+    <ClInclude Include="header\actor\Enemy\EnemyManager.h">
+      <Filter>ヘッダー ファイル\actor\Enemy</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -731,6 +728,15 @@
     <ClCompile Include="source\actor\player\Status.cpp">
       <Filter>ソース ファイル\actor\Player</Filter>
     </ClCompile>
+    <ClCompile Include="source\collision\CollisionActor.cpp">
+      <Filter>ソース ファイル\collision</Filter>
+    </ClCompile>
+    <ClCompile Include="source\collision\CollisionGroup.cpp">
+      <Filter>ソース ファイル\collision</Filter>
+    </ClCompile>
+    <ClCompile Include="source\collision\CollisionManager.cpp">
+      <Filter>ソース ファイル\collision</Filter>
+    </ClCompile>
     <ClCompile Include="source\scene\each\Option.cpp">
       <Filter>ソース ファイル\scene\each</Filter>
     </ClCompile>
@@ -779,24 +785,6 @@
     <ClCompile Include="source\transform\Transform.cpp">
       <Filter>ソース ファイル\transform</Filter>
     </ClCompile>
-    <ClCompile Include="source\collision\CollisionActor.cpp">
-      <Filter>ソース ファイル\collision</Filter>
-    </ClCompile>
-    <ClCompile Include="source\collision\CollisionGroup.cpp">
-      <Filter>ソース ファイル\collision</Filter>
-    </ClCompile>
-    <ClCompile Include="source\collision\CollisionManager.cpp">
-      <Filter>ソース ファイル\collision</Filter>
-    </ClCompile>
-    <ClCompile Include="source\collision\EnemyCollision.cpp">
-      <Filter>ソース ファイル\collision</Filter>
-    </ClCompile>
-    <ClCompile Include="source\collision\HitInformation.cpp">
-      <Filter>ソース ファイル\collision</Filter>
-    </ClCompile>
-    <ClCompile Include="source\collision\WeaponCollision.cpp">
-      <Filter>ソース ファイル\collision</Filter>
-    </ClCompile>
     <ClCompile Include="source\actor\player\specialSkill\Recovery.cpp">
       <Filter>ソース ファイル\actor\Player\specialSkill</Filter>
     </ClCompile>
@@ -812,8 +800,17 @@
     <ClCompile Include="source\actor\Enemy\EnemyManager.cpp">
       <Filter>ソース ファイル\actor\Enemy</Filter>
     </ClCompile>
+    <ClCompile Include="source\collision\WeaponCollision.cpp">
+      <Filter>ソース ファイル\collision</Filter>
+    </ClCompile>
+    <ClCompile Include="source\collision\EnemyCollision.cpp">
+      <Filter>ソース ファイル\collision</Filter>
+    </ClCompile>
     <ClCompile Include="source\math\Random.cpp">
       <Filter>ソース ファイル\math</Filter>
+    </ClCompile>
+    <ClCompile Include="source\collision\HitInformation.cpp">
+      <Filter>ソース ファイル\collision</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
