@@ -153,6 +153,7 @@
     <ClCompile Include="source\actor\Enemy\EnemyManager.cpp" />
     <ClCompile Include="source\actor\player\Gauge.cpp" />
     <ClCompile Include="source\actor\player\specialSkill\Recovery.cpp" />
+    <ClCompile Include="source\actor\player\specialSkill\SpecialAttack.cpp" />
     <ClCompile Include="source\actor\player\specialSkill\SpecialSkillManager.cpp" />
     <ClCompile Include="source\actor\player\specialSkill\SuperArmor.cpp" />
     <ClCompile Include="source\actor\player\Status.cpp" />
@@ -245,6 +246,7 @@
     <ClInclude Include="header\actor\Enemy\EnemyManager.h" />
     <ClInclude Include="header\actor\Player\Gauge.h" />
     <ClInclude Include="header\actor\Player\specialSkill\Recovery.h" />
+    <ClInclude Include="header\actor\Player\specialSkill\SpecialAttack.h" />
     <ClInclude Include="header\actor\Player\specialSkill\SpecialSkillManager.h" />
     <ClInclude Include="header\actor\Player\specialSkill\SuperArmor.h" />
     <ClInclude Include="header\actor\Player\Status.h" />
