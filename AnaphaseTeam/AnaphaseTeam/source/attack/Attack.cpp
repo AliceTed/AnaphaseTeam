@@ -11,7 +11,6 @@ Attack::~Attack()
 void Attack::initialize(Player* _player)
 {
 	motion(_player);
-	_player->attackRange(this);
 }
 
 void Attack::update(float deltaTime, Player * _player)

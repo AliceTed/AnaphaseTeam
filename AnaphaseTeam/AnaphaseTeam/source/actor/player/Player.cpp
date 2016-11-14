@@ -42,7 +42,6 @@ Player::Player(GameDevice* _device, Camera * _camera, LockOn* _lockon)
 	m_SpecialSkillManager(m_Gauge),
 	m_currentAction(nullptr)
 {
-	//m_matrix = std::make_shared<GSmatrix4>(new GSmatrix4[m_animatorOne.getNumBones()]);
 }
 
 Player::~Player()
@@ -75,7 +74,6 @@ void Player::update(float deltatime)
 	m_animatorOne.update(deltatime);
 	m_scythe.update(deltatime, m_animatorOne, m_transform);
 	m_status.change(m_Gauge);
-	//	m_animatorOne.getAnimMatrix(m_matrix.get());
 	m_SpecialSkillManager.update(deltatime);
 
 	m_Gauge.update(deltatime);
@@ -110,7 +108,6 @@ void Player::stand(float deltaTime)
 	moveMotionChange();
 	subActionStart();
 	m_animatorOne.changeAnimation(ANIMATION_ID::STAND, true, true, true);
-	//m_animatorOne.lerpBegin(ANIMATION_ID::STAND, false, true);
 	control();
 }
 
@@ -165,10 +162,7 @@ void Player::avoid(float deltaTime)
 {
 	m_currentAction = std::make_shared<AvoidState>();
 	m_animatorOne.changeAnimation(ANIMATION_ID::AVOID, true);
-	//m_SubAction.update(deltaTime, SubActionType::AVOID);
 	m_avoid.update(deltaTime);
-	//m_SubAction.jumpPowerOff();
-	//if (m_SubAction.isEnd(SubActionType::AVOID))
 	if (m_avoid.isEnd())
 	{
 		actionChange(std::make_shared<StandState>());
@@ -208,13 +202,13 @@ void Player::subActionStart()
 
 	if (m_device->input()->avoid())
 	{
-		//actionChange(std::make_shared<DamageState>());
-		if (m_Gauge.down(5))
+		actionChange(std::make_shared<DamageState>());
+		/*if (m_Gauge.down(5))
 		{
 		m_SubAction.initialize(SubActionType::AVOID);
 			m_avoid.initialize();
 		actionChange(std::make_shared<AvoidState>());
-		}
+		}*/
 	}
 }
 
@@ -227,11 +221,6 @@ void Player::moveStart()
 void Player::justAvoid(Avoid* _avoid)
 {
 	_avoid->justAvoidRange(m_group, m_transform);
-}
-
-void Player::attackRange(Attack* _attack)
-{
-	//_attack->range(m_group, m_transform, [=]()->bool {return isEndAttackMotion(*_attack); });
 }
 
 void Player::gaugeUp(float _scale)
@@ -292,11 +281,9 @@ const bool Player::isEndAttackMotion(const IAttack & _attack) const
 
 void Player::moving(float deltaTime, bool isAnimation)
 {
-	//float speed = m_status.getMoveSpeed(false, false);
 	float time = 1.0f;
 	if (m_device->input()->walk())
 	{
-		//speed = m_status.getWalkSpeed();
 		time = 0.4f;
 	}
 	movement(deltaTime, 0.5f);
@@ -347,18 +334,13 @@ void Player::actionChange(Action_Ptr _action)
 
 void Player::control()
 {
-	///////////////////////////////////////////////////////////
 	if (m_device->input()->gaugeAttack1())
 	{
-		//m_Gauge.downGauge(RankGauge::FIRST);
 		m_SpecialSkillManager.initialize(SPECIALTYPE::RECOVERY);
-		//return;
 	}
 	if (m_device->input()->gaugeAttack2())
 	{
-		//m_Gauge.downGauge(RankGauge::SECOND);
 		m_SpecialSkillManager.initialize(SPECIALTYPE::SUPERARMOR);
-		//return;
 	}
 	if (m_device->input()->gaugeAttack3())
 	{
@@ -425,20 +407,6 @@ void Player::look_at(CameraController * _camera, GSvector3 * _target)
 	_camera->special_move1(&target, _target, 10.0f, 1.5f);
 }
 
-void Player::buildup()
-{
-	//m_status.powerUp();
-}
-
-void Player::avoidStart()
-{
-	if (m_device->input()->avoid())
-	{
-		m_SubAction.initialize(SubActionType::AVOID);
-		actionChange(std::make_shared<AvoidState>());
-	}
-}
-
 /**
 * @fn
 * @brief “®‚¢‚Ä‚¢‚ê‚ÎMoveState‚ÉØ‚è‘Ö‚¦A“®‚¢‚Ä‚¢‚È‚¯‚ê‚ÎStandState‚ÉØ‚è‘Ö‚¦‚é
@@ -473,40 +441,16 @@ void Player::movement(float deltaTime, float _speed)
 	m_transform.translate(forward*deltaTime*_speed);
 }
 
-/*const bool Player::isJump() const
-{
-	return m_device->input()->jump();
-}*/
-
 const bool Player::isAvoid() const
 {
 	return m_device->input()->avoid();
 }
-
-/*const bool Player::isGround() const
-{
-	return m_isGround;
-}*/
-
-/*const bool Player::isJumpAttack() const
-{
-	return m_isJumpAttack;
-}*/
-
-/*const bool Player::isEndAttack() const
-{
-	return m_attackManager.isEnd();
-}*/
 
 const bool Player::isAnimationEnd() const
 {
 	return m_animatorOne.isEndCurrentAnimation();
 }
 
-/*const GSvector3 Player::inputDirection() const
-{
-	return m_transform.front();
-}*/
 const GSvector3 Player::getPosition() const
 {
 	return m_transform.m_translate;

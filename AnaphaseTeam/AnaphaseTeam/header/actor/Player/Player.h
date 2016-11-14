@@ -53,12 +53,9 @@ public:
 	void moving(float deltaTime,bool isAnimation=true);
 	void control();
 	void look_at(CameraController* _camera, GSvector3* _target);
-	void buildup();
-	void avoidStart();
 	void subActionStart();
 	void moveStart();
 	void justAvoid(Avoid* _avoid);
-	void attackRange(Attack* _attack);
 	void gaugeUp(float _scale);
 	void attackhoming(Enemy* _boss);
 	void homing();
