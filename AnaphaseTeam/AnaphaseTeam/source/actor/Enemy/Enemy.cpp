@@ -33,7 +33,6 @@ void Enemy::draw(const Renderer & _renderer, const Camera & _camera)
 	//‹——£‚Ì“§‰ß‚È‚Ç‚Íshader‚É”C‚¹‚é—\’è
 	FALSE_RETURN(isInsideView(_camera));
 	alphaBlend(_camera);
-
 	_renderer.getDraw3D().drawMesh_calcu(MODEL_ID::ENEMY, m_transform, m_animatorOne, m_Color);
 }
 
