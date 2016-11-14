@@ -23,7 +23,7 @@ void Attack::motion(Player * _player)
 }
 void Attack::changeMotion(AnimatorOne & _animator, float _speed)
 {
-	_animator.changeAnimation(m_Animation, false, false, false,_speed);
+	_animator.changeAnimation(static_cast<GSuint>(m_Animation), false, false, false,_speed);
 }
 const bool Attack::isNextAttack(const AnimatorOne & _animator) const
 {

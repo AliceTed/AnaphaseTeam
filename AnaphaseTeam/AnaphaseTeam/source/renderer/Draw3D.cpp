@@ -23,16 +23,16 @@ void Draw3D::drawMesh(MODEL_ID _id, const Transform & _transform, const Animator
 	gsDrawMesh(cast(_id));
 	glPopMatrix();
 }
-void Draw3D::drawMesh_calcu(MODEL_ID _id, const Transform & _transform,  AnimatorOne & _animator, const GScolor & _color) const
+void Draw3D::drawMesh_calcu(MODEL_ID _id, const Transform & _transform, AnimatorOne & _animator, const GScolor & _color) const
 {
 	Data::CastID cast;
-	glPushMatrix();
+	//glPushMatrix();
 	//GSmatrix4* mat = new GSmatrix4[256];
-	GSmatrix4* mat = _animator.matrixCalculate();
-	glColor4f(_color.r, _color.g, _color.b, _color.a);
-	glMultMatrixf(_transform.matrix());
-	gsMeshDrawSkin(gsGetMesh(cast(_id)),mat);
-	glPopMatrix();
+	//GSmatrix4* mat = _animator.matrixCalculate();
+	//glColor4f(_color.r, _color.g, _color.b, _color.a);
+	//glMultMatrixf(_transform.matrix());
+	//gsMeshDrawSkin(gsGetMesh(cast(_id)), mat);
+	//glPopMatrix();
 }
 void Draw3D::drawMesh(GSuint _id, const Transform & _transform, const GScolor & _color) const
 {
@@ -144,7 +144,7 @@ void Draw3D::drawPoint(const GSvector3 * p, float size, const GScolor& color) co
 	glPushMatrix();
 	glPointSize(size);
 	glMaterialfv(GL_FRONT, GL_DIFFUSE, color);
-	
+
 	glBegin(GL_POINTS);
 	glVertex3f(p->x, p->y, p->z);
 	glEnd();

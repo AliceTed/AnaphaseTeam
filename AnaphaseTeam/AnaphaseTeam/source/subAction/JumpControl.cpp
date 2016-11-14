@@ -43,7 +43,7 @@ void JumpControl::update(float deltaTime)
 */
 void JumpControl::changeMotion(AnimatorOne & _animator, ANIMATION_ID _id, float _animSpeed)
 {
-	_animator.changeAnimation(_id,true,false,false,0.0f,_animSpeed);
+	_animator.changeAnimation(static_cast<GSuint>(_id),true,false,false,0.0f,_animSpeed);
 }
 /**
 * @fn ジャンプ時のステート切り替え

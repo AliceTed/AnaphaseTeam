@@ -13,7 +13,7 @@ void EnemyManager::initialize()
 
 void EnemyManager::add(Enemy * _enemy)
 {
-	m_enemys.emplace_back( _enemy);
+	m_enemys.emplace_back(Enemy_Ptr(_enemy));
 	m_enemys.back()->initialize();
 }
 

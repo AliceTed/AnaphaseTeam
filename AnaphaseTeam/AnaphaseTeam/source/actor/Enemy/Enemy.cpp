@@ -20,7 +20,7 @@ void Enemy::initialize()
 {
 	Collision_Ptr actor = std::make_shared<EnemyCollision>(this);
 	m_group->add(actor);
-	m_animatorOne.changeAnimation(ANIMATION_ID::STAND);
+	m_animatorOne.changeAnimation(static_cast<GSuint>(ANIMATION_ID::STAND));
 	m_state = ESTATE::SPAWN;
 }
 void Enemy::update(float deltatime)
@@ -35,7 +35,8 @@ void Enemy::draw(const Renderer & _renderer, const Camera & _camera)
 	//‹——£‚Ì“§‰ß‚È‚Ç‚Íshader‚É”C‚¹‚é—\’è
 	FALSE_RETURN(isInsideView(_camera));
 	alphaBlend(_camera);
-	_renderer.getDraw3D().drawMesh_calcu(MODEL_ID::PLAYER, m_transform, m_animatorOne, m_Color);
+	//_renderer.getDraw3D().drawMesh_calcu(MODEL_ID::PLAYER, m_transform, m_animatorOne, m_Color);
+	m_animatorOne.draw(m_transform);
 }
 
 void Enemy::collisionChase(EnemyCollision * _collision)

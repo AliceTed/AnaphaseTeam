@@ -72,7 +72,8 @@ void Boss::update(float deltatime)
 void Boss::draw(const Renderer& _renderer, const Camera& _camera)
 {
 	FALSE_RETURN(isInsideView(_camera));
-	_renderer.getDraw3D().drawMesh_calcu(MODEL_ID::BOSS, m_transform, m_animatorOne, m_Color);
+	m_animatorOne.draw(m_transform, m_color);
+	//_renderer.getDraw3D().drawMesh_calcu(MODEL_ID::BOSS, m_transform, m_animatorOne, m_Color);
 	//for_each(m_points.begin(), m_points.end(), [&](BreakPoint& _point) {_point.draw(_renderer); });
 	//m_core.draw(_renderer, m_corecolor);
 }
@@ -102,7 +103,7 @@ vector<GSvector3> Boss::getAnimEachPos()
 	vector<GSvector3> res;
 	for (GSuint i = 0; i < n; i++)
 	{
-		Transform transform(m_animatorOne.getMat()[i]);
+		Transform transform(m_animatorOne.getMat(i));
 		GSmatrix4 m = transform.parent_synthesis(m_transform).matrix();
 		res.emplace_back(m.getPosition());
 	}
@@ -118,7 +119,7 @@ void Boss::enemyAttack()
 	{
 		m_state = State::ATTACK;
 
-		m_animatorOne.changeAnimation((ANIMATION_ID)0);
+		m_animatorOne.changeAnimation(0);
 	/*	actor->set_collision_enter([&](Hit* hit)
 		{
 			Player* _player = dynamic_cast<Player*>(hit->m_paremt);
@@ -133,7 +134,7 @@ void Boss::enemyAttack()
 	if (m_animatorOne.isEndCurrentAnimation())
 	{
 		m_state = State::STAND;
-		m_animatorOne.changeAnimation(ANIMATION_ID(1), true);
+		m_animatorOne.changeAnimation(1, true);
 	}
 }
 

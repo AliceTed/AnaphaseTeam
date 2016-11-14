@@ -70,7 +70,7 @@ void ChargeAttack::chargeStart(Player * _player)
 
 void ChargeAttack::changeMotion(AnimatorOne& _animator, float _speed)
 {
-	_animator.changeAnimation(m_Animation, false, false, 1.5f);
+	_animator.changeAnimation(static_cast<GSuint>(m_Animation), false, false, 1.5f);
 	//_animator.lerpBegin(m_Animation, true, false);
 }
 const bool ChargeAttack::isNextAttack(const AnimatorOne& _animator)const

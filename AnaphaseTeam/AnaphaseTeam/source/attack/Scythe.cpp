@@ -33,7 +33,7 @@ void Scythe::addCollision(CollisionGroup* _group)
 
 void Scythe::update(float deltaTime, const AnimatorOne & _animator, const Transform & _parent)
 {
-	Transform right = _animator.getMat()[m_bone];
+	Transform right = _animator.getOrientedMat(m_bone);
 	Transform world_right = right.parent_synthesis(_parent);
 	m_world = m_local.parent_synthesis(world_right);
 	m_collision_world = m_collision.parent_synthesis(m_world);

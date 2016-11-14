@@ -57,7 +57,7 @@ void Player::initialize()
 	Actor::initialize();
 	actionChange(std::make_shared<StandState>());
 	m_animatorOne.initialize();
-	m_animatorOne.changeAnimation(ANIMATION_ID::STAND, true, true, true);
+	m_animatorOne.changeAnimation(static_cast<GSuint>(ANIMATION_ID::STAND), true, true, true);
 	m_isJumpAttack = false;
 	createColision();
 	m_Gauge.initialize();
@@ -83,7 +83,9 @@ void Player::draw(const Renderer & _renderer, const Camera & _camera)
 {
 	FALSE_RETURN(isInsideView(_camera));
 	alphaBlend(_camera);
-	_renderer.getDraw3D().drawMesh_calcu(MODEL_ID::PLAYER, m_transform, m_animatorOne, m_Color);
+	//_renderer.getDraw3D().drawMesh_calcu(MODEL_ID::PLAYER, m_transform, m_animatorOne, m_Color);
+	m_animatorOne.draw(m_transform);
+	
 	m_Gauge.draw(_renderer);
 	m_scythe.draw(_renderer);
 	_renderer.getDraw2D().string(std::to_string(degree), &GSvector2(20, 20), 30);
@@ -107,7 +109,7 @@ void Player::stand(float deltaTime)
 	}
 	moveMotionChange();
 	subActionStart();
-	m_animatorOne.changeAnimation(ANIMATION_ID::STAND, true, true, true);
+	m_animatorOne.changeAnimation(static_cast<GSuint>(ANIMATION_ID::STAND), true, true, true);
 	control();
 }
 
@@ -131,7 +133,7 @@ void Player::damage(float deltaTime)
 		return;
 }
 	m_currentAction = std::make_shared<DamageState>();
-	m_animatorOne.changeAnimation(ANIMATION_ID::DAMAGE, false);
+	m_animatorOne.changeAnimation(static_cast<GSuint>(ANIMATION_ID::DAMAGE), false);
 	if (isAnimationEnd())
 	{
 		actionChange(std::make_shared<StandState>());
@@ -161,7 +163,7 @@ void Player::jump(float deltaTime)
 void Player::avoid(float deltaTime)
 {
 	m_currentAction = std::make_shared<AvoidState>();
-	m_animatorOne.changeAnimation(ANIMATION_ID::AVOID, true);
+	m_animatorOne.changeAnimation(static_cast<GSuint>(ANIMATION_ID::AVOID), true);
 	m_avoid.update(deltaTime);
 	if (m_avoid.isEnd())
 	{
@@ -288,7 +290,7 @@ void Player::moving(float deltaTime, bool isAnimation)
 	}
 	movement(deltaTime, 0.5f);
 	if (!isAnimation)return;
-	m_animatorOne.changeAnimation(ANIMATION_ID::RUN, true, true, true, time);
+	m_animatorOne.changeAnimation(static_cast<GSuint>(ANIMATION_ID::RUN), true, true, true, time);
 }
 
 
