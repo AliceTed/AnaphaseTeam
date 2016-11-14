@@ -6,8 +6,7 @@ enum class RankGauge
 {
 	ZERO = 0,
 	FIRST = 150,
-	SECOND = 250,
-	THIRD = 600,
+	SECOND = 400,
 	MAX = 1000
 };
 
