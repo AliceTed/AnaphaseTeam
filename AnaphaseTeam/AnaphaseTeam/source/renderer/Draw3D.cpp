@@ -35,6 +35,14 @@ void Draw3D::drawMesh_calcu(MODEL_ID _id, const Transform & _transform,  Animato
 	glPopMatrix();
 	mat.release();
 }
+void Draw3D::drawMesh(GSuint _id, const Transform & _transform, const GScolor & _color) const
+{
+	glPushMatrix();
+	glColor4f(_color.r, _color.g, _color.b, _color.a);
+	glMultMatrixf(_transform.matrix());
+	gsDrawMesh(_id);
+	glPopMatrix();
+}
 void Draw3D::drawSky(MESH_ID id, float angle)const
 {
 	glMatrixMode(GL_MODELVIEW);

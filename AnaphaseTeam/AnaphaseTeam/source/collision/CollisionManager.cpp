@@ -21,8 +21,17 @@ void CollisionManager::initialize()
 
 void CollisionManager::update(float deltaTime)
 {
-	std::for_each(m_container.begin(),m_container.end(),[deltaTime](Group_Ptr _group){_group->update(deltaTime);});
-	std::for_each(m_container.begin(), m_container.end(), [](Group_Ptr _group) {_group->remove();});
+	for (auto& i:m_container){i->update(deltaTime);}
+	collision();
+}
+
+void CollisionManager::draw(const Renderer & _renderer)
+{
+	for (auto& i : m_container) { i->draw(_renderer); }
+}
+
+void CollisionManager::collision()
+{
 	for (Group_Itr first = m_container.begin(); first != m_container.end();++first)
 	{
 		Group_Itr second = first;
@@ -31,9 +40,4 @@ void CollisionManager::update(float deltaTime)
 			(*first)->collision(*(*second).get());
 		}
 	}
-}
-
-void CollisionManager::draw(const Renderer & _renderer)
-{
-	std::for_each(m_container.begin(), m_container.end(), [&_renderer](Group_Ptr _group) {_group->draw(_renderer);});
 }

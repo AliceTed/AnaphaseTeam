@@ -1,5 +1,6 @@
 #include "../../header/collision/CollisionGroup.h"
-
+#include "../../header/collision/HitInformation.h"
+#include <algorithm>
 CollisionGroup::CollisionGroup(Actor * _actor)
 	: m_actor(_actor), m_container()
 {
@@ -21,44 +22,42 @@ void CollisionGroup::initialize()
 
 void CollisionGroup::update(float deltaTime)
 {
-	for_each(m_container, [deltaTime](Collision_Ptr _my) {_my->update(deltaTime);});	
+	for (auto& i: m_container){i->update(deltaTime);}
+	remove();
 }
 
 void CollisionGroup::remove()
 {
-	auto itr = std::remove_if(m_container.begin(), m_container.end(), [](Collision_Ptr _my) {return _my->isDead();});
+	auto itr = std::remove_if(m_container.begin(), m_container.end(), [](Collision_Ptr& _actor) {return _actor->isDead();});
 	m_container.erase(itr, m_container.end());
 }
 
 void CollisionGroup::collision(CollisionGroup & _group)
 {
-	for_each(m_container, [&](Collision_Ptr _my)
+	for (auto& act1 : m_container)
 	{
-		for_each(_group.m_container, [&](Collision_Ptr _other)
+		for (auto& act2 : _group.m_container)
 		{
-			collision(_my,_other,_group.m_actor);
-		});
-	});
+			collision(act1,act2, _group.m_actor);
+		}
+	}
 }
 
 void CollisionGroup::draw(const Renderer & _renderer)
 {
-	for_each(m_container, [&](Collision_Ptr _my) {_my->draw(_renderer);});
+	for (auto& i : m_container){i->draw(_renderer);}
 }
-
-void CollisionGroup::for_each(std::vector<Collision_Ptr>& _vector,std::function<void(Collision_Ptr _collision)> _func)
+void CollisionGroup::collision(Collision_Ptr& _my, Collision_Ptr& _other, Actor* _actor)
 {
-	std::for_each(_vector.begin(), _vector.end(), [&](Collision_Ptr _actor) {_func(_actor);});
-}
+	HitInformation info1(m_actor);
+	HitInformation info2(_actor);
 
-void CollisionGroup::collision(Collision_Ptr _my, Collision_Ptr _other, Actor* _actor)
-{
-	if (!_my->isCollision(_other.get()))
+	if (!_my->isCollision(_other,&info1,&info2))
 	{
-		_my->exit(_actor, _other.get());
-		_other->exit(m_actor, _my.get());
+		_my->exit(_other,info2);
+		_other->exit(_my,info1);
 		return;
 	}
-	_my->collision(_actor, _other.get());
-	_other->collision(m_actor, _my.get());
+	_my->collision(_other, info2);
+	_other->collision(_my, info1);
 }

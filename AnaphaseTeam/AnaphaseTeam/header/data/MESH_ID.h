@@ -5,6 +5,7 @@
 enum class MESH_ID :unsigned int
 {
 	SKY,
+	WEAPON,
 	SIZE
 };
 #endif

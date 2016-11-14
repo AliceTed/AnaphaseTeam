@@ -20,6 +20,7 @@
 #include "../../data/ANIMATION_ID.h"
 #include "Status.h"
 #include "../../collision/CollisionManager.h"
+#include "../../attack/Scythe.h"
 #include "Gauge.h"
 #include "specialSkill/SpecialSkillManager.h"
 class GameDevice;
@@ -113,6 +114,8 @@ private:
 	float degree;
 
 	Action_Ptr m_currentAction;
+	Scythe m_scythe;
+
 	Avoid m_avoid;
 	SpecialSkillManager m_SpecialSkillManager;
 

@@ -25,12 +25,12 @@ void SelectUI::add(Select _name, const ScaleImage & _image)
 
 void SelectUI::update(float deltaTime)
 {
-	std::_For_each(m_images.begin(), m_images.end(),[deltaTime](SelectValue& value) {value.second.update(deltaTime);});
+	std::for_each(m_images.begin(), m_images.end(),[deltaTime](SelectValue& value) {value.second.update(deltaTime);});
 }
 
 void SelectUI::draw(const Renderer & _renderer)
 {
-	std::_For_each(m_images.begin(), m_images.end(),[&_renderer](SelectValue& value) {value.second.draw(_renderer);});
+	std::for_each(m_images.begin(), m_images.end(),[&_renderer](SelectValue& value) {value.second.draw(_renderer);});
 }
 void SelectUI::next()
 {

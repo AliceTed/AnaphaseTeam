@@ -1,113 +1,100 @@
 #include "../../header/collision/CollisionActor.h"
-
-
-CollisionActor::CollisionActor(Shape_Ptr _shape, CollisionActorType _type)
-	:m_hit(),
-	m_shape(_shape),
-	m_type(_type),
-	m_previous(),
-	m_destroy(nullptr),
-	m_update(nullptr),
-	m_draw(nullptr),
-	m_collision_enter(nullptr),
-	m_collision_stay(nullptr),
-	m_collision_exit(nullptr)
+#include <algorithm>
+#include "../../header/collision/HitInformation.h"
+CollisionActor::CollisionActor(Shape * _shape, Collision_Tag _tag)
+	:m_shape(_shape),m_tag(_tag), m_isDead(false), m_previous()
 {
 }
 
 CollisionActor::~CollisionActor()
 {
+	m_previous.clear();
 }
 
 void CollisionActor::update(float deltaTime)
 {
-	remove([](CollisionActor* _actor)->bool {return _actor->isDead();});
-	if (m_update == nullptr)return;
-	m_update(deltaTime, m_shape);
+	previousRemove([](Collision_Ptr& _actor)->bool{return _actor->isDead();});
+	doUpdate(deltaTime);
 }
 
-const bool CollisionActor::isCollision(CollisionActor * _other) 
-{
-	return _other->m_shape->isCollision(m_shape.get(),&m_hit);
-}
-
-void CollisionActor::collision(Actor * _otherActor, CollisionActor * _other)
-{
-	//‰ß‹Ž‚É‚ ‚é‚©
-	if (is_find(m_previous, _other))
-	{
-		if (m_collision_stay == nullptr)return;
-		m_hit.m_paremt = _otherActor;
-		m_hit.m_type = _other->m_type;
-		m_collision_stay(&m_hit);
-		return;
-	}
-	m_previous.emplace_back(_other);
-	if (m_collision_enter == nullptr)return;
-	m_hit.m_paremt = _otherActor;
-	m_hit.m_type = _other->m_type;
-	m_collision_enter(&m_hit);
-}
-
-void CollisionActor::exit(Actor * _otherActor, CollisionActor * _other)
-{
-	//íœ‚µ‚½‚©
-	bool isremove = remove([&_other](CollisionActor* _actor)->bool {return _other == _actor;});
-	if (!isremove)return;
-	if (m_collision_exit == nullptr)return;
-	m_hit.m_paremt = _otherActor;
-	m_hit.m_type = _other->m_type;
-	m_collision_exit(&m_hit);
-}
-#include "../../header/renderer/Renderer.h"
 void CollisionActor::draw(const Renderer & _renderer)
 {
-	_renderer.getDraw2D().string(std::to_string(m_previous.size()), &GSvector2(0, 0), 20);
-	if (m_draw == nullptr)return;
-	m_draw(_renderer, m_shape);
+	doDraw(_renderer);
+}
+
+void CollisionActor::collision(Collision_Ptr&  _other,HitInformation& _hit)
+{
+	if (isPreviousFind(_other))
+	{
+		collision_Stay(_hit);
+		return;
+	}
+	//‰ß‹Ž‚É‚È‚©‚Á‚½‚ç,“o˜^‚ÆŒÄ‚Ño‚µ
+	m_previous.emplace_back(_other);
+	collision_Enter(_hit);
+}
+
+void CollisionActor::exit(Collision_Ptr&  _other,HitInformation& _hit)
+{
+	//íœ‚µ‚½‚çexit‚ðŒÄ‚Ô
+	bool isremove =isPreviousRemove(_other);
+	if (!isremove)return;
+	collision_Exit(_hit);
+}
+
+const bool CollisionActor::isCollision(Collision_Ptr&  _other, HitInformation* _out1, HitInformation* _out2) const
+{
+	_out1->m_tag = m_tag;
+	_out2->m_tag = _other->m_tag;
+	GSvector3 intersect;
+	bool isHit= _other->m_shape->isCollision(m_shape.get(), &intersect);
+	_out1->m_intersect = intersect;
+	_out2->m_intersect = intersect;
+	return isHit;
 }
 
 const bool CollisionActor::isDead() const
 {
-	if (m_destroy == nullptr)return false;
-	return m_destroy();
-}
-void CollisionActor::set_dead(std::function<const bool()> _function)
-{
-	m_destroy = _function;
-}
-void CollisionActor::set_update(std::function<void(float, Shape_Ptr)> _function)
-{
-	m_update = _function;
-}
-void CollisionActor::set_draw(std::function<void(const Renderer&, Shape_Ptr)> _function)
-{
-	m_draw = _function;
-}
-void CollisionActor::set_collision_enter(std::function<void(Hit*)> _function)
-{
-	m_collision_enter = _function;
-}
-void CollisionActor::set_collision_stay(std::function<void(Hit*)> _function)
-{
-	m_collision_stay = _function;
-}
-void CollisionActor::set_collision_exit(std::function<void(Hit*)> _function)
-{
-	m_collision_exit = _function;
+	return m_isDead;
 }
 
-const bool CollisionActor::is_find(std::vector<CollisionActor*>& _container, CollisionActor * _other)
+void CollisionActor::destroy()
 {
-	return std::any_of(_container.begin(), _container.end(),
-		[&_other](CollisionActor* _actor)
-	{
-		return _other == _actor;
-	});
+	m_isDead = true;
 }
-const bool CollisionActor::remove(std::function<bool(CollisionActor*)> function)
+
+void CollisionActor::doUpdate(float deltaTime)
 {
-	auto itr = std::remove_if(m_previous.begin(), m_previous.end(), function);
+}
+
+void CollisionActor::doDraw(const Renderer & _renderer)
+{
+}
+
+void CollisionActor::collision_Enter(HitInformation& _hit)
+{
+}
+
+void CollisionActor::collision_Stay(HitInformation& _hit)
+{
+}
+
+void CollisionActor::collision_Exit(HitInformation& _hit)
+{
+}
+const bool CollisionActor::isPreviousFind(Collision_Ptr&  _other)
+{
+	return std::any_of(m_previous.begin(), m_previous.end(), [&_other](Collision_Ptr&  _actor) {return _other == _actor;});
+}
+
+const bool CollisionActor::isPreviousRemove(Collision_Ptr&  _other)
+{
+	return previousRemove([&_other](Collision_Ptr&  _actor) {return _actor ==_other;});
+}
+
+const bool CollisionActor::previousRemove(std::function<bool(Collision_Ptr&)> _func)
+{
+	auto itr = std::remove_if(m_previous.begin(), m_previous.end(), _func);
 	if (itr == m_previous.end())return false;
 	m_previous.erase(itr);
 	return true;

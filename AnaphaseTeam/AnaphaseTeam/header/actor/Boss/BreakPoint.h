@@ -1,6 +1,6 @@
 #pragma once
 #include "../../../header/shape/Sphere.h"
-#include "../../../header/collision/CollisionActorType.h"
+#include "../../../header/collision/Collision_Tag.h"
 #include "../../../header/collision/CollisionManager.h"
 #include "../../../header/math/TimeLerpVector.h"
 enum class Element:unsigned int
@@ -16,7 +16,7 @@ class CameraController;
 class BreakPoint
 {
 public:
-	BreakPoint(CollisionActorType _type, Element _element);
+	BreakPoint(Collision_Tag _type, Element _element);
 	~BreakPoint();
 	void lerp(Math::TimeLerpVector<GSvector3>& _lerp,BreakPoint& _end);
 	void update(float deltaTime, std::vector<GSvector3>& _position);
@@ -26,8 +26,7 @@ private:
 	GSvector3 m_position;
 	Element m_element;
 	GScolor m_color;
-	CollisionActorType m_type;
+	Collision_Tag m_type;
 
-	Shape_Ptr shape;
 	Collision_Ptr obj;
 };
