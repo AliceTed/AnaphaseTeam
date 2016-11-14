@@ -367,7 +367,6 @@ void Player::control()
 	}
 	if (m_device->input()->gaugeAttack3())
 	{
-		//m_Gauge.downGauge(RankGauge::THIRD);
 		m_Gauge.down((float)RankGauge::MAX);
 		//return;
 	}
