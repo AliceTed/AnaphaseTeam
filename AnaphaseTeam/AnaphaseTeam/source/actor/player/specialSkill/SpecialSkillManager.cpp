@@ -3,7 +3,8 @@
 SpecialSkillManager::SpecialSkillManager(Gauge& _gauge) :
 	m_recovery(),
 	m_superArmor(),
-	m_gauge(_gauge)
+	m_gauge(_gauge),
+	m_specialAttack()
 {
 }
 
@@ -23,6 +24,9 @@ void SpecialSkillManager::initialize(SPECIALTYPE _specialType)
 	case SPECIALTYPE::SUPERARMOR:
 		m_superArmor.initialize(&m_gauge);
 		break;
+	case SPECIALTYPE::SPECIALATTACK:
+		m_specialAttack.initialize(&m_gauge);
+		break;
 	}
 	m_type = _specialType;
 
@@ -40,6 +44,9 @@ void SpecialSkillManager::update(float deltaTime)
 	case SPECIALTYPE::SUPERARMOR:
 		m_superArmor.update(deltaTime);
 		break;
+	case SPECIALTYPE::SPECIALATTACK:
+		m_specialAttack.update(deltaTime);
+		break;
 	}
 }
 const bool SpecialSkillManager::isEnd(SPECIALTYPE _specialType) const
@@ -53,6 +60,9 @@ const bool SpecialSkillManager::isEnd(SPECIALTYPE _specialType) const
 		break;
 	case SPECIALTYPE::SUPERARMOR:
 		return m_superArmor.isEnd();
+		break;
+	case SPECIALTYPE::SPECIALATTACK:
+		return m_specialAttack.isEnd();
 		break;
 	}
 }

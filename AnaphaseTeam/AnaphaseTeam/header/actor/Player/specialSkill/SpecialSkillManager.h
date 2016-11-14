@@ -1,12 +1,14 @@
 #pragma once
 #include "../../../../header/actor/Player/specialSkill/Recovery.h"
 #include "../../../../header/actor/Player/specialSkill/SuperArmor.h"
+#include "../../../../header/actor/Player/specialSkill/SpecialAttack.h"
 
 enum class SPECIALTYPE
 {
 	NONE,
 	RECOVERY,
-	SUPERARMOR
+	SUPERARMOR,
+	SPECIALATTACK
 };
 
 class Status;
@@ -27,4 +29,5 @@ private:
 	SuperArmor m_superArmor;
 	SPECIALTYPE m_type;
 	Gauge& m_gauge;
+	SpecialAttack m_specialAttack;
 };
