@@ -1,6 +1,7 @@
 #pragma once
 #include "../Actor.h"
 #include "../../collision/CollisionManager.h"
+#include "../../../header/camera/CameraController.h"
 class EnemyCollision;
 class Player;
 //æ‚è‚ ‚¦‚¸enum‚Åó‘Ô•ª‚¯
@@ -24,6 +25,7 @@ public:
 public:
 	void collisionChase(EnemyCollision* _collision);
 	void damage(Player* _player);
+	void look_at(CameraController* _camera, Player* _player);
 private:
 	void state();
 	const bool isDamageState()const;

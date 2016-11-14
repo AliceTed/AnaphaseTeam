@@ -2,8 +2,10 @@
 #include "../../../header/renderer/Renderer.h"
 #include "../../../header/collision/EnemyCollision.h"
 #include "../../../header/math/Random.h"
+#include "../../../header/actor/Player/Player.h"
+
 Enemy::Enemy(const Transform & _transform)
-	:Actor(_transform, MODEL_ID::ENEMY,
+	:Actor(_transform, MODEL_ID::PLAYER,
 		Sphere(GSvector3(0, 0, 0), 1.0f),
 		Actor_Tag::ENEMY),
 	m_group(std::make_shared<CollisionGroup>(this)),
@@ -18,7 +20,7 @@ void Enemy::initialize()
 {
 	Collision_Ptr actor = std::make_shared<EnemyCollision>(this);
 	m_group->add(actor);
-	//m_animator.start(Animation(static_cast<GSuint>(ENEMY_ANIMATION::SPAWN)));
+	m_animatorOne.changeAnimation(ANIMATION_ID::STAND);
 	m_state = ESTATE::SPAWN;
 }
 void Enemy::update(float deltatime)
@@ -33,7 +35,7 @@ void Enemy::draw(const Renderer & _renderer, const Camera & _camera)
 	//‹——£‚Ì“§‰ß‚È‚Ç‚Íshader‚É”C‚¹‚é—\’è
 	FALSE_RETURN(isInsideView(_camera));
 	alphaBlend(_camera);
-	_renderer.getDraw3D().drawMesh_calcu(MODEL_ID::ENEMY, m_transform, m_animatorOne, m_Color);
+	_renderer.getDraw3D().drawMesh_calcu(MODEL_ID::PLAYER, m_transform, m_animatorOne, m_Color);
 }
 
 void Enemy::collisionChase(EnemyCollision * _collision)
@@ -92,4 +94,11 @@ void Enemy::state()
 const bool Enemy::isDamageState() const
 {
 	return m_state == ESTATE::STAND || m_state == ESTATE::MOVE || m_state == ESTATE::ATTACK;
+}
+
+
+void Enemy::look_at(CameraController* _camera, Player* _player)
+{
+	GSvector3 target = m_transform.m_translate;
+	_player->look_at(_camera, &target);
 }

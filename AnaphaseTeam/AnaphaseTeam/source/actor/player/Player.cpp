@@ -16,6 +16,7 @@
 
 #include "../../../header/actor/Boss/Boss.h"
 #include "../../../header/camera/LockOn.h"
+#include "../../../header/actor/Enemy/Enemy.h"
 const float Player::MOVESPEED = 0.3f;
 const float Player::ROTATESPEED = -2.0f;
 const float Player::WALKSPEED = 0.1f;
@@ -197,7 +198,7 @@ void Player::subActionStart()
 {
 	if (m_device->input()->jump())
 	{
-		GSvector3 nowPosition = GSvector3(0, m_transform.getPosition().y, 0);
+		GSvector3 nowPosition = GSvector3(0, m_transform.m_translate.y, 0);
 		m_transform.translate(nowPosition);
 		m_SubAction.initialize(SubActionType::JUMP);
 		actionChange(std::make_shared<JumpState>());
@@ -238,19 +239,14 @@ void Player::gaugeUp(float _scale)
 	m_Gauge.up(_scale);
 }
 
-void Player::attackhoming(Boss * _enemy)
+void Player::attackhoming(Enemy * _enemy)
 {
 	if (m_attackManager.isEnd())
 	{
 		return;
 	}
 	Math::Clamp clamp;
-
-	GSvector3 vector = _enemy->getPosition() - m_transform.getPosition();
-	float radian = atan2(vector.x, vector.z);
-	degree = radian * 180.0f / M_PI;
-	//degree = clamp(degree, -130.0f, 130.0f);
-	m_transform.m_rotate = GSquaternion(degree, { 0,1,0 });
+	m_transform.rotate(targetDirection(*_enemy));
 
 	float attack_distance = 1.0f;
 	attack_distance = clamp(m_Gauge.scale(attack_distance), 1.0f, 5.0f);
@@ -425,7 +421,7 @@ void Player::control()
 
 void Player::look_at(CameraController * _camera, GSvector3 * _target)
 {
-	GSvector3 target = m_transform.getPosition();
+	GSvector3 target = m_transform.m_translate;
 	_camera->special_move1(&target, _target, 10.0f, 1.5f);
 }
 
@@ -513,5 +509,5 @@ const bool Player::isAnimationEnd() const
 }*/
 const GSvector3 Player::getPosition() const
 {
-	return m_transform.getPosition();
+	return m_transform.m_translate;
 }

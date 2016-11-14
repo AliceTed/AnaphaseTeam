@@ -52,6 +52,8 @@ public:
 	const float distanceActor(const Actor& _other)const;
 	//chainŒvZ—p‚É‚ ‚é‚¾‚¯distanceActorˆê‚Â‚É‚µ‚½‚¢
 	const float distance(const GSvector3& _position)const;
+	//_target‚Ì•ûŒü‚ğ‹‚ß‚é
+	const GSquaternion targetDirection(const Actor& _target)const;
 
 	const bool isSameActor(const Actor* _other)const;
 	const bool isSameTag(Actor_Tag _tag)const;

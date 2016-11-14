@@ -28,6 +28,7 @@ class CameraController;
 class TestActor;
 class Boss;
 class LockOn;
+class Enemy;
 
 typedef std::shared_ptr<IActionState> Action_Ptr;
 class Player :public Actor, public ICharacter
@@ -59,7 +60,7 @@ public:
 	void justAvoid(Avoid* _avoid);
 	void attackRange(Attack* _attack);
 	void gaugeUp(float _scale);
-	void attackhoming(Boss* _boss);
+	void attackhoming(Enemy* _boss);
 	void homing();
 public:
 	const bool isGround() const;

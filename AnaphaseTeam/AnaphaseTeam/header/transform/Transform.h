@@ -30,7 +30,6 @@ public:
 	const float getPitch()const;
 	const float getYaw()const;
 	const float getRoll()const;
-	const GSvector3 getPosition()const;
 
 	const GSvector3 front()const;
 	const GSvector3 left()const;

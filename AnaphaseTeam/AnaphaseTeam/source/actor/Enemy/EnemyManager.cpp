@@ -1,4 +1,5 @@
 #include "../../../header/actor/Enemy/EnemyManager.h"
+#include "../../../header/actor/Player/Player.h"
 #include <algorithm>
 EnemyManager::EnemyManager()
 	:m_enemys()
@@ -30,6 +31,19 @@ void EnemyManager::collisionGround(const Map & _map)
 void EnemyManager::draw(const Renderer & _renderer, const Camera& _camera)
 {
 	for (auto& i : m_enemys) { i->draw(_renderer,_camera); }
+}
+
+Enemy * EnemyManager::nearEnemy(Player * _player)
+{
+	std::sort(m_enemys.begin(), m_enemys.end(), [_player](Enemy_Ptr& _x, Enemy_Ptr& _y) 
+	{
+		return _x->distanceActor(*_player) < _y->distanceActor(*_player);
+	});
+	if (m_enemys.empty())
+	{
+		return nullptr;
+	}
+	return m_enemys.begin()->get();
 }
 
 void EnemyManager::remove()

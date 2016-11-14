@@ -9,11 +9,12 @@
 
 #include <vector>
 #include <algorithm>
-#include "../../header/actor/Boss/Boss.h"
-#include "../../header/actor/Player/Player.h"
 using namespace std;
 
 class CameraController;
+class EnemyManager;
+class Enemy;
+class Player;
 
 class LockOn
 {
@@ -24,7 +25,7 @@ public:
 	* @brief ˆê”Ô‹ß‚¢“G‚ğ’T‚·
 	* @detail Enemy‚ª‘¶İ‚µ‚Ä‚¢‚È‚¢‚Ì‚Å‰¼‚Å‚·
 	*/
-	void nearEnemyFind(vector<Boss>& _enemys);
+	void nearEnemyFind(EnemyManager* _enemys);
 	void addPlayer(Player* _player);
 	void look_at(CameraController* _camera);
 	void homing();
@@ -35,6 +36,6 @@ private:
 	//! ‹‚ß‚½‹——£‚ÌŠi”[—pvector
 	vector<float> m_distanceStoreVector;
 	Player* m_player;
-	Boss* m_target;
+	Enemy* m_target;
 
 };

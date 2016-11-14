@@ -111,11 +111,6 @@ const float Transform::getRoll() const
 	return m_rotate.getRoll();
 }
 
-const GSvector3 Transform::getPosition() const
-{
-	return m_translate;
-}
-
 const GSvector3 Transform::front() const
 {
 	Quaternion_Utility util;

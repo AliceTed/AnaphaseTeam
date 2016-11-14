@@ -4,6 +4,7 @@
 #include"../../header/math/Calculate.h"
 #include "../../header/map/Map.h"
 #include "../../header/shape/Ray.h"
+#include "../../header/math/Calculate.h"
 const float Actor::ALPHABLEND_FAR = 2.0f;
 const float Actor::GRAVITY = -0.05f;
 
@@ -30,7 +31,7 @@ void Actor::collisionGround(const Map& _map)
 {
 	GSvector3 intersect;
 	//åªç›ÇÃà íuÇ©ÇÁâ∫ï˚å¸ÇÃRayÇçÏÇÈ
-	GSvector3 position = m_transform.getPosition();
+	GSvector3 position = m_transform.m_translate;
 	Ray ray(position);
 	if (!ray.isCollitionMap(_map, &intersect))
 	{
@@ -55,11 +56,22 @@ void Actor::inGround()
 }
 const float Actor::distanceActor(const Actor & _other) const
 {
-	return m_transform.getPosition().distance(_other.m_transform.getPosition());
+	return m_transform.m_translate.distance(_other.m_transform.m_translate);
 }
 const float Actor::distance(const GSvector3 & _position) const
 {
-	return m_transform.getPosition().distance(_position);
+	return m_transform.m_translate.distance(_position);
+}
+const GSquaternion Actor::targetDirection(const Actor & _target) const
+{
+	GSvector3 vector = _target.m_transform.m_translate - m_transform.m_translate;
+	Math::ATan atan;
+	float radian = atan(vector.x, vector.z);
+	Math::RadToDeg rtd;
+	float degree = rtd(radian);
+	
+	
+	return GSquaternion(degree, { 0,1,0 });
 }
 const bool Actor::isSameActor(const Actor * _other) const
 {
@@ -88,7 +100,7 @@ const bool Actor::isInsideView(const Camera & _camera) const
 
 void Actor::sphereChases(const GSvector3 & _offset)
 {
-	m_Sphere.transfer(m_transform.getPosition() +_offset);
+	m_Sphere.transfer(m_transform.m_translate +_offset);
 }
 
 void Actor::sphereDraw(const Renderer & _renderer)
