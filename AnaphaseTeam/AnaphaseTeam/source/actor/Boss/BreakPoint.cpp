@@ -32,7 +32,6 @@ void BreakPoint::createCollision(Boss * _parent, Group_Ptr& _group)
 		Player* _player = dynamic_cast<Player*>(_hit->m_paremt);
 		if (_player == nullptr)return;
 		m_color = GScolor(1, 0, 0, 1);
-		_player->buildup();
 	});
 	obj->set_update([&](float deltaTime, Shape_Ptr _shape) {_shape->transfer(m_position); });
 	obj->set_draw([&](const Renderer& _renderer, Shape_Ptr _shape) { _shape->draw(_renderer, m_color); });
