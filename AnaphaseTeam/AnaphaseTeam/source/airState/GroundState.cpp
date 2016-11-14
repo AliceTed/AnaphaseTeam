@@ -34,7 +34,7 @@ void GroundState::update(float deltaTime)
 	m_player->moveStart();
 	m_player->control();
 	//m_player->subActionStart();
-	m_player->jumpMotion(*m_control, ANIMATION_ID::LANDING, ANIMSPEED);
+	m_player->jumpMotion(*m_control, ANIMATION_ID::STAND, ANIMSPEED);
 	m_timer += deltaTime*0.1f;
 	if (m_timer>1.0f)
 	{

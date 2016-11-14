@@ -15,14 +15,12 @@ enum class ANIMATION_ID :unsigned int
 	ATTACK4,
 	DEAD,
 
-	LANDING = 3,
+	/*LANDING = 3,
 	JUMPUP = 3,
 	ATTACK5 = 2,
 	ATTACK6 = 2,
 	FATTACK = 2,
-	AVOID = 9,
-
-	SIZE = 99
+	AVOID = 9,*/
 };
 
 #endif
