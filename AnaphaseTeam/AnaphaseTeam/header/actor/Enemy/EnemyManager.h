@@ -16,6 +16,9 @@ public:
 	void collisionGround(const Map& _map);
 	void draw(const Renderer& _renderer,const Camera& _camera);
 private:
+	EnemyManager(EnemyManager&);
+	EnemyManager& operator=(EnemyManager&);
+private:
 	void remove();
 private:
 	std::vector<Enemy_Ptr>m_enemys;
