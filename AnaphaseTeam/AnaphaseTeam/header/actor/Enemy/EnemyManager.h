@@ -16,6 +16,8 @@ public:
 	void collisionGround(const Map& _map);
 	void draw(const Renderer& _renderer,const Camera& _camera);
 	Enemy* nearEnemy(Player* _player);
+
+	void thinks(Player* _player);
 private:
 	EnemyManager(EnemyManager&);
 	EnemyManager& operator=(EnemyManager&);

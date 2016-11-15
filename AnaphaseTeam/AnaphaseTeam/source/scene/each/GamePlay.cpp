@@ -45,6 +45,7 @@ void GamePlay::update(float deltaTime)
 	m_enemys.collisionGround(m_Map);
 	if (m_change.update(deltaTime))return;
 	// m_enemys;
+	m_lockon.thinksEnemy(&m_enemys);
 	m_lockon.nearEnemyFind(&m_enemys);
 	m_player.update(deltaTime);
 	m_enemys.update(deltaTime);

@@ -142,9 +142,9 @@ void Boss::dirCalc(Player* _player)
 {
 	if (m_state == State::STAND)
 	{
-		GSvector3 vector = _player->getPosition() - m_transform.m_translate;
+		/*GSvector3 vector = _player->getPosition() - m_transform.m_translate;
 		float radian = atan2(vector.x, vector.z);
 		float degree = radian * 180.0f / M_PI;
-		m_transform.m_rotate = GSquaternion(degree, GSvector3(0, 1, 0));
+		m_transform.m_rotate = GSquaternion(degree, GSvector3(0, 1, 0));*/
 	}
 }

@@ -90,10 +90,6 @@ private:
 	void moveMotionChange();
 	void rotate(float deltaTime,Transform& _transform);
 	void movement(float deltaTime, float _speed = MOVESPEED);
-
-public:
-	const GSvector3 getPosition() const;
-
 private:
 	GameDevice* m_device;
 	Action_Ptr m_action;
@@ -109,7 +105,6 @@ private:
 	Group_Ptr m_group;
 
 	LockOn* m_lockon;
-	float degree;
 
 	Action_Ptr m_currentAction;
 	Scythe m_scythe;

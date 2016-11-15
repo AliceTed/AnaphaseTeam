@@ -1,6 +1,7 @@
 #include "../../../header/actor/Enemy/EnemyManager.h"
 #include "../../../header/actor/Player/Player.h"
 #include <algorithm>
+#include "..\..\..\header\actor\Enemy\EnemyManager.h"
 EnemyManager::EnemyManager()
 	:m_enemys()
 {
@@ -44,6 +45,11 @@ Enemy * EnemyManager::nearEnemy(Player * _player)
 		return nullptr;
 	}
 	return m_enemys.begin()->get();
+}
+
+void EnemyManager::thinks(Player * _player)
+{
+	for (auto& i : m_enemys) { i->think(_player); }
 }
 
 void EnemyManager::remove()

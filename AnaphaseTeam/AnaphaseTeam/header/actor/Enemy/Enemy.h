@@ -10,6 +10,7 @@ enum class ESTATE
 	SPAWN,
 	STAND,
 	MOVE,
+	SLIDE,
 	ATTACK,
 	DAMAGE
 };
@@ -26,10 +27,17 @@ public:
 	void collisionChase(EnemyCollision* _collision);
 	void damage(Player* _player);
 	void look_at(CameraController* _camera, Player* _player);
+
+	void think(Player* _palyer);
 private:
+	const bool isNear(float _distance)const;
 	void state();
 	const bool isDamageState()const;
 private:
+	void slide(Actor* _actor);
+	void move(Actor* _actor);
+private:
 	Group_Ptr m_group;
 	ESTATE m_state;
+	static const float PLAYER_DISTANCE;
 };
