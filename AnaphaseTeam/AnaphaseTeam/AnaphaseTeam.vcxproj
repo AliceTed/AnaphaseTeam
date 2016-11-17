@@ -178,6 +178,7 @@
     <ClCompile Include="source\collision\CollisionManager.cpp" />
     <ClCompile Include="source\collision\EnemyCollision.cpp" />
     <ClCompile Include="source\collision\HitInformation.cpp" />
+    <ClCompile Include="source\collision\SpecialAttackCollision.cpp" />
     <ClCompile Include="source\collision\WeaponCollision.cpp" />
     <ClCompile Include="source\device\GameDevice.cpp" />
     <ClCompile Include="source\device\InputPattern_A.cpp" />
@@ -278,6 +279,7 @@
     <ClInclude Include="header\collision\Collision_Tag.h" />
     <ClInclude Include="header\collision\EnemyCollision.h" />
     <ClInclude Include="header\collision\HitInformation.h" />
+    <ClInclude Include="header\collision\SpecialAttackCollision.h" />
     <ClInclude Include="header\collision\WeaponCollision.h" />
     <ClInclude Include="header\device\GameDevice.h" />
     <ClInclude Include="header\device\IInputPattern.h" />

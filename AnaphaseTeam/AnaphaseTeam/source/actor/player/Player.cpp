@@ -39,7 +39,7 @@ Player::Player(GameDevice* _device, Camera * _camera, LockOn* _lockon)
 	m_Gauge(),
 	m_avoid(this), degree(0.0f), m_lockon(_lockon),
 	m_scythe(),
-	m_SpecialSkillManager(m_Gauge),
+	m_SpecialSkillManager(m_Gauge, this),
 	m_currentAction(nullptr)
 {
 }
@@ -63,7 +63,7 @@ void Player::initialize()
 	m_Gauge.initialize();
 	m_status.initialize();
 	m_scythe.initialize();
-	m_scythe.addCollision(m_group.get());	
+	m_scythe.addCollision(m_group.get());
 	m_SpecialSkillManager.initialize(SPECIALTYPE::NONE);
 }
 
@@ -85,7 +85,7 @@ void Player::draw(const Renderer & _renderer, const Camera & _camera)
 	alphaBlend(_camera);
 	//_renderer.getDraw3D().drawMesh_calcu(MODEL_ID::PLAYER, m_transform, m_animatorOne, m_Color);
 	m_animatorOne.draw(m_transform);
-	
+
 	m_Gauge.draw(_renderer);
 	m_scythe.draw(_renderer);
 	_renderer.getDraw2D().string(std::to_string(degree), &GSvector2(20, 20), 30);
@@ -131,7 +131,7 @@ void Player::damage(float deltaTime)
 	{
 		actionChange(m_currentAction);
 		return;
-}
+	}
 	m_currentAction = std::make_shared<DamageState>();
 	m_animatorOne.changeAnimation(static_cast<GSuint>(ANIMATION_ID::DAMAGE), false);
 	if (isAnimationEnd())
@@ -251,6 +251,16 @@ void Player::homing()
 	m_lockon->homing();
 }
 
+void Player::specialAttack()
+{
+	m_animatorOne.changeAnimation(static_cast<GSuint>(ANIMATION_ID::SPECIALATTACK), true);
+}
+
+void Player::collisionChase(SpecialAttackCollision * _collision)
+{
+	_collision->chase(m_transform.m_translate);
+}
+
 void Player::startJump(JumpControl * _control, float _scale)
 {
 	_control->setPower(_scale);
@@ -338,15 +348,18 @@ void Player::control()
 {
 	if (m_device->input()->gaugeAttack1())
 	{
-		m_SpecialSkillManager.initialize(SPECIALTYPE::RECOVERY);
+		if(m_SpecialSkillManager.initialize(SPECIALTYPE::RECOVERY));
 	}
 	if (m_device->input()->gaugeAttack2())
 	{
-		m_SpecialSkillManager.initialize(SPECIALTYPE::SUPERARMOR);
+		if(m_SpecialSkillManager.initialize(SPECIALTYPE::SUPERARMOR));
 	}
 	if (m_device->input()->gaugeAttack3())
 	{
-		m_Gauge.down((float)RankGauge::MAX);
+		if (m_SpecialSkillManager.initialize(SPECIALTYPE::SPECIALATTACK))
+		{
+			m_SpecialSkillManager.addAttackCollision(m_group.get());
+		}
 	}
 	/*ボタン押したらAttackStateに切り替わる*/
 	if (m_device->input()->quickAttackTrigger())
@@ -387,7 +400,7 @@ void Player::control()
 		m_lockon->homing();
 	}
 }
-		//無理やり攻撃中に球判定をキャラの前に作る
+//無理やり攻撃中に球判定をキャラの前に作る
 //		float radius = 1.5f;
 //		GSvector3 front = m_transform.front()*(radius*1.5f);
 //		GSvector3 pos(m_transform.getPosition() + front);

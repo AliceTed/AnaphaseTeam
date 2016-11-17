@@ -23,6 +23,7 @@ public:
 	void update(float deltatime);
 
 	float scale(float def);
+	float nowGauge();
 private:
 	void add(float _point);
 	void lerp(float* out, const float* min, const float* max, float time);

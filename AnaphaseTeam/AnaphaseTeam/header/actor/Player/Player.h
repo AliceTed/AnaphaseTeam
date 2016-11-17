@@ -23,6 +23,7 @@
 #include "../../attack/Scythe.h"
 #include "Gauge.h"
 #include "specialSkill/SpecialSkillManager.h"
+#include "../../../header/collision/SpecialAttackCollision.h"
 class GameDevice;
 class CameraController;
 class TestActor;
@@ -59,6 +60,8 @@ public:
 	void gaugeUp(float _scale);
 	void attackhoming(Enemy* _boss);
 	void homing();
+	void specialAttack();
+	void collisionChase(SpecialAttackCollision* _collision);
 public:
 	const bool isGround() const;
 	const bool isJumpAttack()const;

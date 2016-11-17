@@ -17,13 +17,16 @@ class Gauge;
 class SpecialSkillManager
 {
 public:
-	SpecialSkillManager(Gauge& _gauge);
+	SpecialSkillManager(Gauge& _gauge, Player* _player);
 	~SpecialSkillManager();
-	void initialize(SPECIALTYPE _specialType);
+	bool initialize(SPECIALTYPE _specialType);
 	void update(float deltaTime);
 	const bool isEnd(SPECIALTYPE _specialType) const;
 	void recovery(Status& _status);
 	bool isSuperArmor();
+	void addAttackCollision(CollisionGroup* _group);
+private:
+	bool isGaugeCheck(float _gauge);
 private:
 	Recovery m_recovery;
 	SuperArmor m_superArmor;
