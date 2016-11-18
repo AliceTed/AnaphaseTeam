@@ -11,7 +11,9 @@ Enemy::Enemy(const Transform & _transform)
 		Sphere(GSvector3(0, 0, 0), 1.0f),
 		Actor_Tag::ENEMY),
 	m_group(std::make_shared<CollisionGroup>(this)),
-	m_state(ESTATE::SPAWN)
+	m_state(ESTATE::SPAWN),
+	m_stay_timer(5),
+	m_velocity(0,0,0)
 {
 }
 void Enemy::addCollisionGroup(CollisionManager * _manager)
@@ -24,11 +26,14 @@ void Enemy::initialize()
 	m_group->add(actor);
 	m_animatorOne.changeAnimation(static_cast<GSuint>(ENEMY_ANIMATION::SPAWN));
 	m_state = ESTATE::SPAWN;
+	m_stay_timer.initialize();
 }
 void Enemy::update(float deltatime)
 {
+	m_transform.translate(m_velocity);
+	m_transform.m_rotate = m_rotate;
 	m_animatorOne.update(deltatime);
-	state();
+	state(deltatime);
 	sphereChases(GSvector3(0, 1, 0));
 }
 
@@ -59,7 +64,7 @@ const bool Enemy::isNear(float _distance) const
 	return _distance <PLAYER_DISTANCE;
 }
 
-void Enemy::state()
+void Enemy::state(float deltaTime)
 {
 	//Math::Random rand;
 	switch (m_state)
@@ -71,11 +76,15 @@ void Enemy::state()
 		}
 		break;
 	case ESTATE::STAND:
+		m_velocity = GSvector3(0,0,0);
 		m_animatorOne.changeAnimation(static_cast<GSuint>(ENEMY_ANIMATION::STAND),true,true);
+		m_stay_timer.update(deltaTime);
 		break;
 	case ESTATE::MOVE:
+		m_animatorOne.changeAnimation(static_cast<unsigned int>(ENEMY_ANIMATION::RUN), true, true);
 		break;
 	case ESTATE::SLIDE:
+		m_animatorOne.changeAnimation(static_cast<unsigned int>(ENEMY_ANIMATION::SLIDE), true, true);
 		break;
 	case ESTATE::ATTACK:
 
@@ -96,14 +105,14 @@ const bool Enemy::isDamageState() const
 
 void Enemy::slide(Actor * _actor)
 {
-	m_transform.m_rotate = (targetDirection(*_actor));
-	m_transform.translate_left(0.07f);
+	m_rotate = targetDirection(*_actor);
+	m_velocity = m_transform.left()*0.03f;
 }
 
 void Enemy::move(Actor * _actor)
 {
-	m_transform.m_rotate = targetDirection(*_actor);
-	m_transform.translate_front(0.08f);
+	m_rotate = (targetDirection(*_actor));
+	m_velocity = m_transform.front()*0.05f;
 }
 
 
@@ -116,16 +125,22 @@ void Enemy::look_at(CameraController* _camera, Player* _player)
 void Enemy::think(Player * _player)
 {
 	if (m_state == ESTATE::DAMAGE || m_state == ESTATE::ATTACK || m_state == ESTATE::SPAWN)return;
+	if (!m_stay_timer.isEnd())return;
 
 	float distance = distanceActor(*_player);
-	if (isNear(distance))
+	Math::Random rnd;
+	if (rnd(0, 300) == 0)
 	{
-		m_animatorOne.changeAnimation(static_cast<unsigned int>(ENEMY_ANIMATION::SLIDE), true, true);
+		m_state = ESTATE::STAND;
+		m_stay_timer.initialize();
+		return;
+	}
+	if (isNear(distance))
+	{		
 		m_state = ESTATE::SLIDE;
 		slide(_player);
 		return;
 	}
-	m_animatorOne.changeAnimation(static_cast<unsigned int>(ENEMY_ANIMATION::RUN), true, true);
 	move(_player);
 	m_state = ESTATE::MOVE;
 }
