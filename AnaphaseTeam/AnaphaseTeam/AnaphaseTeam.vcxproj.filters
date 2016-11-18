@@ -9,9 +9,6 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="util">
-      <UniqueIdentifier>{32e2145c-5130-43e3-9f31-45664b3f8aa1}</UniqueIdentifier>
-    </Filter>
     <Filter Include="ヘッダー ファイル\actor">
       <UniqueIdentifier>{2246a75d-e06b-40fd-a1a8-a1a3afec84c4}</UniqueIdentifier>
     </Filter>
@@ -171,15 +168,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Util\BasicShapes.h">
-      <Filter>util</Filter>
-    </ClInclude>
-    <ClInclude Include="Util\EffectGL.h">
-      <Filter>util</Filter>
-    </ClInclude>
-    <ClInclude Include="Util\RenderTarget.h">
-      <Filter>util</Filter>
-    </ClInclude>
     <ClInclude Include="header\math\Calculate.h">
       <Filter>ヘッダー ファイル\math</Filter>
     </ClInclude>
@@ -551,9 +539,6 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Util\BasicShapes.cpp">
-      <Filter>util</Filter>
-    </ClCompile>
     <ClCompile Include="source\main.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
