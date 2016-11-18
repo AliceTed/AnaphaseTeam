@@ -89,9 +89,9 @@ void Player::draw(const Renderer & _renderer, const Camera & _camera)
 
 	m_Gauge.draw(_renderer);
 	m_scythe.draw(_renderer);
-	_renderer.getDraw2D().string(std::to_string(m_transform.getYaw()), &GSvector2(20, 40), 30);
+	_renderer.getDraw2D().string(std::to_string(m_device->input()->velocity().y), &GSvector2(20, 40), 30);
 	_renderer.getDraw2D().string(std::to_string(m_status.getHp()), &GSvector2(200, 60), 30);
-	_renderer.getDraw2D().string(std::to_string(m_Gauge.scale(3.0f)), &GSvector2(200, 80), 30);
+	_renderer.getDraw2D().string(std::to_string(m_Gauge.scale(1.0f)), &GSvector2(200, 80), 30);
 }
 
 void Player::inGround()
@@ -237,7 +237,11 @@ void Player::attackhoming(Enemy * _enemy)
 		return;
 	}
 	Math::Clamp clamp;
-	m_transform.m_rotate=targetDirection(*_enemy);
+	
+	if (m_device->input()->velocity().y >= 0)
+	{
+		m_transform.m_rotate=targetDirection(*_enemy);
+	}
 
 	float attack_distance = 1.0f;
 	attack_distance = clamp(m_Gauge.scale(attack_distance), 1.0f, 5.0f);
@@ -348,11 +352,13 @@ void Player::control()
 {
 	if (m_device->input()->gaugeAttack1())
 	{
-		if(m_SpecialSkillManager.initialize(SPECIALTYPE::RECOVERY));
+		if(m_SpecialSkillManager.initialize(SPECIALTYPE::RECOVERY))
+		{ }
 	}
 	if (m_device->input()->gaugeAttack2())
 	{
-		if(m_SpecialSkillManager.initialize(SPECIALTYPE::SUPERARMOR));
+		if(m_SpecialSkillManager.initialize(SPECIALTYPE::SUPERARMOR))
+		{ }
 	}
 	if (m_device->input()->gaugeAttack3())
 	{

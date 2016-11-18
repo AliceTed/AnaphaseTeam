@@ -28,7 +28,7 @@ void Gauge::draw(const Renderer& _renderer)
 
 void Gauge::up(float _scale)
 {
-	if ((int)m_gauge != (int)m_lerpmax)
+	if (static_cast<int>(m_gauge) != static_cast<int>(m_lerpmax))
 	{
 		return;
 	}
@@ -42,7 +42,7 @@ bool Gauge::down(float _scale)
 	{
 		return false;
 	}
-	if ((int)m_gauge != (int)m_lerpmax)
+	if (static_cast<int>(m_gauge) != static_cast<int>(m_lerpmax))
 	{
 		return false;
 	}
@@ -54,11 +54,11 @@ bool Gauge::down(float _scale)
 
 void Gauge::downGauge(RankGauge _rankGauge)
 {
-	if (m_gauge < (float)_rankGauge)
+	if (m_gauge <static_cast<float>(_rankGauge))
 	{
 		return;
 	}
-	add(-(float)_rankGauge);
+	add(-static_cast<float>(_rankGauge));
 }
 
 void Gauge::update(float deltatime)
@@ -79,7 +79,7 @@ float Gauge::nowGauge()
 void Gauge::add(float _point)
 {
 	Math::Clamp clamp;
-	m_gauge = clamp(m_gauge + _point, 0.0f, (float)RankGauge::MAX);
+	m_gauge = clamp(m_gauge + _point, 0.0f, static_cast<float>(RankGauge::MAX));
 	
 }
 
