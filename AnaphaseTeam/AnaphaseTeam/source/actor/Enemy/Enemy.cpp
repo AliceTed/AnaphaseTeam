@@ -129,7 +129,7 @@ void Enemy::think(Player * _player)
 
 	float distance = distanceActor(*_player);
 	Math::Random rnd;
-	if (rnd(0, 300) == 0)
+	if (rnd(0, 200) == 0)
 	{
 		m_state = ESTATE::STAND;
 		m_stay_timer.initialize();
