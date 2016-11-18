@@ -63,6 +63,7 @@ void Gauge::downGauge(RankGauge _rankGauge)
 
 void Gauge::update(float deltatime)
 {
+	//
 	lerp(&m_gauge, &m_gauge, &m_lerpmax, deltatime * 0.1f);
 }
 
