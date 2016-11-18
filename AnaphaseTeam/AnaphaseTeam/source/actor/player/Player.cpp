@@ -244,9 +244,9 @@ void Player::attackhoming(Enemy * _enemy)
 	}
 
 	float velocity = distanceActor(*_enemy) / 5.0f;
-	velocity= clamp(m_Gauge.scale(velocity), 0.0f, 5.0f);
-	velocity /= 5.0f;
-	m_transform.translate_front(velocity);	
+	velocity= clamp(m_Gauge.scale(velocity), 0.0f, distanceActor(*_enemy) - 1.0f);
+	//velocity /= 5.0f;
+	m_transform.translate_front(velocity);
 }
 
 void Player::homing()
