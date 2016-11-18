@@ -229,7 +229,6 @@
     <ClCompile Include="source\ui\SelectUI.cpp" />
     <ClCompile Include="source\ui\SlideImage.cpp" />
     <ClCompile Include="source\ui\TitleUI.cpp" />
-    <ClCompile Include="Util\BasicShapes.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="header\actionstate\AttackState.h" />
@@ -281,6 +280,7 @@
     <ClInclude Include="header\collision\HitInformation.h" />
     <ClInclude Include="header\collision\SpecialAttackCollision.h" />
     <ClInclude Include="header\collision\WeaponCollision.h" />
+    <ClInclude Include="header\data\ENEMY_ANIMATION.h" />
     <ClInclude Include="header\device\GameDevice.h" />
     <ClInclude Include="header\device\IInputPattern.h" />
     <ClInclude Include="header\device\InputPattern_A.h" />
@@ -352,9 +352,6 @@
     <ClInclude Include="header\ui\SelectUI.h" />
     <ClInclude Include="header\ui\SlideImage.h" />
     <ClInclude Include="header\ui\TitleUI.h" />
-    <ClInclude Include="Util\BasicShapes.h" />
-    <ClInclude Include="Util\EffectGL.h" />
-    <ClInclude Include="Util\RenderTarget.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

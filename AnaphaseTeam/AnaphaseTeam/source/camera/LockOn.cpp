@@ -1,6 +1,6 @@
 #include "../../header/camera/LockOn.h"
 #include "../../header/actor/Enemy/EnemyManager.h"
-#include "../../header/actor/Player/Player.h";
+#include "../../header/actor/Player/Player.h"
 
 LockOn::LockOn()
 	:m_player(nullptr),
@@ -19,7 +19,6 @@ void LockOn::nearEnemyFind(EnemyManager * _enemys)
 		return;
 	}
 	m_target = _enemys->nearEnemy(m_player);
-
 }
 
 void LockOn::addPlayer(Player * _player)
@@ -39,4 +38,9 @@ void LockOn::look_at(CameraController * _camera)
 void LockOn::homing()
 {
 	m_player->attackhoming(m_target);
+}
+
+void LockOn::thinksEnemy(EnemyManager * _enemys)
+{
+	_enemys->thinks(m_player);
 }

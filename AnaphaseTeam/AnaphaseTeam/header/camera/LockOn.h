@@ -30,6 +30,8 @@ public:
 	void look_at(CameraController* _camera);
 	void homing();
 
+	//æ‚è‚ ‚¦‚¸ƒvƒŒƒCƒ„[‚ğ‚Á‚Ä‚é‚Ì‚Å‚±‚±‚É‘‚¢‚½
+	void thinksEnemy(EnemyManager* _enemys);
 private:
 	//! Player‚ÆEnemy‚Æ‚Ì‹——£
 	float m_distance;

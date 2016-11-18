@@ -80,7 +80,7 @@ void Load::loadModel()
 	LoadMesh mesh;
 	LoadModel model;
 	model(MODEL_ID::PLAYER, "player/woman003");
-	model(MODEL_ID::BOSS, "boss/bos3");
+	model(MODEL_ID::ENEMY, "enemy/skeleton");
 
 	mesh(MESH_ID::SKY, "sky/skydome");
 	//meshïêäÌÅ@äô

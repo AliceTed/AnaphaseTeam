@@ -37,7 +37,8 @@ Player::Player(GameDevice* _device, Camera * _camera, LockOn* _lockon)
 	m_isJumpAttack(false),
 	m_group(std::make_shared<CollisionGroup>(this)),
 	m_Gauge(),
-	m_avoid(this), degree(0.0f), m_lockon(_lockon),
+	m_avoid(this),
+	m_lockon(_lockon),
 	m_scythe(),
 	m_SpecialSkillManager(m_Gauge, this),
 	m_currentAction(nullptr)
@@ -88,7 +89,6 @@ void Player::draw(const Renderer & _renderer, const Camera & _camera)
 
 	m_Gauge.draw(_renderer);
 	m_scythe.draw(_renderer);
-	_renderer.getDraw2D().string(std::to_string(degree), &GSvector2(20, 20), 30);
 	_renderer.getDraw2D().string(std::to_string(m_transform.getYaw()), &GSvector2(20, 40), 30);
 	_renderer.getDraw2D().string(std::to_string(m_status.getHp()), &GSvector2(200, 60), 30);
 	_renderer.getDraw2D().string(std::to_string(m_Gauge.scale(3.0f)), &GSvector2(200, 80), 30);
@@ -237,7 +237,7 @@ void Player::attackhoming(Enemy * _enemy)
 		return;
 	}
 	Math::Clamp clamp;
-	m_transform.rotate(targetDirection(*_enemy));
+	m_transform.m_rotate=targetDirection(*_enemy);
 
 	float attack_distance = 1.0f;
 	attack_distance = clamp(m_Gauge.scale(attack_distance), 1.0f, 5.0f);
@@ -440,9 +440,7 @@ void Player::rotate(float deltaTime, Transform & _transform)
 	GSvector3 forward(_transform.front()*-dir.y);
 	GSvector3 side(_transform.left()*dir.x);
 	GSvector3 velocity = forward + side;
-	Math::ATan atan;
-	float degree = atan(velocity.x, velocity.z);
-	m_transform.m_rotate = GSquaternion(degree, GSvector3(0, 1, 0));
+	m_transform.m_rotate = GSquaternion(velocity.getYaw(), GSvector3(0, 1, 0));
 }
 
 void Player::movement(float deltaTime, float _speed)
@@ -464,9 +462,4 @@ const bool Player::isAvoid() const
 const bool Player::isAnimationEnd() const
 {
 	return m_animatorOne.isEndCurrentAnimation();
-}
-
-const GSvector3 Player::getPosition() const
-{
-	return m_transform.m_translate;
 }

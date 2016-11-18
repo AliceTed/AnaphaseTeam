@@ -1,6 +1,4 @@
 #include <GSgame.h>
-#include "../Util/EffectGL.h"
-#include "../Util/BasicShapes.h"
 #include "../header/math/Calculate.h"
 #include "../header/data/Release.h"
 

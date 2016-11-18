@@ -9,7 +9,6 @@
 */
 #include<gslib.h>
 #include "../data/Model_ID.h"
-#include <map>
 #include <memory>
 #include "Animation.h"
 #include <vector>

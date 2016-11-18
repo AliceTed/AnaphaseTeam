@@ -66,12 +66,8 @@ const GSquaternion Actor::targetDirection(const Actor & _target) const
 {
 	GSvector3 vector = _target.m_transform.m_translate - m_transform.m_translate;
 	Math::ATan atan;
-	float radian = atan(vector.x, vector.z);
-	Math::RadToDeg rtd;
-	float degree = rtd(radian);
-	
-	
-	return GSquaternion(degree, { 0,1,0 });
+	float radian = atan(vector.z, vector.x);
+	return GSquaternion(radian, { 0,1,0 });
 }
 const bool Actor::isSameActor(const Actor * _other) const
 {
