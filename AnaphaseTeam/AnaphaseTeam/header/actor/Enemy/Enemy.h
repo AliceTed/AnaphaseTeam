@@ -2,6 +2,7 @@
 #include "../Actor.h"
 #include "../../collision/CollisionManager.h"
 #include "../../../header/camera/CameraController.h"
+#include "../../convenient/Timer.h"
 class EnemyCollision;
 class Player;
 //éÊÇËÇ†Ç¶Ç∏enumÇ≈èÛë‘ï™ÇØ
@@ -31,7 +32,7 @@ public:
 	void think(Player* _palyer);
 private:
 	const bool isNear(float _distance)const;
-	void state();
+	void state(float deltaTime);
 	const bool isDamageState()const;
 private:
 	void slide(Actor* _actor);
@@ -39,5 +40,8 @@ private:
 private:
 	Group_Ptr m_group;
 	ESTATE m_state;
+	Timer m_stay_timer;
+	GSvector3 m_velocity;
+	GSquaternion m_rotate;
 	static const float PLAYER_DISTANCE;
 };
