@@ -44,4 +44,5 @@ private:
 	GSvector3 m_velocity;
 	GSquaternion m_rotate;
 	static const float PLAYER_DISTANCE;
+	float m_hp;
 };

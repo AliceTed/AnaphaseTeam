@@ -31,6 +31,6 @@ void SpecialAttackCollision::doUpdate(float deltaTime)
 
 void SpecialAttackCollision::doDraw(const Renderer & _renderer)
 {
-	m_shape->draw(_renderer);
-	_renderer.getDraw2D().string(m_text, &GSvector2(10, 10), 20);
+	//m_shape->draw(_renderer);
+	//_renderer.getDraw2D().string(m_text, &GSvector2(10, 10), 20);
 }

@@ -62,6 +62,7 @@ public:
 	void homing();
 	void specialAttack();
 	void collisionChase(SpecialAttackCollision* _collision);
+	void gaugeAdd();
 public:
 	const bool isGround() const;
 	const bool isJumpAttack()const;

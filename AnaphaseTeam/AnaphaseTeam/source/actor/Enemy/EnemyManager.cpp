@@ -49,6 +49,11 @@ void EnemyManager::thinks(Player * _player)
 	for (auto& i : m_enemys) { i->think(_player); }
 }
 
+int EnemyManager::size()
+{
+	return m_enemys.size();
+}
+
 void EnemyManager::remove()
 {
 	auto itr = std::remove_if(m_enemys.begin(), m_enemys.end(), [](Enemy_Ptr& _e) {return _e->isDead();});

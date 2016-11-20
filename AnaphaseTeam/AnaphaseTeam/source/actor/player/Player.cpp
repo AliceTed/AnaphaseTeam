@@ -89,9 +89,11 @@ void Player::draw(const Renderer & _renderer, const Camera & _camera)
 
 	m_Gauge.draw(_renderer);
 	m_scythe.draw(_renderer);
-	_renderer.getDraw2D().string(std::to_string(m_device->input()->velocity().y), &GSvector2(20, 40), 30);
-	_renderer.getDraw2D().string(std::to_string(m_status.getHp()), &GSvector2(200, 60), 30);
-	_renderer.getDraw2D().string(std::to_string(m_Gauge.scale(1.0f)), &GSvector2(200, 80), 30);
+	//_renderer.getDraw2D().string(std::to_string(m_status.getHp()), &GSvector2(200, 60), 30);
+	_renderer.getDraw2D().textrue(TEXTURE_ID::BLACK, &GSvector2(0, 0),
+		&GSrect(0, 0, 100, 30), &GSvector2(0, 0), &GSvector2(1, 1), 0.0f);
+	_renderer.getDraw2D().textrue(TEXTURE_ID::CLEAR, &GSvector2(0, 0),
+		&GSrect(0, 0, m_status.getHp(), 30), &GSvector2(0, 0), &GSvector2(1, 1), 0.0f, &GScolor(0.0f, 1.0f, 0.0f, 1.0f));
 }
 
 void Player::inGround()
@@ -237,14 +239,15 @@ void Player::attackhoming(Enemy * _enemy)
 		return;
 	}
 	Math::Clamp clamp;
-	
+
+	if (_enemy == nullptr) return;
 	if (m_device->input()->velocity().y >= 0)
 	{
-	m_transform.m_rotate=targetDirection(*_enemy);
+		m_transform.m_rotate = targetDirection(*_enemy);
 	}
 
 	float velocity = distanceActor(*_enemy) / 5.0f;
-	velocity= clamp(m_Gauge.scale(velocity), 0.0f, distanceActor(*_enemy) - 1.0f);
+	velocity = clamp(m_Gauge.scale(velocity), 0.0f, distanceActor(*_enemy) - 1.0f);
 	//velocity /= 5.0f;
 	m_transform.translate_front(velocity);
 }
@@ -262,6 +265,11 @@ void Player::specialAttack()
 void Player::collisionChase(SpecialAttackCollision * _collision)
 {
 	_collision->chase(m_transform.m_translate);
+}
+
+void Player::gaugeAdd()
+{
+	m_Gauge.up(10);
 }
 
 void Player::startJump(JumpControl * _control, float _scale)

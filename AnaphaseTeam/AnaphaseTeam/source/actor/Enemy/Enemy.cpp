@@ -5,7 +5,7 @@
 #include "../../../header/actor/Player/Player.h"
 #include "../../../header/data/ENEMY_ANIMATION.h"
 
-const float Enemy::PLAYER_DISTANCE=10;
+const float Enemy::PLAYER_DISTANCE = 10;
 Enemy::Enemy(const Transform & _transform)
 	:Actor(_transform, MODEL_ID::ENEMY,
 		Sphere(GSvector3(0, 0, 0), 1.0f),
@@ -13,7 +13,8 @@ Enemy::Enemy(const Transform & _transform)
 	m_group(std::make_shared<CollisionGroup>(this)),
 	m_state(ESTATE::SPAWN),
 	m_stay_timer(5),
-	m_velocity(0,0,0)
+	m_velocity(0, 0, 0),
+	m_hp(100)
 {
 }
 void Enemy::addCollisionGroup(CollisionManager * _manager)
@@ -27,6 +28,7 @@ void Enemy::initialize()
 	m_animatorOne.changeAnimation(static_cast<GSuint>(ENEMY_ANIMATION::SPAWN));
 	m_state = ESTATE::SPAWN;
 	m_stay_timer.initialize();
+	m_hp = 100;
 }
 void Enemy::update(float deltatime)
 {
@@ -35,6 +37,11 @@ void Enemy::update(float deltatime)
 	m_animatorOne.update(deltatime);
 	state(deltatime);
 	sphereChases(GSvector3(0, 1, 0));
+	if (m_hp <= 0)
+	{
+		m_isDead = true;
+		m_group->initialize();
+	}
 }
 
 void Enemy::draw(const Renderer & _renderer, const Camera & _camera)
@@ -44,6 +51,7 @@ void Enemy::draw(const Renderer & _renderer, const Camera & _camera)
 	alphaBlend(_camera);
 	//_renderer.getDraw3D().drawMesh_calcu(MODEL_ID::PLAYER, m_transform, m_animatorOne, m_Color);
 	m_animatorOne.draw(m_transform);
+	_renderer.getDraw2D().string(std::to_string(m_hp), &GSvector2(500, 80), 30);
 }
 
 void Enemy::collisionChase(EnemyCollision * _collision)
@@ -55,13 +63,16 @@ void Enemy::damage(Player * _player)
 {
 	if (isDamageState())return;
 	m_state = ESTATE::DAMAGE;
+	//‚±‚±
 	m_animatorOne.changeAnimation(static_cast<GSuint>(ENEMY_ANIMATION::DAMAGE));
 	m_transform.translate_front(-0.1f);
+	m_hp -= 10;
+	_player->gaugeAdd();
 }
 
 const bool Enemy::isNear(float _distance) const
 {
-	return _distance <PLAYER_DISTANCE;
+	return _distance < PLAYER_DISTANCE;
 }
 
 void Enemy::state(float deltaTime)
@@ -72,12 +83,12 @@ void Enemy::state(float deltaTime)
 	case ESTATE::SPAWN:
 		if (m_animatorOne.isEndCurrentAnimation())
 		{
-			m_state = ESTATE::STAND;			
+			m_state = ESTATE::STAND;
 		}
 		break;
 	case ESTATE::STAND:
-		m_velocity = GSvector3(0,0,0);
-		m_animatorOne.changeAnimation(static_cast<GSuint>(ENEMY_ANIMATION::STAND),true,true);
+		m_velocity = GSvector3(0, 0, 0);
+		m_animatorOne.changeAnimation(static_cast<GSuint>(ENEMY_ANIMATION::STAND), true, true);
 		m_stay_timer.update(deltaTime);
 		break;
 	case ESTATE::MOVE:
@@ -105,14 +116,16 @@ const bool Enemy::isDamageState() const
 
 void Enemy::slide(Actor * _actor)
 {
-	m_rotate = targetDirection(*_actor);
 	m_velocity = m_transform.left()*0.03f;
+	if (_actor == nullptr) return;
+	m_rotate = targetDirection(*_actor);
 }
 
 void Enemy::move(Actor * _actor)
 {
-	m_rotate = (targetDirection(*_actor));
 	m_velocity = m_transform.front()*0.05f;
+	if (_actor == nullptr) return;
+	m_rotate = (targetDirection(*_actor));
 }
 
 void Enemy::look_at(CameraController* _camera, Player* _player)
@@ -135,7 +148,7 @@ void Enemy::think(Player * _player)
 		return;
 	}
 	if (isNear(distance))
-	{		
+	{
 		m_state = ESTATE::SLIDE;
 		slide(_player);
 		return;

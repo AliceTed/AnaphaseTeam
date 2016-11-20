@@ -28,9 +28,12 @@ void GamePlay::initialize()
 	m_player.initialize();
 	//m_boss.initialize();
 	m_enemys.initialize();
-	Enemy* e=new Enemy(Transform(0, { 0,0,0 }, { 0,0,0 }));
-	e->addCollisionGroup(&collision);
-	m_enemys.add(e);
+	for (int i = 0; i < 4; i++)
+	{
+		Enemy* e = new Enemy(Transform(0, { 0,0,0 }, { i*3.0f,0,0 }));
+		e->addCollisionGroup(&collision);
+		m_enemys.add(e);
+	}
 
 	Boss boss;
 	boss.initialize();
@@ -51,6 +54,13 @@ void GamePlay::update(float deltaTime)
 	m_enemys.update(deltaTime);
 
 	collision.update(deltaTime);
+
+	for (int i = 0; i < 4 - m_enemys.size(); i++)
+	{
+		Enemy* e = new Enemy(Transform(0, { 0,0,0 }, { i*3.0f,0,0 }));
+		e->addCollisionGroup(&collision);
+		m_enemys.add(e);
+	}
 
 
 	//m_player.attackhoming(&m_lockon.get(m_enemys));
