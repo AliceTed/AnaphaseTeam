@@ -2,6 +2,7 @@
 #include "../../../header/scene/each/Ending.h"
 #include "../../../header/renderer/Renderer.h"
 #include "../../../header/device/GameDevice.h"
+#include "../../../header/math/Random.h"
 GamePlay::GamePlay(GameDevice* _device)
 	:m_IsEnd(false),
 	m_device(_device),
@@ -28,9 +29,10 @@ void GamePlay::initialize()
 	m_player.initialize();
 	//m_boss.initialize();
 	m_enemys.initialize();
-	for (int i = 0; i < 4; i++)
+	Math::Random rnd;
+	for (int i = 0; i < 2; i++)
 	{
-		Enemy* e = new Enemy(Transform(0, { 0,0,0 }, { i*3.0f,0,0 }));
+		Enemy* e = new Enemy(Transform(0, { 0,0,0 }, { rnd(-10.0f,10.0f),0,rnd(-10.0f,10.0f)}));
 		e->addCollisionGroup(&collision);
 		m_enemys.add(e);
 	}
@@ -55,9 +57,10 @@ void GamePlay::update(float deltaTime)
 
 	collision.update(deltaTime);
 
-	for (int i = 0; i < 4 - m_enemys.size(); i++)
+	for (int i = 0; i < 2- m_enemys.size(); i++)
 	{
-		Enemy* e = new Enemy(Transform(0, { 0,0,0 }, { i*3.0f,0,0 }));
+		Math::Random rnd;
+		Enemy* e = new Enemy(Transform(0, { 0,0,0 }, { rnd(-10.0f,10.0f),0,rnd(-10.0f,10.0f) }));
 		e->addCollisionGroup(&collision);
 		m_enemys.add(e);
 	}

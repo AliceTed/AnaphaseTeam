@@ -12,7 +12,7 @@ Enemy::Enemy(const Transform & _transform)
 		Actor_Tag::ENEMY),
 	m_group(std::make_shared<CollisionGroup>(this)),
 	m_state(ESTATE::SPAWN),
-	m_stay_timer(5),
+	m_stay_timer(2),
 	m_velocity(0, 0, 0),
 	m_hp(100),
 	m_incidence()
@@ -77,7 +77,7 @@ const bool Enemy::isNear(float _distance) const
 
 void Enemy::state(float deltaTime)
 {
-	//Math::Random rand;
+	Math::Random rand;
 	switch (m_state)
 	{
 	case ESTATE::SPAWN:
@@ -150,6 +150,7 @@ void Enemy::think(Player * _player)
 	if (rnd(0, 200) == 0)
 	{
 		m_state = ESTATE::STAND;
+		m_stay_timer.setEndTime(rnd(1.0f,4.0f));
 		m_stay_timer.initialize();
 		return;
 	}
