@@ -85,7 +85,7 @@ void Player::draw(const Renderer & _renderer, const Camera & _camera)
 	FALSE_RETURN(isInsideView(_camera));
 	alphaBlend(_camera);
 	//_renderer.getDraw3D().drawMesh_calcu(MODEL_ID::PLAYER, m_transform, m_animatorOne, m_Color);
-	m_animatorOne.draw(m_transform);
+	m_animatorOne.draw(_renderer,m_transform);
 
 	m_Gauge.draw(_renderer);
 	m_scythe.draw(_renderer);

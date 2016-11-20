@@ -4,7 +4,7 @@
 #include "../../../header/math/Random.h"
 #include "../../../header/actor/Player/Player.h"
 #include "../../../header/data/ENEMY_ANIMATION.h"
-
+#include "../../../header/collision/EnemyAttackCollision.h"
 const float Enemy::PLAYER_DISTANCE = 10;
 Enemy::Enemy(const Transform & _transform)
 	:Actor(_transform, MODEL_ID::ENEMY,
@@ -14,8 +14,13 @@ Enemy::Enemy(const Transform & _transform)
 	m_state(ESTATE::SPAWN),
 	m_stay_timer(5),
 	m_velocity(0, 0, 0),
-	m_hp(100)
+	m_hp(100),
+	m_incidence()
 {
+}
+Enemy::~Enemy()
+{
+	m_group->initialize();
 }
 void Enemy::addCollisionGroup(CollisionManager * _manager)
 {
@@ -37,11 +42,7 @@ void Enemy::update(float deltatime)
 	m_animatorOne.update(deltatime);
 	state(deltatime);
 	sphereChases(GSvector3(0, 1, 0));
-	if (m_hp <= 0)
-	{
-		m_isDead = true;
-		m_group->initialize();
-	}
+	m_isDead = m_hp <= 0;
 }
 
 void Enemy::draw(const Renderer & _renderer, const Camera & _camera)
@@ -49,8 +50,7 @@ void Enemy::draw(const Renderer & _renderer, const Camera & _camera)
 	//‹——£‚Ì“§‰ß‚È‚Ç‚Íshader‚É”C‚¹‚é—\’è
 	FALSE_RETURN(isInsideView(_camera));
 	alphaBlend(_camera);
-	//_renderer.getDraw3D().drawMesh_calcu(MODEL_ID::PLAYER, m_transform, m_animatorOne, m_Color);
-	m_animatorOne.draw(m_transform);
+	m_animatorOne.draw(_renderer, m_transform);
 	_renderer.getDraw2D().string(std::to_string(m_hp), &GSvector2(500, 80), 30);
 }
 
@@ -98,7 +98,13 @@ void Enemy::state(float deltaTime)
 		m_animatorOne.changeAnimation(static_cast<unsigned int>(ENEMY_ANIMATION::SLIDE), true, true);
 		break;
 	case ESTATE::ATTACK:
-
+		m_incidence.setWorldTransform(m_animatorOne.getOrientedMat(14));
+		m_incidence.synthesisWorldTransform(m_transform);
+		m_animatorOne.changeAnimation(static_cast<unsigned int>(ENEMY_ANIMATION::ATTACK),false);
+		if (m_animatorOne.isEndCurrentAnimation())
+		{
+			m_state = ESTATE::STAND;
+		}
 		break;
 	case ESTATE::DAMAGE:
 		if (m_animatorOne.isEndCurrentAnimation())
@@ -145,6 +151,14 @@ void Enemy::think(Player * _player)
 	{
 		m_state = ESTATE::STAND;
 		m_stay_timer.initialize();
+		return;
+	}
+	if (rnd(0, 200) == 0)
+	{
+		Collision_Ptr actor = std::make_shared<EnemyAttackCollision>(&m_incidence);
+		m_group->add(actor);
+		m_state = ESTATE::ATTACK;
+		m_animatorOne.getOrientedMat(14);
 		return;
 	}
 	if (isNear(distance))
