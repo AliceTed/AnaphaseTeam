@@ -100,7 +100,7 @@ void Enemy::state(float deltaTime)
 
 const bool Enemy::isDamageState() const
 {
-	return m_state == ESTATE::STAND || m_state == ESTATE::MOVE || m_state == ESTATE::ATTACK;
+	return m_state == ESTATE::MOVE || m_state == ESTATE::ATTACK;
 }
 
 void Enemy::slide(Actor * _actor)
@@ -114,7 +114,6 @@ void Enemy::move(Actor * _actor)
 	m_rotate = (targetDirection(*_actor));
 	m_velocity = m_transform.front()*0.05f;
 }
-
 
 void Enemy::look_at(CameraController* _camera, Player* _player)
 {
