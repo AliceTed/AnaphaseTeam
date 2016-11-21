@@ -52,6 +52,8 @@ void GamePlay::update(float deltaTime)
 
 	collision.update(deltaTime);
 
+	if (m_device->input()->gaugeAttack1())
+		m_change.end(SceneMode::ENDING);
 
 	//m_player.attackhoming(&m_lockon.get(m_enemys));
 
