@@ -10,7 +10,6 @@ Enemy::Enemy(const Transform & _transform)
 	:Actor(_transform, MODEL_ID::ENEMY,
 		Sphere(GSvector3(0, 0, 0), 1.0f),
 		Actor_Tag::ENEMY),
-	m_group(std::make_shared<CollisionGroup>(this)),
 	m_state(ESTATE::SPAWN),
 	m_stay_timer(2),
 	m_velocity(0, 0, 0),
@@ -20,16 +19,12 @@ Enemy::Enemy(const Transform & _transform)
 }
 Enemy::~Enemy()
 {
-	m_group->initialize();
-}
-void Enemy::addCollisionGroup(CollisionManager * _manager)
-{
-	_manager->add(m_group);
 }
 void Enemy::initialize()
 {
+	Actor::initialize();
 	Collision_Ptr actor = std::make_shared<EnemyCollision>(this);
-	m_group->add(actor);
+	m_collision.add(actor);
 	m_animatorOne.changeAnimation(static_cast<GSuint>(ENEMY_ANIMATION::SPAWN));
 	m_state = ESTATE::SPAWN;
 	m_stay_timer.initialize();
@@ -43,6 +38,7 @@ void Enemy::update(float deltatime)
 	state(deltatime);
 	sphereChases(GSvector3(0, 1, 0));
 	m_isDead = m_hp <= 0;
+	m_collision.update(deltatime);
 }
 
 void Enemy::draw(const Renderer & _renderer, const Camera & _camera)
@@ -50,6 +46,7 @@ void Enemy::draw(const Renderer & _renderer, const Camera & _camera)
 	//‹——£‚Ì“§‰ß‚È‚Ç‚Íshader‚É”C‚¹‚é—\’è
 	FALSE_RETURN(isInsideView(_camera));
 	alphaBlend(_camera);
+	m_collision.draw(_renderer);
 	m_animatorOne.draw(_renderer, m_transform);
 	_renderer.getDraw2D().string(std::to_string(m_hp), &GSvector2(500, 80), 30);
 }
@@ -135,10 +132,10 @@ void Enemy::move(Actor * _actor)
 
 void Enemy::attack_start()
 {
-	m_animatorOne.changeAnimation(static_cast<unsigned int>(ENEMY_ANIMATION::ATTACK), false,false,true,0);
-	float end = m_animatorOne.getCurrentAnimationEndTime() / 60.0f;
+	m_animatorOne.changeAnimation(static_cast<unsigned int>(ENEMY_ANIMATION::ATTACK), false,false,false,0);
+	float end = m_animatorOne.getCurrentAnimationEndTime()/60.0f;
 	Collision_Ptr actor = std::make_shared<EnemyAttackCollision>(&m_incidence, end);
-	m_group->add(actor);
+	m_collision.add(actor);
 	m_state = ESTATE::ATTACK;
 }
 

@@ -3,8 +3,6 @@
 #include <gslib.h>
 #include "../math/TimeLerpVector.h"
 #include "../../header/convenient/Timer.h"
-#include "../../header/collision/CollisionManager.h"
-
 class Player;
 struct Transform;
 class Avoid
@@ -14,10 +12,7 @@ public:
 	~Avoid();
 	void initialize();
 	void update(float deltaTime);
-	const bool isEnd()const;
-	bool isjustTimeEnd();
-	void justAvoidRange(Group_Ptr _group, Transform & _transform);
-	
+	const bool isEnd()const;	
 private:
 	Player* m_player;
 	GSvector3 m_prebious;

@@ -14,6 +14,8 @@ public:
 	void add(Enemy* _enemy);
 	void update(float deltaTime);
 	void collisionGround(const Map& _map);
+
+	void collision(Actor& _actor);
 	void draw(const Renderer& _renderer,const Camera& _camera);
 	Enemy* nearEnemy(Player* _player);
 

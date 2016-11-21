@@ -1,6 +1,5 @@
 #pragma once
 #include "../Actor.h"
-#include "../../collision/CollisionManager.h"
 #include "../../../header/camera/CameraController.h"
 #include "../../convenient/Timer.h"
 #include "../../attack/AttackIncidence.h"
@@ -22,7 +21,6 @@ class Enemy :public Actor
 public:
 	Enemy(const Transform& _transform);
 	~Enemy();
-	void addCollisionGroup(CollisionManager*  _manager)override;
 	void initialize() override;
 	void update(float deltatime)override;
 	void draw(const Renderer& _renderer, const Camera& _camera)override;
@@ -42,7 +40,6 @@ private:
 	void attack_start();
 	void stay_start();
 private:
-	Group_Ptr m_group;
 	ESTATE m_state;
 	Timer m_stay_timer;
 	GSvector3 m_velocity;

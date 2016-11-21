@@ -29,6 +29,11 @@ void EnemyManager::collisionGround(const Map & _map)
 	for (auto& i : m_enemys) { i->collisionGround(_map); }
 }
 
+void EnemyManager::collision(Actor & _actor)
+{
+	for (auto& i : m_enemys) { i->collision(_actor); }
+}
+
 void EnemyManager::draw(const Renderer & _renderer, const Camera& _camera)
 {
 	for (auto& i : m_enemys) { i->draw(_renderer,_camera); }

@@ -15,6 +15,7 @@ EnemyAttackCollision::~EnemyAttackCollision()
 void EnemyAttackCollision::doUpdate(float deltaTime)
 {
 	m_shape->transfer(m_point->point());
+	m_destory_timer.update(deltaTime);
 	if (m_destory_timer.isEnd())
 	{
 		destroy();

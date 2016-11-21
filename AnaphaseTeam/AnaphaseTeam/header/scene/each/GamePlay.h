@@ -5,7 +5,6 @@
 #include "../../actor/Actor.h"
 #include "../../entity/EntityManager.h"
 #include "../../map/Map.h"
-#include "../../collision/CollisionManager.h"
 #include <memory>
 #include "../../actor/Player/Player.h"
 #include "../../actor/Boss/Boss.h"
@@ -37,8 +36,6 @@ private:
 	Map m_Map;
 	Camera m_Camera;
 	CameraController m_cameracontroller;
-	//Entity::EntityManager<Actor_Ptr> actorManager;
-	CollisionManager collision;
 	Player m_player;
 	EnemyManager m_enemys;
 	LockOn m_lockon;
