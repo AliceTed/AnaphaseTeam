@@ -57,7 +57,6 @@ void Player::initialize()
 {
 	Actor::initialize();
 	actionChange(std::make_shared<StandState>());
-	m_animatorOne.initialize();
 	m_animatorOne.changeAnimation(static_cast<GSuint>(ANIMATION_ID::STAND), true, true, true);
 	m_isJumpAttack = false;
 	createColision();
@@ -430,4 +429,9 @@ const bool Player::isAvoid() const
 const bool Player::isAnimationEnd() const
 {
 	return m_animatorOne.isEndCurrentAnimation();
+}
+
+void Player::changeAnimation(unsigned int _animID)
+{
+	m_animatorOne.changeAnimation(_animID);
 }

@@ -10,6 +10,7 @@
 #include "Scythe.h"
 #include "Gun.h"
 #include "ComboManager.h"
+
 typedef std::shared_ptr<Shape> Shape_Ptr;
 class Player;
 class CollisionMediator;

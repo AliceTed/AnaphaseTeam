@@ -348,9 +348,6 @@
     <ClInclude Include="header\shape\Shape.h">
       <Filter>ヘッダー ファイル\shape</Filter>
     </ClInclude>
-    <ClInclude Include="header\animation\Animator.h">
-      <Filter>ヘッダー ファイル\animation</Filter>
-    </ClInclude>
     <ClInclude Include="header\animation\AnimatorOne.h">
       <Filter>ヘッダー ファイル\animation</Filter>
     </ClInclude>
@@ -537,6 +534,9 @@
     <ClInclude Include="header\data\ENEMY_ANIMATION.h">
       <Filter>ヘッダー ファイル\data\id</Filter>
     </ClInclude>
+    <ClInclude Include="header\animation\AnimMediator.h">
+      <Filter>ヘッダー ファイル\animation</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="source\main.cpp">
@@ -642,9 +642,6 @@
       <Filter>ソース ファイル\shape</Filter>
     </ClCompile>
     <ClCompile Include="source\animation\AnimatorOne.cpp">
-      <Filter>ソース ファイル\animation</Filter>
-    </ClCompile>
-    <ClCompile Include="source\animation\Animator.cpp">
       <Filter>ソース ファイル\animation</Filter>
     </ClCompile>
     <ClCompile Include="source\convenient\Point.cpp">

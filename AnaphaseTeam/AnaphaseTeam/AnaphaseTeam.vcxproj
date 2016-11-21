@@ -199,7 +199,6 @@
     <ClCompile Include="source\subAction\SubActionManager.cpp" />
     <ClCompile Include="source\animation\Animation.cpp" />
     <ClCompile Include="source\animation\AnimationTimer.cpp" />
-    <ClCompile Include="source\animation\Animator.cpp" />
     <ClCompile Include="source\convenient\Timer.cpp" />
     <ClCompile Include="source\data\LoadError.cpp" />
     <ClCompile Include="source\data\Release.cpp" />
@@ -250,6 +249,7 @@
     <ClInclude Include="header\actor\Player\specialSkill\SpecialSkillManager.h" />
     <ClInclude Include="header\actor\Player\specialSkill\SuperArmor.h" />
     <ClInclude Include="header\actor\Player\Status.h" />
+    <ClInclude Include="header\animation\AnimMediator.h" />
     <ClInclude Include="header\attack\AttackManager.h" />
     <ClInclude Include="header\attack\AttackPattern.h" />
     <ClInclude Include="header\attack\AttackStatus.h" />
@@ -301,7 +301,6 @@
     <ClInclude Include="header\subAction\SubActionManager.h" />
     <ClInclude Include="header\animation\Animation.h" />
     <ClInclude Include="header\animation\AnimationTimer.h" />
-    <ClInclude Include="header\animation\Animator.h" />
     <ClInclude Include="header\array\Array.h" />
     <ClInclude Include="header\array\Array2D.h" />
     <ClInclude Include="header\convenient\Timer.h" />

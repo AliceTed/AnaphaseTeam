@@ -7,14 +7,13 @@
 */
 #include "../Actor.h"
 #include "../../animation/Animation.h"
-#include "../../animation/Animator.h"
 #include "../../actionstate/IActionState.h"
 #include "../../convenient/Timer.h"
 #include<gslib.h>
 #include <memory>
 #include "../Actor.h"
 #include "../ICharacter.h"
-
+#include "../../animation/AnimMediator.h"
 #include "../../../header/subAction/SubActionManager.h"
 #include "../../attack/attackManager.h"
 #include "../../data/ANIMATION_ID.h"
@@ -32,7 +31,7 @@ class LockOn;
 class Enemy;
 
 typedef std::shared_ptr<IActionState> Action_Ptr;
-class Player :public Actor, public ICharacter
+class Player :public Actor, public ICharacter,public AnimMediator
 {
 public:
 	Player(GameDevice* _device,Camera * _camera, LockOn* _lockon);
@@ -62,6 +61,7 @@ public:
 	void homing();
 	void specialAttack();
 	void collisionChase(SpecialAttackCollision* _collision);
+	void changeAnimation(unsigned int _animID);
 public:
 	const bool isGround() const;
 	const bool isJumpAttack()const;

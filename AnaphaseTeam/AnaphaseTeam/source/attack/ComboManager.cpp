@@ -6,7 +6,8 @@ ComboManager::ComboManager()
 	:m_current(AttackStatus(0, 0, GSvector3()), ANIMATION_ID::ATTACK, Combo::End, Combo::End),
 	m_next(Combo::End),
 	m_attackPattern(),
-	m_isEnd(false)
+	m_isEnd(false),
+	m_attackFinished(false)
 {
 }
 
@@ -38,7 +39,7 @@ void ComboManager::create()
 	/*Attack QS(status, ANIMATION_ID::ATTACK5, Combo::QSQ, Combo::End);
 	Attack QSQ(status, ANIMATION_ID::ATTACK6, Combo::QSQQ, Combo::End);
 	Attack QSQQ(status, ANIMATION_ID::FATTACK, Combo::End, Combo::End);*/
-	Attack QS(status, ANIMATION_ID::ATTACK, Combo::QSQ, Combo::End);
+	Attack QS(status, ANIMATION_ID::ATTACK3, Combo::QSQ, Combo::End);
 	Attack QSQ(status, ANIMATION_ID::ATTACK2, Combo::QSQQ, Combo::End);
 	Attack QSQQ(status, ANIMATION_ID::ATTACK3, Combo::End, Combo::End);
 	m_attackPattern.insert(std::make_pair(Combo::QS, QS));
@@ -64,6 +65,7 @@ void ComboManager::initialize()
 void ComboManager::reset()
 {
 	m_isEnd = false;
+	m_attackFinished = false;
 }
 
 void ComboManager::Start(bool _attackChange)
@@ -81,19 +83,8 @@ void ComboManager::Start(bool _attackChange)
 
 void ComboManager::update(float deltaTime, Player* _player)
 {
-	if (_player->isNextAttack(m_current))
-	{
-		if (_player->isQuickAttack())
-		{
-			next(m_current.weakAttackNext());
-		}
 
-		if (_player->isSlowAttack())
-		{
-			next(m_current.strengthAttackNext());
-		}
-	}
-
+	nextAttack(deltaTime, _player);
 	m_current.update(deltaTime, _player);
 
 	if (isCurrentEnd(_player))
@@ -103,6 +94,28 @@ void ComboManager::update(float deltaTime, Player* _player)
 	}
 }
 
+void ComboManager::nextAttack(float deltaTime, Player* _player)
+{
+	if (!_player->isNextAttack(m_current))
+	{
+		m_attackFinished = false;
+		return;
+	}
+	nextIdentify(deltaTime, _player);
+}
+
+void ComboManager::nextIdentify(float deltaTime, Player* _player)
+{
+	if (_player->isQuickAttack())
+	{
+		next(m_current.weakAttackNext());
+	}
+
+	if (_player->isSlowAttack())
+	{
+		next(m_current.strengthAttackNext());
+	}
+}
 
 const bool ComboManager::isEnd() const
 {
@@ -117,6 +130,7 @@ void ComboManager::next(Combo _next)
 
 void ComboManager::change()
 {
+	if (m_attackFinished)return;
 	if (m_next == Combo::End)
 	{
 		m_isEnd = true;
@@ -124,6 +138,7 @@ void ComboManager::change()
 	}
 	m_current = m_attackPattern.at(m_next);
 	m_next = Combo::End;
+	m_attackFinished = true;
 }
 
 const bool ComboManager::isCurrentEnd(Player* _player) const
