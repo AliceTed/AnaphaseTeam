@@ -64,7 +64,7 @@ void Enemy::damage(Player * _player)
 	if (isDamageState())return;
 	m_state = ESTATE::DAMAGE;
 	//‚±‚±
-	m_animatorOne.changeAnimation(static_cast<GSuint>(ENEMY_ANIMATION::DAMAGE));
+	m_animatorOne.changeAnimation(static_cast<GSuint>(ENEMY_ANIMATION::DAMAGE),true,false,false,10.0f,1.2f);
 	m_transform.translate_front(-0.1f);
 	m_hp -= 10;
 	_player->gaugeAdd();
@@ -77,7 +77,6 @@ const bool Enemy::isNear(float _distance) const
 
 void Enemy::state(float deltaTime)
 {
-	Math::Random rand;
 	switch (m_state)
 	{
 	case ESTATE::SPAWN:
@@ -98,9 +97,9 @@ void Enemy::state(float deltaTime)
 		m_animatorOne.changeAnimation(static_cast<unsigned int>(ENEMY_ANIMATION::SLIDE), true, true);
 		break;
 	case ESTATE::ATTACK:
-		m_incidence.setWorldTransform(m_animatorOne.getOrientedMat(14));
+		m_incidence.setWorldTransform(m_animatorOne.getOrientedMat(8));
 		m_incidence.synthesisWorldTransform(m_transform);
-		m_animatorOne.changeAnimation(static_cast<unsigned int>(ENEMY_ANIMATION::ATTACK),false);
+		
 		if (m_animatorOne.isEndCurrentAnimation())
 		{
 			m_state = ESTATE::STAND;
@@ -134,6 +133,23 @@ void Enemy::move(Actor * _actor)
 	m_rotate = (targetDirection(*_actor));
 }
 
+void Enemy::attack_start()
+{
+	m_animatorOne.changeAnimation(static_cast<unsigned int>(ENEMY_ANIMATION::ATTACK), false,false,true,0);
+	float end = m_animatorOne.getCurrentAnimationEndTime() / 60.0f;
+	Collision_Ptr actor = std::make_shared<EnemyAttackCollision>(&m_incidence, end);
+	m_group->add(actor);
+	m_state = ESTATE::ATTACK;
+}
+
+void Enemy::stay_start()
+{
+	Math::Random rnd;
+	m_state = ESTATE::STAND;
+	m_stay_timer.setEndTime(rnd(1.0f, 4.0f));
+	m_stay_timer.initialize();
+}
+
 void Enemy::look_at(CameraController* _camera, Player* _player)
 {
 	GSvector3 target = m_transform.m_translate;
@@ -144,24 +160,18 @@ void Enemy::think(Player * _player)
 {
 	if (m_state == ESTATE::DAMAGE || m_state == ESTATE::ATTACK || m_state == ESTATE::SPAWN)return;
 	if (!m_stay_timer.isEnd())return;
-
-	float distance = distanceActor(*_player);
 	Math::Random rnd;
 	if (rnd(0, 200) == 0)
 	{
-		m_state = ESTATE::STAND;
-		m_stay_timer.setEndTime(rnd(1.0f,4.0f));
-		m_stay_timer.initialize();
+		stay_start();
 		return;
 	}
 	if (rnd(0, 200) == 0)
 	{
-		Collision_Ptr actor = std::make_shared<EnemyAttackCollision>(&m_incidence);
-		m_group->add(actor);
-		m_state = ESTATE::ATTACK;
-		m_animatorOne.getOrientedMat(14);
+		attack_start();
 		return;
 	}
+	float distance = distanceActor(*_player);
 	if (isNear(distance))
 	{
 		m_state = ESTATE::SLIDE;
