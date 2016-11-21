@@ -39,6 +39,8 @@ private:
 private:
 	void slide(Actor* _actor);
 	void move(Actor* _actor);
+	void attack_start();
+	void stay_start();
 private:
 	Group_Ptr m_group;
 	ESTATE m_state;
