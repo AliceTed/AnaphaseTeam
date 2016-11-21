@@ -27,11 +27,12 @@ void SpAttackUI::update()
 		{
 			m_scale = GSvector2(1, 1);
 		}
+
 	}
 
 	if (!m_input.spState())
 	{
-		if (m_ID == TEXTURE_ID::SP_UI)
+		if (m_ID == TEXTURE_ID::SP_UI || m_ID != TEXTURE_ID::SP_UI)
 		{
 			m_scale = GSvector2(0.6, 0.6);
 		}
@@ -41,7 +42,6 @@ void SpAttackUI::update()
 
 void SpAttackUI::draw(const Renderer& _renderer)
 {
-	//_renderer.getDraw2D().textrue(m_ID,&GSvector2(30, 30),&GSvector2(0,0),&GScolor(0,0,0,0));
 	_renderer.getDraw2D().textrue(m_ID, &GSvector2(250, 250),NULL,&GSvector2(250,250),&m_scale,0);
 }
 
