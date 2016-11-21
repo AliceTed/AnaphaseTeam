@@ -85,13 +85,15 @@ void Player::draw(const Renderer & _renderer, const Camera & _camera)
 	FALSE_RETURN(isInsideView(_camera));
 	alphaBlend(_camera);
 	//_renderer.getDraw3D().drawMesh_calcu(MODEL_ID::PLAYER, m_transform, m_animatorOne, m_Color);
-	m_animatorOne.draw(m_transform);
+	m_animatorOne.draw(_renderer,m_transform);
 
 	m_Gauge.draw(_renderer);
 	m_scythe.draw(_renderer);
-	_renderer.getDraw2D().string(std::to_string(m_transform.getYaw()), &GSvector2(20, 40), 30);
-	_renderer.getDraw2D().string(std::to_string(m_status.getHp()), &GSvector2(200, 60), 30);
-	_renderer.getDraw2D().string(std::to_string(m_Gauge.scale(3.0f)), &GSvector2(200, 80), 30);
+	//_renderer.getDraw2D().string(std::to_string(m_status.getHp()), &GSvector2(200, 60), 30);
+	_renderer.getDraw2D().textrue(TEXTURE_ID::BLACK, &GSvector2(0, 0),
+		&GSrect(0, 0, 100, 30), &GSvector2(0, 0), &GSvector2(1, 1), 0.0f);
+	_renderer.getDraw2D().textrue(TEXTURE_ID::CLEAR, &GSvector2(0, 0),
+		&GSrect(0, 0, m_status.getHp(), 30), &GSvector2(0, 0), &GSvector2(1, 1), 0.0f, &GScolor(0.0f, 1.0f, 0.0f, 1.0f));
 }
 
 void Player::inGround()
@@ -237,13 +239,17 @@ void Player::attackhoming(Enemy * _enemy)
 		return;
 	}
 	Math::Clamp clamp;
-	m_transform.m_rotate=targetDirection(*_enemy);
 
-	float attack_distance = 1.0f;
-	attack_distance = clamp(m_Gauge.scale(attack_distance), 1.0f, 5.0f);
-	attack_distance = clamp(attack_distance, 0.0f, distanceActor(*_enemy) - 3.0f);
-	GSvector3 forward(m_transform.front() * attack_distance);
-	m_transform.translate(forward);
+	if (_enemy == nullptr) return;
+	if (m_device->input()->velocity().y >= 0)
+	{
+		m_transform.m_rotate = targetDirection(*_enemy);
+	}
+
+	float velocity = distanceActor(*_enemy) / 5.0f;
+	velocity = clamp(m_Gauge.scale(velocity), 0.0f, distanceActor(*_enemy) - 1.0f);
+	//velocity /= 5.0f;
+	m_transform.translate_front(velocity);
 }
 
 void Player::homing()
@@ -259,6 +265,11 @@ void Player::specialAttack()
 void Player::collisionChase(SpecialAttackCollision * _collision)
 {
 	_collision->chase(m_transform.m_translate);
+}
+
+void Player::gaugeAdd()
+{
+	m_Gauge.up(10);
 }
 
 void Player::startJump(JumpControl * _control, float _scale)
@@ -348,11 +359,11 @@ void Player::control()
 {
 	if (m_device->input()->gaugeAttack1())
 	{
-		if(m_SpecialSkillManager.initialize(SPECIALTYPE::RECOVERY));
+		m_SpecialSkillManager.initialize(SPECIALTYPE::RECOVERY);
 	}
 	if (m_device->input()->gaugeAttack2())
 	{
-		if(m_SpecialSkillManager.initialize(SPECIALTYPE::SUPERARMOR));
+		m_SpecialSkillManager.initialize(SPECIALTYPE::SUPERARMOR);
 	}
 	if (m_device->input()->gaugeAttack3())
 	{
@@ -369,26 +380,6 @@ void Player::control()
 		m_isJumpAttack = !m_isGround;
 		m_attackManager.Start(true);
 		m_lockon->homing();
-
-		//////無理やり攻撃中に球判定をキャラの前に作る
-		//float radius = 1.5f;
-		//GSvector3 front = m_transform.front()*(radius*1.5f);
-		//GSvector3 pos(m_transform.getPosition() + front);
-		//pos.y += 1.0f;
-		//Shape_Ptr shape = std::make_shared<Sphere>(pos, radius);
-		//Collision_Ptr actor = std::make_shared<CollisionActor>(shape, CollisionActorType::PLAYER_ATTACK);
-		////actor->set_update([&](float deltaTime, Shape_Ptr _shape) { _shape->transfer(pos); });
-		//actor->set_update([&](float deltaTime, Shape_Ptr _shape)
-		//{
-		//	float radius = 1.5f;
-		//	GSvector3 front = m_transform.front()*(radius*1.5f);
-		//	GSvector3 pos(m_transform.getPosition() + front);
-		//	pos.y += 1.0f;
-		//	_shape->transfer(pos);
-		//});
-		//actor->set_dead([&]()->bool {return m_attackManager.isEnd(); });
-		//actor->set_draw([](const Renderer& _renderer, Shape_Ptr _shape) { _shape->draw(_renderer); });
-		//m_group->add(actor);
 	}
 
 	if (m_device->input()->slowAttackTrigger())
@@ -400,21 +391,6 @@ void Player::control()
 		m_lockon->homing();
 	}
 }
-//無理やり攻撃中に球判定をキャラの前に作る
-//		float radius = 1.5f;
-//		GSvector3 front = m_transform.front()*(radius*1.5f);
-//		GSvector3 pos(m_transform.getPosition() + front);
-//		pos.y += 1.0f;
-//		Shape_Ptr shape = std::make_shared<Sphere>(pos, radius);
-//		Collision_Ptr actor = std::make_shared<CollisionActor>(shape, CollisionActorType::PLAYER_ATTACK);
-//		actor->set_dead([&]()->bool {return m_attackManager.isEnd(); });
-//		actor->set_draw([](const Renderer& _renderer, Shape_Ptr _shape) { _shape->draw(_renderer); });
-//		m_group->add(actor);
-//		//m_Gauge.up(10.0f);
-//		m_Gauge.up(250.0f);
-//	}
-//
-//}
 
 void Player::look_at(CameraController * _camera, GSvector3 * _target)
 {

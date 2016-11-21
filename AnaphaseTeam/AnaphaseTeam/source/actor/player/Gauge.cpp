@@ -21,14 +21,15 @@ void Gauge::initialize()
 
 void Gauge::draw(const Renderer& _renderer)
 {
-	_renderer.getDraw2D().string(std::to_string((int)m_gauge), &GSvector2(0, 50), 50);
-	_renderer.getDraw2D().textrue(TEXTURE_ID::BLACK, &GSvector2(0,0), &GSrect(0,0,(int)RankGauge::MAX,30),&GSvector2(0,0),&GSvector2(1,1),0.0f);
-	_renderer.getDraw2D().textrue(TEXTURE_ID::CLEAR, &GSvector2(0, 0), &GSrect(0, 0, m_gauge, 30), &GSvector2(0, 0), &GSvector2(1, 1),0.0f,&GScolor(0.0f,1.0f,0.0f,1.0f));
+	_renderer.getDraw2D().textrue(TEXTURE_ID::BLACK, &GSvector2(0,50),
+		&GSrect(0,0,(int)RankGauge::MAX,30),&GSvector2(0,0),&GSvector2(1,1),0.0f);
+	_renderer.getDraw2D().textrue(TEXTURE_ID::CLEAR, &GSvector2(0, 50),
+		&GSrect(0, 0, m_gauge, 30), &GSvector2(0, 0), &GSvector2(1, 1),0.0f,&GScolor(1.0f,1.0f,0.0f,1.0f));
 }
 
 void Gauge::up(float _scale)
 {
-	if ((int)m_gauge != (int)m_lerpmax)
+	if (static_cast<int>(m_gauge) != static_cast<int>(m_lerpmax))
 	{
 		return;
 	}
@@ -42,7 +43,7 @@ bool Gauge::down(float _scale)
 	{
 		return false;
 	}
-	if ((int)m_gauge != (int)m_lerpmax)
+	if (static_cast<int>(m_gauge) != static_cast<int>(m_lerpmax))
 	{
 		return false;
 	}
@@ -54,11 +55,11 @@ bool Gauge::down(float _scale)
 
 void Gauge::downGauge(RankGauge _rankGauge)
 {
-	if (m_gauge < (float)_rankGauge)
+	if (m_gauge <static_cast<float>(_rankGauge))
 	{
 		return;
 	}
-	add(-(float)_rankGauge);
+	add(-static_cast<float>(_rankGauge));
 }
 
 void Gauge::update(float deltatime)
@@ -79,7 +80,7 @@ float Gauge::nowGauge()
 void Gauge::add(float _point)
 {
 	Math::Clamp clamp;
-	m_gauge = clamp(m_gauge + _point, 0.0f, (float)RankGauge::MAX);
+	m_gauge = clamp(m_gauge + _point, 0.0f, static_cast<float>(RankGauge::MAX));
 	
 }
 

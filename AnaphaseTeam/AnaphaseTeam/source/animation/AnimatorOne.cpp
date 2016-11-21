@@ -4,7 +4,7 @@
 #include <gslib.h>
 AnimatorOne::AnimatorOne(const MODEL_ID _modelID) :
 	m_modelID(_modelID), m_currentAnimation(nullptr),
-	m_nextAnimation(nullptr), m_matPtr(std::shared_ptr<GSmatrix4>(new GSmatrix4[256], std::default_delete<GSmatrix4[]>()))
+	m_nextAnimation(nullptr)//, m_matPtr(std::shared_ptr<GSmatrix4>(new GSmatrix4[256], std::default_delete<GSmatrix4[]>()))
 	, m_orientedMat(std::shared_ptr<GSmatrix4>(new GSmatrix4[256], std::default_delete<GSmatrix4[]>()))
 {}
 AnimatorOne::~AnimatorOne()
@@ -19,20 +19,20 @@ void AnimatorOne::update(float deltatime)
 	m_currentAnimation->update(deltatime);
 	matrixCalculate();
 }
-void AnimatorOne::bind()const
-{
-	m_currentAnimation->bind();
-	gsBindSkeleton(static_cast<GSuint>(m_modelID));
-}
+//void AnimatorOne::bind()const
+//{
+//	m_currentAnimation->bind();
+//	gsBindSkeleton(static_cast<GSuint>(m_modelID));
+//}
 const bool AnimatorOne::isEndCurrentAnimation() const
 {
 	return m_currentAnimation->getIsEnd();
 }
-
-bool AnimatorOne::isEndAnimation(unsigned int _animationID)
-{
-	return false;
-}
+//
+//bool AnimatorOne::isEndAnimation(unsigned int _animationID)
+//{
+//	return false;
+//}
 
 void AnimatorOne::changeAnimationLerp(unsigned int _animation)
 {
@@ -119,18 +119,18 @@ void AnimatorOne::animationCaluculateLerp(GSmatrix4* _animMat)
 
 void AnimatorOne::matrixCalculate()
 {
-	Data::CastID cast;
-	gsBindSkeleton(cast(m_modelID));
-	const GSuint n = getNumBones();
+	//Data::CastID cast;
 	std::unique_ptr<GSmatrix4> animMat = std::unique_ptr<GSmatrix4>(new GSmatrix4[256]);
 	animationCaluculate(animMat.get());
 	/*スケルトン情報の計算
 	アニメーション行列をもとに姿勢変換行列を計算
 	*/
-	gsCalculateSkeleton(NULL, animMat.get(), m_orientedMat.get());
+	gsSkeletonCalculateOrientation(gsGetSkeleton(static_cast<GSuint>(m_modelID)), m_orientedMat.get(), NULL, animMat.get());
+	//下のはbindを使用したときの計算なので上のOrientation付きのものに変更
+	//gsCalculateSkeleton(NULL, animMat.get(), m_orientedMat.get());
 }
 
-void AnimatorOne::skeltonCalculateTransform() 
+void AnimatorOne::skeltonCalculateTransform(GSmatrix4* _mat)
 {
 
 	/*スケルトンの位置情報を計算
@@ -138,30 +138,28 @@ void AnimatorOne::skeltonCalculateTransform()
 	*/
 	gsSkeletonCalculateTransform(
 		gsGetSkeleton(static_cast<GSuint>(m_modelID)),
-		m_matPtr.get(),
+		//m_matPtr.get(),
+		_mat,
 		m_orientedMat.get());
 }
 
-void AnimatorOne::draw(const Transform &_transform, const GScolor &_color)
-{
-	glPushMatrix();
+void AnimatorOne::draw(const Renderer& _renderer,const Transform &_transform, const GScolor &_color)
+{	
 	//matrixCalculate();
-	skeltonCalculateTransform();
-	glColor4f(_color.r, _color.g, _color.b, _color.a);
-	glMultMatrixf(_transform.matrix());
-	gsMeshDrawSkin(gsGetMesh(static_cast<GSuint>(m_modelID)), m_matPtr.get());
-	glPopMatrix();
+	std::unique_ptr<GSmatrix4>mat(new GSmatrix4[256]);
+	skeltonCalculateTransform(mat.get());
+	_renderer.getDraw3D().drawMesh(static_cast<GSuint>(m_modelID), _transform, mat.get(), _color);
 }
 
-const GSuint AnimatorOne::getNumBones()const
-{
-	return gsGetSkeletonNumBones(static_cast<GSuint>(m_modelID));
-}
+//const GSuint AnimatorOne::getNumBones()const
+//{
+//	return gsGetSkeletonNumBones(static_cast<GSuint>(m_modelID));
+//}
 
-const GSmatrix4& AnimatorOne::getMat(unsigned int index)const
-{
-	return m_matPtr.get()[index];
-}
+//const GSmatrix4& AnimatorOne::getMat(unsigned int index)const
+//{
+//	return m_matPtr.get()[index];
+//}
 const GSmatrix4& AnimatorOne::getOrientedMat(unsigned int index)const
 {
 	return m_orientedMat.get()[index];

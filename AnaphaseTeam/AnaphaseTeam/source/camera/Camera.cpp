@@ -14,7 +14,7 @@ Camera::Camera(const Perspective* _perspective, const GSvector3* _position) :
 }
 
 Camera::Camera(float range_Position, float range_Eye, const GSvector3 & offset) :
-	m_perspective(Perspective(45.0f, 800.0f / 600.0f, 0.3f, 1000.0f)),
+	m_perspective(Perspective(45.0f, 1280.0f / 720.0f, 0.3f, 1000.0f)),
 	m_look_at(LookAt(&GSvector3(0, 0, 0), &GSvector3(0, 0, 0), &GSvector3(0, 1, 0))),
 	range_Position(range_Position), 
 	range_Eye(range_Eye),

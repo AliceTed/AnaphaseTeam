@@ -18,6 +18,7 @@ public:
 	Enemy* nearEnemy(Player* _player);
 
 	void thinks(Player* _player);
+	int size();
 private:
 	EnemyManager(EnemyManager&);
 	EnemyManager& operator=(EnemyManager&);

@@ -4,15 +4,23 @@
 #include "../../../header/math/Random.h"
 #include "../../../header/actor/Player/Player.h"
 #include "../../../header/data/ENEMY_ANIMATION.h"
-
-const float Enemy::PLAYER_DISTANCE=10;
+#include "../../../header/collision/EnemyAttackCollision.h"
+const float Enemy::PLAYER_DISTANCE = 10;
 Enemy::Enemy(const Transform & _transform)
 	:Actor(_transform, MODEL_ID::ENEMY,
 		Sphere(GSvector3(0, 0, 0), 1.0f),
 		Actor_Tag::ENEMY),
 	m_group(std::make_shared<CollisionGroup>(this)),
-	m_state(ESTATE::SPAWN)
+	m_state(ESTATE::SPAWN),
+	m_stay_timer(2),
+	m_velocity(0, 0, 0),
+	m_hp(100),
+	m_incidence()
 {
+}
+Enemy::~Enemy()
+{
+	m_group->initialize();
 }
 void Enemy::addCollisionGroup(CollisionManager * _manager)
 {
@@ -24,12 +32,17 @@ void Enemy::initialize()
 	m_group->add(actor);
 	m_animatorOne.changeAnimation(static_cast<GSuint>(ENEMY_ANIMATION::SPAWN));
 	m_state = ESTATE::SPAWN;
+	m_stay_timer.initialize();
+	m_hp = 100;
 }
 void Enemy::update(float deltatime)
 {
+	m_transform.translate(m_velocity);
+	m_transform.m_rotate = m_rotate;
 	m_animatorOne.update(deltatime);
-	state();
+	state(deltatime);
 	sphereChases(GSvector3(0, 1, 0));
+	m_isDead = m_hp <= 0;
 }
 
 void Enemy::draw(const Renderer & _renderer, const Camera & _camera)
@@ -37,8 +50,8 @@ void Enemy::draw(const Renderer & _renderer, const Camera & _camera)
 	//‹——£‚Ì“§‰ß‚È‚Ç‚Íshader‚É”C‚¹‚é—\’è
 	FALSE_RETURN(isInsideView(_camera));
 	alphaBlend(_camera);
-	//_renderer.getDraw3D().drawMesh_calcu(MODEL_ID::PLAYER, m_transform, m_animatorOne, m_Color);
-	m_animatorOne.draw(m_transform);
+	m_animatorOne.draw(_renderer, m_transform);
+	_renderer.getDraw2D().string(std::to_string(m_hp), &GSvector2(500, 80), 30);
 }
 
 void Enemy::collisionChase(EnemyCollision * _collision)
@@ -50,35 +63,47 @@ void Enemy::damage(Player * _player)
 {
 	if (isDamageState())return;
 	m_state = ESTATE::DAMAGE;
-	m_animatorOne.changeAnimation(static_cast<GSuint>(ENEMY_ANIMATION::DAMAGE));
+	//‚±‚±
+	m_animatorOne.changeAnimation(static_cast<GSuint>(ENEMY_ANIMATION::DAMAGE),true,false,false,10.0f,1.2f);
 	m_transform.translate_front(-0.1f);
+	m_hp -= 10;
+	_player->gaugeAdd();
 }
 
 const bool Enemy::isNear(float _distance) const
 {
-	return _distance <PLAYER_DISTANCE;
+	return _distance < PLAYER_DISTANCE;
 }
 
-void Enemy::state()
+void Enemy::state(float deltaTime)
 {
-	//Math::Random rand;
 	switch (m_state)
 	{
 	case ESTATE::SPAWN:
 		if (m_animatorOne.isEndCurrentAnimation())
 		{
-			m_state = ESTATE::STAND;			
+			m_state = ESTATE::STAND;
 		}
 		break;
 	case ESTATE::STAND:
-		m_animatorOne.changeAnimation(static_cast<GSuint>(ENEMY_ANIMATION::STAND),true,true);
+		m_velocity = GSvector3(0, 0, 0);
+		m_animatorOne.changeAnimation(static_cast<GSuint>(ENEMY_ANIMATION::STAND), true, true);
+		m_stay_timer.update(deltaTime);
 		break;
 	case ESTATE::MOVE:
+		m_animatorOne.changeAnimation(static_cast<unsigned int>(ENEMY_ANIMATION::RUN), true, true);
 		break;
 	case ESTATE::SLIDE:
+		m_animatorOne.changeAnimation(static_cast<unsigned int>(ENEMY_ANIMATION::SLIDE), true, true);
 		break;
 	case ESTATE::ATTACK:
-
+		m_incidence.setWorldTransform(m_animatorOne.getOrientedMat(8));
+		m_incidence.synthesisWorldTransform(m_transform);
+		
+		if (m_animatorOne.isEndCurrentAnimation())
+		{
+			m_state = ESTATE::STAND;
+		}
 		break;
 	case ESTATE::DAMAGE:
 		if (m_animatorOne.isEndCurrentAnimation())
@@ -91,21 +116,39 @@ void Enemy::state()
 
 const bool Enemy::isDamageState() const
 {
-	return m_state == ESTATE::STAND || m_state == ESTATE::MOVE || m_state == ESTATE::ATTACK;
+	return m_state == ESTATE::MOVE || m_state == ESTATE::ATTACK;
 }
 
 void Enemy::slide(Actor * _actor)
 {
-	m_transform.m_rotate = (targetDirection(*_actor));
-	m_transform.translate_left(0.07f);
+	m_velocity = m_transform.left()*0.03f;
+	if (_actor == nullptr) return;
+	m_rotate = targetDirection(*_actor);
 }
 
 void Enemy::move(Actor * _actor)
 {
-	m_transform.m_rotate = targetDirection(*_actor);
-	m_transform.translate_front(0.08f);
+	m_velocity = m_transform.front()*0.05f;
+	if (_actor == nullptr) return;
+	m_rotate = (targetDirection(*_actor));
 }
 
+void Enemy::attack_start()
+{
+	m_animatorOne.changeAnimation(static_cast<unsigned int>(ENEMY_ANIMATION::ATTACK), false,false,true,0);
+	float end = m_animatorOne.getCurrentAnimationEndTime() / 60.0f;
+	Collision_Ptr actor = std::make_shared<EnemyAttackCollision>(&m_incidence, end);
+	m_group->add(actor);
+	m_state = ESTATE::ATTACK;
+}
+
+void Enemy::stay_start()
+{
+	Math::Random rnd;
+	m_state = ESTATE::STAND;
+	m_stay_timer.setEndTime(rnd(1.0f, 4.0f));
+	m_stay_timer.initialize();
+}
 
 void Enemy::look_at(CameraController* _camera, Player* _player)
 {
@@ -116,16 +159,25 @@ void Enemy::look_at(CameraController* _camera, Player* _player)
 void Enemy::think(Player * _player)
 {
 	if (m_state == ESTATE::DAMAGE || m_state == ESTATE::ATTACK || m_state == ESTATE::SPAWN)return;
-
+	if (!m_stay_timer.isEnd())return;
+	Math::Random rnd;
+	if (rnd(0, 200) == 0)
+	{
+		stay_start();
+		return;
+	}
+	if (rnd(0, 200) == 0)
+	{
+		attack_start();
+		return;
+	}
 	float distance = distanceActor(*_player);
 	if (isNear(distance))
 	{
-		m_animatorOne.changeAnimation(static_cast<unsigned int>(ENEMY_ANIMATION::SLIDE), true, true);
 		m_state = ESTATE::SLIDE;
 		slide(_player);
 		return;
 	}
-	m_animatorOne.changeAnimation(static_cast<unsigned int>(ENEMY_ANIMATION::RUN), true, true);
 	move(_player);
 	m_state = ESTATE::MOVE;
 }
