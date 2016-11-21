@@ -45,11 +45,11 @@ void CameraActionLockOn::run(void)
 	pitch = clamp(pitch, 0.0f, 360.0f);
 
 	//‹——£§ŒÀ
-	distance = clamp(distance, 10.0f, 50.0f);
+	distance = clamp(distance, 5.0f, 50.0f);
 
-	calc.rotate(&target, enemy, pitch, yow, distance * 1.5f);
+	calc.rotate(&target, enemy, pitch, yow, distance+ 1.2f);
 
-	m_camera->follow_position(target, 0.5f);
+	m_camera->follow_position(target, 0.7f);
 
 	m_camera->update();
 

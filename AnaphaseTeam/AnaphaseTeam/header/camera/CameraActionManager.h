@@ -6,7 +6,7 @@
 *********************************************/
 #pragma once
 
-#include <map>
+#include <unordered_map>
 #include <memory>
 
 class Camera;
@@ -16,7 +16,7 @@ class CameraActionDolly;
 class CameraWork;
 
 typedef std::shared_ptr<CameraAction> cameraAction_ptr;
-typedef std::map<int, cameraAction_ptr> cameraAction_map;
+typedef std::unordered_map<int, cameraAction_ptr> cameraAction_map;
 
 class CameraActionManager
 {

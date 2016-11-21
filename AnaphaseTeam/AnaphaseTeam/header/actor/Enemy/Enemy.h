@@ -13,7 +13,8 @@ enum class ESTATE
 	MOVE,
 	SLIDE,
 	ATTACK,
-	DAMAGE
+	DAMAGE,
+	DEAD
 };
 
 class Enemy :public Actor

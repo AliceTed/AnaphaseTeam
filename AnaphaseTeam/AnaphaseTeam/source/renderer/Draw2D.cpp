@@ -40,7 +40,18 @@ void Draw2D::textrue(TEXTURE_ID id, const GSvector2 * _position, const GSvector2
 
 void Draw2D::textrue(TEXTURE_ID id, const GSvector2 * _position, const GSrect * _rect, const GSvector2 * _center, const GSvector2 * _scaling, GSfloat _rotation, const GScolor * _color) const
 {
+	// 各種レンダリングモードの退避
+	glPushAttrib(GL_ENABLE_BIT | GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+	// 面カリングを無効にする
+	glDisable(GL_CULL_FACE);
+	// ライティングを無効にする
+	glDisable(GL_LIGHTING);
+	// ｚバッファを無効にする
+	glDisable(GL_DEPTH_TEST);
+
 	gsDrawSprite2D(static_cast<GSuint>(id), _position, _rect, _center, _color, _scaling, _rotation);
+	glPopAttrib();
 }
 
 void Draw2D::number(TEXTURE_ID id, const NumString & _number, const GSvector2 & _position, const GSvector2 & cuttingSize, const GScolor * _color) const
