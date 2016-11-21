@@ -83,8 +83,8 @@ void Player::update(float deltatime)
 
 void Player::draw(const Renderer & _renderer, const Camera & _camera)
 {
-	FALSE_RETURN(isInsideView(_camera));
-	alphaBlend(_camera);
+	//FALSE_RETURN(isInsideView(_camera));
+	//alphaBlend(_camera);
 	m_animatorOne.draw(_renderer, m_transform);
 	m_collision.draw(_renderer);
 	m_Gauge.draw(_renderer);
