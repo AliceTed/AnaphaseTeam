@@ -17,7 +17,7 @@ ComboManager::~ComboManager()
 
 void ComboManager::create()
 {
-	m_comboReader.ComboCreate(&m_attack,&m_attackPattern);
+	m_comboReader.ComboCreate(&m_attack, &m_attackPattern);
 
 }
 
@@ -56,7 +56,7 @@ void ComboManager::update(float deltaTime, Player* _player)
 
 	if (isCurrentEnd(_player))
 	{
-		change();
+		change(_player);
 		_player->homing();
 	}
 }
@@ -72,18 +72,16 @@ void ComboManager::nextAttack(float deltaTime, Player* _player)
 }
 
 void ComboManager::nextIdentify(float deltaTime, Player* _player)
+{
+	if (_player->isQuickAttack())
 	{
-		if (_player->isQuickAttack())
-		{
-			next(m_current.weakAttackNext());
-		}
-
-		if (_player->isSlowAttack())
-		{
-			next(m_current.strengthAttackNext());
-		}
+		next(m_current.weakAttackNext());
 	}
 
+	if (_player->isSlowAttack())
+	{
+		next(m_current.strengthAttackNext());
+	}
 	m_current.update(deltaTime, _player);
 
 	if (isCurrentEnd(_player))
