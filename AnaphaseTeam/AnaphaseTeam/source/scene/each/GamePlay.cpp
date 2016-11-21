@@ -60,18 +60,6 @@ void GamePlay::update(float deltaTime)
 
 	if (m_player.isDead())
 		m_change.end(SceneMode::ENDING);
-
-	//m_player.attackhoming(&m_lockon.get(m_enemys));
-
-	/*if (m_device->input()->reset())
-	{
-		m_change.end(SceneMode::GAMEPLAY);
-	}*/
-
-	//if (m_Input->isJoyTriggerY())
-	//{
-	//	m_change.end(SceneMode::ENDING);
-	//}
 }
 
 void GamePlay::draw(const Renderer & _renderer)

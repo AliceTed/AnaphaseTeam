@@ -2,6 +2,7 @@
 #include "../../../header/renderer/Renderer.h"
 #include "../../../header/collision/EnemyCollision.h"
 #include "../../../header/math/Random.h"
+#include "../../../header/math/Calculate.h"
 #include "../../../header/actor/Player/Player.h"
 #include "../../../header/data/ENEMY_ANIMATION.h"
 #include "../../../header/collision/EnemyAttackCollision.h"
@@ -34,6 +35,9 @@ void Enemy::update(float deltatime)
 {
 	m_transform.translate(m_velocity);
 	m_transform.m_rotate = m_rotate;
+	Math::Clamp clamp;
+	m_transform.m_translate = clamp(m_transform.m_translate,GSvector3(-20.0f,-10,-20.0f),GSvector3(20.0f,10,20.0f));
+
 	m_animatorOne.update(deltatime);
 	state(deltatime);
 	sphereChases(GSvector3(0, 1, 0));
