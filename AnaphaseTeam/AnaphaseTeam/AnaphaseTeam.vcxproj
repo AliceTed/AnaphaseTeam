@@ -168,6 +168,7 @@
     <ClCompile Include="source\airState\FirstStep.cpp" />
     <ClCompile Include="source\airState\GroundState.cpp" />
     <ClCompile Include="source\attack\新しいフォルダー\AttackIncidence.cpp" />
+    <ClCompile Include="source\attack\新しいフォルダー\Homing.cpp" />
     <ClCompile Include="source\camera\ACalc.cpp" />
     <ClCompile Include="source\camera\Camera.cpp" />
     <ClCompile Include="source\camera\CameraController.cpp" />
@@ -262,6 +263,7 @@
     <ClInclude Include="header\attack\ComboPattern.h" />
     <ClInclude Include="header\attack\ECombo.h" />
     <ClInclude Include="header\attack\Gun.h" />
+    <ClInclude Include="header\attack\Homing.h" />
     <ClInclude Include="header\attack\IWeapon.h" />
     <ClInclude Include="header\attack\Scythe.h" />
     <ClInclude Include="header\actor\ICharacter.h" />

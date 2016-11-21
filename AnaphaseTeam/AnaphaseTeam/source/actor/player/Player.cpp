@@ -248,8 +248,9 @@ void Player::attackhoming(Enemy * _enemy)
 
 	float velocity = distanceActor(*_enemy) / 5.0f;
 	velocity = clamp(m_Gauge.scale(velocity), 0.0f, distanceActor(*_enemy) - 1.0f);
-	//velocity /= 5.0f;
-	m_transform.translate_front(velocity);
+	GSvector3 target = m_transform.m_translate + (m_transform.front() * velocity);
+	gsVector3Lerp(&m_transform.m_translate, &m_transform.m_translate, &target, 0.1f);
+	//m_transform.translate_front(velocity);
 }
 
 void Player::homing()
@@ -389,6 +390,7 @@ void Player::control()
 		m_isJumpAttack = !m_isGround;
 		m_attackManager.Start(false);
 		m_lockon->homing();
+		m_Gauge.up(150);
 	}
 }
 
