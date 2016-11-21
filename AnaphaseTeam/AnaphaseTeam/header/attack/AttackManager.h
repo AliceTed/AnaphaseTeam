@@ -21,7 +21,7 @@ public:
 	void initialize();
 	void update(float deltaTime,Player* _player);
 	const bool isEnd() const;
-	void Start(bool _attackChange);
+	void Start(bool _attackChange,Player* _player);
 private:
 	Scythe m_Scythe;
 	Gun m_Gun;

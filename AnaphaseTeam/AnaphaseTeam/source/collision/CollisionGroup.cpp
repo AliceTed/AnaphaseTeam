@@ -47,6 +47,10 @@ void CollisionGroup::draw(const Renderer & _renderer)
 {
 	for (auto& i : m_container){i->draw(_renderer);}
 }
+unsigned int CollisionGroup::size() const
+{
+	return m_container.size();
+}
 void CollisionGroup::collision(Collision_Ptr& _my, Collision_Ptr& _other, Actor* _actor)
 {
 	HitInformation info1(m_actor);

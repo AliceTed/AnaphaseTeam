@@ -591,6 +591,9 @@
     <ClInclude Include="header\camera\cameraWork\PanCamera.h">
       <Filter>ヘッダー ファイル\camera</Filter>
     </ClInclude>
+    <ClInclude Include="header\collision\PlayerAttackCollision.h">
+      <Filter>ヘッダー ファイル\collision\user</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="source\main.cpp">
@@ -898,6 +901,9 @@
     </ClCompile>
     <ClCompile Include="source\camera\cameraWork\PanCamera.cpp">
       <Filter>ソース ファイル\camera</Filter>
+    </ClCompile>
+    <ClCompile Include="source\collision\PlayerAttackCollision.cpp">
+      <Filter>ソース ファイル\collision\user</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

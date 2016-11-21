@@ -43,8 +43,6 @@ private:
 private:
 	ESTATE m_state;
 	Timer m_stay_timer;
-	GSvector3 m_velocity;
-	GSquaternion m_rotate;
 	AttackIncidence m_incidence;
 	static const float PLAYER_DISTANCE;
 	float m_hp;

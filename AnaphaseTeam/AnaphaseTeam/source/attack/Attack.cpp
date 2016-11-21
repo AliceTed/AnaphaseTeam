@@ -11,6 +11,7 @@ Attack::~Attack()
 void Attack::initialize(Player* _player)
 {
 	motion(_player);
+	_player->createAttackCollision();
 }
 
 void Attack::update(float deltaTime, Player * _player)

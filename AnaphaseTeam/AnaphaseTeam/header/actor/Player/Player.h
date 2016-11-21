@@ -60,6 +60,7 @@ public:
 	void specialAttack();
 	void collisionChase(SpecialAttackCollision* _collision);
 	void gaugeAdd();
+	void createAttackCollision();
 public:
 	const bool isGround() const;
 	const bool isJumpAttack()const;
