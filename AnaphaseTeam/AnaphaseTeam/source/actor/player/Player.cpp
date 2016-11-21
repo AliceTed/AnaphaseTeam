@@ -77,6 +77,11 @@ void Player::update(float deltatime)
 	m_SpecialSkillManager.update(deltatime);
 
 	m_Gauge.update(deltatime);
+
+	if (m_status.getHp() <= 0)
+	{
+		m_isDead = true;
+	}
 }
 
 void Player::draw(const Renderer & _renderer, const Camera & _camera)
@@ -84,13 +89,17 @@ void Player::draw(const Renderer & _renderer, const Camera & _camera)
 	FALSE_RETURN(isInsideView(_camera));
 	alphaBlend(_camera);
 	//_renderer.getDraw3D().drawMesh_calcu(MODEL_ID::PLAYER, m_transform, m_animatorOne, m_Color);
-	m_animatorOne.draw(m_transform);
+	m_animatorOne.draw(_renderer,m_transform);
 
 	m_Gauge.draw(_renderer);
 	m_scythe.draw(_renderer);
-	_renderer.getDraw2D().string(std::to_string(m_device->input()->velocity().y), &GSvector2(20, 40), 30);
-	_renderer.getDraw2D().string(std::to_string(m_status.getHp()), &GSvector2(200, 60), 30);
-	_renderer.getDraw2D().string(std::to_string(m_Gauge.scale(1.0f)), &GSvector2(200, 80), 30);
+	//_renderer.getDraw2D().string(std::to_string(m_status.getHp()), &GSvector2(200, 60), 30);
+	_renderer.getDraw2D().textrue(TEXTURE_ID::BLACK, &GSvector2(0, 0),
+		&GSrect(0, 0, 100, 30), &GSvector2(0, 0), &GSvector2(1, 1), 0.0f);
+	_renderer.getDraw2D().textrue(TEXTURE_ID::CLEAR, &GSvector2(0, 0),
+		&GSrect(0, 0, m_status.getHp(), 30), &GSvector2(0, 0), &GSvector2(1, 1), 0.0f, &GScolor(0.0f, 1.0f, 0.0f, 1.0f));
+
+	//_renderer.getDraw2D().string(std::to_string(m_status.getHp()), &GSvector2(0, 0), 30);
 }
 
 void Player::inGround()
@@ -125,7 +134,6 @@ void Player::attack(float deltaTime)
 
 void Player::damage(float deltaTime)
 {
-
 	if (m_SpecialSkillManager.isSuperArmor())
 	{
 		actionChange(m_currentAction);
@@ -203,6 +211,7 @@ void Player::subActionStart()
 
 	if (m_device->input()->avoid())
 	{
+		m_status.down();
 		actionChange(std::make_shared<DamageState>());
 		/*if (m_Gauge.down(5))
 		{
@@ -236,16 +245,18 @@ void Player::attackhoming(Enemy * _enemy)
 		return;
 	}
 	Math::Clamp clamp;
-	
+
+	if (_enemy == nullptr) return;
 	if (m_device->input()->velocity().y >= 0)
 	{
-	m_transform.m_rotate=targetDirection(*_enemy);
+		m_transform.m_rotate = targetDirection(*_enemy);
 	}
 
 	float velocity = distanceActor(*_enemy) / 5.0f;
-	velocity= clamp(m_Gauge.scale(velocity), 0.0f, distanceActor(*_enemy) - 1.0f);
-	//velocity /= 5.0f;
-	m_transform.translate_front(velocity);
+	velocity = clamp(m_Gauge.scale(velocity), 0.0f, distanceActor(*_enemy) - 1.0f);
+	GSvector3 target = m_transform.m_translate + (m_transform.front() * velocity);
+	gsVector3Lerp(&m_transform.m_translate, &m_transform.m_translate, &target, 0.1f);
+	//m_transform.translate_front(velocity);
 }
 
 void Player::homing()
@@ -261,6 +272,11 @@ void Player::specialAttack()
 void Player::collisionChase(SpecialAttackCollision * _collision)
 {
 	_collision->chase(m_transform.m_translate);
+}
+
+void Player::gaugeAdd()
+{
+	m_Gauge.up(10);
 }
 
 void Player::startJump(JumpControl * _control, float _scale)
@@ -380,6 +396,7 @@ void Player::control()
 		m_isJumpAttack = !m_isGround;
 		m_attackManager.Start(false);
 		m_lockon->homing();
+		m_Gauge.up(150);
 	}
 }
 

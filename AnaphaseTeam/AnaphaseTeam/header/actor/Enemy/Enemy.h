@@ -3,6 +3,7 @@
 #include "../../collision/CollisionManager.h"
 #include "../../../header/camera/CameraController.h"
 #include "../../convenient/Timer.h"
+#include "../../attack/AttackIncidence.h"
 class EnemyCollision;
 class Player;
 //éÊÇËÇ†Ç¶Ç∏enumÇ≈èÛë‘ï™ÇØ
@@ -20,6 +21,7 @@ class Enemy :public Actor
 {
 public:
 	Enemy(const Transform& _transform);
+	~Enemy();
 	void addCollisionGroup(CollisionManager*  _manager)override;
 	void initialize() override;
 	void update(float deltatime)override;
@@ -37,11 +39,15 @@ private:
 private:
 	void slide(Actor* _actor);
 	void move(Actor* _actor);
+	void attack_start();
+	void stay_start();
 private:
 	Group_Ptr m_group;
 	ESTATE m_state;
 	Timer m_stay_timer;
 	GSvector3 m_velocity;
 	GSquaternion m_rotate;
+	AttackIncidence m_incidence;
 	static const float PLAYER_DISTANCE;
+	float m_hp;
 };

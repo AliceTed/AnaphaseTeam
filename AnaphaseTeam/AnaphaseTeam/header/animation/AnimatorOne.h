@@ -15,7 +15,7 @@
 #include "../data/CastID.h"
 #include "../../header/transform/Transform.h"
 typedef std::shared_ptr<Animation> Animation_Ptr;
-
+class Renderer;
 class LerpData
 {
 public:
@@ -65,8 +65,8 @@ public:
 	@fn アニメーション行列の計算
 	*/
 	void animationCaluculate(GSmatrix4* _animMat);
-	void animationCaluculateLerp(GSmatrix4* _animMat);	
-	void draw(const Transform& _transform, const GScolor& _color = GScolor(1.0f, 1.0f, 1.0f, 1.0f)) ;
+	void animationCaluculateLerp(GSmatrix4* _animMat);
+	void draw(const Renderer& _renderer, const Transform& _transform, const GScolor& _color = GScolor(1.0f, 1.0f, 1.0f, 1.0f));
 	const GSuint getNumBones()const;
 	const GSmatrix4 & getMat(unsigned int index) const;
 	const GSmatrix4 & getOrientedMat(unsigned int index)const;
@@ -74,7 +74,7 @@ public:
 	const float getCurrentAnimationEndTime()const;
 private:
 	void matrixCalculate();
-	void skeltonCalculateTransform();
+	void skeltonCalculateTransform(GSmatrix4* _mat);
 	void change(Animation_Ptr _next);
 private:
 
@@ -83,6 +83,6 @@ private:
 	Animation_Ptr m_nextAnimation;
 	static const unsigned int BONELENGTH=256;
 	LerpData m_lerpData;
-	std::shared_ptr<GSmatrix4> m_matPtr;
+	//std::shared_ptr<GSmatrix4> m_matPtr;
 	std::shared_ptr<GSmatrix4>  m_orientedMat;
 };

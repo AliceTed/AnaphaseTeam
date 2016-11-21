@@ -22,7 +22,7 @@ void ComboManager::create()
 	AttackStatus status(0.0f, 0.0f, GSvector3(0, 0, 0));
 
 	//ç≈èâ
-	Attack Q(status, ANIMATION_ID::ATTACK, Combo::QQ, Combo::QS);
+	Attack Q(status, ANIMATION_ID::ATTACK2, Combo::QQ, Combo::QS);
 	Attack S(status, ANIMATION_ID::ATTACK3, Combo::SQ, Combo::End);
 	m_attackPattern.insert(std::make_pair(Combo::Q, Q));
 	m_attackPattern.insert(std::make_pair(Combo::S, S));

@@ -167,6 +167,8 @@
     <ClCompile Include="source\actor\player\Player.cpp" />
     <ClCompile Include="source\airState\FirstStep.cpp" />
     <ClCompile Include="source\airState\GroundState.cpp" />
+    <ClCompile Include="source\attack\新しいフォルダー\AttackIncidence.cpp" />
+    <ClCompile Include="source\attack\新しいフォルダー\Homing.cpp" />
     <ClCompile Include="source\camera\ACalc.cpp" />
     <ClCompile Include="source\camera\Camera.cpp" />
     <ClCompile Include="source\camera\CameraController.cpp" />
@@ -176,6 +178,7 @@
     <ClCompile Include="source\collision\CollisionActor.cpp" />
     <ClCompile Include="source\collision\CollisionGroup.cpp" />
     <ClCompile Include="source\collision\CollisionManager.cpp" />
+    <ClCompile Include="source\collision\EnemyAttackCollision.cpp" />
     <ClCompile Include="source\collision\EnemyCollision.cpp" />
     <ClCompile Include="source\collision\HitInformation.cpp" />
     <ClCompile Include="source\collision\SpecialAttackCollision.cpp" />
@@ -250,6 +253,7 @@
     <ClInclude Include="header\actor\Player\specialSkill\SuperArmor.h" />
     <ClInclude Include="header\actor\Player\Status.h" />
     <ClInclude Include="header\animation\AnimMediator.h" />
+    <ClInclude Include="header\attack\AttackIncidence.h" />
     <ClInclude Include="header\attack\AttackManager.h" />
     <ClInclude Include="header\attack\AttackPattern.h" />
     <ClInclude Include="header\attack\AttackStatus.h" />
@@ -259,6 +263,7 @@
     <ClInclude Include="header\attack\ComboPattern.h" />
     <ClInclude Include="header\attack\ECombo.h" />
     <ClInclude Include="header\attack\Gun.h" />
+    <ClInclude Include="header\attack\Homing.h" />
     <ClInclude Include="header\attack\IWeapon.h" />
     <ClInclude Include="header\attack\Scythe.h" />
     <ClInclude Include="header\actor\ICharacter.h" />
@@ -276,6 +281,7 @@
     <ClInclude Include="header\collision\CollisionGroup.h" />
     <ClInclude Include="header\collision\CollisionManager.h" />
     <ClInclude Include="header\collision\Collision_Tag.h" />
+    <ClInclude Include="header\collision\EnemyAttackCollision.h" />
     <ClInclude Include="header\collision\EnemyCollision.h" />
     <ClInclude Include="header\collision\HitInformation.h" />
     <ClInclude Include="header\collision\SpecialAttackCollision.h" />

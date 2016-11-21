@@ -72,7 +72,7 @@ void Boss::update(float deltatime)
 void Boss::draw(const Renderer& _renderer, const Camera& _camera)
 {
 	FALSE_RETURN(isInsideView(_camera));
-	m_animatorOne.draw(m_transform, m_color);
+	m_animatorOne.draw(_renderer, m_transform, m_color);
 	//_renderer.getDraw3D().drawMesh_calcu(MODEL_ID::BOSS, m_transform, m_animatorOne, m_Color);
 	//for_each(m_points.begin(), m_points.end(), [&](BreakPoint& _point) {_point.draw(_renderer); });
 	//m_core.draw(_renderer, m_corecolor);
@@ -99,14 +99,14 @@ const GSvector3 Boss::getPosition() const
 
 vector<GSvector3> Boss::getAnimEachPos()
 {
-	const GSuint n = m_animatorOne.getNumBones();
+	//const GSuint n = m_animatorOne.getNumBones();
 	vector<GSvector3> res;
-	for (GSuint i = 0; i < n; i++)
-	{
-		Transform transform(m_animatorOne.getMat(i));
-		GSmatrix4 m = transform.parent_synthesis(m_transform).matrix();
-		res.emplace_back(m.getPosition());
-	}
+	//for (GSuint i = 0; i < n; i++)
+	//{
+	//	Transform transform(m_animatorOne.getMat(i));
+	//	GSmatrix4 m = transform.parent_synthesis(m_transform).matrix();
+	//	res.emplace_back(m.getPosition());
+	//}
 	return res;
 }
 

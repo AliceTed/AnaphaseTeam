@@ -2,6 +2,7 @@
 #include "../../../header/scene/each/Ending.h"
 #include "../../../header/renderer/Renderer.h"
 #include "../../../header/device/GameDevice.h"
+#include "../../../header/math/Random.h"
 GamePlay::GamePlay(GameDevice* _device)
 	:m_IsEnd(false),
 	m_device(_device),
@@ -28,9 +29,13 @@ void GamePlay::initialize()
 	m_player.initialize();
 	//m_boss.initialize();
 	m_enemys.initialize();
-	Enemy* e=new Enemy(Transform(0, { 0,0,0 }, { 0,0,0 }));
+	Math::Random rnd;
+	for (int i = 0; i < 2; i++)
+	{
+		Enemy* e = new Enemy(Transform(0, { 0,0,0 }, { rnd(-10.0f,10.0f),0,rnd(-10.0f,10.0f)}));
 	e->addCollisionGroup(&collision);
 	m_enemys.add(e);
+	}
 
 	Boss boss;
 	boss.initialize();
@@ -52,6 +57,16 @@ void GamePlay::update(float deltaTime)
 
 	collision.update(deltaTime);
 
+	for (int i = 0; i < 2- m_enemys.size(); i++)
+	{
+		Math::Random rnd;
+		Enemy* e = new Enemy(Transform(0, { 0,0,0 }, { rnd(-10.0f,10.0f),0,rnd(-10.0f,10.0f) }));
+		e->addCollisionGroup(&collision);
+		m_enemys.add(e);
+	}
+
+	if (m_player.isDead())
+		m_change.end(SceneMode::ENDING);
 
 	//m_player.attackhoming(&m_lockon.get(m_enemys));
 

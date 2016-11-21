@@ -2,12 +2,12 @@
 
 enum class ENEMY_ANIMATION
 {
+	ATTACK,
 	STAND,
 	RUN,
 	SPAWN,
 	SLIDE,
-	ATTACK1,
 	ATTACK2,
-	DAMAGE,
-
+	DEAD,
+	DAMAGE
 };

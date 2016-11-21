@@ -62,6 +62,7 @@ public:
 	void specialAttack();
 	void collisionChase(SpecialAttackCollision* _collision);
 	void changeAnimation(unsigned int _animID);
+	void gaugeAdd();
 public:
 	const bool isGround() const;
 	const bool isJumpAttack()const;

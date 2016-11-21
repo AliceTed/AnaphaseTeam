@@ -36,10 +36,7 @@ void EnemyManager::draw(const Renderer & _renderer, const Camera& _camera)
 
 Enemy * EnemyManager::nearEnemy(Player * _player)
 {
-	std::sort(m_enemys.begin(), m_enemys.end(), [_player](Enemy_Ptr& _x, Enemy_Ptr& _y) 
-	{
-		return _x->distanceActor(*_player) < _y->distanceActor(*_player);
-	});
+	std::sort(m_enemys.begin(), m_enemys.end(), [_player](Enemy_Ptr& _x, Enemy_Ptr& _y){return _x->distanceActor(*_player) < _y->distanceActor(*_player);});
 	if (m_enemys.empty())
 	{
 		return nullptr;
@@ -50,6 +47,11 @@ Enemy * EnemyManager::nearEnemy(Player * _player)
 void EnemyManager::thinks(Player * _player)
 {
 	for (auto& i : m_enemys) { i->think(_player); }
+}
+
+int EnemyManager::size()
+{
+	return m_enemys.size();
 }
 
 void EnemyManager::remove()
