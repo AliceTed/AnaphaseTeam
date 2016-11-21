@@ -65,7 +65,7 @@ void GamePlay::update(float deltaTime)
 		m_enemys.add(e);
 	}
 
-	if (m_device->input()->gaugeAttack1())
+	if (m_player.isDead())
 		m_change.end(SceneMode::ENDING);
 
 	//m_player.attackhoming(&m_lockon.get(m_enemys));

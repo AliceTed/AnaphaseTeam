@@ -78,6 +78,11 @@ void Player::update(float deltatime)
 	m_SpecialSkillManager.update(deltatime);
 
 	m_Gauge.update(deltatime);
+
+	if (m_status.getHp() <= 0)
+	{
+		m_isDead = true;
+	}
 }
 
 void Player::draw(const Renderer & _renderer, const Camera & _camera)
@@ -94,6 +99,8 @@ void Player::draw(const Renderer & _renderer, const Camera & _camera)
 		&GSrect(0, 0, 100, 30), &GSvector2(0, 0), &GSvector2(1, 1), 0.0f);
 	_renderer.getDraw2D().textrue(TEXTURE_ID::CLEAR, &GSvector2(0, 0),
 		&GSrect(0, 0, m_status.getHp(), 30), &GSvector2(0, 0), &GSvector2(1, 1), 0.0f, &GScolor(0.0f, 1.0f, 0.0f, 1.0f));
+
+	//_renderer.getDraw2D().string(std::to_string(m_status.getHp()), &GSvector2(0, 0), 30);
 }
 
 void Player::inGround()
@@ -128,7 +135,6 @@ void Player::attack(float deltaTime)
 
 void Player::damage(float deltaTime)
 {
-
 	if (m_SpecialSkillManager.isSuperArmor())
 	{
 		actionChange(m_currentAction);
@@ -206,6 +212,7 @@ void Player::subActionStart()
 
 	if (m_device->input()->avoid())
 	{
+		m_status.down();
 		actionChange(std::make_shared<DamageState>());
 		/*if (m_Gauge.down(5))
 		{
