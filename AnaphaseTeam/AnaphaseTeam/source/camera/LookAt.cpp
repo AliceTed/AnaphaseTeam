@@ -125,16 +125,23 @@ void LookAt::lookAt_offset(const GSvector3& _target)
 
 
 
-void LookAt::lookAt_tilt(
-	const GSvector3&	_target,
-	const float			_direction
+void LookAt::cameraWork_tilt(
+	const GSvector3& _position_camera,
+	const GSvector3& _position_target,
+	const float _direction,
+	const float _followSpeed_camera,
+	const float _followSpeed_target
 )
 {
 	ACalc calc;
 	float elevation, direction;
-	GSvector3 vector;
+	GSvector3 vector, target;
 
-	calc.vector(&vector, m_position, _target);
+	calc.vector(
+		&vector, 
+		_position_camera, 
+		_position_target
+	);
 
 	gsVector3ToEleDir(
 		&elevation,
@@ -147,14 +154,16 @@ void LookAt::lookAt_tilt(
 	to_radEleDir(&elevation, &direction);
 
 	calc.rotate(
-		&m_target,
+		&target,
 		m_position,
 		-elevation,
 		direction,
 		10
 	);
 
-	m_targetOffset = m_target;
+	follow_position(_position_camera, _followSpeed_camera);
+
+	follow_target(target, _followSpeed_target);
 
 	update();
 
@@ -163,29 +172,23 @@ void LookAt::lookAt_tilt(
 
 
 
-void LookAt::cameraWork_tilt(
+void LookAt::cameraWork_pan(
 	const GSvector3& _position_camera,
 	const GSvector3& _position_target,
-	const float _direction,
+	const float _elevation,
 	const float _followSpeed_camera,
 	const float _followSpeed_target
 )
 {
 	ACalc calc;
-}
-
-
-
-void LookAt::lookAt_pan(
-	const GSvector3&	_target,
-	const float			_elevation
-)
-{
-	ACalc calc;
 	float elevation, direction;
-	GSvector3 vector;
+	GSvector3 vector, target;
 
-	calc.vector(&vector, m_position, _target);
+	calc.vector(
+		&vector, 
+		_position_camera, 
+		_position_target
+	);
 
 	gsVector3ToEleDir(
 		&elevation,
@@ -198,17 +201,19 @@ void LookAt::lookAt_pan(
 	to_radEleDir(&elevation, &direction);
 
 	calc.rotate(
-		&m_target,
+		&target,
 		m_position,
 		elevation,
 		direction,
 		10
 	);
 
-	m_targetOffset = m_target;
+	follow_position(_position_camera, _followSpeed_camera);
+
+	follow_target(target, _followSpeed_target);
 
 	update();
-
+	
 	return;
 }
 

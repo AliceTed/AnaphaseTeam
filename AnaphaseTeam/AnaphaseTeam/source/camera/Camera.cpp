@@ -60,20 +60,42 @@ void Camera::lookAt(const GSvector3& _target)
 
 
 
-void Camera::lookAt_tilt(const GSvector3& _target, const float _direction)
+void Camera::cameraWork_tilt(
+	const GSvector3&	_position_camera,
+	const GSvector3&	_position_target,
+	const float			_direction,
+	const float			_followSpeed_camera,
+	const float			_followSpeed_target
+)
 {
-	m_lookAt.lookAt_tilt(_target, _direction);
+	m_lookAt.cameraWork_tilt(
+		_position_camera,
+		_position_target,
+		_direction,
+		_followSpeed_camera,
+		_followSpeed_target
+	);
 
 	return;
 }
 
 
 
-void Camera::lookAt_pan(const GSvector3& _target, const float _elevation)
+void Camera::cameraWork_pan(
+	const GSvector3& _position_camera,
+	const GSvector3& _position_target,
+	const float _elevation,
+	const float _followSpeed_camera,
+	const float _followSpeed_target
+)
 {
-	m_lookAt.lookAt_pan(_target, _elevation);
-
-	return;
+	m_lookAt.cameraWork_pan(
+		_position_camera,
+		_position_target,
+		_elevation,
+		_followSpeed_camera,
+		_followSpeed_target
+	);
 }
 
 

@@ -582,15 +582,6 @@
     <ClInclude Include="header\camera\CameraTarget.h">
       <Filter>ヘッダー ファイル\camera</Filter>
     </ClInclude>
-    <ClInclude Include="header\camera\cameraWork\CameraWork.h">
-      <Filter>ヘッダー ファイル\camera</Filter>
-    </ClInclude>
-    <ClInclude Include="header\camera\cameraWork\FixCamera.h">
-      <Filter>ヘッダー ファイル\camera</Filter>
-    </ClInclude>
-    <ClInclude Include="header\camera\cameraWork\PanCamera.h">
-      <Filter>ヘッダー ファイル\camera</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="source\main.cpp">
@@ -888,15 +879,6 @@
       <Filter>ソース ファイル\camera</Filter>
     </ClCompile>
     <ClCompile Include="source\camera\CameraTarget.cpp">
-      <Filter>ソース ファイル\camera</Filter>
-    </ClCompile>
-    <ClCompile Include="source\camera\cameraWork\CameraWork.cpp">
-      <Filter>ソース ファイル\camera</Filter>
-    </ClCompile>
-    <ClCompile Include="source\camera\cameraWork\FixCamera.cpp">
-      <Filter>ソース ファイル\camera</Filter>
-    </ClCompile>
-    <ClCompile Include="source\camera\cameraWork\PanCamera.cpp">
       <Filter>ソース ファイル\camera</Filter>
     </ClCompile>
   </ItemGroup>

@@ -13,8 +13,6 @@ class Camera;
 class CameraAction;
 class CameraActionDolly;
 
-class CameraWork;
-
 typedef std::shared_ptr<CameraAction> cameraAction_ptr;
 typedef std::map<int, cameraAction_ptr> cameraAction_map;
 
@@ -53,8 +51,6 @@ public:
 private:
 	Camera*				m_camera;
 	cameraAction_map	m_cameraActions;
-
-	std::shared_ptr<CameraWork> m_cameraWork;
 
 	float m_elevation;
 	float m_direction;

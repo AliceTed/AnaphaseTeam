@@ -93,15 +93,6 @@ public:
 
 
 	/********************************************************
-	@brief ｘ軸回転のみで被写体を見る
-	@param[_target] ターゲット
-	@param[_direction] 方位角
-	********************************************************/
-	void lookAt_tilt(const GSvector3& _target, const float _direction);
-
-
-
-	/********************************************************
 	@brief	ティルトカメラワーク
 			x軸回転のみで被写体を見る
 			（もっと簡単にしたいよ）
@@ -125,11 +116,25 @@ public:
 
 
 	/********************************************************
-	@brief y軸回転のみで被写体を見る
-	@param[_target]		ターゲット
-	@param[_elevation]	仰角
+	@brief	ティルトカメラワーク
+	x軸回転のみで被写体を見る
+	（もっと簡単にしたいよ）
+	@param[_position_camera]	カメラの位置
+	@param[_position_target]	ターゲットの位置
+	@param[_elevation]			仰角
+	@param[_followSpeed_camera] カメラの追尾速度
+	@param[_followSpeed_target]	ターゲットの追尾速度
+	[0] 追尾無し
+	[0.1~0.9] ディレイありの追尾
+	[1] 完全追尾
 	********************************************************/
-	void lookAt_pan(const GSvector3& _target, const float _elevation);
+	void cameraWork_pan(
+		const GSvector3& _position_camera,
+		const GSvector3& _position_target,
+		const float _elevation,
+		const float _followSpeed_camera,
+		const float _followSpeed_target
+	);
 
 
 

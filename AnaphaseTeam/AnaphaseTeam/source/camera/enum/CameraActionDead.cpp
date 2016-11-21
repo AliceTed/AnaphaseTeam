@@ -20,11 +20,19 @@ void CameraActionDead::run(void)
 {
 	const GSvector3& player = m_camera->cameraTarget_player();
 
-	m_camera->follow_target(player + GSvector3(0, 1, 0), 0.5f);
+	/*m_camera->follow_target(player + GSvector3(0, 1, 0), 0.5f);
 
 	m_camera->zoom_in(1.0f);
 
-	m_camera->update();
+	m_camera->update();*/
+
+	m_camera->cameraWork_pan(
+		GSvector3(10, 10, 20),
+		player,
+		0,
+		0.5f,
+		0.5f
+	);
 
 	return;
 }

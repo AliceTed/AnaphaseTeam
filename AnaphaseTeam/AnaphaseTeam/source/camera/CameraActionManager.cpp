@@ -6,21 +6,15 @@
 #include "../../header/camera/enum/stage1/CameraActionDollyStage1_3.h"
 #include "../../header/camera/enum/CameraActionLockOn.h"
 #include "../../header/camera/enum/CameraActionDead.h"
-#include "../../header/camera/cameraWork/FixCamera.h"
-#include "../../header/camera/cameraWork/PanCamera.h"
 
 
 CameraActionManager::CameraActionManager(Camera* _camera) :
 	m_camera(_camera),
 	m_cameraActions(),
 	m_elevation(40.0f),
-	m_direction(0.0f),
-	m_cameraWork(new PanCamera(_camera))
+	m_direction(0.0f)
 {
 	load();
-	m_cameraWork->initialize(
-		GSvector3(20, 5, -20),
-		GSvector3(0, 0, 0));
 }
 
 

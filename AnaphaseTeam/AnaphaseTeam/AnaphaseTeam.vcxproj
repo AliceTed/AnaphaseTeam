@@ -174,9 +174,6 @@
     <ClCompile Include="source\camera\CameraActionManager.cpp" />
     <ClCompile Include="source\camera\CameraController.cpp" />
     <ClCompile Include="source\camera\CameraTarget.cpp" />
-    <ClCompile Include="source\camera\cameraWork\CameraWork.cpp" />
-    <ClCompile Include="source\camera\cameraWork\FixCamera.cpp" />
-    <ClCompile Include="source\camera\cameraWork\PanCamera.cpp" />
     <ClCompile Include="source\camera\enum\CameraActionDead.cpp" />
     <ClCompile Include="source\camera\enum\CameraActionLockOn.cpp" />
     <ClCompile Include="source\camera\enum\stage1\CameraActionDollyStage1_1.cpp" />
@@ -286,9 +283,6 @@
     <ClInclude Include="header\camera\CameraActionManager.h" />
     <ClInclude Include="header\camera\CameraController.h" />
     <ClInclude Include="header\camera\CameraTarget.h" />
-    <ClInclude Include="header\camera\cameraWork\CameraWork.h" />
-    <ClInclude Include="header\camera\cameraWork\FixCamera.h" />
-    <ClInclude Include="header\camera\cameraWork\PanCamera.h" />
     <ClInclude Include="header\camera\enum\CameraActionDead.h" />
     <ClInclude Include="header\camera\enum\CameraActionID.h" />
     <ClInclude Include="header\camera\enum\CameraActionLockOn.h" />
