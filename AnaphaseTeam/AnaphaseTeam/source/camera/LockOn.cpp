@@ -37,7 +37,7 @@ void LockOn::look_at(CameraController * _camera)
 
 void LockOn::homing()
 {
-	m_player->attackhoming(m_target);
+	m_player->attackHoming(m_target);
 }
 
 void LockOn::thinksEnemy(EnemyManager * _enemys)

@@ -55,7 +55,7 @@ public:
 	void subActionStart();
 	void moveStart();
 	void gaugeUp(float _scale);
-	void attackhoming(Enemy* _boss);
+	void attackHoming(Enemy* _boss);
 	void homing();
 	void specialAttack();
 	void collisionChase(SpecialAttackCollision* _collision);
@@ -111,7 +111,7 @@ private:
 
 	Avoid m_avoid;
 	SpecialSkillManager m_SpecialSkillManager;
-
+	GSvector3 target;
 private://íËêî
 	static const float MOVESPEED;
 	static const float ROTATESPEED;

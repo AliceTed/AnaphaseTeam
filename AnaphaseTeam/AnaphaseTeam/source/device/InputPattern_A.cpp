@@ -52,7 +52,7 @@ const bool InputPattern_A::avoid()
 
 const bool InputPattern_A::gaugeAttack1()
 {
-	return m_input->isJoyTriggerB() && m_input->isJoyStateRB();
+	return m_input->isJoyTriggerA() && m_input->isJoyStateRB();
 }
 
 const bool InputPattern_A::gaugeAttack2()
