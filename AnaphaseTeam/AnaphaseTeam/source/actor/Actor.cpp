@@ -14,12 +14,19 @@ Actor::Actor(const Transform & _transform, MODEL_ID _modelID,const Sphere& _sphe
 	m_Color(1.0f,1.0f,1.0f,1.0f),
 	m_animatorOne(_modelID),
 	m_Sphere(_sphere),
-	m_Tag(_tag)
+	m_Tag(_tag),
+	m_collision(this)
 {
+}
+
+Actor::~Actor()
+{
+	m_collision.initialize();
 }
 
 void Actor::initialize()
 {
+	m_collision.initialize();
 	m_Color=GScolor(1.0f, 1.0f, 1.0f, 1.0f);
 	m_isDead = false;
 }
@@ -47,8 +54,9 @@ void Actor::collisionGround(const Map& _map)
 	//map‚É–„‚ß‚Ü‚ê‚Ä‚¢‚½‚çyÀ•W‚ğŒğ“_‚ÉˆÚ“®
 	m_transform.m_translate.y = intersect.y;
 }
-void Actor::addCollisionGroup(CollisionManager * _manager)
+void Actor::collision(Actor & _other)
 {
+	m_collision.collision(_other.m_collision);
 }
 
 void Actor::inGround()

@@ -25,7 +25,6 @@ void GamePlay::initialize()
 	m_change.begin(2);
 	m_IsEnd = false;
 
-	collision.initialize();
 	m_player.initialize();
 	//m_boss.initialize();
 	m_enemys.initialize();
@@ -33,14 +32,11 @@ void GamePlay::initialize()
 	for (int i = 0; i < 2; i++)
 	{
 		Enemy* e = new Enemy(Transform(0, { 0,0,0 }, { rnd(-10.0f,10.0f),0,rnd(-10.0f,10.0f)}));
-	e->addCollisionGroup(&collision);
-	m_enemys.add(e);
+		m_enemys.add(e);
 	}
 
 	Boss boss;
 	boss.initialize();
-	boss.addCollisionGroup(&collision);
-	m_player.addCollisionGroup(&collision);
 	m_lockon.addPlayer(&m_player);
 }
 
@@ -54,14 +50,11 @@ void GamePlay::update(float deltaTime)
 	m_lockon.nearEnemyFind(&m_enemys);
 	m_player.update(deltaTime);
 	m_enemys.update(deltaTime);
-
-	collision.update(deltaTime);
-
+	m_enemys.collision(m_player);
 	for (int i = 0; i < 2- m_enemys.size(); i++)
 	{
 		Math::Random rnd;
 		Enemy* e = new Enemy(Transform(0, { 0,0,0 }, { rnd(-10.0f,10.0f),0,rnd(-10.0f,10.0f) }));
-		e->addCollisionGroup(&collision);
 		m_enemys.add(e);
 	}
 
@@ -89,7 +82,6 @@ void GamePlay::draw(const Renderer & _renderer)
 	m_player.draw(_renderer,m_Camera);
 	m_Map.draw(_renderer);
 	m_enemys.draw(_renderer, m_Camera);
-	collision.draw(_renderer);
 	m_change.draw(_renderer);
 }
 

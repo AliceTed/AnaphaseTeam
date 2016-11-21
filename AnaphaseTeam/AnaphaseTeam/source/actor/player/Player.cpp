@@ -35,7 +35,6 @@ Player::Player(GameDevice* _device, Camera * _camera, LockOn* _lockon)
 	m_camera(_camera),
 	m_status(),
 	m_isJumpAttack(false),
-	m_group(std::make_shared<CollisionGroup>(this)),
 	m_Gauge(),
 	m_avoid(this),
 	m_lockon(_lockon),
@@ -47,12 +46,6 @@ Player::Player(GameDevice* _device, Camera * _camera, LockOn* _lockon)
 
 Player::~Player()
 {}
-
-void Player::addCollisionGroup(CollisionManager * _manager)
-{
-	_manager->add(m_group);
-}
-
 void Player::initialize()
 {
 	Actor::initialize();
@@ -64,7 +57,7 @@ void Player::initialize()
 	m_Gauge.initialize();
 	m_status.initialize();
 	m_scythe.initialize();
-	m_scythe.addCollision(m_group.get());
+	m_scythe.addCollision(&m_collision);
 	m_SpecialSkillManager.initialize(SPECIALTYPE::NONE);
 }
 
@@ -77,6 +70,7 @@ void Player::update(float deltatime)
 	m_status.change(m_Gauge);
 	m_SpecialSkillManager.update(deltatime);
 
+	m_collision.update(deltatime);
 	m_Gauge.update(deltatime);
 
 	if (m_status.getHp() <= 0)
@@ -89,12 +83,10 @@ void Player::draw(const Renderer & _renderer, const Camera & _camera)
 {
 	FALSE_RETURN(isInsideView(_camera));
 	alphaBlend(_camera);
-	//_renderer.getDraw3D().drawMesh_calcu(MODEL_ID::PLAYER, m_transform, m_animatorOne, m_Color);
 	m_animatorOne.draw(_renderer,m_transform);
-
+	m_collision.draw(_renderer);
 	m_Gauge.draw(_renderer);
 	m_scythe.draw(_renderer);
-	//_renderer.getDraw2D().string(std::to_string(m_status.getHp()), &GSvector2(200, 60), 30);
 	_renderer.getDraw2D().textrue(TEXTURE_ID::BLACK, &GSvector2(0, 0),
 		&GSrect(0, 0, 100, 30), &GSvector2(0, 0), &GSvector2(1, 1), 0.0f);
 	_renderer.getDraw2D().textrue(TEXTURE_ID::CLEAR, &GSvector2(0, 0),
@@ -228,12 +220,6 @@ void Player::moveStart()
 	if (m_device->input()->move())
 		actionChange(std::make_shared<MoveState>());
 }
-
-void Player::justAvoid(Avoid* _avoid)
-{
-	_avoid->justAvoidRange(m_group, m_transform);
-}
-
 void Player::gaugeUp(float _scale)
 {
 	m_Gauge.up(_scale);
@@ -376,7 +362,7 @@ void Player::control()
 	{
 		if (m_SpecialSkillManager.initialize(SPECIALTYPE::SPECIALATTACK))
 		{
-			m_SpecialSkillManager.addAttackCollision(m_group.get());
+			m_SpecialSkillManager.addAttackCollision(&m_collision);
 		}
 	}
 	/*É{É^ÉìâüÇµÇΩÇÁAttackStateÇ…êÿÇËë÷ÇÌÇÈ*/

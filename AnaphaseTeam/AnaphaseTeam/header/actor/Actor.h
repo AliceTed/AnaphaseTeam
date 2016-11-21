@@ -12,7 +12,7 @@
 #include "../animation/AnimatorOne.h"
 #include "../shape/Sphere.h"
 #include "../actor/Actor_Tag.h"
-class CollisionManager;
+#include "../collision/CollisionGroup.h"
 class Renderer;
 class Map;
 class Camera;
@@ -25,7 +25,7 @@ class Actor
 public:
 	Actor(const Transform &_transform,const MODEL_ID _model_ID,const Sphere& _sphere, Actor_Tag _tag);
 
-	virtual ~Actor() {}
+	virtual ~Actor();
 	virtual void initialize();
 	virtual void update(float deltatime) = 0;
 	virtual void draw(const Renderer& _renderer,const Camera& _camera) = 0;
@@ -37,12 +37,7 @@ public:
 	*/
 	virtual void collisionGround(const Map& _map);
 public:
-	/**
-	* @fn
-	* @brief CollisionManagerにグループを追加
-	* @param (_manager) managerを取得
-	*/
-	virtual void addCollisionGroup(CollisionManager*  _manager);
+	virtual void collision(Actor& _other);
 	/**
 	* @fn
 	* @brief Actor同士の距離
@@ -94,11 +89,17 @@ private:
 	* @brief 地面に埋め込まれたときに呼ばれる
 	*/
 	virtual void inGround();
+private:
+	//コピー禁止
+	Actor(const Actor&);
+	Actor& operator=(const Actor&);
+
 protected:
 	Transform m_transform;
 	bool m_isDead;
 	GScolor m_Color;
 	AnimatorOne m_animatorOne;
+	CollisionGroup m_collision;
 private:
 	Actor_Tag m_Tag;
 	//!カメラ用判定

@@ -19,7 +19,6 @@
 #include "../../attack/attackManager.h"
 #include "../../data/ANIMATION_ID.h"
 #include "Status.h"
-#include "../../collision/CollisionManager.h"
 #include "../../attack/Scythe.h"
 #include "Gauge.h"
 #include "specialSkill/SpecialSkillManager.h"
@@ -37,7 +36,6 @@ class Player :public Actor, public ICharacter
 public:
 	Player(GameDevice* _device,Camera * _camera, LockOn* _lockon);
 	~Player();
-	void addCollisionGroup(CollisionManager*  _manager);
 	/**
 	* @fn
 	* @brief アクションステートの切り替え関数
@@ -56,7 +54,6 @@ public:
 	void look_at(CameraController* _camera, GSvector3* _target);
 	void subActionStart();
 	void moveStart();
-	void justAvoid(Avoid* _avoid);
 	void gaugeUp(float _scale);
 	void attackhoming(Enemy* _boss);
 	void homing();
@@ -106,7 +103,6 @@ private:
 	//無理やり
 	bool m_isJumpAttack;
 	Camera * m_camera;
-	Group_Ptr m_group;
 
 	LockOn* m_lockon;
 
