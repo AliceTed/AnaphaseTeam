@@ -49,7 +49,7 @@ void Enemy::draw(const Renderer & _renderer, const Camera & _camera)
 	//alphaBlend(_camera);
 	m_collision.draw(_renderer);
 	m_animatorOne.draw(_renderer, m_transform,m_Color);
-	_renderer.getDraw2D().string(std::to_string(m_hp), &GSvector2(500, 80), 30);
+	//_renderer.getDraw2D().string(std::to_string(m_hp), &GSvector2(500, 80), 30);
 }
 
 void Enemy::collisionChase(EnemyCollision * _collision)

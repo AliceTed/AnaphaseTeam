@@ -23,7 +23,7 @@ const float Player::ROTATESPEED = -2.0f;
 const float Player::WALKSPEED = 0.1f;
 Player::Player(GameDevice* _device, Camera * _camera, LockOn* _lockon)
 	:Actor(
-		Transform({ 0,0,-30 }, GSquaternion(0, 0, 0, 1)),
+		Transform({ 0,0,-15 }, GSquaternion(0, 0, 0, 1)),
 		MODEL_ID::PLAYER,
 		Sphere(GSvector3(0, 0, 0), 0),
 		Actor_Tag::PLAYER
@@ -96,7 +96,7 @@ void Player::draw(const Renderer & _renderer, const Camera & _camera)
 
 	m_SpecialSkillManager.draw(_renderer);
 
-	_renderer.getDraw2D().string(std::to_string(m_collision.size()), &GSvector2(50, 50), 20);
+	//_renderer.getDraw2D().string(std::to_string(m_collision.size()), &GSvector2(50, 50), 20);
 
 }
 
@@ -384,6 +384,7 @@ void Player::control()
 		m_isJumpAttack = !m_isGround;
 		m_lockon->homing();
 		m_attackManager.Start(true,this);	
+		m_Gauge.up(5);
 	}
 
 	if (m_device->input()->slowAttackTrigger())
@@ -393,7 +394,7 @@ void Player::control()
 		m_isJumpAttack = !m_isGround;
 		m_lockon->homing();
 		m_attackManager.Start(false,this);	
-		m_Gauge.up(150);
+		m_Gauge.up(5);
 	}
 }
 

@@ -37,7 +37,7 @@ void EnemyManager::collision(Actor & _actor)
 void EnemyManager::draw(const Renderer & _renderer, const Camera& _camera)
 {
 	for (auto& i : m_enemys) { i->draw(_renderer,_camera); }
-	_renderer.getDraw2D().string(std::to_string(size()).c_str(), &GSvector2(200,300),50);
+	//_renderer.getDraw2D().string(std::to_string(size()).c_str(), &GSvector2(200,300),50);
 }
 
 Enemy_Ptr& EnemyManager::nearEnemy(Player * _player)
