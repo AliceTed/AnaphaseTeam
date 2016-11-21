@@ -21,7 +21,7 @@ void PlayerAttackCollision::doUpdate(float deltaTime)
 
 void PlayerAttackCollision::doDraw(const Renderer & _renderer)
 {
-	m_shape->draw(_renderer);
+	//m_shape->draw(_renderer);
 }
 
 void PlayerAttackCollision::collision_Enter(HitInformation & _hit)

@@ -268,7 +268,7 @@ void Player::gaugeAdd()
 
 void Player::createAttackCollision()
 {
-	GSvector3 p = m_transform.m_translate + m_transform.front()*1.0f;
+	GSvector3 p = target;//m_transform.m_translate + m_transform.front()*1.0f;
 	p.y += 1.f;
 	Collision_Ptr act = std::make_shared<PlayerAttackCollision>(p,m_animatorOne.getCurrentAnimationEndTime() / 60.0f);
 	m_collision.add(act);

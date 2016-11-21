@@ -56,7 +56,6 @@ void ComboManager::update(float deltaTime, Player* _player)
 
 	if (isCurrentEnd(_player))
 	{
-		change(_player);
 		_player->homing();
 	}
 }
