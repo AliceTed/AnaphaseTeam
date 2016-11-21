@@ -400,7 +400,7 @@ void Player::look_at(CameraController * _camera, GSvector3 * _target)
 	//_camera->special_move1(&target, _target, 10.0f, 1.5f);
 
 	// ‚±‚ê‚©‚ç‚Í‚±‚êŽg‚Á‚Ä by—L•y
-	_camera->run_cameraAction(CameraActionID::CAMERA_ACTION_DEAD);
+	_camera->run_cameraAction(CameraActionID::CAMERA_ACTION_LOCK_ON);
 }
 
 /**
