@@ -89,8 +89,6 @@ void Perspective::zoom(const float _value)
 
 	m_fov = value;
 
-	update();
-
 	return;
 }
 
@@ -127,8 +125,6 @@ void Perspective::zoom_update(const float _speed)
 		m_fov_min, 
 		m_fov_max
 	);
-
-	update();
 
 	return;
 }

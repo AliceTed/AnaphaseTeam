@@ -11,10 +11,9 @@
 
 class Camera;
 class CameraAction;
-class CameraActionDolly;
+class CameraActionData;
 
-typedef std::shared_ptr<CameraAction> cameraAction_ptr;
-typedef std::unordered_map<int, cameraAction_ptr> cameraAction_map;
+enum CameraActionID;
 
 class CameraActionManager
 {
@@ -46,12 +45,9 @@ public:
 	/*****************************************
 	@brief é¿çs
 	*****************************************/
-	void run(void);
+	void run(const CameraActionID& _id);
 
 private:
 	Camera*				m_camera;
-	cameraAction_map	m_cameraActions;
-
-	float m_elevation;
-	float m_direction;
+	std::unique_ptr<CameraActionData> m_cameraData;
 };

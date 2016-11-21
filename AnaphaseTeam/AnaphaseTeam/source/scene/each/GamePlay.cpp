@@ -42,6 +42,9 @@ void GamePlay::initialize()
 
 void GamePlay::update(float deltaTime)
 {
+	//‚±‚ê’Ç‰Á by—L•y
+	m_cameracontroller.update();
+
 	m_player.collisionGround(m_Map);
 	m_enemys.collisionGround(m_Map);
 	if (m_change.update(deltaTime))return;

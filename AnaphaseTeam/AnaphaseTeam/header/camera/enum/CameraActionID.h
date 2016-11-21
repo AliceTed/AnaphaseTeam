@@ -9,5 +9,6 @@
 enum CameraActionID : int
 {
 	NONE = -1,
-
+	CAMERA_ACTION_LOCK_ON = 0,
+	CAMERA_ACTION_DEAD,
 };

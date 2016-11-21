@@ -561,15 +561,6 @@
     <ClInclude Include="header\camera\CameraActionDolly.h">
       <Filter>ヘッダー ファイル\camera</Filter>
     </ClInclude>
-    <ClInclude Include="header\camera\enum\stage1\CameraActionDollyStage1_1.h">
-      <Filter>ヘッダー ファイル\camera</Filter>
-    </ClInclude>
-    <ClInclude Include="header\camera\enum\stage1\CameraActionDollyStage1_2.h">
-      <Filter>ヘッダー ファイル\camera</Filter>
-    </ClInclude>
-    <ClInclude Include="header\camera\enum\stage1\CameraActionDollyStage1_3.h">
-      <Filter>ヘッダー ファイル\camera</Filter>
-    </ClInclude>
     <ClInclude Include="header\camera\enum\CameraActionID.h">
       <Filter>ヘッダー ファイル\camera</Filter>
     </ClInclude>
@@ -580,6 +571,9 @@
       <Filter>ヘッダー ファイル\camera</Filter>
     </ClInclude>
     <ClInclude Include="header\camera\CameraTarget.h">
+      <Filter>ヘッダー ファイル\camera</Filter>
+    </ClInclude>
+    <ClInclude Include="header\camera\CameraActionData.h">
       <Filter>ヘッダー ファイル\camera</Filter>
     </ClInclude>
   </ItemGroup>
@@ -863,15 +857,6 @@
     <ClCompile Include="source\camera\CameraActionDolly.cpp">
       <Filter>ソース ファイル\camera</Filter>
     </ClCompile>
-    <ClCompile Include="source\camera\enum\stage1\CameraActionDollyStage1_1.cpp">
-      <Filter>ソース ファイル\camera</Filter>
-    </ClCompile>
-    <ClCompile Include="source\camera\enum\stage1\CameraActionDollyStage1_2.cpp">
-      <Filter>ソース ファイル\camera</Filter>
-    </ClCompile>
-    <ClCompile Include="source\camera\enum\stage1\CameraActionDollyStage1_3.cpp">
-      <Filter>ソース ファイル\camera</Filter>
-    </ClCompile>
     <ClCompile Include="source\camera\enum\CameraActionLockOn.cpp">
       <Filter>ソース ファイル\camera</Filter>
     </ClCompile>
@@ -879,6 +864,9 @@
       <Filter>ソース ファイル\camera</Filter>
     </ClCompile>
     <ClCompile Include="source\camera\CameraTarget.cpp">
+      <Filter>ソース ファイル\camera</Filter>
+    </ClCompile>
+    <ClCompile Include="source\camera\CameraActionData.cpp">
       <Filter>ソース ファイル\camera</Filter>
     </ClCompile>
   </ItemGroup>

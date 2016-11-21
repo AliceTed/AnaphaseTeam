@@ -9,6 +9,7 @@
 #include <string>
 
 #include "../../header/camera/CameraActionManager.h"
+#include "../../header/camera/enum/CameraActionID.h"
 
 CameraController::CameraController(Camera* _camera) :
 	m_camera(_camera),
@@ -41,6 +42,13 @@ CameraController::CameraController(
 
 
 
+void CameraController::update(void)
+{
+	m_camera->update();
+}
+
+
+
 void CameraController::change_control(Camera* _camera)
 {
 	m_camera = _camera;
@@ -50,27 +58,7 @@ void CameraController::change_control(Camera* _camera)
 
 
 
-void CameraController::special_move1(
-	GSvector3* _target1, 
-	GSvector3* _target2, 
-	float _elevation, 
-	float _distance)
+void CameraController::run_cameraAction(const CameraActionID& _id)
 {
-	m_cameraActionManager->run();
-	return;
-}
-
-
-
-const float CameraController::direction(void) const
-{
-	ACalc calc;
-	float ele, dir;
-	GSvector3 vector;
-
-	calc.vector(&vector, m_camera->position(), m_camera->target());
-
-	gsVector3ToEleDir(&ele, &dir, &vector);
-
-	return dir;
+	m_cameraActionManager->run(_id);
 }

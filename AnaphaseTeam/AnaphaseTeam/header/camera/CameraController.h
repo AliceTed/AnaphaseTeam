@@ -10,8 +10,9 @@
 #include <gslib.h>
 #include <memory>
 
-class Camera;
-class CameraActionManager;
+class	Camera;
+class	CameraActionManager;
+enum	CameraActionID;
 
 class CameraController
 {
@@ -42,6 +43,13 @@ public:
 
 
 	/***********************************************
+	@brief 更新処理
+	***********************************************/
+	void update(void);
+
+
+
+	/***********************************************
 	@brief 操作するカメラの変更
 	@param[_camera] 操作するカメラ
 	***********************************************/
@@ -50,23 +58,9 @@ public:
 
 
 	/***********************************************
-	@brief 巨大な敵と戦う時用
-	@param[_target1] ここはプレイヤーー？
-	@param[_Target2] ここに巨大な敵のベクターを渡して
+	@brief 実行・カメラアクション
 	***********************************************/
-	void special_move1(
-		GSvector3* _target1, 
-		GSvector3* _target2, 
-		float _elevation, 
-		float _distance
-	);
-
-
-
-	/***********************************************
-	@return 方位角
-	***********************************************/
-	const float direction(void) const;
+	void run_cameraAction(const CameraActionID& _id);
 
 private:
 	Camera *m_camera;		// 動かしたいカメラ

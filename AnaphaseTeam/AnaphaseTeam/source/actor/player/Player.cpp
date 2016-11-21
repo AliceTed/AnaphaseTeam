@@ -17,6 +17,10 @@
 #include "../../../header/actor/Boss/Boss.h"
 #include "../../../header/camera/LockOn.h"
 #include "../../../header/actor/Enemy/Enemy.h"
+
+//‚±‚ê’Ç‰Á by—L•y
+#include "../../../header/camera/enum/CameraActionID.h"
+
 const float Player::MOVESPEED = 0.3f;
 const float Player::ROTATESPEED = -2.0f;
 const float Player::WALKSPEED = 0.1f;
@@ -392,7 +396,11 @@ void Player::look_at(CameraController * _camera, GSvector3 * _target)
 	m_camera->lookAt_cameraTarget_player(target);
 	m_camera->lookAt_cameraTarget_enemy(*_target);
 
-	_camera->special_move1(&target, _target, 10.0f, 1.5f);
+	// ‚±‚êÁ‚µ‚Ä by—L•y
+	//_camera->special_move1(&target, _target, 10.0f, 1.5f);
+
+	// ‚±‚ê‚©‚ç‚Í‚±‚êŽg‚Á‚Ä by—L•y
+	_camera->run_cameraAction(CameraActionID::CAMERA_ACTION_DEAD);
 }
 
 /**

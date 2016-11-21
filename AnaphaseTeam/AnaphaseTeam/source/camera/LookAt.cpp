@@ -83,8 +83,6 @@ void LookAt::set_position(const GSvector3& _position)
 {
 	m_position = _position;
 
-	update();
-
 	return;
 }
 
@@ -94,8 +92,6 @@ void LookAt::set_position(const GSvector3& _position)
 void LookAt::translate(const GSvector3& _vector)
 {
 	m_position += _vector;
-
-	update();
 
 	return;
 }
@@ -107,8 +103,6 @@ void LookAt::lookAt(const GSvector3& _target)
 	m_target		= _target;
 	m_targetOffset	= _target;
 
-	update();
-
 	return;
 }
 
@@ -117,8 +111,6 @@ void LookAt::lookAt(const GSvector3& _target)
 void LookAt::lookAt_offset(const GSvector3& _target)
 {
 	m_targetOffset = _target;
-
-	update();
 
 	return;
 }
@@ -165,8 +157,6 @@ void LookAt::cameraWork_tilt(
 
 	follow_target(target, _followSpeed_target);
 
-	update();
-
 	return;
 }
 
@@ -211,8 +201,6 @@ void LookAt::cameraWork_pan(
 	follow_position(_position_camera, _followSpeed_camera);
 
 	follow_target(target, _followSpeed_target);
-
-	update();
 	
 	return;
 }
@@ -247,8 +235,6 @@ void LookAt::cameraWork_dolly(
 	follow_position(position, _followSpeed_camera);
 
 	follow_target(_position_target, _followSpeed_target);
-
-	update();
 
 	return;
 }
