@@ -15,6 +15,10 @@ private:
 	void remove();
 	void collision(Collision_Ptr& _my, Collision_Ptr& _other, Actor* _actor);
 private:
+	//ÉRÉsÅ[ã÷é~
+	CollisionGroup(const CollisionGroup&);
+	CollisionGroup& operator=(const CollisionGroup&);
+private:
 	Actor* m_actor;
 	std::vector<Collision_Ptr> m_container;
 };

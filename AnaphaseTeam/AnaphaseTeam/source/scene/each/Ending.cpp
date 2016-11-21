@@ -20,6 +20,7 @@ void Ending::initialize()
 
 void Ending::update(float _deltaTime)
 {
+	if (m_change.update(_deltaTime))return;
 	//Œˆ’èƒ{ƒ^ƒ“ì‚Á‚Ä‚à‚¢‚¢‚©‚à
 	if (m_device->input()->jump())
 	{
