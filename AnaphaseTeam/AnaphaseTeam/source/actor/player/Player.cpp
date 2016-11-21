@@ -96,6 +96,8 @@ void Player::draw(const Renderer & _renderer, const Camera & _camera)
 
 	m_SpecialSkillManager.draw(_renderer);
 
+	_renderer.getDraw2D().string(std::to_string(m_collision.size()), &GSvector2(50, 50), 20);
+
 }
 
 void Player::inGround()
@@ -268,9 +270,9 @@ void Player::gaugeAdd()
 
 void Player::createAttackCollision()
 {
-	GSvector3 p = m_transform.m_translate + m_transform.front()*1.0f;
+	GSvector3 p = target+m_transform.front();
 	p.y += 1.f;
-	Collision_Ptr act = std::make_shared<PlayerAttackCollision>(p,m_animatorOne.getCurrentAnimationEndTime() / 60.0f);
+	Collision_Ptr act = std::make_shared<PlayerAttackCollision>(p,m_animatorOne.getNextAnimationEndTime() / 60.0f,m_status.attackSpeed());
 	m_collision.add(act);
 }
 
