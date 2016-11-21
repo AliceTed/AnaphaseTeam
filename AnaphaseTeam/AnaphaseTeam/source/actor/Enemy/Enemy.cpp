@@ -26,7 +26,7 @@ void Enemy::initialize()
 	Actor::initialize();
 	Collision_Ptr actor = std::make_shared<EnemyCollision>(this);
 	m_collision.add(actor);
-	m_animatorOne.changeAnimation(static_cast<GSuint>(ENEMY_ANIMATION::SPAWN));
+	m_animatorOne.changeAnimation(static_cast<GSuint>(ENEMY_ANIMATION::SPAWN),true,false);
 	m_state = ESTATE::SPAWN;
 	m_stay_timer.initialize();
 	m_hp = 100;
@@ -41,7 +41,10 @@ void Enemy::update(float deltatime)
 	m_animatorOne.update(deltatime);
 	state(deltatime);
 	sphereChases(GSvector3(0, 1, 0));
-	m_isDead = m_hp <= 0;
+	if (m_hp <= 0)
+	{
+		m_state = ESTATE::DEAD;
+	}
 	m_collision.update(deltatime);
 }
 
@@ -65,7 +68,7 @@ void Enemy::damage(Player * _player)
 	if (isDamageState())return;
 	m_state = ESTATE::DAMAGE;
 	//‚±‚±
-	m_animatorOne.changeAnimation(static_cast<GSuint>(ENEMY_ANIMATION::DAMAGE),true,false,false,10.0f,1.2f);
+	m_animatorOne.changeAnimation(static_cast<GSuint>(ENEMY_ANIMATION::DAMAGE),true,false,false,10.0f,1.5f);
 	m_transform.translate_front(-0.1f);
 	m_hp -= 10;
 	_player->gaugeAdd();
@@ -100,7 +103,7 @@ void Enemy::state(float deltaTime)
 	case ESTATE::ATTACK:
 		m_incidence.setWorldTransform(m_animatorOne.getOrientedMat(8));
 		m_incidence.synthesisWorldTransform(m_transform);
-		
+		m_animatorOne.changeAnimation(static_cast<unsigned int>(ENEMY_ANIMATION::ATTACK), false, false, false, 0);
 		if (m_animatorOne.isEndCurrentAnimation())
 		{
 			m_state = ESTATE::STAND;
@@ -112,12 +115,17 @@ void Enemy::state(float deltaTime)
 			m_state = ESTATE::STAND;
 		}
 		break;
+	case ESTATE::DEAD:
+		m_animatorOne.changeAnimation(static_cast<GSuint>(ENEMY_ANIMATION::DEAD));
+		m_Color.a -= 1/m_animatorOne.getCurrentAnimationEndTime();
+		m_isDead=m_animatorOne.isEndCurrentAnimation();
+		break;
 	}
 }
 
 const bool Enemy::isDamageState() const
 {
-	return m_state == ESTATE::MOVE || m_state == ESTATE::ATTACK;
+	return m_state == ESTATE::MOVE || m_state == ESTATE::ATTACK||m_state==ESTATE::DEAD;
 }
 
 void Enemy::slide(Actor * _actor)
