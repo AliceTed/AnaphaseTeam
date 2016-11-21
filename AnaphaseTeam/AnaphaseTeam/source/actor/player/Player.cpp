@@ -395,6 +395,10 @@ void Player::control()
 void Player::look_at(CameraController * _camera, GSvector3 * _target)
 {
 	GSvector3 target = m_transform.m_translate;
+
+	m_camera->lookAt_cameraTarget_player(target);
+	m_camera->lookAt_cameraTarget_enemy(*_target);
+
 	_camera->special_move1(&target, _target, 10.0f, 1.5f);
 }
 

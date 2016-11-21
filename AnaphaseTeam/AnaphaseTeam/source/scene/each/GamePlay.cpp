@@ -7,7 +7,7 @@ GamePlay::GamePlay(GameDevice* _device)
 	:m_IsEnd(false),
 	m_device(_device),
 	m_Map(OCTREE_ID::KOUTEI),
-	m_Camera(10,8,GSvector3(0,5,0)),
+	m_Camera(),
 	m_cameracontroller(&m_Camera),
 	m_enemys(),
 	m_change(),

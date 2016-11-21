@@ -1,100 +1,196 @@
-/**
-@file 
-.h
+/******************************************************
+@file .h
 @brief カメラ
 @author Yuuoh Aritomi : Matuo
 @date 2016/09/23 Ver1.00
-*/
+******************************************************/
 #pragma once
 
 #include <gslib.h>
+#include <memory>
 #include "Perspective.h"
 #include "LookAt.h"
 
 #include "../../header/transform/Transform.h"
+
+class CameraTarget;
+
 class Camera
 {
-	Perspective m_perspective;
-	LookAt m_look_at;
-
-	//float m_near;
-	//float m_far;
-
-	float range_Position;
-	float range_Eye;
-	GSvector3 offset;
-	GSvector3 position;
 
 public:
-	/**
-	@brief デフォルトコンストラクタ
-	*/
+	/**************************************************
+	@brief コンストラクタ
+	**************************************************/
 	Camera(void);
 
-	/**
-	@brief コンストラクタ
-	*/
-	Camera(const Perspective* _perspective, const GSvector3* _position);
 
-	/**
-	@brief コンストラクタ
-	*/
-	Camera(float range_Position, float range_Eye, const GSvector3& offset);
 
-	/**
+	/**************************************************
+	@brief コンストラクタ
+	@param[_perspective]	パースペクティブ
+	@param[_position]		位置
+	**************************************************/
+	Camera(
+		const Perspective&	_perspective, 
+		const GSvector3&	_position
+	);
+
+
+
+	/**************************************************
 	@brief デストラクタ
-	*/
+	**************************************************/
 	~Camera();
 
-	/**
+
+
+	/**************************************************
 	@brief 更新処理
-	@author Aritomi
-	*/
+	**************************************************/
 	void update(void);
 
-	/**
+
+
+	/**************************************************
 	@brief 指定した位置に移動する
-	@author Aritomi
-	*/
-	void move(const GSvector3* _position);
+	@param[_position] 位置
+	**************************************************/
+	void move(const GSvector3& _position);
 
-	/**
+
+
+	/**************************************************
 	@brief カメラが見ている位置を設定する
-	@author Aritomi
-	*/
-	void look_at(const GSvector3* _target);
+	@param[_target] ターゲット
+	**************************************************/
+	void lookAt(const GSvector3& _target);
 
-	/** 
-	@brief パースペクティブ値を返す
-	@author Aritomi
-	*/
-	const Perspective PERSPECTIVE(void) const
+
+
+	/**************************************************
+	@brief ｘ軸回転のみで被写体を見る
+	@param[_target] ターゲット
+	@param[_direction] 方位角
+	**************************************************/
+	void lookAt_tilt(const GSvector3& _target, const float _direction);
+
+
+
+	/**************************************************
+	@brief y軸回転のみで被写体を見る
+	@param[_target]		ターゲット
+	@param[_elevation]	仰角
+	**************************************************/
+	void lookAt_pan(const GSvector3& _target, const float _elevation);
+
+
+
+	/**************************************************
+	@brief プレイヤーの位置を保持
+	@param[_target] プレイヤーの位置を入れてね
+	**************************************************/
+	void lookAt_cameraTarget_player(const GSvector3& _target);
+
+
+
+	/**************************************************
+	@brief エネミーの位置を保持
+	@param[_target] エネミーの位置を入れてくれ
+	**************************************************/
+	void lookAt_cameraTarget_enemy(const GSvector3& _target);
+
+
+
+	/**************************************************
+	@brief カメラがターゲットに追尾
+	@param[_target] ターゲット
+	@param[_speed]	速度
+					[0] 追尾無し
+					[1] ディレイありの追尾
+					[2] 完全追尾
+	**************************************************/
+	void follow_position(const GSvector3& _target, const float _speed);
+
+
+
+	/**************************************************
+	@brief 注視点がターゲットに追尾
+	@param[_target] ターゲット
+	@param[_speed]	速度
+	[0] 追尾無し
+	[1] ディレイありの追尾
+	[2] 完全追尾
+	**************************************************/
+	void follow_target(const GSvector3& _target, const float _speed);
+
+
+
+	/*******************************************************
+	@brief ズームリセット
+	*******************************************************/
+	void zoom_reset(void);
+
+
+
+	/*******************************************************
+	@brief ズーム
+	@param[_value] 値
+	*******************************************************/
+	void zoom(const float _value);
+
+
+
+	/*******************************************************
+	@brief ズームイン
+	@param[_speed] 速度
+	*******************************************************/
+	void zoom_in(const float _speed);
+
+
+
+	/*******************************************************
+	@brief ズームアウト
+	@param[_speed] 速度
+	*******************************************************/
+	void zoom_out(const float _speed);
+
+
+
+	/**************************************************
+	@return パースペクティブ
+	**************************************************/
+	const Perspective perspective(void) const
 	{
 		return m_perspective;
 	}
-
-	/**
-	@brief 現在のカメラの位置を返す
-	@author Aritomi
-	*/
-	const GSvector3 POSITION(void) const
+	/**************************************************
+	@return 位置
+	**************************************************/
+	const GSvector3 position(void) const
 	{
-		return m_look_at.position;
+		return m_lookAt.position();
 	}
-
-	/**
-	@brief 現在の注視点の位置を返す
-	@author Aritomi
-	*/
-	const GSvector3 TARGET(void) const
+	/**************************************************
+	@return ターゲット
+	**************************************************/
+	const GSvector3 target(void) const
 	{
-		return m_look_at.target;
+		return m_lookAt.target();
 	}
+	/**************************************************
+	@return カメラターゲット（プレイヤー）
+	**************************************************/
+	const GSvector3& cameraTarget_player(void) const;
+	/**************************************************
+	@return カメラターゲット（エネミー）
+	**************************************************/
+	const GSvector3& cameraTarget_enemy(void) const;
 
 	/**
 	@author Matuo
 	*/
-	void lookAt(const GSvector3& target, float dir);
+	//void lookAt(const GSvector3& target, float dir);
 
 	/**
 	@author Matuo
@@ -113,8 +209,10 @@ public:
 
 	//取りあえず
 	const Transform transform()const;
+
 private:
-	void update_perspective(const Perspective*) const;	// 遠近法設定を更新
-	
-	void update_look_at(const LookAt*) const;			// 表示位置を更新
+	Perspective						m_perspective;
+	LookAt							m_lookAt;
+	std::shared_ptr<CameraTarget>	m_cameraTarget_player;
+	std::shared_ptr<CameraTarget>	m_cameraTarget_enemy;
 };

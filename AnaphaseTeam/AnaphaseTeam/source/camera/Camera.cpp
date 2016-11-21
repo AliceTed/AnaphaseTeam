@@ -1,141 +1,185 @@
 #include "../../header/camera/Camera.h"
+#include "../../header/camera/CameraTarget.h"
 
 Camera::Camera(void) :
-	m_perspective(Perspective()),
-	m_look_at(LookAt())
-{
-
-}
-
-Camera::Camera(const Perspective* _perspective, const GSvector3* _position) :
-	m_perspective(*_perspective),
-	m_look_at(LookAt(_position, &(*_position + GSvector3(0, 0, -1)), &GSvector3(0, 1, 0)))
-{
-}
-
-Camera::Camera(float range_Position, float range_Eye, const GSvector3 & offset) :
 	m_perspective(Perspective(45.0f, 1280.0f / 720.0f, 0.3f, 1000.0f)),
-	m_look_at(LookAt(&GSvector3(0, 0, 0), &GSvector3(0, 0, 0), &GSvector3(0, 1, 0))),
-	range_Position(range_Position), 
-	range_Eye(range_Eye),
-	offset(offset)
+	m_lookAt(LookAt(GSvector3(0, 0, 0), GSvector3(0, 0, 0), GSvector3(0, 1, 0))),
+	m_cameraTarget_player(std::make_shared<CameraTarget>()),
+	m_cameraTarget_enemy(std::make_shared<CameraTarget>())
+{
+
+}
+
+
+
+Camera::Camera(
+	const Perspective&	_perspective, 
+	const GSvector3&	_position
+) :
+	m_perspective(_perspective),
+	m_lookAt(LookAt(_position, _position + GSvector3(0, 0, -1), GSvector3(0, 1, 0))),
+	m_cameraTarget_player(std::make_shared<CameraTarget>()),
+	m_cameraTarget_enemy(std::make_shared<CameraTarget>())
 {
 }
+
+
 
 Camera::~Camera()
 {
 }
 
+
+
 void Camera::update(void)
 {
-	update_perspective(&m_perspective);
+	m_perspective.update();
 
-	update_look_at(&m_look_at);
-
-	return;
-}
-
-void Camera::move(const GSvector3* _position)
-{
-	m_look_at.position = *_position;
+	m_lookAt.update();
 
 	return;
 }
 
-void Camera::look_at(const GSvector3* _target)
+
+
+void Camera::move(const GSvector3& _position)
 {
-	m_look_at.target = *_target;
+	m_lookAt.set_position(_position);
 
 	return;
 }
 
-void Camera::lookAt(const GSvector3& target, float dir)
+
+
+void Camera::lookAt(const GSvector3& _target)
 {
-	glMatrixMode(GL_MODELVIEW);
-	glLoadIdentity();
+	m_lookAt.lookAt(_target);
 
-	position = target;
-
-	GSvector3 t;
-	//向いている方向
-	GSvector3 at;
-
-	gsVector3FromEleDir(&at, 0.0f, dir);
-
-	t = at*range_Position;
-	position -= t;
-	position += offset;
-
-	GSvector3 eyeTarget = target;
-	t = at*range_Eye;
-	eyeTarget += t;
-
-	gluLookAt(
-		position.x, position.y, position.z,/*カメラ位置*/
-		eyeTarget.x, eyeTarget.y, eyeTarget.z,/* 注視点*/
-		0.0f, 1.0f, 0.0f/*カメラ上向き方向 */
-		);
+	return;
 }
+
+
+
+void Camera::lookAt_tilt(const GSvector3& _target, const float _direction)
+{
+	m_lookAt.lookAt_tilt(_target, _direction);
+
+	return;
+}
+
+
+
+void Camera::lookAt_pan(const GSvector3& _target, const float _elevation)
+{
+	m_lookAt.lookAt_pan(_target, _elevation);
+
+	return;
+}
+
+
+
+void Camera::lookAt_cameraTarget_player(const GSvector3& _target)
+{
+	m_cameraTarget_player->lookAt(_target);
+
+	return;
+}
+
+
+
+void Camera::lookAt_cameraTarget_enemy(const GSvector3& _target)
+{
+	m_cameraTarget_enemy->lookAt(_target);
+
+	return;
+}
+
+
+
+void Camera::follow_position(const GSvector3& _target, const float _speed)
+{
+	m_lookAt.follow_position(_target, _speed);
+}
+
+
+
+void Camera::follow_target(const GSvector3& _target, const float _speed)
+{
+	m_lookAt.follow_target(_target, _speed);
+}
+
+
+
+void Camera::zoom_reset(void)
+{
+	m_perspective.zoom_reset();
+}
+
+
+
+void Camera::zoom(const float _value)
+{
+	m_perspective.zoom(_value);
+}
+
+
+
+void Camera::zoom_in(const float _speed)
+{
+	m_perspective.zoom_in(_speed);
+}
+
+
+
+void Camera::zoom_out(const float _speed)
+{
+	m_perspective.zoom_out(_speed);
+}
+
+
+
+const GSvector3& Camera::cameraTarget_player() const
+{
+	return m_cameraTarget_player->_target();
+}
+const GSvector3& Camera::cameraTarget_enemy() const
+{
+	return m_cameraTarget_enemy->_target();
+}
+
+
 
 const bool Camera::isFrustumCulling(const GSvector3 & center, float radius) const
 {
-	/*glMatrixMode(GL_MODELVIEW);
-	glLoadIdentity();*/
-	//透視変換行列
-	GSmatrix4 matProj;
-	glGetFloatv(GL_PROJECTION_MATRIX, (GLfloat*)&matProj);
-	//視野変換行列
-	GSmatrix4 matView;
-	glGetFloatv(GL_MODELVIEW_MATRIX, (GLfloat*)&matView);
-
 	//視錐台
 	GSfrustum frustum;
-	gsFrustumFromMatrices(&frustum, &matView, &matProj);
+	gsFrustumFromMatrices(&frustum, &m_lookAt.matView(), &m_perspective.matProj());
 
 	return !!gsFrustumIsSphereInside(&frustum, &center, radius);
 }
 
+
+
 const float Camera::nearDistance(const GSvector3 & ohter, float radius) const
 {
 	//ohterとカメラの距離
-	float dis = ohter.distance(m_look_at.position);
+	float dis = ohter.distance(m_lookAt.position());
 	//距離とnearの差
-	return dis-(m_perspective.near+radius);
+	return dis-(m_perspective.near()+radius);
 }
+
+
 
 const float Camera::distance(const GSvector3 & ohter) const
 {
-	return position.distance(ohter);
+	return m_lookAt.position().distance(ohter);
 }
+
+
 
 const Transform Camera::transform() const
 {
 	//yaw回転だけ
- 	GSvector3 vec=m_look_at.target - m_look_at.position;
-	return Transform(vec.getYaw(),GSvector3(0,1,0), position);
-}
-
-void Camera::update_perspective(const Perspective* _perspective) const
-{
-	glMatrixMode(GL_PROJECTION);
-	glLoadIdentity();
-	gluPerspective(
-		_perspective->fov,
-		_perspective->aspect,
-		_perspective->near,
-		_perspective->far);
-
-	return;
-}
-
-void Camera::update_look_at(const LookAt* _look_at) const
-{
-	glMatrixMode(GL_MODELVIEW);
-	glLoadIdentity();
-	gluLookAt(
-		_look_at->position.x, _look_at->position.y, _look_at->position.z,
-		_look_at->target.x, _look_at->target.y, _look_at->target.z,
-		_look_at->up.x, _look_at->up.y, _look_at->up.z);
-
-	return;
+ 	GSvector3 vec= m_lookAt.target() - m_lookAt.position();
+	return Transform(vec.getYaw(), GSvector3(0, 1, 0), m_lookAt.position());
 }
