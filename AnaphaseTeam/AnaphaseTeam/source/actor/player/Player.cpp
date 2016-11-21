@@ -356,7 +356,6 @@ void Player::actionChange(Action_Ptr _action)
 {
 	m_action = _action;
 }
-
 void Player::control()
 {
 	if (m_device->input()->gaugeAttack1())
