@@ -28,7 +28,7 @@ const bool AttackManager::isEnd() const
 	return m_combo.isEnd();
 }
 
-void AttackManager::Start(bool _attackChange)
+void AttackManager::Start(bool _attackChange, Player* _player)
 {
-	m_combo.Start(_attackChange);
+	m_combo.start(_attackChange, _player);
 }

@@ -58,7 +58,6 @@ void ComboManager::initialize()
 {
 	create();
 	reset();
-
 }
 
 void ComboManager::reset()
@@ -66,16 +65,18 @@ void ComboManager::reset()
 	m_isEnd = false;
 }
 
-void ComboManager::Start(bool _attackChange)
+void ComboManager::start(bool _attackChange, Player* _player)
 {
 	if (_attackChange)
 	{
 		m_current = m_attackPattern.at(Combo::Q);
+		m_current.initialize(_player);
 	}
 
 	if (!_attackChange)
 	{
 		m_current = m_attackPattern.at(Combo::S);
+		m_current.initialize(_player);
 	}
 }
 
@@ -98,7 +99,7 @@ void ComboManager::update(float deltaTime, Player* _player)
 
 	if (isCurrentEnd(_player))
 	{
-		change();
+		change(_player);
 		_player->homing();
 	}
 }
@@ -115,7 +116,7 @@ void ComboManager::next(Combo _next)
 	m_next = _next;
 }
 
-void ComboManager::change()
+void ComboManager::change(Player* _player)
 {
 	if (m_next == Combo::End)
 	{
@@ -123,6 +124,7 @@ void ComboManager::change()
 		return;
 	}
 	m_current = m_attackPattern.at(m_next);
+	m_current.initialize(_player);
 	m_next = Combo::End;
 }
 

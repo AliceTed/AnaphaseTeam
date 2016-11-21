@@ -190,6 +190,7 @@
     <ClCompile Include="source\collision\EnemyAttackCollision.cpp" />
     <ClCompile Include="source\collision\EnemyCollision.cpp" />
     <ClCompile Include="source\collision\HitInformation.cpp" />
+    <ClCompile Include="source\collision\PlayerAttackCollision.cpp" />
     <ClCompile Include="source\collision\SpecialAttackCollision.cpp" />
     <ClCompile Include="source\collision\WeaponCollision.cpp" />
     <ClCompile Include="source\device\GameDevice.cpp" />
@@ -304,6 +305,7 @@
     <ClInclude Include="header\collision\EnemyAttackCollision.h" />
     <ClInclude Include="header\collision\EnemyCollision.h" />
     <ClInclude Include="header\collision\HitInformation.h" />
+    <ClInclude Include="header\collision\PlayerAttackCollision.h" />
     <ClInclude Include="header\collision\SpecialAttackCollision.h" />
     <ClInclude Include="header\collision\WeaponCollision.h" />
     <ClInclude Include="header\data\ENEMY_ANIMATION.h" />

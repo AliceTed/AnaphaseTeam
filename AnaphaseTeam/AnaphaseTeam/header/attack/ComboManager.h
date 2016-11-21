@@ -24,13 +24,13 @@ public:
 	ComboManager();
 	~ComboManager();
 	void initialize();
-	void Start(bool attackChange);
+	void start(bool attackChange,Player* _player);
 	void reset();
 	void update(float deltaTime, Player* _player);
 	const bool isEnd()const;
 private:	
 	void next(Combo _next);
-	void change();
+	void change(Player* _player);
 	void create();
 	const bool isCurrentEnd(Player* _player) const;
 private:

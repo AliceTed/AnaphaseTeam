@@ -13,7 +13,6 @@ Enemy::Enemy(const Transform & _transform)
 		Actor_Tag::ENEMY),
 	m_state(ESTATE::SPAWN),
 	m_stay_timer(2),
-	m_velocity(0, 0, 0),
 	m_hp(100),
 	m_incidence()
 {
@@ -33,11 +32,6 @@ void Enemy::initialize()
 }
 void Enemy::update(float deltatime)
 {
-	m_transform.translate(m_velocity);
-	m_transform.m_rotate = m_rotate;
-	Math::Clamp clamp;
-	m_transform.m_translate = clamp(m_transform.m_translate,GSvector3(-20.0f,-10,-20.0f),GSvector3(20.0f,10,20.0f));
-
 	m_animatorOne.update(deltatime);
 	state(deltatime);
 	sphereChases(GSvector3(0, 1, 0));
@@ -52,9 +46,9 @@ void Enemy::draw(const Renderer & _renderer, const Camera & _camera)
 {
 	//‹——£‚Ì“§‰ß‚È‚Ç‚Íshader‚É”C‚¹‚é—\’è
 	FALSE_RETURN(isInsideView(_camera));
-	alphaBlend(_camera);
+	//alphaBlend(_camera);
 	m_collision.draw(_renderer);
-	m_animatorOne.draw(_renderer, m_transform);
+	m_animatorOne.draw(_renderer, m_transform,m_Color);
 	_renderer.getDraw2D().string(std::to_string(m_hp), &GSvector2(500, 80), 30);
 }
 
@@ -90,7 +84,6 @@ void Enemy::state(float deltaTime)
 		}
 		break;
 	case ESTATE::STAND:
-		m_velocity = GSvector3(0, 0, 0);
 		m_animatorOne.changeAnimation(static_cast<GSuint>(ENEMY_ANIMATION::STAND), true, true);
 		m_stay_timer.update(deltaTime);
 		break;
@@ -130,16 +123,18 @@ const bool Enemy::isDamageState() const
 
 void Enemy::slide(Actor * _actor)
 {
-	m_velocity = m_transform.left()*0.03f;
-	if (_actor == nullptr) return;
-	m_rotate = targetDirection(*_actor);
+	m_transform.translate_left(0.03f);
+	m_transform.m_rotate = targetDirection(*_actor);
+	Math::Clamp clamp;
+	m_transform.m_translate = clamp(m_transform.m_translate, GSvector3(-20.0f, -10, -20.0f), GSvector3(20.0f, 10, 20.0f));
 }
 
 void Enemy::move(Actor * _actor)
 {
-	m_velocity = m_transform.front()*0.05f;
-	if (_actor == nullptr) return;
-	m_rotate = (targetDirection(*_actor));
+	m_transform.translate_up(0.05f);
+	m_transform.m_rotate = targetDirection(*_actor);
+	Math::Clamp clamp;
+	m_transform.m_translate = clamp(m_transform.m_translate, GSvector3(-20.0f, -10, -20.0f), GSvector3(20.0f, 10, 20.0f));
 }
 
 void Enemy::attack_start()
@@ -167,7 +162,7 @@ void Enemy::look_at(CameraController* _camera, Player* _player)
 
 void Enemy::think(Player * _player)
 {
-	if (m_state == ESTATE::DAMAGE || m_state == ESTATE::ATTACK || m_state == ESTATE::SPAWN)return;
+	if (m_state==ESTATE::DEAD|| m_state == ESTATE::DAMAGE || m_state == ESTATE::ATTACK || m_state == ESTATE::SPAWN)return;
 	if (!m_stay_timer.isEnd())return;
 	Math::Random rnd;
 	if (rnd(0, 200) == 0)

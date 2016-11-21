@@ -11,6 +11,8 @@ public:
 	void update(float deltaTime);
 	void collision(CollisionGroup& _group);
 	void draw(const Renderer& _renderer);
+
+	unsigned int size()const;
 private:
 	void remove();
 	void collision(Collision_Ptr& _my, Collision_Ptr& _other, Actor* _actor);

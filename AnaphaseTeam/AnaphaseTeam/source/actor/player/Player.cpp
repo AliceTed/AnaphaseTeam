@@ -17,6 +17,7 @@
 #include "../../../header/actor/Boss/Boss.h"
 #include "../../../header/camera/LockOn.h"
 #include "../../../header/actor/Enemy/Enemy.h"
+#include "../../../header/collision/PlayerAttackCollision.h"
 const float Player::MOVESPEED = 0.3f;
 const float Player::ROTATESPEED = -2.0f;
 const float Player::WALKSPEED = 0.1f;
@@ -58,7 +59,7 @@ void Player::initialize()
 	m_Gauge.initialize();
 	m_status.initialize();
 	m_scythe.initialize();
-	m_scythe.addCollision(&m_collision);
+	//m_scythe.addCollision(&m_collision);
 	m_SpecialSkillManager.initialize(SPECIALTYPE::NONE);
 	target = m_transform.m_translate;
 }
@@ -94,7 +95,7 @@ void Player::draw(const Renderer & _renderer, const Camera & _camera)
 	_renderer.getDraw2D().textrue(TEXTURE_ID::CLEAR, &GSvector2(0, 0),
 		&GSrect(0, 0, m_status.getHp(), 30), &GSvector2(0, 0), &GSvector2(1, 1), 0.0f, &GScolor(0.0f, 1.0f, 0.0f, 1.0f));
 
-	//_renderer.getDraw2D().string(std::to_string(m_status.getHp()), &GSvector2(0, 0), 30);
+	_renderer.getDraw2D().string(std::to_string(m_collision.size()), &GSvector2(10, 100), 30);
 }
 
 void Player::inGround()
@@ -265,6 +266,14 @@ void Player::gaugeAdd()
 	m_Gauge.up(10);
 }
 
+void Player::createAttackCollision()
+{
+	GSvector3 p = m_transform.m_translate + m_transform.front()*1.0f;
+	p.y += 1.f;
+	Collision_Ptr act = std::make_shared<PlayerAttackCollision>(p,m_animatorOne.getCurrentAnimationEndTime() / 60.0f);
+	m_collision.add(act);
+}
+
 void Player::startJump(JumpControl * _control, float _scale)
 {
 	_control->setPower(_scale);
@@ -371,8 +380,8 @@ void Player::control()
 		actionChange(std::make_shared<AttackState>());
 		m_attackManager.initialize();
 		m_isJumpAttack = !m_isGround;
-		m_attackManager.Start(true);
 		m_lockon->homing();
+		m_attackManager.Start(true,this);	
 	}
 
 	if (m_device->input()->slowAttackTrigger())
@@ -380,8 +389,8 @@ void Player::control()
 		actionChange(std::make_shared<AttackState>());
 		m_attackManager.initialize();
 		m_isJumpAttack = !m_isGround;
-		m_attackManager.Start(false);
 		m_lockon->homing();
+		m_attackManager.Start(false,this);	
 	}
 }
 
