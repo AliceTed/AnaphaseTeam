@@ -228,6 +228,7 @@
     <ClCompile Include="source\ui\ScaleImage.cpp" />
     <ClCompile Include="source\ui\SelectUI.cpp" />
     <ClCompile Include="source\ui\SlideImage.cpp" />
+    <ClCompile Include="source\ui\SpAttackUI.cpp" />
     <ClCompile Include="source\ui\TitleUI.cpp" />
     <ClCompile Include="Util\BasicShapes.cpp" />
   </ItemGroup>
@@ -352,6 +353,7 @@
     <ClInclude Include="header\ui\ScaleImage.h" />
     <ClInclude Include="header\ui\SelectUI.h" />
     <ClInclude Include="header\ui\SlideImage.h" />
+    <ClInclude Include="header\ui\SpAttackUI.h" />
     <ClInclude Include="header\ui\TitleUI.h" />
     <ClInclude Include="Util\BasicShapes.h" />
     <ClInclude Include="Util\EffectGL.h" />

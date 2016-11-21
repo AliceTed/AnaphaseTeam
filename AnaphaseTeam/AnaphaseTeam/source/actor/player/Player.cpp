@@ -17,6 +17,8 @@
 #include "../../../header/actor/Boss/Boss.h"
 #include "../../../header/camera/LockOn.h"
 #include "../../../header/actor/Enemy/Enemy.h"
+
+
 const float Player::MOVESPEED = 0.3f;
 const float Player::ROTATESPEED = -2.0f;
 const float Player::WALKSPEED = 0.1f;
@@ -77,6 +79,7 @@ void Player::update(float deltatime)
 	m_SpecialSkillManager.update(deltatime);
 
 	m_Gauge.update(deltatime);
+	
 }
 
 void Player::draw(const Renderer & _renderer, const Camera & _camera)
@@ -88,6 +91,7 @@ void Player::draw(const Renderer & _renderer, const Camera & _camera)
 	
 	m_Gauge.draw(_renderer);
 	m_scythe.draw(_renderer);
+	m_SpecialSkillManager.draw(_renderer);
 	_renderer.getDraw2D().string(std::to_string(degree), &GSvector2(20, 20), 30);
 	_renderer.getDraw2D().string(std::to_string(m_transform.getYaw()), &GSvector2(20, 40), 30);
 	_renderer.getDraw2D().string(std::to_string(m_status.getHp()), &GSvector2(200, 60), 30);
@@ -339,14 +343,17 @@ void Player::control()
 	if (m_device->input()->gaugeAttack1())
 	{
 		m_SpecialSkillManager.initialize(SPECIALTYPE::RECOVERY);
+		m_SpecialSkillManager.isRbstate();
 	}
 	if (m_device->input()->gaugeAttack2())
 	{
 		m_SpecialSkillManager.initialize(SPECIALTYPE::SUPERARMOR);
+		m_SpecialSkillManager.isRbstate();
 	}
 	if (m_device->input()->gaugeAttack3())
 	{
-		m_Gauge.down((float)RankGauge::MAX);
+		//m_Gauge.down((float)RankGauge::MAX);
+		m_SpecialSkillManager.initialize(SPECIALTYPE::SPECIALATTACK);
 	}
 	/*ƒ{ƒ^ƒ“‰Ÿ‚µ‚½‚çAttackState‚ÉØ‚è‘Ö‚í‚é*/
 	if (m_device->input()->quickAttackTrigger())

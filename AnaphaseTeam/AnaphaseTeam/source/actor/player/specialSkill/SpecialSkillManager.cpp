@@ -4,7 +4,8 @@ SpecialSkillManager::SpecialSkillManager(Gauge& _gauge) :
 	m_recovery(),
 	m_superArmor(),
 	m_gauge(_gauge),
-	m_specialAttack()
+	m_specialAttack(),
+	m_spAttackUI()
 {
 }
 
@@ -48,6 +49,7 @@ void SpecialSkillManager::update(float deltaTime)
 		m_specialAttack.update(deltaTime);
 		break;
 	}
+	m_spAttackUI.update();
 }
 const bool SpecialSkillManager::isEnd(SPECIALTYPE _specialType) const
 {
@@ -75,4 +77,39 @@ void SpecialSkillManager::recovery(Status& _status)
 bool SpecialSkillManager::isSuperArmor()
 {
 	return m_superArmor.isSuperArmor();
+}
+
+void SpecialSkillManager::draw(const Renderer & _renderer)
+{
+	int resetTime;
+	resetTime = 0;
+
+	m_spAttackUI.draw(_renderer);
+	switch (m_type)
+	{
+	case SPECIALTYPE::NONE:
+		break;
+	case SPECIALTYPE::RECOVERY:
+		m_spAttackUI.spChange(TEXTURE_ID::SP_UI1);
+		resetTime++;
+		break;
+	case SPECIALTYPE::SUPERARMOR:
+		m_spAttackUI.spChange(TEXTURE_ID::SP_UI2);
+		resetTime++;
+		break;
+	case SPECIALTYPE::SPECIALATTACK:
+		m_spAttackUI.spChange(TEXTURE_ID::SP_UI3);
+		resetTime++;
+		break;
+	}
+	if (resetTime >= 1)
+	{
+		m_type = SPECIALTYPE::NONE;
+		resetTime = 0;
+	}
+}
+
+bool SpecialSkillManager::isRbstate()
+{
+	return false;
 }

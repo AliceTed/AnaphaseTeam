@@ -549,6 +549,9 @@
     <ClInclude Include="header\attack\ComboReader.h">
       <Filter>ヘッダー ファイル\attack</Filter>
     </ClInclude>
+    <ClInclude Include="header\ui\SpAttackUI.h">
+      <Filter>ヘッダー ファイル\ui</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Util\BasicShapes.cpp">
@@ -823,6 +826,9 @@
     </ClCompile>
     <ClCompile Include="source\attack\ComboReader.cpp">
       <Filter>ソース ファイル\Attack</Filter>
+    </ClCompile>
+    <ClCompile Include="source\ui\SpAttackUI.cpp">
+      <Filter>ソース ファイル\ui</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -23,6 +23,8 @@
 #include "../../attack/Scythe.h"
 #include "Gauge.h"
 #include "specialSkill/SpecialSkillManager.h"
+#include "../../../header/ui/SpAttackUI.h"
+
 class GameDevice;
 class CameraController;
 class TestActor;
@@ -116,6 +118,7 @@ private:
 
 	Avoid m_avoid;
 	SpecialSkillManager m_SpecialSkillManager;
+	SpAttackUI m_SpAttackUI;
 
 private://íËêî
 	static const float MOVESPEED;

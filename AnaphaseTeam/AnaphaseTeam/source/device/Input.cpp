@@ -71,6 +71,11 @@ const bool Input::avoidTrigger() const
 	return isJoyTriggerB();
 }
 
+const bool Input::spState() const
+{
+	return isJoyStateRB();
+}
+
 
 
 
