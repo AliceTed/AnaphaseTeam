@@ -21,7 +21,7 @@ void AnimatorOne::update(float deltatime)
 }
 const bool AnimatorOne::isEndCurrentAnimation() const
 {
-	return m_currentAnimation->getIsEnd();
+	return (!m_nextAnimation) &&m_currentAnimation->getIsEnd();
 }
 //
 //bool AnimatorOne::isEndAnimation(unsigned int _animationID)
