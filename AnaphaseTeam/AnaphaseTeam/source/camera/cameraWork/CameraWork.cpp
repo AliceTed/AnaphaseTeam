@@ -40,7 +40,7 @@ const GSvector3& CameraWork::initialize_position(
 
 	m_position = position;
 
-	return position;
+	return m_position;
 }
 
 
@@ -55,5 +55,5 @@ const GSvector3& CameraWork::initialize_target(
 
 	m_target = target;
 
-	return target;
+	return m_target;
 }
