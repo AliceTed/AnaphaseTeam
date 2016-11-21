@@ -1,10 +1,12 @@
 #include "../../header/camera/LockOn.h"
 #include "../../header/actor/Enemy/EnemyManager.h"
 #include "../../header/actor/Player/Player.h"
+#include "../../header/device/GameDevice.h"
 
-LockOn::LockOn()
+LockOn::LockOn(GameDevice* _device)
 	:m_player(nullptr),
-	m_target(nullptr)
+	m_target(nullptr),
+	m_device(_device)
 {
 }
 
@@ -18,7 +20,10 @@ void LockOn::nearEnemyFind(EnemyManager * _enemys)
 	{
 		return;
 	}
-	m_target = _enemys->nearEnemy(m_player);
+	if (m_target == nullptr || m_device->input()->lockOn())
+	{
+		m_target = &_enemys->nearEnemy(m_player);
+	}
 }
 
 void LockOn::addPlayer(Player * _player)
@@ -32,12 +37,16 @@ void LockOn::look_at(CameraController * _camera)
 	{
 		return;
 	}
-	m_target->look_at(_camera, m_player);
+	if ((*m_target) == nullptr)
+	{
+		return;
+	}
+	(*m_target)->look_at(_camera, m_player);
 }
 
 void LockOn::homing()
 {
-	m_player->attackHoming(m_target);
+	m_player->attackHoming((*m_target).get());
 }
 
 void LockOn::thinksEnemy(EnemyManager * _enemys)

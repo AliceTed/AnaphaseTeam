@@ -11,7 +11,7 @@ GamePlay::GamePlay(GameDevice* _device)
 	m_cameracontroller(&m_Camera),
 	m_enemys(),
 	m_change(),
-	m_lockon(),
+	m_lockon(_device),
 	m_player(_device, &m_Camera, &m_lockon)
 {
 }

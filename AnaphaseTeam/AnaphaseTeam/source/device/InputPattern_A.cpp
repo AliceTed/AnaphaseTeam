@@ -65,6 +65,11 @@ const bool InputPattern_A::gaugeAttack3()
 	return m_input->isJoyTriggerY() && m_input->isJoyStateRB();
 }
 
+const bool InputPattern_A::lockOn()
+{
+	return m_input->isJoyTriggerLeftThrust();
+}
+
 const bool InputPattern_A::up()
 {
 	return m_input->isJoyTriggerUp();

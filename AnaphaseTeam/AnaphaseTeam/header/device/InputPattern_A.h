@@ -21,6 +21,7 @@ public://ƒAƒNƒVƒ‡ƒ“
 	const bool gaugeAttack1();
 	const bool gaugeAttack2();
 	const bool gaugeAttack3();
+	const bool lockOn();
 public:
 	const bool up();
 	const bool down();

@@ -9,17 +9,19 @@
 
 #include <vector>
 #include <algorithm>
+#include <memory>
 using namespace std;
 
 class CameraController;
 class EnemyManager;
 class Enemy;
 class Player;
+class GameDevice;
 
 class LockOn
 {
 public:
-	LockOn();
+	LockOn(GameDevice* _device);
 	~LockOn();
 	/**
 	* @brief ˆê”Ô‹ß‚¢“G‚ğ’T‚·
@@ -38,6 +40,6 @@ private:
 	//! ‹‚ß‚½‹——£‚ÌŠi”[—pvector
 	vector<float> m_distanceStoreVector;
 	Player* m_player;
-	Enemy* m_target;
-
+	unique_ptr<Enemy>*  m_target;
+	GameDevice* m_device;
 };

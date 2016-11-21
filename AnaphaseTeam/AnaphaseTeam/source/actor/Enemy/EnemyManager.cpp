@@ -37,16 +37,13 @@ void EnemyManager::collision(Actor & _actor)
 void EnemyManager::draw(const Renderer & _renderer, const Camera& _camera)
 {
 	for (auto& i : m_enemys) { i->draw(_renderer,_camera); }
+	_renderer.getDraw2D().string(std::to_string(size()).c_str(), &GSvector2(200,300),50);
 }
 
-Enemy * EnemyManager::nearEnemy(Player * _player)
+Enemy_Ptr& EnemyManager::nearEnemy(Player * _player)
 {
 	std::sort(m_enemys.begin(), m_enemys.end(), [_player](Enemy_Ptr& _x, Enemy_Ptr& _y){return _x->distanceActor(*_player) < _y->distanceActor(*_player);});
-	if (m_enemys.empty())
-	{
-		return nullptr;
-	}
-	return m_enemys.begin()->get();
+	return *m_enemys.begin();
 }
 
 void EnemyManager::thinks(Player * _player)
@@ -63,4 +60,27 @@ void EnemyManager::remove()
 {
 	auto itr = std::remove_if(m_enemys.begin(), m_enemys.end(), [](Enemy_Ptr& _e) {return _e->isDead();});
 	m_enemys.erase(itr,m_enemys.end());
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }
