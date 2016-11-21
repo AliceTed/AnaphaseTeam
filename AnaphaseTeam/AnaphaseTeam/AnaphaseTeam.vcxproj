@@ -162,6 +162,7 @@
     <ClCompile Include="source\attack\ChargeAttack.cpp" />
     <ClCompile Include="source\attack\ComboManager.cpp" />
     <ClCompile Include="source\attack\Attack.cpp" />
+    <ClCompile Include="source\attack\ComboReader.cpp" />
     <ClCompile Include="source\attack\Gun.cpp" />
     <ClCompile Include="source\attack\Scythe.cpp" />
     <ClCompile Include="source\actor\player\Player.cpp" />
@@ -230,6 +231,7 @@
     <ClCompile Include="source\ui\ScaleImage.cpp" />
     <ClCompile Include="source\ui\SelectUI.cpp" />
     <ClCompile Include="source\ui\SlideImage.cpp" />
+    <ClCompile Include="source\ui\SpAttackUI.cpp" />
     <ClCompile Include="source\ui\TitleUI.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -261,6 +263,7 @@
     <ClInclude Include="header\attack\ComboManager.h" />
     <ClInclude Include="header\attack\Attack.h" />
     <ClInclude Include="header\attack\ComboPattern.h" />
+    <ClInclude Include="header\attack\ComboReader.h" />
     <ClInclude Include="header\attack\ECombo.h" />
     <ClInclude Include="header\attack\Gun.h" />
     <ClInclude Include="header\attack\Homing.h" />
@@ -356,6 +359,7 @@
     <ClInclude Include="header\ui\ScaleImage.h" />
     <ClInclude Include="header\ui\SelectUI.h" />
     <ClInclude Include="header\ui\SlideImage.h" />
+    <ClInclude Include="header\ui\SpAttackUI.h" />
     <ClInclude Include="header\ui\TitleUI.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

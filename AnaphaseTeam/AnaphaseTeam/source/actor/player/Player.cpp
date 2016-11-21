@@ -17,6 +17,8 @@
 #include "../../../header/actor/Boss/Boss.h"
 #include "../../../header/camera/LockOn.h"
 #include "../../../header/actor/Enemy/Enemy.h"
+
+
 const float Player::MOVESPEED = 0.3f;
 const float Player::ROTATESPEED = -2.0f;
 const float Player::WALKSPEED = 0.1f;
@@ -63,7 +65,7 @@ void Player::initialize()
 	m_Gauge.initialize();
 	m_status.initialize();
 	m_scythe.initialize();
-	m_scythe.addCollision(m_group.get());
+	m_scythe.addCollision(m_group.get());	
 	m_SpecialSkillManager.initialize(SPECIALTYPE::NONE);
 }
 
@@ -81,7 +83,7 @@ void Player::update(float deltatime)
 	if (m_status.getHp() <= 0)
 	{
 		m_isDead = true;
-	}
+}
 }
 
 void Player::draw(const Renderer & _renderer, const Camera & _camera)
@@ -90,7 +92,7 @@ void Player::draw(const Renderer & _renderer, const Camera & _camera)
 	alphaBlend(_camera);
 	//_renderer.getDraw3D().drawMesh_calcu(MODEL_ID::PLAYER, m_transform, m_animatorOne, m_Color);
 	m_animatorOne.draw(_renderer,m_transform);
-
+	
 	m_Gauge.draw(_renderer);
 	m_scythe.draw(_renderer);
 	//_renderer.getDraw2D().string(std::to_string(m_status.getHp()), &GSvector2(200, 60), 30);
@@ -100,6 +102,11 @@ void Player::draw(const Renderer & _renderer, const Camera & _camera)
 		&GSrect(0, 0, m_status.getHp(), 30), &GSvector2(0, 0), &GSvector2(1, 1), 0.0f, &GScolor(0.0f, 1.0f, 0.0f, 1.0f));
 
 	//_renderer.getDraw2D().string(std::to_string(m_status.getHp()), &GSvector2(0, 0), 30);
+	m_SpecialSkillManager.draw(_renderer);
+	//_renderer.getDraw2D().string(std::to_string(degree), &GSvector2(20, 20), 30);
+	_renderer.getDraw2D().string(std::to_string(m_transform.getYaw()), &GSvector2(20, 40), 30);
+	_renderer.getDraw2D().string(std::to_string(m_status.getHp()), &GSvector2(200, 60), 30);
+	_renderer.getDraw2D().string(std::to_string(m_Gauge.scale(3.0f)), &GSvector2(200, 80), 30);
 }
 
 void Player::inGround()
@@ -138,7 +145,7 @@ void Player::damage(float deltaTime)
 	{
 		actionChange(m_currentAction);
 		return;
-	}
+}
 	m_currentAction = std::make_shared<DamageState>();
 	m_animatorOne.changeAnimation(static_cast<GSuint>(ANIMATION_ID::DAMAGE), false);
 	if (isAnimationEnd())
@@ -377,7 +384,7 @@ void Player::control()
 		if (m_SpecialSkillManager.initialize(SPECIALTYPE::SPECIALATTACK))
 		{
 			m_SpecialSkillManager.addAttackCollision(m_group.get());
-		}
+	}
 	}
 	/*ƒ{ƒ^ƒ“‰Ÿ‚µ‚½‚çAttackState‚ÉØ‚è‘Ö‚í‚é*/
 	if (m_device->input()->quickAttackTrigger())

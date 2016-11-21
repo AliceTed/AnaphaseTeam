@@ -5,12 +5,16 @@
 #include "ComboPattern.h"
 #include "ECombo.h"
 #include "ChargeAttack.h"
+#include "ComboReader.h"
 
 #include "../device/Input.h"
 
 #include <unordered_map>
+#include <vector>
 
 class AnimatorOne;
+class Attack;
+class AttackStatus;
 
 class IComboMadiator
 {
@@ -41,5 +45,8 @@ private:
 	Attack m_current;
 	Combo m_next;
 	std::unordered_map<Combo, Attack> m_attackPattern;
+	ComboReader m_comboReader;
+	std::vector<AttackStatus> m_status;
+	std::vector<Attack> m_attack;
 
 };
