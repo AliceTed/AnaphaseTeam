@@ -1,6 +1,6 @@
 #include "../../header/camera/LockOn.h"
 #include "../../header/actor/Enemy/EnemyManager.h"
-#include "../../header/actor/Player/Player.h";
+#include "../../header/actor/Player/Player.h"
 
 LockOn::LockOn()
 	:m_player(nullptr),

@@ -546,6 +546,9 @@
     <ClInclude Include="header\actor\Player\specialSkill\SpecialAttack.h">
       <Filter>ヘッダー ファイル\actor\Player\specialSkill</Filter>
     </ClInclude>
+    <ClInclude Include="header\attack\ComboReader.h">
+      <Filter>ヘッダー ファイル\attack</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Util\BasicShapes.cpp">
@@ -817,6 +820,9 @@
     </ClCompile>
     <ClCompile Include="source\actor\player\specialSkill\SpecialAttack.cpp">
       <Filter>ソース ファイル\actor\Player\specialSkill</Filter>
+    </ClCompile>
+    <ClCompile Include="source\attack\ComboReader.cpp">
+      <Filter>ソース ファイル\Attack</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
