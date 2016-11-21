@@ -114,6 +114,27 @@ public:
 
 
 
+	/********************************************************
+	@brief	カメラワーク・ドリー
+	ターゲットに追従する
+	@param[_position_target]	ターゲット位置
+	@param[_elevation]			仰角
+	@param[_direction]			方位角
+	@param[_distance]			距離
+	@param[_followSpeed_camera]	カメラの追尾速度
+	@param[_followSpeed_target] ターゲットの追尾速度
+	********************************************************/
+	void cameraWork_dolly(
+		const GSvector3&	_position_target,
+		const float			_elevation,
+		const float			_direction,
+		const float			_distance,
+		const float			_followSpeed_camera,
+		const float			_followSpeed_target
+	);
+
+
+
 	/**************************************************
 	@brief プレイヤーの位置を保持
 	@param[_target] プレイヤーの位置を入れてね
@@ -155,9 +176,14 @@ public:
 
 
 	/*******************************************************
-	@brief ズームリセット
+	@brief 拡大範囲を設定
+	@param[_min] 最小値
+	@param[_max] 最大値
 	*******************************************************/
-	void zoom_reset(void);
+	void zoom_clamp(
+		const float _min,
+		const float _max
+	);
 
 
 

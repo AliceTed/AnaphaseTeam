@@ -37,11 +37,8 @@ void CameraActionManager::load(void)
 		m_cameraActions.clear();
 	}
 
-	m_cameraActions.insert(cameraAction_map::value_type(0, std::make_shared<CameraActionDollyStage1_1>(camera, new GSvector3(0.0f, 0.0f, 0.0f), elevation, direction)));
-	m_cameraActions.insert(cameraAction_map::value_type(1, std::make_shared<CameraActionDollyStage1_2>(camera, new GSvector3(0.0f, 0.0f, 0.0f), elevation, direction)));
-	m_cameraActions.insert(cameraAction_map::value_type(2, std::make_shared<CameraActionDollyStage1_3>(camera, new GSvector3(0.0f, 0.0f, 0.0f), elevation, direction)));
-	m_cameraActions.insert(cameraAction_map::value_type(3, std::make_shared<CameraActionLockOn>(camera)));
-	m_cameraActions.insert(cameraAction_map::value_type(4, std::make_shared<CameraActionDead>(camera)));
+	m_cameraActions.insert(cameraAction_map::value_type(0, std::make_shared<CameraActionLockOn>(camera)));
+	m_cameraActions.insert(cameraAction_map::value_type(1, std::make_shared<CameraActionDead>(camera)));
 }
 
 
@@ -60,7 +57,7 @@ void CameraActionManager::run(void)
 	}
 
 	s_i = s_i < 0 ? 0 : s_i;
-	s_i = s_i < 4 ? s_i : 4;
+	s_i = s_i < 1 ? s_i : 1;
 
 	m_cameraActions[s_i]->run();
 }

@@ -219,21 +219,38 @@ void LookAt::cameraWork_pan(
 
 
 
-void LookAt::lookAt_dolly(
-	const GSvector3& _target,
+void LookAt::cameraWork_dolly(
+	const GSvector3& _position_target,
 	const float _elevation,
 	const float _direction,
-	const float _distance
+	const float _distance,
+	const float _followSpeed_camera,
+	const float _followSpeed_target
 )
 {
 	ACalc calc;
+	GSvector3 position;
+
 	float elevation = _elevation;
 	float direction = _direction;
 
-	calc.to_rad(&elevation);
-	calc.to_rad(&direction);
+	to_radEleDir(&elevation, &direction);
 
-	//calc.rotate
+	calc.rotate(
+		&position, 
+		_position_target, 
+		elevation, 
+		direction, 
+		_distance
+	);
+
+	follow_position(position, _followSpeed_camera);
+
+	follow_target(_position_target, _followSpeed_target);
+
+	update();
+
+	return;
 }
 
 

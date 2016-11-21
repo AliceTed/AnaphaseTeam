@@ -82,11 +82,11 @@ void Camera::cameraWork_tilt(
 
 
 void Camera::cameraWork_pan(
-	const GSvector3& _position_camera,
-	const GSvector3& _position_target,
-	const float _elevation,
-	const float _followSpeed_camera,
-	const float _followSpeed_target
+	const GSvector3&	_position_camera,
+	const GSvector3&	_position_target,
+	const float			_elevation,
+	const float			_followSpeed_camera,
+	const float			_followSpeed_target
 )
 {
 	m_lookAt.cameraWork_pan(
@@ -96,6 +96,30 @@ void Camera::cameraWork_pan(
 		_followSpeed_camera,
 		_followSpeed_target
 	);
+
+	return;
+}
+
+
+void Camera::cameraWork_dolly(
+	const GSvector3&	_position_target,
+	const float			_elevation,
+	const float			_direction,
+	const float			_distance,
+	const float			_followSpeed_camera,
+	const float			_followSpeed_target
+)
+{
+	m_lookAt.cameraWork_dolly(
+		_position_target,
+		_elevation,
+		_direction,
+		_distance,
+		_followSpeed_camera,
+		_followSpeed_target
+	);
+
+	return;
 }
 
 
@@ -121,6 +145,8 @@ void Camera::lookAt_cameraTarget_enemy(const GSvector3& _target)
 void Camera::follow_position(const GSvector3& _target, const float _speed)
 {
 	m_lookAt.follow_position(_target, _speed);
+
+	return;
 }
 
 
@@ -128,13 +154,20 @@ void Camera::follow_position(const GSvector3& _target, const float _speed)
 void Camera::follow_target(const GSvector3& _target, const float _speed)
 {
 	m_lookAt.follow_target(_target, _speed);
+
+	return;
 }
 
 
 
-void Camera::zoom_reset(void)
+void Camera::zoom_clamp(
+	const float _min,
+	const float _max
+)
 {
-	m_perspective.zoom_reset();
+	m_perspective.zoom_clamp(_min, _max);
+
+	return;
 }
 
 

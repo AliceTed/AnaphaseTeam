@@ -5,7 +5,9 @@ Perspective::Perspective(void) :
 	m_fov(0.0f),
 	m_aspect(0.0f),
 	m_near(0.0f),
-	m_far(0.0f)
+	m_far(0.0f),
+	m_fov_min(1.0f),
+	m_fov_max(180.0f)
 {
 	update();
 }
@@ -21,7 +23,9 @@ Perspective::Perspective(
 	m_fov(_fov),
 	m_aspect(_aspect),
 	m_near(_near),
-	m_far(_far)
+	m_far(_far),
+	m_fov_min(1.0f),
+	m_fov_max(180.0f)
 {
 	update();
 }
@@ -65,11 +69,13 @@ void Perspective::update(void)
 
 
 
-void Perspective::zoom_reset(void)
+void Perspective::zoom_clamp(
+	const float _min,
+	const float _max
+)
 {
-	m_fov = FOV_DEF;
-
-	update();
+	m_fov_min = _min;
+	m_fov_max = _max;
 }
 
 
@@ -116,7 +122,11 @@ void Perspective::zoom_update(const float _speed)
 
 	m_fov += _speed;
 
-	m_fov = clamp(m_fov, FOV_MIN, FOV_MAX);
+	m_fov = clamp(
+		m_fov, 
+		m_fov_min, 
+		m_fov_max
+	);
 
 	update();
 

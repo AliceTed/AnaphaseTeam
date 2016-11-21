@@ -68,9 +68,14 @@ public:
 
 
 	/*******************************************************
-	@brief ズームリセット
+	@brief 拡大範囲を設定
+	@param[_min] 最小値
+	@param[_max] 最大値
 	*******************************************************/
-	void zoom_reset(void);
+	void zoom_clamp(
+		const float _min,
+		const float _max
+	);
 
 
 
@@ -145,6 +150,9 @@ private:
 	float		m_far;
 
 	GSmatrix4	m_matProjection;
+
+	float		m_fov_min;
+	float		m_fov_max;
 
 	const float FOV_DEF = 90.0f;
 	const float FOV_MIN = 0.1f;

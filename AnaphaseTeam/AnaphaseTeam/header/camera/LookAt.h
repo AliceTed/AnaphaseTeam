@@ -93,7 +93,7 @@ public:
 
 
 	/********************************************************
-	@brief	ティルトカメラワーク
+	@brief	カメラワーク・ティルト
 			x軸回転のみで被写体を見る
 			（もっと簡単にしたいよ）
 	@param[_position_camera]	カメラの位置
@@ -116,40 +116,45 @@ public:
 
 
 	/********************************************************
-	@brief	ティルトカメラワーク
-	x軸回転のみで被写体を見る
-	（もっと簡単にしたいよ）
+	@brief	カメラワーク・パン
+			y軸回転のみで被写体を見る
+			（もっと簡単にしたいよ）
 	@param[_position_camera]	カメラの位置
 	@param[_position_target]	ターゲットの位置
 	@param[_elevation]			仰角
 	@param[_followSpeed_camera] カメラの追尾速度
 	@param[_followSpeed_target]	ターゲットの追尾速度
-	[0] 追尾無し
-	[0.1~0.9] ディレイありの追尾
-	[1] 完全追尾
+								[0] 追尾無し
+								[0.1~0.9] ディレイありの追尾
+								[1] 完全追尾
 	********************************************************/
 	void cameraWork_pan(
-		const GSvector3& _position_camera,
-		const GSvector3& _position_target,
-		const float _elevation,
-		const float _followSpeed_camera,
-		const float _followSpeed_target
+		const GSvector3&	_position_camera,
+		const GSvector3&	_position_target,
+		const float			_elevation,
+		const float			_followSpeed_camera,
+		const float			_followSpeed_target
 	);
 
 
 
 	/********************************************************
-	@brief 被写体を見るかつついていく
-	@param[_target]		ターゲット
-	@param[_elevation]	仰角
-	@param[_direction]	方位角
-	@param[_distance]	距離
+	@brief	カメラワーク・ドリー
+			ターゲットに追従する
+	@param[_position_target]	ターゲット位置
+	@param[_elevation]			仰角
+	@param[_direction]			方位角
+	@param[_distance]			距離
+	@param[_followSpeed_camera]	カメラの追尾速度
+	@param[_followSpeed_target] ターゲットの追尾速度
 	********************************************************/
-	void lookAt_dolly(
-		const GSvector3&	_target, 
-		const float			_elevation, 
+	void cameraWork_dolly(
+		const GSvector3&	_position_target,
+		const float			_elevation,
 		const float			_direction,
-		const float			_distance
+		const float			_distance,
+		const float			_followSpeed_camera,
+		const float			_followSpeed_target
 	);
 
 

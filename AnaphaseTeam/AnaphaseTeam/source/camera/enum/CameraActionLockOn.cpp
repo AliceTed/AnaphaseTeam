@@ -19,7 +19,7 @@ CameraActionLockOn::~CameraActionLockOn()
 
 void CameraActionLockOn::run(void)
 {
-	m_camera->zoom_reset();
+	m_camera->zoom(90.0f);
 
 	Math::Clamp clamp;
 	ACalc calc;
@@ -45,9 +45,9 @@ void CameraActionLockOn::run(void)
 	pitch = clamp(pitch, 0.0f, 360.0f);
 
 	//‹——£§ŒÀ
-	distance = clamp(distance, 10.0f, 50.0f);
+	distance = clamp(distance, 1.0f, 50.0f);
 
-	calc.rotate(&target, enemy, pitch, yow, distance * 1.5f);
+	calc.rotate(&target, enemy, pitch, yow, distance + 5);
 
 	m_camera->follow_position(target, 0.5f);
 
