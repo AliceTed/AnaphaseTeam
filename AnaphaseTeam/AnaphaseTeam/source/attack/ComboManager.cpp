@@ -104,7 +104,6 @@ void ComboManager::next(Combo _next)
 
 void ComboManager::change(Player* _player)
 {
-	if (m_attackFinished)return;
 	if (m_next == Combo::End)
 	{
 		m_isEnd = true;
