@@ -30,7 +30,7 @@ void Enemy::initialize()
 {
 	Collision_Ptr actor = std::make_shared<EnemyCollision>(this);
 	m_group->add(actor);
-	m_animatorOne.changeAnimation(static_cast<GSuint>(ENEMY_ANIMATION::SPAWN));
+	m_animatorOne.changeAnimation(static_cast<GSuint>(ENEMY_ANIMATION::SPAWN),false,false);
 	m_state = ESTATE::SPAWN;
 	m_stay_timer.initialize();
 	m_hp = 100;
@@ -64,7 +64,7 @@ void Enemy::damage(Player * _player)
 	if (isDamageState())return;
 	m_state = ESTATE::DAMAGE;
 	//‚±‚±
-	m_animatorOne.changeAnimation(static_cast<GSuint>(ENEMY_ANIMATION::DAMAGE),true,false,false,10.0f,1.2f);
+	m_animatorOne.changeAnimation(static_cast<GSuint>(ENEMY_ANIMATION::DAMAGE),false,false,false,10.0f,1.2f);
 	m_transform.translate_front(-0.1f);
 	m_hp -= 10;
 	_player->gaugeAdd();
@@ -87,14 +87,14 @@ void Enemy::state(float deltaTime)
 		break;
 	case ESTATE::STAND:
 		m_velocity = GSvector3(0, 0, 0);
-		m_animatorOne.changeAnimation(static_cast<GSuint>(ENEMY_ANIMATION::STAND), true, true);
+		m_animatorOne.changeAnimation(static_cast<GSuint>(ENEMY_ANIMATION::STAND), false, true);
 		m_stay_timer.update(deltaTime);
 		break;
 	case ESTATE::MOVE:
-		m_animatorOne.changeAnimation(static_cast<unsigned int>(ENEMY_ANIMATION::RUN), true, true);
+		m_animatorOne.changeAnimation(static_cast<unsigned int>(ENEMY_ANIMATION::RUN), false, true);
 		break;
 	case ESTATE::SLIDE:
-		m_animatorOne.changeAnimation(static_cast<unsigned int>(ENEMY_ANIMATION::SLIDE), true, true);
+		m_animatorOne.changeAnimation(static_cast<unsigned int>(ENEMY_ANIMATION::SLIDE), false, true);
 		break;
 	case ESTATE::ATTACK:
 		m_incidence.setWorldTransform(m_animatorOne.getOrientedMat(8));

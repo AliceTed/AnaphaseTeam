@@ -30,7 +30,7 @@ void GamePlay::initialize()
 	//m_boss.initialize();
 	m_enemys.initialize();
 	Math::Random rnd;
-	for (int i = 0; i < 2; i++)
+	for (int i = 0; i < 1; i++)
 	{
 		Enemy* e = new Enemy(Transform(0, { 0,0,0 }, { rnd(-10.0f,10.0f),0,rnd(-10.0f,10.0f)}));
 	e->addCollisionGroup(&collision);
