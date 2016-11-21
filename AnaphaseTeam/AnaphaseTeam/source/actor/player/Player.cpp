@@ -40,7 +40,8 @@ Player::Player(GameDevice* _device, Camera * _camera, LockOn* _lockon)
 	m_lockon(_lockon),
 	m_scythe(),
 	m_SpecialSkillManager(m_Gauge, this),
-	m_currentAction(nullptr)
+	m_currentAction(nullptr),
+	target(0, 0, 0)
 {
 }
 
@@ -59,6 +60,7 @@ void Player::initialize()
 	m_scythe.initialize();
 	m_scythe.addCollision(&m_collision);
 	m_SpecialSkillManager.initialize(SPECIALTYPE::NONE);
+	target = m_transform.m_translate;
 }
 
 void Player::update(float deltatime)
@@ -83,7 +85,7 @@ void Player::draw(const Renderer & _renderer, const Camera & _camera)
 {
 	FALSE_RETURN(isInsideView(_camera));
 	alphaBlend(_camera);
-	m_animatorOne.draw(_renderer,m_transform);
+	m_animatorOne.draw(_renderer, m_transform);
 	m_collision.draw(_renderer);
 	m_Gauge.draw(_renderer);
 	m_scythe.draw(_renderer);
@@ -123,6 +125,7 @@ void Player::attack(float deltaTime)
 	{
 		actionChange(std::make_shared<StandState>());
 	}
+	gsVector3Lerp(&m_transform.m_translate, &m_transform.m_translate, &target, deltaTime * 0.1f);
 }
 
 void Player::damage(float deltaTime)
@@ -225,12 +228,8 @@ void Player::gaugeUp(float _scale)
 	m_Gauge.up(_scale);
 }
 
-void Player::attackhoming(Enemy * _enemy)
+void Player::attackHoming(Enemy * _enemy)
 {
-	if (m_attackManager.isEnd())
-	{
-		return;
-	}
 	Math::Clamp clamp;
 
 	if (_enemy == nullptr) return;
@@ -241,8 +240,9 @@ void Player::attackhoming(Enemy * _enemy)
 
 	float velocity = distanceActor(*_enemy) / 5.0f;
 	velocity = clamp(m_Gauge.scale(velocity), 0.0f, distanceActor(*_enemy) - 1.0f);
-	//velocity /= 5.0f;
-	m_transform.translate_front(velocity);
+	target = m_transform.m_translate + (m_transform.front() * velocity);
+	//gsVector3Lerp(&m_transform.m_translate, &m_transform.m_translate, &target, 0.1f);
+	//m_transform.translate_front(velocity);
 }
 
 void Player::homing()
