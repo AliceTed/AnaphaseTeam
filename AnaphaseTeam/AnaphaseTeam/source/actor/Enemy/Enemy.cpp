@@ -38,7 +38,7 @@ void Enemy::update(float deltatime)
 	if (m_hp <= 0)
 	{
 		m_state = ESTATE::DEAD;
-	}
+}
 	m_collision.update(deltatime);
 }
 
@@ -88,10 +88,10 @@ void Enemy::state(float deltaTime)
 		m_stay_timer.update(deltaTime);
 		break;
 	case ESTATE::MOVE:
-		m_animatorOne.changeAnimation(static_cast<unsigned int>(ENEMY_ANIMATION::RUN), true, true);
+		m_animatorOne.changeAnimation(static_cast<unsigned int>(ENEMY_ANIMATION::RUN), false, true);
 		break;
 	case ESTATE::SLIDE:
-		m_animatorOne.changeAnimation(static_cast<unsigned int>(ENEMY_ANIMATION::SLIDE), true, true);
+		m_animatorOne.changeAnimation(static_cast<unsigned int>(ENEMY_ANIMATION::SLIDE), false, true);
 		break;
 	case ESTATE::ATTACK:
 		m_incidence.setWorldTransform(m_animatorOne.getOrientedMat(8));

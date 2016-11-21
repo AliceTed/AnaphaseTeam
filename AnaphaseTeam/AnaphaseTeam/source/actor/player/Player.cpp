@@ -52,7 +52,6 @@ void Player::initialize()
 {
 	Actor::initialize();
 	actionChange(std::make_shared<StandState>());
-	m_animatorOne.initialize();
 	m_animatorOne.changeAnimation(static_cast<GSuint>(ANIMATION_ID::STAND), true, true, true);
 	m_isJumpAttack = false;
 	createColision();
@@ -95,7 +94,8 @@ void Player::draw(const Renderer & _renderer, const Camera & _camera)
 	_renderer.getDraw2D().textrue(TEXTURE_ID::CLEAR, &GSvector2(0, 0),
 		&GSrect(0, 0, m_status.getHp(), 30), &GSvector2(0, 0), &GSvector2(1, 1), 0.0f, &GScolor(0.0f, 1.0f, 0.0f, 1.0f));
 
-	_renderer.getDraw2D().string(std::to_string(m_collision.size()), &GSvector2(10, 100), 30);
+	m_SpecialSkillManager.draw(_renderer);
+
 }
 
 void Player::inGround()
@@ -230,7 +230,7 @@ void Player::gaugeUp(float _scale)
 }
 
 void Player::attackHoming(Enemy * _enemy)
-{
+	{
 	Math::Clamp clamp;
 
 	if (_enemy == nullptr) return;
@@ -391,6 +391,7 @@ void Player::control()
 		m_isJumpAttack = !m_isGround;
 		m_lockon->homing();
 		m_attackManager.Start(false,this);	
+		m_Gauge.up(150);
 	}
 }
 
@@ -444,4 +445,9 @@ const bool Player::isAvoid() const
 const bool Player::isAnimationEnd() const
 {
 	return m_animatorOne.isEndCurrentAnimation();
+}
+
+void Player::changeAnimation(unsigned int _animID)
+{
+	m_animatorOne.changeAnimation(_animID);
 }

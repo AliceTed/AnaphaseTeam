@@ -7,14 +7,13 @@
 */
 #include "../Actor.h"
 #include "../../animation/Animation.h"
-#include "../../animation/Animator.h"
 #include "../../actionstate/IActionState.h"
 #include "../../convenient/Timer.h"
 #include<gslib.h>
 #include <memory>
 #include "../Actor.h"
 #include "../ICharacter.h"
-
+#include "../../animation/AnimMediator.h"
 #include "../../../header/subAction/SubActionManager.h"
 #include "../../attack/attackManager.h"
 #include "../../data/ANIMATION_ID.h"
@@ -22,6 +21,8 @@
 #include "../../attack/Scythe.h"
 #include "Gauge.h"
 #include "specialSkill/SpecialSkillManager.h"
+#include "../../../header/ui/SpAttackUI.h"
+
 #include "../../../header/collision/SpecialAttackCollision.h"
 class GameDevice;
 class CameraController;
@@ -31,7 +32,7 @@ class LockOn;
 class Enemy;
 
 typedef std::shared_ptr<IActionState> Action_Ptr;
-class Player :public Actor, public ICharacter
+class Player :public Actor, public ICharacter,public AnimMediator
 {
 public:
 	Player(GameDevice* _device,Camera * _camera, LockOn* _lockon);
@@ -59,6 +60,7 @@ public:
 	void homing();
 	void specialAttack();
 	void collisionChase(SpecialAttackCollision* _collision);
+	void changeAnimation(unsigned int _animID);
 	void gaugeAdd();
 	void createAttackCollision();
 public:
@@ -112,6 +114,8 @@ private:
 
 	Avoid m_avoid;
 	SpecialSkillManager m_SpecialSkillManager;
+	SpAttackUI m_SpAttackUI;
+
 	GSvector3 target;
 private://íËêî
 	static const float MOVESPEED;
