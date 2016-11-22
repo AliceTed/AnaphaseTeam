@@ -49,7 +49,7 @@ void Enemy::draw(const Renderer & _renderer, const Camera & _camera)
 	//alphaBlend(_camera);
 	m_collision.draw(_renderer);
 	m_animatorOne.draw(_renderer, m_transform,m_Color);
-	_renderer.getDraw2D().string(std::to_string(m_hp), &GSvector2(500, 80), 30);
+	//_renderer.getDraw2D().string(std::to_string(m_hp), &GSvector2(500, 80), 30);
 }
 
 void Enemy::collisionChase(EnemyCollision * _collision)
@@ -63,7 +63,7 @@ void Enemy::damage(Player * _player)
 	m_state = ESTATE::DAMAGE;
 	//‚±‚±
 	m_animatorOne.changeAnimation(static_cast<GSuint>(ENEMY_ANIMATION::DAMAGE),true,false,false,10.0f,1.5f);
-	m_transform.translate_front(-0.1f);
+	m_transform.translate_front(-0.3f);
 	m_hp -= 10;
 	_player->gaugeAdd();
 }

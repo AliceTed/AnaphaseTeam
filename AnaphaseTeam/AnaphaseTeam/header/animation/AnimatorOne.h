@@ -67,11 +67,12 @@ public:
 	void animationCaluculate(GSmatrix4* _animMat);
 	void animationCaluculateLerp(GSmatrix4* _animMat);
 	void draw(const Renderer& _renderer, const Transform& _transform, const GScolor& _color = GScolor(1.0f, 1.0f, 1.0f, 1.0f));
-	const GSuint getNumBones()const;
-	const GSmatrix4 & getMat(unsigned int index) const;
 	const GSmatrix4 & getOrientedMat(unsigned int index)const;
 	const float getCurrentAnimationTime()const;
 	const float getCurrentAnimationEndTime()const;
+
+	const float getNextAnimationTime()const;
+	const float getNextAnimationEndTime()const;
 private:
 	void matrixCalculate();
 	void skeltonCalculateTransform(GSmatrix4* _mat);

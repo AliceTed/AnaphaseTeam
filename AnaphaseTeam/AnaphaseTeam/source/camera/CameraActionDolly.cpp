@@ -37,8 +37,8 @@ void CameraActionDolly::initialize(const float _distance)
 void CameraActionDolly::run(void)
 {
 	ACalc		calc;
-	Math::Clamp clamp;
-	Math::Wrap	wrap;
+	//Math::Clamp clamp;
+	//Math::Wrap	wrap;
 	float		elevation, direction;
 	GSvector3	vector;
 

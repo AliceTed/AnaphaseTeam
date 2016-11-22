@@ -23,7 +23,7 @@ const float Player::ROTATESPEED = -2.0f;
 const float Player::WALKSPEED = 0.1f;
 Player::Player(GameDevice* _device, Camera * _camera, LockOn* _lockon)
 	:Actor(
-		Transform({ 0,0,-30 }, GSquaternion(0, 0, 0, 1)),
+		Transform({ 0,0,-15 }, GSquaternion(0, 0, 0, 1)),
 		MODEL_ID::PLAYER,
 		Sphere(GSvector3(0, 0, 0), 0),
 		Actor_Tag::PLAYER
@@ -83,8 +83,8 @@ void Player::update(float deltatime)
 
 void Player::draw(const Renderer & _renderer, const Camera & _camera)
 {
-	FALSE_RETURN(isInsideView(_camera));
-	alphaBlend(_camera);
+	//FALSE_RETURN(isInsideView(_camera));
+	//alphaBlend(_camera);
 	m_animatorOne.draw(_renderer, m_transform);
 	m_collision.draw(_renderer);
 	m_Gauge.draw(_renderer);
@@ -95,6 +95,8 @@ void Player::draw(const Renderer & _renderer, const Camera & _camera)
 		&GSrect(0, 0, m_status.getHp(), 30), &GSvector2(0, 0), &GSvector2(1, 1), 0.0f, &GScolor(0.0f, 1.0f, 0.0f, 1.0f));
 
 	m_SpecialSkillManager.draw(_renderer);
+
+	//_renderer.getDraw2D().string(std::to_string(m_collision.size()), &GSvector2(50, 50), 20);
 
 }
 
@@ -268,9 +270,9 @@ void Player::gaugeAdd()
 
 void Player::createAttackCollision()
 {
-	GSvector3 p = m_transform.m_translate + m_transform.front()*1.0f;
+	GSvector3 p = target+m_transform.front();
 	p.y += 1.f;
-	Collision_Ptr act = std::make_shared<PlayerAttackCollision>(p,m_animatorOne.getCurrentAnimationEndTime() / 60.0f);
+	Collision_Ptr act = std::make_shared<PlayerAttackCollision>(p,m_animatorOne.getNextAnimationEndTime() / 60.0f,m_status.attackSpeed());
 	m_collision.add(act);
 }
 
@@ -381,6 +383,7 @@ void Player::control()
 		m_isJumpAttack = !m_isGround;
 		m_lockon->homing();
 		m_attackManager.Start(true,this);	
+		m_Gauge.up(5);
 	}
 
 	if (m_device->input()->slowAttackTrigger())
@@ -390,7 +393,7 @@ void Player::control()
 		m_isJumpAttack = !m_isGround;
 		m_lockon->homing();
 		m_attackManager.Start(false,this);	
-		m_Gauge.up(150);
+		m_Gauge.up(5);
 	}
 }
 

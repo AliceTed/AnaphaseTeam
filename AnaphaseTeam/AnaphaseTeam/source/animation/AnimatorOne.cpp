@@ -172,3 +172,13 @@ const float AnimatorOne::getCurrentAnimationEndTime() const
 {
 	return m_currentAnimation->getEndTime();
 }
+
+const float AnimatorOne::getNextAnimationTime() const
+{
+	return m_nextAnimation->getCurrentTime();
+}
+
+const float AnimatorOne::getNextAnimationEndTime() const
+{
+	return m_nextAnimation->getEndTime();
+}
