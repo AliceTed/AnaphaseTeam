@@ -21,7 +21,7 @@ void AnimatorOne::update(float deltatime)
 }
 const bool AnimatorOne::isEndCurrentAnimation() const
 {
-	return (!m_nextAnimation) &&m_currentAnimation->getIsEnd();
+	return /*(!m_nextAnimation) &&*/m_currentAnimation->getIsEnd();
 }
 //
 //bool AnimatorOne::isEndAnimation(unsigned int _animationID)
@@ -180,5 +180,6 @@ const float AnimatorOne::getNextAnimationTime() const
 
 const float AnimatorOne::getNextAnimationEndTime() const
 {
+	if (!m_nextAnimation)return 0.0f;
 	return m_nextAnimation->getEndTime();
 }

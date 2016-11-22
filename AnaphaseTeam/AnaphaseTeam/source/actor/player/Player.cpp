@@ -115,7 +115,7 @@ void Player::stand(float deltaTime)
 	}
 	moveMotionChange();
 	subActionStart();
-	m_animatorOne.changeAnimation(static_cast<GSuint>(ANIMATION_ID::STAND), true, true, true);
+	m_animatorOne.changeAnimation(static_cast<GSuint>(ANIMATION_ID::STAND), true, true, true,2.0f);
 	control();
 }
 

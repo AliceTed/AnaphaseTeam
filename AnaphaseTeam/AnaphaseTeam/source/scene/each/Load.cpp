@@ -90,5 +90,5 @@ void Load::loadModel()
 	//mesh•Ší@Š™
 	mesh(MESH_ID::WEAPON, "weapon/weapon");
 	LoadOctree oct;
-	oct(OCTREE_ID::KOUTEI, "koutei");
+	oct(OCTREE_ID::ARENA, "arena");
 }

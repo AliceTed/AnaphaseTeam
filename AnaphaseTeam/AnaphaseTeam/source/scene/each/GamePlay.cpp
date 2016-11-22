@@ -6,7 +6,7 @@
 GamePlay::GamePlay(GameDevice* _device)
 	:m_IsEnd(false),
 	m_device(_device),
-	m_Map(OCTREE_ID::KOUTEI),
+	m_Map(OCTREE_ID::ARENA),
 	m_Camera(),
 	m_cameracontroller(&m_Camera),
 	m_enemys(),
