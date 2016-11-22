@@ -1,5 +1,9 @@
 #include "../../header/renderer/Draw3D.h"
 #include "../../header/data/CastID.h"
+#include "../../header/data/Model_ID.h"
+#include"../../header/transform/Transform.h"
+#include "../../header/animation/AnimatorOne.h"
+
 Draw3D::Draw3D()
 {
 }
@@ -8,46 +12,23 @@ Draw3D::~Draw3D()
 {
 }
 
-void Draw3D::drawMesh(
-	MESH_ID id,
-	const GSvector3 * _position,
-	const GSvector3 * _scaling,
-	const GSvector3 * axis,
-	float direction)const
+void Draw3D::drawMesh(GSuint _id, const Transform & _transform, const GScolor & _color) const
 {
 	glPushMatrix();
-	if (_position != NULL)
-	{
-		glTranslatef(_position->x, _position->y, _position->z);
-	}
-
-	if (axis != NULL)
-	{
-		glRotatef(direction, axis->x, axis->y, axis->z);
-	}
-	else
-	{
-		glRotatef(direction, 0.0f, 1.0f, 0.0f);
-	}
-
-	if (_scaling != NULL)
-	{
-		glScalef(_scaling->x, _scaling->y, _scaling->z);
-	}
+	glColor4f(_color.r, _color.g, _color.b, _color.a);
+	glMultMatrixf(_transform.matrix());
 	Data::CastID cast;
-	gsDrawMesh(cast(id));
+	gsDrawMesh(cast(_id));
 	glPopMatrix();
 }
-
-void Draw3D::drawMesh(MESH_ID id, const GSmatrix4 & mat) const
+void Draw3D::drawMesh(GSuint _id, const Transform & _transform, const GSmatrix4 * _matrix, const GScolor & _color) const
 {
 	glPushMatrix();
-	glMultMatrixf(mat);
-	Data::CastID cast;
-	gsDrawMesh(cast(id));
+	glColor4f(_color.r, _color.g, _color.b, _color.a);
+	glMultMatrixf(_transform.matrix());
+	gsMeshDrawSkin(gsGetMesh(_id), _matrix);
 	glPopMatrix();
 }
-
 void Draw3D::drawSky(MESH_ID id, float angle)const
 {
 	glMatrixMode(GL_MODELVIEW);
@@ -57,6 +38,14 @@ void Draw3D::drawSky(MESH_ID id, float angle)const
 	Data::CastID cast;
 	gsDrawSkyBox(cast(id));
 	glPopMatrix();
+}
+void Draw3D::drawSky(MESH_ID id)const
+{
+	glMatrixMode(GL_MODELVIEW);
+	glLoadIdentity();
+	Data::CastID cast;
+	glColor4f(1.0f, 1.0f, 1.0f, 1.0f);
+	gsDrawSkyBox(cast(id));
 }
 
 void Draw3D::drawOctree(OCTREE_ID id)const
@@ -69,13 +58,13 @@ void Draw3D::drawBox(const GSvector3 * pos, const GSvector3 * radius,
 	const GSvector3 * rot, const GScolor & color)const
 {
 	glPushMatrix();
-
 	glTranslatef(pos->x, pos->y, pos->z);
 	glRotatef(rot->z, 0, 0, 1);
 	glRotatef(rot->x, 1, 0, 0);
 	glRotatef(rot->y, 0, 1, 0);
+
 	glScaled(radius->x * 2, radius->y * 2, radius->z * 2);
-	glMaterialfv(GL_FRONT, GL_DIFFUSE,color);
+	glMaterialfv(GL_FRONT, GL_DIFFUSE, color);
 	glutSolidCube(1);
 
 	glPopMatrix();
@@ -85,7 +74,7 @@ void Draw3D::drawSphere(const GSvector3 * pos, float radius, const GScolor & col
 {
 	glPushMatrix();
 	glTranslated(pos->x, pos->y, pos->z);
-	glMaterialfv(GL_FRONT, GL_DIFFUSE,color);
+	glMaterialfv(GL_FRONT, GL_DIFFUSE, color);
 	glutSolidSphere(radius, 20, 20);
 	glPopMatrix();
 }
@@ -135,4 +124,27 @@ void Draw3D::drawLine(const GSvector3 * p1, const GSvector3 * p2, const GScolor&
 	glEnd();
 
 	glPopMatrix();
+}
+
+void Draw3D::drawPoint(const GSvector3 * p, float size, const GScolor& color) const
+{
+	glPushMatrix();
+	glPointSize(size);
+	glMaterialfv(GL_FRONT, GL_DIFFUSE, color);
+
+	glBegin(GL_POINTS);
+	glVertex3f(p->x, p->y, p->z);
+	glEnd();
+
+	glPopMatrix();
+}
+
+void Draw3D::drawFog(const GSvector2 & clip, const GScolor & color) const
+{
+	glClearColor(color.r, color.g, color.b, color.a);
+	glEnable(GL_FOG);
+	glFogi(GL_FOG_MODE, GL_LINEAR);
+	glFogf(GL_FOG_START, clip.x);
+	glFogf(GL_FOG_END, clip.y);
+	glFogfv(GL_FOG_COLOR, color);
 }

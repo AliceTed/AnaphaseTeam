@@ -9,7 +9,7 @@
 */
 //スマートポインタを格納すことを前提にしている
 #include <list>
-
+#include <algorithm>
 namespace Entity
 {
 	template<class Entity>
@@ -36,6 +36,14 @@ namespace Entity
 		* @param (_func)アクセス内容
 		*/
 		template<typename Func>void accept(Func _func);
+		/**
+		* @fn
+		* @brief 条件を満たす要素返す
+		* @param (_func)条件関数
+		* @return 条件にあった要素のポインタ(またはnull)を返す
+		*/
+		template<typename Func>Entity findif(Func _func);
+
 		/**
 		* @fn
 		* @brief 要素数
@@ -89,6 +97,17 @@ namespace Entity
 	template<typename Func>
 	void EntityManager<Entity>::accept(Func _func)
 	{
-		std::for_each(m_Container.begin(), m_Container.end(), _func);
+		std::_For_each(m_Container.begin(), m_Container.end(), _func);
+	}
+	template<class Entity>
+	template<typename Func>
+	Entity EntityManager<Entity>::findif(Func _func)
+	{
+		auto find= std::find_if(m_Container.begin(), m_Container.end(), _func);
+		if (find == m_Container.end())
+		{
+			return nullptr;
+		}
+		return *find;
 	}
 }

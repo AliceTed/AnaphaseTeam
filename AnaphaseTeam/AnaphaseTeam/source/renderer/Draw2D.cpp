@@ -103,6 +103,7 @@ void Draw2D::string(const std::string & text, const GSvector2 * _position, const
 	glColor4f(_color->r, _color->g, _color->b, _color->a);
 	gsTextPos(_position->x, _position->y);
 	gsDrawText(text.c_str());
+	glColor4f(1.0f,1.0f,1.0f,1.0f);
 }
 
 void Draw2D::initBlend() const

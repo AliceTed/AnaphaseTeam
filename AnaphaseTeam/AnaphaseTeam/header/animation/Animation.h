@@ -4,7 +4,7 @@
 
 #include "AnimationTimer.h"
 #include "../data/ANIMATION_ID.h"
-#include "../data/SKELETON_ID.h"
+#include "../data/Model_ID.h"
 /*
 animation情報の管理
 
@@ -19,17 +19,10 @@ public:
 	enumなどでアニメーションの番号を管理してるとき用
 	*/
 	template<class T>
-	Animation(ANIMATION_ID anim_id, SKELETON_ID bone_id,T animNo,AnimationTimer timer, bool isLoop=false)
-		:isLoop(isLoop), animNo(static_cast<unsigned int>(animNo)), timer(timer),
-		anim_id(static_cast<unsigned int>(anim_id)),bone_id(static_cast<unsigned int>(bone_id))
-	{
-
-	}
-	/*
-	アニメーション番号をuintで管理していてキャストが必要ないとき用
-	*/
-	Animation(ANIMATION_ID anim_id, SKELETON_ID bone_id, unsigned int animNo,
-		AnimationTimer timer, bool isLoop = false);
+	Animation(MODEL_ID _code, T _animNo, AnimationTimer _timer, bool _isLoop = false)
+		: m_isLoop(_isLoop), m_animNo(static_cast<unsigned int>(_animNo)), m_timer(_timer),
+		m_anim_id(static_cast<unsigned int>(_code)), m_bone_id(static_cast<unsigned int>(_code))
+	{}
 
 	~Animation();
 	void initialize();
@@ -39,21 +32,27 @@ public:
 	animatorができ次第ボーンのボーンのバインドをアニメータに移動
 	*/
 	//void bind(GSuint anim_id);
-	void bind();
-	const bool getIsEnd()const;
+	void bind()const;
 	void stop();
 	void start();
+	const bool getIsEnd()const;
+	unsigned int getAnimationNo();
+	const float getSpeed() const;
+	/*
+	@fn 最大時間取得
+	*/
+	const float getEndTime()const;
+	const float getCurrentTime()const;
 private:
 	void looping();
 
 private:
 	/*trueならループ*/
-	bool isLoop;
-	AnimationTimer timer;
-	unsigned int animNo;
-
-	unsigned int anim_id;
-	unsigned int bone_id;
+	bool m_isLoop;
+	AnimationTimer m_timer;
+	unsigned int m_animNo;
+	unsigned int m_anim_id;
+	unsigned int m_bone_id;
 };
 
 #endif

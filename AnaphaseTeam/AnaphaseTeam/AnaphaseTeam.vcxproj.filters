@@ -9,9 +9,6 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="util">
-      <UniqueIdentifier>{32e2145c-5130-43e3-9f31-45664b3f8aa1}</UniqueIdentifier>
-    </Filter>
     <Filter Include="ヘッダー ファイル\actor">
       <UniqueIdentifier>{2246a75d-e06b-40fd-a1a8-a1a3afec84c4}</UniqueIdentifier>
     </Filter>
@@ -88,20 +85,101 @@
     <Filter Include="ヘッダー ファイル\scene\each">
       <UniqueIdentifier>{d7397896-6697-4bd7-b092-91c3df135684}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\shape">
+      <UniqueIdentifier>{5836e1ef-63ad-44d2-b8a1-bda7e93e8d88}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\shape">
+      <UniqueIdentifier>{d1514622-14bc-42f8-8b00-3f830a4d902e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\map">
+      <UniqueIdentifier>{44fc76f1-a64f-4578-9094-160cf249bb25}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\map">
+      <UniqueIdentifier>{c5ec5119-50c6-4057-bc3b-83148361c7bc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\convenient">
+      <UniqueIdentifier>{6f14157c-b4c8-4977-97a4-7d6b5d5979df}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\convenient">
+      <UniqueIdentifier>{d0cf5e72-4097-46d2-af6f-1b6fb3c150d3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\subAction">
+      <UniqueIdentifier>{8bdf0c07-093b-46da-a850-ca511f2967a9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\subAction">
+      <UniqueIdentifier>{eb9dd5e1-dbda-4042-9f93-c4b85a260fdd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\airState">
+      <UniqueIdentifier>{458efabf-2d15-41af-9a24-ecbdfdeb8ab0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\airState">
+      <UniqueIdentifier>{24f5ff04-3024-4e2f-afc1-02dce1a1bef7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\collision">
+      <UniqueIdentifier>{55fa8113-ac6c-48e9-a2fe-1be145a4126a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\collision">
+      <UniqueIdentifier>{3f38fcce-e724-469a-9c50-143871782b19}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\ui">
+      <UniqueIdentifier>{e1c7c17e-ffc4-403f-bd11-65fe45527639}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\ui">
+      <UniqueIdentifier>{16b8cdc1-bfca-404f-be49-f88c761df387}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Attack">
+      <UniqueIdentifier>{b3584a63-29b0-4d6e-a84a-997d34c3d8b3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\actionState">
+      <UniqueIdentifier>{2437ca0e-0b72-496d-abbb-7d07a9f3dc28}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\actionState">
+      <UniqueIdentifier>{f13bd0f4-c891-4317-82d9-1783af4289ab}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\attack">
+      <UniqueIdentifier>{ff5ecd5d-33ad-4631-ac2d-83da52129794}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\actor\Boss">
+      <UniqueIdentifier>{e243ef29-ddaf-462f-a8f6-12850c1685bf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\actor\Boss">
+      <UniqueIdentifier>{323bfc0e-052b-4f87-83eb-863867de3785}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\actor\Enemy">
+      <UniqueIdentifier>{2762232d-e8da-42ad-a160-bfa11071b017}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\actor\Enemy">
+      <UniqueIdentifier>{3c53bf53-57cc-48d0-bf51-5f3a4a1b2d22}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\transform">
+      <UniqueIdentifier>{de7a1e9d-d1e3-44f7-99fe-73df8fb283c0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\transform">
+      <UniqueIdentifier>{1cac667a-7706-4899-88f1-8521269775bd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\actor\Player\specialSkill">
+      <UniqueIdentifier>{c0592eba-d6ba-4757-ad12-fca0f45c1f0c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\actor\Player\specialSkill">
+      <UniqueIdentifier>{d0cdda7b-e670-4bce-8fa6-16d63201e6e4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\math">
+      <UniqueIdentifier>{cfe83fe5-37e3-4713-adef-911f2563b574}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\collision\user">
+      <UniqueIdentifier>{8657f4be-f93a-4e10-a179-4c015d5d993f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\collision\user">
+      <UniqueIdentifier>{71ffd2a0-d4bf-4877-be1f-40e051a3fb2a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Attack\enemy">
+      <UniqueIdentifier>{9cd10ef1-31d1-4aac-a5fb-5c1a3f1ebfcf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\attack\enemy">
+      <UniqueIdentifier>{dfed270e-39c2-440f-b37a-b2db911a7ead}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Util\BasicShapes.h">
-      <Filter>util</Filter>
-    </ClInclude>
-    <ClInclude Include="Util\EffectGL.h">
-      <Filter>util</Filter>
-    </ClInclude>
-    <ClInclude Include="Util\RenderTarget.h">
-      <Filter>util</Filter>
-    </ClInclude>
-    <ClInclude Include="header\Transform.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
     <ClInclude Include="header\math\Calculate.h">
       <Filter>ヘッダー ファイル\math</Filter>
     </ClInclude>
@@ -128,6 +206,9 @@
     </ClInclude>
     <ClInclude Include="header\data\Loader.h">
       <Filter>ヘッダー ファイル\data</Filter>
+    </ClInclude>
+    <ClInclude Include="header\device\Input.h">
+      <Filter>ヘッダー ファイル\device</Filter>
     </ClInclude>
     <ClInclude Include="header\math\Random.h">
       <Filter>ヘッダー ファイル\math</Filter>
@@ -186,35 +267,11 @@
     <ClInclude Include="header\data\TEXTURE_ID.h">
       <Filter>ヘッダー ファイル\data\id</Filter>
     </ClInclude>
-    <ClInclude Include="header\data\SKELETON_ID.h">
-      <Filter>ヘッダー ファイル\data\id</Filter>
-    </ClInclude>
-    <ClInclude Include="header\camera\Camera.h">
-      <Filter>ヘッダー ファイル\camera</Filter>
-    </ClInclude>
     <ClInclude Include="header\actor\Actor.h">
       <Filter>ヘッダー ファイル\actor</Filter>
     </ClInclude>
     <ClInclude Include="header\actor\Player\Player.h">
       <Filter>ヘッダー ファイル\actor\Player</Filter>
-    </ClInclude>
-    <ClInclude Include="header\actor\IActionState.h">
-      <Filter>ヘッダー ファイル\actor</Filter>
-    </ClInclude>
-    <ClInclude Include="header\actor\MoveState.h">
-      <Filter>ヘッダー ファイル\actor</Filter>
-    </ClInclude>
-    <ClInclude Include="header\actor\AttackState.h">
-      <Filter>ヘッダー ファイル\actor</Filter>
-    </ClInclude>
-    <ClInclude Include="header\actor\StandState.h">
-      <Filter>ヘッダー ファイル\actor</Filter>
-    </ClInclude>
-    <ClInclude Include="header\actor\JumpState.h">
-      <Filter>ヘッダー ファイル\actor</Filter>
-    </ClInclude>
-    <ClInclude Include="header\actor\ICharacter.h">
-      <Filter>ヘッダー ファイル\actor</Filter>
     </ClInclude>
     <ClInclude Include="header\animation\Animation.h">
       <Filter>ヘッダー ファイル\animation</Filter>
@@ -231,18 +288,324 @@
     <ClInclude Include="header\renderer\Renderer.h">
       <Filter>ヘッダー ファイル\renderer</Filter>
     </ClInclude>
-    <ClInclude Include="header\device\Input.h">
+    <ClInclude Include="header\shape\Sphere.h">
+      <Filter>ヘッダー ファイル\shape</Filter>
+    </ClInclude>
+    <ClInclude Include="header\actor\ICharacter.h">
+      <Filter>ヘッダー ファイル\actor</Filter>
+    </ClInclude>
+    <ClInclude Include="header\map\Map.h">
+      <Filter>ヘッダー ファイル\map</Filter>
+    </ClInclude>
+    <ClInclude Include="header\shape\Ray.h">
+      <Filter>ヘッダー ファイル\shape</Filter>
+    </ClInclude>
+    <ClInclude Include="header\convenient\Timer.h">
+      <Filter>ヘッダー ファイル\convenient</Filter>
+    </ClInclude>
+    <ClInclude Include="header\subAction\subActionManager.h">
+      <Filter>ヘッダー ファイル\subAction</Filter>
+    </ClInclude>
+    <ClInclude Include="header\subAction\subActionManager.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="header\actionstate\AttackState.h">
+      <Filter>ヘッダー ファイル\actionState</Filter>
+    </ClInclude>
+    <ClInclude Include="header\actionstate\JumpState.h">
+      <Filter>ヘッダー ファイル\actionState</Filter>
+    </ClInclude>
+    <ClInclude Include="header\actionstate\StandState.h">
+      <Filter>ヘッダー ファイル\actionState</Filter>
+    </ClInclude>
+    <ClInclude Include="header\actionstate\MoveState.h">
+      <Filter>ヘッダー ファイル\actionState</Filter>
+    </ClInclude>
+    <ClInclude Include="header\airstate\FirstStep.h">
+      <Filter>ヘッダー ファイル\airState</Filter>
+    </ClInclude>
+    <ClInclude Include="header\airstate\GroundState.h">
+      <Filter>ヘッダー ファイル\airState</Filter>
+    </ClInclude>
+    <ClInclude Include="header\airstate\IAirState.h">
+      <Filter>ヘッダー ファイル\airState</Filter>
+    </ClInclude>
+    <ClInclude Include="header\airstate\SecondStep.h">
+      <Filter>ヘッダー ファイル\airState</Filter>
+    </ClInclude>
+    <ClInclude Include="header\airstate\PreparationState.h">
+      <Filter>ヘッダー ファイル\airState</Filter>
+    </ClInclude>
+    <ClInclude Include="header\airstate\RestrictionFall.h">
+      <Filter>ヘッダー ファイル\airState</Filter>
+    </ClInclude>
+    <ClInclude Include="header\actor\Actor_Tag.h">
+      <Filter>ヘッダー ファイル\actor</Filter>
+    </ClInclude>
+    <ClInclude Include="header\actor\AttackActor.h">
+      <Filter>ヘッダー ファイル\actor</Filter>
+    </ClInclude>
+    <ClInclude Include="header\data\PLAYERACTION_ID.h">
+      <Filter>ヘッダー ファイル\data\id</Filter>
+    </ClInclude>
+    <ClInclude Include="header\data\Model_ID.h">
+      <Filter>ヘッダー ファイル\data\id</Filter>
+    </ClInclude>
+    <ClInclude Include="header\shape\Capsule.h">
+      <Filter>ヘッダー ファイル\shape</Filter>
+    </ClInclude>
+    <ClInclude Include="header\shape\Segment.h">
+      <Filter>ヘッダー ファイル\shape</Filter>
+    </ClInclude>
+    <ClInclude Include="header\shape\Shape.h">
+      <Filter>ヘッダー ファイル\shape</Filter>
+    </ClInclude>
+    <ClInclude Include="header\animation\AnimatorOne.h">
+      <Filter>ヘッダー ファイル\animation</Filter>
+    </ClInclude>
+    <ClInclude Include="header\convenient\Point.h">
+      <Filter>ヘッダー ファイル\convenient</Filter>
+    </ClInclude>
+    <ClInclude Include="header\ui\Cursor.h">
+      <Filter>ヘッダー ファイル\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="header\ui\ScaleImage.h">
+      <Filter>ヘッダー ファイル\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="header\ui\SelectUI.h">
+      <Filter>ヘッダー ファイル\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="header\ui\TitleUI.h">
+      <Filter>ヘッダー ファイル\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="header\scene\SceneChange.h">
+      <Filter>ヘッダー ファイル\scene</Filter>
+    </ClInclude>
+    <ClInclude Include="header\ui\Fade.h">
+      <Filter>ヘッダー ファイル\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="header\math\TimeLerpVector.h">
+      <Filter>ヘッダー ファイル\math</Filter>
+    </ClInclude>
+    <ClInclude Include="header\subAction\Avoid.h">
+      <Filter>ヘッダー ファイル\subAction</Filter>
+    </ClInclude>
+    <ClInclude Include="header\attack\AttackManager.h">
+      <Filter>ヘッダー ファイル\attack</Filter>
+    </ClInclude>
+    <ClInclude Include="header\attack\AttackPattern.h">
+      <Filter>ヘッダー ファイル\attack</Filter>
+    </ClInclude>
+    <ClInclude Include="header\attack\Gun.h">
+      <Filter>ヘッダー ファイル\attack</Filter>
+    </ClInclude>
+    <ClInclude Include="header\attack\IWeapon.h">
+      <Filter>ヘッダー ファイル\attack</Filter>
+    </ClInclude>
+    <ClInclude Include="header\attack\Scythe.h">
+      <Filter>ヘッダー ファイル\attack</Filter>
+    </ClInclude>
+    <ClInclude Include="header\actionstate\AvoidState.h">
+      <Filter>ヘッダー ファイル\actionState</Filter>
+    </ClInclude>
+    <ClInclude Include="header\attack\AttackStatus.h">
+      <Filter>ヘッダー ファイル\attack</Filter>
+    </ClInclude>
+    <ClInclude Include="header\attack\AttackStatus.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="header\attack\ComboManager.h">
+      <Filter>ヘッダー ファイル\attack</Filter>
+    </ClInclude>
+    <ClInclude Include="header\attack\Attack.h">
+      <Filter>ヘッダー ファイル\attack</Filter>
+    </ClInclude>
+    <ClInclude Include="header\subAction\JumpControl.h">
+      <Filter>ヘッダー ファイル\subAction</Filter>
+    </ClInclude>
+    <ClInclude Include="header\actionstate\IActionState.h">
+      <Filter>ヘッダー ファイル\actionState</Filter>
+    </ClInclude>
+    <ClInclude Include="header\camera\ACalc.h">
+      <Filter>ヘッダー ファイル\camera</Filter>
+    </ClInclude>
+    <ClInclude Include="header\camera\Camera.h">
+      <Filter>ヘッダー ファイル\camera</Filter>
+    </ClInclude>
+    <ClInclude Include="header\camera\CameraController.h">
+      <Filter>ヘッダー ファイル\camera</Filter>
+    </ClInclude>
+    <ClInclude Include="header\camera\LookAt.h">
+      <Filter>ヘッダー ファイル\camera</Filter>
+    </ClInclude>
+    <ClInclude Include="header\camera\Perspective.h">
+      <Filter>ヘッダー ファイル\camera</Filter>
+    </ClInclude>
+    <ClInclude Include="header\actor\Player\Status.h">
+      <Filter>ヘッダー ファイル\actor\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="header\collision\CollisionActor.h">
+      <Filter>ヘッダー ファイル\collision</Filter>
+    </ClInclude>
+    <ClInclude Include="header\collision\CollisionGroup.h">
+      <Filter>ヘッダー ファイル\collision</Filter>
+    </ClInclude>
+    <ClInclude Include="header\scene\each\Option.h">
+      <Filter>ヘッダー ファイル\scene\each</Filter>
+    </ClInclude>
+    <ClInclude Include="header\device\IInputPattern.h">
       <Filter>ヘッダー ファイル\device</Filter>
+    </ClInclude>
+    <ClInclude Include="header\device\InputPattern_A.h">
+      <Filter>ヘッダー ファイル\device</Filter>
+    </ClInclude>
+    <ClInclude Include="header\device\InputPattern_B.h">
+      <Filter>ヘッダー ファイル\device</Filter>
+    </ClInclude>
+    <ClInclude Include="header\device\GameDevice.h">
+      <Filter>ヘッダー ファイル\device</Filter>
+    </ClInclude>
+    <ClInclude Include="header\scene\each\Opening.h">
+      <Filter>ヘッダー ファイル\scene\each</Filter>
+    </ClInclude>
+    <ClInclude Include="header\ui\SlideImage.h">
+      <Filter>ヘッダー ファイル\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="header\scene\each\GameClear.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="header\attack\ChargeAttack.h">
+      <Filter>ヘッダー ファイル\attack</Filter>
+    </ClInclude>
+    <ClInclude Include="header\actor\Boss\Boss.h">
+      <Filter>ヘッダー ファイル\actor\Boss</Filter>
+    </ClInclude>
+    <ClInclude Include="header\actor\Enemy\Enemy.h">
+      <Filter>ヘッダー ファイル\actor\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="header\actor\Player\Gauge.h">
+      <Filter>ヘッダー ファイル\actor\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="header\sound\Sound.h">
+      <Filter>ヘッダー ファイル\device</Filter>
+    </ClInclude>
+    <ClInclude Include="header\camera\LockOn.h">
+      <Filter>ヘッダー ファイル\camera</Filter>
+    </ClInclude>
+    <ClInclude Include="header\transform\Quaternion_Utility.h">
+      <Filter>ヘッダー ファイル\transform</Filter>
+    </ClInclude>
+    <ClInclude Include="header\transform\ToString.h">
+      <Filter>ヘッダー ファイル\transform</Filter>
+    </ClInclude>
+    <ClInclude Include="header\transform\Transform.h">
+      <Filter>ヘッダー ファイル\transform</Filter>
+    </ClInclude>
+    <ClInclude Include="header\attack\ComboPattern.h">
+      <Filter>ヘッダー ファイル\attack</Filter>
+    </ClInclude>
+    <ClInclude Include="header\attack\ECombo.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="header\actor\Player\specialSkill\Recovery.h">
+      <Filter>ヘッダー ファイル\actor\Player\specialSkill</Filter>
+    </ClInclude>
+    <ClInclude Include="header\actionstate\DamageState.h">
+      <Filter>ヘッダー ファイル\actionState</Filter>
+    </ClInclude>
+    <ClInclude Include="header\actor\Player\specialSkill\SpecialSkillManager.h">
+      <Filter>ヘッダー ファイル\actor\Player\specialSkill</Filter>
+    </ClInclude>
+    <ClInclude Include="header\actor\Player\specialSkill\SuperArmor.h">
+      <Filter>ヘッダー ファイル\actor\Player\specialSkill</Filter>
+    </ClInclude>
+    <ClInclude Include="header\collision\Collision_Tag.h">
+      <Filter>ヘッダー ファイル\collision</Filter>
+    </ClInclude>
+    <ClInclude Include="header\collision\HitInformation.h">
+      <Filter>ヘッダー ファイル\collision</Filter>
+    </ClInclude>
+    <ClInclude Include="header\actor\Enemy\EnemyManager.h">
+      <Filter>ヘッダー ファイル\actor\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="header\actor\Player\specialSkill\SpecialAttack.h">
+      <Filter>ヘッダー ファイル\actor\Player\specialSkill</Filter>
+    </ClInclude>
+    <ClInclude Include="header\data\ENEMY_ANIMATION.h">
+      <Filter>ヘッダー ファイル\data\id</Filter>
+    </ClInclude>
+    <ClInclude Include="header\collision\EnemyCollision.h">
+      <Filter>ヘッダー ファイル\collision\user</Filter>
+    </ClInclude>
+    <ClInclude Include="header\collision\SpecialAttackCollision.h">
+      <Filter>ヘッダー ファイル\collision\user</Filter>
+    </ClInclude>
+    <ClInclude Include="header\collision\WeaponCollision.h">
+      <Filter>ヘッダー ファイル\collision\user</Filter>
+    </ClInclude>
+    <ClInclude Include="header\collision\EnemyAttackCollision.h">
+      <Filter>ヘッダー ファイル\collision\user</Filter>
+    </ClInclude>
+    <ClInclude Include="header\attack\AttackIncidence.h">
+      <Filter>ヘッダー ファイル\attack\enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="header\camera\CameraAction.h">
+      <Filter>ヘッダー ファイル\camera</Filter>
+    </ClInclude>
+    <ClInclude Include="header\camera\enum\CameraActionDead.h">
+      <Filter>ヘッダー ファイル\camera</Filter>
+    </ClInclude>
+    <ClInclude Include="header\camera\CameraActionDolly.h">
+      <Filter>ヘッダー ファイル\camera</Filter>
+    </ClInclude>
+    <ClInclude Include="header\camera\enum\stage1\CameraActionDollyStage1_1.h">
+      <Filter>ヘッダー ファイル\camera</Filter>
+    </ClInclude>
+    <ClInclude Include="header\camera\enum\stage1\CameraActionDollyStage1_2.h">
+      <Filter>ヘッダー ファイル\camera</Filter>
+    </ClInclude>
+    <ClInclude Include="header\camera\enum\stage1\CameraActionDollyStage1_3.h">
+      <Filter>ヘッダー ファイル\camera</Filter>
+    </ClInclude>
+    <ClInclude Include="header\camera\enum\CameraActionID.h">
+      <Filter>ヘッダー ファイル\camera</Filter>
+    </ClInclude>
+    <ClInclude Include="header\camera\enum\CameraActionLockOn.h">
+      <Filter>ヘッダー ファイル\camera</Filter>
+    </ClInclude>
+    <ClInclude Include="header\camera\CameraActionManager.h">
+      <Filter>ヘッダー ファイル\camera</Filter>
+    </ClInclude>
+    <ClInclude Include="header\camera\CameraTarget.h">
+      <Filter>ヘッダー ファイル\camera</Filter>
+    </ClInclude>
+    <ClInclude Include="header\camera\cameraWork\CameraWork.h">
+      <Filter>ヘッダー ファイル\camera</Filter>
+    </ClInclude>
+    <ClInclude Include="header\camera\cameraWork\FixCamera.h">
+      <Filter>ヘッダー ファイル\camera</Filter>
+    </ClInclude>
+    <ClInclude Include="header\camera\cameraWork\PanCamera.h">
+      <Filter>ヘッダー ファイル\camera</Filter>
+    </ClInclude>
+    <ClInclude Include="header\collision\PlayerAttackCollision.h">
+      <Filter>ヘッダー ファイル\collision\user</Filter>
+    </ClInclude>
+    <ClInclude Include="header\animation\AnimMediator.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="header\attack\ComboReader.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="header\attack\Homing.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="header\ui\SpAttackUI.h">
+      <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Util\BasicShapes.cpp">
-      <Filter>util</Filter>
-    </ClCompile>
     <ClCompile Include="source\main.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="source\Transform.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
     <ClCompile Include="source\light\DirectionalLight.cpp">
@@ -278,24 +641,6 @@
     <ClCompile Include="source\data\LoadError.cpp">
       <Filter>ソース ファイル\data</Filter>
     </ClCompile>
-    <ClCompile Include="source\camera\Camera.cpp">
-      <Filter>ソース ファイル\camera</Filter>
-    </ClCompile>
-    <ClCompile Include="source\actor\Player.cpp">
-      <Filter>ソース ファイル\actor\Player</Filter>
-    </ClCompile>
-    <ClCompile Include="source\Acotr\MoveState.cpp">
-      <Filter>ソース ファイル\actor</Filter>
-    </ClCompile>
-    <ClCompile Include="source\actor\StandState.cpp">
-      <Filter>ソース ファイル\actor</Filter>
-    </ClCompile>
-    <ClCompile Include="source\Acotr\JumpState.cpp">
-      <Filter>ソース ファイル\actor</Filter>
-    </ClCompile>
-    <ClCompile Include="source\Acotr\AttackState.cpp">
-      <Filter>ソース ファイル\actor</Filter>
-    </ClCompile>
     <ClCompile Include="source\animation\Animation.cpp">
       <Filter>ソース ファイル\animation</Filter>
     </ClCompile>
@@ -308,8 +653,272 @@
     <ClCompile Include="source\renderer\Renderer.cpp">
       <Filter>ソース ファイル\renderer</Filter>
     </ClCompile>
+    <ClCompile Include="source\shape\Sphere.cpp">
+      <Filter>ソース ファイル\shape</Filter>
+    </ClCompile>
+    <ClCompile Include="source\map\Map.cpp">
+      <Filter>ソース ファイル\map</Filter>
+    </ClCompile>
+    <ClCompile Include="source\shape\Ray.cpp">
+      <Filter>ソース ファイル\shape</Filter>
+    </ClCompile>
+    <ClCompile Include="source\convenient\Timer.cpp">
+      <Filter>ソース ファイル\convenient</Filter>
+    </ClCompile>
+    <ClCompile Include="source\actor\player\Player.cpp">
+      <Filter>ソース ファイル\actor\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="source\subAction\subActionManager.cpp">
+      <Filter>ソース ファイル\subAction</Filter>
+    </ClCompile>
+    <ClCompile Include="source\subAction\subActionManager.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="source\actionstate\JumpState.cpp">
+      <Filter>ソース ファイル\actionState</Filter>
+    </ClCompile>
+    <ClCompile Include="source\actionstate\StandState.cpp">
+      <Filter>ソース ファイル\actionState</Filter>
+    </ClCompile>
+    <ClCompile Include="source\actionstate\AttackState.cpp">
+      <Filter>ソース ファイル\actionState</Filter>
+    </ClCompile>
+    <ClCompile Include="source\actionstate\MoveState.cpp">
+      <Filter>ソース ファイル\actionState</Filter>
+    </ClCompile>
+    <ClCompile Include="source\airState\SecondStep.cpp">
+      <Filter>ソース ファイル\airState</Filter>
+    </ClCompile>
+    <ClCompile Include="source\airState\RestrictionFall.cpp">
+      <Filter>ソース ファイル\airState</Filter>
+    </ClCompile>
+    <ClCompile Include="source\airState\FirstStep.cpp">
+      <Filter>ソース ファイル\airState</Filter>
+    </ClCompile>
+    <ClCompile Include="source\airState\GroundState.cpp">
+      <Filter>ソース ファイル\airState</Filter>
+    </ClCompile>
+    <ClCompile Include="source\airState\PreparationState.cpp">
+      <Filter>ソース ファイル\airState</Filter>
+    </ClCompile>
+    <ClCompile Include="source\shape\Capsule.cpp">
+      <Filter>ソース ファイル\shape</Filter>
+    </ClCompile>
+    <ClCompile Include="source\shape\Segment.cpp">
+      <Filter>ソース ファイル\shape</Filter>
+    </ClCompile>
+    <ClCompile Include="source\animation\AnimatorOne.cpp">
+      <Filter>ソース ファイル\animation</Filter>
+    </ClCompile>
+    <ClCompile Include="source\convenient\Point.cpp">
+      <Filter>ソース ファイル\convenient</Filter>
+    </ClCompile>
+    <ClCompile Include="source\actor\Actor.cpp">
+      <Filter>ソース ファイル\actor</Filter>
+    </ClCompile>
+    <ClCompile Include="source\ui\Cursor.cpp">
+      <Filter>ソース ファイル\ui</Filter>
+    </ClCompile>
+    <ClCompile Include="source\ui\ScaleImage.cpp">
+      <Filter>ソース ファイル\ui</Filter>
+    </ClCompile>
+    <ClCompile Include="source\ui\SelectUI.cpp">
+      <Filter>ソース ファイル\ui</Filter>
+    </ClCompile>
+    <ClCompile Include="source\ui\TitleUI.cpp">
+      <Filter>ソース ファイル\ui</Filter>
+    </ClCompile>
+    <ClCompile Include="source\scene\SceneChange.cpp">
+      <Filter>ソース ファイル\scene</Filter>
+    </ClCompile>
+    <ClCompile Include="source\ui\Fade.cpp">
+      <Filter>ソース ファイル\ui</Filter>
+    </ClCompile>
+    <ClCompile Include="source\actor\Actor.cpp">
+      <Filter>ソース ファイル\actor</Filter>
+    </ClCompile>
+    <ClCompile Include="source\subAction\Avoid.cpp">
+      <Filter>ソース ファイル\subAction</Filter>
+    </ClCompile>
+    <ClCompile Include="source\attack\AttackManager.cpp">
+      <Filter>ソース ファイル\Attack</Filter>
+    </ClCompile>
+    <ClCompile Include="source\attack\AttackStatus.cpp">
+      <Filter>ソース ファイル\Attack</Filter>
+    </ClCompile>
+    <ClCompile Include="source\attack\Gun.cpp">
+      <Filter>ソース ファイル\Attack</Filter>
+    </ClCompile>
+    <ClCompile Include="source\attack\Scythe.cpp">
+      <Filter>ソース ファイル\Attack</Filter>
+    </ClCompile>
+    <ClCompile Include="source\actionstate\AvoidState.cpp">
+      <Filter>ソース ファイル\actionState</Filter>
+    </ClCompile>
+    <ClCompile Include="source\attack\ComboManager.cpp">
+      <Filter>ソース ファイル\Attack</Filter>
+    </ClCompile>
+    <ClCompile Include="source\attack\Attack.cpp">
+      <Filter>ソース ファイル\Attack</Filter>
+    </ClCompile>
+    <ClCompile Include="source\subAction\JumpControl.cpp">
+      <Filter>ソース ファイル\subAction</Filter>
+    </ClCompile>
+    <ClCompile Include="source\camera\ACalc.cpp">
+      <Filter>ソース ファイル\camera</Filter>
+    </ClCompile>
+    <ClCompile Include="source\camera\Camera.cpp">
+      <Filter>ソース ファイル\camera</Filter>
+    </ClCompile>
+    <ClCompile Include="source\camera\CameraController.cpp">
+      <Filter>ソース ファイル\camera</Filter>
+    </ClCompile>
+    <ClCompile Include="source\camera\LookAt.cpp">
+      <Filter>ソース ファイル\camera</Filter>
+    </ClCompile>
+    <ClCompile Include="source\camera\Perspective.cpp">
+      <Filter>ソース ファイル\camera</Filter>
+    </ClCompile>
+    <ClCompile Include="source\actor\player\Status.cpp">
+      <Filter>ソース ファイル\actor\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="source\collision\CollisionActor.cpp">
+      <Filter>ソース ファイル\collision</Filter>
+    </ClCompile>
+    <ClCompile Include="source\collision\CollisionGroup.cpp">
+      <Filter>ソース ファイル\collision</Filter>
+    </ClCompile>
+    <ClCompile Include="source\scene\each\Option.cpp">
+      <Filter>ソース ファイル\scene\each</Filter>
+    </ClCompile>
     <ClCompile Include="source\device\Input.cpp">
       <Filter>ソース ファイル\device</Filter>
+    </ClCompile>
+    <ClCompile Include="source\device\InputPattern_A.cpp">
+      <Filter>ソース ファイル\device</Filter>
+    </ClCompile>
+    <ClCompile Include="source\device\InputPattern_B.cpp">
+      <Filter>ソース ファイル\device</Filter>
+    </ClCompile>
+    <ClCompile Include="source\device\GameDevice.cpp">
+      <Filter>ソース ファイル\device</Filter>
+    </ClCompile>
+    <ClCompile Include="source\scene\each\Opening.cpp">
+      <Filter>ソース ファイル\scene\each</Filter>
+    </ClCompile>
+    <ClCompile Include="source\ui\SlideImage.cpp">
+      <Filter>ソース ファイル\ui</Filter>
+    </ClCompile>
+    <ClCompile Include="source\scene\each\GameClear.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="source\attack\ChargeAttack.cpp">
+      <Filter>ソース ファイル\Attack</Filter>
+    </ClCompile>
+    <ClCompile Include="source\actor\Boss\Boss.cpp">
+      <Filter>ソース ファイル\actor\Boss</Filter>
+    </ClCompile>
+    <ClCompile Include="source\actor\Enemy\Enemy.cpp">
+      <Filter>ソース ファイル\actor\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="source\actor\player\Gauge.cpp">
+      <Filter>ソース ファイル\actor\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="source\sound\Sound.cpp">
+      <Filter>ソース ファイル\device</Filter>
+    </ClCompile>
+    <ClCompile Include="source\camera\LockOn.cpp">
+      <Filter>ソース ファイル\camera</Filter>
+    </ClCompile>
+    <ClCompile Include="source\transform\Quaternion_Utility.cpp">
+      <Filter>ソース ファイル\transform</Filter>
+    </ClCompile>
+    <ClCompile Include="source\transform\Transform.cpp">
+      <Filter>ソース ファイル\transform</Filter>
+    </ClCompile>
+    <ClCompile Include="source\actor\player\specialSkill\Recovery.cpp">
+      <Filter>ソース ファイル\actor\Player\specialSkill</Filter>
+    </ClCompile>
+    <ClCompile Include="source\actor\player\specialSkill\SpecialSkillManager.cpp">
+      <Filter>ソース ファイル\actor\Player\specialSkill</Filter>
+    </ClCompile>
+    <ClCompile Include="source\actionstate\DamageState.cpp">
+      <Filter>ソース ファイル\actionState</Filter>
+    </ClCompile>
+    <ClCompile Include="source\actor\player\specialSkill\SuperArmor.cpp">
+      <Filter>ソース ファイル\actor\Player\specialSkill</Filter>
+    </ClCompile>
+    <ClCompile Include="source\actor\Enemy\EnemyManager.cpp">
+      <Filter>ソース ファイル\actor\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="source\math\Random.cpp">
+      <Filter>ソース ファイル\math</Filter>
+    </ClCompile>
+    <ClCompile Include="source\collision\HitInformation.cpp">
+      <Filter>ソース ファイル\collision</Filter>
+    </ClCompile>
+    <ClCompile Include="source\actor\player\specialSkill\SpecialAttack.cpp">
+      <Filter>ソース ファイル\actor\Player\specialSkill</Filter>
+    </ClCompile>
+    <ClCompile Include="source\collision\SpecialAttackCollision.cpp">
+      <Filter>ソース ファイル\collision\user</Filter>
+    </ClCompile>
+    <ClCompile Include="source\collision\WeaponCollision.cpp">
+      <Filter>ソース ファイル\collision\user</Filter>
+    </ClCompile>
+    <ClCompile Include="source\collision\EnemyCollision.cpp">
+      <Filter>ソース ファイル\collision\user</Filter>
+    </ClCompile>
+    <ClCompile Include="source\collision\EnemyAttackCollision.cpp">
+      <Filter>ソース ファイル\collision\user</Filter>
+    </ClCompile>
+    <ClCompile Include="source\attack\新しいフォルダー\AttackIncidence.cpp">
+      <Filter>ソース ファイル\Attack\enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="source\camera\enum\CameraActionDead.cpp">
+      <Filter>ソース ファイル\camera</Filter>
+    </ClCompile>
+    <ClCompile Include="source\camera\CameraActionDolly.cpp">
+      <Filter>ソース ファイル\camera</Filter>
+    </ClCompile>
+    <ClCompile Include="source\camera\enum\stage1\CameraActionDollyStage1_1.cpp">
+      <Filter>ソース ファイル\camera</Filter>
+    </ClCompile>
+    <ClCompile Include="source\camera\enum\stage1\CameraActionDollyStage1_2.cpp">
+      <Filter>ソース ファイル\camera</Filter>
+    </ClCompile>
+    <ClCompile Include="source\camera\enum\stage1\CameraActionDollyStage1_3.cpp">
+      <Filter>ソース ファイル\camera</Filter>
+    </ClCompile>
+    <ClCompile Include="source\camera\enum\CameraActionLockOn.cpp">
+      <Filter>ソース ファイル\camera</Filter>
+    </ClCompile>
+    <ClCompile Include="source\camera\CameraActionManager.cpp">
+      <Filter>ソース ファイル\camera</Filter>
+    </ClCompile>
+    <ClCompile Include="source\camera\CameraTarget.cpp">
+      <Filter>ソース ファイル\camera</Filter>
+    </ClCompile>
+    <ClCompile Include="source\camera\cameraWork\CameraWork.cpp">
+      <Filter>ソース ファイル\camera</Filter>
+    </ClCompile>
+    <ClCompile Include="source\camera\cameraWork\FixCamera.cpp">
+      <Filter>ソース ファイル\camera</Filter>
+    </ClCompile>
+    <ClCompile Include="source\camera\cameraWork\PanCamera.cpp">
+      <Filter>ソース ファイル\camera</Filter>
+    </ClCompile>
+    <ClCompile Include="source\collision\PlayerAttackCollision.cpp">
+      <Filter>ソース ファイル\collision\user</Filter>
+    </ClCompile>
+    <ClCompile Include="source\attack\ComboReader.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="source\attack\新しいフォルダー\Homing.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="source\ui\SpAttackUI.cpp">
+      <Filter>ヘッダー ファイル</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

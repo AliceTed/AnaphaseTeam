@@ -112,11 +112,11 @@ namespace Array
 	}
 
 	template<class T>
-	const T & Array2D<T>::operator()(unsigned int _index0, unsigned int _index) const
+	const T & Array2D<T>::operator()(unsigned int _index0, unsigned int _index1) const
 	{
 		unsigned int index = _index1 * m_Size0 + _index0;//実際のアクセス場所
 		assert(index >= 0 && index < m_Size0*m_Size1 &&"配列外参照");
-		return mArray[index];
+		return m_Array[index];
 	}
 
 	template<class T>

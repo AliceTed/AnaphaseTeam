@@ -1,0 +1,13 @@
+#pragma once
+
+enum class ENEMY_ANIMATION
+{
+	ATTACK,
+	STAND,
+	RUN,
+	SPAWN,
+	SLIDE,
+	ATTACK2,
+	DEAD,
+	DAMAGE
+};

@@ -15,6 +15,7 @@ public:
 	void update(float _deltaTime);
 	void draw(const Renderer& _renderer);
 	void finish();
+	const bool isExit()const;
 private:
 	void currentFinish();
 private:

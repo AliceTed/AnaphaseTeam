@@ -16,5 +16,6 @@ public:
 	virtual void finish()=0;
 	virtual const SceneMode next()const=0;
 	virtual const bool isEnd()const=0;
+	virtual const bool isExit()const = 0;
 }; 
 #endif

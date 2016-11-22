@@ -20,7 +20,10 @@ public:
 	void start();
 	const bool getIsStop()const;
 	const float getTime()const;
+	const float getEndTime()const;
 	const bool getIsEnd()const;
+
+	const float getSpeed() const;
 
 private:
 	float timer;

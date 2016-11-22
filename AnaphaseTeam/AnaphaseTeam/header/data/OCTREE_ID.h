@@ -4,7 +4,7 @@
 
 enum class OCTREE_ID :unsigned int
 { 
-
+	ARENA,
 	SIZE
 };
 #endif
