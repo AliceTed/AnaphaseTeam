@@ -207,9 +207,6 @@
     <ClInclude Include="header\data\Loader.h">
       <Filter>ヘッダー ファイル\data</Filter>
     </ClInclude>
-    <ClInclude Include="header\device\Input.h">
-      <Filter>ヘッダー ファイル\device</Filter>
-    </ClInclude>
     <ClInclude Include="header\math\Random.h">
       <Filter>ヘッダー ファイル\math</Filter>
     </ClInclude>
@@ -576,6 +573,9 @@
     <ClInclude Include="header\camera\CameraActionData.h">
       <Filter>ヘッダー ファイル\camera</Filter>
     </ClInclude>
+    <ClInclude Include="header\device\Input.h">
+      <Filter>ヘッダー ファイル\device</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="source\main.cpp">
@@ -868,6 +868,9 @@
     </ClCompile>
     <ClCompile Include="source\camera\CameraActionData.cpp">
       <Filter>ソース ファイル\camera</Filter>
+    </ClCompile>
+    <ClCompile Include="source\device\Input.cpp">
+      <Filter>ソース ファイル\device</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
