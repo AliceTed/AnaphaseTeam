@@ -3,7 +3,7 @@
 #include "../../../../header/actor/Player/Gauge.h"
 
 Recovery::Recovery() :
-	m_limitTimer(1)
+	m_limitTimer(20)
 {
 }
 

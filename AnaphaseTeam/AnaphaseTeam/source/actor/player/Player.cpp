@@ -71,7 +71,7 @@ void Player::update(float deltatime)
 	m_scythe.update(deltatime, m_animatorOne, m_transform);
 	m_status.change(m_Gauge);
 	m_SpecialSkillManager.update(deltatime);
-	//m_SpecialSkillManager.endCheck();
+	m_SpecialSkillManager.endCheck();
 
 	m_collision.update(deltatime);
 	m_Gauge.update(deltatime);

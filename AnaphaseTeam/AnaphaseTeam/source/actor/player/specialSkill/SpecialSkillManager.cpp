@@ -124,8 +124,8 @@ bool SpecialSkillManager::isSuperArmor()
 
 void SpecialSkillManager::draw(const Renderer & _renderer)
 {
-	int resetTime;
-	resetTime = 0;
+	/*int resetTime;
+	resetTime = 0;*/
 
 	m_spAttackUI.draw(_renderer);
 	switch (m_type)
@@ -134,22 +134,22 @@ void SpecialSkillManager::draw(const Renderer & _renderer)
 		break;
 	case SPECIALTYPE::RECOVERY:
 		m_spAttackUI.spChange(TEXTURE_ID::SP_UI1);
-		resetTime++;
+		//resetTime++;
 		break;
 	case SPECIALTYPE::SUPERARMOR:
 		m_spAttackUI.spChange(TEXTURE_ID::SP_UI2);
-		resetTime++;
+		//resetTime++;
 		break;
 	case SPECIALTYPE::SPECIALATTACK:
 		m_spAttackUI.spChange(TEXTURE_ID::SP_UI3);
-		resetTime++;
+		//resetTime++;
 		break;
 	}
-	if (resetTime >= 1)
-	{
-		m_type = SPECIALTYPE::NONE;
-		resetTime = 0;
-	}
+	//if (resetTime >= 1)
+	//{
+	//	//m_type = SPECIALTYPE::NONE;
+	//	resetTime = 0;
+	//}
 }
 
 bool SpecialSkillManager::isRbstate()
