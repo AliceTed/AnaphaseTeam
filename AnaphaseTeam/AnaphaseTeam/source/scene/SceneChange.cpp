@@ -36,6 +36,10 @@ void SceneChange::begin(float _fadetime)
 
 void SceneChange::end(SceneMode _next, float _fadetime)
 {
+	if (m_Fade.isStart())
+	{
+		return;
+	}
 	m_next = _next;
 	m_Fade.start(GScolor(0, 0, 0, 0), GScolor(1, 1, 1, 1), _fadetime, [&]() {m_isEnd = true;});
 }

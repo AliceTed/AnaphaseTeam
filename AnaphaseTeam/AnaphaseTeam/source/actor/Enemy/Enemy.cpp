@@ -65,7 +65,7 @@ void Enemy::damage(Player * _player)
 	m_animatorOne.changeAnimation(static_cast<GSuint>(ENEMY_ANIMATION::DAMAGE),true,false,false,10.0f,1.5f);
 	m_transform.translate_front(-0.3f);
 	m_hp -= 10;
-	_player->gaugeAdd();
+	//_player->gaugeAdd();
 }
 
 const bool Enemy::isNear(float _distance) const
@@ -158,6 +158,11 @@ void Enemy::look_at(CameraController* _camera, Player* _player)
 {
 	GSvector3 target = m_transform.m_translate;
 	_player->look_at(_camera, &target);
+}
+
+void Enemy::specialDamage()
+{
+	m_hp -= 100.0f;
 }
 
 void Enemy::think(Player * _player)

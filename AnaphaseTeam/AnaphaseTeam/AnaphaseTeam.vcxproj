@@ -141,6 +141,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="header\collision\PlayerCollision.cpp" />
     <ClCompile Include="source\actionstate\AttackState.cpp" />
     <ClCompile Include="source\actionstate\AvoidState.cpp" />
     <ClCompile Include="source\actionstate\DamageState.cpp" />
@@ -311,6 +312,7 @@
     <ClInclude Include="header\collision\EnemyCollision.h" />
     <ClInclude Include="header\collision\HitInformation.h" />
     <ClInclude Include="header\collision\PlayerAttackCollision.h" />
+    <ClInclude Include="header\collision\PlayerCollision.h" />
     <ClInclude Include="header\collision\SpecialAttackCollision.h" />
     <ClInclude Include="header\collision\WeaponCollision.h" />
     <ClInclude Include="header\data\ENEMY_ANIMATION.h" />

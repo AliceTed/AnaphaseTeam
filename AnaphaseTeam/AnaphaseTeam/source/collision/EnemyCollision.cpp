@@ -30,6 +30,12 @@ void EnemyCollision::collision_Enter(HitInformation & _hit)
 	Player* player = dynamic_cast<Player*>(act);
 	if (player == nullptr)return;
 	m_enemy->damage(player);
+	player->gaugeAdd();
+	player->recovery();
+	if (_hit.m_tag == Collision_Tag::PLAYER_SPECIALATTACK)
+	{
+		m_enemy->specialDamage();
+	}
 }
 
 void EnemyCollision::doDraw(const Renderer & _renderer)

@@ -60,7 +60,9 @@ void GamePlay::update(float deltaTime)
 	}
 
 	if (m_player.isDead())
+	{
 		m_change.end(SceneMode::ENDING);
+	}
 }
 
 void GamePlay::draw(const Renderer & _renderer)

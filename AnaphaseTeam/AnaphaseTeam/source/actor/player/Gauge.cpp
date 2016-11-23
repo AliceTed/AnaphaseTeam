@@ -1,4 +1,4 @@
-#include "..\..\..\header\actor\Player\Gauge.h"
+#include "../../../header/actor/Player/Gauge.h"
 #include "../../../header/math/Calculate.h"
 #include "../../../header/data/TEXTURE_ID.h"
 #include <math.h>
@@ -15,7 +15,8 @@ Gauge::~Gauge()
 
 void Gauge::initialize()
 {
-	m_gauge = 150;
+	//m_gauge = 150;
+	m_gauge = 1000;
 	m_lerpmax = m_gauge;
 }
 

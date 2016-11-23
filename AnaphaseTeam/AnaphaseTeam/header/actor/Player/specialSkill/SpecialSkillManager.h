@@ -23,7 +23,8 @@ public:
 	~SpecialSkillManager();
 	bool initialize(SPECIALTYPE _specialType);
 	void update(float deltaTime);
-	const bool isEnd(SPECIALTYPE _specialType) const;
+	//const bool isEnd(SPECIALTYPE _specialType) const;
+	void endCheck();
 	void recovery(Status& _status);
 	bool isSuperArmor();
 	void addAttackCollision(CollisionGroup* _group);

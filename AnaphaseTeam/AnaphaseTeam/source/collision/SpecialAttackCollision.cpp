@@ -5,7 +5,7 @@
 //****
 #include "../../header/renderer/Renderer.h"
 SpecialAttackCollision::SpecialAttackCollision(Player* _player, SpecialAttack* _specialAttack)
-	:CollisionActor(new Sphere(GSvector3(0, 0, 0), 3.0f), Collision_Tag::PLAYER_SPECIALATTACK),
+	:CollisionActor(new Sphere(GSvector3(0, 0, 0), 5.0f), Collision_Tag::PLAYER_SPECIALATTACK),
 	m_text("Non"),
 	m_player(_player),
 	m_specialAttack(_specialAttack)
