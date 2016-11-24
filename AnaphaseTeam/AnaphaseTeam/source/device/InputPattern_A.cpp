@@ -70,6 +70,11 @@ const bool InputPattern_A::lockOn()
 	return m_input->isJoyTriggerLeftThrust();
 }
 
+const bool InputPattern_A::specialSkillMode()
+{
+	return m_input->spState();
+}
+
 const bool InputPattern_A::up()
 {
 	return m_input->isJoyTriggerUp();

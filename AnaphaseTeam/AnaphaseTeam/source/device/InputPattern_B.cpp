@@ -49,6 +49,11 @@ const bool InputPattern_B::avoid()
 	return false;
 }
 
+const bool InputPattern_B::specialSkillMode()
+{
+	return false;
+}
+
 const bool InputPattern_B::up()
 {
 	return false;

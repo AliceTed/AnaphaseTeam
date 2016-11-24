@@ -118,7 +118,6 @@ private:
 
 	Avoid m_avoid;
 	SpecialSkillManager m_SpecialSkillManager;
-	SpAttackUI m_SpAttackUI;
 
 	GSvector3 target;
 private://’è”

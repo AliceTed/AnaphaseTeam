@@ -4,11 +4,12 @@
 #include "../../header/device/Input.h"
 
 class Renderer;
+class GameDevice;
 
 class SpAttackUI
 {
 public:
-	SpAttackUI();
+	SpAttackUI(GameDevice* _device);
 	~SpAttackUI();
 	void initilize();
 	void update();
@@ -18,6 +19,6 @@ public:
 private:
 	TEXTURE_ID m_ID;
 	int m_Time;
-	Input m_input;
+	GameDevice* m_device;
     GSvector2 m_scale;
 };

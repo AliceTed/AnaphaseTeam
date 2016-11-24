@@ -1,12 +1,12 @@
 #include "../../../../header/actor/Player/specialSkill/SpecialSkillManager.h"
 #include "../../../../header/actor/Player/Gauge.h"
 
-SpecialSkillManager::SpecialSkillManager(Gauge& _gauge, Player* _player) :
+SpecialSkillManager::SpecialSkillManager(Gauge& _gauge, Player* _player, GameDevice* _device) :
 	m_recovery(),
 	m_superArmor(),
 	m_gauge(_gauge),
 	m_specialAttack(_player),
-	m_spAttackUI(),
+	m_spAttackUI(_device),
 	m_type(SPECIALTYPE::NONE)
 {
 }

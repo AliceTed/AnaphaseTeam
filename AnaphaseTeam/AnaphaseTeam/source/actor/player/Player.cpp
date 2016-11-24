@@ -41,7 +41,7 @@ Player::Player(GameDevice* _device, Camera * _camera, LockOn* _lockon)
 	m_avoid(this),
 	m_lockon(_lockon),
 	m_scythe(),
-	m_SpecialSkillManager(m_Gauge, this),
+	m_SpecialSkillManager(m_Gauge, this, m_device),
 	m_currentAction(nullptr),
 	target(0, 0, 0)
 {
@@ -191,6 +191,7 @@ void Player::jumping(float _velocity)
 
 void Player::subActionStart()
 {
+	if (m_device->input()->specialSkillMode())return;
 	if (m_device->input()->jump())
 	{
 		GSvector3 nowPosition = GSvector3(0, m_transform.m_translate.y + 0.3f, 0);
@@ -381,6 +382,9 @@ void Player::control()
 	{
 		m_SpecialSkillManager.initialize(SPECIALTYPE::SPECIALATTACK);
 	}
+
+	if (m_device->input()->specialSkillMode())return;
+
 	/*ƒ{ƒ^ƒ“‰Ÿ‚µ‚½‚çAttackState‚ÉØ‚è‘Ö‚í‚é*/
 	if (m_device->input()->quickAttackTrigger())
 	{

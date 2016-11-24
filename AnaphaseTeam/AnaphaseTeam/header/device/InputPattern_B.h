@@ -17,6 +17,8 @@ public://ƒAƒNƒVƒ‡ƒ“
 	const bool scythe();
 	const bool gun();
 	const bool avoid();
+
+	const bool specialSkillMode();
 public:
 	const bool up();
 	const bool down();
