@@ -9,7 +9,8 @@
 
 CameraActionManager::CameraActionManager(Camera* _camera) :
 	m_camera(_camera),
-	m_cameraData(std::make_unique<CameraActionData>())
+	m_cameraData(std::make_unique<CameraActionData>()),
+	m_current_cameraAction(CameraActionID::NONE)
 {
 	load();
 }
@@ -39,7 +40,19 @@ void CameraActionManager::load(void)
 
 
 
-void CameraActionManager::run(const CameraActionID& _id)
+void CameraActionManager::change_cameraWork(const CameraActionID& _id)
 {
-	m_cameraData->run(_id);
+	m_current_cameraAction = _id;
+}
+
+
+
+void CameraActionManager::run(void)
+{
+	if (m_current_cameraAction == CameraActionID::NONE)
+	{
+		return;
+	}
+
+	m_cameraData->run(m_current_cameraAction);
 }

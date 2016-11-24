@@ -36,18 +36,26 @@ public:
 
 
 	/*****************************************
-	ロード
+	@brief ロード
 	*****************************************/
 	void load(void);
 
 
 
 	/*****************************************
+	@brief カメラワークの切り替え
+	*****************************************/
+	void change_cameraWork(const CameraActionID& _id);
+
+
+
+	/*****************************************
 	@brief 実行
 	*****************************************/
-	void run(const CameraActionID& _id);
+	void run(void);
 
 private:
 	Camera*				m_camera;
 	std::unique_ptr<CameraActionData> m_cameraData;
+	CameraActionID		m_current_cameraAction;
 };

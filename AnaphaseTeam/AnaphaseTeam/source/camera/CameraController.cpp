@@ -44,6 +44,8 @@ CameraController::CameraController(
 
 void CameraController::update(void)
 {
+	m_cameraActionManager->run();
+
 	m_camera->update();
 }
 
@@ -58,7 +60,7 @@ void CameraController::change_control(Camera* _camera)
 
 
 
-void CameraController::run_cameraAction(const CameraActionID& _id)
+void CameraController::change_cameraWork(const CameraActionID& _id)
 {
-	m_cameraActionManager->run(_id);
+	m_cameraActionManager->change_cameraWork(_id);
 }

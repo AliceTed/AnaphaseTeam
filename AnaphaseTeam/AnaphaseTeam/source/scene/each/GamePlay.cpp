@@ -42,9 +42,6 @@ void GamePlay::initialize()
 
 void GamePlay::update(float deltaTime)
 {
-	//‚±‚ê’Ç‰Á by—L•y
-	m_cameracontroller.update();
-
 	m_player.collisionGround(m_Map);
 	m_enemys.collisionGround(m_Map);
 	if (m_change.update(deltaTime))return;
@@ -70,6 +67,8 @@ void GamePlay::draw(const Renderer & _renderer)
 	_renderer.getDraw3D().drawSky(MESH_ID::SKY);
 	//m_enemys[0].look_at(&m_cameracontroller, &m_player);
 	m_lockon.look_at(&m_cameracontroller);
+	//‚±‚ê’Ç‰Á by—L•y
+	m_cameracontroller.update();
 	m_player.draw(_renderer,m_Camera);
 	m_Map.draw(_renderer);
 	m_enemys.draw(_renderer, m_Camera);

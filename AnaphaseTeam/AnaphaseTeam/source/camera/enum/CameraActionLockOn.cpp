@@ -51,7 +51,5 @@ void CameraActionLockOn::run(void)
 
 	m_camera->follow_position(target, 0.5f);
 
-	m_camera->update();
-
 	return;
 }

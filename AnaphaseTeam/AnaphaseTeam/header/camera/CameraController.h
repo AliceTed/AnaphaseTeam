@@ -58,9 +58,9 @@ public:
 
 
 	/***********************************************
-	@brief 実行・カメラアクション
+	@brief カメラワークの変更
 	***********************************************/
-	void run_cameraAction(const CameraActionID& _id);
+	void change_cameraWork(const CameraActionID& _id);
 
 private:
 	Camera *m_camera;		// 動かしたいカメラ
