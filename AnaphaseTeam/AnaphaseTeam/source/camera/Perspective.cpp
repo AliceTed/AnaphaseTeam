@@ -10,6 +10,7 @@ Perspective::Perspective(void) :
 	m_fov_max(180.0f)
 {
 	update();
+	m_matProjection.identity();
 }
 
 
@@ -85,7 +86,7 @@ void Perspective::zoom(const float _value)
 	Math::Clamp clamp;
 	float value;
 
-	value = clamp(_value, FOV_MIN, FOV_MAX);
+	value = clamp(_value, m_fov_min, m_fov_max);
 
 	m_fov = value;
 

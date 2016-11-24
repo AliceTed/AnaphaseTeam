@@ -8,11 +8,10 @@
 
 #include <unordered_map>
 #include <memory>
+#include "CameraWorkID.h"
 
 class Camera;
 class CameraWorkData;
-
-enum CameraWorkID;
 
 class CameraWorkManager
 {
@@ -44,7 +43,7 @@ public:
 	/*****************************************
 	@brief ƒJƒƒ‰ƒ[ƒN‚ÌØ‚è‘Ö‚¦
 	*****************************************/
-	void change_cameraWork(const CameraWorkID& _id);
+	void change_cameraWork(CameraWorkID _id);
 
 
 

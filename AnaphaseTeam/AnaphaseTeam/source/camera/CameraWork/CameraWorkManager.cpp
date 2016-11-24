@@ -4,7 +4,6 @@
 #include "../../../header/camera/CameraWork/CameraWorkLockOn.h"
 #include "../../../header/camera/CameraWork/CameraWorkDead.h"
 #include "../../../header/camera/CameraWork/CameraWorkData.h"
-#include "../../../header/camera/CameraWork/CameraWorkID.h"
 
 
 CameraWorkManager::CameraWorkManager(Camera* _camera) :
@@ -40,7 +39,7 @@ void CameraWorkManager::load(void)
 
 
 
-void CameraWorkManager::change_cameraWork(const CameraWorkID& _id)
+void CameraWorkManager::change_cameraWork(CameraWorkID _id)
 {
 	m_current_cameraAction = _id;
 }

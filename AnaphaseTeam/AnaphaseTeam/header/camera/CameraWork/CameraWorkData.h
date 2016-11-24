@@ -8,10 +8,10 @@
 
 #include <unordered_map>
 #include <memory>
+#include "CameraWorkID.h"
 
 class Camera;
 class ICameraWork;
-enum CameraWorkID;
 
 typedef std::shared_ptr<ICameraWork> cameraWork_ptr;
 typedef std::unordered_map<int, cameraWork_ptr> cameraWork_map;
@@ -39,8 +39,8 @@ public:
 	@param[_data]	ÉfÅ[É^
 	*****************************************************************/
 	void load(
-		const CameraWorkID&	_id,
-		ICameraWork*			_date);
+		CameraWorkID	_id,
+		ICameraWork*	_date);
 
 
 

@@ -11,11 +11,6 @@
 class Perspective
 {
 public:
-	//float fov;		/** @brief 視野 */
-	//float aspect;	/** @brief 面 */
-	//float near;		/** @brief 近い距離 */
-	//float far;		/** @brief 遠い距離 */
-
 	/*******************************************************
 	@brief コンストラクタ
 	*******************************************************/
@@ -153,8 +148,4 @@ private:
 
 	float		m_fov_min;
 	float		m_fov_max;
-
-	const float FOV_DEF = 90.0f;
-	const float FOV_MIN = 0.1f;
-	const float FOV_MAX = 360.0f;
 };

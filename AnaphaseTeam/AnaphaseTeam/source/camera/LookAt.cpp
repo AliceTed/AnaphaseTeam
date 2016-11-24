@@ -11,6 +11,7 @@ LookAt::LookAt(void) :
 	m_direction		(0.0f)
 {
 	update();
+	m_matView.identity();
 }
 
 
