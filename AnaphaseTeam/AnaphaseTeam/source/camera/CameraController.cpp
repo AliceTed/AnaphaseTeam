@@ -8,15 +8,15 @@
 #include "../../header/math/Calculate.h"
 #include <string>
 
-#include "../../header/camera/CameraActionManager.h"
-#include "../../header/camera/enum/CameraActionID.h"
+#include "../../header/camera/CameraWork/CameraWorkManager.h"
+#include "../../header/camera/CameraWork/CameraWorkID.h"
 
 CameraController::CameraController(Camera* _camera) :
 	m_camera(_camera),
 	m_distance(1),
 	m_pitch(0),
 	m_yow(0),
-	m_cameraActionManager(new CameraActionManager(_camera))
+	m_cameraWorkManager(new CameraWorkManager(_camera))
 {
 
 }
@@ -37,14 +37,14 @@ CameraController::CameraController(
 	ACalc::to_rad(&m_pitch);
 	ACalc::to_rad(&m_yow);
 
-	m_cameraActionManager->load();
+	m_cameraWorkManager->load();
 }
 
 
 
 void CameraController::update(void)
 {
-	m_cameraActionManager->run();
+	m_cameraWorkManager->run();
 
 	m_camera->update();
 }
@@ -60,7 +60,7 @@ void CameraController::change_control(Camera* _camera)
 
 
 
-void CameraController::change_cameraWork(const CameraActionID& _id)
+void CameraController::change_cameraWork(const CameraWorkID& _id)
 {
-	m_cameraActionManager->change_cameraWork(_id);
+	m_cameraWorkManager->change_cameraWork(_id);
 }

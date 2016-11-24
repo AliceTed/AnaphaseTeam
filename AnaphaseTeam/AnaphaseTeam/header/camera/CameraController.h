@@ -11,8 +11,8 @@
 #include <memory>
 
 class	Camera;
-class	CameraActionManager;
-enum	CameraActionID;
+class	CameraWorkManager;
+enum	CameraWorkID;
 
 class CameraController
 {
@@ -60,7 +60,7 @@ public:
 	/***********************************************
 	@brief カメラワークの変更
 	***********************************************/
-	void change_cameraWork(const CameraActionID& _id);
+	void change_cameraWork(const CameraWorkID& _id);
 
 private:
 	Camera *m_camera;		// 動かしたいカメラ
@@ -68,5 +68,5 @@ private:
 	float m_pitch;			// ピッチ
 	float m_yow;			// ヨー
 
-	std::shared_ptr<CameraActionManager> m_cameraActionManager;
+	std::shared_ptr<CameraWorkManager> m_cameraWorkManager;
 };

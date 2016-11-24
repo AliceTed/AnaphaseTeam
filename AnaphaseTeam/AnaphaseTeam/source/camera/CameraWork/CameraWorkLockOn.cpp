@@ -1,23 +1,23 @@
-#include "../../../header/camera/enum/CameraActionLockOn.h"
+#include "../../../header/camera/CameraWork/CameraWorkLockOn.h"
 #include "../../../header/camera/Camera.h"
 #include "../../../header/camera/ACalc.h"
 #include "../../../header/math/Calculate.h"
 
-CameraActionLockOn::CameraActionLockOn(Camera* _camera) :
+CameraWorkLockOn::CameraWorkLockOn(Camera* _camera) :
 	m_camera(_camera)
 {
 }
 
 
 
-CameraActionLockOn::~CameraActionLockOn()
+CameraWorkLockOn::~CameraWorkLockOn()
 {
 
 }
 
 
 
-void CameraActionLockOn::run(void)
+void CameraWorkLockOn::run(void)
 {
 	m_camera->zoom(90.0f);
 

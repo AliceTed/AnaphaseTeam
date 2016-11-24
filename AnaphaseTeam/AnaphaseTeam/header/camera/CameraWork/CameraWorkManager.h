@@ -10,12 +10,11 @@
 #include <memory>
 
 class Camera;
-class CameraAction;
-class CameraActionData;
+class CameraWorkData;
 
-enum CameraActionID;
+enum CameraWorkID;
 
-class CameraActionManager
+class CameraWorkManager
 {
 public:
 	/*****************************************
@@ -24,14 +23,14 @@ public:
 	@param[_cameraTarget]	カメラターゲット
 	@param[_input]			インプット
 	*****************************************/
-	CameraActionManager(Camera* _camera);
+	CameraWorkManager(Camera* _camera);
 
 
 
 	/*****************************************
 	@brief デストラクタ
 	*****************************************/
-	~CameraActionManager();
+	~CameraWorkManager();
 
 
 
@@ -45,7 +44,7 @@ public:
 	/*****************************************
 	@brief カメラワークの切り替え
 	*****************************************/
-	void change_cameraWork(const CameraActionID& _id);
+	void change_cameraWork(const CameraWorkID& _id);
 
 
 
@@ -56,6 +55,6 @@ public:
 
 private:
 	Camera*				m_camera;
-	std::unique_ptr<CameraActionData> m_cameraData;
-	CameraActionID		m_current_cameraAction;
+	std::unique_ptr<CameraWorkData> m_cameraData;
+	CameraWorkID		m_current_cameraAction;
 };

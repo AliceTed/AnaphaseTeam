@@ -1,7 +1,7 @@
-#include "../../../header/camera/enum/CameraActionDead.h"
+#include "../../../header/camera/CameraWork/CameraWorkDead.h"
 #include "../../../header/camera/Camera.h"
 
-CameraActionDead::CameraActionDead(Camera* _camera) :
+CameraWorkDead::CameraWorkDead(Camera* _camera) :
 	m_camera(_camera)
 {
 	m_camera->zoom_clamp(20, 180);
@@ -9,14 +9,14 @@ CameraActionDead::CameraActionDead(Camera* _camera) :
 
 
 
-CameraActionDead::~CameraActionDead()
+CameraWorkDead::~CameraWorkDead()
 {
 
 }
 
 
 //–¢Š®¬
-void CameraActionDead::run(void)
+void CameraWorkDead::run(void)
 {
 	const GSvector3& player = m_camera->cameraTarget_player();
 

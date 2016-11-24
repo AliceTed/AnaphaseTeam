@@ -6,25 +6,25 @@
 ****************************************************************/
 #pragma once
 
-#include "../CameraAction.h"
+#include "ICameraWork.h"
 
 class Camera;
 
-class CameraActionLockOn : public CameraAction
+class CameraWorkLockOn : public ICameraWork
 {
 public:
 	/************************************************************
 	@brief コンストラクタ
 	@param[_camera] カメラ
 	************************************************************/
-	CameraActionLockOn(Camera* _camera);
+	CameraWorkLockOn(Camera* _camera);
 
 	
 
 	/************************************************************
 	@brief デストラクタ
 	************************************************************/
-	~CameraActionLockOn();
+	~CameraWorkLockOn();
 
 
 

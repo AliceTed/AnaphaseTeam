@@ -1,30 +1,30 @@
 /*********************************************************************
-@file	CameraActionDead.h
-@brief	カメラアクション（死亡）
+@file	CameraWorkDead.h
+@brief	カメラワーク（死亡）
 @author Yuuho Aritomi
 @date	2016/11/21
 *********************************************************************/
 #pragma once
 
-#include "../CameraAction.h"
+#include "ICameraWork.h"
 
 class Camera;
 
-class CameraActionDead : public CameraAction
+class CameraWorkDead : public ICameraWork
 {
 public:
 	/*****************************************************************
 	@brief コンストラクタ
 	@param[_camera] カメラ
 	*****************************************************************/
-	CameraActionDead(Camera* _camera);
+	CameraWorkDead(Camera* _camera);
 
 
 
 	/*****************************************************************
 	@brief デストラクタ
 	*****************************************************************/
-	~CameraActionDead() override;
+	~CameraWorkDead() override;
 
 
 

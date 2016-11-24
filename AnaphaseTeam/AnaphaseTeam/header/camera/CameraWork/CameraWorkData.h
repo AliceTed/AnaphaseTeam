@@ -10,26 +10,26 @@
 #include <memory>
 
 class Camera;
-class CameraAction;
-enum CameraActionID;
+class ICameraWork;
+enum CameraWorkID;
 
-typedef std::shared_ptr<CameraAction> cameraAction_ptr;
-typedef std::unordered_map<int, cameraAction_ptr> cameraAction_map;
+typedef std::shared_ptr<ICameraWork> cameraWork_ptr;
+typedef std::unordered_map<int, cameraWork_ptr> cameraWork_map;
 
-class CameraActionData
+class CameraWorkData
 {
 public:
 	/*****************************************************************
 	@brief コンストラクタ
 	*****************************************************************/
-	CameraActionData();
+	CameraWorkData();
 
 
 
 	/*****************************************************************
 	@brief デストラクタ
 	*****************************************************************/
-	~CameraActionData();
+	~CameraWorkData();
 
 
 
@@ -39,8 +39,8 @@ public:
 	@param[_data]	データ
 	*****************************************************************/
 	void load(
-		const CameraActionID&	_id, 
-		CameraAction*			_date);
+		const CameraWorkID&	_id,
+		ICameraWork*			_date);
 
 
 
@@ -48,9 +48,9 @@ public:
 	@brief 実行
 	@param[_id] アクションID
 	*****************************************************************/
-	void run(const CameraActionID& _id);
+	void run(const CameraWorkID& _id);
 
 private:
-	cameraAction_map m_cameraActions;
+	cameraWork_map m_cameraWorks;
 };
 
