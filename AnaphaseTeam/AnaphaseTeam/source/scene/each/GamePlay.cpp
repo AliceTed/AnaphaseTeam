@@ -72,10 +72,8 @@ void GamePlay::draw(const Renderer & _renderer)
 	//m_enemys[0].look_at(&m_cameracontroller, &m_player);
 	m_lockon.look_at(&m_cameracontroller);
 	m_Map.draw(_renderer);
-	m_player.draw(_renderer,m_Camera);	
 	m_enemys.draw(_renderer, m_Camera);
-	m_player.draw(_renderer,m_Camera);
-	
+	m_player.draw(_renderer,m_Camera);	
 	m_change.draw(_renderer);
 }
 

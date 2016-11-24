@@ -27,8 +27,8 @@ void Scythe::addCollision(CollisionGroup* _group)
 {
 	//actor.set_update([=](float deltaTime, Shape* _shape) {_shape->transfer(m_collision.parent_synthesis(m_world).m_translate);});
 	//actor.set_draw([](const Renderer& _renderer, Shape* _shape) {_shape->draw(_renderer);});
-	Collision_Ptr actor = std::make_shared<WeaponCollision>(&m_collision_world);
-	_group->add(actor);
+	//Collision_Ptr actor = std::make_shared<WeaponCollision>(&m_collision_world);
+	//_group->add(actor);
 }
 
 void Scythe::update(float deltaTime, const AnimatorOne & _animator, const Transform & _parent)

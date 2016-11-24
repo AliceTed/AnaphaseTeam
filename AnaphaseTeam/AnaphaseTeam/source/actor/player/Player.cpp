@@ -41,7 +41,7 @@ Player::Player(GameDevice* _device, Camera * _camera, LockOn* _lockon)
 	m_avoid(this),
 	m_lockon(_lockon),
 	m_scythe(),
-	m_SpecialSkillManager(m_Gauge, this),
+	m_SpecialSkillManager(m_Gauge, this, m_device),
 	m_currentAction(nullptr),
 	target(0, 0, 0)
 {
@@ -76,9 +76,7 @@ void Player::update(float deltatime)
 	m_collision.update(deltatime);
 	m_Gauge.update(deltatime);
 
-	if (m_status.getHp() <= 0)
-	{
-		m_isDead = true;
+	m_isDead = m_status.getHp() <= 0;
 	}
 }
 
@@ -92,7 +90,7 @@ void Player::draw(const Renderer & _renderer, const Camera & _camera)
 	m_scythe.draw(_renderer);
 	_renderer.getDraw2D().textrue(TEXTURE_ID::BLACK, &GSvector2(0, 0),
 		&GSrect(0, 0, 1000, 30), &GSvector2(0, 0), &GSvector2(1, 1), 0.0f);
-	_renderer.getDraw2D().textrue(TEXTURE_ID::CLEAR, &GSvector2(0, 0),
+	_renderer.getDraw2D().textrue(TEXTURE_ID::WHITE, &GSvector2(0, 0),
 		&GSrect(0, 0, m_status.getHp() * 10.0f, 30), &GSvector2(0, 0), &GSvector2(1, 1), 0.0f, &GScolor(0.0f, 1.0f, 0.0f, 1.0f));
 
 	m_SpecialSkillManager.draw(_renderer);
@@ -191,6 +189,7 @@ void Player::jumping(float _velocity)
 
 void Player::subActionStart()
 {
+	if (m_device->input()->specialSkillMode())return;
 	if (m_device->input()->jump())
 	{
 		GSvector3 nowPosition = GSvector3(0, m_transform.m_translate.y + 0.3f, 0);
@@ -227,11 +226,11 @@ void Player::attackHoming(Enemy * _enemy)
 	Math::Clamp clamp;
 
 	if (_enemy == nullptr) return;
-	if (m_device->input()->velocity().y >= 0)
+	/*if (m_device->input()->velocity().y >= 0)
 	{
 		m_transform.m_rotate = targetDirection(*_enemy);
-	}
-
+	}*/
+	m_transform.m_rotate = targetDirection(*_enemy);
 	float velocity = distanceActor(*_enemy) / 5.0f;
 	velocity = clamp(m_Gauge.scale(velocity), 0.0f, distanceActor(*_enemy) - 1.0f);
 	target = m_transform.m_translate + (m_transform.front() * velocity);
@@ -246,7 +245,7 @@ void Player::homing()
 
 void Player::specialAttack()
 {
-	m_animatorOne.changeAnimation(static_cast<GSuint>(ANIMATION_ID::SPECIALATTACK), true);
+	m_animatorOne.changeAnimation(static_cast<GSuint>(ANIMATION_ID::SPECIALATTACK));
 	m_SpecialSkillManager.addAttackCollision(&m_collision);
 }
 
@@ -317,14 +316,9 @@ const bool Player::isEndAttackMotion(const IAttack & _attack) const
 
 void Player::moving(float deltaTime, bool isAnimation)
 {
-	float time = 1.0f;
-	if (m_device->input()->walk())
-	{
-		time = 0.4f;
-	}
-	movement(deltaTime, 0.5f);
+	movement(deltaTime, WALKSPEED);
 	if (!isAnimation)return;
-	m_animatorOne.changeAnimation(static_cast<GSuint>(ANIMATION_ID::RUN), true, true, true, time);
+	m_animatorOne.changeAnimation(static_cast<GSuint>(ANIMATION_ID::RUN), true, true, true);
 }
 
 
@@ -369,6 +363,8 @@ void Player::actionChange(Action_Ptr _action)
 }
 void Player::control()
 {
+	if (m_device->input()->specialSkillMode()) 
+	{
 	if (m_device->input()->gaugeAttack1())
 	{
 		m_SpecialSkillManager.initialize(SPECIALTYPE::RECOVERY);
@@ -381,6 +377,9 @@ void Player::control()
 	{
 		m_SpecialSkillManager.initialize(SPECIALTYPE::SPECIALATTACK);
 	}
+		//return;
+	}
+
 	/*ƒ{ƒ^ƒ“‰Ÿ‚µ‚½‚çAttackState‚ÉØ‚è‘Ö‚í‚é*/
 	if (m_device->input()->quickAttackTrigger())
 	{
