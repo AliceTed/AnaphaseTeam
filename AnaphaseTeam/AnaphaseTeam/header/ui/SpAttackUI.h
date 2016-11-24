@@ -18,6 +18,6 @@ public:
 private:
 	TEXTURE_ID m_ID;
 	int m_Time;
-	Input m_input;
+	Input* m_input;
     GSvector2 m_scale;
 };

@@ -32,12 +32,8 @@ void SpAttackUI::update()
 
 	if (!m_input.spState())
 	{
-		if (m_ID == TEXTURE_ID::SP_UI || m_ID != TEXTURE_ID::SP_UI)
-		{
-			m_scale = GSvector2(0.6, 0.6);
-		}
+		m_scale = GSvector2(0.6, 0.6);
 	}
-
 }
 
 void SpAttackUI::draw(IRenderer * _renderer)
