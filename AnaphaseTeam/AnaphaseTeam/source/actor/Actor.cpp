@@ -6,7 +6,7 @@
 #include "../../header/shape/Ray.h"
 #include "../../header/math/Calculate.h"
 const float Actor::ALPHABLEND_FAR = 2.0f;
-const float Actor::GRAVITY = -0.05f;
+const float Actor::GRAVITY = -0.1f;
 
 Actor::Actor(const Transform & _transform, MODEL_ID _modelID,const Sphere& _sphere,Actor_Tag _tag)
 	:m_transform(_transform), 

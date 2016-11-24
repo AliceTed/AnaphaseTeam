@@ -42,7 +42,7 @@ void SpAttackUI::update()
 
 void SpAttackUI::draw(const Renderer& _renderer)
 {
-	_renderer.getDraw2D().textrue(m_ID, &GSvector2(250, 250),NULL,&GSvector2(250,250),&m_scale,0);
+	_renderer.getDraw2D().textrue(m_ID, &GSvector2(1000, 500),NULL,NULL,&m_scale,0);
 }
 
 void SpAttackUI::spChange(TEXTURE_ID _ID)

@@ -4,6 +4,7 @@
 
 enum class TEXTURE_ID :unsigned int
 {
+	WHITE,
 	BLACK,
 	EXIT,
 	GAMESTART,

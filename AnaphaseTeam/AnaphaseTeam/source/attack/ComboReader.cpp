@@ -27,7 +27,7 @@ ComboReader::~ComboReader()
 bool ComboReader::ComboCreate(std::vector<Attack>* _attackOut, std::unordered_map<Combo, Attack>* _comboPattern)
 {
 	_comboPattern->clear();
-	std::ifstream ifs("Combo.txt");
+	std::ifstream ifs("./res/Combo.txt");
 	std::vector<std::string> sdata;
 	sdata.clear();
 	std::string line;

@@ -92,7 +92,7 @@ void Player::draw(const Renderer & _renderer, const Camera & _camera)
 	m_scythe.draw(_renderer);
 	_renderer.getDraw2D().textrue(TEXTURE_ID::BLACK, &GSvector2(0, 0),
 		&GSrect(0, 0, 1000, 30), &GSvector2(0, 0), &GSvector2(1, 1), 0.0f);
-	_renderer.getDraw2D().textrue(TEXTURE_ID::CLEAR, &GSvector2(0, 0),
+	_renderer.getDraw2D().textrue(TEXTURE_ID::WHITE, &GSvector2(0, 0),
 		&GSrect(0, 0, m_status.getHp() * 10.0f, 30), &GSvector2(0, 0), &GSvector2(1, 1), 0.0f, &GScolor(0.0f, 1.0f, 0.0f, 1.0f));
 
 	m_SpecialSkillManager.draw(_renderer);
@@ -227,11 +227,11 @@ void Player::attackHoming(Enemy * _enemy)
 	Math::Clamp clamp;
 
 	if (_enemy == nullptr) return;
-	if (m_device->input()->velocity().y >= 0)
+	/*if (m_device->input()->velocity().y >= 0)
 	{
 		m_transform.m_rotate = targetDirection(*_enemy);
-	}
-
+	}*/
+	m_transform.m_rotate = targetDirection(*_enemy);
 	float velocity = distanceActor(*_enemy) / 5.0f;
 	velocity = clamp(m_Gauge.scale(velocity), 0.0f, distanceActor(*_enemy) - 1.0f);
 	target = m_transform.m_translate + (m_transform.front() * velocity);

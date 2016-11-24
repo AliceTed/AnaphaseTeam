@@ -53,6 +53,7 @@ const bool Load::isExit() const
 void Load::loadTextrue()
 {
 	Data::LoadTexture tex;
+	tex(TEXTURE_ID::WHITE, "white");
 	tex(TEXTURE_ID::BLACK, "black");
 	tex(TEXTURE_ID::EXIT, "Exit");
 	tex(TEXTURE_ID::OPTION, "option");

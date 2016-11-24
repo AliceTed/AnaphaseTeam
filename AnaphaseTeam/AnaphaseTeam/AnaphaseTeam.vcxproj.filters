@@ -920,11 +920,11 @@
     <ClCompile Include="source\attack\新しいフォルダー\Homing.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="source\ui\SpAttackUI.cpp">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClCompile>
     <ClCompile Include="header\collision\PlayerCollision.cpp">
       <Filter>ソース ファイル\collision\user</Filter>
+    </ClCompile>
+    <ClCompile Include="source\ui\SpAttackUI.cpp">
+      <Filter>ソース ファイル</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
