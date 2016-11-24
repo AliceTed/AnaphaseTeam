@@ -262,7 +262,6 @@
     <ClInclude Include="header\actionstate\StandState.h" />
     <ClInclude Include="header\actor\Actor.h" />
     <ClInclude Include="header\actor\Actor_Tag.h" />
-    <ClInclude Include="header\actor\AttackActor.h" />
     <ClInclude Include="header\actor\Boss\Boss.h" />
     <ClInclude Include="header\actor\Enemy\Enemy.h" />
     <ClInclude Include="header\actor\Enemy\EnemyManager.h" />

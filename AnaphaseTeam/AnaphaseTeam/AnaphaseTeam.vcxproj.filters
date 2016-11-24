@@ -315,9 +315,6 @@
     <ClInclude Include="header\actor\Actor_Tag.h">
       <Filter>ヘッダー ファイル\actor</Filter>
     </ClInclude>
-    <ClInclude Include="header\actor\AttackActor.h">
-      <Filter>ヘッダー ファイル\actor</Filter>
-    </ClInclude>
     <ClInclude Include="header\shape\Capsule.h">
       <Filter>ヘッダー ファイル\shape</Filter>
     </ClInclude>
