@@ -35,8 +35,7 @@ float Status::getHp()
 }
 
 void Status::down()
-{
-	
+{	
 	m_hp -= 10;
 }
 

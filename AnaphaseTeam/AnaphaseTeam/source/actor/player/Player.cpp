@@ -76,10 +76,7 @@ void Player::update(float deltatime)
 	m_collision.update(deltatime);
 	m_Gauge.update(deltatime);
 
-	if (m_status.getHp() <= 0)
-	{
-		m_isDead = true;
-	}
+	m_isDead = m_status.getHp() <= 0;
 }
 
 void Player::draw(const Renderer & _renderer, const Camera & _camera)
@@ -247,7 +244,7 @@ void Player::homing()
 
 void Player::specialAttack()
 {
-	m_animatorOne.changeAnimation(static_cast<GSuint>(ANIMATION_ID::SPECIALATTACK), true);
+	m_animatorOne.changeAnimation(static_cast<GSuint>(ANIMATION_ID::SPECIALATTACK));
 	m_SpecialSkillManager.addAttackCollision(&m_collision);
 }
 
@@ -318,14 +315,9 @@ const bool Player::isEndAttackMotion(const IAttack & _attack) const
 
 void Player::moving(float deltaTime, bool isAnimation)
 {
-	float time = 1.0f;
-	if (m_device->input()->walk())
-	{
-		time = 0.4f;
-	}
-	movement(deltaTime, 0.5f);
+	movement(deltaTime, WALKSPEED);
 	if (!isAnimation)return;
-	m_animatorOne.changeAnimation(static_cast<GSuint>(ANIMATION_ID::RUN), true, true, true, time);
+	m_animatorOne.changeAnimation(static_cast<GSuint>(ANIMATION_ID::RUN), true, true, true);
 }
 
 
@@ -370,20 +362,22 @@ void Player::actionChange(Action_Ptr _action)
 }
 void Player::control()
 {
-	if (m_device->input()->gaugeAttack1())
+	if (m_device->input()->specialSkillMode()) 
 	{
-		m_SpecialSkillManager.initialize(SPECIALTYPE::RECOVERY);
+		if (m_device->input()->gaugeAttack1())
+		{
+			m_SpecialSkillManager.initialize(SPECIALTYPE::RECOVERY);
+		}
+		if (m_device->input()->gaugeAttack2())
+		{
+			m_SpecialSkillManager.initialize(SPECIALTYPE::SUPERARMOR);
+		}
+		if (m_device->input()->gaugeAttack3())
+		{
+			m_SpecialSkillManager.initialize(SPECIALTYPE::SPECIALATTACK);
+		}
+		//return;
 	}
-	if (m_device->input()->gaugeAttack2())
-	{
-		m_SpecialSkillManager.initialize(SPECIALTYPE::SUPERARMOR);
-	}
-	if (m_device->input()->gaugeAttack3())
-	{
-		m_SpecialSkillManager.initialize(SPECIALTYPE::SPECIALATTACK);
-	}
-
-	if (m_device->input()->specialSkillMode())return;
 
 	/*ƒ{ƒ^ƒ“‰Ÿ‚µ‚½‚çAttackState‚ÉØ‚è‘Ö‚í‚é*/
 	if (m_device->input()->quickAttackTrigger())
