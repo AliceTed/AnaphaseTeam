@@ -54,6 +54,7 @@ void Fade::draw(const Renderer& renderer)
 void Fade::endFunction()
 {
 	if (!m_Lerp.isEnd())return;
+	m_isStart = false;
 	if (m_endfunc == nullptr)return;
 	m_endfunc();
 }

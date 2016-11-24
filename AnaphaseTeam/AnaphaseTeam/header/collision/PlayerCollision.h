@@ -4,21 +4,19 @@
 //***機能確認用
 #include <string>
 //**
-
 class Player;
-class WeaponCollision:public CollisionActor
+
+class PlayerCollision :public CollisionActor
 {
 public:
-	WeaponCollision(Transform* _transform);
-	~WeaponCollision();
+	PlayerCollision(Player* _player);
+	~PlayerCollision();
+	void chase(const GSvector3& _position);
 private:
 	void doUpdate(float deltaTime)override;
 	void collision_Enter(HitInformation& _hit)override;
-
-	//以下一時的なテスト用
 	void doDraw(const Renderer& _renderer)override;
-	void collision_Stay(HitInformation& _hit)override;
-	void collision_Exit(HitInformation& _hit)override;
 private:
-	Transform* m_transform;
+	GSvector3 m_position;
+	Player* m_player;
 };

@@ -603,6 +603,9 @@
     <ClInclude Include="header\ui\SpAttackUI.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
+    <ClInclude Include="header\collision\PlayerCollision.h">
+      <Filter>ヘッダー ファイル\collision\user</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="source\main.cpp">
@@ -919,6 +922,9 @@
     </ClCompile>
     <ClCompile Include="source\ui\SpAttackUI.cpp">
       <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="header\collision\PlayerCollision.cpp">
+      <Filter>ソース ファイル\collision\user</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

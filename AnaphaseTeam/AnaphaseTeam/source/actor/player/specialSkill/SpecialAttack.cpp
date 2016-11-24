@@ -35,5 +35,4 @@ void SpecialAttack::addColision(CollisionGroup * _group)
 {
 	Collision_Ptr actor = std::make_shared<SpecialAttackCollision>(m_player, this);
 	_group->add(actor);
-	m_player->specialAttack();
 }
