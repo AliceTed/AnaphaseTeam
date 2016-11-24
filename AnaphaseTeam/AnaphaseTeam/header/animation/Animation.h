@@ -3,8 +3,8 @@
 #define _ANIMATION_H_
 
 #include "AnimationTimer.h"
-#include "../data/ANIMATION_ID.h"
-#include "../data/Model_ID.h"
+#include "../data/id/ANIMATION_ID.h"
+#include "../data/id/Model_ID.h"
 /*
 animationî•ñ‚ÌŠÇ—
 

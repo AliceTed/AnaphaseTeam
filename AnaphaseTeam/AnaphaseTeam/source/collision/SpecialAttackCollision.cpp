@@ -3,7 +3,7 @@
 #include "../../header/actor/Player/Player.h"
 
 //****
-#include "../../header/renderer/Renderer.h"
+#include "../../header/renderer/IRenderer.h"
 SpecialAttackCollision::SpecialAttackCollision(Player* _player, SpecialAttack* _specialAttack)
 	:CollisionActor(new Sphere(GSvector3(0, 0, 0), 3.0f), Collision_Tag::PLAYER_SPECIALATTACK),
 	m_text("Non"),
@@ -29,7 +29,7 @@ void SpecialAttackCollision::doUpdate(float deltaTime)
 	}
 }
 
-void SpecialAttackCollision::doDraw(const Renderer & _renderer)
+void SpecialAttackCollision::doDraw(IRenderer * _renderer)
 {
 	//m_shape->draw(_renderer);
 	//_renderer.getDraw2D().string(m_text, &GSvector2(10, 10), 20);

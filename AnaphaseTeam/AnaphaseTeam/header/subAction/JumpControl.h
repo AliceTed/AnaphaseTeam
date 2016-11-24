@@ -7,7 +7,7 @@
 #pragma once
 #include "../airstate/IAirState.h"
 #include<gslib.h>
-#include "../data/ANIMATION_ID.h"
+#include "../data/id/ANIMATION_ID.h"
 class AnimatorOne;
 typedef std::shared_ptr<IAirState> AirAction_Ptr;
 class JumpControl

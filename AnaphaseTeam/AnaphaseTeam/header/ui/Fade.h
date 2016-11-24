@@ -3,7 +3,7 @@
 #include <gslib.h>
 #include <functional>
 #include "../math/TimeLerpVector.h"
-class Renderer;
+class IRenderer;
 class Fade
 {
 public:
@@ -17,7 +17,7 @@ public:
 	/*start‚µ‚Ä‚é‚©H*/
 	const bool isStart()const;
 	const bool isEnd()const;
-	void draw(const Renderer& renderer);
+	void draw(IRenderer * renderer);
 private:
 	void endFunction();
 private:

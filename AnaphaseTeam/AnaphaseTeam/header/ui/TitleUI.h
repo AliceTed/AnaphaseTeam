@@ -11,7 +11,7 @@ public:
 	~TitleUI();
 	void initialize();
 	void update(float deltaTime, Title& _title);
-	void draw(const Renderer& _renderer);
+	void draw(IRenderer * _renderer);
 	void finish();
 private:
 	void operation(Title& _title);

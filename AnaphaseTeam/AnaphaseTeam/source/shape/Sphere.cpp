@@ -1,6 +1,6 @@
 #include "../../header/shape/Sphere.h"
 
-#include "../../header/renderer/Renderer.h"
+#include "../../header/renderer/IRenderer.h"
 #include "../../header/camera/Camera.h"
 #include "../../header/map/Map.h"
 
@@ -61,9 +61,9 @@ const bool Sphere::isCollision(const Shape * _shape, GSvector3* _out) const
 	return _shape->isCollision(this, _out);
 }
 
-void Sphere::draw(const Renderer& renderer, const GScolor& color)
+void Sphere::draw(IRenderer * renderer, const GScolor& color)
 {
-	renderer.getDraw3D().drawSphere(&center, radius, color);
+	//renderer.getDraw3D().drawSphere(&center, radius, color);
 }
 
 const bool Sphere::isInsideCameraView(const Camera & _camera) const

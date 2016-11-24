@@ -1,8 +1,9 @@
 #include "../../header/ui/TitleUI.h"
-#include "../../header/renderer/Renderer.h"
+#include "../../header/renderer/IRenderer.h"
 #include "../../header/scene/SceneChange.h"
 #include "../../header/device/Input.h"
 #include "../../header/scene/each/Title.h"
+#include "../../header/renderer/define/SpriteRenderDesc.h"
 TitleUI::TitleUI()
 	:m_select(),
 	m_cursor()
@@ -24,9 +25,13 @@ void TitleUI::update(float deltaTime, Title& _title)
 	operation(_title);
 }
 
-void TitleUI::draw(const Renderer & _renderer)
+void TitleUI::draw(IRenderer * _renderer)
 {
-	_renderer.getDraw2D().textrue(TEXTURE_ID::TITLE_ROGO, &GSvector2(0, 0));
+	SpriteRenderDesc desc;
+	desc.textureID = static_cast<GSuint>(TEXTURE_ID::TITLE_ROGO);
+	GStexture* tex=gsGetTexture(desc.textureID);
+	desc.srcRect = GSrect(0, 0, tex->dwWidth, tex->dwHeight);
+	_renderer->render(desc);
 	m_select.draw(_renderer);
 	m_cursor.draw(_renderer, m_select.currentSelect());
 }

@@ -24,7 +24,7 @@ public:
 	~Enemy();
 	void initialize() override;
 	void update(float deltatime)override;
-	void draw(const Renderer& _renderer, const Camera& _camera)override;
+	void draw(IRenderer * _renderer, const Camera& _camera)override;
 public:
 	void collisionChase(EnemyCollision* _collision);
 	void damage(Player* _player);

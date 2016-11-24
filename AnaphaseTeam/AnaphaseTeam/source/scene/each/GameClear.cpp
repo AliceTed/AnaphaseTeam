@@ -23,7 +23,7 @@ void GameClear::update(float deltaTime)
 	}
 }
 
-void GameClear::draw(const Renderer & renderer)
+void GameClear::draw(IRenderer * renderer)
 {
 }
 

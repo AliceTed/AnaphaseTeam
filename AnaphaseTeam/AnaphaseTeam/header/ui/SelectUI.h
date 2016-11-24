@@ -17,7 +17,7 @@ public:
 	void initialize();
 	void add(Select _name,const ScaleImage& _image);
 	void update(float deltaTime);
-	void draw(const Renderer& _renderer);
+	void draw(IRenderer * _renderer);
 	
 	void next();
 	void previous();

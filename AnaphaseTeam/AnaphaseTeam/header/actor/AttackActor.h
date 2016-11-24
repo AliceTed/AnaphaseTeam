@@ -13,7 +13,7 @@
 //	~AttackActor();
 //
 //	void update(float deltatime);
-//	void draw(const Renderer& _renderer, const Camera& _camera);
+//	void draw(IRenderer * _renderer, const Camera& _camera);
 //	void createCollision(CollisionMediator* _mediator);
 //	void collision(const Actor* _other);
 //private:

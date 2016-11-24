@@ -1,6 +1,8 @@
 #include "../../header/animation/AnimatorOne.h"
-#include "../../header/data/CastID.h"
-#include "../../header/renderer/Renderer.h"
+#include "../../header/data/id/CastID.h"
+#include "../../header/renderer/IRenderer.h"
+#include "../../header/renderer/define/SkinnedMeshRenderDesc.h"
+#include "../../header/data/id/SHADER_ID.h"
 #include <gslib.h>
 AnimatorOne::AnimatorOne(const MODEL_ID _modelID) :
 	m_modelID(_modelID), m_currentAnimation(nullptr),
@@ -142,12 +144,17 @@ void AnimatorOne::skeltonCalculateTransform(GSmatrix4* _mat)
 		m_orientedMat.get());
 }
 
-void AnimatorOne::draw(const Renderer& _renderer,const Transform &_transform, const GScolor &_color)
+void AnimatorOne::draw(IRenderer * _renderer,const Transform &_transform, const GScolor &_color)
 {
 	//matrixCalculate();
 	std::unique_ptr<GSmatrix4>mat(new GSmatrix4[256]);
 	skeltonCalculateTransform(mat.get());
-	_renderer.getDraw3D().drawMesh(static_cast<GSuint>(m_modelID), _transform, mat.get(), _color);
+	SkinnedMeshRenderDesc desc;
+	desc.meshID = static_cast<GSuint>(m_modelID);
+	desc.shaderID = static_cast<GSuint>(SHADER_ID::SKINNEDMESH);
+	desc.matrix = _transform.matrix();
+	desc.animation = mat.get();
+	_renderer->render(desc);
 }
 
 //const GSuint AnimatorOne::getNumBones()const

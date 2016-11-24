@@ -6,11 +6,11 @@
 #include "../../../header/actionstate/AttackState.h"
 #include "../../../header/actionstate/DamageState.h"
 #include "../../../header/actionstate/AvoidState.h"
-#include "../../../header/renderer/Renderer.h"
+#include "../../../header/renderer/IRenderer.h"
 #include "../../../header/device/GameDevice.h"
 #include "../../../header/camera/Camera.h"
 #include "../../../header/shape/Ray.h"
-#include "../../../header/data/PLAYERACTION_ID.h"
+#include "../../../header/data/id/PLAYERACTION_ID.h"
 #include "../../../header/camera/CameraController.h"
 #include "../../../header/math/Calculate.h"
 
@@ -18,6 +18,7 @@
 #include "../../../header/camera/LockOn.h"
 #include "../../../header/actor/Enemy/Enemy.h"
 #include "../../../header/collision/PlayerAttackCollision.h"
+#include "../../../header/renderer/define/SpriteRenderDesc.h"
 const float Player::MOVESPEED = 0.3f;
 const float Player::ROTATESPEED = -2.0f;
 const float Player::WALKSPEED = 0.1f;
@@ -81,7 +82,7 @@ void Player::update(float deltatime)
 	}
 }
 
-void Player::draw(const Renderer & _renderer, const Camera & _camera)
+void Player::draw(IRenderer * _renderer, const Camera & _camera)
 {
 	//FALSE_RETURN(isInsideView(_camera));
 	//alphaBlend(_camera);
@@ -89,15 +90,20 @@ void Player::draw(const Renderer & _renderer, const Camera & _camera)
 	m_collision.draw(_renderer);
 	m_Gauge.draw(_renderer);
 	m_scythe.draw(_renderer);
-	_renderer.getDraw2D().textrue(TEXTURE_ID::BLACK, &GSvector2(0, 0),
-		&GSrect(0, 0, 100, 30), &GSvector2(0, 0), &GSvector2(1, 1), 0.0f);
-	_renderer.getDraw2D().textrue(TEXTURE_ID::CLEAR, &GSvector2(0, 0),
-		&GSrect(0, 0, m_status.getHp(), 30), &GSvector2(0, 0), &GSvector2(1, 1), 0.0f, &GScolor(0.0f, 1.0f, 0.0f, 1.0f));
 
+	SpriteRenderDesc back;
+	back.textureID = static_cast<GSuint>(TEXTURE_ID::BLACK);
+	back.matrix.setTranslation(0, 50,0);
+	back.srcRect = GSrect(0,0, 100, 30);
+	_renderer->render(back);
+
+	SpriteRenderDesc front;
+	front.textureID = static_cast<GSuint>(TEXTURE_ID::CLEAR);
+	front.matrix.setTranslation(0, 50, 0);
+	front.srcRect = GSrect(0,0, m_status.getHp(), 30);
+	front.color = GScolor(0.0f, 1.0f, 0.0f, 1.0f);
+	_renderer->render(front);
 	m_SpecialSkillManager.draw(_renderer);
-
-	//_renderer.getDraw2D().string(std::to_string(m_collision.size()), &GSvector2(50, 50), 20);
-
 }
 
 void Player::inGround()
@@ -187,7 +193,7 @@ void Player::createColision()
 	//	GSvector3 target = m_transform.getPosition() + GSvector3(0.0f, 0.5f, 0.0f);
 	//	_shape->transfer(target);
 	//});
-	////obj->set_draw([&](const Renderer& _renderer, Shape_Ptr _shape) { _shape->draw(_renderer); });
+	////obj->set_draw([&](IRenderer * _renderer, Shape_Ptr _shape) { _shape->draw(_renderer); });
 	//m_group->add(obj);
 }
 

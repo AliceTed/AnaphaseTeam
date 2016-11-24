@@ -8,7 +8,7 @@ public:
 	~PlayerAttackCollision();
 private:
 	void doUpdate(float deltaTime);
-	void doDraw(const Renderer& _renderer);
+	void doDraw(IRenderer * _renderer);
 	void collision_Enter(HitInformation& _hit);
 private:
 	Timer m_destroy;

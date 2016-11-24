@@ -16,7 +16,7 @@
 #include "../../animation/AnimMediator.h"
 #include "../../../header/subAction/SubActionManager.h"
 #include "../../attack/attackManager.h"
-#include "../../data/ANIMATION_ID.h"
+#include "../../data/id/ANIMATION_ID.h"
 #include "Status.h"
 #include "../../attack/Scythe.h"
 #include "Gauge.h"
@@ -79,7 +79,7 @@ public://“ü—Í
 public://ActorŒp³
 	void initialize() override;
 	void update(float deltatime) override;
-	void draw(const Renderer& _renderer, const Camera& _camera) override;
+	void draw(IRenderer * _renderer, const Camera& _camera) override;
 private:
 	void inGround() override;
 public://ICharacterÀ‘•

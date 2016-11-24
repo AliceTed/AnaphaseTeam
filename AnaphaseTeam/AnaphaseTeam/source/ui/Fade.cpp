@@ -1,5 +1,7 @@
 #include "../../header/ui/Fade.h"
-#include "../../header/renderer/Renderer.h"
+#include "../../header/renderer/IRenderer.h"
+#include "../../header/renderer/define/RectangleRenderDesc.h"
+#include "../../header/renderer/define/ViewportDesc.h"
 Fade::Fade()
 	:m_isStart(false),
 	m_Lerp(GScolor(0,0,0,0)),
@@ -46,14 +48,19 @@ const bool Fade::isEnd()const
 {
 
 }*/
-void Fade::draw(const Renderer& renderer)
+void Fade::draw(IRenderer * renderer)
 {
-	renderer.getDraw2D().textrue(TEXTURE_ID::BLACK,&GSvector2(0,0),&m_Lerp.current());
+	RectangleRenderDesc desc;
+	desc.color = m_Lerp.current();
+	ViewportDesc view = renderer->getViewPort();
+	desc.rect = GSrect(0,0,view.width,view.height);
+	renderer->render(desc);
 }
 
 void Fade::endFunction()
 {
 	if (!m_Lerp.isEnd())return;
+	m_isStart = false;
 	if (m_endfunc == nullptr)return;
 	m_endfunc();
 }

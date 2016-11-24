@@ -1,5 +1,5 @@
 #pragma once
-#include "../../../header/renderer/Renderer.h"
+#include "../../../header/renderer/IRenderer.h"
 #include <vector>
 
 enum class RankGauge
@@ -16,7 +16,7 @@ public:
 	Gauge();
 	~Gauge();
 	void initialize();
-	void draw(const Renderer& _renderer);
+	void draw(IRenderer * _renderer);
 	void up(float _scale);
 	bool down(float _scale);
 	void downGauge(RankGauge _rankGauge);

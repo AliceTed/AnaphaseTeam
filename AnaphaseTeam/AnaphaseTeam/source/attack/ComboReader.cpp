@@ -3,7 +3,7 @@
 #include "../../header/attack/ECombo.h"
 #include "../../header/attack/AttackStatus.h"
 #include "../../header/attack/Attack.h"
-#include "../../header/data/ANIMATION_ID.h"
+#include "../../header/data/id/ANIMATION_ID.h"
 #include "../../header/actor/Player/Player.h"
 
 #include <fstream>

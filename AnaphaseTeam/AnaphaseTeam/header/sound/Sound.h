@@ -1,6 +1,6 @@
 #pragma once
-#include "../../header/data/SE_ID.h"
-#include "../../header/data/BGM_ID.h"
+#include "../../header/data/id/SE_ID.h"
+#include "../../header/data/id/BGM_ID.h"
 
 class Sound
 {

@@ -10,7 +10,7 @@ public:
 	~Ending();
 	void initialize();
 	void update(float _deltaTime);
-	void draw(const Renderer& _renderer);
+	void draw(IRenderer * _renderer);
 	void finish();
 	const SceneMode next()const;
 	const bool isEnd()const;

@@ -1,6 +1,6 @@
 #include "../../../header/scene/each/Option.h"
 #include "../../../header/device/GameDevice.h"
-#include "../../../header/renderer/Renderer.h"
+#include "../../../header/renderer/IRenderer.h"
 #include <algorithm>
 Option::Option(GameDevice* _device)
 	:m_device(_device),
@@ -43,10 +43,10 @@ void Option::update(float deltaTime)
 	}
 }
 
-void Option::draw(const Renderer & renderer)
+void Option::draw(IRenderer * renderer)
 {
-	renderer.getDraw2D().textrue(TEXTURE_ID::OPTION_BACKGROUND, &GSvector2(0, 0));
-	std::for_each(m_image.begin(), m_image.end(), [&renderer](SlideImage& _image) {_image.draw(renderer);});
+	//renderer.getDraw2D().textrue(TEXTURE_ID::OPTION_BACKGROUND, &GSvector2(0, 0));
+	//std::for_each(m_image.begin(), m_image.end(), [&renderer](SlideImage& _image) {_image.draw(renderer);});
 }
 
 void Option::finish()

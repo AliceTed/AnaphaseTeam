@@ -19,7 +19,7 @@ void PlayerAttackCollision::doUpdate(float deltaTime)
 	}
 }
 
-void PlayerAttackCollision::doDraw(const Renderer & _renderer)
+void PlayerAttackCollision::doDraw(IRenderer * _renderer)
 {
 	//m_shape->draw(_renderer);
 }

@@ -93,7 +93,7 @@ bool SpecialSkillManager::isSuperArmor()
 	return m_superArmor.isSuperArmor();
 }
 
-void SpecialSkillManager::draw(const Renderer & _renderer)
+void SpecialSkillManager::draw(IRenderer * _renderer)
 {
 	int resetTime;
 	resetTime = 0;

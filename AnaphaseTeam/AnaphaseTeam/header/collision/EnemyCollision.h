@@ -10,7 +10,7 @@ public:
 private:
 	void doUpdate(float deltaTime)override;
 	void collision_Enter(HitInformation& _hit)override;
-	void doDraw(const Renderer& _renderer)override;
+	void doDraw(IRenderer * _renderer)override;
 private:
 	Enemy* m_enemy;
 	GSvector3 m_position;

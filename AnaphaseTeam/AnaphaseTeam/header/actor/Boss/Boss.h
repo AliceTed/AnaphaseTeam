@@ -25,7 +25,7 @@ public:
 	~Boss();
 	void initialize();
 	void update(float deltatime);
-	void draw(const Renderer& _renderer, const Camera& _camera);
+	void draw(IRenderer * _renderer, const Camera& _camera);
 	void look_at(CameraController* _camera, Player* _player);
 public:
 	const GSvector3 getPosition() const;

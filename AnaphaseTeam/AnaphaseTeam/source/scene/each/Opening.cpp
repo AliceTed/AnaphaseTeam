@@ -1,6 +1,9 @@
 #include "../../../header/scene/each/Opening.h"
 #include "../../../header/device/GameDevice.h"
-#include "../../../header/renderer/Renderer.h"
+#include "../../../header/renderer/IRenderer.h"
+#include "../../../header/renderer/define/SpriteRenderDesc.h"
+#include "../../../header/renderer/define/ViewportDesc.h"
+#include "../../../header/data/id/TEXTURE_ID.h"
 Opening::Opening(GameDevice * _device)
 	:m_device(_device),
 	m_change(),
@@ -29,9 +32,13 @@ void Opening::update(float deltaTime)
 	}
 }
 
-void Opening::draw(const Renderer & renderer)
+void Opening::draw(IRenderer * renderer)
 {
-	renderer.getDraw2D().textrue(TEXTURE_ID::ROGO,&GSvector2(170,90),&m_lerp.current());
+	SpriteRenderDesc desc;
+	desc.textureID = static_cast<GSuint>(TEXTURE_ID::ROGO);
+	ViewportDesc view=renderer->getViewPort();
+	desc.srcRect = GSrect(0, 0, view.width, view.height);
+	renderer->render(desc);
 	m_change.draw(renderer);
 }
 

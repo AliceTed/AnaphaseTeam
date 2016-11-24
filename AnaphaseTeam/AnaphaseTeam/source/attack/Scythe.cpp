@@ -1,9 +1,11 @@
 #include "../../header/attack/Scythe.h"
 
 #include "../../header/animation/AnimatorOne.h"
-#include "../../header/renderer/Renderer.h"
+#include "../../header/renderer/IRenderer.h"
 #include "../../header/collision/CollisionGroup.h"
 #include "../../header/collision/WeaponCollision.h"
+
+#include "../../header/renderer/define/MeshRenderDesc.h"
 Scythe::Scythe()
 	:m_bone(14),//14‚Í‰EŽè‚Ì”z—ñ”Ô†
 	m_local(
@@ -26,7 +28,7 @@ void Scythe::initialize()
 void Scythe::addCollision(CollisionGroup* _group)
 {
 	//actor.set_update([=](float deltaTime, Shape* _shape) {_shape->transfer(m_collision.parent_synthesis(m_world).m_translate);});
-	//actor.set_draw([](const Renderer& _renderer, Shape* _shape) {_shape->draw(_renderer);});
+	//actor.set_draw([](IRenderer * _renderer, Shape* _shape) {_shape->draw(_renderer);});
 	Collision_Ptr actor = std::make_shared<WeaponCollision>(&m_collision_world);
 	_group->add(actor);
 }
@@ -39,7 +41,10 @@ void Scythe::update(float deltaTime, const AnimatorOne & _animator, const Transf
 	m_collision_world = m_collision.parent_synthesis(m_world);
 }
 
-void Scythe::draw(const Renderer & _renderer)
+void Scythe::draw(IRenderer * _renderer)
 {
-	_renderer.getDraw3D().drawMesh(static_cast<GSuint>(MESH_ID::WEAPON), m_world);
+	MeshRenderDesc desc;
+	desc.matrix = m_world.matrix();
+	desc.meshID = static_cast<GSuint>(MESH_ID::WEAPON);
+	_renderer->render(desc);
 }

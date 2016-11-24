@@ -17,7 +17,7 @@ private:
 	void doUpdate(float deltaTime)override;
 
 	//以下一時的なテスト用
-	void doDraw(const Renderer& _renderer)override;
+	void doDraw(IRenderer * _renderer)override;
 private:
 	Player* m_player;
 	SpecialAttack* m_specialAttack;

@@ -1,7 +1,7 @@
 #include "../../header/ui/SpAttackUI.h"
-#include "../../header/data/TEXTURE_ID.h"
-#include "../../header/renderer/Renderer.h"
-
+#include "../../header/data/id/TEXTURE_ID.h"
+#include "../../header/renderer/IRenderer.h"
+#include "../../header/renderer/define/SpriteRenderDesc.h"
 SpAttackUI::SpAttackUI()
 	:m_ID(TEXTURE_ID::SP_UI)
 	,m_Time(0)
@@ -40,9 +40,15 @@ void SpAttackUI::update()
 
 }
 
-void SpAttackUI::draw(const Renderer& _renderer)
+void SpAttackUI::draw(IRenderer * _renderer)
 {
-	_renderer.getDraw2D().textrue(m_ID, &GSvector2(250, 250),NULL,&GSvector2(250,250),&m_scale,0);
+	SpriteRenderDesc desc;
+	desc.textureID =static_cast<GSuint>(m_ID);
+	desc.matrix.setScale(m_scale);
+	desc.matrix.setTranslation(250, 250, 0);
+	GStexture* tex = gsGetTexture(desc.textureID);
+	desc.srcRect = GSrect(0, 0, tex->dwWidth, tex->dwHeight);
+	_renderer->render(desc);
 }
 
 void SpAttackUI::spChange(TEXTURE_ID _ID)

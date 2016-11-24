@@ -8,14 +8,14 @@
 * @date 2016/8/30　isEndCurrentAnimationとisEndAnimation追加、コメント記入
 */
 #include<gslib.h>
-#include "../data/Model_ID.h"
+#include "../data/id/Model_ID.h"
 #include <memory>
 #include "Animation.h"
 #include <vector>
-#include "../data/CastID.h"
+#include "../data/id/CastID.h"
 #include "../../header/transform/Transform.h"
 typedef std::shared_ptr<Animation> Animation_Ptr;
-class Renderer;
+class IRenderer;
 class LerpData
 {
 public:
@@ -66,7 +66,7 @@ public:
 	*/
 	void animationCaluculate(GSmatrix4* _animMat);
 	void animationCaluculateLerp(GSmatrix4* _animMat);
-	void draw(const Renderer& _renderer, const Transform& _transform, const GScolor& _color = GScolor(1.0f, 1.0f, 1.0f, 1.0f));
+	void draw(IRenderer * _renderer, const Transform& _transform, const GScolor& _color = GScolor(1.0f, 1.0f, 1.0f, 1.0f));
 	const GSmatrix4 & getOrientedMat(unsigned int index)const;
 	const float getCurrentAnimationTime()const;
 	const float getCurrentAnimationEndTime()const;

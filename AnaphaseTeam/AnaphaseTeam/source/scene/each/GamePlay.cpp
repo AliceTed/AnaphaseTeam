@@ -1,6 +1,6 @@
 #include "../../../header/scene/each/GamePlay.h"
 #include "../../../header/scene/each/Ending.h"
-#include "../../../header/renderer/Renderer.h"
+#include "../../../header/renderer/IRenderer.h"
 #include "../../../header/device/GameDevice.h"
 #include "../../../header/math/Random.h"
 GamePlay::GamePlay(GameDevice* _device)
@@ -59,15 +59,18 @@ void GamePlay::update(float deltaTime)
 		m_enemys.add(e);
 	}
 
-	if (m_player.isDead())
+	if (gsGetKeyState(GKEY_SPACE))
 		m_change.end(SceneMode::ENDING);
 }
 
-void GamePlay::draw(const Renderer & _renderer)
+void GamePlay::draw(IRenderer * _renderer)
 {
-	_renderer.getDraw3D().drawSky(MESH_ID::SKY);
+	//Œã‚Årender‚É’Ç‰Á‚·‚é(map‚à)
+	gsDrawSkyBox(static_cast<GSuint>(MESH_ID::SKY));
+	//_renderer.getDraw3D().drawSky(MESH_ID::SKY);
 	//m_enemys[0].look_at(&m_cameracontroller, &m_player);
 	m_lockon.look_at(&m_cameracontroller);
+	_renderer->lookAt({0,0,0} ,{0,0,0} ,{0,0,0});
 	m_Map.draw(_renderer);
 	m_enemys.draw(_renderer, m_Camera);
 	m_player.draw(_renderer,m_Camera);

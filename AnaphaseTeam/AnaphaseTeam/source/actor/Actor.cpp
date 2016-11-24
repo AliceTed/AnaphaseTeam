@@ -107,7 +107,7 @@ void Actor::sphereChases(const GSvector3 & _offset)
 	m_Sphere.transfer(m_transform.m_translate +_offset);
 }
 
-void Actor::sphereDraw(const Renderer & _renderer)
+void Actor::sphereDraw(IRenderer * _renderer)
 {
 	m_Sphere.draw(_renderer, m_Color);
 }

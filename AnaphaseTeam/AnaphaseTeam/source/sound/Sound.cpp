@@ -11,20 +11,20 @@ Sound::~Sound()
 
 const void Sound::playBGM(BGM_ID _bgmID) const
 {
-	gsPlayBGM(static_cast<GSuint>(_bgmID));
+	//gsPlayBGM(static_cast<GSuint>(_bgmID));
 }
 
 const void Sound::stopBGM() const
 {
-	gsStopBGM();
+	//gsStopBGM();
 }
 
 const void Sound::playSE(SE_ID _seID) const
 {
-	gsPlaySE(static_cast<GSuint>(_seID));
+	//gsPlaySE(static_cast<GSuint>(_seID));
 }
 
 const void Sound::stopSE(SE_ID _seID) const
 {
-	gsStopSE(static_cast<GSuint>(_seID));
+	//gsStopSE(static_cast<GSuint>(_seID));
 }

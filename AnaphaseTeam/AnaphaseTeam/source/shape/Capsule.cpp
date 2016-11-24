@@ -1,5 +1,5 @@
 #include "../../header/shape/Capsule.h"
-#include "../../header/renderer/Renderer.h"
+#include "../../header/renderer/IRenderer.h"
 
 #include "../../header/shape/Sphere.h"
 #include "../../header/math/Calculate.h"
@@ -51,14 +51,14 @@ const bool Capsule::isCollision(const Shape * _shape, GSvector3* _out) const
 {
 	return _shape->isCollision(this, _out);
 }
-void Capsule::draw(const Renderer & renderer, const GScolor& color)
+void Capsule::draw(IRenderer * renderer, const GScolor& color)
 {
-	GSvector3 v = m_Segment.vector();
+	/*GSvector3 v = m_Segment.vector();
 	float ele = v.getPitch();
 
 	Math::ATan aTan;
 	float dir = aTan(v.x, v.z);
-	renderer.getDraw3D().drawCapsule(&m_Segment.begin(), m_Radius, v.length(), dir, ele, color);
+	renderer.getDraw3D().drawCapsule(&m_Segment.begin(), m_Radius, v.length(), dir, ele, color);*/
 }
 
 const bool Capsule::isCollisionSphere(const GSvector3 & _center, float _radius, GSvector3* _out) const

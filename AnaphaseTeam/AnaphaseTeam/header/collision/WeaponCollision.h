@@ -14,7 +14,7 @@ private:
 	void collision_Enter(HitInformation& _hit)override;
 
 	//以下一時的なテスト用
-	void doDraw(const Renderer& _renderer)override;
+	void doDraw(IRenderer * _renderer)override;
 	void collision_Stay(HitInformation& _hit)override;
 	void collision_Exit(HitInformation& _hit)override;
 private:

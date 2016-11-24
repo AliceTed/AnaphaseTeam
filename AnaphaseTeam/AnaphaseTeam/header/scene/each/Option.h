@@ -11,7 +11,7 @@ public:
 	~Option();
 	void initialize();
 	void update(float deltaTime);
-	void draw(const Renderer& renderer);
+	void draw(IRenderer * renderer);
 	void finish();
 	const SceneMode next()const;
 	const bool isEnd()const;

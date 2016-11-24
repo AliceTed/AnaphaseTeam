@@ -6,14 +6,14 @@
 */
 #pragma once
 #include "../../header/transform/Transform.h"
-#include "../data/Model_ID.h"
+#include "../data/id/Model_ID.h"
 
-#include "../data/ANIMATION_ID.h"
+#include "../data/id/ANIMATION_ID.h"
 #include "../animation/AnimatorOne.h"
 #include "../shape/Sphere.h"
 #include "../actor/Actor_Tag.h"
 #include "../collision/CollisionGroup.h"
-class Renderer;
+class IRenderer;
 class Map;
 class Camera;
 
@@ -28,7 +28,7 @@ public:
 	virtual ~Actor();
 	virtual void initialize();
 	virtual void update(float deltatime) = 0;
-	virtual void draw(const Renderer& _renderer,const Camera& _camera) = 0;
+	virtual void draw(IRenderer * _renderer,const Camera& _camera) = 0;
 	virtual void finish();
 	/**
 	* @fn
@@ -82,7 +82,7 @@ protected:
 	* @brief カメラ用球を描画(debug用)
 	* @param (_renderer)描画機能クラス
 	*/
-	void sphereDraw(const Renderer& _renderer);
+	void sphereDraw(IRenderer * _renderer);
 private:
 	/**
 	* @fn

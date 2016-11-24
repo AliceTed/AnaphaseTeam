@@ -4,7 +4,7 @@
 #include "../../header/collision/HitInformation.h"
 
 //****
-#include "../../header/renderer/Renderer.h"
+#include "../../header/renderer/IRenderer.h"
 WeaponCollision::WeaponCollision(Transform* _transform)
 	:CollisionActor(new Sphere(GSvector3(0, 0, 0),0.3f),Collision_Tag::PLAYER_WEAPON),
 	m_transform(_transform),
@@ -25,7 +25,7 @@ void WeaponCollision::collision_Enter(HitInformation & _hit)
 	
 }
 
-void WeaponCollision::doDraw(const Renderer & _renderer)
+void WeaponCollision::doDraw(IRenderer * _renderer)
 {
 	//m_shape->draw(_renderer);
 	//_renderer.getDraw2D().string(m_text,&GSvector2(10,10),20);

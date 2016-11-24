@@ -32,7 +32,7 @@ void EnemyCollision::collision_Enter(HitInformation & _hit)
 	m_enemy->damage(player);
 }
 
-void EnemyCollision::doDraw(const Renderer & _renderer)
+void EnemyCollision::doDraw(IRenderer * _renderer)
 {
 	//m_shape->draw(_renderer);
 }

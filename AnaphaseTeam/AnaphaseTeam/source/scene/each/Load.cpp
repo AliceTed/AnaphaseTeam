@@ -1,12 +1,16 @@
 #include "../../../header/scene/each/Load.h"
-#include "../../../header/data/Loader.h"
-#include "../../../header/renderer/Renderer.h"
-
-#include "../../../header/data/ANIMATION_ID.h"
-#include "../../../header/data/MESH_ID.h"
-#include "../../../header/data/Model_ID.h" 
-#include "../../../header/data/SE_ID.h"
-#include "../../../header/data/BGM_ID.h"
+#include "../../../header/data/loader/MeshLoader.h"
+#include "../../../header/data/loader/ModelLoader.h"
+#include "../../../header/data/loader/OctreeLoader.h"
+#include "../../../header/data/loader/ShaderLoader.h"
+#include "../../../header/data/loader/TextureLoader.h"
+#include "../../../header/renderer/IRenderer.h"
+#include "../../../header/data/id/TEXTURE_ID.h"
+#include "../../../header/data/id/ANIMATION_ID.h"
+#include "../../../header/data/id/MESH_ID.h"
+#include "../../../header/data/id/Model_ID.h" 
+#include "../../../header/data/id/OCTREE_ID.h"
+#include "../../../header/data/id/SHADER_ID.h"
 Load::Load()
 	:m_IsEnd(false)
 {
@@ -27,7 +31,7 @@ void Load::update(float deltaTime)
 	loadModel();
 	m_IsEnd = true;
 }
-void Load::draw(const Renderer & renderer)
+void Load::draw(IRenderer * renderer)
 {
 }
 
@@ -52,7 +56,7 @@ const bool Load::isExit() const
 
 void Load::loadTextrue()
 {
-	Data::LoadTexture tex;
+	TextureLoader tex;
 	tex(TEXTURE_ID::BLACK, "black");
 	tex(TEXTURE_ID::EXIT, "Exit");
 	tex(TEXTURE_ID::OPTION, "option");
@@ -71,24 +75,27 @@ void Load::loadTextrue()
 }
 void Load::loadSound()
 {
-	Data::LoadSE loadse;
+	/*Data::LoadSE loadse;
 	loadse(SE_ID::TITLE,"down",2);
 
 	Data::LoadBGM loadbgm;
-	loadbgm(BGM_ID::TITLE, "a");
+	loadbgm(BGM_ID::TITLE, "a");*/
 }
 
 void Load::loadModel()
 {
-	using namespace Data;
-	LoadMesh mesh;
-	LoadModel model;
+	ShaderLoader shader;
+	shader(SHADER_ID::SKINNEDMESH,"skinned_mesh_bump");
+
+	ModelLoader model;
+	MeshLoader mesh;
 	model(MODEL_ID::PLAYER, "player/woman003");
 	model(MODEL_ID::ENEMY, "enemy/skeleton");
 
 	mesh(MESH_ID::SKY, "sky/skydome");
 	//meshïêäÌÅ@äô
 	mesh(MESH_ID::WEAPON, "weapon/weapon");
-	LoadOctree oct;
+
+	OctreeLoader oct;
 	oct(OCTREE_ID::ARENA, "arena");
 }

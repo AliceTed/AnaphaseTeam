@@ -1,7 +1,7 @@
 #include "../../../header/actor/Boss/Boss.h"
 #include "../../../header/shape/Sphere.h"
 #include "../../../header/camera/Camera.h"
-#include "../../../header/renderer/Renderer.h"
+#include "../../../header/renderer/IRenderer.h"
 #include "../../../header/math/Calculate.h"
 #include "../../../header/actor/Player/Player.h"
 #include "../../../header/camera/CameraController.h"
@@ -35,7 +35,7 @@ void Boss::update(float deltatime)
 	enemyAttack();
 }
 
-void Boss::draw(const Renderer& _renderer, const Camera& _camera)
+void Boss::draw(IRenderer * _renderer, const Camera& _camera)
 {
 	FALSE_RETURN(isInsideView(_camera));
 	m_animatorOne.draw(_renderer, m_transform, m_color);

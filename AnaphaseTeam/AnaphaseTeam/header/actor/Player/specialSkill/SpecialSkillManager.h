@@ -14,7 +14,7 @@ enum class SPECIALTYPE
 
 class Status;
 class Gauge;
-class Renderer;
+class IRenderer;
 
 class SpecialSkillManager
 {
@@ -28,7 +28,7 @@ public:
 	bool isSuperArmor();
 	void addAttackCollision(CollisionGroup* _group);
 
-	void draw(const Renderer& _renderer);
+	void draw(IRenderer * _renderer);
 private:
 	bool isGaugeCheck(float _gauge);
 	bool isRbstate();
