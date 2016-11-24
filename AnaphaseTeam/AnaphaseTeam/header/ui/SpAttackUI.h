@@ -2,10 +2,8 @@
 #include <gslib.h>
 #include "../data/TEXTURE_ID.h"
 #include "../../header/device/Input.h"
-
 class Renderer;
 class GameDevice;
-
 class SpAttackUI
 {
 public:
