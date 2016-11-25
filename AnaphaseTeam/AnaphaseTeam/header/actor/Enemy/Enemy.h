@@ -24,7 +24,7 @@ public:
 	~Enemy();
 	void initialize() override;
 	void update(float deltatime)override;
-	void draw(const Renderer& _renderer, const Camera& _camera)override;
+	void draw(const Renderer& _renderer)override;
 public:
 	void collisionChase(EnemyCollision* _collision);
 	void damage(Player* _player);
@@ -47,4 +47,5 @@ private:
 	AttackIncidence m_incidence;
 	static const float PLAYER_DISTANCE;
 	float m_hp;
+	float m_alpha;
 };

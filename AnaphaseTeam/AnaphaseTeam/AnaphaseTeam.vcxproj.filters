@@ -178,6 +178,15 @@
     <Filter Include="ヘッダー ファイル\attack\enemy">
       <UniqueIdentifier>{dfed270e-39c2-440f-b37a-b2db911a7ead}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ヘッダー ファイル\state">
+      <UniqueIdentifier>{21789184-2e3d-43e0-b9bb-69013a31d2da}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\state\player">
+      <UniqueIdentifier>{723d6ed1-26df-44e6-8bd1-f08278e29c5b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\state">
+      <UniqueIdentifier>{5276665f-15e7-4a17-ac8a-3111842ccc23}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="header\math\Calculate.h">
@@ -308,9 +317,6 @@
     </ClInclude>
     <ClInclude Include="header\subAction\subActionManager.h">
       <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="header\actionstate\AttackState.h">
-      <Filter>ヘッダー ファイル\actionState</Filter>
     </ClInclude>
     <ClInclude Include="header\actionstate\JumpState.h">
       <Filter>ヘッダー ファイル\actionState</Filter>
@@ -606,6 +612,18 @@
     <ClInclude Include="header\collision\PlayerCollision.h">
       <Filter>ヘッダー ファイル\collision\user</Filter>
     </ClInclude>
+    <ClInclude Include="header\state\IActorState.h">
+      <Filter>ヘッダー ファイル\state</Filter>
+    </ClInclude>
+    <ClInclude Include="header\state\ActorState.h">
+      <Filter>ヘッダー ファイル\state</Filter>
+    </ClInclude>
+    <ClInclude Include="header\state\ACTOR_STATE.h">
+      <Filter>ヘッダー ファイル\state</Filter>
+    </ClInclude>
+    <ClInclude Include="header\state\player\AttackState.h">
+      <Filter>ヘッダー ファイル\state\player</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="source\main.cpp">
@@ -681,9 +699,6 @@
       <Filter>ソース ファイル\actionState</Filter>
     </ClCompile>
     <ClCompile Include="source\actionstate\StandState.cpp">
-      <Filter>ソース ファイル\actionState</Filter>
-    </ClCompile>
-    <ClCompile Include="source\actionstate\AttackState.cpp">
       <Filter>ソース ファイル\actionState</Filter>
     </ClCompile>
     <ClCompile Include="source\actionstate\MoveState.cpp">
@@ -925,6 +940,9 @@
     </ClCompile>
     <ClCompile Include="source\ui\SpAttackUI.cpp">
       <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="source\state\player\AttackState.cpp">
+      <Filter>ソース ファイル\state</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

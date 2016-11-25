@@ -144,7 +144,6 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="header\collision\PlayerCollision.cpp" />
-    <ClCompile Include="source\actionstate\AttackState.cpp" />
     <ClCompile Include="source\actionstate\AvoidState.cpp" />
     <ClCompile Include="source\actionstate\DamageState.cpp" />
     <ClCompile Include="source\actionstate\JumpState.cpp" />
@@ -206,6 +205,7 @@
     <ClCompile Include="source\scene\each\Option.cpp" />
     <ClCompile Include="source\scene\each\GameClear.cpp" />
     <ClCompile Include="source\sound\Sound.cpp" />
+    <ClCompile Include="source\state\player\AttackState.cpp" />
     <ClCompile Include="source\subAction\JumpControl.cpp" />
     <ClCompile Include="source\airState\PreparationState.cpp" />
     <ClCompile Include="source\airState\RestrictionFall.cpp" />
@@ -249,7 +249,6 @@
     <ClCompile Include="source\ui\TitleUI.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="header\actionstate\AttackState.h" />
     <ClInclude Include="header\actionstate\AvoidState.h" />
     <ClInclude Include="header\actionstate\DamageState.h" />
     <ClInclude Include="header\actionstate\IActionState.h" />
@@ -326,6 +325,10 @@
     <ClInclude Include="header\scene\each\Option.h" />
     <ClInclude Include="header\scene\each\GameClear.h" />
     <ClInclude Include="header\sound\Sound.h" />
+    <ClInclude Include="header\state\ActorState.h" />
+    <ClInclude Include="header\state\ACTOR_STATE.h" />
+    <ClInclude Include="header\state\IActorState.h" />
+    <ClInclude Include="header\state\player\AttackState.h" />
     <ClInclude Include="header\subAction\JumpControl.h" />
     <ClInclude Include="header\airstate\PreparationState.h" />
     <ClInclude Include="header\airstate\RestrictionFall.h" />

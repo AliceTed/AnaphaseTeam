@@ -13,9 +13,6 @@ class AttackStatus
 public:
 	AttackStatus(float _attackPower,float _distanceDecay,const GSvector3& _blowOffPower);
 	~AttackStatus();
-
-	//ˆĞ—Í‚Æ‚Á”ò‚Ñ‚ğ“n‚·
-	void giveDamage(Player* _player, Boss* _other);
 private:
 	//!UŒ‚—Í
 	float m_Power;
