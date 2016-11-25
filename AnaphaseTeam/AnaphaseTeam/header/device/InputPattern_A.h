@@ -22,6 +22,8 @@ public://ƒAƒNƒVƒ‡ƒ“
 	const bool gaugeAttack2();
 	const bool gaugeAttack3();
 	const bool lockOn();
+
+	const bool specialSkillMode();
 public:
 	const bool up();
 	const bool down();

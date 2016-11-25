@@ -4,6 +4,8 @@
 #include "../../../../header/actor/Player/specialSkill/SpecialAttack.h"
 #include "../../../../header/ui/SpAttackUI.h"
 
+class GameDevice;
+
 enum class SPECIALTYPE
 {
 	NONE,
@@ -19,11 +21,12 @@ class Renderer;
 class SpecialSkillManager
 {
 public:
-	SpecialSkillManager(Gauge& _gauge, Player* _player);
+	SpecialSkillManager(Gauge& _gauge, Player* _player, GameDevice* _device);
 	~SpecialSkillManager();
 	bool initialize(SPECIALTYPE _specialType);
 	void update(float deltaTime);
-	const bool isEnd(SPECIALTYPE _specialType) const;
+	//const bool isEnd(SPECIALTYPE _specialType) const;
+	void endCheck();
 	void recovery(Status& _status);
 	bool isSuperArmor();
 	void addAttackCollision(CollisionGroup* _group);

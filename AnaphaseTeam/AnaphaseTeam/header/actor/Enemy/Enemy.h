@@ -29,6 +29,7 @@ public:
 	void collisionChase(EnemyCollision* _collision);
 	void damage(Player* _player);
 	void look_at(CameraController* _camera, Player* _player);
+	void specialDamage();
 
 	void think(Player* _palyer);
 private:

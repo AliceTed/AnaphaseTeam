@@ -1,14 +1,12 @@
 #include "../../header/collision/WeaponCollision.h"
 #include "../../header/shape/Sphere.h"
-#include "../../header/actor/Player/Player.h"
 #include "../../header/collision/HitInformation.h"
 
 //****
 #include "../../header/renderer/Renderer.h"
 WeaponCollision::WeaponCollision(Transform* _transform)
 	:CollisionActor(new Sphere(GSvector3(0, 0, 0),0.3f),Collision_Tag::PLAYER_WEAPON),
-	m_transform(_transform),
-	m_text("Non")
+	m_transform(_transform)
 {
 }
 WeaponCollision::~WeaponCollision()
@@ -22,7 +20,6 @@ void WeaponCollision::doUpdate(float deltaTime)
 
 void WeaponCollision::collision_Enter(HitInformation & _hit)
 {
-	
 }
 
 void WeaponCollision::doDraw(const Renderer & _renderer)
@@ -33,11 +30,10 @@ void WeaponCollision::doDraw(const Renderer & _renderer)
 
 void WeaponCollision::collision_Stay(HitInformation & _hit)
 {
-	m_text = "Stay";
+	//m_text = "Stay";
 	if(gsGetKeyTrigger(GKEY_A))destroy();
 }
 
 void WeaponCollision::collision_Exit(HitInformation & _hit)
 {
-	m_text = "Exit";
 }

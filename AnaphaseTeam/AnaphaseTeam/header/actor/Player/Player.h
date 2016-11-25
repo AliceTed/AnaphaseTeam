@@ -30,6 +30,7 @@ class TestActor;
 class Boss;
 class LockOn;
 class Enemy;
+class PlayerCollision;
 
 typedef std::shared_ptr<IActionState> Action_Ptr;
 class Player :public Actor, public ICharacter,public AnimMediator
@@ -60,9 +61,12 @@ public:
 	void homing();
 	void specialAttack();
 	void collisionChase(SpecialAttackCollision* _collision);
+	void collisionChase(PlayerCollision * _collision);
 	void changeAnimation(unsigned int _animID);
 	void gaugeAdd();
 	void createAttackCollision();
+	void hpDown();
+	void recovery();
 public:
 	const bool isGround() const;
 	const bool isJumpAttack()const;
@@ -114,7 +118,6 @@ private:
 
 	Avoid m_avoid;
 	SpecialSkillManager m_SpecialSkillManager;
-	SpAttackUI m_SpAttackUI;
 
 	GSvector3 target;
 private://íËêî

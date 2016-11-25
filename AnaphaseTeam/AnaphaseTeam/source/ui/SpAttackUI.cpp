@@ -1,11 +1,13 @@
 #include "../../header/ui/SpAttackUI.h"
 #include "../../header/data/TEXTURE_ID.h"
 #include "../../header/renderer/Renderer.h"
+#include "../../header/device/GameDevice.h"
 
-SpAttackUI::SpAttackUI()
+SpAttackUI::SpAttackUI(GameDevice* _device)
 	:m_ID(TEXTURE_ID::SP_UI)
 	,m_Time(0)
-	,m_scale(0.6,0.6)
+	,m_scale(0.6,0.6),
+	m_device(_device)
 {}
 
 SpAttackUI::~SpAttackUI()
@@ -21,28 +23,24 @@ void SpAttackUI::initilize()
 void SpAttackUI::update()
 {
 	resetID();
-	if (m_input.spState())
+	if (m_device->input()->specialSkillMode())
 	{
 		if (m_ID == TEXTURE_ID::SP_UI)
 		{
 			m_scale = GSvector2(1, 1);
 		}
-
 	}
 
-	if (!m_input.spState())
+	if (!m_device->input()->specialSkillMode())
 	{
-		if (m_ID == TEXTURE_ID::SP_UI || m_ID != TEXTURE_ID::SP_UI)
-		{
-			m_scale = GSvector2(0.6, 0.6);
-		}
+		m_scale = GSvector2(0.6, 0.6);
 	}
 
 }
 
 void SpAttackUI::draw(const Renderer& _renderer)
 {
-	_renderer.getDraw2D().textrue(m_ID, &GSvector2(250, 250),NULL,&GSvector2(250,250),&m_scale,0);
+	_renderer.getDraw2D().textrue(m_ID, &GSvector2(1000, 450),NULL,NULL,&m_scale,0);
 }
 
 void SpAttackUI::spChange(TEXTURE_ID _ID)
