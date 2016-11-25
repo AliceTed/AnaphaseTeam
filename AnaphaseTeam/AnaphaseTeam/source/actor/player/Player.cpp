@@ -77,7 +77,6 @@ void Player::update(float deltatime)
 	m_Gauge.update(deltatime);
 
 	m_isDead = m_status.getHp() <= 0;
-	}
 }
 
 void Player::draw(const Renderer & _renderer, const Camera & _camera)
