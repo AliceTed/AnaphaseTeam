@@ -2,10 +2,14 @@
 
 #include "../../../header/state/player/AttackState.h"
 #include "../../../header/state/player/DamageState.h"
-#include "../../../header/state/player/AirState.h"
 #include "../../../header/state/player/MoveState.h"
 #include "../../../header/state/player/StandState.h"
 #include "../../../header/state/player/StepState.h"
+
+#include "../../../header/state/player/SingleJumpState.h"
+#include "../../../header/state/player/DoubleJumpState.h"
+#include "../../../header/state/player/LimitFallState.h"
+#include "../../../header/state/player/LandingRigidityState.h"
 
 #include "../../../header/renderer/Renderer.h"
 #include "../../../header/device/GameDevice.h"
@@ -26,7 +30,7 @@ Player::Player(GameDevice* _device, Camera * _camera, LockOn* _lockon)
 		Transform({ 0,0,-15 }, GSquaternion(0, 0, 0, 1)),
 		MODEL_ID::PLAYER,
 		Actor_Tag::PLAYER
-		),
+	),
 	m_device(_device),
 	m_attackManager(),
 	m_camera(_camera),
@@ -97,9 +101,7 @@ void Player::subActionStart()
 	{
 		GSvector3 nowPosition = GSvector3(0, m_transform.m_translate.y + 0.3f, 0);
 		m_transform.translate(nowPosition);
-		m_SubAction.initialize(SubActionType::JUMP);
-		changeState(ACTOR_STATE::JUMP);
-		m_isGround = false;
+		changeState(ACTOR_STATE::SINGLEJUMP);
 		return;
 	}
 
@@ -107,7 +109,7 @@ void Player::subActionStart()
 	{
 		if (m_Gauge.down(5))
 		{
-			m_SubAction.initialize(SubActionType::AVOID);
+			
 			m_avoid.initialize();
 			changeState(ACTOR_STATE::STEP);
 		}
@@ -168,16 +170,6 @@ void Player::recovery()
 	m_SpecialSkillManager.recovery(m_status);
 }
 
-void Player::startJump(JumpControl * _control, float _scale)
-{
-	_control->setPower(_scale);
-}
-
-void Player::jumpMotion(JumpControl& _control, ANIMATION_ID _id, float _animSpeed)
-{
-	_control.changeMotion(m_animatorOne, _id, _animSpeed);
-}
-
 void Player::avoidAction(const GSvector3 & _velocity)
 {
 	m_transform.translate(_velocity);
@@ -196,10 +188,6 @@ const bool Player::isNextAttack(const IAttack & _attack) const
 const bool Player::isEndAttackMotion(const IAttack & _attack) const
 {
 	return _attack.isEndMotion(m_animatorOne);
-}
-const bool Player::isJump() const
-{
-	return m_device->input()->jump();
 }
 const bool Player::isJumpAttack() const
 {
@@ -228,23 +216,22 @@ const GSvector3 Player::inputDirection() const
 
 void Player::control()
 {
-	if (m_device->input()->specialSkillMode()) 
+	if (m_device->input()->specialSkillMode())
 	{
-	if (m_device->input()->gaugeAttack1())
-	{
-		m_SpecialSkillManager.initialize(SPECIALTYPE::RECOVERY);
-	}
-	if (m_device->input()->gaugeAttack2())
-	{
-		m_SpecialSkillManager.initialize(SPECIALTYPE::SUPERARMOR);
-	}
-	if (m_device->input()->gaugeAttack3())
-	{
-		m_SpecialSkillManager.initialize(SPECIALTYPE::SPECIALATTACK);
-	}
+		if (m_device->input()->gaugeAttack1())
+		{
+			m_SpecialSkillManager.initialize(SPECIALTYPE::RECOVERY);
+		}
+		if (m_device->input()->gaugeAttack2())
+		{
+			m_SpecialSkillManager.initialize(SPECIALTYPE::SUPERARMOR);
+		}
+		if (m_device->input()->gaugeAttack3())
+		{
+			m_SpecialSkillManager.initialize(SPECIALTYPE::SPECIALATTACK);
+		}
 		//return;
 	}
-
 	/*ƒ{ƒ^ƒ“‰Ÿ‚µ‚½‚çAttackState‚ÉØ‚è‘Ö‚í‚é*/
 	if (m_device->input()->quickAttackTrigger())
 	{
@@ -254,6 +241,7 @@ void Player::control()
 		m_lockon->homing();
 		m_attackManager.Start(true, this);
 	}
+
 
 	if (m_device->input()->slowAttackTrigger())
 	{
@@ -278,10 +266,14 @@ void Player::createStates()
 {
 	registerState(ACTOR_STATE::ATTACK, new AttackState(this));
 	registerState(ACTOR_STATE::DAMAGE, new DamageState(this));
-	registerState(ACTOR_STATE::JUMP, new AirState(this));
 	registerState(ACTOR_STATE::RUN, new MoveState(this));
 	registerState(ACTOR_STATE::STAND, new StandState(this));
 	registerState(ACTOR_STATE::STEP, new StepState(this));
+
+	registerState(ACTOR_STATE::SINGLEJUMP, new SingleJumpState(this));
+	registerState(ACTOR_STATE::DOUBLEJUMP, new DoubleJumpState(this));
+	registerState(ACTOR_STATE::LIMITFALL, new LimitFallState(this));
+	registerState(ACTOR_STATE::LANDINGRIGIDITY, new LandingRigidityState(this));
 }
 void Player::rotate(float deltaTime, Transform & _transform)
 {

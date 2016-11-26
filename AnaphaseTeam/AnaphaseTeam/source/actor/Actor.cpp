@@ -11,7 +11,10 @@ Actor::Actor(const Transform & _transform, MODEL_ID _modelID,Actor_Tag _tag)
 	m_isGround(false),
 	m_animatorOne(_modelID),
 	m_Tag(_tag),
-	m_collision(this)
+	m_collision(this),
+	m_states(),
+	m_currentState(nullptr),
+	m_currentStateKey(ACTOR_STATE::STAND)
 {
 }
 
@@ -50,7 +53,7 @@ void Actor::collisionGround(const Map& _map)
 }
 const ACTOR_STATE Actor::getState() const
 {
-	return ACTOR_STATE();
+	return m_currentStateKey;
 }
 void Actor::collision(Actor & _other)
 {

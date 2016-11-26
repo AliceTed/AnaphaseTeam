@@ -9,7 +9,7 @@
 #include "../Actor.h"
 #include "../../animation/Animation.h"
 #include "../../animation/AnimMediator.h"
-#include "../../../header/subAction/SubActionManager.h"
+#include "../../../header/subAction/Avoid.h"
 #include "../../attack/attackManager.h"
 #include "../../data/ANIMATION_ID.h"
 #include "Status.h"
@@ -31,8 +31,6 @@ public:
 	~Player();
 	void jumping(float _velocity);
 	void avoidAction(const GSvector3& _velocity);
-	void startJump(JumpControl* _control, float _scale);
-	void jumpMotion(JumpControl& _control, ANIMATION_ID _id, float _animSpeed = 1.0f);
 	void attackmotion(IAttack& _attack);
 	const bool isNextAttack(const IAttack& _attack)const;
 	const bool isEndAttackMotion(const IAttack& _attack)const;
@@ -52,7 +50,6 @@ public:
 	const bool isJumpAttack()const;
 	const bool isEndAttack() const;
 public://入力
-	const bool isJump() const;
 	const bool isAvoid() const;
 	//近接用
 	const bool isSlowAttack()const;
@@ -66,7 +63,7 @@ public://Actor継承
 private:
 	void createStates();
 	void rotate(float deltaTime, Transform& _transform);
-	void movement(float deltaTime, float _speed = MOVESPEED);
+	void movement(float deltaTime, float _speed);
 private:
 	GameDevice* m_device;	
 	AttackManager m_attackManager;
@@ -84,11 +81,9 @@ private:
 private://state宣言
 	class AttackState;
 	class DamageState;
-	class AirState;
 	class MoveState;
 	class StandState;
 	class StepState;
-
 	/*
 	空中状態で別で作るのではなく
 	プレイヤーの状態として各種追加する
@@ -100,7 +95,6 @@ private://state宣言
 
 	friend AttackState;
 	friend DamageState;
-	friend AirState;
 	friend MoveState;
 	friend StandState;
 	friend StepState;
@@ -115,7 +109,5 @@ private://Collision宣言
 	class SpecialAttackCollision;
 	friend SpecialAttackCollision;
 private://定数
-	static const float MOVESPEED;
 	static const float ROTATESPEED;
-	static const float WALKSPEED;
 };

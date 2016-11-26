@@ -10,7 +10,6 @@ void Player::AttackState::start()
 }
 void Player::AttackState::action(float deltaTime)
 {
-	m_actor->m_SubAction.jumpPowerOff();	
 	m_actor->m_attackManager.update(deltaTime, m_actor);
 	gsVector3Lerp(&m_actor->m_transform.m_translate, &m_actor->m_transform.m_translate, &m_actor->target, deltaTime * 0.1f);
 	if (m_actor->m_attackManager.isEnd())

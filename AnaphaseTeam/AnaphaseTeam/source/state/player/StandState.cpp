@@ -15,7 +15,7 @@ void Player::StandState::action(float deltaTime)
 {
 	if (!m_actor->m_isGround)
 	{
-		changeState(ACTOR_STATE::JUMP);
+		changeState(ACTOR_STATE::LIMITFALL);
 		return;
 	}
 	if (m_actor->m_device->input()->move())
