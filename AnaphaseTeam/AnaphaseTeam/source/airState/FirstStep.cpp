@@ -11,8 +11,6 @@
 #include "../../header/actor/Player/Player.h"
 #include "../../header/math/Calculate.h"
 #include "../../header/subAction/JumpControl.h"
-
-#include "../../header/actionstate/AvoidState.h"
 const float FirstStep::FirstStepPow = 0.6f;
 
 FirstStep::FirstStep(JumpControl* _control, Player* _player)

@@ -33,7 +33,7 @@ protected:
 
 private:
 	virtual void start()=0;
-	virtual void update(float deltaTime) = 0;
+	virtual void action(float deltaTime) = 0;
 	/**
 	* @fn
 	* @brief clone�̍쐬

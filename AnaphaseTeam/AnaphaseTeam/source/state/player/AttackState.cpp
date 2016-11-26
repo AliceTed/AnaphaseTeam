@@ -8,7 +8,7 @@ Player::AttackState::AttackState(Player* _player)
 void Player::AttackState::start()
 {
 }
-void Player::AttackState::update(float deltaTime)
+void Player::AttackState::action(float deltaTime)
 {
 	m_actor->m_SubAction.jumpPowerOff();	
 	m_actor->m_attackManager.update(deltaTime, m_actor);

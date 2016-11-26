@@ -1,10 +1,6 @@
 #include "../../header/attack/attackManager.h"
-#include "../../header/actor/Player/Player.h"
-
 AttackManager::AttackManager()
-	:m_Scythe(),
-	m_Gun(),
-	m_combo()
+	:m_combo()
 {
 
 }

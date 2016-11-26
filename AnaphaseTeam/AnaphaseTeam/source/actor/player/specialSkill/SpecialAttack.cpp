@@ -33,6 +33,6 @@ const bool SpecialAttack::isEnd() const
 
 void SpecialAttack::addColision(CollisionGroup * _group)
 {
-	Collision_Ptr actor = std::make_shared<SpecialAttackCollision>(m_player, this);
+	Collision_Ptr actor = std::make_shared<SpecialAttackCollision>(m_player);
 	_group->add(actor);
 }

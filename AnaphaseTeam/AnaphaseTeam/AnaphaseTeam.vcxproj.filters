@@ -130,12 +130,6 @@
     <Filter Include="ソース ファイル\Attack">
       <UniqueIdentifier>{b3584a63-29b0-4d6e-a84a-997d34c3d8b3}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ソース ファイル\actionState">
-      <UniqueIdentifier>{2437ca0e-0b72-496d-abbb-7d07a9f3dc28}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ヘッダー ファイル\actionState">
-      <UniqueIdentifier>{f13bd0f4-c891-4317-82d9-1783af4289ab}</UniqueIdentifier>
-    </Filter>
     <Filter Include="ヘッダー ファイル\attack">
       <UniqueIdentifier>{ff5ecd5d-33ad-4631-ac2d-83da52129794}</UniqueIdentifier>
     </Filter>
@@ -186,6 +180,9 @@
     </Filter>
     <Filter Include="ソース ファイル\state">
       <UniqueIdentifier>{5276665f-15e7-4a17-ac8a-3111842ccc23}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\state\player">
+      <UniqueIdentifier>{b96dbc08-cab6-4601-af82-7ff2e38cf961}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -318,15 +315,6 @@
     <ClInclude Include="header\subAction\subActionManager.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="header\actionstate\JumpState.h">
-      <Filter>ヘッダー ファイル\actionState</Filter>
-    </ClInclude>
-    <ClInclude Include="header\actionstate\StandState.h">
-      <Filter>ヘッダー ファイル\actionState</Filter>
-    </ClInclude>
-    <ClInclude Include="header\actionstate\MoveState.h">
-      <Filter>ヘッダー ファイル\actionState</Filter>
-    </ClInclude>
     <ClInclude Include="header\airstate\FirstStep.h">
       <Filter>ヘッダー ファイル\airState</Filter>
     </ClInclude>
@@ -402,17 +390,8 @@
     <ClInclude Include="header\attack\AttackPattern.h">
       <Filter>ヘッダー ファイル\attack</Filter>
     </ClInclude>
-    <ClInclude Include="header\attack\Gun.h">
-      <Filter>ヘッダー ファイル\attack</Filter>
-    </ClInclude>
-    <ClInclude Include="header\attack\IWeapon.h">
-      <Filter>ヘッダー ファイル\attack</Filter>
-    </ClInclude>
     <ClInclude Include="header\attack\Scythe.h">
       <Filter>ヘッダー ファイル\attack</Filter>
-    </ClInclude>
-    <ClInclude Include="header\actionstate\AvoidState.h">
-      <Filter>ヘッダー ファイル\actionState</Filter>
     </ClInclude>
     <ClInclude Include="header\attack\AttackStatus.h">
       <Filter>ヘッダー ファイル\attack</Filter>
@@ -428,9 +407,6 @@
     </ClInclude>
     <ClInclude Include="header\subAction\JumpControl.h">
       <Filter>ヘッダー ファイル\subAction</Filter>
-    </ClInclude>
-    <ClInclude Include="header\actionstate\IActionState.h">
-      <Filter>ヘッダー ファイル\actionState</Filter>
     </ClInclude>
     <ClInclude Include="header\camera\ACalc.h">
       <Filter>ヘッダー ファイル\camera</Filter>
@@ -516,9 +492,6 @@
     <ClInclude Include="header\actor\Player\specialSkill\Recovery.h">
       <Filter>ヘッダー ファイル\actor\Player\specialSkill</Filter>
     </ClInclude>
-    <ClInclude Include="header\actionstate\DamageState.h">
-      <Filter>ヘッダー ファイル\actionState</Filter>
-    </ClInclude>
     <ClInclude Include="header\actor\Player\specialSkill\SpecialSkillManager.h">
       <Filter>ヘッダー ファイル\actor\Player\specialSkill</Filter>
     </ClInclude>
@@ -544,9 +517,6 @@
       <Filter>ヘッダー ファイル\collision\user</Filter>
     </ClInclude>
     <ClInclude Include="header\collision\SpecialAttackCollision.h">
-      <Filter>ヘッダー ファイル\collision\user</Filter>
-    </ClInclude>
-    <ClInclude Include="header\collision\WeaponCollision.h">
       <Filter>ヘッダー ファイル\collision\user</Filter>
     </ClInclude>
     <ClInclude Include="header\collision\EnemyAttackCollision.h">
@@ -624,6 +594,21 @@
     <ClInclude Include="header\state\player\AttackState.h">
       <Filter>ヘッダー ファイル\state\player</Filter>
     </ClInclude>
+    <ClInclude Include="header\state\player\StandState.h">
+      <Filter>ヘッダー ファイル\state\player</Filter>
+    </ClInclude>
+    <ClInclude Include="header\state\player\MoveState.h">
+      <Filter>ヘッダー ファイル\state\player</Filter>
+    </ClInclude>
+    <ClInclude Include="header\state\player\DamageState.h">
+      <Filter>ヘッダー ファイル\state\player</Filter>
+    </ClInclude>
+    <ClInclude Include="header\state\player\StepState.h">
+      <Filter>ヘッダー ファイル\state\player</Filter>
+    </ClInclude>
+    <ClInclude Include="header\state\player\AirState.h">
+      <Filter>ヘッダー ファイル\state\player</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="source\main.cpp">
@@ -695,15 +680,6 @@
     <ClCompile Include="source\subAction\subActionManager.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="source\actionstate\JumpState.cpp">
-      <Filter>ソース ファイル\actionState</Filter>
-    </ClCompile>
-    <ClCompile Include="source\actionstate\StandState.cpp">
-      <Filter>ソース ファイル\actionState</Filter>
-    </ClCompile>
-    <ClCompile Include="source\actionstate\MoveState.cpp">
-      <Filter>ソース ファイル\actionState</Filter>
-    </ClCompile>
     <ClCompile Include="source\airState\SecondStep.cpp">
       <Filter>ソース ファイル\airState</Filter>
     </ClCompile>
@@ -764,14 +740,8 @@
     <ClCompile Include="source\attack\AttackStatus.cpp">
       <Filter>ソース ファイル\Attack</Filter>
     </ClCompile>
-    <ClCompile Include="source\attack\Gun.cpp">
-      <Filter>ソース ファイル\Attack</Filter>
-    </ClCompile>
     <ClCompile Include="source\attack\Scythe.cpp">
       <Filter>ソース ファイル\Attack</Filter>
-    </ClCompile>
-    <ClCompile Include="source\actionstate\AvoidState.cpp">
-      <Filter>ソース ファイル\actionState</Filter>
     </ClCompile>
     <ClCompile Include="source\attack\ComboManager.cpp">
       <Filter>ソース ファイル\Attack</Filter>
@@ -860,9 +830,6 @@
     <ClCompile Include="source\actor\player\specialSkill\SpecialSkillManager.cpp">
       <Filter>ソース ファイル\actor\Player\specialSkill</Filter>
     </ClCompile>
-    <ClCompile Include="source\actionstate\DamageState.cpp">
-      <Filter>ソース ファイル\actionState</Filter>
-    </ClCompile>
     <ClCompile Include="source\actor\player\specialSkill\SuperArmor.cpp">
       <Filter>ソース ファイル\actor\Player\specialSkill</Filter>
     </ClCompile>
@@ -879,9 +846,6 @@
       <Filter>ソース ファイル\actor\Player\specialSkill</Filter>
     </ClCompile>
     <ClCompile Include="source\collision\SpecialAttackCollision.cpp">
-      <Filter>ソース ファイル\collision\user</Filter>
-    </ClCompile>
-    <ClCompile Include="source\collision\WeaponCollision.cpp">
       <Filter>ソース ファイル\collision\user</Filter>
     </ClCompile>
     <ClCompile Include="source\collision\EnemyCollision.cpp">
@@ -942,7 +906,22 @@
       <Filter>ソース ファイル</Filter>
     </ClCompile>
     <ClCompile Include="source\state\player\AttackState.cpp">
-      <Filter>ソース ファイル\state</Filter>
+      <Filter>ソース ファイル\state\player</Filter>
+    </ClCompile>
+    <ClCompile Include="source\state\player\StandState.cpp">
+      <Filter>ソース ファイル\state\player</Filter>
+    </ClCompile>
+    <ClCompile Include="source\state\player\MoveState.cpp">
+      <Filter>ソース ファイル\state\player</Filter>
+    </ClCompile>
+    <ClCompile Include="source\state\player\DamageState.cpp">
+      <Filter>ソース ファイル\state\player</Filter>
+    </ClCompile>
+    <ClCompile Include="source\state\player\StepState.cpp">
+      <Filter>ソース ファイル\state\player</Filter>
+    </ClCompile>
+    <ClCompile Include="source\state\player\AirState.cpp">
+      <Filter>ソース ファイル\state\player</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

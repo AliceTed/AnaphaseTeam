@@ -6,5 +6,6 @@ enum class ACTOR_STATE
 	RUN,
 	ATTACK,
 	DAMAGE,
-	JUMP
+	JUMP,
+	STEP
 };

@@ -144,11 +144,6 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="header\collision\PlayerCollision.cpp" />
-    <ClCompile Include="source\actionstate\AvoidState.cpp" />
-    <ClCompile Include="source\actionstate\DamageState.cpp" />
-    <ClCompile Include="source\actionstate\JumpState.cpp" />
-    <ClCompile Include="source\actionstate\MoveState.cpp" />
-    <ClCompile Include="source\actionstate\StandState.cpp" />
     <ClCompile Include="source\actor\Actor.cpp" />
     <ClCompile Include="source\actor\Boss\Boss.cpp" />
     <ClCompile Include="source\actor\Enemy\Enemy.cpp" />
@@ -165,7 +160,6 @@
     <ClCompile Include="source\attack\ComboManager.cpp" />
     <ClCompile Include="source\attack\Attack.cpp" />
     <ClCompile Include="source\attack\ComboReader.cpp" />
-    <ClCompile Include="source\attack\Gun.cpp" />
     <ClCompile Include="source\attack\Scythe.cpp" />
     <ClCompile Include="source\actor\player\Player.cpp" />
     <ClCompile Include="source\airState\FirstStep.cpp" />
@@ -196,7 +190,6 @@
     <ClCompile Include="source\collision\HitInformation.cpp" />
     <ClCompile Include="source\collision\PlayerAttackCollision.cpp" />
     <ClCompile Include="source\collision\SpecialAttackCollision.cpp" />
-    <ClCompile Include="source\collision\WeaponCollision.cpp" />
     <ClCompile Include="source\device\GameDevice.cpp" />
     <ClCompile Include="source\device\InputPattern_A.cpp" />
     <ClCompile Include="source\device\InputPattern_B.cpp" />
@@ -206,6 +199,11 @@
     <ClCompile Include="source\scene\each\GameClear.cpp" />
     <ClCompile Include="source\sound\Sound.cpp" />
     <ClCompile Include="source\state\player\AttackState.cpp" />
+    <ClCompile Include="source\state\player\DamageState.cpp" />
+    <ClCompile Include="source\state\player\AirState.cpp" />
+    <ClCompile Include="source\state\player\MoveState.cpp" />
+    <ClCompile Include="source\state\player\StandState.cpp" />
+    <ClCompile Include="source\state\player\StepState.cpp" />
     <ClCompile Include="source\subAction\JumpControl.cpp" />
     <ClCompile Include="source\airState\PreparationState.cpp" />
     <ClCompile Include="source\airState\RestrictionFall.cpp" />
@@ -249,12 +247,6 @@
     <ClCompile Include="source\ui\TitleUI.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="header\actionstate\AvoidState.h" />
-    <ClInclude Include="header\actionstate\DamageState.h" />
-    <ClInclude Include="header\actionstate\IActionState.h" />
-    <ClInclude Include="header\actionstate\JumpState.h" />
-    <ClInclude Include="header\actionstate\MoveState.h" />
-    <ClInclude Include="header\actionstate\StandState.h" />
     <ClInclude Include="header\actor\Actor.h" />
     <ClInclude Include="header\actor\Actor_Tag.h" />
     <ClInclude Include="header\actor\AttackActor.h" />
@@ -278,9 +270,7 @@
     <ClInclude Include="header\attack\ComboPattern.h" />
     <ClInclude Include="header\attack\ComboReader.h" />
     <ClInclude Include="header\attack\ECombo.h" />
-    <ClInclude Include="header\attack\Gun.h" />
     <ClInclude Include="header\attack\Homing.h" />
-    <ClInclude Include="header\attack\IWeapon.h" />
     <ClInclude Include="header\attack\Scythe.h" />
     <ClInclude Include="header\actor\ICharacter.h" />
     <ClInclude Include="header\actor\Player\Player.h" />
@@ -315,7 +305,6 @@
     <ClInclude Include="header\collision\PlayerAttackCollision.h" />
     <ClInclude Include="header\collision\PlayerCollision.h" />
     <ClInclude Include="header\collision\SpecialAttackCollision.h" />
-    <ClInclude Include="header\collision\WeaponCollision.h" />
     <ClInclude Include="header\data\ENEMY_ANIMATION.h" />
     <ClInclude Include="header\device\GameDevice.h" />
     <ClInclude Include="header\device\IInputPattern.h" />
@@ -329,6 +318,11 @@
     <ClInclude Include="header\state\ACTOR_STATE.h" />
     <ClInclude Include="header\state\IActorState.h" />
     <ClInclude Include="header\state\player\AttackState.h" />
+    <ClInclude Include="header\state\player\DamageState.h" />
+    <ClInclude Include="header\state\player\AirState.h" />
+    <ClInclude Include="header\state\player\MoveState.h" />
+    <ClInclude Include="header\state\player\StandState.h" />
+    <ClInclude Include="header\state\player\StepState.h" />
     <ClInclude Include="header\subAction\JumpControl.h" />
     <ClInclude Include="header\airstate\PreparationState.h" />
     <ClInclude Include="header\airstate\RestrictionFall.h" />

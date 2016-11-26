@@ -16,7 +16,6 @@
 #include "../../attack/Scythe.h"
 #include "Gauge.h"
 #include "specialSkill/SpecialSkillManager.h"
-#include "../../../header/collision/SpecialAttackCollision.h"
 class GameDevice;
 class CameraController;
 class TestActor;
@@ -37,27 +36,21 @@ public:
 	void attackmotion(IAttack& _attack);
 	const bool isNextAttack(const IAttack& _attack)const;
 	const bool isEndAttackMotion(const IAttack& _attack)const;
-	void moving(float deltaTime, bool isAnimation = true);
 	void control();
 	void look_at(CameraController* _camera, GSvector3* _target);
 	void subActionStart();
-	void moveStart();
 	void gaugeUp(float _scale);
 	void attackHoming(Enemy* _boss);
 	void homing();
 	void specialAttack();
-	void collisionChase(SpecialAttackCollision* _collision);
-	void collisionChase(PlayerCollision * _collision);
 	void changeAnimation(unsigned int _animID);
 	void gaugeAdd();
 	void createAttackCollision();
 	void hpDown();
 	void recovery();
 public:
-	const bool isGround() const;
 	const bool isJumpAttack()const;
 	const bool isEndAttack() const;
-	const bool isAnimationEnd() const;
 public://入力
 	const bool isJump() const;
 	const bool isAvoid() const;
@@ -71,32 +64,19 @@ public://Actor継承
 	void update(float deltatime) override;
 	void draw(const Renderer& _renderer) override;
 private:
-	void inGround() override;
-public://ICharacter実装
-	void stand(float deltaTime);
-	void damage(float deltaTime);
-	void move(float deltaTime);
-	void jump(float deltaTime);
-	void avoid(float deltaTime);
-private:
-	void moveMotionChange();
+	void createStates();
 	void rotate(float deltaTime, Transform& _transform);
 	void movement(float deltaTime, float _speed = MOVESPEED);
 private:
-	GameDevice* m_device;
-	subActionManager m_SubAction;
+	GameDevice* m_device;	
 	AttackManager m_attackManager;
 	Status m_status;
 	Gauge m_Gauge;
-	//JumpControlに移動したい
-	bool m_isGround;
 	//無理やり
 	bool m_isJumpAttack;
 	Camera * m_camera;
-
 	LockOn* m_lockon;
 	Scythe m_scythe;
-
 	Avoid m_avoid;
 	SpecialSkillManager m_SpecialSkillManager;
 
@@ -104,15 +84,36 @@ private:
 private://state宣言
 	class AttackState;
 	class DamageState;
-	class JumpState;
+	class AirState;
 	class MoveState;
 	class StandState;
+	class StepState;
+
+	/*
+	空中状態で別で作るのではなく
+	プレイヤーの状態として各種追加する
+	*/
+	class SingleJumpState;
+	class DoubleJumpState;
+	class LimitFallState;
+	class LandingRigidityState;
+
 	friend AttackState;
 	friend DamageState;
-	friend JumpState;
+	friend AirState;
 	friend MoveState;
 	friend StandState;
+	friend StepState;
 
+	friend SingleJumpState;
+	friend DoubleJumpState;
+	friend LimitFallState;
+	friend LandingRigidityState;
+private://Collision宣言
+	class PlayerCollision;
+	friend PlayerCollision;
+	class SpecialAttackCollision;
+	friend SpecialAttackCollision;
 private://定数
 	static const float MOVESPEED;
 	static const float ROTATESPEED;

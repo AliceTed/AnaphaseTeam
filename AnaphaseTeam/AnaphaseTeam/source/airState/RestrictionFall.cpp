@@ -22,7 +22,7 @@ void RestrictionFall::start()
 void RestrictionFall::update(float deltaTime)
 {
 	m_player->jumpMotion(*m_control,ANIMATION_ID::STAND);
-	m_player->moving(deltaTime);
+	//m_player->moving(deltaTime);
 	m_control->jumping(deltaTime, m_player);
 	change();
 }

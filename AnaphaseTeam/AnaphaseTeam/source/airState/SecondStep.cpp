@@ -30,7 +30,7 @@ void SecondStep::start()
 void SecondStep::update(float deltaTime)
 {
 	m_player->jumpMotion(*m_control,ANIMATION_ID::STAND);
-	m_player->moving(deltaTime,false);
+	//m_player->moving(deltaTime,false);
 	m_player->control();
 	m_control->jumping(deltaTime, m_player);
 	change();

@@ -24,30 +24,24 @@ public:
 	virtual void initialize();
 	virtual void update(float deltatime) = 0;
 	virtual void draw(const Renderer& _renderer) = 0;
-	virtual void finish();
+	virtual void finish();	
+public:
 	/**
 	* @fn
 	* @brief Map‚Æ‚ÌÕ“ËŠÖ”
 	* @param (_map) map‚ğæ“¾
 	*/
-	virtual void collisionGround(const Map& _map);
-private:
-	/**
-	* @fn
-	* @brief ’n–Ê‚É–„‚ß‚Ü‚ê‚½‚Æ‚«‚ÉŒÄ‚Î‚ê‚é
-	*/
-	virtual void inGround();
-public:
+	void collisionGround(const Map& _map);
 	//Œ»İ‚Ìó‘Ô‚ğ•Ô‚·
 	const ACTOR_STATE getState() const;
 	void collision(Actor& _other);
 	const bool isDead()const;
 	const bool isSameActor(const Actor* _other)const;
 	const bool isSameTag(Actor_Tag _tag)const;
-protected:
 	void changeState(ACTOR_STATE _state);
+protected:	
 	//•Ï”‚ğprotected‚Ég—p‚©”Y‚ñ‚Å‚¢‚é
-	void state_update(float deltaTime);
+	void action(float deltaTime);
 	void registerState(ACTOR_STATE _name, IActorState* _state);
 public:
 	/**
@@ -69,6 +63,7 @@ private:
 protected:
 	Transform m_transform;
 	bool m_isDead;
+	bool m_isGround;
 	AnimatorOne m_animatorOne;
 	CollisionGroup m_collision;
 private:

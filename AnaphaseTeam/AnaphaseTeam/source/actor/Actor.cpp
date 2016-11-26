@@ -8,6 +8,7 @@ const float Actor::GRAVITY = -0.1f;
 Actor::Actor(const Transform & _transform, MODEL_ID _modelID,Actor_Tag _tag)
 	:m_transform(_transform), 
 	m_isDead(false),
+	m_isGround(false),
 	m_animatorOne(_modelID),
 	m_Tag(_tag),
 	m_collision(this)
@@ -38,12 +39,12 @@ void Actor::collisionGround(const Map& _map)
 	{
 		return;
 	}
-	if (position.y > intersect.y)
+	m_isGround = position.y <= intersect.y;
+	if (!m_isGround)
 	{
 		m_transform.translate_up(GRAVITY);
 		return;
 	}
-	inGround();
 	//map‚É–„‚ßž‚Ü‚ê‚Ä‚¢‚½‚çyÀ•W‚ðŒð“_‚ÉˆÚ“®
 	m_transform.m_translate.y = intersect.y;
 }
@@ -54,10 +55,6 @@ const ACTOR_STATE Actor::getState() const
 void Actor::collision(Actor & _other)
 {
 	m_collision.collision(_other.m_collision);
-}
-
-void Actor::inGround()
-{
 }
 const float Actor::distanceActor(const Actor & _other) const
 {
@@ -88,9 +85,9 @@ const bool Actor::isSameTag(Actor_Tag _tag) const
 {
 	return m_Tag==_tag;
 }
-void Actor::state_update(float deltaTime)
+void Actor::action(float deltaTime)
 {
-	m_currentState->update(deltaTime);
+	m_currentState->action(deltaTime);
 }
 void Actor::registerState(ACTOR_STATE _name, IActorState * _state)
 {
