@@ -208,7 +208,7 @@
     <ClCompile Include="source\animation\AnimatorOne.cpp" />
     <ClCompile Include="source\convenient\Point.cpp" />
     <ClCompile Include="source\scene\SceneChange.cpp" />
-    <ClCompile Include="source\subAction\Avoid.cpp" />
+    <ClCompile Include="source\subAction\Step.cpp" />
     <ClCompile Include="source\animation\Animation.cpp" />
     <ClCompile Include="source\animation\AnimationTimer.cpp" />
     <ClCompile Include="source\convenient\Timer.cpp" />
@@ -323,7 +323,7 @@
     <ClInclude Include="header\convenient\Point.h" />
     <ClInclude Include="header\math\TimeLerpVector.h" />
     <ClInclude Include="header\scene\SceneChange.h" />
-    <ClInclude Include="header\subAction\Avoid.h" />
+    <ClInclude Include="header\subAction\Step.h" />
     <ClInclude Include="header\subAction\Jumping.h" />
     <ClInclude Include="header\animation\Animation.h" />
     <ClInclude Include="header\animation\AnimationTimer.h" />

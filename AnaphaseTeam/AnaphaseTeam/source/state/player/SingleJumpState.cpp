@@ -9,6 +9,9 @@ Player::SingleJumpState::SingleJumpState(Player* _player)
 
 void Player::SingleJumpState::start()
 {
+	//ƒWƒƒƒ“ƒvˆÊ’u‚ð’²®
+	m_actor->m_transform.translate_up(0.3f);
+
 	m_actor->m_animatorOne.changeAnimation(static_cast<GSuint>(ANIMATION_ID::STAND), false);
 	m_jumping.start(0.5f);
 }

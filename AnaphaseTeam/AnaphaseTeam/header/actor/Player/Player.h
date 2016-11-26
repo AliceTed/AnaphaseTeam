@@ -9,7 +9,6 @@
 #include "../Actor.h"
 #include "../../animation/Animation.h"
 #include "../../animation/AnimMediator.h"
-#include "../../../header/subAction/Avoid.h"
 #include "../../attack/attackManager.h"
 #include "../../data/ANIMATION_ID.h"
 #include "Status.h"
@@ -19,12 +18,10 @@
 class GameDevice;
 class CameraController;
 class TestActor;
-class Boss;
 class LockOn;
 class Enemy;
-class PlayerCollision;
 class Camera;
-class Player :public Actor,public AnimMediator
+class Player :public Actor
 {
 public:
 	Player(GameDevice* _device, Camera * _camera, LockOn* _lockon);
@@ -41,21 +38,16 @@ public:
 	void attackHoming(Enemy* _boss);
 	void homing();
 	void specialAttack();
-	void changeAnimation(unsigned int _animID);
 	void gaugeAdd();
 	void createAttackCollision();
 	void hpDown();
 	void recovery();
 public:
-	const bool isJumpAttack()const;
 	const bool isEndAttack() const;
 public://ì¸óÕ
-	const bool isAvoid() const;
 	//ãﬂê⁄óp
 	const bool isSlowAttack()const;
 	const bool isQuickAttack()const;
-	//ì¸óÕï˚å¸
-	const GSvector3 inputDirection()const;
 public://Actoråpè≥
 	void initialize() override;
 	void update(float deltatime) override;
@@ -69,12 +61,10 @@ private:
 	AttackManager m_attackManager;
 	Status m_status;
 	Gauge m_Gauge;
-	//ñ≥óùÇ‚ÇË
-	bool m_isJumpAttack;
+
 	Camera * m_camera;
 	LockOn* m_lockon;
 	Scythe m_scythe;
-	Avoid m_avoid;
 	SpecialSkillManager m_SpecialSkillManager;
 
 	GSvector3 target;

@@ -354,9 +354,6 @@
     <ClInclude Include="header\math\TimeLerpVector.h">
       <Filter>ヘッダー ファイル\math</Filter>
     </ClInclude>
-    <ClInclude Include="header\subAction\Avoid.h">
-      <Filter>ヘッダー ファイル\subAction</Filter>
-    </ClInclude>
     <ClInclude Include="header\attack\AttackManager.h">
       <Filter>ヘッダー ファイル\attack</Filter>
     </ClInclude>
@@ -591,6 +588,9 @@
     <ClInclude Include="header\subAction\Jumping.h">
       <Filter>ヘッダー ファイル\subAction</Filter>
     </ClInclude>
+    <ClInclude Include="header\subAction\Step.h">
+      <Filter>ヘッダー ファイル\subAction</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="source\main.cpp">
@@ -694,9 +694,6 @@
     </ClCompile>
     <ClCompile Include="source\actor\Actor.cpp">
       <Filter>ソース ファイル\actor</Filter>
-    </ClCompile>
-    <ClCompile Include="source\subAction\Avoid.cpp">
-      <Filter>ソース ファイル\subAction</Filter>
     </ClCompile>
     <ClCompile Include="source\attack\AttackManager.cpp">
       <Filter>ソース ファイル\Attack</Filter>
@@ -892,6 +889,9 @@
     </ClCompile>
     <ClCompile Include="source\state\player\SingleJumpState.cpp">
       <Filter>ソース ファイル\state\player</Filter>
+    </ClCompile>
+    <ClCompile Include="source\subAction\Step.cpp">
+      <Filter>ソース ファイル\subAction</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

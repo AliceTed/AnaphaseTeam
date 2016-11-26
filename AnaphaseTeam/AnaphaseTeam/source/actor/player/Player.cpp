@@ -18,9 +18,9 @@
 #include "../../../header/camera/CameraController.h"
 #include "../../../header/math/Calculate.h"
 
-#include "../../../header/actor/Boss/Boss.h"
 #include "../../../header/camera/LockOn.h"
 #include "../../../header/actor/Enemy/Enemy.h"
+
 #include "../../../header/collision/PlayerAttackCollision.h"
 #include "../../../header/collision/PlayerCollision.h"
 #include "../../../header/collision/SpecialAttackCollision.h"
@@ -35,9 +35,7 @@ Player::Player(GameDevice* _device, Camera * _camera, LockOn* _lockon)
 	m_attackManager(),
 	m_camera(_camera),
 	m_status(),
-	m_isJumpAttack(false),
 	m_Gauge(),
-	m_avoid(this),
 	m_lockon(_lockon),
 	m_scythe(),
 	m_SpecialSkillManager(m_Gauge, this, m_device),
@@ -54,7 +52,6 @@ void Player::initialize()
 	changeState(ACTOR_STATE::STAND);
 	Collision_Ptr actor = std::make_shared<PlayerCollision>(this);
 	m_collision.add(actor);
-	m_isJumpAttack = false;
 	m_Gauge.initialize();
 	m_status.initialize();
 	m_scythe.initialize();
@@ -98,9 +95,7 @@ void Player::subActionStart()
 {
 	if (m_device->input()->specialSkillMode())return;
 	if (m_device->input()->jump())
-	{
-		GSvector3 nowPosition = GSvector3(0, m_transform.m_translate.y + 0.3f, 0);
-		m_transform.translate(nowPosition);
+	{	
 		changeState(ACTOR_STATE::SINGLEJUMP);
 		return;
 	}
@@ -109,8 +104,6 @@ void Player::subActionStart()
 	{
 		if (m_Gauge.down(5))
 		{
-			
-			m_avoid.initialize();
 			changeState(ACTOR_STATE::STEP);
 		}
 	}
@@ -189,11 +182,6 @@ const bool Player::isEndAttackMotion(const IAttack & _attack) const
 {
 	return _attack.isEndMotion(m_animatorOne);
 }
-const bool Player::isJumpAttack() const
-{
-	return m_isJumpAttack;
-}
-
 const bool Player::isEndAttack() const
 {
 	return m_attackManager.isEnd();
@@ -208,12 +196,6 @@ const bool Player::isQuickAttack() const
 {
 	return m_device->input()->quickAttackTrigger();
 }
-
-const GSvector3 Player::inputDirection() const
-{
-	return m_transform.front();
-}
-
 void Player::control()
 {
 	if (m_device->input()->specialSkillMode())
@@ -237,7 +219,6 @@ void Player::control()
 	{
 		changeState(ACTOR_STATE::ATTACK);
 		m_attackManager.initialize();
-		m_isJumpAttack = !m_isGround;
 		m_lockon->homing();
 		m_attackManager.Start(true, this);
 	}
@@ -247,7 +228,6 @@ void Player::control()
 	{
 		changeState(ACTOR_STATE::ATTACK);
 		m_attackManager.initialize();
-		m_isJumpAttack = !m_isGround;
 		m_lockon->homing();
 		m_attackManager.Start(false, this);
 	}
@@ -293,13 +273,4 @@ void Player::movement(float deltaTime, float _speed)
 	if (!m_device->input()->move())speed = 0;
 	GSvector3 forward(m_transform.front()*speed);
 	m_transform.translate(forward*deltaTime*_speed);
-}
-
-const bool Player::isAvoid() const
-{
-	return m_device->input()->avoid();
-}
-void Player::changeAnimation(unsigned int _animID)
-{
-	m_animatorOne.changeAnimation(_animID);
 }

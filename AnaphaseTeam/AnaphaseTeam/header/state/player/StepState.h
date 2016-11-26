@@ -7,6 +7,7 @@
 */
 #include "../../actor/Player/Player.h"
 #include "../ActorState.h"
+#include "../../subAction/Step.h"
 class Player::StepState :public ActorState<Player>
 {
 public:
@@ -16,5 +17,6 @@ private:
 	void action(float deltaTime)override;
 	//ƒNƒ[ƒ“‚ğì¬‚·‚é
 	Player::StepState* clone() const override;
-
+private:
+	Step m_step;
 };
