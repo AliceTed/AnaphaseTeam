@@ -7,7 +7,6 @@
 */
 #include "../../actor/Player/Player.h"
 #include "../ActorState.h"
-#include "../../convenient/Timer.h"
 class Player::LandingRigidityState :public ActorState<Player>
 {
 public:
@@ -17,6 +16,4 @@ private:
 	void action(float deltaTime)override;
 	//ƒNƒ[ƒ“‚ğì¬‚·‚é
 	Player::LandingRigidityState* clone() const override;
-private:
-	Timer m_timer;
 };

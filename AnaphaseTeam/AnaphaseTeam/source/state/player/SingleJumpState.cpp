@@ -10,7 +10,7 @@ Player::SingleJumpState::SingleJumpState(Player* _player)
 void Player::SingleJumpState::start()
 {
 	m_actor->m_animatorOne.changeAnimation(static_cast<GSuint>(ANIMATION_ID::STAND), false);
-	m_jumping.start(1.0f);
+	m_jumping.start(0.5f);
 }
 void Player::SingleJumpState::action(float deltaTime)
 {

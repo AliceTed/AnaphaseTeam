@@ -9,7 +9,7 @@ Player::DoubleJumpState::DoubleJumpState(Player* _player)
 void Player::DoubleJumpState::start()
 {
 	m_actor->m_animatorOne.changeAnimation(static_cast<GSuint>(ANIMATION_ID::STAND), false);
-	m_jumping.start(0.6f);
+	m_jumping.start(0.45f);
 }
 void Player::DoubleJumpState::action(float deltaTime)
 {
