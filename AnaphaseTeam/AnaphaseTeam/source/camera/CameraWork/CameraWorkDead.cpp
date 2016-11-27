@@ -2,7 +2,7 @@
 #include "../../../header/camera/Camera.h"
 
 CameraWorkDead::CameraWorkDead(Camera* _camera) :
-	m_camera(_camera)
+	CameraWork(_camera)
 {
 	m_camera->zoom_clamp(20, 180);
 }
@@ -16,7 +16,7 @@ CameraWorkDead::~CameraWorkDead()
 
 
 //–¢Š®¬
-void CameraWorkDead::run(void)
+void CameraWorkDead::update(void)
 {
 	const GSvector3& player = m_camera->cameraTarget_player();
 
@@ -25,15 +25,6 @@ void CameraWorkDead::run(void)
 	m_camera->zoom_in(1.0f);
 
 	m_camera->update();
-
-	/*m_camera->cameraWork_dolly(
-		player, 
-		30, 
-		50, 
-		5,
-		0.5f,
-		0.5f
-	);*/
 
 	return;
 }

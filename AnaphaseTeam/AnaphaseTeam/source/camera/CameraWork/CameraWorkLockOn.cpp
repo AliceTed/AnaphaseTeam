@@ -4,7 +4,7 @@
 #include "../../../header/math/Calculate.h"
 
 CameraWorkLockOn::CameraWorkLockOn(Camera* _camera) :
-	m_camera(_camera)
+	CameraWork(_camera)
 {
 }
 
@@ -17,7 +17,7 @@ CameraWorkLockOn::~CameraWorkLockOn()
 
 
 
-void CameraWorkLockOn::run(void)
+void CameraWorkLockOn::update(void)
 {
 	m_camera->zoom(90.0f);
 

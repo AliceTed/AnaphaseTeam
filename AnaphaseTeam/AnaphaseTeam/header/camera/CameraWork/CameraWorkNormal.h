@@ -7,11 +7,9 @@
 #pragma once
 
 #include <gslib.h>
-#include "I_CameraWork.h"
+#include "CameraWork.h"
 
-class Camera;
-
-class CameraWorkNormal : public I_CameraWork
+class CameraWorkNormal : public CameraWork
 {
 public:
 	/*********************************************
@@ -26,18 +24,11 @@ public:
 	*********************************************/
 	~CameraWorkNormal() override;
 
-
-
-	/*********************************************
-	@brief é¿çs
-	*********************************************/
-	void run(void) override;
-
 private:
+	void update(void) override;
+
 	const GSvector2 velocity(void);
 
 private:
-	Camera* m_camera;
-
 	GSvector2 m_rotate;
 };

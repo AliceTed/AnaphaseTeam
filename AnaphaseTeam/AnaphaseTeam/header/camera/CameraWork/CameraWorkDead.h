@@ -6,11 +6,9 @@
 *********************************************************************/
 #pragma once
 
-#include "I_CameraWork.h"
+#include "CameraWork.h"
 
-class Camera;
-
-class CameraWorkDead : public I_CameraWork
+class CameraWorkDead : public CameraWork
 {
 public:
 	/*****************************************************************
@@ -26,13 +24,6 @@ public:
 	*****************************************************************/
 	~CameraWorkDead() override;
 
-
-
-	/*****************************************************************
-	@brief é¿çs
-	*****************************************************************/
-	void run(void) override;
-
 private:
-	Camera* m_camera;
+	void update(void) override;
 };

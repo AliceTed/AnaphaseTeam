@@ -2,7 +2,7 @@
 #include "../../../header/camera/Camera.h"
 
 CameraWorkNormal::CameraWorkNormal(Camera* _camera) :
-	m_camera(_camera),
+	CameraWork(_camera),
 	m_rotate(0.0f, 0.0f)
 {
 
@@ -17,7 +17,7 @@ CameraWorkNormal::~CameraWorkNormal()
 
 
 
-void CameraWorkNormal::run(void)
+void CameraWorkNormal::update(void)
 {
 	const GSvector3& player = m_camera->cameraTarget_player();
 

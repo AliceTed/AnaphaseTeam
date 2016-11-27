@@ -576,6 +576,9 @@
     <ClInclude Include="header\camera\CameraWork\CameraWorkNormal.h">
       <Filter>ヘッダー ファイル\camera</Filter>
     </ClInclude>
+    <ClInclude Include="header\camera\CameraWork\CameraWork.h">
+      <Filter>ヘッダー ファイル\camera</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="source\main.cpp">
@@ -871,6 +874,9 @@
     </ClCompile>
     <ClCompile Include="source\camera\CameraWork\CameraWorkNormal.cpp">
       <Filter>ソース ファイル\camera</Filter>
+    </ClCompile>
+    <ClCompile Include="source\camera\CameraWork\CameraWork.cpp">
+      <Filter>ソース ファイル</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

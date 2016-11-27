@@ -171,6 +171,7 @@
     <ClCompile Include="source\camera\ACalc.cpp" />
     <ClCompile Include="source\camera\Camera.cpp" />
     <ClCompile Include="source\camera\CameraActionDolly.cpp" />
+    <ClCompile Include="source\camera\CameraWork\CameraWork.cpp" />
     <ClCompile Include="source\camera\CameraWork\CameraWorkData.cpp" />
     <ClCompile Include="source\camera\CameraWork\CameraWorkManager.cpp" />
     <ClCompile Include="source\camera\CameraController.cpp" />
@@ -368,6 +369,7 @@
     <ClInclude Include="header\ui\SlideImage.h" />
     <ClInclude Include="header\ui\TitleUI.h" />
     <ClInclude Include="header\camera\CameraWork\I_CameraWork.h" />
+    <ClInclude Include="header\camera\CameraWork\CameraWork.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
