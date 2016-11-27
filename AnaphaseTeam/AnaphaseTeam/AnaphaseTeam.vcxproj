@@ -143,7 +143,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="header\collision\PlayerCollision.cpp" />
+    <ClCompile Include="source\collision\PlayerCollision.cpp" />
     <ClCompile Include="source\actor\Actor.cpp" />
     <ClCompile Include="source\actor\Boss\Boss.cpp" />
     <ClCompile Include="source\actor\Enemy\Enemy.cpp" />
@@ -244,7 +244,6 @@
   <ItemGroup>
     <ClInclude Include="header\actor\Actor.h" />
     <ClInclude Include="header\actor\Actor_Tag.h" />
-    <ClInclude Include="header\actor\AttackActor.h" />
     <ClInclude Include="header\actor\Boss\Boss.h" />
     <ClInclude Include="header\actor\Enemy\Enemy.h" />
     <ClInclude Include="header\actor\Enemy\EnemyManager.h" />
@@ -258,10 +257,8 @@
     <ClInclude Include="header\attack\ATTACK_TYPE.h" />
     <ClInclude Include="header\attack\ComboAttack.h" />
     <ClInclude Include="header\attack\Attack.h" />
-    <ClInclude Include="header\attack\ComboPattern.h" />
     <ClInclude Include="header\attack\LoadAttack.h" />
     <ClInclude Include="header\attack\Scythe.h" />
-    <ClInclude Include="header\actor\ICharacter.h" />
     <ClInclude Include="header\actor\Player\Player.h" />
     <ClInclude Include="header\camera\ACalc.h" />
     <ClInclude Include="header\camera\Camera.h" />

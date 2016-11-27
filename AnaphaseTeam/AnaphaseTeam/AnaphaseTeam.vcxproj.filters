@@ -291,9 +291,6 @@
     <ClInclude Include="header\shape\Sphere.h">
       <Filter>ヘッダー ファイル\shape</Filter>
     </ClInclude>
-    <ClInclude Include="header\actor\ICharacter.h">
-      <Filter>ヘッダー ファイル\actor</Filter>
-    </ClInclude>
     <ClInclude Include="header\map\Map.h">
       <Filter>ヘッダー ファイル\map</Filter>
     </ClInclude>
@@ -304,9 +301,6 @@
       <Filter>ヘッダー ファイル\convenient</Filter>
     </ClInclude>
     <ClInclude Include="header\actor\Actor_Tag.h">
-      <Filter>ヘッダー ファイル\actor</Filter>
-    </ClInclude>
-    <ClInclude Include="header\actor\AttackActor.h">
       <Filter>ヘッダー ファイル\actor</Filter>
     </ClInclude>
     <ClInclude Include="header\data\PLAYERACTION_ID.h">
@@ -434,9 +428,6 @@
     </ClInclude>
     <ClInclude Include="header\transform\Transform.h">
       <Filter>ヘッダー ファイル\transform</Filter>
-    </ClInclude>
-    <ClInclude Include="header\attack\ComboPattern.h">
-      <Filter>ヘッダー ファイル\attack</Filter>
     </ClInclude>
     <ClInclude Include="header\actor\Player\specialSkill\Recovery.h">
       <Filter>ヘッダー ファイル\actor\Player\specialSkill</Filter>
@@ -827,9 +818,6 @@
     <ClCompile Include="source\collision\PlayerAttackCollision.cpp">
       <Filter>ソース ファイル\collision\user</Filter>
     </ClCompile>
-    <ClCompile Include="header\collision\PlayerCollision.cpp">
-      <Filter>ソース ファイル\collision\user</Filter>
-    </ClCompile>
     <ClCompile Include="source\ui\SpAttackUI.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
@@ -880,6 +868,9 @@
     </ClCompile>
     <ClCompile Include="source\attack\ComboAttack.cpp">
       <Filter>ソース ファイル\Attack</Filter>
+    </ClCompile>
+    <ClCompile Include="source\collision\PlayerCollision.cpp">
+      <Filter>ソース ファイル\collision\user</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
