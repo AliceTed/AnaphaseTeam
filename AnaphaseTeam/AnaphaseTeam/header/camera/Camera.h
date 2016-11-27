@@ -57,48 +57,21 @@ public:
 
 
 
-	/********************************************************
-	@brief	ティルトカメラワーク
-	x軸回転のみで被写体を見る
-	（もっと簡単にしたいよ）
+	/*********************************************************
+	@brief	ティルト・パンカメラワーク
+			カメラの位置は固定したまま被写体を見る
 	@param[_position_camera]	カメラの位置
-	@param[_position_target]	ターゲットの位置
-	@param[_direction]			方位角
-	@param[_followSpeed_camera] カメラの追尾速度
+	@param[_rotate]				回転
+								x回転を固定するとティルト
+								y回転を固定するとパン
+	@param[_followSpeed_camera]	カメラの追尾速度
 	@param[_followSpeed_target]	ターゲットの追尾速度
-	[0] 追尾無し
-	[0.1~0.9] ディレイありの追尾
-	[1] 完全追尾
-	********************************************************/
-	void cameraWork_tilt(
-		const GSvector3&	_position_camera,
-		const GSvector3&	_position_target,
-		float				_direction,
-		const float			_followSpeed_camera,
-		const float			_followSpeed_target
-	);
-	
-	
-	
-	/********************************************************
-	@brief	ティルトカメラワーク
-	x軸回転のみで被写体を見る
-	（もっと簡単にしたいよ）
-	@param[_position_camera]	カメラの位置
-	@param[_position_target]	ターゲットの位置
-	@param[_elevation]			仰角
-	@param[_followSpeed_camera] カメラの追尾速度
-	@param[_followSpeed_target]	ターゲットの追尾速度
-	[0] 追尾無し
-	[0.1~0.9] ディレイありの追尾
-	[1] 完全追尾
-	********************************************************/
-	void cameraWork_pan(
-		const GSvector3&	_position_camera,
-		const GSvector3&	_position_target,
-		float				_elevation,
-		const float			_followSpeed_camera,
-		const float			_followSpeed_target
+	*********************************************************/
+	void cameraWork_tilt_pan(
+		const GSvector3& _position_camera,
+		GSvector2 _rotate,
+		const float _followSpeed_camera,
+		const float _followSpeed_target
 	);
 
 
@@ -115,8 +88,7 @@ public:
 	********************************************************/
 	void cameraWork_dolly(
 		const GSvector3&	_position_target,
-		float				_elevation,
-		float				_direction,
+		GSvector2			_rotate,
 		const float			_distance,
 		const float			_followSpeed_camera,
 		const float			_followSpeed_target
@@ -248,8 +220,7 @@ private:
 	void update_rotate(
 		GSvector3*			_vector,
 		const GSvector3&	_target,
-		const float			_elevation,
-		const float			_direction,
+		const GSvector2&	_rotate,
 		const float			_distance
 	);
 

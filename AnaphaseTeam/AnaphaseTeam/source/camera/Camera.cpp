@@ -51,64 +51,22 @@ void Camera::lookAt(const GSvector3& _target)
 
 
 
-void Camera::cameraWork_tilt(
+void Camera::cameraWork_tilt_pan(
 	const GSvector3& _position_camera,
-	const GSvector3& _position_target,
-	float _direction,
+	GSvector2 _rotate,
 	const float _followSpeed_camera,
 	const float _followSpeed_target
 )
 {
-	float elevation, direction;
-	GSvector3 vector, target;
+	GSvector3 target;
 
-	vector = _position_target - _position_camera;
-
-	gsVector3ToEleDir(&elevation, &direction, &vector);
-
-	to_rad(&elevation);
-	to_rad(&_direction);
+	to_rad(&_rotate.x);
+	to_rad(&_rotate.y);
 
 	update_rotate(
 		&target,
 		m_position,
-		elevation,
-		_direction,
-		10
-	);
-
-	follow_position(_position_camera, _followSpeed_camera);
-
-	follow_target(target, _followSpeed_target);
-
-	return;
-}
-
-
-
-void Camera::cameraWork_pan(
-	const GSvector3& _position_camera,
-	const GSvector3& _position_target,
-	float _elevation,
-	const float _followSpeed_camera,
-	const float	_followSpeed_target
-)
-{
-	float elevation, direction;
-	GSvector3 vector, target;
-
-	vector = _position_target - _position_camera;
-
-	gsVector3ToEleDir(&elevation, &direction, &vector);
-
-	to_rad(&_elevation);
-	to_rad(&direction);
-
-	update_rotate(
-		&target,
-		m_position,
-		_elevation,
-		direction,
+		_rotate,
 		10
 	);
 
@@ -122,8 +80,7 @@ void Camera::cameraWork_pan(
 
 void Camera::cameraWork_dolly(
 	const GSvector3&	_position_target,
-	float				_elevation,
-	float				_direction,
+	GSvector2			_rotate,
 	const float			_distance,
 	const float			_followSpeed_camera,
 	const float			_followSpeed_target
@@ -131,14 +88,13 @@ void Camera::cameraWork_dolly(
 {
 	GSvector3 position;
 
-	to_rad(&_elevation);
-	to_rad(&_direction);
+	to_rad(&_rotate.x);
+	to_rad(&_rotate.y);
 
 	update_rotate(
 		&position,
 		_position_target,
-		_elevation,
-		_direction,
+		_rotate,
 		_distance
 	);
 
@@ -346,14 +302,13 @@ void Camera::update_follow(
 void Camera::update_rotate(
 	GSvector3* _vector,
 	const GSvector3& _target,
-	const float _elevation,
-	const float _direction,
+	const GSvector2& _rotate,
 	const float _distance
 )
 {
-	_vector->x = _target.x + cosf(_direction) * cosf(_elevation) * _distance;
-	_vector->y = _target.y + sinf(_elevation) * _distance;
-	_vector->z = _target.z + sinf(_direction) * cosf(_elevation) * _distance;
+	_vector->x = _target.x + cosf(_rotate.y) * cosf(_rotate.x) * _distance;
+	_vector->y = _target.y + sinf(_rotate.x) * _distance;
+	_vector->z = _target.z + sinf(_rotate.y) * cosf(_rotate.x) * _distance;
 }
 
 

@@ -11,6 +11,7 @@
 CameraWorkManager::CameraWorkManager(Camera* _camera) :
 	m_camera(_camera),
 	m_cameraData(std::make_unique<CameraWorkData>()),
+	m_rotate(0.0f, 0.0f),
 	m_current_cameraAction(E_CameraWorkID::NONE)
 {
 	load();
@@ -27,19 +28,17 @@ CameraWorkManager::~CameraWorkManager()
 
 void CameraWorkManager::load(void)
 {
-	Camera* camera = m_camera;
-
 	m_cameraData->add(
 		E_CameraWorkID::NORMAL,
-		new CameraWorkNormal(camera)
+		new CameraWorkNormal(m_camera, &m_rotate)
 	);
 	m_cameraData->add(
 		E_CameraWorkID::LOCK_ON,
-		new CameraWorkLockOn(camera)
+		new CameraWorkLockOn(m_camera, &m_rotate)
 	);
 	m_cameraData->add(
 		E_CameraWorkID::DEAD,
-		new CameraWorkDead(camera)
+		new CameraWorkDead(m_camera)
 	);
 }
 

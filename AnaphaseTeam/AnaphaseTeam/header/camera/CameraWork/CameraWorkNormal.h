@@ -15,7 +15,7 @@ public:
 	/*********************************************
 	@brief コンストラクタ
 	*********************************************/
-	CameraWorkNormal(Camera* _camera);
+	CameraWorkNormal(Camera* _camera, GSvector2* _rotate);
 
 
 
@@ -30,5 +30,5 @@ private:
 	const GSvector2 velocity(void);
 
 private:
-	GSvector2 m_rotate;
+	GSvector2* m_rotate;
 };

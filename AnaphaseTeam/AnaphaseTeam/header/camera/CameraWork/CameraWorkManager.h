@@ -8,6 +8,7 @@
 
 #include <unordered_map>
 #include <memory>
+#include <gslib.h>
 #include "E_CameraWorkID.h"
 
 class Camera;
@@ -54,6 +55,10 @@ public:
 
 private:
 	Camera*							m_camera;
+
 	std::unique_ptr<CameraWorkData> m_cameraData;
+
+	GSvector2						m_rotate;
+
 	E_CameraWorkID					m_current_cameraAction;
 };
