@@ -8,7 +8,7 @@
 
 #include <unordered_map>
 #include <memory>
-#include "CameraWorkID.h"
+#include "E_CameraWorkID.h"
 
 class Camera;
 class CameraWorkData;
@@ -43,7 +43,7 @@ public:
 	/*****************************************
 	@brief ƒJƒƒ‰ƒ[ƒN‚ÌØ‚è‘Ö‚¦
 	*****************************************/
-	void change_cameraWork(CameraWorkID _id);
+	void change_cameraWork(const E_CameraWorkID _id);
 
 
 
@@ -53,7 +53,7 @@ public:
 	void run(void);
 
 private:
-	Camera*				m_camera;
+	Camera*							m_camera;
 	std::unique_ptr<CameraWorkData> m_cameraData;
-	CameraWorkID		m_current_cameraAction;
+	E_CameraWorkID					m_current_cameraAction;
 };

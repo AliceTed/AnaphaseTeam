@@ -19,7 +19,7 @@
 #include "../../../header/actor/Enemy/Enemy.h"
 
 //‚±‚ê’Ç‰Á by—L•y
-#include "../../../header/camera/CameraWork/CameraWorkID.h"
+#include "../../../header/camera/CameraWork/E_CameraWorkID.h"
 
 const float Player::MOVESPEED = 0.3f;
 const float Player::ROTATESPEED = -2.0f;
@@ -400,7 +400,7 @@ void Player::look_at(CameraController * _camera, GSvector3 * _target)
 	//_camera->special_move1(&target, _target, 10.0f, 1.5f);
 
 	// ‚±‚ê‚©‚ç‚Í‚±‚êŽg‚Á‚Ä by—L•y
-	_camera->change_cameraWork(CameraWorkID::CAMERA_ACTION_LOCK_ON);
+	_camera->change_cameraWork(E_CameraWorkID::CAMERA_ACTION_LOCK_ON);
 }
 
 /**

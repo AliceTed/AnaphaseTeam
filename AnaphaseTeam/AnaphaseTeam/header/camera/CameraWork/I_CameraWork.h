@@ -1,5 +1,5 @@
 /************************************************
-@file ICameraWork.h
+@file I_CameraWork.h
 @brief カメラワークインターフェイス
 @author Yuuho Aritomi
 @date 2016/11/24
@@ -8,13 +8,13 @@
 
 #include <gslib.h>
 
-class ICameraWork
+class I_CameraWork
 {
 public:
 	/********************************************
 	@brief デストラクタ
 	********************************************/
-	virtual ~ICameraWork()
+	virtual ~I_CameraWork()
 	{
 
 	}

@@ -6,12 +6,12 @@
 **********************************************/
 #pragma once
 
-#include "CameraWork/ICameraWork.h"
+#include "CameraWork/I_CameraWork.h"
 #include <gslib.h>
 
 class Camera;
 
-class CameraActionDolly : public ICameraWork
+class CameraActionDolly : public I_CameraWork
 {
 public:
 	/******************************************

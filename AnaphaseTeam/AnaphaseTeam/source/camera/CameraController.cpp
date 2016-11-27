@@ -9,7 +9,6 @@
 #include <string>
 
 #include "../../header/camera/CameraWork/CameraWorkManager.h"
-#include "../../header/camera/CameraWork/CameraWorkID.h"
 
 CameraController::CameraController(Camera* _camera) :
 	m_camera(_camera),
@@ -60,7 +59,7 @@ void CameraController::change_control(Camera* _camera)
 
 
 
-void CameraController::change_cameraWork(const CameraWorkID& _id)
+void CameraController::change_cameraWork(const E_CameraWorkID _id)
 {
 	m_cameraWorkManager->change_cameraWork(_id);
 }

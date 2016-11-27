@@ -10,6 +10,8 @@
 #include <gslib.h>
 #include <memory>
 
+#include "CameraWork\E_CameraWorkID.h"
+
 class	Camera;
 class	CameraWorkManager;
 enum	CameraWorkID;
@@ -60,7 +62,7 @@ public:
 	/***********************************************
 	@brief カメラワークの変更
 	***********************************************/
-	void change_cameraWork(const CameraWorkID& _id);
+	void change_cameraWork(const E_CameraWorkID _id);
 
 private:
 	Camera *m_camera;		// 動かしたいカメラ

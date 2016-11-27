@@ -561,9 +561,6 @@
     <ClInclude Include="header\camera\CameraWork\CameraWorkDead.h">
       <Filter>ヘッダー ファイル\camera</Filter>
     </ClInclude>
-    <ClInclude Include="header\camera\CameraWork\CameraWorkID.h">
-      <Filter>ヘッダー ファイル\camera</Filter>
-    </ClInclude>
     <ClInclude Include="header\camera\CameraWork\CameraWorkLockOn.h">
       <Filter>ヘッダー ファイル\camera</Filter>
     </ClInclude>
@@ -573,7 +570,10 @@
     <ClInclude Include="header\camera\CameraWork\CameraWorkData.h">
       <Filter>ヘッダー ファイル\camera</Filter>
     </ClInclude>
-    <ClInclude Include="header\camera\CameraWork\ICameraWork.h">
+    <ClInclude Include="header\camera\CameraWork\E_CameraWorkID.h">
+      <Filter>ヘッダー ファイル\camera</Filter>
+    </ClInclude>
+    <ClInclude Include="header\camera\CameraWork\I_CameraWork.h">
       <Filter>ヘッダー ファイル\camera</Filter>
     </ClInclude>
   </ItemGroup>
@@ -870,7 +870,7 @@
       <Filter>ソース ファイル\camera</Filter>
     </ClCompile>
     <ClCompile Include="source\camera\CameraWork\CameraWorkData.cpp">
-      <Filter>ソース ファイル\camera</Filter>
+      <Filter>ソース ファイル</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

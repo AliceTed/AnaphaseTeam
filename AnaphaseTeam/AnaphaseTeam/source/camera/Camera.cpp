@@ -1,5 +1,6 @@
 #include "../../header/camera/Camera.h"
 #include "../../header/camera/CameraTarget.h"
+#include "../../header/math/Calculate.h"
 
 Camera::Camera(void) :
 	m_perspective(Perspective(45.0f, 1280.0f / 720.0f, 0.3f, 1000.0f)),
@@ -12,19 +13,6 @@ Camera::Camera(void) :
 
 
 
-Camera::Camera(
-	const Perspective&	_perspective, 
-	const GSvector3&	_position
-) :
-	m_perspective(_perspective),
-	m_lookAt(LookAt(_position, _position + GSvector3(0, 0, -1), GSvector3(0, 1, 0))),
-	m_cameraTarget_player(std::make_shared<CameraTarget>()),
-	m_cameraTarget_enemy(std::make_shared<CameraTarget>())
-{
-}
-
-
-
 Camera::~Camera()
 {
 }
@@ -33,7 +21,7 @@ Camera::~Camera()
 
 void Camera::update(void)
 {
-	m_perspective.update();
+	update_perspective();
 
 	m_lookAt.update();
 
@@ -165,7 +153,8 @@ void Camera::zoom_clamp(
 	const float _max
 )
 {
-	m_perspective.zoom_clamp(_min, _max);
+	m_fov_min = _min;
+	m_fov_max = _max;
 
 	return;
 }
@@ -174,21 +163,21 @@ void Camera::zoom_clamp(
 
 void Camera::zoom(const float _value)
 {
-	m_perspective.zoom(_value);
+	m_perspective.x = _value;
 }
 
 
 
 void Camera::zoom_in(const float _speed)
 {
-	m_perspective.zoom_in(_speed);
+	update_zoom(-_speed);
 }
 
 
 
 void Camera::zoom_out(const float _speed)
 {
-	m_perspective.zoom_out(_speed);
+	update_zoom(_speed);
 }
 
 
@@ -208,7 +197,7 @@ const bool Camera::isFrustumCulling(const GSvector3 & center, float radius) cons
 {
 	//éãêçë‰
 	GSfrustum frustum;
-	gsFrustumFromMatrices(&frustum, &m_lookAt.matView(), &m_perspective.matProj());
+	gsFrustumFromMatrices(&frustum, &m_lookAt.matView(), &m_matProjection);
 
 	return !!gsFrustumIsSphereInside(&frustum, &center, radius);
 }
@@ -220,7 +209,7 @@ const float Camera::nearDistance(const GSvector3 & ohter, float radius) const
 	//ohterÇ∆ÉJÉÅÉâÇÃãóó£
 	float dis = ohter.distance(m_lookAt.position());
 	//ãóó£Ç∆nearÇÃç∑
-	return dis-(m_perspective.near()+radius);
+	return dis-(m_perspective.z + radius);
 }
 
 
@@ -237,4 +226,41 @@ const Transform Camera::transform() const
 	//yawâÒì]ÇæÇØ
  	GSvector3 vec= m_lookAt.target() - m_lookAt.position();
 	return Transform(vec.getYaw(), GSvector3(0, 1, 0), m_lookAt.position());
+}
+
+
+
+void Camera::update_perspective(void)
+{
+	glMatrixMode(GL_PROJECTION);
+
+	glLoadIdentity();
+
+	gluPerspective(
+		m_perspective.x,
+		m_perspective.y,
+		m_perspective.z,
+		m_perspective.w
+	);
+
+	glGetFloatv(GL_PROJECTION_MATRIX, (GLfloat*)&m_matProjection);
+
+	return;
+}
+
+
+
+void Camera::update_zoom(const float _speed)
+{
+	Math::Clamp clamp;
+	
+	m_perspective.x += _speed;
+
+	m_perspective.x = clamp(
+		m_perspective.x,
+		m_fov_min,
+		m_fov_max
+	);
+
+	return;
 }

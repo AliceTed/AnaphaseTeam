@@ -8,13 +8,13 @@
 
 #include <unordered_map>
 #include <memory>
-#include "CameraWorkID.h"
+#include "E_CameraWorkID.h"
 
 class Camera;
-class ICameraWork;
+class I_CameraWork;
 
-typedef std::shared_ptr<ICameraWork> cameraWork_ptr;
-typedef std::unordered_map<int, cameraWork_ptr> cameraWork_map;
+typedef std::shared_ptr<I_CameraWork> CameraWork_Ptr;
+typedef std::unordered_map<int, CameraWork_Ptr> CameraWork_Map;
 
 class CameraWorkData
 {
@@ -38,9 +38,10 @@ public:
 	@param[_id]		アクションID
 	@param[_data]	データ
 	*****************************************************************/
-	void load(
-		CameraWorkID	_id,
-		ICameraWork*	_date);
+	void add(
+		const E_CameraWorkID	_id,
+		I_CameraWork*	_data
+	);
 
 
 
@@ -48,9 +49,9 @@ public:
 	@brief 実行
 	@param[_id] アクションID
 	*****************************************************************/
-	void run(const CameraWorkID& _id);
+	I_CameraWork* get(const E_CameraWorkID _id);
 
 private:
-	cameraWork_map m_cameraWorks;
+	CameraWork_Map m_cameraWorks;
 };
 

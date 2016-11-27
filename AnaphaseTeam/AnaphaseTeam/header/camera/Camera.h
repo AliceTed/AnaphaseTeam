@@ -1,17 +1,19 @@
 /******************************************************
-@file .h
-@brief カメラ
+@file	Camera.h
+@brief	カメラ
 @author Yuuoh Aritomi : Matuo
-@date 2016/09/23 Ver1.00
+@date	2016/09/23 Ver1.00
 ******************************************************/
 #pragma once
 
 #include <gslib.h>
 #include <memory>
-#include "Perspective.h"
+//#include "Perspective.h"
 #include "LookAt.h"
 
 #include "../../header/transform/Transform.h"
+
+typedef GSvector4 Perspective;
 
 class CameraTarget;
 
@@ -23,18 +25,6 @@ public:
 	@brief コンストラクタ
 	**************************************************/
 	Camera(void);
-
-
-
-	/**************************************************
-	@brief コンストラクタ
-	@param[_perspective]	パースペクティブ
-	@param[_position]		位置
-	**************************************************/
-	Camera(
-		const Perspective&	_perspective, 
-		const GSvector3&	_position
-	);
 
 
 
@@ -265,7 +255,16 @@ public:
 	const Transform transform()const;
 
 private:
+	void update_perspective(void);
+
+	void update_zoom(const float _speed);
+
+private:
+	//Perspective						m_perspective;
 	Perspective						m_perspective;
+	float							m_fov_min;
+	float							m_fov_max;
+	GSmatrix4						m_matProjection;
 	LookAt							m_lookAt;
 	std::shared_ptr<CameraTarget>	m_cameraTarget_player;
 	std::shared_ptr<CameraTarget>	m_cameraTarget_enemy;

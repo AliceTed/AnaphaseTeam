@@ -6,11 +6,11 @@
 ****************************************************************/
 #pragma once
 
-#include "ICameraWork.h"
+#include "I_CameraWork.h"
 
 class Camera;
 
-class CameraWorkLockOn : public ICameraWork
+class CameraWorkLockOn : public I_CameraWork
 {
 public:
 	/************************************************************

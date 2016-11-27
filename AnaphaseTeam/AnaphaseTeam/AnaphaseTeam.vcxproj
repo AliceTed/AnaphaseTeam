@@ -141,7 +141,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="source\camera\CameraWork\CameraWorkData.cpp" />
     <ClCompile Include="source\actionstate\AttackState.cpp" />
     <ClCompile Include="source\actionstate\AvoidState.cpp" />
     <ClCompile Include="source\actionstate\DamageState.cpp" />
@@ -172,6 +171,7 @@
     <ClCompile Include="source\camera\ACalc.cpp" />
     <ClCompile Include="source\camera\Camera.cpp" />
     <ClCompile Include="source\camera\CameraActionDolly.cpp" />
+    <ClCompile Include="source\camera\CameraWork\CameraWorkData.cpp" />
     <ClCompile Include="source\camera\CameraWork\CameraWorkManager.cpp" />
     <ClCompile Include="source\camera\CameraController.cpp" />
     <ClCompile Include="source\camera\CameraTarget.cpp" />
@@ -282,7 +282,7 @@
     <ClInclude Include="header\camera\CameraController.h" />
     <ClInclude Include="header\camera\CameraTarget.h" />
     <ClInclude Include="header\camera\CameraWork\CameraWorkDead.h" />
-    <ClInclude Include="header\camera\CameraWork\CameraWorkID.h" />
+    <ClInclude Include="header\camera\CameraWork\E_CameraWorkID.h" />
     <ClInclude Include="header\camera\CameraWork\CameraWorkLockOn.h" />
     <ClInclude Include="header\camera\LockOn.h" />
     <ClInclude Include="header\camera\LookAt.h" />
@@ -367,7 +367,7 @@
     <ClInclude Include="header\ui\SelectUI.h" />
     <ClInclude Include="header\ui\SlideImage.h" />
     <ClInclude Include="header\ui\TitleUI.h" />
-    <ClInclude Include="header\camera\CameraWork\ICameraWork.h" />
+    <ClInclude Include="header\camera\CameraWork\I_CameraWork.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
