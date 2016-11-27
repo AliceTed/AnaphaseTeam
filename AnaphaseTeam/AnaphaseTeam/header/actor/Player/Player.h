@@ -8,8 +8,7 @@
 #include<gslib.h>
 #include "../Actor.h"
 #include "../../animation/Animation.h"
-#include "../../animation/AnimMediator.h"
-#include "../../attack/attackManager.h"
+#include "../../attack/ComboAttack.h"
 #include "../../data/ANIMATION_ID.h"
 #include "Status.h"
 #include "../../attack/Scythe.h"
@@ -28,9 +27,9 @@ public:
 	~Player();
 	void jumping(float _velocity);
 	void avoidAction(const GSvector3& _velocity);
-	void attackmotion(IAttack& _attack);
-	const bool isNextAttack(const IAttack& _attack)const;
-	const bool isEndAttackMotion(const IAttack& _attack)const;
+	void attackmotion(Attack& _attack);
+	const bool isNextAttack(const Attack& _attack)const;
+	const bool isEndAttackMotion(const Attack& _attack)const;
 	void control();
 	void look_at(CameraController* _camera, GSvector3* _target);
 	void subActionStart();
@@ -42,12 +41,6 @@ public:
 	void createAttackCollision();
 	void hpDown();
 	void recovery();
-public:
-	const bool isEndAttack() const;
-public://ì¸óÕ
-	//ãﬂê⁄óp
-	const bool isSlowAttack()const;
-	const bool isQuickAttack()const;
 public://Actoråpè≥
 	void initialize() override;
 	void update(float deltatime) override;
@@ -58,7 +51,7 @@ private:
 	void movement(float deltaTime, float _speed);
 private:
 	GameDevice* m_device;	
-	AttackManager m_attackManager;
+	ComboAttack m_combo;
 	Status m_status;
 	Gauge m_Gauge;
 

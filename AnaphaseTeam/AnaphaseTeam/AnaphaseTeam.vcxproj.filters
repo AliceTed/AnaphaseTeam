@@ -160,12 +160,6 @@
     <Filter Include="ソース ファイル\collision\user">
       <UniqueIdentifier>{71ffd2a0-d4bf-4877-be1f-40e051a3fb2a}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ソース ファイル\Attack\enemy">
-      <UniqueIdentifier>{9cd10ef1-31d1-4aac-a5fb-5c1a3f1ebfcf}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ヘッダー ファイル\attack\enemy">
-      <UniqueIdentifier>{dfed270e-39c2-440f-b37a-b2db911a7ead}</UniqueIdentifier>
-    </Filter>
     <Filter Include="ヘッダー ファイル\state">
       <UniqueIdentifier>{21789184-2e3d-43e0-b9bb-69013a31d2da}</UniqueIdentifier>
     </Filter>
@@ -177,6 +171,12 @@
     </Filter>
     <Filter Include="ソース ファイル\state\player">
       <UniqueIdentifier>{b96dbc08-cab6-4601-af82-7ff2e38cf961}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\data\stream">
+      <UniqueIdentifier>{3f24d55d-df60-47c1-95ec-7a6f4d75dd08}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\data\stream">
+      <UniqueIdentifier>{a854fa81-4dd8-4f58-9a81-488b57a9faf2}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -303,9 +303,6 @@
     <ClInclude Include="header\convenient\Timer.h">
       <Filter>ヘッダー ファイル\convenient</Filter>
     </ClInclude>
-    <ClInclude Include="header\subAction\subActionManager.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
     <ClInclude Include="header\actor\Actor_Tag.h">
       <Filter>ヘッダー ファイル\actor</Filter>
     </ClInclude>
@@ -354,12 +351,6 @@
     <ClInclude Include="header\math\TimeLerpVector.h">
       <Filter>ヘッダー ファイル\math</Filter>
     </ClInclude>
-    <ClInclude Include="header\attack\AttackManager.h">
-      <Filter>ヘッダー ファイル\attack</Filter>
-    </ClInclude>
-    <ClInclude Include="header\attack\AttackPattern.h">
-      <Filter>ヘッダー ファイル\attack</Filter>
-    </ClInclude>
     <ClInclude Include="header\attack\Scythe.h">
       <Filter>ヘッダー ファイル\attack</Filter>
     </ClInclude>
@@ -368,9 +359,6 @@
     </ClInclude>
     <ClInclude Include="header\attack\AttackStatus.h">
       <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="header\attack\ComboManager.h">
-      <Filter>ヘッダー ファイル\attack</Filter>
     </ClInclude>
     <ClInclude Include="header\attack\Attack.h">
       <Filter>ヘッダー ファイル\attack</Filter>
@@ -423,9 +411,6 @@
     <ClInclude Include="header\scene\each\GameClear.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="header\attack\ChargeAttack.h">
-      <Filter>ヘッダー ファイル\attack</Filter>
-    </ClInclude>
     <ClInclude Include="header\actor\Boss\Boss.h">
       <Filter>ヘッダー ファイル\actor\Boss</Filter>
     </ClInclude>
@@ -452,9 +437,6 @@
     </ClInclude>
     <ClInclude Include="header\attack\ComboPattern.h">
       <Filter>ヘッダー ファイル\attack</Filter>
-    </ClInclude>
-    <ClInclude Include="header\attack\ECombo.h">
-      <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="header\actor\Player\specialSkill\Recovery.h">
       <Filter>ヘッダー ファイル\actor\Player\specialSkill</Filter>
@@ -488,9 +470,6 @@
     </ClInclude>
     <ClInclude Include="header\collision\EnemyAttackCollision.h">
       <Filter>ヘッダー ファイル\collision\user</Filter>
-    </ClInclude>
-    <ClInclude Include="header\attack\AttackIncidence.h">
-      <Filter>ヘッダー ファイル\attack\enemy</Filter>
     </ClInclude>
     <ClInclude Include="header\camera\CameraAction.h">
       <Filter>ヘッダー ファイル\camera</Filter>
@@ -533,12 +512,6 @@
     </ClInclude>
     <ClInclude Include="header\collision\PlayerAttackCollision.h">
       <Filter>ヘッダー ファイル\collision\user</Filter>
-    </ClInclude>
-    <ClInclude Include="header\animation\AnimMediator.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="header\attack\ComboReader.h">
-      <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="header\ui\SpAttackUI.h">
       <Filter>ヘッダー ファイル</Filter>
@@ -590,6 +563,27 @@
     </ClInclude>
     <ClInclude Include="header\subAction\Step.h">
       <Filter>ヘッダー ファイル\subAction</Filter>
+    </ClInclude>
+    <ClInclude Include="header\attack\ComboAttack.h">
+      <Filter>ヘッダー ファイル\attack</Filter>
+    </ClInclude>
+    <ClInclude Include="header\attack\ATTACK_TYPE.h">
+      <Filter>ヘッダー ファイル\attack</Filter>
+    </ClInclude>
+    <ClInclude Include="header\data\stream\DataReader.h">
+      <Filter>ヘッダー ファイル\data\stream</Filter>
+    </ClInclude>
+    <ClInclude Include="header\data\stream\DataWriter.h">
+      <Filter>ヘッダー ファイル\data\stream</Filter>
+    </ClInclude>
+    <ClInclude Include="header\data\stream\AttackReader.h">
+      <Filter>ヘッダー ファイル\data\stream</Filter>
+    </ClInclude>
+    <ClInclude Include="header\data\stream\AttackConverter.h">
+      <Filter>ヘッダー ファイル\data\stream</Filter>
+    </ClInclude>
+    <ClInclude Include="header\attack\LoadAttack.h">
+      <Filter>ヘッダー ファイル\attack</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -656,9 +650,6 @@
     <ClCompile Include="source\actor\player\Player.cpp">
       <Filter>ソース ファイル\actor\Player</Filter>
     </ClCompile>
-    <ClCompile Include="source\subAction\subActionManager.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
     <ClCompile Include="source\shape\Capsule.cpp">
       <Filter>ソース ファイル\shape</Filter>
     </ClCompile>
@@ -695,16 +686,7 @@
     <ClCompile Include="source\actor\Actor.cpp">
       <Filter>ソース ファイル\actor</Filter>
     </ClCompile>
-    <ClCompile Include="source\attack\AttackManager.cpp">
-      <Filter>ソース ファイル\Attack</Filter>
-    </ClCompile>
-    <ClCompile Include="source\attack\AttackStatus.cpp">
-      <Filter>ソース ファイル\Attack</Filter>
-    </ClCompile>
     <ClCompile Include="source\attack\Scythe.cpp">
-      <Filter>ソース ファイル\Attack</Filter>
-    </ClCompile>
-    <ClCompile Include="source\attack\ComboManager.cpp">
       <Filter>ソース ファイル\Attack</Filter>
     </ClCompile>
     <ClCompile Include="source\attack\Attack.cpp">
@@ -758,9 +740,6 @@
     <ClCompile Include="source\scene\each\GameClear.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="source\attack\ChargeAttack.cpp">
-      <Filter>ソース ファイル\Attack</Filter>
-    </ClCompile>
     <ClCompile Include="source\actor\Boss\Boss.cpp">
       <Filter>ソース ファイル\actor\Boss</Filter>
     </ClCompile>
@@ -812,9 +791,6 @@
     <ClCompile Include="source\collision\EnemyAttackCollision.cpp">
       <Filter>ソース ファイル\collision\user</Filter>
     </ClCompile>
-    <ClCompile Include="source\attack\新しいフォルダー\AttackIncidence.cpp">
-      <Filter>ソース ファイル\Attack\enemy</Filter>
-    </ClCompile>
     <ClCompile Include="source\camera\enum\CameraActionDead.cpp">
       <Filter>ソース ファイル\camera</Filter>
     </ClCompile>
@@ -850,9 +826,6 @@
     </ClCompile>
     <ClCompile Include="source\collision\PlayerAttackCollision.cpp">
       <Filter>ソース ファイル\collision\user</Filter>
-    </ClCompile>
-    <ClCompile Include="source\attack\ComboReader.cpp">
-      <Filter>ソース ファイル</Filter>
     </ClCompile>
     <ClCompile Include="header\collision\PlayerCollision.cpp">
       <Filter>ソース ファイル\collision\user</Filter>
@@ -892,6 +865,21 @@
     </ClCompile>
     <ClCompile Include="source\subAction\Step.cpp">
       <Filter>ソース ファイル\subAction</Filter>
+    </ClCompile>
+    <ClCompile Include="source\data\stream\DataReader.cpp">
+      <Filter>ソース ファイル\data\stream</Filter>
+    </ClCompile>
+    <ClCompile Include="source\data\stream\DataWriter.cpp">
+      <Filter>ソース ファイル\data\stream</Filter>
+    </ClCompile>
+    <ClCompile Include="source\data\stream\AttackConverter.cpp">
+      <Filter>ソース ファイル\data\stream</Filter>
+    </ClCompile>
+    <ClCompile Include="source\data\stream\AttackReader.cpp">
+      <Filter>ソース ファイル\data\stream</Filter>
+    </ClCompile>
+    <ClCompile Include="source\attack\ComboAttack.cpp">
+      <Filter>ソース ファイル\Attack</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

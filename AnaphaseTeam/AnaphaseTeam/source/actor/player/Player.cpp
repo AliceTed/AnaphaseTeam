@@ -32,7 +32,7 @@ Player::Player(GameDevice* _device, Camera * _camera, LockOn* _lockon)
 		Actor_Tag::PLAYER
 	),
 	m_device(_device),
-	m_attackManager(),
+	m_combo(this),
 	m_camera(_camera),
 	m_status(),
 	m_Gauge(),
@@ -57,6 +57,7 @@ void Player::initialize()
 	m_scythe.initialize();
 	m_SpecialSkillManager.initialize(SPECIALTYPE::NONE);
 	target = m_transform.m_translate;
+	m_combo.initialize();
 }
 
 void Player::update(float deltatime)
@@ -168,33 +169,19 @@ void Player::avoidAction(const GSvector3 & _velocity)
 	m_transform.translate(_velocity);
 }
 
-void Player::attackmotion(IAttack & _attack)
+void Player::attackmotion(Attack & _attack)
 {
 	_attack.changeMotion(m_animatorOne, m_status.attackSpeed());
 }
 
-const bool Player::isNextAttack(const IAttack & _attack) const
+const bool Player::isNextAttack(const Attack & _attack) const
 {
 	return _attack.isNextAttack(m_animatorOne);
 }
 
-const bool Player::isEndAttackMotion(const IAttack & _attack) const
+const bool Player::isEndAttackMotion(const Attack & _attack) const
 {
 	return _attack.isEndMotion(m_animatorOne);
-}
-const bool Player::isEndAttack() const
-{
-	return m_attackManager.isEnd();
-}
-
-const bool Player::isSlowAttack() const
-{
-	return m_device->input()->slowAttackTrigger();
-}
-
-const bool Player::isQuickAttack() const
-{
-	return m_device->input()->quickAttackTrigger();
 }
 void Player::control()
 {
@@ -218,18 +205,14 @@ void Player::control()
 	if (m_device->input()->quickAttackTrigger())
 	{
 		changeState(ACTOR_STATE::ATTACK);
-		m_attackManager.initialize();
-		m_lockon->homing();
-		m_attackManager.Start(true, this);
+		m_combo.start(false);
 	}
 
 
 	if (m_device->input()->slowAttackTrigger())
 	{
 		changeState(ACTOR_STATE::ATTACK);
-		m_attackManager.initialize();
-		m_lockon->homing();
-		m_attackManager.Start(false, this);
+		m_combo.start(true);
 	}
 }
 

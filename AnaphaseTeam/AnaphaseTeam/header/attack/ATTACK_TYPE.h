@@ -1,6 +1,5 @@
 #pragma once
-
-enum class Combo : unsigned int
+enum class ATTACK_TYPE
 {
 	QFirst,
 	QSecond,
@@ -44,8 +43,5 @@ enum class Combo : unsigned int
 	SQS,
 	SQSS,
 
-
-
-	End = 99,
+	End = -1,
 };
-

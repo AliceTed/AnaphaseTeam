@@ -7,35 +7,28 @@
 */
 #include "../data/ANIMATION_ID.h"
 #include "AttackStatus.h"
-#include "../../header/shape/Shape.h"
-#include <memory>
-#include "ECombo.h"
-#include "IAttack.h"
-class TestActor;
+#include "ATTACK_TYPE.h"
 class Player;
 class CollisionMediator;
 class AnimatorOne;
 
-class Attack :public IAttack
+class Attack
 {
 public:
-	Attack(const AttackStatus& _status, ANIMATION_ID _animation, Combo _Qnext, Combo _Snext);
+	Attack(const AttackStatus& _status, ANIMATION_ID _animation, ATTACK_TYPE _nextQuick, ATTACK_TYPE _nextSlow);
 	~Attack();
 	void initialize(Player * _player);
-	void update(float deltaTime, Player* _player);
 	void motion(Player* _player);
-	
 	void changeMotion(AnimatorOne& _animator, float _speed);
 	const bool isNextAttack(const AnimatorOne& _animator)const;
 	const bool isEndMotion(const AnimatorOne& _animator) const;
-	const Combo weakAttackNext() const;
-	const Combo strengthAttackNext() const;
+	const ATTACK_TYPE next(bool _isSlow) const;
 private:
 	//!攻撃ステータス
 	AttackStatus m_status;
 	//!アニメーション
 	ANIMATION_ID m_Animation;
 	//!次の攻撃
-	Combo m_nextQCombo;
-	Combo m_nexySCombo;
+	ATTACK_TYPE m_nextQuick;
+	ATTACK_TYPE m_nextSlow;
 };

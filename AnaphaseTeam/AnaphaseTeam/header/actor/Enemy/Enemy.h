@@ -2,7 +2,6 @@
 #include "../Actor.h"
 #include "../../../header/camera/CameraController.h"
 #include "../../convenient/Timer.h"
-#include "../../attack/AttackIncidence.h"
 class EnemyCollision;
 class Player;
 //æ‚è‚ ‚¦‚¸enum‚Åó‘Ô•ª‚¯
@@ -44,7 +43,6 @@ private:
 private:
 	ESTATE m_state;
 	Timer m_stay_timer;
-	AttackIncidence m_incidence;
 	static const float PLAYER_DISTANCE;
 	float m_hp;
 	float m_alpha;

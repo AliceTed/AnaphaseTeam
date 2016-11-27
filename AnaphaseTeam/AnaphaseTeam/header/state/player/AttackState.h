@@ -16,4 +16,5 @@ private:
 	void action(float deltaTime)override;
 	//ƒNƒ[ƒ“‚ğì¬‚·‚é
 	Player::AttackState* clone() const override;
+	void input();
 };

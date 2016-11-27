@@ -13,7 +13,6 @@ Enemy::Enemy(const Transform & _transform)
 	m_state(ESTATE::SPAWN),
 	m_stay_timer(2),
 	m_hp(100),
-	m_incidence(),
 	m_alpha(1)
 {
 }
@@ -46,7 +45,6 @@ void Enemy::draw(const Renderer & _renderer)
 {
 	m_collision.draw(_renderer);
 	m_animatorOne.draw(_renderer, m_transform,GScolor(1,1,1,m_alpha));
-	//_renderer.getDraw2D().string(std::to_string(m_hp), &GSvector2(500, 80), 30);
 }
 
 void Enemy::collisionChase(EnemyCollision * _collision)
@@ -91,8 +89,6 @@ void Enemy::state(float deltaTime)
 		m_animatorOne.changeAnimation(static_cast<unsigned int>(ENEMY_ANIMATION::SLIDE), false, true);
 		break;
 	case ESTATE::ATTACK:
-		m_incidence.setWorldTransform(m_animatorOne.getOrientedMat(8));
-		m_incidence.synthesisWorldTransform(m_transform);
 		m_animatorOne.changeAnimation(static_cast<unsigned int>(ENEMY_ANIMATION::ATTACK), false, false, false, 0);
 		if (m_animatorOne.isEndCurrentAnimation())
 		{
@@ -138,7 +134,7 @@ void Enemy::attack_start()
 {
 	m_animatorOne.changeAnimation(static_cast<unsigned int>(ENEMY_ANIMATION::ATTACK), false, false, false, 0);
 	float end = m_animatorOne.getCurrentAnimationEndTime() / 60.0f;
-	Collision_Ptr actor = std::make_shared<EnemyAttackCollision>(&m_incidence, end);
+	Collision_Ptr actor = std::make_shared<EnemyAttackCollision>(m_transform.m_translate+m_transform.front(),end);
 	m_collision.add(actor);
 	m_state = ESTATE::ATTACK;
 }
