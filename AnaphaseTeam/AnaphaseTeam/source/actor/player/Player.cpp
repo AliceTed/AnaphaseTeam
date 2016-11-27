@@ -110,31 +110,19 @@ void Player::subActionStart()
 	}
 }
 
-void Player::gaugeUp(float _scale)
-{
-	m_Gauge.up(_scale);
-}
-
-void Player::attackHoming(Enemy * _enemy)
-{
-	Math::Clamp clamp;
-
-	if (_enemy == nullptr) return;
-	/*if (m_device->input()->velocity().y >= 0)
-	{
-		m_transform.m_rotate = targetDirection(*_enemy);
-	}*/
-	m_transform.m_rotate = targetDirection(*_enemy);
-	float velocity = distanceActor(*_enemy) / 5.0f;
-	velocity = clamp(m_Gauge.scale(velocity), 0.0f, distanceActor(*_enemy) - 1.0f);
-	target = m_transform.m_translate + (m_transform.front() * velocity);
-	//gsVector3Lerp(&m_transform.m_translate, &m_transform.m_translate, &target, 0.1f);
-	//m_transform.translate_front(velocity);
-}
-
+//void Player::gaugeUp(float _scale)
+//{
+//	m_Gauge.up(_scale);
+//}
 void Player::homing()
 {
-	m_lockon->homing();
+	Enemy* target = m_lockon->getTarget();
+	if (target == nullptr) return;
+	m_transform.m_rotate = targetDirection(*target);
+	float velocity = distanceActor(*target) / 5.0f;
+	Math::Clamp clamp;
+	velocity = clamp(m_Gauge.scale(velocity), 0.0f, distanceActor(*target) - 1.0f);
+	this->target = m_transform.m_translate + (m_transform.front() * velocity);
 }
 void Player::specialAttack()
 {
@@ -173,16 +161,6 @@ void Player::attackmotion(Attack & _attack)
 {
 	_attack.changeMotion(m_animatorOne, m_status.attackSpeed());
 }
-
-const bool Player::isNextAttack(const Attack & _attack) const
-{
-	return _attack.isNextAttack(m_animatorOne);
-}
-
-const bool Player::isEndAttackMotion(const Attack & _attack) const
-{
-	return _attack.isEndMotion(m_animatorOne);
-}
 void Player::control()
 {
 	if (m_device->input()->specialSkillMode())
@@ -207,7 +185,6 @@ void Player::control()
 		changeState(ACTOR_STATE::ATTACK);
 		m_combo.start(false);
 	}
-
 
 	if (m_device->input()->slowAttackTrigger())
 	{

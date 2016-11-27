@@ -6,15 +6,13 @@ Attack::Attack(const AttackStatus & _status, ANIMATION_ID _animation, ATTACK_TYP
 }
 Attack::~Attack()
 {
-
 }
 void Attack::initialize(Player* _player)
 {
 	motion(_player);
+	_player->homing();
 	_player->createAttackCollision();
 }
-
-
 void Attack::motion(Player * _player)
 {
 	_player->attackmotion(*this);
@@ -22,17 +20,6 @@ void Attack::motion(Player * _player)
 void Attack::changeMotion(AnimatorOne & _animator, float _speed)
 {
 	_animator.changeAnimation(static_cast<GSuint>(m_Animation),true, false, false,3.0f, _speed);
-}
-const bool Attack::isNextAttack(const AnimatorOne & _animator) const
-{
-	float end = _animator.getCurrentAnimationEndTime();
-	float current = _animator.getCurrentAnimationTime();
-	float limit = 25.0f;
-	return (end - limit) <= current;
-}
-const bool Attack::isEndMotion(const AnimatorOne & _animator) const
-{
-	return _animator.isEndCurrentAnimation();
 }
 
 const ATTACK_TYPE Attack::next(bool _isSlow) const

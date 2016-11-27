@@ -28,13 +28,8 @@ public:
 	void jumping(float _velocity);
 	void avoidAction(const GSvector3& _velocity);
 	void attackmotion(Attack& _attack);
-	const bool isNextAttack(const Attack& _attack)const;
-	const bool isEndAttackMotion(const Attack& _attack)const;
-	void control();
 	void look_at(CameraController* _camera, GSvector3* _target);
-	void subActionStart();
-	void gaugeUp(float _scale);
-	void attackHoming(Enemy* _boss);
+	//void gaugeUp(float _scale);
 	void homing();
 	void specialAttack();
 	void gaugeAdd();
@@ -46,6 +41,8 @@ public://Actoråpè≥
 	void update(float deltatime) override;
 	void draw(const Renderer& _renderer) override;
 private:
+	void subActionStart();
+	void control();
 	void createStates();
 	void rotate(float deltaTime, Transform& _transform);
 	void movement(float deltaTime, float _speed);

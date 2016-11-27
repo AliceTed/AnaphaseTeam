@@ -23,14 +23,11 @@ public:
 	void start(bool _isSlow);
 	void update(float deltaTime);
 	//入力があったときによばれる
-	void next(bool _isSlow);
-	//アニメーション終了時に呼ばれつ
-	void change();
+	const bool next(bool _isSlow);
 	const bool isEnd()const;
 private:
 	Player* m_player;
 	Attack m_current;
-	ATTACK_TYPE m_nextKey;
 	std::unordered_map<ATTACK_TYPE, Attack> m_container;
 	bool m_isEnd;
 };

@@ -1,6 +1,5 @@
 #include "..\..\header\collision\EnemyAttackCollision.h"
 #include "../../header/shape/Sphere.h"
-#include "../../header/attack/AttackIncidence.h"
 EnemyAttackCollision::EnemyAttackCollision(const GSvector3& _point, float _destroytime)
 	:CollisionActor(new Sphere(_point,0.5f),Collision_Tag::ENEMY_ATTACK),
 	m_point(_point),

@@ -7,6 +7,7 @@
 */
 #include "../../actor/Player/Player.h"
 #include "../ActorState.h"
+#include "../../convenient/Timer.h"
 class Player::AttackState:public ActorState<Player>
 {
 public:
@@ -16,5 +17,7 @@ private:
 	void action(float deltaTime)override;
 	//ƒNƒ[ƒ“‚ğì¬‚·‚é
 	Player::AttackState* clone() const override;
-	void input();
+	void input(float deltaTime);
+private:
+	Timer m_inputTimer;
 };

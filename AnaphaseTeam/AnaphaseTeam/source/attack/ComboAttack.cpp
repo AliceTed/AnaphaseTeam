@@ -5,7 +5,6 @@ ComboAttack::ComboAttack(Player* _player)
 	:m_player(_player),
 	m_container(),
 	m_current(AttackStatus(), ANIMATION_ID::STAND, ATTACK_TYPE::End, ATTACK_TYPE::End),
-	m_nextKey(ATTACK_TYPE::End),
 	m_isEnd(false)
 {
 }
@@ -32,28 +31,21 @@ void ComboAttack::start(bool _isSlow)
 
 void ComboAttack::update(float deltaTime)
 {
-	m_player->homing();
+	//lerpでアニメーションが変わらないときがある
+	m_current.motion(m_player);
 }
 
-void ComboAttack::next(bool _isSlow)
+const bool ComboAttack::next(bool _isSlow)
 {
-	//入力を受け付けるか
-	if (!m_player->isNextAttack(m_current))return;
-	m_nextKey = m_current.next(_isSlow);
-}
-
-void ComboAttack::change()
-{
-	if (m_nextKey == ATTACK_TYPE::End)
+	ATTACK_TYPE next = m_current.next(_isSlow);
+	if (next == ATTACK_TYPE::End)
 	{
-		m_isEnd = true;
-		return;
+		return false;
 	}
-	m_current = m_container.at(m_nextKey);
+	m_current = m_container.at(next);
 	m_current.initialize(m_player);
-	m_nextKey = ATTACK_TYPE::End;
+	return true;
 }
-
 const bool ComboAttack::isEnd() const
 {
 	return m_isEnd;

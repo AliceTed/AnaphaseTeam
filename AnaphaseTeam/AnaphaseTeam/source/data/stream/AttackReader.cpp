@@ -10,7 +10,7 @@ void AttackReader::operator()(std::unordered_map<ATTACK_TYPE,Attack>* _out, cons
 		return;
 	}
 	Data::ErrorMessage error;
-	error("combo", "ATTACKDATA");
+	error(_path + _name, "ATTACKDATA");
 }
 
 const bool AttackReader::load(std::unordered_map<ATTACK_TYPE, Attack>* _out, const std::string & _fullname) const

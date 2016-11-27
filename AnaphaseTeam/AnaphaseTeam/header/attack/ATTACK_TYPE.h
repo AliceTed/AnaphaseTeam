@@ -1,24 +1,6 @@
 #pragma once
 enum class ATTACK_TYPE
 {
-	QFirst,
-	QSecond,
-	QThird,
-	QFour,
-
-	SFirst,
-	SSecond,
-	SThird,
-	SFour,
-
-	SQSecond,
-	SQThird,
-	SQFour,
-
-	QSSecond,
-	QSThird,
-	QSFour,
-
 	Q,
 	QQ,
 	QQQ,

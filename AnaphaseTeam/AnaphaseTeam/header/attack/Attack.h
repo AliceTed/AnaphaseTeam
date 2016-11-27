@@ -20,8 +20,6 @@ public:
 	void initialize(Player * _player);
 	void motion(Player* _player);
 	void changeMotion(AnimatorOne& _animator, float _speed);
-	const bool isNextAttack(const AnimatorOne& _animator)const;
-	const bool isEndMotion(const AnimatorOne& _animator) const;
 	const ATTACK_TYPE next(bool _isSlow) const;
 private:
 	//!攻撃ステータス
