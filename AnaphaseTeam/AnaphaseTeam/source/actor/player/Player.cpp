@@ -392,15 +392,21 @@ void Player::control()
 void Player::look_at(CameraController * _camera, GSvector3 * _target)
 {
 	GSvector3 target = m_transform.m_translate;
+	float distance = 0.0f;
 
 	m_camera->lookAt_cameraTarget_player(target);
 	m_camera->lookAt_cameraTarget_enemy(*_target);
 
-	// ‚±‚êÁ‚µ‚Ä by—L•y
-	//_camera->special_move1(&target, _target, 10.0f, 1.5f);
-
-	// ‚±‚ê‚©‚ç‚Í‚±‚êŽg‚Á‚Ä by—L•y
-	_camera->change_cameraWork(E_CameraWorkID::CAMERA_ACTION_LOCK_ON);
+	//‰¼
+	distance = _target->distance(target);
+	if (distance < 10)
+	{
+		_camera->change_cameraWork(E_CameraWorkID::LOCK_ON);
+	}
+	else
+	{
+		_camera->change_cameraWork(E_CameraWorkID::NORMAL);
+	}
 }
 
 /**

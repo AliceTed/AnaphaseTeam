@@ -8,8 +8,7 @@
 
 #include <gslib.h>
 #include <memory>
-//#include "Perspective.h"
-#include "LookAt.h"
+//#include "LookAt.h"
 
 #include "../../header/transform/Transform.h"
 
@@ -74,7 +73,7 @@ public:
 	void cameraWork_tilt(
 		const GSvector3&	_position_camera,
 		const GSvector3&	_position_target,
-		const float			_direction,
+		float				_direction,
 		const float			_followSpeed_camera,
 		const float			_followSpeed_target
 	);
@@ -95,11 +94,11 @@ public:
 	[1] 完全追尾
 	********************************************************/
 	void cameraWork_pan(
-		const GSvector3& _position_camera,
-		const GSvector3& _position_target,
-		const float _elevation,
-		const float _followSpeed_camera,
-		const float _followSpeed_target
+		const GSvector3&	_position_camera,
+		const GSvector3&	_position_target,
+		float				_elevation,
+		const float			_followSpeed_camera,
+		const float			_followSpeed_target
 	);
 
 
@@ -116,8 +115,8 @@ public:
 	********************************************************/
 	void cameraWork_dolly(
 		const GSvector3&	_position_target,
-		const float			_elevation,
-		const float			_direction,
+		float				_elevation,
+		float				_direction,
 		const float			_distance,
 		const float			_followSpeed_camera,
 		const float			_followSpeed_target
@@ -202,27 +201,6 @@ public:
 
 
 	/**************************************************
-	@return パースペクティブ
-	**************************************************/
-	const Perspective perspective(void) const
-	{
-		return m_perspective;
-	}
-	/**************************************************
-	@return 位置
-	**************************************************/
-	const GSvector3 position(void) const
-	{
-		return m_lookAt.position();
-	}
-	/**************************************************
-	@return ターゲット
-	**************************************************/
-	const GSvector3 target(void) const
-	{
-		return m_lookAt.target();
-	}
-	/**************************************************
 	@return カメラターゲット（プレイヤー）
 	**************************************************/
 	const GSvector3& cameraTarget_player(void) const;
@@ -257,7 +235,25 @@ public:
 private:
 	void update_perspective(void);
 
+	void update_lookAt(void);
+
 	void update_zoom(const float _speed);
+
+	void update_follow(
+		GSvector3*			_vector,
+		const GSvector3&	_target,
+		float				_speed
+	);
+
+	void update_rotate(
+		GSvector3*			_vector,
+		const GSvector3&	_target,
+		const float			_elevation,
+		const float			_direction,
+		const float			_distance
+	);
+
+	void to_rad(float* _degree);
 
 private:
 	//Perspective						m_perspective;
@@ -265,7 +261,13 @@ private:
 	float							m_fov_min;
 	float							m_fov_max;
 	GSmatrix4						m_matProjection;
-	LookAt							m_lookAt;
+
+	//LookAt							m_lookAt;
+	GSvector3						m_position;
+	GSvector3						m_target;
+	GSvector3						m_up;
+	GSmatrix4						m_matView;
+
 	std::shared_ptr<CameraTarget>	m_cameraTarget_player;
 	std::shared_ptr<CameraTarget>	m_cameraTarget_enemy;
 };

@@ -1,6 +1,7 @@
 #include "../../../header/camera/CameraWork/CameraWorkManager.h"
 #include "../../../header/camera/Camera.h"
 #include "../../../header/camera/CameraActionDolly.h"
+#include "../../../header/camera/CameraWork/CameraWorkNormal.h"
 #include "../../../header/camera/CameraWork/CameraWorkLockOn.h"
 #include "../../../header/camera/CameraWork/CameraWorkDead.h"
 #include "../../../header/camera/CameraWork/CameraWorkData.h"
@@ -29,11 +30,15 @@ void CameraWorkManager::load(void)
 	Camera* camera = m_camera;
 
 	m_cameraData->add(
-		E_CameraWorkID::CAMERA_ACTION_LOCK_ON,
+		E_CameraWorkID::NORMAL,
+		new CameraWorkNormal(camera)
+	);
+	m_cameraData->add(
+		E_CameraWorkID::LOCK_ON,
 		new CameraWorkLockOn(camera)
 	);
 	m_cameraData->add(
-		E_CameraWorkID::CAMERA_ACTION_DEAD,
+		E_CameraWorkID::DEAD,
 		new CameraWorkDead(camera)
 	);
 }

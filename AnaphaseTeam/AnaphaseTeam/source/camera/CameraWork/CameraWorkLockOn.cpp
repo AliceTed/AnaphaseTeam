@@ -21,35 +21,27 @@ void CameraWorkLockOn::run(void)
 {
 	m_camera->zoom(90.0f);
 
-	Math::Clamp clamp;
-	ACalc calc;
-	float ele, dir, distance, pitch, yow;
-	GSvector3 vector, target;
+	float elevation, direction, distance;
+	GSvector3 vector;
 	const GSvector3& player = m_camera->cameraTarget_player();
 	const GSvector3& enemy = m_camera->cameraTarget_enemy();
 
-	m_camera->follow_target(enemy, 0.1f);
-
 	distance = gsVector3Distance(&player, &enemy);
 
-	ACalc::vector(&vector, player, enemy);
+	vector = enemy - player;
 
-	gsVector3ToEleDir(&ele, &dir, &vector);
+	gsVector3ToEleDir(&elevation, &direction, &vector);
 
-	pitch = 10;
-	yow = dir + 180;
+	m_camera->cameraWork_dolly(
+		player,
+		10,
+		direction + 180,
+		5,
+		0.1f,
+		0.5f
+	);
 
-	ACalc::to_rad(&pitch);
-	ACalc::to_rad(&yow);
-
-	pitch = clamp(pitch, 0.0f, 360.0f);
-
-	//‹——£§ŒÀ
-	distance = clamp(distance, 1.0f, 50.0f);
-
-	calc.rotate(&target, enemy, pitch, yow, distance + 5);
-
-	m_camera->follow_position(target, 0.5f);
+	m_camera->follow_target(enemy, 0.5f);
 
 	return;
 }

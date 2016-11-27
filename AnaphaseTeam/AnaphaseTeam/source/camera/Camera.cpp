@@ -4,7 +4,10 @@
 
 Camera::Camera(void) :
 	m_perspective(Perspective(45.0f, 1280.0f / 720.0f, 0.3f, 1000.0f)),
-	m_lookAt(LookAt(GSvector3(0, 0, 0), GSvector3(0, 0, 0), GSvector3(0, 1, 0))),
+	//m_lookAt(LookAt(GSvector3(0, 0, 0), GSvector3(0, 0, 0), GSvector3(0, 1, 0))),
+	m_position(0.0f, 0.0f, 0.0f),
+	m_target(0.0f, 0.0f, 0.0f),
+	m_up(0.0f, 1.0f, 0.0f),
 	m_cameraTarget_player(std::make_shared<CameraTarget>()),
 	m_cameraTarget_enemy(std::make_shared<CameraTarget>())
 {
@@ -23,7 +26,7 @@ void Camera::update(void)
 {
 	update_perspective();
 
-	m_lookAt.update();
+	update_lookAt();
 
 	return;
 }
@@ -32,7 +35,7 @@ void Camera::update(void)
 
 void Camera::move(const GSvector3& _position)
 {
-	m_lookAt.set_position(_position);
+	m_position = _position;
 
 	return;
 }
@@ -41,7 +44,7 @@ void Camera::move(const GSvector3& _position)
 
 void Camera::lookAt(const GSvector3& _target)
 {
-	m_lookAt.lookAt(_target);
+	m_target = _target;
 
 	return;
 }
@@ -49,20 +52,34 @@ void Camera::lookAt(const GSvector3& _target)
 
 
 void Camera::cameraWork_tilt(
-	const GSvector3&	_position_camera,
-	const GSvector3&	_position_target,
-	const float			_direction,
-	const float			_followSpeed_camera,
-	const float			_followSpeed_target
+	const GSvector3& _position_camera,
+	const GSvector3& _position_target,
+	float _direction,
+	const float _followSpeed_camera,
+	const float _followSpeed_target
 )
 {
-	m_lookAt.cameraWork_tilt(
-		_position_camera,
-		_position_target,
+	float elevation, direction;
+	GSvector3 vector, target;
+
+	vector = _position_target - _position_camera;
+
+	gsVector3ToEleDir(&elevation, &direction, &vector);
+
+	to_rad(&elevation);
+	to_rad(&_direction);
+
+	update_rotate(
+		&target,
+		m_position,
+		elevation,
 		_direction,
-		_followSpeed_camera,
-		_followSpeed_target
+		10
 	);
+
+	follow_position(_position_camera, _followSpeed_camera);
+
+	follow_target(target, _followSpeed_target);
 
 	return;
 }
@@ -70,20 +87,34 @@ void Camera::cameraWork_tilt(
 
 
 void Camera::cameraWork_pan(
-	const GSvector3&	_position_camera,
-	const GSvector3&	_position_target,
-	const float			_elevation,
-	const float			_followSpeed_camera,
-	const float			_followSpeed_target
+	const GSvector3& _position_camera,
+	const GSvector3& _position_target,
+	float _elevation,
+	const float _followSpeed_camera,
+	const float	_followSpeed_target
 )
 {
-	m_lookAt.cameraWork_pan(
-		_position_camera,
-		_position_target,
+	float elevation, direction;
+	GSvector3 vector, target;
+
+	vector = _position_target - _position_camera;
+
+	gsVector3ToEleDir(&elevation, &direction, &vector);
+
+	to_rad(&_elevation);
+	to_rad(&direction);
+
+	update_rotate(
+		&target,
+		m_position,
 		_elevation,
-		_followSpeed_camera,
-		_followSpeed_target
+		direction,
+		10
 	);
+
+	follow_position(_position_camera, _followSpeed_camera);
+
+	follow_target(target, _followSpeed_target);
 
 	return;
 }
@@ -91,21 +122,29 @@ void Camera::cameraWork_pan(
 
 void Camera::cameraWork_dolly(
 	const GSvector3&	_position_target,
-	const float			_elevation,
-	const float			_direction,
+	float				_elevation,
+	float				_direction,
 	const float			_distance,
 	const float			_followSpeed_camera,
 	const float			_followSpeed_target
 )
 {
-	m_lookAt.cameraWork_dolly(
+	GSvector3 position;
+
+	to_rad(&_elevation);
+	to_rad(&_direction);
+
+	update_rotate(
+		&position,
 		_position_target,
 		_elevation,
 		_direction,
-		_distance,
-		_followSpeed_camera,
-		_followSpeed_target
+		_distance
 	);
+
+	follow_position(position, _followSpeed_camera);
+
+	follow_target(_position_target, _followSpeed_target);
 
 	return;
 }
@@ -132,7 +171,7 @@ void Camera::lookAt_cameraTarget_enemy(const GSvector3& _target)
 
 void Camera::follow_position(const GSvector3& _target, const float _speed)
 {
-	m_lookAt.follow_position(_target, _speed);
+	update_follow(&m_position, _target, _speed);
 
 	return;
 }
@@ -141,7 +180,7 @@ void Camera::follow_position(const GSvector3& _target, const float _speed)
 
 void Camera::follow_target(const GSvector3& _target, const float _speed)
 {
-	m_lookAt.follow_target(_target, _speed);
+	update_follow(&m_target, _target, _speed);
 
 	return;
 }
@@ -197,7 +236,7 @@ const bool Camera::isFrustumCulling(const GSvector3 & center, float radius) cons
 {
 	//Ž‹‘ä
 	GSfrustum frustum;
-	gsFrustumFromMatrices(&frustum, &m_lookAt.matView(), &m_matProjection);
+	gsFrustumFromMatrices(&frustum, &m_matView, &m_matProjection);
 
 	return !!gsFrustumIsSphereInside(&frustum, &center, radius);
 }
@@ -207,7 +246,7 @@ const bool Camera::isFrustumCulling(const GSvector3 & center, float radius) cons
 const float Camera::nearDistance(const GSvector3 & ohter, float radius) const
 {
 	//ohter‚ÆƒJƒƒ‰‚Ì‹——£
-	float dis = ohter.distance(m_lookAt.position());
+	float dis = ohter.distance(m_position);
 	//‹——£‚Ænear‚Ì·
 	return dis-(m_perspective.z + radius);
 }
@@ -216,7 +255,7 @@ const float Camera::nearDistance(const GSvector3 & ohter, float radius) const
 
 const float Camera::distance(const GSvector3 & ohter) const
 {
-	return m_lookAt.position().distance(ohter);
+	return m_position.distance(ohter);
 }
 
 
@@ -224,8 +263,8 @@ const float Camera::distance(const GSvector3 & ohter) const
 const Transform Camera::transform() const
 {
 	//yaw‰ñ“]‚¾‚¯
- 	GSvector3 vec= m_lookAt.target() - m_lookAt.position();
-	return Transform(vec.getYaw(), GSvector3(0, 1, 0), m_lookAt.position());
+ 	GSvector3 vec= m_target - m_position;
+	return Transform(vec.getYaw(), GSvector3(0, 1, 0), m_position);
 }
 
 
@@ -250,6 +289,25 @@ void Camera::update_perspective(void)
 
 
 
+void Camera::update_lookAt(void)
+{
+	glMatrixMode(GL_MODELVIEW);
+
+	glLoadIdentity();
+
+	gluLookAt(
+		m_position.x,	m_position.y,	m_position.z,
+		m_target.x,		m_target.y,		m_target.z,
+		m_up.x,			m_up.y,			m_up.z
+	);
+
+	glGetFloatv(GL_MODELVIEW_MATRIX, (GLfloat *)&m_matView);
+
+	return;
+}
+
+
+
 void Camera::update_zoom(const float _speed)
 {
 	Math::Clamp clamp;
@@ -261,6 +319,50 @@ void Camera::update_zoom(const float _speed)
 		m_fov_min,
 		m_fov_max
 	);
+
+	return;
+}
+
+
+
+void Camera::update_follow(
+	GSvector3* _vector,
+	const GSvector3& _target,
+	float _speed
+)
+{
+	Math::Clamp clamp;
+
+	_speed = clamp(_speed, 0.0f, 1.0f);
+
+	gsVector3Lerp(_vector, _vector, &_target, _speed);
+
+	return;
+
+}
+
+
+
+void Camera::update_rotate(
+	GSvector3* _vector,
+	const GSvector3& _target,
+	const float _elevation,
+	const float _direction,
+	const float _distance
+)
+{
+	_vector->x = _target.x + cosf(_direction) * cosf(_elevation) * _distance;
+	_vector->y = _target.y + sinf(_elevation) * _distance;
+	_vector->z = _target.z + sinf(_direction) * cosf(_elevation) * _distance;
+}
+
+
+
+void Camera::to_rad(float* _degree)
+{
+	float pi = 3.14159265359f;
+
+	(*_degree) *= pi / 180.0f;
 
 	return;
 }

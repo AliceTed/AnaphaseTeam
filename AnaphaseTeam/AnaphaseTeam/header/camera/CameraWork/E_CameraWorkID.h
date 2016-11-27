@@ -9,6 +9,7 @@
 enum class E_CameraWorkID : int
 {
 	NONE = -1,
-	CAMERA_ACTION_LOCK_ON = 0,
-	CAMERA_ACTION_DEAD,
+	LOCK_ON = 0,
+	NORMAL,
+	DEAD,
 };
