@@ -139,7 +139,7 @@ void Player::createAttackCollision()
 {
 	GSvector3 p = target + m_transform.front();
 	p.y += 1.f;
-	Collision_Ptr act = std::make_shared<PlayerAttackCollision>(p, m_animatorOne.getNextAnimationEndTime() / 60.0f, m_status.attackSpeed());
+	Collision_Ptr act = std::make_shared<PlayerAttackCollision>(this);
 	m_collision.add(act);
 }
 void Player::hpDown()

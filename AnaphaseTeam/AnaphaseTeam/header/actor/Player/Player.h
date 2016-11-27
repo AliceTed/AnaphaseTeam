@@ -86,6 +86,8 @@ private://stateéŒ¾
 private://CollisionéŒ¾
 	class PlayerCollision;
 	friend PlayerCollision;
+	class PlayerAttackCollision;
+	friend PlayerAttackCollision;
 	class SpecialAttackCollision;
 	friend SpecialAttackCollision;
 private://’è”
