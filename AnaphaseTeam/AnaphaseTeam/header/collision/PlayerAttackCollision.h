@@ -1,6 +1,7 @@
 #pragma once
 #include "CollisionActor.h"
 #include "../actor/Player/Player.h"
+#include "../convenient/Timer.h"
 class Player::PlayerAttackCollision:public CollisionActor
 {
 public:
@@ -11,4 +12,5 @@ private:
 	void collision_Enter(HitInformation& _hit);
 private:
 	Player* m_player;
+	Timer m_destroy;
 };
