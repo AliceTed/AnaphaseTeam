@@ -58,7 +58,6 @@ const bool Title::isExit() const
 }
 void Title::decision(Select _select)
 {
-	if (!GameDevice::getInstacnce().input()->jump())return;
 	GameDevice::getInstacnce().sound().playSE(SE_ID::ENTER);
 	switch (_select)
 	{
@@ -72,18 +71,4 @@ void Title::decision(Select _select)
 		m_IsExit = true;
 		break;
 	}
-}
-void Title::select(SelectUI & _select)
-{
-	if (GameDevice::getInstacnce().input()->up())
-	{
-		_select.previous();
-		GameDevice::getInstacnce().sound().playSE(SE_ID::SELECT);
-	}
-	if (GameDevice::getInstacnce().input()->down())
-	{
-		_select.next();
-		GameDevice::getInstacnce().sound().playSE(SE_ID::SELECT);
-	}
-	GameDevice::getInstacnce().sound().stopSE(SE_ID::SELECT);
 }
