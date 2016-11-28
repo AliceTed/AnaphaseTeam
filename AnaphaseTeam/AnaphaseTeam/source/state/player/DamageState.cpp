@@ -7,7 +7,7 @@ Player::DamageState::DamageState(Player* _player)
 
 void Player::DamageState::start()
 {
-	m_actor->m_animatorOne.changeAnimation(static_cast<GSuint>(ANIMATION_ID::DAMAGE), false);
+	m_actor->m_animatorOne.changeAnimationLerp(static_cast<GSuint>(ANIMATION_ID::DAMAGE),2.0f);
 }
 void Player::DamageState::action(float deltaTime)
 {

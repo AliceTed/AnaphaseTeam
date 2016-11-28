@@ -37,9 +37,9 @@ void AnimatorOne::changeAnimation(unsigned int _animation, bool _isLerp, bool _i
 	Data::CastID cast;
 	if (!m_currentAnimation)
 		m_currentAnimation = std::make_shared<Animation>(m_modelID, cast(_animation), AnimationTimer(gsGetEndAnimationTime(cast(m_modelID), cast(_animation)), _animationSpeed), _isLoop);
-	///*今のアニメーションでループするものなら変えない
+	/*///*今のアニメーションでループするものなら変えない
 	if (m_currentAnimation->getAnimationNo() == cast(_animation) && _isLoop)
-		return;
+		return;*/
 	if (_isLerp)
 	{
 		lerpBegin(_animation, !_isNotInit, _isLoop, _lerpTime, _animationSpeed);
