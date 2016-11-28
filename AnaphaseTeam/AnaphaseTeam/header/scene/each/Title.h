@@ -18,6 +18,7 @@ public:
 	const bool isExit()const;
 
 	void decision(Select _select);
+	void select(SelectUI & _select);
 private:
 	bool m_IsExit;
 	SceneChange m_change;
