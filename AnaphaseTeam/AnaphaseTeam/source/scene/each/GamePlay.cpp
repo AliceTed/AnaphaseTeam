@@ -3,16 +3,15 @@
 #include "../../../header/renderer/Renderer.h"
 #include "../../../header/device/GameDevice.h"
 #include "../../../header/math/Random.h"
-GamePlay::GamePlay(GameDevice* _device)
+GamePlay::GamePlay()
 	:m_IsEnd(false),
-	m_device(_device),
 	m_Map(OCTREE_ID::ARENA),
 	m_Camera(),
 	m_cameracontroller(&m_Camera),
 	m_enemys(),
 	m_change(),
-	m_lockon(_device),
-	m_player(_device, &m_Camera, &m_lockon)
+	m_lockon(),
+	m_player(&m_Camera, &m_lockon)
 {
 }
 GamePlay::~GamePlay()

@@ -3,11 +3,11 @@
 #include "../IScene.h"
 #include "../../ui/SlideImage.h"
 #include <vector>
-class GameDevice;
+
 class Option :public IScene
 {
 public:
-	Option(GameDevice* _device);
+	Option();
 	~Option();
 	void initialize();
 	void update(float deltaTime);
@@ -17,7 +17,6 @@ public:
 	const bool isEnd()const;
 	const bool isExit()const;
 private:
-	GameDevice* m_device;
 	SceneChange m_change;
 	std::vector<SlideImage> m_image;
 };

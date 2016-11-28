@@ -16,7 +16,7 @@ void Player::MoveState::action(float deltaTime)
 	m_actor->movement(deltaTime,SPEED);
 	m_actor->subActionStart();
 	m_actor->control();
-	if (!m_actor->m_device->input()->move())
+	if (!GameDevice::getInstacnce().input()->move())
 	{
 		changeState(ACTOR_STATE::STAND);
 	}

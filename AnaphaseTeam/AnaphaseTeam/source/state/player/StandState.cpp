@@ -20,7 +20,7 @@ void Player::StandState::action(float deltaTime)
 		changeState(ACTOR_STATE::LIMITFALL);
 		return;
 	}
-	if (m_actor->m_device->input()->move())
+	if (GameDevice::getInstacnce().input()->move())
 	{
 		changeState(ACTOR_STATE::RUN);
 		return;

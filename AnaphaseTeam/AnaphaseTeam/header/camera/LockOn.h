@@ -16,12 +16,11 @@ class CameraController;
 class EnemyManager;
 class Enemy;
 class Player;
-class GameDevice;
 
 class LockOn
 {
 public:
-	LockOn(GameDevice* _device);
+	LockOn();
 	~LockOn();
 	/**
 	* @brief ˆê”Ô‹ß‚¢“G‚ð’T‚·
@@ -37,5 +36,5 @@ public:
 private:
 	Player* m_player;
 	unique_ptr<Enemy>*  m_target;
-	GameDevice* m_device;
+
 };

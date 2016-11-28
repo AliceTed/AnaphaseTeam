@@ -1,8 +1,7 @@
 #include "..\..\..\header\scene\each\GameClear.h"
 #include "../../../header/device/GameDevice.h"
-GameClear::GameClear(GameDevice* _device)
-	:m_IsEnd(false),
-	m_device(_device)
+GameClear::GameClear()
+	:m_IsEnd(false)
 {
 }
 
@@ -17,7 +16,7 @@ void GameClear::initialize()
 
 void GameClear::update(float deltaTime)
 {
-	if (m_device->input()->jump())
+	if (GameDevice::getInstacnce().input()->jump())
 	{
 		m_IsEnd = true;
 	}
@@ -43,5 +42,5 @@ const bool GameClear::isEnd() const
 
 const bool GameClear::isExit() const
 {
-	return m_device->input()->exit();
+	return GameDevice::getInstacnce().input()->exit();
 }

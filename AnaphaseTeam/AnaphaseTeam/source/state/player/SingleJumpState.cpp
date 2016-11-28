@@ -26,7 +26,7 @@ void Player::SingleJumpState::action(float deltaTime)
 		changeState(ACTOR_STATE::LANDINGRIGIDITY);
 		return;
 	}
-	if (m_actor->m_device->input()->jump())
+	if (GameDevice::getInstacnce().input()->jump())
 	{
 		changeState(ACTOR_STATE::DOUBLEJUMP);
 	}

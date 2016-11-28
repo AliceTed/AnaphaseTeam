@@ -33,6 +33,7 @@ void Sound::playBGM(BGM_ID _id)
 
 void Sound::stopBGM(BGM_ID _id)
 {
+	m_volume = 0;
 	gsBindMusic(static_cast<GSuint>(_id));
 	gsStopMusic();
 }
@@ -55,7 +56,7 @@ void Sound::bgmVolume(BGM_ID _id, float _volume)
 	gsSetMusicVolume(_volume);
 }
 
-void Sound::bgmFadeIn(BGM_ID _id, float _deltaTime)
+void Sound::bgmFade(BGM_ID _id, float _deltaTime)
 {
 	m_volume = LERP(_deltaTime, m_volume, m_max);
 	gsBindMusic(static_cast<GSuint>(_id));
@@ -64,12 +65,6 @@ void Sound::bgmFadeIn(BGM_ID _id, float _deltaTime)
 		m_max = 1.0f;
 		gsSetMusicVolume(m_volume);
 	}
-}
-
-void Sound::bgmFadeOut(BGM_ID _id, float _deltaTime)
-{
-	m_volume = LERP(_deltaTime, m_volume, m_max);
-	gsBindMusic(static_cast<GSuint>(_id));
 	if (gsGetMusicTime() >= gsGetMusicEndTime() - 10.0f)
 	{
 		m_max = 0.0f;
@@ -85,7 +80,7 @@ void Sound::loadSE(SE_ID _id, const string& _name, const string& _path, const st
 
 void Sound::deleteSE()
 {
-	for (int i = static_cast<int>(BGM_ID::SIZE) - 1; i < static_cast<int>(SE_ID::SIZE); i++)
+	for (int i = static_cast<int>(SE_ID::SIZE) - 1; i < static_cast<int>(SE_ID::SIZE); i++)
 	{
 		gsDeleteMusic(i);
 	}
@@ -94,5 +89,15 @@ void Sound::deleteSE()
 void Sound::playSE(SE_ID _id)
 {
 	gsBindMusic(static_cast<GSuint>(_id));
+	if (gsIsPlayMusic()) gsStopMusic();
 	gsPlayMusic();
+}
+
+void Sound::stopSE(SE_ID _id)
+{
+	gsBindMusic(static_cast<GSuint>(_id));
+	if (gsGetMusicTime() >= gsGetMusicEndTime())
+	{
+		gsStopMusic();
+	}
 }

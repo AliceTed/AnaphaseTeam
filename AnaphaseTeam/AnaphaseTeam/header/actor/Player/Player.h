@@ -14,7 +14,7 @@
 #include "../../attack/Scythe.h"
 #include "Gauge.h"
 #include "specialSkill/SpecialSkillManager.h"
-class GameDevice;
+
 class CameraController;
 class TestActor;
 class LockOn;
@@ -23,7 +23,7 @@ class Camera;
 class Player :public Actor
 {
 public:
-	Player(GameDevice* _device, Camera * _camera, LockOn* _lockon);
+	Player(Camera * _camera, LockOn* _lockon);
 	~Player();
 	void jumping(float _velocity);
 	void avoidAction(const GSvector3& _velocity);
@@ -47,7 +47,6 @@ private:
 	void rotate(float deltaTime, Transform& _transform);
 	void movement(float deltaTime, float _speed);
 private:
-	GameDevice* m_device;	
 	ComboAttack m_combo;
 	Status m_status;
 	Gauge m_Gauge;

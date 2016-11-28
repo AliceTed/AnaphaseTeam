@@ -3,11 +3,10 @@
 #include "../../header/renderer/Renderer.h"
 #include "../../header/device/GameDevice.h"
 
-SpAttackUI::SpAttackUI(GameDevice* _device)
+SpAttackUI::SpAttackUI()
 	:m_ID(TEXTURE_ID::SP_UI)
 	,m_Time(0)
-	,m_scale(0.6,0.6),
-	m_device(_device)
+	,m_scale(0.6,0.6)
 {}
 
 SpAttackUI::~SpAttackUI()
@@ -23,7 +22,7 @@ void SpAttackUI::initilize()
 void SpAttackUI::update()
 {
 	resetID();
-	if (m_device->input()->specialSkillMode())
+	if (GameDevice::getInstacnce().input()->specialSkillMode())
 	{
 		if (m_ID == TEXTURE_ID::SP_UI)
 		{
@@ -31,7 +30,7 @@ void SpAttackUI::update()
 		}
 	}
 
-	if (!m_device->input()->specialSkillMode())
+	if (!GameDevice::getInstacnce().input()->specialSkillMode())
 	{
 		m_scale = GSvector2(0.6, 0.6);
 	}

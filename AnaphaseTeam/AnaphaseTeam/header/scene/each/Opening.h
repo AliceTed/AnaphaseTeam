@@ -2,11 +2,11 @@
 #include "../SceneChange.h"
 #include "../IScene.h"
 #include "../../math/TimeLerpVector.h"
-class GameDevice;
+
 class Opening:public IScene
 {
 public:
-	Opening(GameDevice* _device);
+	Opening();
 	~Opening();
 	void initialize();
 	void update(float deltaTime);
@@ -16,7 +16,6 @@ public:
 	const bool isEnd()const;
 	const bool isExit()const;
 private:
-	GameDevice* m_device;
 	SceneChange m_change;
 	Math::TimeLerpVector<GScolor> m_lerp;
  };

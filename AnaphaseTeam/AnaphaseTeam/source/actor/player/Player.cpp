@@ -25,20 +25,19 @@
 #include "../../../header/collision/PlayerCollision.h"
 #include "../../../header/collision/SpecialAttackCollision.h"
 const float Player::ROTATESPEED = -2.0f;
-Player::Player(GameDevice* _device, Camera * _camera, LockOn* _lockon)
+Player::Player(Camera * _camera, LockOn* _lockon)
 	:Actor(
 		Transform({ 0,0,-15 }, GSquaternion(0, 0, 0, 1)),
 		MODEL_ID::PLAYER,
 		Actor_Tag::PLAYER
 	),
-	m_device(_device),
 	m_combo(this),
 	m_camera(_camera),
 	m_status(),
 	m_Gauge(),
 	m_lockon(_lockon),
 	m_scythe(),
-	m_SpecialSkillManager(m_Gauge, this, m_device),
+	m_SpecialSkillManager(m_Gauge, this),
 	target(0, 0, 0)
 {
 }
@@ -95,14 +94,14 @@ void Player::jumping(float _velocity)
 
 void Player::subActionStart()
 {
-	if (m_device->input()->specialSkillMode())return;
-	if (m_device->input()->jump())
+	if (GameDevice::getInstacnce().input()->specialSkillMode())return;
+	if (GameDevice::getInstacnce().input()->jump())
 	{	
 		changeState(ACTOR_STATE::SINGLEJUMP);
 		return;
 	}
 
-	if (m_device->input()->avoid())
+	if (GameDevice::getInstacnce().input()->avoid())
 	{
 		if (m_Gauge.down(5))
 		{
@@ -165,30 +164,30 @@ void Player::attackmotion(Attack & _attack)
 }
 void Player::control()
 {
-	if (m_device->input()->specialSkillMode())
+	if (GameDevice::getInstacnce().input()->specialSkillMode())
 	{
-		if (m_device->input()->gaugeAttack1())
+		if (GameDevice::getInstacnce().input()->gaugeAttack1())
 		{
 			m_SpecialSkillManager.initialize(SPECIALTYPE::RECOVERY);
 		}
-		if (m_device->input()->gaugeAttack2())
+		if (GameDevice::getInstacnce().input()->gaugeAttack2())
 		{
 			m_SpecialSkillManager.initialize(SPECIALTYPE::SUPERARMOR);
 		}
-		if (m_device->input()->gaugeAttack3())
+		if (GameDevice::getInstacnce().input()->gaugeAttack3())
 		{
 			m_SpecialSkillManager.initialize(SPECIALTYPE::SPECIALATTACK);
 		}
 		//return;
 	}
 	/*ƒ{ƒ^ƒ“‰Ÿ‚µ‚½‚çAttackState‚ÉØ‚è‘Ö‚í‚é*/
-	if (m_device->input()->quickAttackTrigger())
+	if (GameDevice::getInstacnce().input()->quickAttackTrigger())
 	{
 		changeState(ACTOR_STATE::ATTACK);
 		m_combo.start(false);
 	}
 
-	if (m_device->input()->slowAttackTrigger())
+	if (GameDevice::getInstacnce().input()->slowAttackTrigger())
 	{
 		changeState(ACTOR_STATE::ATTACK);
 		m_combo.start(true);
@@ -219,7 +218,7 @@ void Player::createStates()
 }
 void Player::rotate(float deltaTime, Transform & _transform)
 {
-	GSvector2 dir = m_device->input()->velocity();
+	GSvector2 dir = GameDevice::getInstacnce().input()->velocity();
 	GSvector3 forward(_transform.front()*-dir.y);
 	GSvector3 side(_transform.left()*dir.x);
 	GSvector3 velocity = forward + side;
@@ -229,10 +228,10 @@ void Player::rotate(float deltaTime, Transform & _transform)
 void Player::movement(float deltaTime, float _speed)
 {
 	Transform transform = m_camera->transform();
-	if (m_device->input()->move())
+	if (GameDevice::getInstacnce().input()->move())
 		rotate(deltaTime, transform);
 	int speed = 1;
-	if (!m_device->input()->move())speed = 0;
+	if (!GameDevice::getInstacnce().input()->move())speed = 0;
 	GSvector3 forward(m_transform.front()*speed);
 	m_transform.translate(forward*deltaTime*_speed);
 }

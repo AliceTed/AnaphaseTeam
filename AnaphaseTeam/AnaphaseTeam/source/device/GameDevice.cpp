@@ -1,15 +1,9 @@
 #include "../../header/device/GameDevice.h"
 
-
-GameDevice::GameDevice(Sound* _sound)
-	:m_input(),
-	m_sound(*_sound),
-	m_pattern(std::make_shared<InputPattern_A>(&m_input))
+GameDevice & GameDevice::getInstacnce()
 {
-}
-
-GameDevice::~GameDevice()
-{
+	static GameDevice self;
+	return self;
 }
 
 Input_Ptr & GameDevice::input()
