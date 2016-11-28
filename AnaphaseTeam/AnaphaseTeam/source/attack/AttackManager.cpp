@@ -32,3 +32,8 @@ void AttackManager::Start(bool _attackChange, Player* _player)
 {
 	m_combo.start(_attackChange, _player);
 }
+
+float AttackManager::getStatus()
+{
+	return m_combo.isPower();
+}

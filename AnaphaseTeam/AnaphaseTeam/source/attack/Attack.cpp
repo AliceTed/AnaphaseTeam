@@ -47,3 +47,8 @@ const Combo Attack::strengthAttackNext() const
 {
 	return m_nexySCombo;
 }
+
+const float Attack::isAttackPower()
+{
+	return m_status.isPower();
+}

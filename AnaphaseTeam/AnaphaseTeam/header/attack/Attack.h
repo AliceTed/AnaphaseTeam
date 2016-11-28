@@ -30,6 +30,7 @@ public:
 	const bool isEndMotion(const AnimatorOne& _animator) const;
 	const Combo weakAttackNext() const;
 	const Combo strengthAttackNext() const;
+	const float isAttackPower();
 private:
 	//!攻撃ステータス
 	AttackStatus m_status;

@@ -7,7 +7,8 @@ ComboManager::ComboManager()
 	m_next(Combo::End),
 	m_attackPattern(),
 	m_isEnd(false),
-	m_attackFinished(false)
+	m_attackFinished(false),
+	m_power(10)
 {
 }
 
@@ -18,7 +19,6 @@ ComboManager::~ComboManager()
 void ComboManager::create()
 {
 	m_comboReader.ComboCreate(&m_attack, &m_attackPattern);
-
 }
 
 void ComboManager::initialize()
@@ -35,6 +35,7 @@ void ComboManager::reset()
 
 void ComboManager::start(bool _attackChange, Player* _player)
 {
+
 	if (_attackChange)
 	{
 		m_current = m_attackPattern.at(Combo::Q);
@@ -50,7 +51,6 @@ void ComboManager::start(bool _attackChange, Player* _player)
 
 void ComboManager::update(float deltaTime, Player* _player)
 {
-
 	nextAttack(deltaTime, _player);
 	m_current.update(deltaTime, _player);
 
@@ -119,4 +119,9 @@ void ComboManager::change(Player* _player)
 const bool ComboManager::isCurrentEnd(Player* _player) const
 {
 	return _player->isEndAttackMotion(m_current);
+}
+
+float ComboManager::isPower()
+{
+	return m_current.isAttackPower();
 }

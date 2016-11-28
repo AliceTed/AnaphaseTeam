@@ -14,7 +14,8 @@ Enemy::Enemy(const Transform & _transform)
 	m_state(ESTATE::SPAWN),
 	m_stay_timer(2),
 	m_hp(100),
-	m_incidence()
+	m_incidence(),
+	m_status(0,0,GSvector3(0,0,0))
 {
 }
 Enemy::~Enemy()
@@ -64,7 +65,8 @@ void Enemy::damage(Player * _player)
 	//‚±‚±
 	m_animatorOne.changeAnimation(static_cast<GSuint>(ENEMY_ANIMATION::DAMAGE),true,false,false,10.0f,1.5f);
 	m_transform.translate_front(-0.8f);
-	m_hp -= 10;
+	//m_hp -= 10;
+	m_hp -= _player->enemyDamage();
 	//_player->gaugeAdd();
 }
 

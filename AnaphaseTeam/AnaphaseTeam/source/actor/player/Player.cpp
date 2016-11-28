@@ -43,7 +43,9 @@ Player::Player(GameDevice* _device, Camera * _camera, LockOn* _lockon)
 	m_scythe(),
 	m_SpecialSkillManager(m_Gauge, this, m_device),
 	m_currentAction(nullptr),
-	target(0, 0, 0)
+	target(0, 0, 0),
+	m_enemyDamage(0)
+	
 {
 }
 
@@ -61,6 +63,7 @@ void Player::initialize()
 	m_scythe.initialize();
 	m_SpecialSkillManager.initialize(SPECIALTYPE::NONE);
 	target = m_transform.m_translate;
+	m_enemyDamage = enemyDamage();
 }
 
 void Player::update(float deltatime)
@@ -282,6 +285,13 @@ void Player::recovery()
 {
 	m_SpecialSkillManager.recovery(m_status);
 }
+
+float Player::enemyDamage()
+{
+	return m_attackManager.getStatus();
+}
+
+
 
 void Player::startJump(JumpControl * _control, float _scale)
 {

@@ -17,7 +17,7 @@ class MyGame : public gslib::Game
 {
 public:
 	MyGame()
-		:Game(1280, 720, true, 60.0f),
+		:Game(1280, 720, false, 60.0f),
 		m_SceneManager(),
 		m_Renderer(),
 		m_device()

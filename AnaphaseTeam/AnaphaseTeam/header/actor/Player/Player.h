@@ -67,6 +67,7 @@ public:
 	void createAttackCollision();
 	void hpDown();
 	void recovery();
+	float enemyDamage();
 public:
 	const bool isGround() const;
 	const bool isJumpAttack()const;
@@ -120,6 +121,7 @@ private:
 	SpecialSkillManager m_SpecialSkillManager;
 
 	GSvector3 target;
+	float m_enemyDamage;
 private://íËêî
 	static const float MOVESPEED;
 	static const float ROTATESPEED;

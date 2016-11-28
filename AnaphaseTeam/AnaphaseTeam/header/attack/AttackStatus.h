@@ -16,6 +16,7 @@ public:
 
 	//ˆĞ—Í‚Æ‚Á”ò‚Ñ‚ğ“n‚·
 	void giveDamage(Player* _player, Boss* _other);
+	float isPower();
 private:
 	//!UŒ‚—Í
 	float m_Power;

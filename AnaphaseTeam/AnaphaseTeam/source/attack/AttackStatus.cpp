@@ -20,3 +20,8 @@ void AttackStatus::giveDamage(Player* _player, Boss * _other)
 
 	//_other->beUnderAttack(pow,_player->vectorToFront(m_BlowOff));
 }
+
+float AttackStatus::isPower()
+{
+	return m_Power;
+}
