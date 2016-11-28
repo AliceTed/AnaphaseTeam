@@ -37,6 +37,7 @@ void Enemy::update(float deltatime)
 	if (m_hp <= 0)
 	{
 		m_state = ESTATE::DEAD;
+		m_collision.clear();
 	}
 	m_collision.update(deltatime);
 }
@@ -44,7 +45,7 @@ void Enemy::update(float deltatime)
 void Enemy::draw(const Renderer & _renderer)
 {
 	m_collision.draw(_renderer);
-	m_animatorOne.draw(_renderer, m_transform,GScolor(1,1,1,m_alpha));
+	m_animatorOne.draw(_renderer, m_transform, GScolor(1, 1, 1, m_alpha));
 }
 
 void Enemy::collisionChase(EnemyCollision * _collision)
@@ -134,7 +135,7 @@ void Enemy::attack_start()
 {
 	m_animatorOne.changeAnimation(static_cast<unsigned int>(ENEMY_ANIMATION::ATTACK), false, false, false, 0);
 	float end = m_animatorOne.getCurrentAnimationEndTime() / 60.0f;
-	Collision_Ptr actor = std::make_shared<EnemyAttackCollision>(m_transform.m_translate+m_transform.front(),end);
+	Collision_Ptr actor = std::make_shared<EnemyAttackCollision>(m_transform.m_translate + m_transform.front(), end);
 	m_collision.add(actor);
 	m_state = ESTATE::ATTACK;
 }

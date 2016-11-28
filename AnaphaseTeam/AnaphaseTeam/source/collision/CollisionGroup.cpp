@@ -47,6 +47,10 @@ void CollisionGroup::draw(const Renderer & _renderer)
 {
 	for (auto& i : m_container){i->draw(_renderer);}
 }
+void CollisionGroup::clear()
+{
+	for (auto& i : m_container) { i->destroy(); }
+}
 unsigned int CollisionGroup::size() const
 {
 	return m_container.size();

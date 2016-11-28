@@ -71,7 +71,10 @@ void Player::update(float deltatime)
 
 	m_collision.update(deltatime);
 	m_Gauge.update(deltatime);
-	m_isDead = m_status.getHp() <= 0;
+	if (m_isDead = m_status.getHp() <= 0)
+	{
+		m_collision.clear();
+	}
 }
 
 void Player::draw(const Renderer & _renderer)
