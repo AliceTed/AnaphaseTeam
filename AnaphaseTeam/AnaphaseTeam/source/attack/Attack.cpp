@@ -1,5 +1,6 @@
 #include "../../header/attack/Attack.h"
 #include "../../header/actor/Player/Player.h"
+#include "../../header/device/GameDevice.h"
 Attack::Attack(const AttackStatus & _status, ANIMATION_ID _animation, ATTACK_TYPE _nextQuick, ATTACK_TYPE _nextSlow)
 	:m_status(_status), m_Animation(_animation), m_nextQuick(_nextQuick),m_nextSlow(_nextSlow)
 {
@@ -9,6 +10,7 @@ Attack::~Attack()
 }
 void Attack::initialize(Player* _player)
 {
+	GameDevice::getInstacnce().sound().playSE(SE_ID::ENTER);
 	motion(_player);
 	_player->homing();
 	_player->createAttackCollision();
