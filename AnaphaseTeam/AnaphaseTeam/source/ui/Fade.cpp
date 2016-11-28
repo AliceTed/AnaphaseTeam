@@ -1,9 +1,11 @@
 #include "../../header/ui/Fade.h"
 #include "../../header/renderer/Renderer.h"
-Fade::Fade()
+Fade::Fade(TEXTURE_ID _id, const GSvector2& _position)
 	:m_isStart(false),
-	m_Lerp(GScolor(0,0,0,0)),
-	m_endfunc(nullptr)
+	m_Lerp(GScolor(0, 0, 0, 0)),
+	m_endfunc(nullptr),
+	m_position(_position),
+	m_TextureID(_id)
 {
 }
 
@@ -21,10 +23,10 @@ void Fade::update(float deltaTime)
 	m_Lerp.update(deltaTime);
 	endFunction();
 }
-void Fade::start(const GScolor& _startColor, const GScolor& _endColor, float _time/*second*/,const std::function<void()>& _end)
+void Fade::start(const GScolor& _startColor, const GScolor& _endColor, float _time/*second*/, const std::function<void()>& _end)
 {
 	m_isStart = true;
-	m_Lerp.start(_startColor,_endColor,_time);
+	m_Lerp.start(_startColor, _endColor, _time);
 	m_endfunc = _end;
 }
 
@@ -42,13 +44,10 @@ const bool Fade::isEnd()const
 {
 	return m_Lerp.isEnd();
 }
-/*void setMode(FadeMode mode)
-{
 
-}*/
 void Fade::draw(const Renderer& renderer)
 {
-	renderer.getDraw2D().textrue(TEXTURE_ID::BLACK,&GSvector2(0,0),&m_Lerp.current());
+	renderer.getDraw2D().textrue(m_TextureID, &m_position, &m_Lerp.current());
 }
 
 void Fade::endFunction()

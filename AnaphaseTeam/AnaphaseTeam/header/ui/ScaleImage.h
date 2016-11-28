@@ -12,6 +12,7 @@ public:
 	void moveStart(const GSvector2& _end, float _time);
 	void update(float deltaTime);
 	void draw(const Renderer& _renderer);
+	const bool isLerpEnd();
 private:
 	const GSvector2 getTextureSize()const;
 	const GSvector2 getSizeMarge(const GSvector2& _scale)const;

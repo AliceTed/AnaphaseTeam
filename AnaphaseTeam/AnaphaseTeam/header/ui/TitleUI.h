@@ -1,8 +1,6 @@
 #pragma once
 #include "SelectUI.h"
-#include "Cursor.h"
-class SceneChange;
-class Input;
+#include "Fade.h"
 class Title;
 class GameDevice;
 class TitleUI
@@ -17,11 +15,9 @@ public:
 private:
 	void operation(Title& _title);
 	void createSelect();
-	void logoFade(Title& _title);
 private:
 	SelectUI m_select;
-	SelectCursor m_cursor;
-	float m_alpha;
 	GameDevice* m_device;
+	Fade m_fade;
 };
 

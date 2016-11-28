@@ -64,7 +64,7 @@ void Gauge::downGauge(RankGauge _rankGauge)
 
 void Gauge::update(float deltatime)
 {
-	lerp(&m_gauge, &m_gauge, &m_lerpmax, deltatime * 0.1f);
+	m_gauge = LERP(deltatime * 0.1f, m_gauge, m_lerpmax);
 }
 
 float Gauge::scale(float def)
@@ -82,9 +82,4 @@ void Gauge::add(float _point)
 	Math::Clamp clamp;
 	m_gauge = clamp(m_gauge + _point, 0.0f, static_cast<float>(RankGauge::MAX));
 	
-}
-
-void Gauge::lerp(float * out, const float * min, const float * max, float time)
-{
-	*out = LERP(time, *min, *max);
 }

@@ -4,11 +4,11 @@
 #include "../../header/device/Input.h"
 #include "../../header/scene/each/Title.h"
 #include "../../header/device/GameDevice.h"
+#include "../../header/data/TEXTURE_ID.h"
 TitleUI::TitleUI(GameDevice* _device)
 	:m_select(),
-	m_cursor(),
-	m_alpha(1.0f),
-	m_device(_device)
+	m_device(_device),
+	m_fade(TEXTURE_ID::TITLE_ROGO)
 {
 }
 
@@ -19,30 +19,33 @@ TitleUI::~TitleUI()
 void TitleUI::initialize()
 {
 	createSelect();
-	m_alpha = 1.0f;
+	m_fade.initialize();
+	m_fade.start(GScolor(1.0f, 1.0f, 1.0f, 1.0f), GScolor(1.0f, 1.0f, 1.0f, 1.0f), 0);
 }
 
 void TitleUI::update(float deltaTime, Title& _title)
 {
 	m_select.update(deltaTime);
 	operation(_title);
-	logoFade(_title);
+	m_fade.update(deltaTime);
 }
 
 void TitleUI::draw(const Renderer & _renderer)
 {
-	_renderer.getDraw2D().textrue(TEXTURE_ID::TITLE_ROGO, &GSvector2(0, 0), &GScolor(1.0f, 1.0f, 1.0f, m_alpha));
+	m_fade.draw(_renderer);
 	m_select.draw(_renderer);
-	m_cursor.draw(_renderer, m_select.currentSelect());
 }
 
 void TitleUI::finish()
 {
 	m_select.initialize();
-	m_cursor.initialize();
 }
 void TitleUI::operation(Title& _title)
 {
+	if (m_fade.isStart())
+	{
+		return;
+	}
 	if (m_device->input()->up())
 	{
 		m_select.previous();
@@ -54,14 +57,13 @@ void TitleUI::operation(Title& _title)
 	if (m_device->input()->jump())
 	{
 		_title.decision(m_select.currentSelect());
-		m_alpha -= 0.01f;
 		m_select.startMove();
+		m_fade.start(GScolor(1.0f, 1.0f, 1.0f, 1.0f), GScolor(1.0f, 1.0f, 1.0f, 0.0f), 1.0f);
 	}
 }
 void TitleUI::createSelect()
 {
 	m_select.initialize();
-	m_cursor.initialize();
 	const unsigned int size = 3;
 	Select select[size] =
 	{
@@ -82,16 +84,6 @@ void TitleUI::createSelect()
 		GSvector2 position(base + marge*i);
 		ScaleImage image(id[i], position, false);
 		m_select.add(select[i], image);
-		m_cursor.add(select[i], position + GSvector2(-70, 0));
 	}
 	m_select.startChange();
-}
-
-void TitleUI::logoFade(Title & _title)
-{
-	if (_title.isLogofade())
-	{
-		m_alpha -= 0.01f;
-		//m_select.startMove();
-	}
 }

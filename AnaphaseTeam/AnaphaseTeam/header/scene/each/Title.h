@@ -18,13 +18,10 @@ public:
 	const bool isExit()const;
 
 	void decision(Select _select);
-	void select(SelectUI& _select);
-	const bool isLogofade();
 private:
 	bool m_IsExit;
 	SceneChange m_change;
 	TitleUI m_title;
 	GameDevice* m_device;
-	bool m_isLogoFadeStart;
 };
 #endif

@@ -6,8 +6,7 @@ Title::Title(GameDevice* _device)
 	:m_device(_device),
 	m_IsExit(false),
 	m_title(_device),
-	m_change(),
-	m_isLogoFadeStart(false)
+	m_change()
 {
 }
 
@@ -18,7 +17,6 @@ Title::~Title()
 void Title::initialize()
 {
 	m_IsExit = false;
-	m_isLogoFadeStart = false;
 	m_change.initialize();
 	m_change.begin();
 	m_title.initialize();
@@ -26,7 +24,8 @@ void Title::initialize()
 void Title::update(float deltaTime)
 {
 	m_device->sound().playBGM(BGM_ID::TITLE);
-	if (m_change.update(deltaTime))return;
+	//if (m_change.update(deltaTime))return;
+	m_change.update(deltaTime);
 	m_title.update(deltaTime, *this);
 }
 
@@ -57,11 +56,10 @@ const bool Title::isExit() const
 }
 void Title::decision(Select _select)
 {
-	//if (!m_device->input()->jump())return;
 	switch (_select)
 	{
 	case Select::GAMESTART:
-		//m_change.end(SceneMode::GAMEPLAY);
+		m_change.end(SceneMode::GAMEPLAY);
 		break;
 	case Select::OPTION:
 		m_change.end(SceneMode::OPTION);
@@ -70,20 +68,4 @@ void Title::decision(Select _select)
 		m_IsExit = true;
 		break;
 	}
-}
-//void Title::select(SelectUI & _select)
-//{
-//	if (m_device->input()->up())
-//	{
-//		_select.previous();
-//	}
-//	if (m_device->input()->down())
-//	{
-//		_select.next();
-//	}
-//}
-
-const bool Title::isLogofade()
-{
-	return m_isLogoFadeStart;
 }

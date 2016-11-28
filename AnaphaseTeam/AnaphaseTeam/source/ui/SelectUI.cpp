@@ -1,7 +1,8 @@
 #include "../../header/ui/SelectUI.h"
 #include <algorithm>
-const GSvector2 SelectUI::MINSCALE = GSvector2(1.0f, 1.0f);
-const GSvector2 SelectUI::MAXSCALE = GSvector2(1.3f, 1.3f);
+const GSvector2 SelectUI::DEFAULTSCALE = GSvector2(1.0f, 1.0f);
+const GSvector2 SelectUI::SELECTSCALE = GSvector2(1.3f, 1.3f);
+const GSvector2 SelectUI::DECISIONSCALE = GSvector2(2.5f,2.5f);
 const float SelectUI::LERPTIME = 0.05f;
 SelectUI::SelectUI()
 	:m_current(Select::GAMESTART),
@@ -55,9 +56,9 @@ void SelectUI::previous()
 }
 void SelectUI::change(Select _next)
 {
-	m_images.at(m_current).start(MAXSCALE, MINSCALE, LERPTIME);
+	m_images.at(m_current).start(SELECTSCALE, DEFAULTSCALE, LERPTIME);
 	m_current = _next;
-	m_images.at(m_current).start(MINSCALE, MAXSCALE, LERPTIME);
+	m_images.at(m_current).start(DEFAULTSCALE, SELECTSCALE, LERPTIME);
 }
 
 const Select SelectUI::currentSelect() const
@@ -72,7 +73,8 @@ void SelectUI::startChange()
 
 void SelectUI::startMove()
 {
-	m_images.at(m_current).moveStart(GSvector2(550, 200), LERPTIME* 10.0f);
+	m_images.at(m_current).moveStart(GSvector2(550, 200), LERPTIME * 10.0f);
+	m_images.at(m_current).start(SELECTSCALE, DECISIONSCALE, LERPTIME *10.0f);
 	for (auto& i : m_images)
 	{
 		if (i.first != m_current)
