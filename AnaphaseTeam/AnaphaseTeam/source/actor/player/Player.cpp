@@ -105,6 +105,7 @@ void Player::inGround()
 
 void Player::stand(float deltaTime)
 {
+
 	m_currentAction = std::make_shared<StandState>();
 	if (!m_isGround)
 	{
