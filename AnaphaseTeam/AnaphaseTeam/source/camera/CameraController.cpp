@@ -8,14 +8,14 @@
 #include "../../header/math/Calculate.h"
 #include <string>
 
-#include "../../header/camera/CameraActionManager.h"
+#include "../../header/camera/CameraWork/CameraWorkManager.h"
 
 CameraController::CameraController(Camera* _camera) :
 	m_camera(_camera),
 	m_distance(1),
 	m_pitch(0),
 	m_yow(0),
-	m_cameraActionManager(new CameraActionManager(_camera))
+	m_cameraWorkManager(new CameraWorkManager(_camera))
 {
 
 }
@@ -36,8 +36,25 @@ CameraController::CameraController(
 	ACalc::to_rad(&m_pitch);
 	ACalc::to_rad(&m_yow);
 
-	m_cameraActionManager->load();
+	m_cameraWorkManager->load();
 }
+
+
+
+void CameraController::update(float _deltaTime)
+{
+	m_cameraWorkManager->update(_deltaTime);
+}
+
+
+
+void CameraController::draw(void)
+{
+	m_cameraWorkManager->draw();
+
+	m_camera->update();
+}
+
 
 
 
@@ -50,27 +67,7 @@ void CameraController::change_control(Camera* _camera)
 
 
 
-void CameraController::special_move1(
-	GSvector3* _target1, 
-	GSvector3* _target2, 
-	float _elevation, 
-	float _distance)
+void CameraController::change_cameraWork(const E_CameraWorkID _id)
 {
-	m_cameraActionManager->run();
-	return;
-}
-
-
-
-const float CameraController::direction(void) const
-{
-	ACalc calc;
-	float ele, dir;
-	GSvector3 vector;
-
-	calc.vector(&vector, m_camera->position(), m_camera->target());
-
-	gsVector3ToEleDir(&ele, &dir, &vector);
-
-	return dir;
+	m_cameraWorkManager->change_cameraWork(_id);
 }

@@ -40,6 +40,7 @@ public://Actoråpè≥
 	void initialize() override;
 	void update(float deltatime) override;
 	void draw(const Renderer& _renderer) override;
+	AttackStatus status();
 private:
 	void subActionStart();
 	void control();

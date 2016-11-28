@@ -112,9 +112,6 @@
     <Filter Include="ヘッダー ファイル\collision">
       <UniqueIdentifier>{3f38fcce-e724-469a-9c50-143871782b19}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ソース ファイル\ui">
-      <UniqueIdentifier>{e1c7c17e-ffc4-403f-bd11-65fe45527639}</UniqueIdentifier>
-    </Filter>
     <Filter Include="ヘッダー ファイル\ui">
       <UniqueIdentifier>{16b8cdc1-bfca-404f-be49-f88c761df387}</UniqueIdentifier>
     </Filter>
@@ -174,6 +171,9 @@
     </Filter>
     <Filter Include="ソース ファイル\data\stream">
       <UniqueIdentifier>{a854fa81-4dd8-4f58-9a81-488b57a9faf2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\shape\ui">
+      <UniqueIdentifier>{e1c7c17e-ffc4-403f-bd11-65fe45527639}</UniqueIdentifier>
     </Filter>
     <Filter Include="ヘッダー ファイル\camera">
       <UniqueIdentifier>{8b26a032-4802-4034-ae6c-fef2d4b00838}</UniqueIdentifier>
@@ -366,12 +366,6 @@
     <ClInclude Include="header\camera\CameraController.h">
       <Filter>ヘッダー ファイル\camera</Filter>
     </ClInclude>
-    <ClInclude Include="header\camera\LookAt.h">
-      <Filter>ヘッダー ファイル\camera</Filter>
-    </ClInclude>
-    <ClInclude Include="header\camera\Perspective.h">
-      <Filter>ヘッダー ファイル\camera</Filter>
-    </ClInclude>
     <ClInclude Include="header\actor\Player\Status.h">
       <Filter>ヘッダー ファイル\actor\Player</Filter>
     </ClInclude>
@@ -401,9 +395,6 @@
     </ClInclude>
     <ClInclude Include="header\ui\SlideImage.h">
       <Filter>ヘッダー ファイル\ui</Filter>
-    </ClInclude>
-    <ClInclude Include="header\scene\each\GameClear.h">
-      <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="header\actor\Boss\Boss.h">
       <Filter>ヘッダー ファイル\actor\Boss</Filter>
@@ -462,50 +453,11 @@
     <ClInclude Include="header\collision\EnemyAttackCollision.h">
       <Filter>ヘッダー ファイル\collision\user</Filter>
     </ClInclude>
-    <ClInclude Include="header\camera\CameraAction.h">
-      <Filter>ヘッダー ファイル\camera</Filter>
-    </ClInclude>
-    <ClInclude Include="header\camera\enum\CameraActionDead.h">
-      <Filter>ヘッダー ファイル\camera</Filter>
-    </ClInclude>
-    <ClInclude Include="header\camera\CameraActionDolly.h">
-      <Filter>ヘッダー ファイル\camera</Filter>
-    </ClInclude>
-    <ClInclude Include="header\camera\enum\stage1\CameraActionDollyStage1_1.h">
-      <Filter>ヘッダー ファイル\camera</Filter>
-    </ClInclude>
-    <ClInclude Include="header\camera\enum\stage1\CameraActionDollyStage1_2.h">
-      <Filter>ヘッダー ファイル\camera</Filter>
-    </ClInclude>
-    <ClInclude Include="header\camera\enum\stage1\CameraActionDollyStage1_3.h">
-      <Filter>ヘッダー ファイル\camera</Filter>
-    </ClInclude>
-    <ClInclude Include="header\camera\enum\CameraActionID.h">
-      <Filter>ヘッダー ファイル\camera</Filter>
-    </ClInclude>
-    <ClInclude Include="header\camera\enum\CameraActionLockOn.h">
-      <Filter>ヘッダー ファイル\camera</Filter>
-    </ClInclude>
-    <ClInclude Include="header\camera\CameraActionManager.h">
-      <Filter>ヘッダー ファイル\camera</Filter>
-    </ClInclude>
     <ClInclude Include="header\camera\CameraTarget.h">
-      <Filter>ヘッダー ファイル\camera</Filter>
-    </ClInclude>
-    <ClInclude Include="header\camera\cameraWork\CameraWork.h">
-      <Filter>ヘッダー ファイル\camera</Filter>
-    </ClInclude>
-    <ClInclude Include="header\camera\cameraWork\FixCamera.h">
-      <Filter>ヘッダー ファイル\camera</Filter>
-    </ClInclude>
-    <ClInclude Include="header\camera\cameraWork\PanCamera.h">
       <Filter>ヘッダー ファイル\camera</Filter>
     </ClInclude>
     <ClInclude Include="header\collision\PlayerAttackCollision.h">
       <Filter>ヘッダー ファイル\collision\user</Filter>
-    </ClInclude>
-    <ClInclude Include="header\ui\SpAttackUI.h">
-      <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="header\collision\PlayerCollision.h">
       <Filter>ヘッダー ファイル\collision\user</Filter>
@@ -575,6 +527,39 @@
     </ClInclude>
     <ClInclude Include="header\attack\LoadAttack.h">
       <Filter>ヘッダー ファイル\attack</Filter>
+    </ClInclude>
+    <ClInclude Include="header\camera\CameraWork\_CameraWork.h">
+      <Filter>ヘッダー ファイル\camera</Filter>
+    </ClInclude>
+    <ClInclude Include="header\camera\CameraWork\CameraWorkData.h">
+      <Filter>ヘッダー ファイル\camera</Filter>
+    </ClInclude>
+    <ClInclude Include="header\camera\CameraWork\CameraWorkDead.h">
+      <Filter>ヘッダー ファイル\camera</Filter>
+    </ClInclude>
+    <ClInclude Include="header\camera\CameraWork\CameraWorkLockOn.h">
+      <Filter>ヘッダー ファイル\camera</Filter>
+    </ClInclude>
+    <ClInclude Include="header\camera\CameraWork\CameraWorkManager.h">
+      <Filter>ヘッダー ファイル\camera</Filter>
+    </ClInclude>
+    <ClInclude Include="header\camera\CameraWork\CameraWorkNormal.h">
+      <Filter>ヘッダー ファイル\camera</Filter>
+    </ClInclude>
+    <ClInclude Include="header\camera\CameraWork\CWParameterReader.h">
+      <Filter>ヘッダー ファイル\camera</Filter>
+    </ClInclude>
+    <ClInclude Include="header\camera\CameraWork\E_CameraWorkID.h">
+      <Filter>ヘッダー ファイル\camera</Filter>
+    </ClInclude>
+    <ClInclude Include="header\scene\each\GameClear.h">
+      <Filter>ヘッダー ファイル\camera</Filter>
+    </ClInclude>
+    <ClInclude Include="header\camera\CameraWork\I_CameraWork.h">
+      <Filter>ヘッダー ファイル\camera</Filter>
+    </ClInclude>
+    <ClInclude Include="header\ui\SpAttackUI.h">
+      <Filter>ヘッダー ファイル\camera</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -657,22 +642,22 @@
       <Filter>ソース ファイル\actor</Filter>
     </ClCompile>
     <ClCompile Include="source\ui\Cursor.cpp">
-      <Filter>ソース ファイル\ui</Filter>
+      <Filter>ソース ファイル\shape\ui</Filter>
     </ClCompile>
     <ClCompile Include="source\ui\ScaleImage.cpp">
-      <Filter>ソース ファイル\ui</Filter>
+      <Filter>ソース ファイル\shape\ui</Filter>
     </ClCompile>
     <ClCompile Include="source\ui\SelectUI.cpp">
-      <Filter>ソース ファイル\ui</Filter>
+      <Filter>ソース ファイル\shape\ui</Filter>
     </ClCompile>
     <ClCompile Include="source\ui\TitleUI.cpp">
-      <Filter>ソース ファイル\ui</Filter>
+      <Filter>ソース ファイル\shape\ui</Filter>
     </ClCompile>
     <ClCompile Include="source\scene\SceneChange.cpp">
       <Filter>ソース ファイル\scene</Filter>
     </ClCompile>
     <ClCompile Include="source\ui\Fade.cpp">
-      <Filter>ソース ファイル\ui</Filter>
+      <Filter>ソース ファイル\shape\ui</Filter>
     </ClCompile>
     <ClCompile Include="source\actor\Actor.cpp">
       <Filter>ソース ファイル\actor</Filter>
@@ -690,12 +675,6 @@
       <Filter>ソース ファイル\camera</Filter>
     </ClCompile>
     <ClCompile Include="source\camera\CameraController.cpp">
-      <Filter>ソース ファイル\camera</Filter>
-    </ClCompile>
-    <ClCompile Include="source\camera\LookAt.cpp">
-      <Filter>ソース ファイル\camera</Filter>
-    </ClCompile>
-    <ClCompile Include="source\camera\Perspective.cpp">
       <Filter>ソース ファイル\camera</Filter>
     </ClCompile>
     <ClCompile Include="source\actor\player\Status.cpp">
@@ -726,7 +705,7 @@
       <Filter>ソース ファイル\scene\each</Filter>
     </ClCompile>
     <ClCompile Include="source\ui\SlideImage.cpp">
-      <Filter>ソース ファイル\ui</Filter>
+      <Filter>ソース ファイル\shape\ui</Filter>
     </ClCompile>
     <ClCompile Include="source\scene\each\GameClear.cpp">
       <Filter>ソース ファイル</Filter>
@@ -782,37 +761,7 @@
     <ClCompile Include="source\collision\EnemyAttackCollision.cpp">
       <Filter>ソース ファイル\collision\user</Filter>
     </ClCompile>
-    <ClCompile Include="source\camera\enum\CameraActionDead.cpp">
-      <Filter>ソース ファイル\camera</Filter>
-    </ClCompile>
-    <ClCompile Include="source\camera\CameraActionDolly.cpp">
-      <Filter>ソース ファイル\camera</Filter>
-    </ClCompile>
-    <ClCompile Include="source\camera\enum\stage1\CameraActionDollyStage1_1.cpp">
-      <Filter>ソース ファイル\camera</Filter>
-    </ClCompile>
-    <ClCompile Include="source\camera\enum\stage1\CameraActionDollyStage1_2.cpp">
-      <Filter>ソース ファイル\camera</Filter>
-    </ClCompile>
-    <ClCompile Include="source\camera\enum\stage1\CameraActionDollyStage1_3.cpp">
-      <Filter>ソース ファイル\camera</Filter>
-    </ClCompile>
-    <ClCompile Include="source\camera\enum\CameraActionLockOn.cpp">
-      <Filter>ソース ファイル\camera</Filter>
-    </ClCompile>
-    <ClCompile Include="source\camera\CameraActionManager.cpp">
-      <Filter>ソース ファイル\camera</Filter>
-    </ClCompile>
     <ClCompile Include="source\camera\CameraTarget.cpp">
-      <Filter>ソース ファイル\camera</Filter>
-    </ClCompile>
-    <ClCompile Include="source\camera\cameraWork\CameraWork.cpp">
-      <Filter>ソース ファイル\camera</Filter>
-    </ClCompile>
-    <ClCompile Include="source\camera\cameraWork\FixCamera.cpp">
-      <Filter>ソース ファイル\camera</Filter>
-    </ClCompile>
-    <ClCompile Include="source\camera\cameraWork\PanCamera.cpp">
       <Filter>ソース ファイル\camera</Filter>
     </ClCompile>
     <ClCompile Include="source\collision\PlayerAttackCollision.cpp">
@@ -871,6 +820,27 @@
     </ClCompile>
     <ClCompile Include="source\collision\PlayerCollision.cpp">
       <Filter>ソース ファイル\collision\user</Filter>
+    </ClCompile>
+    <ClCompile Include="source\camera\CameraWork\_CameraWork.cpp">
+      <Filter>ソース ファイル\camera</Filter>
+    </ClCompile>
+    <ClCompile Include="source\camera\CameraWork\CameraWorkData.cpp">
+      <Filter>ソース ファイル\camera</Filter>
+    </ClCompile>
+    <ClCompile Include="source\camera\CameraWork\CameraWorkDead.cpp">
+      <Filter>ソース ファイル\camera</Filter>
+    </ClCompile>
+    <ClCompile Include="source\camera\CameraWork\CameraWorkLockOn.cpp">
+      <Filter>ソース ファイル\camera</Filter>
+    </ClCompile>
+    <ClCompile Include="source\camera\CameraWork\CameraWorkManager.cpp">
+      <Filter>ソース ファイル\camera</Filter>
+    </ClCompile>
+    <ClCompile Include="source\camera\CameraWork\CameraWorkNormal.cpp">
+      <Filter>ソース ファイル\camera</Filter>
+    </ClCompile>
+    <ClCompile Include="source\camera\CameraWork\CWParameterReader.cpp">
+      <Filter>ソース ファイル\camera</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

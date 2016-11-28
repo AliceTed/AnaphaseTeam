@@ -26,8 +26,6 @@ public:
 	float nowGauge();
 private:
 	void add(float _point);
-	//“äƒ|ƒCƒ“ƒ^
-	void lerp(float* out, const float* min, const float* max, float time);
 private:
 	float m_gauge;
 	float m_lerpmax;

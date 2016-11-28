@@ -16,6 +16,7 @@
 #include "../../../header/camera/Camera.h"
 #include "../../../header/shape/Ray.h"
 #include "../../../header/camera/CameraController.h"
+#include "../../../header/camera/CameraWork/E_CameraWorkID.h"
 #include "../../../header/math/Calculate.h"
 
 #include "../../../header/camera/LockOn.h"
@@ -70,7 +71,10 @@ void Player::update(float deltatime)
 
 	m_collision.update(deltatime);
 	m_Gauge.update(deltatime);
-	m_isDead = m_status.getHp() <= 0;
+	if (m_isDead = m_status.getHp() <= 0)
+	{
+		m_collision.clear();
+	}
 }
 
 void Player::draw(const Renderer & _renderer)
@@ -86,7 +90,10 @@ void Player::draw(const Renderer & _renderer)
 
 	m_SpecialSkillManager.draw(_renderer);
 }
-
+AttackStatus Player::status()
+{
+	return m_combo.getStatus();
+}
 void Player::jumping(float _velocity)
 {
 	m_transform.translate_up(_velocity);
@@ -138,11 +145,12 @@ void Player::gaugeAdd()
 
 void Player::createAttackCollision()
 {
-	GSvector3 p = target + m_transform.front();
-	p.y += 1.f;
-	Collision_Ptr act = std::make_shared<PlayerAttackCollision>(this);
+	Collision_Ptr act =Collision_Ptr(new PlayerAttackCollision(this));
 	m_collision.add(act);
 }
+
+
+
 void Player::hpDown()
 {
 	m_status.down();
@@ -197,11 +205,22 @@ void Player::control()
 void Player::look_at(CameraController * _camera, GSvector3 * _target)
 {
 	GSvector3 target = m_transform.m_translate;
+	//by —L•y
+	float distance;
 
 	m_camera->lookAt_cameraTarget_player(target);
 	m_camera->lookAt_cameraTarget_enemy(*_target);
 
-	_camera->special_move1(&target, _target, 10.0f, 1.5f);
+	//by —L•y
+	distance = target.distance(*_target);
+	if (distance < 10)
+	{
+		_camera->change_cameraWork(E_CameraWorkID::LOCK_ON);
+	}
+	else
+	{
+		_camera->change_cameraWork(E_CameraWorkID::NORMAL);
+	}
 }
 void Player::createStates()
 {

@@ -24,7 +24,7 @@ void Enemy::initialize()
 	Actor::initialize();
 	Collision_Ptr actor = std::make_shared<EnemyCollision>(this);
 	m_collision.add(actor);
-	m_animatorOne.changeAnimation(static_cast<GSuint>(ENEMY_ANIMATION::SPAWN), true, false);
+	m_animatorOne.changeAnimation(ENEMY_ANIMATION::SPAWN, true, false);
 	m_state = ESTATE::SPAWN;
 	m_stay_timer.initialize();
 	m_hp = 100;
@@ -37,6 +37,7 @@ void Enemy::update(float deltatime)
 	if (m_hp <= 0)
 	{
 		m_state = ESTATE::DEAD;
+		m_collision.clear();
 	}
 	m_collision.update(deltatime);
 }
@@ -44,7 +45,7 @@ void Enemy::update(float deltatime)
 void Enemy::draw(const Renderer & _renderer)
 {
 	m_collision.draw(_renderer);
-	m_animatorOne.draw(_renderer, m_transform,GScolor(1,1,1,m_alpha));
+	m_animatorOne.draw(_renderer, m_transform, GScolor(1, 1, 1, m_alpha));
 }
 
 void Enemy::collisionChase(EnemyCollision * _collision)
@@ -56,10 +57,9 @@ void Enemy::damage(Player * _player)
 {
 	if (isDamageState())return;
 	m_state = ESTATE::DAMAGE;
-	//‚±‚±
-	m_animatorOne.changeAnimation(static_cast<GSuint>(ENEMY_ANIMATION::DAMAGE), true, false, false, 10.0f, 1.5f);
-	m_transform.translate_front(-0.8f);
-	m_hp -= 10;
+	m_animatorOne.changeAnimation(static_cast<GSuint>(ENEMY_ANIMATION::DAMAGE),true,false,false,10.0f,1.5f);
+	m_transform.translate_front(_player->status().m_blowOff.x);//nockback
+	m_hp -= _player->status().m_power;
 	//_player->gaugeAdd();
 }
 
@@ -111,7 +111,7 @@ void Enemy::state(float deltaTime)
 
 const bool Enemy::isDamageState() const
 {
-	return m_state == ESTATE::MOVE || m_state == ESTATE::ATTACK || m_state == ESTATE::DEAD;
+	return m_state == ESTATE::SPAWN || m_state == ESTATE::ATTACK || m_state == ESTATE::DEAD;
 }
 
 void Enemy::slide(Actor * _actor)
@@ -132,9 +132,9 @@ void Enemy::move(Actor * _actor)
 
 void Enemy::attack_start()
 {
-	m_animatorOne.changeAnimation(static_cast<unsigned int>(ENEMY_ANIMATION::ATTACK), true, false, false, 0);
+	m_animatorOne.changeAnimation(static_cast<unsigned int>(ENEMY_ANIMATION::ATTACK), true, false, false, 1.0f);
 	float end = m_animatorOne.getCurrentAnimationEndTime() / 60.0f;
-	Collision_Ptr actor = std::make_shared<EnemyAttackCollision>(m_transform.m_translate+m_transform.front(),end);
+	Collision_Ptr actor = std::make_shared<EnemyAttackCollision>(m_transform.m_translate + m_transform.front(), end);
 	m_collision.add(actor);
 	m_state = ESTATE::ATTACK;
 }

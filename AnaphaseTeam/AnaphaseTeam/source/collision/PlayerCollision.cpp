@@ -21,4 +21,5 @@ void Player::PlayerCollision::collision_Enter(HitInformation & _hit)
 
 void Player::PlayerCollision::doDraw(const Renderer & _renderer)
 {
+	//m_shape->draw(_renderer);
 }
