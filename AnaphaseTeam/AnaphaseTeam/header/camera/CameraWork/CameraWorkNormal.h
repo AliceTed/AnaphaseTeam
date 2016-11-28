@@ -6,8 +6,10 @@
 *************************************************/
 #pragma once
 
-#include <gslib.h>
+#include <memory>
 #include "CameraWork.h"
+
+class CWParameterReader;
 
 class CameraWorkNormal : public CameraWork
 {
@@ -31,4 +33,11 @@ private:
 
 private:
 	GSvector2* m_rotate;
+
+	std::unique_ptr<CWParameterReader> m_parameter;
+
+	float m_speed_input;
+	float m_distance;
+	float m_followSpeed_position;
+	float m_followSpeed_target;
 };

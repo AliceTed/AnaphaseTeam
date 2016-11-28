@@ -179,6 +179,7 @@
     <ClCompile Include="source\camera\CameraWork\CameraWorkDead.cpp" />
     <ClCompile Include="source\camera\CameraWork\CameraWorkLockOn.cpp" />
     <ClCompile Include="source\camera\CameraWork\CameraWorkNormal.cpp" />
+    <ClCompile Include="source\camera\CameraWork\CWParameterReader.cpp" />
     <ClCompile Include="source\camera\LockOn.cpp" />
     <ClCompile Include="source\camera\LookAt.cpp" />
     <ClCompile Include="source\collision\CollisionActor.cpp" />
@@ -370,6 +371,7 @@
     <ClInclude Include="header\ui\TitleUI.h" />
     <ClInclude Include="header\camera\CameraWork\I_CameraWork.h" />
     <ClInclude Include="header\camera\CameraWork\CameraWork.h" />
+    <ClInclude Include="header\camera\CameraWork\CWParameterReader.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

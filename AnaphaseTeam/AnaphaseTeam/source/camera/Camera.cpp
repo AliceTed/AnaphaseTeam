@@ -4,7 +4,6 @@
 
 Camera::Camera(void) :
 	m_perspective(Perspective(45.0f, 1280.0f / 720.0f, 0.3f, 1000.0f)),
-	//m_lookAt(LookAt(GSvector3(0, 0, 0), GSvector3(0, 0, 0), GSvector3(0, 1, 0))),
 	m_position(0.0f, 0.0f, 0.0f),
 	m_target(0.0f, 0.0f, 0.0f),
 	m_up(0.0f, 1.0f, 0.0f),

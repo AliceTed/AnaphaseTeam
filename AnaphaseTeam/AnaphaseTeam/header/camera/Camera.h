@@ -8,7 +8,6 @@
 
 #include <gslib.h>
 #include <memory>
-//#include "LookAt.h"
 
 #include "../../header/transform/Transform.h"
 
@@ -227,13 +226,11 @@ private:
 	void to_rad(float* _degree);
 
 private:
-	//Perspective						m_perspective;
 	Perspective						m_perspective;
 	float							m_fov_min;
 	float							m_fov_max;
 	GSmatrix4						m_matProjection;
 
-	//LookAt							m_lookAt;
 	GSvector3						m_position;
 	GSvector3						m_target;
 	GSvector3						m_up;
