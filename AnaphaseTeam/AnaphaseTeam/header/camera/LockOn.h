@@ -30,15 +30,11 @@ public:
 	void nearEnemyFind(EnemyManager* _enemys);
 	void addPlayer(Player* _player);
 	void look_at(CameraController* _camera);
-	void homing();
-
 	//取りあえずプレイヤーを持ってるのでここに書いた
 	void thinksEnemy(EnemyManager* _enemys);
+	Enemy* getTarget()const;
+
 private:
-	//! PlayerとEnemyとの距離
-	float m_distance;
-	//! 求めた距離の格納用vector
-	vector<float> m_distanceStoreVector;
 	Player* m_player;
 	unique_ptr<Enemy>*  m_target;
 	GameDevice* m_device;

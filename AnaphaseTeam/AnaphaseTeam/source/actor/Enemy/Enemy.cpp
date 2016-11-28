@@ -9,12 +9,11 @@
 const float Enemy::PLAYER_DISTANCE = 10;
 Enemy::Enemy(const Transform & _transform)
 	:Actor(_transform, MODEL_ID::ENEMY,
-		Sphere(GSvector3(0, 0, 0), 1.0f),
 		Actor_Tag::ENEMY),
 	m_state(ESTATE::SPAWN),
 	m_stay_timer(2),
 	m_hp(100),
-	m_incidence()
+	m_alpha(1)
 {
 }
 Enemy::~Enemy()
@@ -25,31 +24,27 @@ void Enemy::initialize()
 	Actor::initialize();
 	Collision_Ptr actor = std::make_shared<EnemyCollision>(this);
 	m_collision.add(actor);
-	m_animatorOne.changeAnimation(static_cast<GSuint>(ENEMY_ANIMATION::SPAWN),true,false);
+	m_animatorOne.changeAnimation(static_cast<GSuint>(ENEMY_ANIMATION::SPAWN), true, false);
 	m_state = ESTATE::SPAWN;
 	m_stay_timer.initialize();
 	m_hp = 100;
+	m_alpha = 1;
 }
 void Enemy::update(float deltatime)
 {
 	m_animatorOne.update(deltatime);
 	state(deltatime);
-	sphereChases(GSvector3(0, 1, 0));
 	if (m_hp <= 0)
 	{
 		m_state = ESTATE::DEAD;
-}
+	}
 	m_collision.update(deltatime);
 }
 
-void Enemy::draw(const Renderer & _renderer, const Camera & _camera)
+void Enemy::draw(const Renderer & _renderer)
 {
-	//‹——£‚Ì“§‰ß‚È‚Ç‚Íshader‚É”C‚¹‚é—\’è
-	FALSE_RETURN(isInsideView(_camera));
-	//alphaBlend(_camera);
 	m_collision.draw(_renderer);
-	m_animatorOne.draw(_renderer, m_transform,m_Color);
-	//_renderer.getDraw2D().string(std::to_string(m_hp), &GSvector2(500, 80), 30);
+	m_animatorOne.draw(_renderer, m_transform,GScolor(1,1,1,m_alpha));
 }
 
 void Enemy::collisionChase(EnemyCollision * _collision)
@@ -62,7 +57,7 @@ void Enemy::damage(Player * _player)
 	if (isDamageState())return;
 	m_state = ESTATE::DAMAGE;
 	//‚±‚±
-	m_animatorOne.changeAnimation(static_cast<GSuint>(ENEMY_ANIMATION::DAMAGE),true,false,false,10.0f,1.5f);
+	m_animatorOne.changeAnimation(static_cast<GSuint>(ENEMY_ANIMATION::DAMAGE), true, false, false, 10.0f, 1.5f);
 	m_transform.translate_front(-0.8f);
 	m_hp -= 10;
 	//_player->gaugeAdd();
@@ -94,8 +89,6 @@ void Enemy::state(float deltaTime)
 		m_animatorOne.changeAnimation(static_cast<unsigned int>(ENEMY_ANIMATION::SLIDE), false, true);
 		break;
 	case ESTATE::ATTACK:
-		m_incidence.setWorldTransform(m_animatorOne.getOrientedMat(8));
-		m_incidence.synthesisWorldTransform(m_transform);
 		m_animatorOne.changeAnimation(static_cast<unsigned int>(ENEMY_ANIMATION::ATTACK), false, false, false, 0);
 		if (m_animatorOne.isEndCurrentAnimation())
 		{
@@ -110,15 +103,15 @@ void Enemy::state(float deltaTime)
 		break;
 	case ESTATE::DEAD:
 		m_animatorOne.changeAnimation(static_cast<GSuint>(ENEMY_ANIMATION::DEAD));
-		m_Color.a -= 1/m_animatorOne.getCurrentAnimationEndTime();
-		m_isDead=m_animatorOne.isEndCurrentAnimation();
+		m_alpha -= 1 / m_animatorOne.getCurrentAnimationEndTime();
+		m_isDead = m_animatorOne.isEndCurrentAnimation();
 		break;
 	}
 }
 
 const bool Enemy::isDamageState() const
 {
-	return m_state == ESTATE::MOVE || m_state == ESTATE::ATTACK||m_state==ESTATE::DEAD;
+	return m_state == ESTATE::MOVE || m_state == ESTATE::ATTACK || m_state == ESTATE::DEAD;
 }
 
 void Enemy::slide(Actor * _actor)
@@ -139,9 +132,9 @@ void Enemy::move(Actor * _actor)
 
 void Enemy::attack_start()
 {
-	m_animatorOne.changeAnimation(static_cast<unsigned int>(ENEMY_ANIMATION::ATTACK), false,false,false,0);
-	float end = m_animatorOne.getCurrentAnimationEndTime()/60.0f;
-	Collision_Ptr actor = std::make_shared<EnemyAttackCollision>(&m_incidence, end);
+	m_animatorOne.changeAnimation(static_cast<unsigned int>(ENEMY_ANIMATION::ATTACK), false, false, false, 0);
+	float end = m_animatorOne.getCurrentAnimationEndTime() / 60.0f;
+	Collision_Ptr actor = std::make_shared<EnemyAttackCollision>(m_transform.m_translate+m_transform.front(),end);
 	m_collision.add(actor);
 	m_state = ESTATE::ATTACK;
 }
@@ -167,7 +160,7 @@ void Enemy::specialDamage()
 
 void Enemy::think(Player * _player)
 {
-	if (m_state==ESTATE::DEAD|| m_state == ESTATE::DAMAGE || m_state == ESTATE::ATTACK || m_state == ESTATE::SPAWN)return;
+	if (m_state == ESTATE::DEAD || m_state == ESTATE::DAMAGE || m_state == ESTATE::ATTACK || m_state == ESTATE::SPAWN)return;
 	if (!m_stay_timer.isEnd())return;
 	Math::Random rnd;
 	if (rnd(0, 200) == 0)

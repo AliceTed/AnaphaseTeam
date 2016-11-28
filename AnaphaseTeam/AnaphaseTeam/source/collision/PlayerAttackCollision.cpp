@@ -1,29 +1,25 @@
 #include "..\..\header\collision\PlayerAttackCollision.h"
 #include "../../header/shape/Sphere.h"
-PlayerAttackCollision::PlayerAttackCollision(const GSvector3& _position,float _deadtime, float _speed)
-	:CollisionActor(new Sphere(_position,0.7f),Collision_Tag::PLAYER_WEAPON),
-	m_destroy(_deadtime),m_speed(_speed)
+#include "../../header/actor/Player/Player.h"
+Player::PlayerAttackCollision::PlayerAttackCollision(Player* _player)
+	:CollisionActor(new Sphere(_player->target,0.7f),Collision_Tag::PLAYER_WEAPON),
+	m_player(_player)
 {
 }
 
-PlayerAttackCollision::~PlayerAttackCollision()
+void Player::PlayerAttackCollision::doUpdate(float deltaTime)
 {
-}
-
-void PlayerAttackCollision::doUpdate(float deltaTime)
-{
-	m_destroy.update(deltaTime*m_speed);
-	if (m_destroy.isEnd())
+	if (m_player->m_animatorOne.isEndCurrentAnimation())
 	{
 		destroy();
 	}
 }
 
-void PlayerAttackCollision::doDraw(const Renderer & _renderer)
+void Player::PlayerAttackCollision::doDraw(const Renderer & _renderer)
 {
 	//m_shape->draw(_renderer);
 }
 
-void PlayerAttackCollision::collision_Enter(HitInformation & _hit)
+void Player::PlayerAttackCollision::collision_Enter(HitInformation & _hit)
 {
 }
