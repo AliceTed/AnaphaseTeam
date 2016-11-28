@@ -4,8 +4,8 @@
 #include <gslib.h>
 AnimatorOne::AnimatorOne(const MODEL_ID _modelID) :
 	m_modelID(_modelID), m_currentAnimation(nullptr),
-	m_nextAnimation(nullptr)//, m_matPtr(std::shared_ptr<GSmatrix4>(new GSmatrix4[256], std::default_delete<GSmatrix4[]>()))
-	, m_orientedMat(std::shared_ptr<GSmatrix4>(new GSmatrix4[256], std::default_delete<GSmatrix4[]>()))
+	m_nextAnimation(nullptr),
+	m_orientedMat(std::shared_ptr<GSmatrix4>(new GSmatrix4[256], std::default_delete<GSmatrix4[]>()))
 {}
 AnimatorOne::~AnimatorOne()
 {}
@@ -23,11 +23,6 @@ const bool AnimatorOne::isEndCurrentAnimation() const
 {
 	return /*(!m_nextAnimation) &&*/m_currentAnimation->getIsEnd();
 }
-//
-//bool AnimatorOne::isEndAnimation(unsigned int _animationID)
-//{
-//	return false;
-//}
 
 void AnimatorOne::changeAnimationLerp(unsigned int _animation)
 {
@@ -42,8 +37,8 @@ void AnimatorOne::changeAnimation(unsigned int _animation, bool _isLerp, bool _i
 	Data::CastID cast;
 	if (!m_currentAnimation)
 		m_currentAnimation = std::make_shared<Animation>(m_modelID, cast(_animation), AnimationTimer(gsGetEndAnimationTime(cast(m_modelID), cast(_animation)), _animationSpeed), _isLoop);
-	///*今のアニメーションと同じなら変えない
-	if (m_currentAnimation->getAnimationNo() == cast(_animation) && _animationSpeed == m_currentAnimation->getSpeed())
+	///*今のアニメーションでループするものなら変えない
+	if (m_currentAnimation->getAnimationNo() == cast(_animation) && _isLoop)
 		return;
 	if (_isLerp)
 	{
@@ -73,6 +68,7 @@ void AnimatorOne::lerpBegin(unsigned int _anim, bool _init, bool _loop, float _l
 	m_lerpData.m_nextInit = _init;
 	m_lerpData.m_lerpTime = _lerpTime;
 	m_nextAnimation = std::make_shared<Animation>(m_modelID, static_cast<unsigned int>(_anim), AnimationTimer(gsGetEndAnimationTime(static_cast<unsigned int>(m_modelID), static_cast<unsigned int>(_anim)), _animSpeed), _loop);
+	//m_currentAnimation = m_nextAnimation;
 }
 
 void AnimatorOne::animationCaluculate(GSmatrix4* _animMat)
@@ -91,11 +87,15 @@ void AnimatorOne::animationCaluculate(GSmatrix4* _animMat)
 	//今と次が同じだとふつうのアニメーション
 	if (m_nextAnimation->getAnimationNo() == m_currentAnimation->getAnimationNo())
 	{
-		gsCalculateAnimation(
-			cast(m_modelID),
-			m_currentAnimation->getAnimationNo(),
-			m_currentAnimation->getCurrentTime(), _animMat);
-		return;
+		if (m_currentAnimation->getIsLoop())
+		{
+			gsCalculateAnimation(
+				cast(m_modelID),
+				m_currentAnimation->getAnimationNo(),
+				m_currentAnimation->getCurrentTime(), _animMat);
+			m_nextAnimation = nullptr;
+			return;
+		}
 	}
 	//ラープする
 	animationCaluculateLerp(_animMat);
@@ -118,7 +118,6 @@ void AnimatorOne::animationCaluculateLerp(GSmatrix4* _animMat)
 
 void AnimatorOne::matrixCalculate()
 {
-	//Data::CastID cast;
 	std::unique_ptr<GSmatrix4> animMat = std::unique_ptr<GSmatrix4>(new GSmatrix4[256]);
 	animationCaluculate(animMat.get());
 	/*スケルトン情報の計算
@@ -137,28 +136,17 @@ void AnimatorOne::skeltonCalculateTransform(GSmatrix4* _mat)
 	*/
 	gsSkeletonCalculateTransform(
 		gsGetSkeleton(static_cast<GSuint>(m_modelID)),
-		//m_matPtr.get(),
 		_mat,
 		m_orientedMat.get());
 }
 
-void AnimatorOne::draw(const Renderer& _renderer,const Transform &_transform, const GScolor &_color)
+void AnimatorOne::draw(const Renderer& _renderer, const Transform &_transform, const GScolor &_color)
 {
-	//matrixCalculate();
 	std::unique_ptr<GSmatrix4>mat(new GSmatrix4[256]);
 	skeltonCalculateTransform(mat.get());
 	_renderer.getDraw3D().drawMesh(static_cast<GSuint>(m_modelID), _transform, mat.get(), _color);
 }
 
-//const GSuint AnimatorOne::getNumBones()const
-//{
-//	return gsGetSkeletonNumBones(static_cast<GSuint>(m_modelID));
-//}
-
-//const GSmatrix4& AnimatorOne::getMat(unsigned int index)const
-//{
-//	return m_matPtr.get()[index];
-//}
 const GSmatrix4& AnimatorOne::getOrientedMat(unsigned int index)const
 {
 	return m_orientedMat.get()[index];
@@ -175,6 +163,7 @@ const float AnimatorOne::getCurrentAnimationEndTime() const
 
 const float AnimatorOne::getNextAnimationTime() const
 {
+	if (!m_nextAnimation)return 0.0f;
 	return m_nextAnimation->getCurrentTime();
 }
 

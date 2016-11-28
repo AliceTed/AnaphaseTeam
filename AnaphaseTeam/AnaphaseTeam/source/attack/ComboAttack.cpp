@@ -32,7 +32,7 @@ void ComboAttack::start(bool _isSlow)
 void ComboAttack::update(float deltaTime)
 {
 	//lerpでアニメーションが変わらないときがある
-	m_current.motion(m_player);
+	//m_current.motion(m_player);
 }
 
 const bool ComboAttack::next(bool _isSlow)
