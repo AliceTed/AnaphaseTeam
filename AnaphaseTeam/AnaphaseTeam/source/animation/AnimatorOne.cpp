@@ -68,7 +68,7 @@ void AnimatorOne::lerpBegin(unsigned int _anim, bool _init, bool _loop, float _l
 	m_lerpData.m_nextInit = _init;
 	m_lerpData.m_lerpTime = _lerpTime;
 	m_nextAnimation = std::make_shared<Animation>(m_modelID, static_cast<unsigned int>(_anim), AnimationTimer(gsGetEndAnimationTime(static_cast<unsigned int>(m_modelID), static_cast<unsigned int>(_anim)), _animSpeed), _loop);
-	m_currentAnimation = m_nextAnimation;
+	//m_currentAnimation = m_nextAnimation;
 }
 
 void AnimatorOne::animationCaluculate(GSmatrix4* _animMat)
@@ -87,12 +87,15 @@ void AnimatorOne::animationCaluculate(GSmatrix4* _animMat)
 	//今と次が同じだとふつうのアニメーション
 	if (m_nextAnimation->getAnimationNo() == m_currentAnimation->getAnimationNo())
 	{
-		gsCalculateAnimation(
-			cast(m_modelID),
-			m_currentAnimation->getAnimationNo(),
-			m_currentAnimation->getCurrentTime(), _animMat);
-		m_nextAnimation = nullptr;
-		return;
+		if (m_currentAnimation->getIsLoop())
+		{
+			gsCalculateAnimation(
+				cast(m_modelID),
+				m_currentAnimation->getAnimationNo(),
+				m_currentAnimation->getCurrentTime(), _animMat);
+			m_nextAnimation = nullptr;
+			return;
+		}
 	}
 	//ラープする
 	animationCaluculateLerp(_animMat);
@@ -137,7 +140,7 @@ void AnimatorOne::skeltonCalculateTransform(GSmatrix4* _mat)
 		m_orientedMat.get());
 }
 
-void AnimatorOne::draw(const Renderer& _renderer,const Transform &_transform, const GScolor &_color)
+void AnimatorOne::draw(const Renderer& _renderer, const Transform &_transform, const GScolor &_color)
 {
 	std::unique_ptr<GSmatrix4>mat(new GSmatrix4[256]);
 	skeltonCalculateTransform(mat.get());
@@ -160,6 +163,7 @@ const float AnimatorOne::getCurrentAnimationEndTime() const
 
 const float AnimatorOne::getNextAnimationTime() const
 {
+	if (!m_nextAnimation)return 0.0f;
 	return m_nextAnimation->getCurrentTime();
 }
 
