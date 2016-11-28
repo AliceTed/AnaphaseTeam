@@ -2,7 +2,7 @@
 #include "../Actor.h"
 #include "../../../header/camera/CameraController.h"
 #include "../../convenient/Timer.h"
-#include "../../attack/AttackIncidence.h"
+//#include "../../attack/AttackIncidence.h"
 #include "../../attack/AttackStatus.h"
 class EnemyCollision;
 class Player;

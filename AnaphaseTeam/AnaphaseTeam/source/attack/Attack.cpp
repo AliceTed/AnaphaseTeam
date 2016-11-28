@@ -27,12 +27,8 @@ const ATTACK_TYPE Attack::next(bool _isSlow) const
 	return _isSlow?m_nextSlow:m_nextQuick;
 }
 
-const float Attack::isAttackPower()
+const AttackStatus & Attack::getStatus() const
 {
-	return m_status.isPower();
+	return m_status;
 }
 
-const GSvector3 Attack::isAttckBlow()
-{
-	return m_status.isBlow();
-}

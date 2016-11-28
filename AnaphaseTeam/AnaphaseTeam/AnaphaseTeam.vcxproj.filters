@@ -115,9 +115,6 @@
     <Filter Include="ヘッダー ファイル\collision">
       <UniqueIdentifier>{3f38fcce-e724-469a-9c50-143871782b19}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ソース ファイル\ui">
-      <UniqueIdentifier>{e1c7c17e-ffc4-403f-bd11-65fe45527639}</UniqueIdentifier>
-    </Filter>
     <Filter Include="ヘッダー ファイル\ui">
       <UniqueIdentifier>{16b8cdc1-bfca-404f-be49-f88c761df387}</UniqueIdentifier>
     </Filter>
@@ -177,6 +174,9 @@
     </Filter>
     <Filter Include="ソース ファイル\data\stream">
       <UniqueIdentifier>{a854fa81-4dd8-4f58-9a81-488b57a9faf2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\shape\ui">
+      <UniqueIdentifier>{e1c7c17e-ffc4-403f-bd11-65fe45527639}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -657,22 +657,22 @@
       <Filter>ソース ファイル\actor</Filter>
     </ClCompile>
     <ClCompile Include="source\ui\Cursor.cpp">
-      <Filter>ソース ファイル\ui</Filter>
+      <Filter>ソース ファイル\shape\ui</Filter>
     </ClCompile>
     <ClCompile Include="source\ui\ScaleImage.cpp">
-      <Filter>ソース ファイル\ui</Filter>
+      <Filter>ソース ファイル\shape\ui</Filter>
     </ClCompile>
     <ClCompile Include="source\ui\SelectUI.cpp">
-      <Filter>ソース ファイル\ui</Filter>
+      <Filter>ソース ファイル\shape\ui</Filter>
     </ClCompile>
     <ClCompile Include="source\ui\TitleUI.cpp">
-      <Filter>ソース ファイル\ui</Filter>
+      <Filter>ソース ファイル\shape\ui</Filter>
     </ClCompile>
     <ClCompile Include="source\scene\SceneChange.cpp">
       <Filter>ソース ファイル\scene</Filter>
     </ClCompile>
     <ClCompile Include="source\ui\Fade.cpp">
-      <Filter>ソース ファイル\ui</Filter>
+      <Filter>ソース ファイル\shape\ui</Filter>
     </ClCompile>
     <ClCompile Include="source\actor\Actor.cpp">
       <Filter>ソース ファイル\actor</Filter>
@@ -726,7 +726,7 @@
       <Filter>ソース ファイル\scene\each</Filter>
     </ClCompile>
     <ClCompile Include="source\ui\SlideImage.cpp">
-      <Filter>ソース ファイル\ui</Filter>
+      <Filter>ソース ファイル\shape\ui</Filter>
     </ClCompile>
     <ClCompile Include="source\scene\each\GameClear.cpp">
       <Filter>ソース ファイル</Filter>

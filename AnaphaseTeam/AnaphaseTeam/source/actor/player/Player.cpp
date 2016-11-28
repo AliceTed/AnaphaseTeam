@@ -87,6 +87,10 @@ void Player::draw(const Renderer & _renderer)
 
 	m_SpecialSkillManager.draw(_renderer);
 }
+AttackStatus Player::status()
+{
+	return m_combo.getStatus();
+}
 void Player::jumping(float _velocity)
 {
 	m_transform.translate_up(_velocity);
@@ -156,15 +160,6 @@ void Player::recovery()
 	m_SpecialSkillManager.recovery(m_status);
 }
 
-float Player::enemyDamage()
-{
-	return m_attackManager.getStatus();
-}
-
-GSvector3 Player::enemyBlow()
-{
-	return m_attackManager.getBlow();
-}
 void Player::avoidAction(const GSvector3 & _velocity)
 {
 	m_transform.translate(_velocity);

@@ -57,8 +57,8 @@ void Enemy::damage(Player * _player)
 	if (isDamageState())return;
 	m_state = ESTATE::DAMAGE;
 	m_animatorOne.changeAnimation(static_cast<GSuint>(ENEMY_ANIMATION::DAMAGE),true,false,false,10.0f,1.5f);
-	m_transform.translate_front(_player->enemyBlow().x);//nockback
-	m_hp -= _player->enemyDamage();
+	m_transform.translate_front(_player->status().m_blowOff.x);//nockback
+	m_hp -= _player->status().m_power;
 	//_player->gaugeAdd();
 }
 
