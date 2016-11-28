@@ -106,6 +106,7 @@ void Player::subActionStart()
 		if (m_Gauge.down(5))
 		{
 			changeState(ACTOR_STATE::STEP);
+
 		}
 	}
 }
