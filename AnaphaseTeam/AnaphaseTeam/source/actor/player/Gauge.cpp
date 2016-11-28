@@ -25,6 +25,8 @@ void Gauge::draw(const Renderer& _renderer)
 		&GSrect(0,0,(int)RankGauge::MAX,30),&GSvector2(0,0),&GSvector2(1,1),0.0f);
 	_renderer.getDraw2D().textrue(TEXTURE_ID::WHITE, &GSvector2(0, 50),
 		&GSrect(0, 0, m_gauge, 30), &GSvector2(0, 0), &GSvector2(1, 1),0.0f,&GScolor(1.0f,1.0f,0.0f,1.0f));
+
+	_renderer.getDraw2D().string(std::to_string(m_gauge), &GSvector2(100, 100), 20);
 }
 
 void Gauge::up(float _scale)

@@ -20,10 +20,10 @@ void Title::initialize()
 	m_change.initialize();
 	m_change.begin();
 	m_title.initialize();
+	m_device->sound().playBGM(BGM_ID::TITLE);
 }
 void Title::update(float deltaTime)
 {
-	m_device->sound().playBGM(BGM_ID::TITLE);
 	if (m_change.update(deltaTime))return;
 	m_title.update(deltaTime, *this);
 }
@@ -36,6 +36,7 @@ void Title::draw(const Renderer & renderer)
 
 void Title::finish()
 {
+	m_device->sound().stopBGM(BGM_ID::TITLE);
 	m_title.finish();
 }
 
@@ -56,6 +57,7 @@ const bool Title::isExit() const
 void Title::decision(Select _select)
 {
 	if (!m_device->input()->jump())return;
+	m_device->sound().playSE(SE_ID::TITLE);
 	switch (_select)
 	{
 	case Select::GAMESTART:

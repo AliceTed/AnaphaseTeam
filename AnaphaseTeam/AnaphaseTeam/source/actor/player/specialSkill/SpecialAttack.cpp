@@ -28,11 +28,11 @@ void SpecialAttack::update(float deltaTime)
 
 const bool SpecialAttack::isEnd() const
 {
-	return m_player->isAnimationEnd();
+	return false; //m_player->isAnimationEnd();
 }
 
 void SpecialAttack::addColision(CollisionGroup * _group)
 {
-	Collision_Ptr actor = std::make_shared<SpecialAttackCollision>(m_player, this);
-	_group->add(actor);
+	//Collision_Ptr actor = std::make_shared<SpecialAttackCollision>(m_player);
+	//_group->add(actor);
 }

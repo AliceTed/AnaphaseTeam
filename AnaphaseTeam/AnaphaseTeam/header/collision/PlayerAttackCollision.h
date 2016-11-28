@@ -1,16 +1,14 @@
 #pragma once
 #include "CollisionActor.h"
-#include "../../header/convenient/Timer.h"
-class PlayerAttackCollision:public CollisionActor
+#include "../actor/Player/Player.h"
+class Player::PlayerAttackCollision:public CollisionActor
 {
 public:
-	PlayerAttackCollision(const GSvector3& _position,float _deadtime,float _speed);
-	~PlayerAttackCollision();
+	Player::PlayerAttackCollision(Player* _player);
 private:
 	void doUpdate(float deltaTime);
 	void doDraw(const Renderer& _renderer);
 	void collision_Enter(HitInformation& _hit);
 private:
-	Timer m_destroy;
-	float m_speed;
+	Player* m_player;
 };

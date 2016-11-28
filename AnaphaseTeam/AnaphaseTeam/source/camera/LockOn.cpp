@@ -44,12 +44,21 @@ void LockOn::look_at(CameraController * _camera)
 	(*m_target)->look_at(_camera, m_player);
 }
 
-void LockOn::homing()
-{
-	m_player->attackHoming((*m_target).get());
-}
 
 void LockOn::thinksEnemy(EnemyManager * _enemys)
 {
 	_enemys->thinks(m_player);
+}
+
+Enemy * LockOn::getTarget() const
+{
+	if (m_target == nullptr)
+	{
+		return nullptr;
+	}
+	if ((*m_target) == nullptr)
+	{
+		return nullptr;
+	}
+	return m_target->get();
 }
