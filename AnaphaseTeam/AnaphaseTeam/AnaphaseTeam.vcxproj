@@ -170,7 +170,6 @@
     <ClCompile Include="source\attack\新しいフォルダー\AttackIncidence.cpp" />
     <ClCompile Include="source\camera\ACalc.cpp" />
     <ClCompile Include="source\camera\Camera.cpp" />
-    <ClCompile Include="source\camera\CameraActionDolly.cpp" />
     <ClCompile Include="source\camera\CameraWork\CameraWork.cpp" />
     <ClCompile Include="source\camera\CameraWork\CameraWorkData.cpp" />
     <ClCompile Include="source\camera\CameraWork\CameraWorkManager.cpp" />
@@ -181,7 +180,6 @@
     <ClCompile Include="source\camera\CameraWork\CameraWorkNormal.cpp" />
     <ClCompile Include="source\camera\CameraWork\CWParameterReader.cpp" />
     <ClCompile Include="source\camera\LockOn.cpp" />
-    <ClCompile Include="source\camera\LookAt.cpp" />
     <ClCompile Include="source\collision\CollisionActor.cpp" />
     <ClCompile Include="source\collision\CollisionGroup.cpp" />
     <ClCompile Include="source\collision\EnemyAttackCollision.cpp" />
@@ -279,7 +277,6 @@
     <ClInclude Include="header\airstate\IAirState.h" />
     <ClInclude Include="header\camera\ACalc.h" />
     <ClInclude Include="header\camera\Camera.h" />
-    <ClInclude Include="header\camera\CameraActionDolly.h" />
     <ClInclude Include="header\camera\CameraWork\CameraWorkManager.h" />
     <ClInclude Include="header\camera\CameraController.h" />
     <ClInclude Include="header\camera\CameraTarget.h" />
@@ -288,7 +285,6 @@
     <ClInclude Include="header\camera\CameraWork\E_CameraWorkID.h" />
     <ClInclude Include="header\camera\CameraWork\CameraWorkLockOn.h" />
     <ClInclude Include="header\camera\LockOn.h" />
-    <ClInclude Include="header\camera\LookAt.h" />
     <ClInclude Include="header\collision\CollisionActor.h" />
     <ClInclude Include="header\collision\CollisionGroup.h" />
     <ClInclude Include="header\collision\Collision_Tag.h" />

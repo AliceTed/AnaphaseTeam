@@ -435,9 +435,6 @@
     <ClInclude Include="header\camera\CameraController.h">
       <Filter>ヘッダー ファイル\camera</Filter>
     </ClInclude>
-    <ClInclude Include="header\camera\LookAt.h">
-      <Filter>ヘッダー ファイル\camera</Filter>
-    </ClInclude>
     <ClInclude Include="header\actor\Player\Status.h">
       <Filter>ヘッダー ファイル\actor\Player</Filter>
     </ClInclude>
@@ -545,9 +542,6 @@
     </ClInclude>
     <ClInclude Include="header\attack\AttackIncidence.h">
       <Filter>ヘッダー ファイル\attack\enemy</Filter>
-    </ClInclude>
-    <ClInclude Include="header\camera\CameraActionDolly.h">
-      <Filter>ヘッダー ファイル\camera</Filter>
     </ClInclude>
     <ClInclude Include="header\camera\CameraTarget.h">
       <Filter>ヘッダー ファイル\camera</Filter>
@@ -755,9 +749,6 @@
     <ClCompile Include="source\camera\CameraController.cpp">
       <Filter>ソース ファイル\camera</Filter>
     </ClCompile>
-    <ClCompile Include="source\camera\LookAt.cpp">
-      <Filter>ソース ファイル\camera</Filter>
-    </ClCompile>
     <ClCompile Include="source\actor\player\Status.cpp">
       <Filter>ソース ファイル\actor\Player</Filter>
     </ClCompile>
@@ -806,9 +797,6 @@
     <ClCompile Include="source\sound\Sound.cpp">
       <Filter>ソース ファイル\device</Filter>
     </ClCompile>
-    <ClCompile Include="source\camera\LockOn.cpp">
-      <Filter>ソース ファイル\camera</Filter>
-    </ClCompile>
     <ClCompile Include="source\transform\Quaternion_Utility.cpp">
       <Filter>ソース ファイル\transform</Filter>
     </ClCompile>
@@ -854,9 +842,6 @@
     <ClCompile Include="source\attack\新しいフォルダー\AttackIncidence.cpp">
       <Filter>ソース ファイル\Attack\enemy</Filter>
     </ClCompile>
-    <ClCompile Include="source\camera\CameraActionDolly.cpp">
-      <Filter>ソース ファイル\camera</Filter>
-    </ClCompile>
     <ClCompile Include="source\camera\CameraTarget.cpp">
       <Filter>ソース ファイル\camera</Filter>
     </ClCompile>
@@ -882,6 +867,9 @@
       <Filter>ソース ファイル</Filter>
     </ClCompile>
     <ClCompile Include="source\camera\CameraWork\CWParameterReader.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="source\camera\LockOn.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
   </ItemGroup>
