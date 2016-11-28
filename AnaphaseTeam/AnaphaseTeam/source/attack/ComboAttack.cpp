@@ -1,47 +1,60 @@
 #include "../../header/attack/ComboAttack.h"
+#include "../../header/data/stream/AttackReader.h"
 #include "../../header/actor/Player/Player.h"
-
-ComboAttack::ComboAttack(const AttackStatus & _status, ANIMATION_ID _animation, Combo next, Shape_Ptr _shape)
-	:m_status(_status), m_Animation(_animation), m_nextCombo(next), m_Shape(_shape)
+ComboAttack::ComboAttack(Player* _player)
+	:m_player(_player),
+	m_container(),
+	m_current(AttackStatus(), ANIMATION_ID::STAND, ATTACK_TYPE::End, ATTACK_TYPE::End),
+	m_isEnd(false)
 {
 }
 
-ComboAttack::~ComboAttack()
-{
-
-}
 void ComboAttack::initialize()
 {
+	m_container.clear();
+	AttackReader reader;
+	reader(&m_container, "combo");
 }
 
-void ComboAttack::update(float deltaTime, Player * _player)
+void ComboAttack::start(bool _isSlow)
 {
-	motion(_player);
+	m_isEnd = false;
+	if (_isSlow)
+	{
+		m_current = m_container.at(ATTACK_TYPE::S);
+		m_current.initialize(m_player);
+		return;
+	}
+	m_current = m_container.at(ATTACK_TYPE::Q);
+	m_current.initialize(m_player);
 }
 
-void ComboAttack::motion(Player * _player)
+void ComboAttack::update(float deltaTime)
 {
-	_player->attackmotion(*this);
+	//lerpでアニメーションが変わらないときがある
+	//m_current.motion(m_player);
 }
 
-void ComboAttack::changeMotion(AnimatorOne & _animator)
+const bool ComboAttack::next(bool _isSlow)
 {
-	_animator.changeAnimation(m_Animation, false, false, 1.5f);
+	ATTACK_TYPE next = m_current.next(_isSlow);
+	if (next == ATTACK_TYPE::End)
+	{
+		return false;
+	}
+	m_current = m_container.at(next);
+	m_current.initialize(m_player);
+	return true;
+}
+const bool ComboAttack::isEnd() const
+{
+	return m_isEnd;
 }
 
-const bool ComboAttack::isNextAttack(const AnimatorOne & _animator) const
+const AttackStatus & ComboAttack::getStatus() const
 {
-	float end = _animator.getCurrentAnimationEndTime();
-	float current = _animator.getCurrentAnimationTime();
-	float limit = 25.0f;
-	return (end - limit) <= current;
+	return m_current.getStatus();
 }
 
-const bool ComboAttack::isEndMotion(const AnimatorOne & _animator) const
-{
-	return _animator.isEndCurrentAnimation();
-}
-const Combo ComboAttack::next()const
-{
-	return m_nextCombo;
-}
+
+

@@ -7,7 +7,7 @@ typedef std::shared_ptr<IInputPattern> Input_Ptr;
 class GameDevice
 {
 public:
-	GameDevice();
+	GameDevice(Sound* _sound);
 	~GameDevice();
 	Input_Ptr& input();
 	Sound & sound();

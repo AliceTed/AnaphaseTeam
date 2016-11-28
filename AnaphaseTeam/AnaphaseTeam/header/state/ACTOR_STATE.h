@@ -1,0 +1,14 @@
+#pragma once
+
+enum class ACTOR_STATE
+{
+	STAND,
+	RUN,
+	ATTACK,
+	DAMAGE,
+	STEP,
+	SINGLEJUMP,
+	DOUBLEJUMP,
+	LIMITFALL,
+	LANDINGRIGIDITY
+};

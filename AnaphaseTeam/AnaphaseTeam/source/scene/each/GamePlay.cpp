@@ -26,7 +26,6 @@ void GamePlay::initialize()
 	m_IsEnd = false;
 
 	m_player.initialize();
-	//m_boss.initialize();
 	m_enemys.initialize();
 	Math::Random rnd;
 	for (int i = 0; i < 2; i++)
@@ -35,8 +34,6 @@ void GamePlay::initialize()
 		m_enemys.add(e);
 	}
 
-	/*Boss boss;
-	boss.initialize();*/
 	m_lockon.addPlayer(&m_player);
 }
 
@@ -44,9 +41,7 @@ void GamePlay::update(float deltaTime)
 {
 	m_player.collisionGround(m_Map);
 	m_enemys.collisionGround(m_Map);
-	//if ()return;
 	m_change.update(deltaTime);
-	// m_enemys;
 	m_lockon.thinksEnemy(&m_enemys);
 	m_lockon.nearEnemyFind(&m_enemys);
 	m_player.update(deltaTime);
@@ -68,12 +63,11 @@ void GamePlay::update(float deltaTime)
 void GamePlay::draw(const Renderer & _renderer)
 {
 	_renderer.getDraw3D().drawSky(MESH_ID::SKY);
-	
-	//m_enemys[0].look_at(&m_cameracontroller, &m_player);
 	m_lockon.look_at(&m_cameracontroller);
+	m_cameracontroller.update();
 	m_Map.draw(_renderer);
-	m_enemys.draw(_renderer, m_Camera);
-	m_player.draw(_renderer,m_Camera);	
+	m_enemys.draw(_renderer);
+	m_player.draw(_renderer);	
 	m_change.draw(_renderer);
 }
 

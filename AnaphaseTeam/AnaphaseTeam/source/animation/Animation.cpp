@@ -69,3 +69,8 @@ const float Animation::getCurrentTime() const
 {
 	return m_timer.getTime();
 }
+
+const bool Animation::getIsLoop()const
+{
+	return m_isLoop;
+}

@@ -1,48 +1,45 @@
 #include "../../../header/actor/Player/Player.h"
 
-#include "../../../header/actionstate/MoveState.h"
-#include "../../../header/actionstate/StandState.h"
-#include "../../../header/actionstate/JumpState.h"
-#include "../../../header/actionstate/AttackState.h"
-#include "../../../header/actionstate/DamageState.h"
-#include "../../../header/actionstate/AvoidState.h"
+#include "../../../header/state/player/AttackState.h"
+#include "../../../header/state/player/DamageState.h"
+#include "../../../header/state/player/MoveState.h"
+#include "../../../header/state/player/StandState.h"
+#include "../../../header/state/player/StepState.h"
+
+#include "../../../header/state/player/SingleJumpState.h"
+#include "../../../header/state/player/DoubleJumpState.h"
+#include "../../../header/state/player/LimitFallState.h"
+#include "../../../header/state/player/LandingRigidityState.h"
+
 #include "../../../header/renderer/Renderer.h"
 #include "../../../header/device/GameDevice.h"
 #include "../../../header/camera/Camera.h"
 #include "../../../header/shape/Ray.h"
-#include "../../../header/data/PLAYERACTION_ID.h"
 #include "../../../header/camera/CameraController.h"
+#include "../../../header/camera/CameraWork/E_CameraWorkID.h"
 #include "../../../header/math/Calculate.h"
 
-#include "../../../header/actor/Boss/Boss.h"
 #include "../../../header/camera/LockOn.h"
 #include "../../../header/actor/Enemy/Enemy.h"
+
 #include "../../../header/collision/PlayerAttackCollision.h"
 #include "../../../header/collision/PlayerCollision.h"
-const float Player::MOVESPEED = 0.3f;
+#include "../../../header/collision/SpecialAttackCollision.h"
 const float Player::ROTATESPEED = -2.0f;
-const float Player::WALKSPEED = 0.1f;
 Player::Player(GameDevice* _device, Camera * _camera, LockOn* _lockon)
 	:Actor(
 		Transform({ 0,0,-15 }, GSquaternion(0, 0, 0, 1)),
 		MODEL_ID::PLAYER,
-		Sphere(GSvector3(0, 0, 0), 0),
 		Actor_Tag::PLAYER
-		),
+	),
 	m_device(_device),
-	m_action(nullptr),
-	m_SubAction(this),
-	m_attackManager(),
-	m_isGround(false),
+	m_combo(this),
 	m_camera(_camera),
 	m_status(),
-	m_isJumpAttack(false),
 	m_Gauge(),
-	m_avoid(this),
 	m_lockon(_lockon),
 	m_scythe(),
 	m_SpecialSkillManager(m_Gauge, this, m_device),
-	m_currentAction(nullptr),
 	target(0, 0, 0)
 {
 }
@@ -52,21 +49,21 @@ Player::~Player()
 void Player::initialize()
 {
 	Actor::initialize();
-	actionChange(std::make_shared<StandState>());
-	m_animatorOne.changeAnimation(static_cast<GSuint>(ANIMATION_ID::STAND), true, true, true);
-	m_isJumpAttack = false;
-	createColision();
+	createStates();
+	changeState(ACTOR_STATE::STAND);
+	Collision_Ptr actor = std::make_shared<PlayerCollision>(this);
+	m_collision.add(actor);
 	m_Gauge.initialize();
 	m_status.initialize();
 	m_scythe.initialize();
 	m_SpecialSkillManager.initialize(SPECIALTYPE::NONE);
 	target = m_transform.m_translate;
+	m_combo.initialize();
 }
 
 void Player::update(float deltatime)
 {
-	m_action->action(this, deltatime);
-	sphereChases(GSvector3(0, 1, 0));
+	action(deltatime);
 	m_animatorOne.update(deltatime);
 	m_scythe.update(deltatime, m_animatorOne, m_transform);
 	m_status.change(m_Gauge);
@@ -75,14 +72,14 @@ void Player::update(float deltatime)
 
 	m_collision.update(deltatime);
 	m_Gauge.update(deltatime);
-
-	m_isDead = m_status.getHp() <= 0;
+	if (m_isDead = m_status.getHp() <= 0)
+	{
+		m_collision.clear();
+	}
 }
 
-void Player::draw(const Renderer & _renderer, const Camera & _camera)
+void Player::draw(const Renderer & _renderer)
 {
-	//FALSE_RETURN(isInsideView(_camera));
-	//alphaBlend(_camera);
 	m_animatorOne.draw(_renderer, m_transform);
 	m_collision.draw(_renderer);
 	m_Gauge.draw(_renderer);
@@ -93,94 +90,11 @@ void Player::draw(const Renderer & _renderer, const Camera & _camera)
 		&GSrect(0, 0, m_status.getHp() * 10.0f, 30), &GSvector2(0, 0), &GSvector2(1, 1), 0.0f, &GScolor(0.0f, 1.0f, 0.0f, 1.0f));
 
 	m_SpecialSkillManager.draw(_renderer);
-
-	//_renderer.getDraw2D().string(std::to_string(m_collision.size()), &GSvector2(50, 50), 20);
-
 }
-
-void Player::inGround()
+AttackStatus Player::status()
 {
-	m_isGround = true;
+	return m_combo.getStatus();
 }
-
-void Player::stand(float deltaTime)
-{
-	m_currentAction = std::make_shared<StandState>();
-	if (!m_isGround)
-	{
-		actionChange(std::make_shared<JumpState>());
-		return;
-	}
-	moveMotionChange();
-	subActionStart();
-	m_animatorOne.changeAnimation(static_cast<GSuint>(ANIMATION_ID::STAND), true, true, true, 2.0f);
-	control();
-}
-
-void Player::attack(float deltaTime)
-{
-	m_currentAction = std::make_shared<AttackState>();
-	m_SubAction.jumpPowerOff();
-	m_attackManager.update(deltaTime, this);
-	if (m_attackManager.isEnd())
-	{
-		actionChange(std::make_shared<StandState>());
-	}
-	gsVector3Lerp(&m_transform.m_translate, &m_transform.m_translate, &target, deltaTime * 0.1f);
-}
-
-void Player::damage(float deltaTime)
-{
-	if (m_SpecialSkillManager.isSuperArmor())
-	{
-		actionChange(m_currentAction);
-		return;
-	}
-	m_currentAction = std::make_shared<DamageState>();
-	m_animatorOne.changeAnimation(static_cast<GSuint>(ANIMATION_ID::DAMAGE), false);
-	if (isAnimationEnd())
-	{
-		actionChange(std::make_shared<StandState>());
-	}
-}
-
-void Player::move(float deltaTime)
-{
-	m_currentAction = std::make_shared<MoveState>();
-	moving(deltaTime);
-	moveMotionChange();
-	subActionStart();
-	control();
-}
-
-void Player::jump(float deltaTime)
-{
-	m_currentAction = std::make_shared<JumpState>();
-	m_SubAction.update(deltaTime, SubActionType::JUMP);
-	if (m_SubAction.isEnd(SubActionType::JUMP))
-	{
-		m_isJumpAttack = false;
-		actionChange(std::make_shared<StandState>());
-	}
-}
-
-void Player::avoid(float deltaTime)
-{
-	m_currentAction = std::make_shared<AvoidState>();
-	m_animatorOne.changeAnimation(static_cast<GSuint>(ANIMATION_ID::STAND), true);
-	m_avoid.update(deltaTime);
-	if (m_avoid.isEnd())
-	{
-		actionChange(std::make_shared<StandState>());
-	}
-}
-
-void Player::createColision()
-{
-	Collision_Ptr actor = std::make_shared<PlayerCollision>(this);
-	m_collision.add(actor);
-}
-
 void Player::jumping(float _velocity)
 {
 	m_transform.translate_up(_velocity);
@@ -190,12 +104,8 @@ void Player::subActionStart()
 {
 	if (m_device->input()->specialSkillMode())return;
 	if (m_device->input()->jump())
-	{
-		GSvector3 nowPosition = GSvector3(0, m_transform.m_translate.y + 0.3f, 0);
-		m_transform.translate(nowPosition);
-		m_SubAction.initialize(SubActionType::JUMP);
-		actionChange(std::make_shared<JumpState>());
-		m_isGround = false;
+	{	
+		changeState(ACTOR_STATE::SINGLEJUMP);
 		return;
 	}
 
@@ -203,59 +113,30 @@ void Player::subActionStart()
 	{
 		if (m_Gauge.down(5))
 		{
-			m_SubAction.initialize(SubActionType::AVOID);
-			m_avoid.initialize();
-			actionChange(std::make_shared<AvoidState>());
+			changeState(ACTOR_STATE::STEP);
+
 		}
 	}
 }
 
-void Player::moveStart()
-{
-	if (m_device->input()->move())
-		actionChange(std::make_shared<MoveState>());
-}
-void Player::gaugeUp(float _scale)
-{
-	m_Gauge.up(_scale);
-}
-
-void Player::attackHoming(Enemy * _enemy)
-{
-	Math::Clamp clamp;
-
-	if (_enemy == nullptr) return;
-	/*if (m_device->input()->velocity().y >= 0)
-	{
-		m_transform.m_rotate = targetDirection(*_enemy);
-	}*/
-	m_transform.m_rotate = targetDirection(*_enemy);
-	float velocity = distanceActor(*_enemy) / 5.0f;
-	velocity = clamp(m_Gauge.scale(velocity), 0.0f, distanceActor(*_enemy) - 1.0f);
-	target = m_transform.m_translate + (m_transform.front() * velocity);
-	//gsVector3Lerp(&m_transform.m_translate, &m_transform.m_translate, &target, 0.1f);
-	//m_transform.translate_front(velocity);
-}
-
+//void Player::gaugeUp(float _scale)
+//{
+//	m_Gauge.up(_scale);
+//}
 void Player::homing()
 {
-	m_lockon->homing();
+	Enemy* target = m_lockon->getTarget();
+	if (target == nullptr) return;
+	m_transform.m_rotate = targetDirection(*target);
+	float velocity = distanceActor(*target) / 5.0f;
+	Math::Clamp clamp;
+	velocity = clamp(m_Gauge.scale(velocity), 0.0f, distanceActor(*target) - 1.0f);
+	this->target = m_transform.m_translate + (m_transform.front() * velocity);
 }
-
 void Player::specialAttack()
 {
 	m_animatorOne.changeAnimation(static_cast<GSuint>(ANIMATION_ID::SPECIALATTACK));
 	m_SpecialSkillManager.addAttackCollision(&m_collision);
-}
-
-void Player::collisionChase(SpecialAttackCollision * _collision)
-{
-	_collision->chase(m_transform.m_translate);
-}
-
-void Player::collisionChase(PlayerCollision * _collision)
-{
-	_collision->chase(m_transform.m_translate);
 }
 
 void Player::gaugeAdd()
@@ -267,7 +148,7 @@ void Player::createAttackCollision()
 {
 	GSvector3 p = target + m_transform.front();
 	p.y += 1.f;
-	Collision_Ptr act = std::make_shared<PlayerAttackCollision>(p, m_animatorOne.getNextAnimationEndTime() / 60.0f, m_status.attackSpeed());
+	Collision_Ptr act = std::make_shared<PlayerAttackCollision>(this);
 	m_collision.add(act);
 }
 
@@ -283,145 +164,79 @@ void Player::recovery()
 	m_SpecialSkillManager.recovery(m_status);
 }
 
-void Player::startJump(JumpControl * _control, float _scale)
-{
-	_control->setPower(_scale);
-}
-
-void Player::jumpMotion(JumpControl& _control, ANIMATION_ID _id, float _animSpeed)
-{
-	_control.changeMotion(m_animatorOne, _id, _animSpeed);
-}
-
 void Player::avoidAction(const GSvector3 & _velocity)
 {
 	m_transform.translate(_velocity);
 }
 
-void Player::attackmotion(IAttack & _attack)
+void Player::attackmotion(Attack & _attack)
 {
 	_attack.changeMotion(m_animatorOne, m_status.attackSpeed());
 }
-
-const bool Player::isNextAttack(const IAttack & _attack) const
-{
-	return _attack.isNextAttack(m_animatorOne);
-}
-
-const bool Player::isEndAttackMotion(const IAttack & _attack) const
-{
-	return _attack.isEndMotion(m_animatorOne);
-}
-
-void Player::moving(float deltaTime, bool isAnimation)
-{
-	movement(deltaTime, WALKSPEED);
-	if (!isAnimation)return;
-	m_animatorOne.changeAnimation(static_cast<GSuint>(ANIMATION_ID::RUN), true, true, true);
-}
-
-
-const bool Player::isJump() const
-{
-	return m_device->input()->jump();
-}
-
-const bool Player::isGround() const
-{
-	return m_isGround;
-}
-
-const bool Player::isJumpAttack() const
-{
-	return m_isJumpAttack;
-}
-
-const bool Player::isEndAttack() const
-{
-	return m_attackManager.isEnd();
-}
-
-const bool Player::isSlowAttack() const
-{
-	return m_device->input()->slowAttackTrigger();
-}
-
-const bool Player::isQuickAttack() const
-{
-	return m_device->input()->quickAttackTrigger();
-}
-
-const GSvector3 Player::inputDirection() const
-{
-	return m_transform.front();
-}
-
-void Player::actionChange(Action_Ptr _action)
-{
-	m_action = _action;
-}
 void Player::control()
 {
-	if (m_device->input()->specialSkillMode()) 
+	if (m_device->input()->specialSkillMode())
 	{
-	if (m_device->input()->gaugeAttack1())
-	{
-		m_SpecialSkillManager.initialize(SPECIALTYPE::RECOVERY);
-	}
-	if (m_device->input()->gaugeAttack2())
-	{
-		m_SpecialSkillManager.initialize(SPECIALTYPE::SUPERARMOR);
-	}
-	if (m_device->input()->gaugeAttack3())
-	{
-		m_SpecialSkillManager.initialize(SPECIALTYPE::SPECIALATTACK);
-	}
+		if (m_device->input()->gaugeAttack1())
+		{
+			m_SpecialSkillManager.initialize(SPECIALTYPE::RECOVERY);
+		}
+		if (m_device->input()->gaugeAttack2())
+		{
+			m_SpecialSkillManager.initialize(SPECIALTYPE::SUPERARMOR);
+		}
+		if (m_device->input()->gaugeAttack3())
+		{
+			m_SpecialSkillManager.initialize(SPECIALTYPE::SPECIALATTACK);
+		}
 		//return;
 	}
-
 	/*ボタン押したらAttackStateに切り替わる*/
 	if (m_device->input()->quickAttackTrigger())
 	{
-		actionChange(std::make_shared<AttackState>());
-		m_attackManager.initialize();
-		m_isJumpAttack = !m_isGround;
-		m_lockon->homing();
-		m_attackManager.Start(true, this);
-		//m_Gauge.up(5);
+		changeState(ACTOR_STATE::ATTACK);
+		m_combo.start(false);
 	}
 
 	if (m_device->input()->slowAttackTrigger())
 	{
-		actionChange(std::make_shared<AttackState>());
-		m_attackManager.initialize();
-		m_isJumpAttack = !m_isGround;
-		m_lockon->homing();
-		m_attackManager.Start(false, this);
-		//m_Gauge.up(5);
+		changeState(ACTOR_STATE::ATTACK);
+		m_combo.start(true);
 	}
 }
 
 void Player::look_at(CameraController * _camera, GSvector3 * _target)
 {
 	GSvector3 target = m_transform.m_translate;
+	//by 有冨
+	float distance;
 
 	m_camera->lookAt_cameraTarget_player(target);
 	m_camera->lookAt_cameraTarget_enemy(*_target);
 
-	_camera->special_move1(&target, _target, 10.0f, 1.5f);
-}
-
-/**
-* @fn
-* @brief 動いていればMoveStateに切り替え、動いていなければStandStateに切り替える
-*/
-void Player::moveMotionChange()
-{
-	if (!m_device->input()->move())
+	//by 有冨
+	distance = target.distance(*_target);
+	if (distance < 10)
 	{
-		actionChange(std::make_shared<StandState>());
+		_camera->change_cameraWork(E_CameraWorkID::LOCK_ON);
 	}
-	moveStart();
+	else
+	{
+		_camera->change_cameraWork(E_CameraWorkID::NORMAL);
+	}
+}
+void Player::createStates()
+{
+	registerState(ACTOR_STATE::ATTACK, new AttackState(this));
+	registerState(ACTOR_STATE::DAMAGE, new DamageState(this));
+	registerState(ACTOR_STATE::RUN, new MoveState(this));
+	registerState(ACTOR_STATE::STAND, new StandState(this));
+	registerState(ACTOR_STATE::STEP, new StepState(this));
+
+	registerState(ACTOR_STATE::SINGLEJUMP, new SingleJumpState(this));
+	registerState(ACTOR_STATE::DOUBLEJUMP, new DoubleJumpState(this));
+	registerState(ACTOR_STATE::LIMITFALL, new LimitFallState(this));
+	registerState(ACTOR_STATE::LANDINGRIGIDITY, new LandingRigidityState(this));
 }
 void Player::rotate(float deltaTime, Transform & _transform)
 {
@@ -441,19 +256,4 @@ void Player::movement(float deltaTime, float _speed)
 	if (!m_device->input()->move())speed = 0;
 	GSvector3 forward(m_transform.front()*speed);
 	m_transform.translate(forward*deltaTime*_speed);
-}
-
-const bool Player::isAvoid() const
-{
-	return m_device->input()->avoid();
-}
-
-const bool Player::isAnimationEnd() const
-{
-	return m_animatorOne.isEndCurrentAnimation();
-}
-
-void Player::changeAnimation(unsigned int _animID)
-{
-	m_animatorOne.changeAnimation(_animID);
 }

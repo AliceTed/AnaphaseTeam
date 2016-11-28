@@ -10,8 +10,11 @@
 #include <gslib.h>
 #include <memory>
 
-class Camera;
-class CameraActionManager;
+#include "CameraWork\E_CameraWorkID.h"
+
+class	Camera;
+class	CameraWorkManager;
+enum	CameraWorkID;
 
 class CameraController
 {
@@ -42,6 +45,13 @@ public:
 
 
 	/***********************************************
+	@brief 更新処理
+	***********************************************/
+	void update(void);
+
+
+
+	/***********************************************
 	@brief 操作するカメラの変更
 	@param[_camera] 操作するカメラ
 	***********************************************/
@@ -50,23 +60,9 @@ public:
 
 
 	/***********************************************
-	@brief 巨大な敵と戦う時用
-	@param[_target1] ここはプレイヤーー？
-	@param[_Target2] ここに巨大な敵のベクターを渡して
+	@brief カメラワークの変更
 	***********************************************/
-	void special_move1(
-		GSvector3* _target1, 
-		GSvector3* _target2, 
-		float _elevation, 
-		float _distance
-	);
-
-
-
-	/***********************************************
-	@return 方位角
-	***********************************************/
-	const float direction(void) const;
+	void change_cameraWork(const E_CameraWorkID _id);
 
 private:
 	Camera *m_camera;		// 動かしたいカメラ
@@ -74,5 +70,5 @@ private:
 	float m_pitch;			// ピッチ
 	float m_yow;			// ヨー
 
-	std::shared_ptr<CameraActionManager> m_cameraActionManager;
+	std::shared_ptr<CameraWorkManager> m_cameraWorkManager;
 };

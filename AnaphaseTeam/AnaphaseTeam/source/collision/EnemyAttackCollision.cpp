@@ -1,8 +1,7 @@
 #include "..\..\header\collision\EnemyAttackCollision.h"
 #include "../../header/shape/Sphere.h"
-#include "../../header/attack/AttackIncidence.h"
-EnemyAttackCollision::EnemyAttackCollision(const AttackIncidence * _point, float _destroytime)
-	:CollisionActor(new Sphere(GSvector3(0,0,0),0.5f),Collision_Tag::ENEMY_ATTACK),
+EnemyAttackCollision::EnemyAttackCollision(const GSvector3& _point, float _destroytime)
+	:CollisionActor(new Sphere(_point,0.5f),Collision_Tag::ENEMY_ATTACK),
 	m_point(_point),
 	m_destory_timer(_destroytime)
 {
@@ -14,7 +13,6 @@ EnemyAttackCollision::~EnemyAttackCollision()
 
 void EnemyAttackCollision::doUpdate(float deltaTime)
 {
-	m_shape->transfer(m_point->point());
 	m_destory_timer.update(deltaTime);
 	if (m_destory_timer.isEnd())
 	{

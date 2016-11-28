@@ -20,6 +20,7 @@ void Title::initialize()
 	m_change.initialize();
 	m_change.begin();
 	m_title.initialize();
+	m_device->sound().playBGM(BGM_ID::TITLE);
 }
 void Title::update(float deltaTime)
 {
@@ -37,6 +38,7 @@ void Title::draw(const Renderer & renderer)
 
 void Title::finish()
 {
+	m_device->sound().stopBGM(BGM_ID::TITLE);
 	m_title.finish();
 }
 

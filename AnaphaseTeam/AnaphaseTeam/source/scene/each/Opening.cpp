@@ -31,7 +31,8 @@ void Opening::update(float deltaTime)
 
 void Opening::draw(const Renderer & renderer)
 {
-	renderer.getDraw2D().textrue(TEXTURE_ID::ROGO,&GSvector2(170,90),&m_lerp.current());
+	// Ÿè“ú–{HŠw‰@ƒƒS‚É‰æ‘œ‚ÆˆÊ’u‚ğ•Ï‚¦‚½‚æ by—L•y
+	renderer.getDraw2D().textrue(TEXTURE_ID::ROGO,&GSvector2(0,0),&m_lerp.current());
 	m_change.draw(renderer);
 }
 
