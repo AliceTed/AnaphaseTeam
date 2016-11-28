@@ -24,6 +24,7 @@ public:
 	const bool isEnd() const;
 	void Start(bool _attackChange,Player* _player);
 	float getStatus();
+	GSvector3 getBlow();
 private:
 	Scythe m_Scythe;
 	Gun m_Gun;

@@ -25,3 +25,8 @@ float AttackStatus::isPower()
 {
 	return m_Power;
 }
+
+GSvector3 AttackStatus::isBlow()
+{
+	return m_BlowOff;
+}

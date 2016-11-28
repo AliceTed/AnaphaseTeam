@@ -35,6 +35,7 @@ public:
 	void nextIdentify(float deltaTime, Player* _player);
 	const bool isEnd()const;
 	float isPower();
+	GSvector3 isBlow();
 private:	
 	void next(Combo _next);
 	void change(Player* _player);
@@ -49,5 +50,4 @@ private:
 	ComboReader m_comboReader;
 	std::vector<AttackStatus> m_status;
 	std::vector<Attack> m_attack;
-	float m_power;
 };

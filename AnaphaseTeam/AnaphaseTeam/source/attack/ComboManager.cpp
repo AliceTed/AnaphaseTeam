@@ -7,8 +7,7 @@ ComboManager::ComboManager()
 	m_next(Combo::End),
 	m_attackPattern(),
 	m_isEnd(false),
-	m_attackFinished(false),
-	m_power(10)
+	m_attackFinished(false)
 {
 }
 
@@ -124,4 +123,9 @@ const bool ComboManager::isCurrentEnd(Player* _player) const
 float ComboManager::isPower()
 {
 	return m_current.isAttackPower();
+}
+
+GSvector3 ComboManager::isBlow()
+{
+	return m_current.isAttckBlow();
 }

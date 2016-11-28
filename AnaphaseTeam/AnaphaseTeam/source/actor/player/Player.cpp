@@ -289,6 +289,11 @@ float Player::enemyDamage()
 	return m_attackManager.getStatus();
 }
 
+GSvector3 Player::enemyBlow()
+{
+	return m_attackManager.getBlow();
+}
+
 void Player::startJump(JumpControl * _control, float _scale)
 {
 	_control->setPower(_scale);

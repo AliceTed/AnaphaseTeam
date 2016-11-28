@@ -37,3 +37,8 @@ float AttackManager::getStatus()
 {
 	return m_combo.isPower();
 }
+
+GSvector3 AttackManager::getBlow()
+{
+	return m_combo.isBlow();
+}

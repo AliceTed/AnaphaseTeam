@@ -31,6 +31,7 @@ public:
 	const Combo weakAttackNext() const;
 	const Combo strengthAttackNext() const;
 	const float isAttackPower();
+	const GSvector3 isAttckBlow();
 private:
 	//!攻撃ステータス
 	AttackStatus m_status;
@@ -39,4 +40,5 @@ private:
 	//!次の攻撃
 	Combo m_nextQCombo;
 	Combo m_nexySCombo;
+	
 };

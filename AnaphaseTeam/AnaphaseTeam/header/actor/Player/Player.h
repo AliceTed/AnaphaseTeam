@@ -68,6 +68,7 @@ public:
 	void hpDown();
 	void recovery();
 	float enemyDamage();
+	GSvector3 enemyBlow();
 public:
 	const bool isGround() const;
 	const bool isJumpAttack()const;

@@ -52,3 +52,8 @@ const float Attack::isAttackPower()
 {
 	return m_status.isPower();
 }
+
+const GSvector3 Attack::isAttckBlow()
+{
+	return m_status.isBlow();
+}

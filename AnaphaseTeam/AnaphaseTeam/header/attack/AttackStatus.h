@@ -17,6 +17,7 @@ public:
 	//ˆĞ—Í‚Æ‚Á”ò‚Ñ‚ğ“n‚·
 	void giveDamage(Player* _player, Boss* _other);
 	float isPower();
+	GSvector3 isBlow();
 private:
 	//!UŒ‚—Í
 	float m_Power;
