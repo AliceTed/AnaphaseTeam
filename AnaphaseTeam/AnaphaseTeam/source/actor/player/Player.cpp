@@ -87,6 +87,7 @@ void Player::draw(const Renderer & _renderer)
 
 	m_SpecialSkillManager.draw(_renderer);
 }
+
 void Player::jumping(float _velocity)
 {
 	m_transform.translate_up(_velocity);
