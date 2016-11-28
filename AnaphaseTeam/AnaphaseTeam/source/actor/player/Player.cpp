@@ -274,8 +274,6 @@ void Player::createAttackCollision()
 	m_collision.add(act);
 }
 
-
-
 void Player::hpDown()
 {
 	m_status.down();
@@ -290,8 +288,6 @@ float Player::enemyDamage()
 {
 	return m_attackManager.getStatus();
 }
-
-
 
 void Player::startJump(JumpControl * _control, float _scale)
 {
