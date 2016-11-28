@@ -90,9 +90,6 @@ void Player::draw(const Renderer & _renderer)
 		&GSrect(0, 0, m_status.getHp() * 10.0f, 30), &GSvector2(0, 0), &GSvector2(1, 1), 0.0f, &GScolor(0.0f, 1.0f, 0.0f, 1.0f));
 
 	m_SpecialSkillManager.draw(_renderer);
-
-	_renderer.getDraw2D().string(u, &GSvector2(100, 400), 20);
-	_renderer.getDraw2D().string(std::to_string(count), &GSvector2(100, 430), 20);
 }
 AttackStatus Player::status()
 {
@@ -150,10 +147,7 @@ void Player::gaugeAdd()
 void Player::createAttackCollision()
 {
 	Collision_Ptr act =Collision_Ptr(new PlayerAttackCollision(this));
-
-	u = std::to_string((int)act.get());
 	m_collision.add(act);
-	count++;
 }
 
 

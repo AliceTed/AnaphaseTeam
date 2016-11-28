@@ -59,9 +59,6 @@ private:
 	SpecialSkillManager m_SpecialSkillManager;
 
 	GSvector3 target;
-
-	std::string u;
-	int count=0;
 private://stateéŒ¾
 	class AttackState;
 	class DamageState;
