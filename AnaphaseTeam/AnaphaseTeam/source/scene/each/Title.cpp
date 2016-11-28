@@ -24,7 +24,7 @@ void Title::initialize()
 void Title::update(float deltaTime)
 {
 	GameDevice::getInstacnce().sound().bgmFade(BGM_ID::TITLE, deltaTime * 0.01f);
-
+	m_title.update(deltaTime);
 	if (m_change.update(deltaTime))return;
 	m_title.operation(*this);
 }
