@@ -27,14 +27,21 @@ public:
 
 
 
-	/************************************************
-	@brief Às
-	************************************************/
-	void run(void) override;
+	//XVˆ—
+	void update(float _deltaTime);
+
+
+
+	//•`‰æˆ—
+	void draw(void);
 
 private:
-	virtual void update(void);
+	virtual void update_cameraWork(float _deltaTime);
+
+	virtual void draw_cameraWork(void);
 
 protected:
 	Camera* m_camera;
+
+	float m_deltaTime;
 };

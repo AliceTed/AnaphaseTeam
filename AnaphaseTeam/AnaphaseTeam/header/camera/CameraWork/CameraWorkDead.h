@@ -25,5 +25,5 @@ public:
 	~CameraWorkDead() override;
 
 private:
-	void update(void) override;
+	void draw_cameraWork(void) override;
 };

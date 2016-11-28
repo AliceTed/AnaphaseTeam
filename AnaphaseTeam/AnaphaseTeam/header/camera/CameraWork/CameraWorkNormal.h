@@ -27,7 +27,7 @@ public:
 	~CameraWorkNormal() override;
 
 private:
-	void update(void) override;
+	void draw_cameraWork(void) override;
 
 	const GSvector2 velocity(void);
 

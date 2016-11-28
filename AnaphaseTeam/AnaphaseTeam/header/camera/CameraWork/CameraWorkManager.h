@@ -49,9 +49,17 @@ public:
 
 
 	/*****************************************
-	@brief Às
+	@brief XVˆ—
+	@param[_deltaTime]
 	*****************************************/
-	void run(void);
+	void update(float _deltaTime);
+
+
+
+	/*****************************************
+	@brief •`‰æ
+	*****************************************/
+	void draw(void);
 
 private:
 	Camera*							m_camera;

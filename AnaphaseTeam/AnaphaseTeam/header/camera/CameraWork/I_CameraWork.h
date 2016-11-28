@@ -22,7 +22,15 @@ public:
 
 
 	/********************************************
-	@brief Às
+	@brief XVˆ—
+	@param[_deltaTime] 
 	********************************************/
-	virtual void run(void) = 0;
+	virtual void update(float _deltaTime) = 0;
+
+
+
+	/********************************************
+	@brief •`‰æˆ—
+	********************************************/
+	virtual void draw(void) = 0;
 };
