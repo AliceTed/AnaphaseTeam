@@ -23,6 +23,7 @@ public:
 	void previous();
 	const Select currentSelect()const;
 	void startChange();
+	void startMove();
 private:
 	void change(Select _next);
 private:

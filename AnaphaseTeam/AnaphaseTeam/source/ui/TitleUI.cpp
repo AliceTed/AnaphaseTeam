@@ -3,9 +3,12 @@
 #include "../../header/scene/SceneChange.h"
 #include "../../header/device/Input.h"
 #include "../../header/scene/each/Title.h"
-TitleUI::TitleUI()
+#include "../../header/device/GameDevice.h"
+TitleUI::TitleUI(GameDevice* _device)
 	:m_select(),
-	m_cursor()
+	m_cursor(),
+	m_alpha(1.0f),
+	m_device(_device)
 {
 }
 
@@ -16,17 +19,19 @@ TitleUI::~TitleUI()
 void TitleUI::initialize()
 {
 	createSelect();
+	m_alpha = 1.0f;
 }
 
 void TitleUI::update(float deltaTime, Title& _title)
 {
 	m_select.update(deltaTime);
 	operation(_title);
+	logoFade(_title);
 }
 
 void TitleUI::draw(const Renderer & _renderer)
 {
-	_renderer.getDraw2D().textrue(TEXTURE_ID::TITLE_ROGO, &GSvector2(0, 0));
+	_renderer.getDraw2D().textrue(TEXTURE_ID::TITLE_ROGO, &GSvector2(0, 0), &GScolor(1.0f, 1.0f, 1.0f, m_alpha));
 	m_select.draw(_renderer);
 	m_cursor.draw(_renderer, m_select.currentSelect());
 }
@@ -38,8 +43,20 @@ void TitleUI::finish()
 }
 void TitleUI::operation(Title& _title)
 {
-	_title.select(m_select);
-	_title.decision(m_select.currentSelect());
+	if (m_device->input()->up())
+	{
+		m_select.previous();
+	}
+	if (m_device->input()->down())
+	{
+		m_select.next();
+	}
+	if (m_device->input()->jump())
+	{
+		_title.decision(m_select.currentSelect());
+		m_alpha -= 0.01f;
+		m_select.startMove();
+	}
 }
 void TitleUI::createSelect()
 {
@@ -58,14 +75,23 @@ void TitleUI::createSelect()
 		TEXTURE_ID::OPTION,
 		TEXTURE_ID::EXIT
 	};
-	GSvector2 base(240, 500);
+	GSvector2 base(550, 500);
 	GSvector2 marge(0, 60);
 	for (unsigned int i = 0; i < size; i++)
 	{
 		GSvector2 position(base + marge*i);
-		ScaleImage image(id[i], position,false);
-		m_select.add(select[i],image);
-		m_cursor.add(select[i], position+GSvector2(-70,0));
+		ScaleImage image(id[i], position, false);
+		m_select.add(select[i], image);
+		m_cursor.add(select[i], position + GSvector2(-70, 0));
 	}
 	m_select.startChange();
+}
+
+void TitleUI::logoFade(Title & _title)
+{
+	if (_title.isLogofade())
+	{
+		m_alpha -= 0.01f;
+		//m_select.startMove();
+	}
 }

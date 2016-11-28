@@ -20,21 +20,21 @@ void SelectUI::initialize()
 
 void SelectUI::add(Select _name, const ScaleImage & _image)
 {
-	m_images.insert(std::make_pair(_name,_image));
+	m_images.insert(std::make_pair(_name, _image));
 }
 
 void SelectUI::update(float deltaTime)
 {
-	std::for_each(m_images.begin(), m_images.end(),[deltaTime](SelectValue& value) {value.second.update(deltaTime);});
+	std::for_each(m_images.begin(), m_images.end(), [deltaTime](SelectValue& value) {value.second.update(deltaTime); });
 }
 
 void SelectUI::draw(const Renderer & _renderer)
 {
-	std::for_each(m_images.begin(), m_images.end(),[&_renderer](SelectValue& value) {value.second.draw(_renderer);});
+	std::for_each(m_images.begin(), m_images.end(), [&_renderer](SelectValue& value) {value.second.draw(_renderer); });
 }
 void SelectUI::next()
 {
-	auto itr=m_images.find(m_current);
+	auto itr = m_images.find(m_current);
 	itr++;
 	if (itr == m_images.end())
 	{
@@ -46,7 +46,7 @@ void SelectUI::next()
 void SelectUI::previous()
 {
 	auto itr = m_images.find(m_current);
-	if(itr==m_images.begin())
+	if (itr == m_images.begin())
 	{
 		itr = m_images.end();
 	}
@@ -68,4 +68,16 @@ const Select SelectUI::currentSelect() const
 void SelectUI::startChange()
 {
 	change(m_current);
+}
+
+void SelectUI::startMove()
+{
+	m_images.at(m_current).moveStart(GSvector2(550, 200), LERPTIME* 10.0f);
+	for (auto& i : m_images)
+	{
+		if (i.first != m_current)
+		{
+			m_images.at(i.first).moveStart(GSvector2(550, 800), LERPTIME* 10.0f);
+		}
+	}
 }

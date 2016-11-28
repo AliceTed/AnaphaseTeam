@@ -4,10 +4,11 @@
 class SceneChange;
 class Input;
 class Title;
+class GameDevice;
 class TitleUI
 {
 public:
-	TitleUI();
+	TitleUI(GameDevice* _device);
 	~TitleUI();
 	void initialize();
 	void update(float deltaTime, Title& _title);
@@ -16,8 +17,11 @@ public:
 private:
 	void operation(Title& _title);
 	void createSelect();
+	void logoFade(Title& _title);
 private:
 	SelectUI m_select;
 	SelectCursor m_cursor;
+	float m_alpha;
+	GameDevice* m_device;
 };
 

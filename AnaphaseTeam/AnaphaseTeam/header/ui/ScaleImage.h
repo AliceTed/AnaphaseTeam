@@ -9,6 +9,7 @@ public:
 	ScaleImage(TEXTURE_ID _id, const GSvector2& _position,bool _isPexis=true);
 	~ScaleImage();
 	void start(const GSvector2& _start, const GSvector2& _end, float _time);
+	void moveStart(const GSvector2& _end, float _time);
 	void update(float deltaTime);
 	void draw(const Renderer& _renderer);
 private:
@@ -18,5 +19,6 @@ private:
 	TEXTURE_ID m_id;
 	GSvector2 m_position;
 	bool m_isPexis;
-	Math::TimeLerpVector<GSvector2> m_lerp;
+	Math::TimeLerpVector<GSvector2> m_scaleLerp;
+	Math::TimeLerpVector<GSvector2> m_moveLerp;
 };
