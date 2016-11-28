@@ -26,7 +26,7 @@ public:
 	~CameraWorkLockOn();
 
 private:
-	void update(void) override;
+	void draw_cameraWork(void) override;
 
 private:
 	GSvector2* m_rotate;

@@ -16,7 +16,7 @@ CameraWorkDead::~CameraWorkDead()
 
 
 //–¢Š®¬
-void CameraWorkDead::update(void)
+void CameraWorkDead::draw_cameraWork(void)
 {
 	const GSvector3& player = m_camera->cameraTarget_player();
 

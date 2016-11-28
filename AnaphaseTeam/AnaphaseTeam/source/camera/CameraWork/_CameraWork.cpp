@@ -16,16 +16,30 @@ CameraWork::~CameraWork()
 
 
 
-void CameraWork::run(void)
+void CameraWork::update(float _deltaTime)
 {
-	update();
+	update_cameraWork(_deltaTime);
+}
+
+
+
+void CameraWork::draw(void)
+{
+	draw_cameraWork();
 
 	return;
 }
 
 
 
-void CameraWork::update(void)
+void CameraWork::update_cameraWork(float _deltaTime)
+{
+	m_deltaTime = _deltaTime;
+}
+
+
+
+void CameraWork::draw_cameraWork(void)
 {
 	m_camera->move(GSvector3(0.0f, 0.0f, 0.0f));
 

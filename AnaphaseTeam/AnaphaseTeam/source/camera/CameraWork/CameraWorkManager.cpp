@@ -50,12 +50,27 @@ void CameraWorkManager::change_cameraWork(const E_CameraWorkID _id)
 
 
 
-void CameraWorkManager::run(void)
+void CameraWorkManager::update(float _deltaTime)
 {
 	if (m_current_cameraWork == E_CameraWorkID::NONE)
 	{
 		return;
 	}
 
-	m_cameraData->get(m_current_cameraWork)->run();
+	m_cameraData->get(m_current_cameraWork)->update(_deltaTime);
+
+	return;
+}
+
+
+
+void CameraWorkManager::draw(void)
+{
+
+	if (m_current_cameraWork == E_CameraWorkID::NONE)
+	{
+		return;
+	}
+
+	m_cameraData->get(m_current_cameraWork)->draw();
 }

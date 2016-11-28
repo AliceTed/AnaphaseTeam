@@ -18,7 +18,7 @@ CameraWorkLockOn::~CameraWorkLockOn()
 
 
 
-void CameraWorkLockOn::update(void)
+void CameraWorkLockOn::draw_cameraWork(void)
 {
 	m_camera->zoom(90.0f);
 

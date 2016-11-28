@@ -41,12 +41,20 @@ CameraController::CameraController(
 
 
 
-void CameraController::update(void)
+void CameraController::update(float _deltaTime)
 {
-	m_cameraWorkManager->run();
+	m_cameraWorkManager->update(_deltaTime);
+}
+
+
+
+void CameraController::draw(void)
+{
+	m_cameraWorkManager->draw();
 
 	m_camera->update();
 }
+
 
 
 

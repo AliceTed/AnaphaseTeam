@@ -47,6 +47,7 @@ void GamePlay::update(float deltaTime)
 	m_player.update(deltaTime);
 	m_enemys.update(deltaTime);
 	m_enemys.collision(m_player);
+	m_cameracontroller.update(deltaTime);
 	for (int i = 0; i < 2- m_enemys.size(); i++)
 	{
 		Math::Random rnd;
@@ -64,7 +65,7 @@ void GamePlay::draw(const Renderer & _renderer)
 {
 	_renderer.getDraw3D().drawSky(MESH_ID::SKY);
 	m_lockon.look_at(&m_cameracontroller);
-	m_cameracontroller.update();
+	m_cameracontroller.draw();
 	m_Map.draw(_renderer);
 	m_enemys.draw(_renderer);
 	m_player.draw(_renderer);	

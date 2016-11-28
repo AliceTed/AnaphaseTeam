@@ -29,7 +29,7 @@ CameraWorkNormal::~CameraWorkNormal()
 
 
 
-void CameraWorkNormal::update(void)
+void CameraWorkNormal::draw_cameraWork(void)
 {
 	const GSvector3& player = m_camera->cameraTarget_player();
 
