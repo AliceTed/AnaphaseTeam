@@ -2,11 +2,10 @@
 #include "SelectUI.h"
 #include "Fade.h"
 class Title;
-class GameDevice;
 class TitleUI
 {
 public:
-	TitleUI(GameDevice* _device);
+	TitleUI();
 	~TitleUI();
 	void initialize();
 	void update(float deltaTime);
@@ -17,7 +16,6 @@ private:
 	void createSelect();
 private:
 	SelectUI m_select;
-	GameDevice* m_device;
 	Fade m_fade;
 };
 

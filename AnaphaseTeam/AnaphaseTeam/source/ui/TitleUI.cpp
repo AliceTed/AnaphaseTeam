@@ -5,9 +5,8 @@
 #include "../../header/scene/each/Title.h"
 #include "../../header/device/GameDevice.h"
 #include "../../header/data/TEXTURE_ID.h"
-TitleUI::TitleUI(GameDevice* _device)
+TitleUI::TitleUI()
 	:m_select(),
-	m_device(_device),
 	m_fade(TEXTURE_ID::TITLE_ROGO)
 {
 }
@@ -45,15 +44,15 @@ void TitleUI::operation(Title& _title)
 	{
 		return;
 	}
-	if (m_device->input()->up())
+	if (GameDevice::getInstacnce().input()->up())
 	{
 		m_select.previous();
 	}
-	if (m_device->input()->down())
+	if (GameDevice::getInstacnce().input()->down())
 	{
 		m_select.next();
 	}
-	if (m_device->input()->jump())
+	if (GameDevice::getInstacnce().input()->jump())
 	{
 		_title.decision(m_select.currentSelect());
 		m_select.startMove();

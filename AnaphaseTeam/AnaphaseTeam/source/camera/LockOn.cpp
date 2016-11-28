@@ -3,10 +3,9 @@
 #include "../../header/actor/Player/Player.h"
 #include "../../header/device/GameDevice.h"
 
-LockOn::LockOn(GameDevice* _device)
+LockOn::LockOn()
 	:m_player(nullptr),
-	m_target(nullptr),
-	m_device(_device)
+	m_target(nullptr)
 {
 }
 
@@ -20,7 +19,7 @@ void LockOn::nearEnemyFind(EnemyManager * _enemys)
 	{
 		return;
 	}
-	if (m_target == nullptr || m_device->input()->lockOn())
+	if (m_target == nullptr || GameDevice::getInstacnce().input()->lockOn())
 	{
 		m_target = &_enemys->nearEnemy(m_player);
 	}

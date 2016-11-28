@@ -4,6 +4,7 @@
 
 enum class SE_ID : unsigned int
 {
-	TITLE = static_cast<int>(BGM_ID::SIZE) + 1,
+	ENTER = static_cast<int>(BGM_ID::SIZE) + 1,
+	SELECT,
 	SIZE
 };

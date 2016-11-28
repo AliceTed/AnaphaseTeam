@@ -1,11 +1,11 @@
 #pragma once
 #include "../IScene.h"
-class GameDevice;
+
 class Input;
 class GameClear : public IScene
 {
 public:
-	GameClear(GameDevice* _device);
+	GameClear();
 	~GameClear();
 	void initialize();
 	void update(float deltaTime);
@@ -16,5 +16,4 @@ public:
 	const bool isExit()const;
 private:
 	bool m_IsEnd;
-	GameDevice* m_device;
 };

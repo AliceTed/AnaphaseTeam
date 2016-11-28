@@ -2,10 +2,9 @@
 #include "../../../header/renderer/Renderer.h"
 #include "../../../header/device/GameDevice.h"
 #include "../../../header/data/BGM_ID.h"
-Title::Title(GameDevice* _device)
-	:m_device(_device),
-	m_IsExit(false),
-	m_title(_device),
+Title::Title()
+	:m_IsExit(false),
+	m_title(),
 	m_change()
 {
 }
@@ -20,11 +19,11 @@ void Title::initialize()
 	m_change.initialize();
 	m_change.begin();
 	m_title.initialize();
-	m_device->sound().playBGM(BGM_ID::TITLE);
+	GameDevice::getInstacnce().sound().playBGM(BGM_ID::TITLE);
 }
 void Title::update(float deltaTime)
 {
-	m_device->sound().playBGM(BGM_ID::TITLE);
+	GameDevice::getInstacnce().sound().bgmFade(BGM_ID::TITLE, deltaTime * 0.01f);
 	m_title.update(deltaTime);
 	if (m_change.update(deltaTime))return;
 	m_title.operation(*this);
@@ -38,7 +37,8 @@ void Title::draw(const Renderer & renderer)
 
 void Title::finish()
 {
-	m_device->sound().stopBGM(BGM_ID::TITLE);
+	GameDevice::getInstacnce().sound().stopBGM(BGM_ID::TITLE);
+	GameDevice::getInstacnce().sound().stopSE(SE_ID::ENTER);
 	m_title.finish();
 }
 
@@ -58,6 +58,7 @@ const bool Title::isExit() const
 }
 void Title::decision(Select _select)
 {
+	GameDevice::getInstacnce().sound().playSE(SE_ID::ENTER);
 	switch (_select)
 	{
 	case Select::GAMESTART:

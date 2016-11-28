@@ -3,11 +3,10 @@
 #include "../data/TEXTURE_ID.h"
 #include "../../header/device/Input.h"
 class Renderer;
-class GameDevice;
 class SpAttackUI
 {
 public:
-	SpAttackUI(GameDevice* _device);
+	SpAttackUI();
 	~SpAttackUI();
 	void initilize();
 	void update();
@@ -17,6 +16,5 @@ public:
 private:
 	TEXTURE_ID m_ID;
 	int m_Time;
-	GameDevice* m_device;
     GSvector2 m_scale;
 };

@@ -25,12 +25,12 @@ public:
 	void pauseBGM(BGM_ID _id);
 	void restartBGM(BGM_ID _id);
 	void bgmVolume(BGM_ID _id, float _volume);
-	void bgmFadeIn(BGM_ID _id, float _deltaTime);
-	void bgmFadeOut(BGM_ID _id, float _deltaTime);
+	void bgmFade(BGM_ID _id, float _deltaTime);
 
 	void loadSE(SE_ID _id, const string& _name, const string& _path = "res/sound/", const string& _extension = ".wav");
 	void deleteSE();
 	void playSE(SE_ID _id);
+	void stopSE(SE_ID _id);
 
 private:
 	float m_volume;

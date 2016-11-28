@@ -1,9 +1,8 @@
 #include "../../../header/scene/each/Ending.h"
 #include "../../../header/renderer/Renderer.h"
 #include "../../../header/device/GameDevice.h"
-Ending::Ending(GameDevice* _device)
+Ending::Ending()
 	:m_IsEnd(false),
-	m_device(_device),
 	m_change()
 {
 }
@@ -22,7 +21,7 @@ void Ending::update(float _deltaTime)
 {
 	if (m_change.update(_deltaTime))return;
 	//Œˆ’èƒ{ƒ^ƒ“ì‚Á‚Ä‚à‚¢‚¢‚©‚à
-	if (m_device->input()->jump())
+	if (GameDevice::getInstacnce().input()->jump())
 	{
 		m_change.end(SceneMode::TITLE);
 	}
