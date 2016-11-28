@@ -27,7 +27,6 @@ public:
 	void exit(Collision_Ptr& _other, HitInformation& _hit);
 	const bool isCollision(Collision_Ptr&  _other, HitInformation* _out1, HitInformation* _out2)const;
 	const bool isDead()const;
-protected:
 	void destroy();
 private:
 	virtual void doUpdate(float deltaTime);

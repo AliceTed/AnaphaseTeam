@@ -58,9 +58,6 @@
     <Filter Include="ヘッダー ファイル\data\id">
       <UniqueIdentifier>{0e44e006-9926-4892-8601-12b87d5e09d5}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ヘッダー ファイル\camera">
-      <UniqueIdentifier>{8b26a032-4802-4034-ae6c-fef2d4b00838}</UniqueIdentifier>
-    </Filter>
     <Filter Include="ソース ファイル\camera">
       <UniqueIdentifier>{975d37c5-230f-47f6-a801-9ad3ca6a7302}</UniqueIdentifier>
     </Filter>
@@ -177,6 +174,9 @@
     </Filter>
     <Filter Include="ソース ファイル\shape\ui">
       <UniqueIdentifier>{e1c7c17e-ffc4-403f-bd11-65fe45527639}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\camera">
+      <UniqueIdentifier>{8b26a032-4802-4034-ae6c-fef2d4b00838}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

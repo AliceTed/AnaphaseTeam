@@ -25,7 +25,7 @@ Player::AttackState* Player::AttackState::clone() const
 void Player::AttackState::input(float deltaTime)
 {
 	if (!m_actor->m_animatorOne.isEndCurrentAnimation())return;
-	m_actor->m_animatorOne.changeAnimationLerp(static_cast<GSuint>(ANIMATION_ID::STAND));
+//	m_actor->m_animatorOne.changeAnimationLerp(static_cast<GSuint>(ANIMATION_ID::STAND));
 	m_inputTimer.update(deltaTime);
 
 	if (m_inputTimer.isEnd())

@@ -30,7 +30,7 @@ Player::Player(GameDevice* _device, Camera * _camera, LockOn* _lockon)
 		Transform({ 0,0,-15 }, GSquaternion(0, 0, 0, 1)),
 		MODEL_ID::PLAYER,
 		Actor_Tag::PLAYER
-		),
+	),
 	m_device(_device),
 	m_combo(this),
 	m_camera(_camera),
@@ -71,7 +71,10 @@ void Player::update(float deltatime)
 
 	m_collision.update(deltatime);
 	m_Gauge.update(deltatime);
-	m_isDead = m_status.getHp() <= 0;
+	if (m_isDead = m_status.getHp() <= 0)
+	{
+		m_collision.clear();
+	}
 }
 
 void Player::draw(const Renderer & _renderer)
@@ -100,7 +103,7 @@ void Player::subActionStart()
 {
 	if (m_device->input()->specialSkillMode())return;
 	if (m_device->input()->jump())
-	{
+	{	
 		changeState(ACTOR_STATE::SINGLEJUMP);
 		return;
 	}
@@ -111,8 +114,8 @@ void Player::subActionStart()
 		{
 			changeState(ACTOR_STATE::STEP);
 
-}
-}
+		}
+	}
 }
 
 //void Player::gaugeUp(float _scale)
@@ -171,20 +174,20 @@ void Player::attackmotion(Attack & _attack)
 }
 void Player::control()
 {
-	if (m_device->input()->specialSkillMode()) 
+	if (m_device->input()->specialSkillMode())
 	{
-	if (m_device->input()->gaugeAttack1())
-	{
-		m_SpecialSkillManager.initialize(SPECIALTYPE::RECOVERY);
-	}
-	if (m_device->input()->gaugeAttack2())
-	{
-		m_SpecialSkillManager.initialize(SPECIALTYPE::SUPERARMOR);
-	}
-	if (m_device->input()->gaugeAttack3())
-	{
-		m_SpecialSkillManager.initialize(SPECIALTYPE::SPECIALATTACK);
-	}
+		if (m_device->input()->gaugeAttack1())
+		{
+			m_SpecialSkillManager.initialize(SPECIALTYPE::RECOVERY);
+		}
+		if (m_device->input()->gaugeAttack2())
+		{
+			m_SpecialSkillManager.initialize(SPECIALTYPE::SUPERARMOR);
+		}
+		if (m_device->input()->gaugeAttack3())
+		{
+			m_SpecialSkillManager.initialize(SPECIALTYPE::SPECIALATTACK);
+		}
 		//return;
 	}
 	/*É{É^ÉìâüÇµÇΩÇÁAttackStateÇ…êÿÇËë÷ÇÌÇÈ*/

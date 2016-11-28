@@ -37,14 +37,15 @@ void Enemy::update(float deltatime)
 	if (m_hp <= 0)
 	{
 		m_state = ESTATE::DEAD;
-}
+		m_collision.clear();
+	}
 	m_collision.update(deltatime);
 }
 
 void Enemy::draw(const Renderer & _renderer)
 {
 	m_collision.draw(_renderer);
-	m_animatorOne.draw(_renderer, m_transform,GScolor(1,1,1,m_alpha));
+	m_animatorOne.draw(_renderer, m_transform, GScolor(1, 1, 1, m_alpha));
 }
 
 void Enemy::collisionChase(EnemyCollision * _collision)
@@ -82,13 +83,13 @@ void Enemy::state(float deltaTime)
 		m_stay_timer.update(deltaTime);
 		break;
 	case ESTATE::MOVE:
-		m_animatorOne.changeAnimation(static_cast<unsigned int>(ENEMY_ANIMATION::RUN), false, true);
+		m_animatorOne.changeAnimation(static_cast<unsigned int>(ENEMY_ANIMATION::RUN), true, true);
 		break;
 	case ESTATE::SLIDE:
-		m_animatorOne.changeAnimation(static_cast<unsigned int>(ENEMY_ANIMATION::SLIDE), false, true);
+		m_animatorOne.changeAnimation(static_cast<unsigned int>(ENEMY_ANIMATION::SLIDE), true, true);
 		break;
 	case ESTATE::ATTACK:
-		m_animatorOne.changeAnimation(static_cast<unsigned int>(ENEMY_ANIMATION::ATTACK), false, false, false, 0);
+		//m_animatorOne.changeAnimation(static_cast<unsigned int>(ENEMY_ANIMATION::ATTACK), true, false, false, 0);
 		if (m_animatorOne.isEndCurrentAnimation())
 		{
 			m_state = ESTATE::STAND;
@@ -110,7 +111,7 @@ void Enemy::state(float deltaTime)
 
 const bool Enemy::isDamageState() const
 {
-	return m_state == ESTATE::MOVE || m_state == ESTATE::ATTACK || m_state == ESTATE::DEAD;
+	return m_state == ESTATE::SPAWN || m_state == ESTATE::ATTACK || m_state == ESTATE::DEAD;
 }
 
 void Enemy::slide(Actor * _actor)
@@ -131,9 +132,9 @@ void Enemy::move(Actor * _actor)
 
 void Enemy::attack_start()
 {
-	m_animatorOne.changeAnimation(static_cast<unsigned int>(ENEMY_ANIMATION::ATTACK), false, false, false, 0);
+	m_animatorOne.changeAnimation(static_cast<unsigned int>(ENEMY_ANIMATION::ATTACK), true, false, false, 1.0f);
 	float end = m_animatorOne.getCurrentAnimationEndTime() / 60.0f;
-	Collision_Ptr actor = std::make_shared<EnemyAttackCollision>(m_transform.m_translate+m_transform.front(),end);
+	Collision_Ptr actor = std::make_shared<EnemyAttackCollision>(m_transform.m_translate + m_transform.front(), end);
 	m_collision.add(actor);
 	m_state = ESTATE::ATTACK;
 }
