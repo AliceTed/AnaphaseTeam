@@ -23,10 +23,9 @@ void TitleUI::initialize()
 	m_fade.start(GScolor(1.0f, 1.0f, 1.0f, 1.0f), GScolor(1.0f, 1.0f, 1.0f, 1.0f), 0);
 }
 
-void TitleUI::update(float deltaTime, Title& _title)
+void TitleUI::update(float deltaTime)
 {
 	m_select.update(deltaTime);
-	operation(_title);
 	m_fade.update(deltaTime);
 }
 
@@ -58,7 +57,7 @@ void TitleUI::operation(Title& _title)
 	{
 		_title.decision(m_select.currentSelect());
 		m_select.startMove();
-		m_fade.start(GScolor(1.0f, 1.0f, 1.0f, 1.0f), GScolor(1.0f, 1.0f, 1.0f, 0.0f), 1.0f);
+		m_fade.start(GScolor(1.0f, 1.0f, 1.0f, 1.0f), GScolor(1.0f, 1.0f, 1.0f, 0.0f), 1.3f);
 	}
 }
 void TitleUI::createSelect()

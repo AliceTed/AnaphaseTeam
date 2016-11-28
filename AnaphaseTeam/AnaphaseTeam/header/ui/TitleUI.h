@@ -9,11 +9,11 @@ public:
 	TitleUI(GameDevice* _device);
 	~TitleUI();
 	void initialize();
-	void update(float deltaTime, Title& _title);
+	void update(float deltaTime);
 	void draw(const Renderer& _renderer);
 	void finish();
-private:
 	void operation(Title& _title);
+private:
 	void createSelect();
 private:
 	SelectUI m_select;

@@ -24,9 +24,9 @@ void Title::initialize()
 void Title::update(float deltaTime)
 {
 	m_device->sound().playBGM(BGM_ID::TITLE);
-	//if (m_change.update(deltaTime))return;
-	m_change.update(deltaTime);
-	m_title.update(deltaTime, *this);
+	m_title.update(deltaTime);
+	if (m_change.update(deltaTime))return;
+	m_title.operation(*this);
 }
 
 void Title::draw(const Renderer & renderer)
