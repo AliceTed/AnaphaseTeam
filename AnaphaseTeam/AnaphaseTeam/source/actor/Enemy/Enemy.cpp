@@ -84,13 +84,13 @@ void Enemy::state(float deltaTime)
 		m_stay_timer.update(deltaTime);
 		break;
 	case ESTATE::MOVE:
-		m_animatorOne.changeAnimation(static_cast<unsigned int>(ENEMY_ANIMATION::RUN), false, true);
+		m_animatorOne.changeAnimation(static_cast<unsigned int>(ENEMY_ANIMATION::RUN), true, true);
 		break;
 	case ESTATE::SLIDE:
-		m_animatorOne.changeAnimation(static_cast<unsigned int>(ENEMY_ANIMATION::SLIDE), false, true);
+		m_animatorOne.changeAnimation(static_cast<unsigned int>(ENEMY_ANIMATION::SLIDE), true, true);
 		break;
 	case ESTATE::ATTACK:
-		m_animatorOne.changeAnimation(static_cast<unsigned int>(ENEMY_ANIMATION::ATTACK), false, false, false, 0);
+		//m_animatorOne.changeAnimation(static_cast<unsigned int>(ENEMY_ANIMATION::ATTACK), true, false, false, 0);
 		if (m_animatorOne.isEndCurrentAnimation())
 		{
 			m_state = ESTATE::STAND;
@@ -112,7 +112,7 @@ void Enemy::state(float deltaTime)
 
 const bool Enemy::isDamageState() const
 {
-	return m_state == ESTATE::MOVE || m_state == ESTATE::ATTACK || m_state == ESTATE::DEAD;
+	return m_state == ESTATE::SPAWN || m_state == ESTATE::ATTACK || m_state == ESTATE::DEAD;
 }
 
 void Enemy::slide(Actor * _actor)
@@ -133,7 +133,7 @@ void Enemy::move(Actor * _actor)
 
 void Enemy::attack_start()
 {
-	m_animatorOne.changeAnimation(static_cast<unsigned int>(ENEMY_ANIMATION::ATTACK), false, false, false, 0);
+	m_animatorOne.changeAnimation(static_cast<unsigned int>(ENEMY_ANIMATION::ATTACK), true, false, false, 1.0f);
 	float end = m_animatorOne.getCurrentAnimationEndTime() / 60.0f;
 	Collision_Ptr actor = std::make_shared<EnemyAttackCollision>(m_transform.m_translate + m_transform.front(), end);
 	m_collision.add(actor);
