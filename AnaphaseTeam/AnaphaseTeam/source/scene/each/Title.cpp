@@ -5,7 +5,7 @@
 Title::Title(GameDevice* _device)
 	:m_device(_device),
 	m_IsExit(false),
-	m_title(),
+	m_title(_device),
 	m_change()
 {
 }
@@ -24,8 +24,10 @@ void Title::initialize()
 }
 void Title::update(float deltaTime)
 {
+	m_device->sound().playBGM(BGM_ID::TITLE);
+	m_title.update(deltaTime);
 	if (m_change.update(deltaTime))return;
-	m_title.update(deltaTime, *this);
+	m_title.operation(*this);
 }
 
 void Title::draw(const Renderer & renderer)
@@ -56,8 +58,6 @@ const bool Title::isExit() const
 }
 void Title::decision(Select _select)
 {
-	if (!m_device->input()->jump())return;
-	m_device->sound().playSE(SE_ID::TITLE);
 	switch (_select)
 	{
 	case Select::GAMESTART:
@@ -69,16 +69,5 @@ void Title::decision(Select _select)
 	case Select::EXIT:
 		m_IsExit = true;
 		break;
-	}
-}
-void Title::select(SelectUI & _select)
-{
-	if (m_device->input()->up())
-	{
-		_select.previous();
-	}
-	if (m_device->input()->down())
-	{
-		_select.next();
 	}
 }

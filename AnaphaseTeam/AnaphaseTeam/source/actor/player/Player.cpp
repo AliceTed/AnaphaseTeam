@@ -16,6 +16,7 @@
 #include "../../../header/camera/Camera.h"
 #include "../../../header/shape/Ray.h"
 #include "../../../header/camera/CameraController.h"
+#include "../../../header/camera/CameraWork/E_CameraWorkID.h"
 #include "../../../header/math/Calculate.h"
 
 #include "../../../header/camera/LockOn.h"
@@ -93,7 +94,10 @@ void Player::draw(const Renderer & _renderer)
 	_renderer.getDraw2D().string(u, &GSvector2(100, 400), 20);
 	_renderer.getDraw2D().string(std::to_string(count), &GSvector2(100, 430), 20);
 }
-
+AttackStatus Player::status()
+{
+	return m_combo.getStatus();
+}
 void Player::jumping(float _velocity)
 {
 	m_transform.translate_up(_velocity);
@@ -151,6 +155,9 @@ void Player::createAttackCollision()
 	m_collision.add(act);
 	count++;
 }
+
+
+
 void Player::hpDown()
 {
 	m_status.down();
@@ -205,11 +212,22 @@ void Player::control()
 void Player::look_at(CameraController * _camera, GSvector3 * _target)
 {
 	GSvector3 target = m_transform.m_translate;
+	//by —L•y
+	float distance;
 
 	m_camera->lookAt_cameraTarget_player(target);
 	m_camera->lookAt_cameraTarget_enemy(*_target);
 
-	_camera->special_move1(&target, _target, 10.0f, 1.5f);
+	//by —L•y
+	distance = target.distance(*_target);
+	if (distance < 10)
+	{
+		_camera->change_cameraWork(E_CameraWorkID::LOCK_ON);
+	}
+	else
+	{
+		_camera->change_cameraWork(E_CameraWorkID::NORMAL);
+	}
 }
 void Player::createStates()
 {

@@ -24,22 +24,12 @@ const bool AnimatorOne::isEndCurrentAnimation() const
 	return /*(!m_nextAnimation) &&*/m_currentAnimation->getIsEnd();
 }
 
-void AnimatorOne::changeAnimationLerp(unsigned int _animation)
-{
-	changeAnimation(_animation, true, false, false, 10.0f, 1.0f);
-}
-void AnimatorOne::changeAnimationLerp(unsigned int _animation, float _animSpeed)
-{
-	changeAnimation(_animation, true, false, false, 10.0f, _animSpeed);
-}
 void AnimatorOne::changeAnimation(unsigned int _animation, bool _isLerp, bool _isLoop, bool _isNotInit, float _lerpTime, float _animationSpeed)
 {
 	Data::CastID cast;
 	if (!m_currentAnimation)
 		m_currentAnimation = std::make_shared<Animation>(m_modelID, cast(_animation), AnimationTimer(gsGetEndAnimationTime(cast(m_modelID), cast(_animation)), _animationSpeed), _isLoop);
-	/*///*今のアニメーションでループするものなら変えない
-	if (m_currentAnimation->getAnimationNo() == cast(_animation) && _isLoop)
-		return;*/
+	
 	if (_isLerp)
 	{
 		lerpBegin(_animation, !_isNotInit, _isLoop, _lerpTime, _animationSpeed);

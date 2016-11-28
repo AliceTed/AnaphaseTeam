@@ -24,7 +24,7 @@ void Enemy::initialize()
 	Actor::initialize();
 	Collision_Ptr actor = std::make_shared<EnemyCollision>(this);
 	m_collision.add(actor);
-	m_animatorOne.changeAnimation(static_cast<GSuint>(ENEMY_ANIMATION::SPAWN), true, false);
+	m_animatorOne.changeAnimation(ENEMY_ANIMATION::SPAWN, true, false);
 	m_state = ESTATE::SPAWN;
 	m_stay_timer.initialize();
 	m_hp = 100;
@@ -57,10 +57,9 @@ void Enemy::damage(Player * _player)
 {
 	if (isDamageState())return;
 	m_state = ESTATE::DAMAGE;
-	//‚±‚±
-	m_animatorOne.changeAnimation(static_cast<GSuint>(ENEMY_ANIMATION::DAMAGE), true, false, false, 10.0f, 1.5f);
-	m_transform.translate_front(-0.8f);
-	m_hp -= 10;
+	m_animatorOne.changeAnimation(static_cast<GSuint>(ENEMY_ANIMATION::DAMAGE),true,false,false,10.0f,1.5f);
+	m_transform.translate_front(_player->status().m_blowOff.x);//nockback
+	m_hp -= _player->status().m_power;
 	//_player->gaugeAdd();
 }
 

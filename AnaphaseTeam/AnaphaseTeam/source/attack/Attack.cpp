@@ -26,3 +26,9 @@ const ATTACK_TYPE Attack::next(bool _isSlow) const
 {
 	return _isSlow?m_nextSlow:m_nextQuick;
 }
+
+const AttackStatus & Attack::getStatus() const
+{
+	return m_status;
+}
+

@@ -40,6 +40,7 @@ public://Actoråpè≥
 	void initialize() override;
 	void update(float deltatime) override;
 	void draw(const Renderer& _renderer) override;
+	AttackStatus status();
 private:
 	void subActionStart();
 	void control();
@@ -47,7 +48,7 @@ private:
 	void rotate(float deltaTime, Transform& _transform);
 	void movement(float deltaTime, float _speed);
 private:
-	GameDevice* m_device;	
+	GameDevice* m_device;
 	ComboAttack m_combo;
 	Status m_status;
 	Gauge m_Gauge;

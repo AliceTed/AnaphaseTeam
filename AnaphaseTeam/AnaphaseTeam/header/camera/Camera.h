@@ -1,17 +1,17 @@
 /******************************************************
-@file .h
-@brief カメラ
+@file	Camera.h
+@brief	カメラ
 @author Yuuoh Aritomi : Matuo
-@date 2016/09/23 Ver1.00
+@date	2016/09/23 Ver1.00
 ******************************************************/
 #pragma once
 
 #include <gslib.h>
 #include <memory>
-#include "Perspective.h"
-#include "LookAt.h"
 
 #include "../../header/transform/Transform.h"
+
+typedef GSvector4 Perspective;
 
 class CameraTarget;
 
@@ -23,18 +23,6 @@ public:
 	@brief コンストラクタ
 	**************************************************/
 	Camera(void);
-
-
-
-	/**************************************************
-	@brief コンストラクタ
-	@param[_perspective]	パースペクティブ
-	@param[_position]		位置
-	**************************************************/
-	Camera(
-		const Perspective&	_perspective, 
-		const GSvector3&	_position
-	);
 
 
 
@@ -68,21 +56,42 @@ public:
 
 
 
-	/**************************************************
-	@brief ｘ軸回転のみで被写体を見る
-	@param[_target] ターゲット
-	@param[_direction] 方位角
-	**************************************************/
-	void lookAt_tilt(const GSvector3& _target, const float _direction);
+	/*********************************************************
+	@brief	ティルト・パンカメラワーク
+			カメラの位置は固定したまま被写体を見る
+	@param[_position_camera]	カメラの位置
+	@param[_rotate]				回転
+								x回転を固定するとティルト
+								y回転を固定するとパン
+	@param[_followSpeed_camera]	カメラの追尾速度
+	@param[_followSpeed_target]	ターゲットの追尾速度
+	*********************************************************/
+	void cameraWork_tilt_pan(
+		const GSvector3& _position_camera,
+		GSvector2 _rotate,
+		const float _followSpeed_camera,
+		const float _followSpeed_target
+	);
 
 
 
-	/**************************************************
-	@brief y軸回転のみで被写体を見る
-	@param[_target]		ターゲット
-	@param[_elevation]	仰角
-	**************************************************/
-	void lookAt_pan(const GSvector3& _target, const float _elevation);
+	/********************************************************
+	@brief	カメラワーク・ドリー
+	ターゲットに追従する
+	@param[_position_target]	ターゲット位置
+	@param[_elevation]			仰角
+	@param[_direction]			方位角
+	@param[_distance]			距離
+	@param[_followSpeed_camera]	カメラの追尾速度
+	@param[_followSpeed_target] ターゲットの追尾速度
+	********************************************************/
+	void cameraWork_dolly(
+		const GSvector3&	_position_target,
+		GSvector2			_rotate,
+		const float			_distance,
+		const float			_followSpeed_camera,
+		const float			_followSpeed_target
+	);
 
 
 
@@ -127,9 +136,14 @@ public:
 
 
 	/*******************************************************
-	@brief ズームリセット
+	@brief 拡大範囲を設定
+	@param[_min] 最小値
+	@param[_max] 最大値
 	*******************************************************/
-	void zoom_reset(void);
+	void zoom_clamp(
+		const float _min,
+		const float _max
+	);
 
 
 
@@ -157,27 +171,6 @@ public:
 
 
 
-	/**************************************************
-	@return パースペクティブ
-	**************************************************/
-	const Perspective perspective(void) const
-	{
-		return m_perspective;
-	}
-	/**************************************************
-	@return 位置
-	**************************************************/
-	const GSvector3 position(void) const
-	{
-		return m_lookAt.position();
-	}
-	/**************************************************
-	@return ターゲット
-	**************************************************/
-	const GSvector3 target(void) const
-	{
-		return m_lookAt.target();
-	}
 	/**************************************************
 	@return カメラターゲット（プレイヤー）
 	**************************************************/
@@ -211,8 +204,38 @@ public:
 	const Transform transform()const;
 
 private:
+	void update_perspective(void);
+
+	void update_lookAt(void);
+
+	void update_zoom(const float _speed);
+
+	void update_follow(
+		GSvector3*			_vector,
+		const GSvector3&	_target,
+		float				_speed
+	);
+
+	void update_rotate(
+		GSvector3*			_vector,
+		const GSvector3&	_target,
+		const GSvector2&	_rotate,
+		const float			_distance
+	);
+
+	void to_rad(float* _degree);
+
+private:
 	Perspective						m_perspective;
-	LookAt							m_lookAt;
+	float							m_fov_min;
+	float							m_fov_max;
+	GSmatrix4						m_matProjection;
+
+	GSvector3						m_position;
+	GSvector3						m_target;
+	GSvector3						m_up;
+	GSmatrix4						m_matView;
+
 	std::shared_ptr<CameraTarget>	m_cameraTarget_player;
 	std::shared_ptr<CameraTarget>	m_cameraTarget_enemy;
 };

@@ -50,3 +50,11 @@ const bool ComboAttack::isEnd() const
 {
 	return m_isEnd;
 }
+
+const AttackStatus & ComboAttack::getStatus() const
+{
+	return m_current.getStatus();
+}
+
+
+

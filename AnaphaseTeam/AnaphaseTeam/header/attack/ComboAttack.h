@@ -25,6 +25,7 @@ public:
 	//“ü—Í‚ª‚ ‚Á‚½‚Æ‚«‚É‚æ‚Î‚ê‚é
 	const bool next(bool _isSlow);
 	const bool isEnd()const;
+	const AttackStatus &getStatus() const;
 private:
 	Player* m_player;
 	Attack m_current;

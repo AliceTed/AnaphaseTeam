@@ -3,11 +3,12 @@
 #include <gslib.h>
 #include <functional>
 #include "../math/TimeLerpVector.h"
+#include "../../header/data/TEXTURE_ID.h"
 class Renderer;
 class Fade
 {
 public:
-	Fade();
+	Fade(TEXTURE_ID _id = TEXTURE_ID::BLACK, const GSvector2& _position = GSvector2(0.0f,0.0f));
 	~Fade();
 	void initialize();
 	void update(float deltaTime);
@@ -24,5 +25,7 @@ private:
 	bool m_isStart;
 	Math::TimeLerpVector<GScolor> m_Lerp;
 	std::function<void()> m_endfunc;
+	GSvector2 m_position;
+	TEXTURE_ID m_TextureID;
 };
 #endif

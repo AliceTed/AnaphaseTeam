@@ -21,6 +21,7 @@ public:
 	void motion(Player* _player);
 	void changeMotion(AnimatorOne& _animator, float _speed);
 	const ATTACK_TYPE next(bool _isSlow) const;
+	const AttackStatus &getStatus() const; 
 private:
 	//!攻撃ステータス
 	AttackStatus m_status;

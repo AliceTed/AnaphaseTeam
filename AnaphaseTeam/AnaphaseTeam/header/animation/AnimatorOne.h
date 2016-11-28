@@ -51,9 +51,22 @@ public:
 	~AnimatorOne();
 	void initialize();
 	void update(float deltatime);
-	void changeAnimationLerp(unsigned int _animation);
-	void changeAnimationLerp(unsigned int _animation,float _animSpeed);
+	template<class T>
+	void changeAnimationLerp(T _animation)
+	{
+		changeAnimation(static_cast<GSuint>(_animation), true, false, false, 10.0f, 1.0f);
+	}
+	template<class T>
+	void changeAnimationLerp(T _animation,float _animSpeed)
+	{
+		changeAnimation(static_cast<GSuint>(_animation), true, false, false, 10.0f, _animSpeed);
+	}
 	void changeAnimation(unsigned int _animation, bool _isLerp = true, bool _isLoop = false, bool _isNotInit = false,float _lerpTime=10.0f, float _animationSpeed = 1.0f);
+	template<class T>
+	void changeAnimation(T _animation, bool _isLerp = true, bool _isLoop = false, bool _isNotInit = false, float _lerpTime = 10.0f, float _animationSpeed = 1.0f)
+	{
+		changeAnimation(static_cast<GSuint>(_animation), _isLerp, _isLoop, _isNotInit, _lerpTime, _animationSpeed);
+	}
 
 	/**
 	* @fn
