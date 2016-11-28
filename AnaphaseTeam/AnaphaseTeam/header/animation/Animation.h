@@ -43,6 +43,7 @@ public:
 	*/
 	const float getEndTime()const;
 	const float getCurrentTime()const;
+	const bool getIsLoop() const;
 private:
 	void looping();
 

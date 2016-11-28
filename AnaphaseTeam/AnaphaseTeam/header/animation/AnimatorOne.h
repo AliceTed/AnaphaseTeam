@@ -32,7 +32,7 @@ public:
 	}
 	bool lerpEnd()
 	{
-		return m_time > m_lerpTime;
+		return m_time >= m_lerpTime;
 	}
 
 public:
