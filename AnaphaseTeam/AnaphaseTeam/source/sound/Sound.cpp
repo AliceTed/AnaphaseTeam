@@ -14,7 +14,6 @@ Sound::~Sound()
 void Sound::loadBGM(BGM_ID _id, const string& _name, const string& _path, const string& _extension)
 {
 	string fullpath = _path + _name + _extension;
-	//gsLoadMusic(static_cast<GSuint>(_id), fullpath.c_str(), GS_TRUE);
 	gsLoadMusic(static_cast<GSuint>(_id), fullpath.c_str(), GS_TRUE);
 }
 
@@ -58,7 +57,7 @@ void Sound::bgmVolume(BGM_ID _id, float _volume)
 
 void Sound::bgmFadeIn(BGM_ID _id, float _deltaTime)
 {
-	lerp(&m_volume, &m_volume, &m_max, _deltaTime);
+	m_volume = LERP(_deltaTime, m_volume, m_max);
 	gsBindMusic(static_cast<GSuint>(_id));
 	if (gsGetMusicTime() <= 10.0f)
 	{
@@ -69,7 +68,7 @@ void Sound::bgmFadeIn(BGM_ID _id, float _deltaTime)
 
 void Sound::bgmFadeOut(BGM_ID _id, float _deltaTime)
 {
-	lerp(&m_volume, &m_volume, &m_max, _deltaTime);
+	m_volume = LERP(_deltaTime, m_volume, m_max);
 	gsBindMusic(static_cast<GSuint>(_id));
 	if (gsGetMusicTime() >= gsGetMusicEndTime() - 10.0f)
 	{
@@ -96,9 +95,4 @@ void Sound::playSE(SE_ID _id)
 {
 	gsBindMusic(static_cast<GSuint>(_id));
 	gsPlayMusic();
-}
-
-void Sound::lerp(float* _out, const float* _min, const float* _max, float _time)
-{
-	*_out = LERP(_time, *_min, *_max);
 }

@@ -32,8 +32,6 @@ public:
 	void deleteSE();
 	void playSE(SE_ID _id);
 
-	void lerp(float* _out, const float* _min, const float* _max, float _time);
-
 private:
 	float m_volume;
 	float m_max;
