@@ -170,13 +170,13 @@
     <ClCompile Include="source\attack\新しいフォルダー\AttackIncidence.cpp" />
     <ClCompile Include="source\camera\ACalc.cpp" />
     <ClCompile Include="source\camera\Camera.cpp" />
-    <ClCompile Include="source\camera\CameraWork\CameraWork.cpp" />
-    <ClCompile Include="source\camera\CameraWork\CameraWorkData.cpp" />
-    <ClCompile Include="source\camera\CameraWork\CameraWorkManager.cpp" />
     <ClCompile Include="source\camera\CameraController.cpp" />
     <ClCompile Include="source\camera\CameraTarget.cpp" />
+    <ClCompile Include="source\camera\CameraWork\CameraWork.cpp" />
+    <ClCompile Include="source\camera\CameraWork\CameraWorkData.cpp" />
     <ClCompile Include="source\camera\CameraWork\CameraWorkDead.cpp" />
     <ClCompile Include="source\camera\CameraWork\CameraWorkLockOn.cpp" />
+    <ClCompile Include="source\camera\CameraWork\CameraWorkManager.cpp" />
     <ClCompile Include="source\camera\CameraWork\CameraWorkNormal.cpp" />
     <ClCompile Include="source\camera\CameraWork\CWParameterReader.cpp" />
     <ClCompile Include="source\camera\LockOn.cpp" />
@@ -238,7 +238,6 @@
     <ClCompile Include="source\ui\TitleUI.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="header\camera\CameraWork\CameraWorkData.h" />
     <ClInclude Include="header\actionstate\AttackState.h" />
     <ClInclude Include="header\actionstate\AvoidState.h" />
     <ClInclude Include="header\actionstate\DamageState.h" />
@@ -277,13 +276,17 @@
     <ClInclude Include="header\airstate\IAirState.h" />
     <ClInclude Include="header\camera\ACalc.h" />
     <ClInclude Include="header\camera\Camera.h" />
-    <ClInclude Include="header\camera\CameraWork\CameraWorkManager.h" />
     <ClInclude Include="header\camera\CameraController.h" />
     <ClInclude Include="header\camera\CameraTarget.h" />
+    <ClInclude Include="header\camera\CameraWork\CameraWork.h" />
+    <ClInclude Include="header\camera\CameraWork\CameraWorkData.h" />
     <ClInclude Include="header\camera\CameraWork\CameraWorkDead.h" />
-    <ClInclude Include="header\camera\CameraWork\CameraWorkNormal.h" />
-    <ClInclude Include="header\camera\CameraWork\E_CameraWorkID.h" />
     <ClInclude Include="header\camera\CameraWork\CameraWorkLockOn.h" />
+    <ClInclude Include="header\camera\CameraWork\CameraWorkManager.h" />
+    <ClInclude Include="header\camera\CameraWork\CameraWorkNormal.h" />
+    <ClInclude Include="header\camera\CameraWork\CWParameterReader.h" />
+    <ClInclude Include="header\camera\CameraWork\E_CameraWorkID.h" />
+    <ClInclude Include="header\camera\CameraWork\I_CameraWork.h" />
     <ClInclude Include="header\camera\LockOn.h" />
     <ClInclude Include="header\collision\CollisionActor.h" />
     <ClInclude Include="header\collision\CollisionGroup.h" />
@@ -365,9 +368,6 @@
     <ClInclude Include="header\ui\SelectUI.h" />
     <ClInclude Include="header\ui\SlideImage.h" />
     <ClInclude Include="header\ui\TitleUI.h" />
-    <ClInclude Include="header\camera\CameraWork\I_CameraWork.h" />
-    <ClInclude Include="header\camera\CameraWork\CameraWork.h" />
-    <ClInclude Include="header\camera\CameraWork\CWParameterReader.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -426,15 +426,6 @@
     <ClInclude Include="header\actionstate\IActionState.h">
       <Filter>ヘッダー ファイル\actionState</Filter>
     </ClInclude>
-    <ClInclude Include="header\camera\ACalc.h">
-      <Filter>ヘッダー ファイル\camera</Filter>
-    </ClInclude>
-    <ClInclude Include="header\camera\Camera.h">
-      <Filter>ヘッダー ファイル\camera</Filter>
-    </ClInclude>
-    <ClInclude Include="header\camera\CameraController.h">
-      <Filter>ヘッダー ファイル\camera</Filter>
-    </ClInclude>
     <ClInclude Include="header\actor\Player\Status.h">
       <Filter>ヘッダー ファイル\actor\Player</Filter>
     </ClInclude>
@@ -482,9 +473,6 @@
     </ClInclude>
     <ClInclude Include="header\sound\Sound.h">
       <Filter>ヘッダー ファイル\device</Filter>
-    </ClInclude>
-    <ClInclude Include="header\camera\LockOn.h">
-      <Filter>ヘッダー ファイル\camera</Filter>
     </ClInclude>
     <ClInclude Include="header\transform\Quaternion_Utility.h">
       <Filter>ヘッダー ファイル\transform</Filter>
@@ -543,11 +531,29 @@
     <ClInclude Include="header\attack\AttackIncidence.h">
       <Filter>ヘッダー ファイル\attack\enemy</Filter>
     </ClInclude>
+    <ClInclude Include="header\device\Input.h">
+      <Filter>ヘッダー ファイル\device</Filter>
+    </ClInclude>
+    <ClInclude Include="header\camera\ACalc.h">
+      <Filter>ヘッダー ファイル\camera</Filter>
+    </ClInclude>
+    <ClInclude Include="header\camera\Camera.h">
+      <Filter>ヘッダー ファイル\camera</Filter>
+    </ClInclude>
+    <ClInclude Include="header\camera\CameraController.h">
+      <Filter>ヘッダー ファイル\camera</Filter>
+    </ClInclude>
     <ClInclude Include="header\camera\CameraTarget.h">
       <Filter>ヘッダー ファイル\camera</Filter>
     </ClInclude>
-    <ClInclude Include="header\device\Input.h">
-      <Filter>ヘッダー ファイル\device</Filter>
+    <ClInclude Include="header\camera\LockOn.h">
+      <Filter>ヘッダー ファイル\camera</Filter>
+    </ClInclude>
+    <ClInclude Include="header\camera\CameraWork\CameraWork.h">
+      <Filter>ヘッダー ファイル\camera</Filter>
+    </ClInclude>
+    <ClInclude Include="header\camera\CameraWork\CameraWorkData.h">
+      <Filter>ヘッダー ファイル\camera</Filter>
     </ClInclude>
     <ClInclude Include="header\camera\CameraWork\CameraWorkDead.h">
       <Filter>ヘッダー ファイル\camera</Filter>
@@ -558,22 +564,16 @@
     <ClInclude Include="header\camera\CameraWork\CameraWorkManager.h">
       <Filter>ヘッダー ファイル\camera</Filter>
     </ClInclude>
-    <ClInclude Include="header\camera\CameraWork\CameraWorkData.h">
+    <ClInclude Include="header\camera\CameraWork\CameraWorkNormal.h">
+      <Filter>ヘッダー ファイル\camera</Filter>
+    </ClInclude>
+    <ClInclude Include="header\camera\CameraWork\CWParameterReader.h">
       <Filter>ヘッダー ファイル\camera</Filter>
     </ClInclude>
     <ClInclude Include="header\camera\CameraWork\E_CameraWorkID.h">
       <Filter>ヘッダー ファイル\camera</Filter>
     </ClInclude>
     <ClInclude Include="header\camera\CameraWork\I_CameraWork.h">
-      <Filter>ヘッダー ファイル\camera</Filter>
-    </ClInclude>
-    <ClInclude Include="header\camera\CameraWork\CameraWorkNormal.h">
-      <Filter>ヘッダー ファイル\camera</Filter>
-    </ClInclude>
-    <ClInclude Include="header\camera\CameraWork\CameraWork.h">
-      <Filter>ヘッダー ファイル\camera</Filter>
-    </ClInclude>
-    <ClInclude Include="header\camera\CameraWork\CWParameterReader.h">
       <Filter>ヘッダー ファイル\camera</Filter>
     </ClInclude>
   </ItemGroup>
@@ -740,15 +740,6 @@
     <ClCompile Include="source\subAction\JumpControl.cpp">
       <Filter>ソース ファイル\subAction</Filter>
     </ClCompile>
-    <ClCompile Include="source\camera\ACalc.cpp">
-      <Filter>ソース ファイル\camera</Filter>
-    </ClCompile>
-    <ClCompile Include="source\camera\Camera.cpp">
-      <Filter>ソース ファイル\camera</Filter>
-    </ClCompile>
-    <ClCompile Include="source\camera\CameraController.cpp">
-      <Filter>ソース ファイル\camera</Filter>
-    </ClCompile>
     <ClCompile Include="source\actor\player\Status.cpp">
       <Filter>ソース ファイル\actor\Player</Filter>
     </ClCompile>
@@ -842,11 +833,29 @@
     <ClCompile Include="source\attack\新しいフォルダー\AttackIncidence.cpp">
       <Filter>ソース ファイル\Attack\enemy</Filter>
     </ClCompile>
+    <ClCompile Include="source\device\Input.cpp">
+      <Filter>ソース ファイル\device</Filter>
+    </ClCompile>
+    <ClCompile Include="source\camera\ACalc.cpp">
+      <Filter>ソース ファイル\camera</Filter>
+    </ClCompile>
+    <ClCompile Include="source\camera\Camera.cpp">
+      <Filter>ソース ファイル\camera</Filter>
+    </ClCompile>
+    <ClCompile Include="source\camera\CameraController.cpp">
+      <Filter>ソース ファイル\camera</Filter>
+    </ClCompile>
     <ClCompile Include="source\camera\CameraTarget.cpp">
       <Filter>ソース ファイル\camera</Filter>
     </ClCompile>
-    <ClCompile Include="source\device\Input.cpp">
-      <Filter>ソース ファイル\device</Filter>
+    <ClCompile Include="source\camera\LockOn.cpp">
+      <Filter>ソース ファイル\camera</Filter>
+    </ClCompile>
+    <ClCompile Include="source\camera\CameraWork\CameraWork.cpp">
+      <Filter>ソース ファイル\camera</Filter>
+    </ClCompile>
+    <ClCompile Include="source\camera\CameraWork\CameraWorkData.cpp">
+      <Filter>ソース ファイル\camera</Filter>
     </ClCompile>
     <ClCompile Include="source\camera\CameraWork\CameraWorkDead.cpp">
       <Filter>ソース ファイル\camera</Filter>
@@ -857,19 +866,10 @@
     <ClCompile Include="source\camera\CameraWork\CameraWorkManager.cpp">
       <Filter>ソース ファイル\camera</Filter>
     </ClCompile>
-    <ClCompile Include="source\camera\CameraWork\CameraWorkData.cpp">
-      <Filter>ソース ファイル\camera</Filter>
-    </ClCompile>
     <ClCompile Include="source\camera\CameraWork\CameraWorkNormal.cpp">
       <Filter>ソース ファイル\camera</Filter>
     </ClCompile>
-    <ClCompile Include="source\camera\CameraWork\CameraWork.cpp">
-      <Filter>ソース ファイル\camera</Filter>
-    </ClCompile>
     <ClCompile Include="source\camera\CameraWork\CWParameterReader.cpp">
-      <Filter>ソース ファイル\camera</Filter>
-    </ClCompile>
-    <ClCompile Include="source\camera\LockOn.cpp">
       <Filter>ソース ファイル\camera</Filter>
     </ClCompile>
   </ItemGroup>
