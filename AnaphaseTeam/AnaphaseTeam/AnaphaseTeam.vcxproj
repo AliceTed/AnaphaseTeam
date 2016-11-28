@@ -49,7 +49,7 @@
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v140</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
-    <CharacterSet>Unicode</CharacterSet>
+    <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
@@ -74,6 +74,8 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
+    <IncludePath>C:\gslib_2015\gslib_2015\inc;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\gslib_2015\gslib_2015\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -141,6 +143,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="header\collision\PlayerCollision.cpp" />
     <ClCompile Include="source\actionstate\AttackState.cpp" />
     <ClCompile Include="source\actionstate\AvoidState.cpp" />
     <ClCompile Include="source\actionstate\DamageState.cpp" />
@@ -162,12 +165,14 @@
     <ClCompile Include="source\attack\ChargeAttack.cpp" />
     <ClCompile Include="source\attack\ComboManager.cpp" />
     <ClCompile Include="source\attack\Attack.cpp" />
+    <ClCompile Include="source\attack\ComboReader.cpp" />
     <ClCompile Include="source\attack\Gun.cpp" />
     <ClCompile Include="source\attack\Scythe.cpp" />
     <ClCompile Include="source\actor\player\Player.cpp" />
     <ClCompile Include="source\airState\FirstStep.cpp" />
     <ClCompile Include="source\airState\GroundState.cpp" />
     <ClCompile Include="source\attack\新しいフォルダー\AttackIncidence.cpp" />
+    <ClCompile Include="source\attack\新しいフォルダー\Homing.cpp" />
     <ClCompile Include="source\camera\ACalc.cpp" />
     <ClCompile Include="source\camera\Camera.cpp" />
     <ClCompile Include="source\camera\CameraController.cpp" />
@@ -185,6 +190,7 @@
     <ClCompile Include="source\collision\EnemyAttackCollision.cpp" />
     <ClCompile Include="source\collision\EnemyCollision.cpp" />
     <ClCompile Include="source\collision\HitInformation.cpp" />
+    <ClCompile Include="source\collision\PlayerAttackCollision.cpp" />
     <ClCompile Include="source\collision\SpecialAttackCollision.cpp" />
     <ClCompile Include="source\collision\WeaponCollision.cpp" />
     <ClCompile Include="source\device\GameDevice.cpp" />
@@ -206,7 +212,6 @@
     <ClCompile Include="source\subAction\SubActionManager.cpp" />
     <ClCompile Include="source\animation\Animation.cpp" />
     <ClCompile Include="source\animation\AnimationTimer.cpp" />
-    <ClCompile Include="source\animation\Animator.cpp" />
     <ClCompile Include="source\convenient\Timer.cpp" />
     <ClCompile Include="source\data\LoadError.cpp" />
     <ClCompile Include="source\data\Release.cpp" />
@@ -235,6 +240,7 @@
     <ClCompile Include="source\ui\ScaleImage.cpp" />
     <ClCompile Include="source\ui\SelectUI.cpp" />
     <ClCompile Include="source\ui\SlideImage.cpp" />
+    <ClCompile Include="source\ui\SpAttackUI.cpp" />
     <ClCompile Include="source\ui\TitleUI.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -257,6 +263,7 @@
     <ClInclude Include="header\actor\Player\specialSkill\SpecialSkillManager.h" />
     <ClInclude Include="header\actor\Player\specialSkill\SuperArmor.h" />
     <ClInclude Include="header\actor\Player\Status.h" />
+    <ClInclude Include="header\animation\AnimMediator.h" />
     <ClInclude Include="header\attack\AttackIncidence.h" />
     <ClInclude Include="header\attack\AttackManager.h" />
     <ClInclude Include="header\attack\AttackPattern.h" />
@@ -265,8 +272,10 @@
     <ClInclude Include="header\attack\ComboManager.h" />
     <ClInclude Include="header\attack\Attack.h" />
     <ClInclude Include="header\attack\ComboPattern.h" />
+    <ClInclude Include="header\attack\ComboReader.h" />
     <ClInclude Include="header\attack\ECombo.h" />
     <ClInclude Include="header\attack\Gun.h" />
+    <ClInclude Include="header\attack\Homing.h" />
     <ClInclude Include="header\attack\IWeapon.h" />
     <ClInclude Include="header\attack\Scythe.h" />
     <ClInclude Include="header\actor\ICharacter.h" />
@@ -294,6 +303,8 @@
     <ClInclude Include="header\collision\EnemyAttackCollision.h" />
     <ClInclude Include="header\collision\EnemyCollision.h" />
     <ClInclude Include="header\collision\HitInformation.h" />
+    <ClInclude Include="header\collision\PlayerAttackCollision.h" />
+    <ClInclude Include="header\collision\PlayerCollision.h" />
     <ClInclude Include="header\collision\SpecialAttackCollision.h" />
     <ClInclude Include="header\collision\WeaponCollision.h" />
     <ClInclude Include="header\data\ENEMY_ANIMATION.h" />
@@ -317,7 +328,6 @@
     <ClInclude Include="header\subAction\SubActionManager.h" />
     <ClInclude Include="header\animation\Animation.h" />
     <ClInclude Include="header\animation\AnimationTimer.h" />
-    <ClInclude Include="header\animation\Animator.h" />
     <ClInclude Include="header\array\Array.h" />
     <ClInclude Include="header\array\Array2D.h" />
     <ClInclude Include="header\convenient\Timer.h" />
@@ -367,6 +377,7 @@
     <ClInclude Include="header\ui\ScaleImage.h" />
     <ClInclude Include="header\ui\SelectUI.h" />
     <ClInclude Include="header\ui\SlideImage.h" />
+    <ClInclude Include="header\ui\SpAttackUI.h" />
     <ClInclude Include="header\ui\TitleUI.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

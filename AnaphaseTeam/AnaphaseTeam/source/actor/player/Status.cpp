@@ -1,5 +1,6 @@
 #include "../../../header/actor/Player/Status.h"
 #include"../../../header/actor/Player/Gauge.h"
+#include "../../../header/math/Calculate.h"
 
 Status::Status()
 	:def(3.0f),
@@ -40,5 +41,7 @@ void Status::down()
 
 void Status::add()
 {
-	m_hp += 10;
+	Math::Clamp clamp;
+	m_hp += 5;
+	m_hp = clamp(m_hp, 0.0f, 100.0f);
 }

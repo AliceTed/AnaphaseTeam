@@ -29,6 +29,7 @@ public:
 	void collisionChase(EnemyCollision* _collision);
 	void damage(Player* _player);
 	void look_at(CameraController* _camera, Player* _player);
+	void specialDamage();
 
 	void think(Player* _palyer);
 private:
@@ -43,8 +44,6 @@ private:
 private:
 	ESTATE m_state;
 	Timer m_stay_timer;
-	GSvector3 m_velocity;
-	GSquaternion m_rotate;
 	AttackIncidence m_incidence;
 	static const float PLAYER_DISTANCE;
 	float m_hp;

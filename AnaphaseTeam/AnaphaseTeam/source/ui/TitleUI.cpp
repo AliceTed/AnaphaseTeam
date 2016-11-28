@@ -58,7 +58,7 @@ void TitleUI::createSelect()
 		TEXTURE_ID::OPTION,
 		TEXTURE_ID::EXIT
 	};
-	GSvector2 base(240, 300);
+	GSvector2 base(240, 500);
 	GSvector2 marge(0, 60);
 	for (unsigned int i = 0; i < size; i++)
 	{

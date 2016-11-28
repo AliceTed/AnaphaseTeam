@@ -10,6 +10,7 @@
 #include "Scythe.h"
 #include "Gun.h"
 #include "ComboManager.h"
+
 typedef std::shared_ptr<Shape> Shape_Ptr;
 class Player;
 class CollisionMediator;
@@ -21,7 +22,7 @@ public:
 	void initialize();
 	void update(float deltaTime,Player* _player);
 	const bool isEnd() const;
-	void Start(bool _attackChange);
+	void Start(bool _attackChange,Player* _player);
 private:
 	Scythe m_Scythe;
 	Gun m_Gun;

@@ -6,12 +6,12 @@
 GamePlay::GamePlay(GameDevice* _device)
 	:m_IsEnd(false),
 	m_device(_device),
-	m_Map(OCTREE_ID::KOUTEI),
+	m_Map(OCTREE_ID::ARENA),
 	m_Camera(),
 	m_cameracontroller(&m_Camera),
 	m_enemys(),
 	m_change(),
-	m_lockon(),
+	m_lockon(_device),
 	m_player(_device, &m_Camera, &m_lockon)
 {
 }
@@ -35,8 +35,8 @@ void GamePlay::initialize()
 		m_enemys.add(e);
 	}
 
-	Boss boss;
-	boss.initialize();
+	/*Boss boss;
+	boss.initialize();*/
 	m_lockon.addPlayer(&m_player);
 }
 
@@ -44,7 +44,8 @@ void GamePlay::update(float deltaTime)
 {
 	m_player.collisionGround(m_Map);
 	m_enemys.collisionGround(m_Map);
-	if (m_change.update(deltaTime))return;
+	//if ()return;
+	m_change.update(deltaTime);
 	// m_enemys;
 	m_lockon.thinksEnemy(&m_enemys);
 	m_lockon.nearEnemyFind(&m_enemys);
@@ -59,19 +60,21 @@ void GamePlay::update(float deltaTime)
 	}
 
 	if (m_player.isDead())
+	{
 		m_change.end(SceneMode::ENDING);
+	}
 }
 
 void GamePlay::draw(const Renderer & _renderer)
 {
 	_renderer.getDraw3D().drawSky(MESH_ID::SKY);
+	
 	//m_enemys[0].look_at(&m_cameracontroller, &m_player);
 	m_lockon.look_at(&m_cameracontroller);
-	//‚±‚ê’Ç‰Á by—L•y
 	m_cameracontroller.update();
-	m_player.draw(_renderer,m_Camera);
 	m_Map.draw(_renderer);
 	m_enemys.draw(_renderer, m_Camera);
+	m_player.draw(_renderer,m_Camera);	
 	m_change.draw(_renderer);
 }
 

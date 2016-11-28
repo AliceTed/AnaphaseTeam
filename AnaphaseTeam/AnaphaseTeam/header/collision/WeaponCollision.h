@@ -4,6 +4,8 @@
 //***機能確認用
 #include <string>
 //**
+
+class Player;
 class WeaponCollision:public CollisionActor
 {
 public:
@@ -19,6 +21,4 @@ private:
 	void collision_Exit(HitInformation& _hit)override;
 private:
 	Transform* m_transform;
-	//****
-	std::string m_text;
 };

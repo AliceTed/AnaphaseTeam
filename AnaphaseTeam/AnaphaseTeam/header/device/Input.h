@@ -16,6 +16,8 @@ public:
 	const bool slowAttackTrigger() const;
 	const bool quickAttackTrigger()const;
 	const bool avoidTrigger()const;
+
+	const bool spState() const;
 	
 	//input?
 	const bool move()const;

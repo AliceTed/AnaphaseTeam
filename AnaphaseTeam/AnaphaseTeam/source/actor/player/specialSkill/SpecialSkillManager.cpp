@@ -1,11 +1,13 @@
 #include "../../../../header/actor/Player/specialSkill/SpecialSkillManager.h"
 #include "../../../../header/actor/Player/Gauge.h"
 
-SpecialSkillManager::SpecialSkillManager(Gauge& _gauge, Player* _player) :
+SpecialSkillManager::SpecialSkillManager(Gauge& _gauge, Player* _player, GameDevice* _device) :
 	m_recovery(),
 	m_superArmor(),
 	m_gauge(_gauge),
-	m_specialAttack(_player)
+	m_specialAttack(_player),
+	m_spAttackUI(_device),
+	m_type(SPECIALTYPE::NONE)
 {
 }
 
@@ -15,7 +17,8 @@ SpecialSkillManager::~SpecialSkillManager()
 
 bool SpecialSkillManager::initialize(SPECIALTYPE _specialType)
 {
-	switch (_specialType)
+	m_type = _specialType;
+	switch (m_type)
 	{
 	case SPECIALTYPE::NONE:
 		break;
@@ -41,7 +44,6 @@ bool SpecialSkillManager::initialize(SPECIALTYPE _specialType)
 		}
 		break;
 	}
-	m_type = _specialType;
 	return false;
 }
 
@@ -61,34 +63,98 @@ void SpecialSkillManager::update(float deltaTime)
 		m_specialAttack.update(deltaTime);
 		break;
 	}
+	m_spAttackUI.update();
 }
-const bool SpecialSkillManager::isEnd(SPECIALTYPE _specialType) const
+//const bool SpecialSkillManager::isEnd(SPECIALTYPE _specialType) const
+//{
+//	switch (_specialType)
+//	{
+//	case SPECIALTYPE::NONE:
+//		break;
+//	case SPECIALTYPE::RECOVERY:
+//		return m_recovery.isEnd();
+//		break;
+//	case SPECIALTYPE::SUPERARMOR:
+//		return m_superArmor.isEnd();
+//		break;
+//	case SPECIALTYPE::SPECIALATTACK:
+//		return m_specialAttack.isEnd();
+//		break;
+//	}
+//	return true;
+//}
+void SpecialSkillManager::endCheck()
 {
-	switch (_specialType)
+	switch (m_type)
 	{
 	case SPECIALTYPE::NONE:
 		break;
 	case SPECIALTYPE::RECOVERY:
-		return m_recovery.isEnd();
+		if (m_recovery.isEnd())
+		{
+			m_type = SPECIALTYPE::NONE;
+		}
 		break;
 	case SPECIALTYPE::SUPERARMOR:
-		return m_superArmor.isEnd();
+		if (m_superArmor.isEnd())
+		{
+			m_type = SPECIALTYPE::NONE;
+		}
 		break;
 	case SPECIALTYPE::SPECIALATTACK:
-		return m_specialAttack.isEnd();
+		if (m_specialAttack.isEnd())
+		{
+			m_type = SPECIALTYPE::NONE;
+		}
 		break;
 	}
-	return true;
 }
 void SpecialSkillManager::recovery(Status& _status)
 {
 	if (m_type == SPECIALTYPE::RECOVERY)
+	{
 		m_recovery.add(_status);
+	}
 }
 
 bool SpecialSkillManager::isSuperArmor()
 {
 	return m_superArmor.isSuperArmor();
+}
+
+void SpecialSkillManager::draw(const Renderer & _renderer)
+{
+	/*int resetTime;
+	resetTime = 0;*/
+
+	m_spAttackUI.draw(_renderer);
+	switch (m_type)
+	{
+	case SPECIALTYPE::NONE:
+		break;
+	case SPECIALTYPE::RECOVERY:
+		m_spAttackUI.spChange(TEXTURE_ID::SP_UI1);
+		//resetTime++;
+		break;
+	case SPECIALTYPE::SUPERARMOR:
+		m_spAttackUI.spChange(TEXTURE_ID::SP_UI2);
+		//resetTime++;
+		break;
+	case SPECIALTYPE::SPECIALATTACK:
+		m_spAttackUI.spChange(TEXTURE_ID::SP_UI3);
+		//resetTime++;
+		break;
+	}
+	//if (resetTime >= 1)
+	//{
+	//	//m_type = SPECIALTYPE::NONE;
+	//	resetTime = 0;
+	//}
+}
+
+bool SpecialSkillManager::isRbstate()
+{
+	return false;
 }
 
 void SpecialSkillManager::addAttackCollision(CollisionGroup * _group)

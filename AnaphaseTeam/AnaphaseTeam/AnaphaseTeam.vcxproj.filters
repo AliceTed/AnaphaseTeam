@@ -357,9 +357,6 @@
     <ClInclude Include="header\shape\Shape.h">
       <Filter>ヘッダー ファイル\shape</Filter>
     </ClInclude>
-    <ClInclude Include="header\animation\Animator.h">
-      <Filter>ヘッダー ファイル\animation</Filter>
-    </ClInclude>
     <ClInclude Include="header\animation\AnimatorOne.h">
       <Filter>ヘッダー ファイル\animation</Filter>
     </ClInclude>
@@ -576,6 +573,24 @@
     <ClInclude Include="header\camera\CameraWork\_CameraWork.h">
       <Filter>ヘッダー ファイル\camera</Filter>
     </ClInclude>
+    <ClInclude Include="header\collision\PlayerAttackCollision.h">
+      <Filter>ヘッダー ファイル\collision\user</Filter>
+    </ClInclude>
+    <ClInclude Include="header\animation\AnimMediator.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="header\attack\ComboReader.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="header\attack\Homing.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="header\ui\SpAttackUI.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="header\collision\PlayerCollision.h">
+      <Filter>ヘッダー ファイル\collision\user</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="source\main.cpp">
@@ -681,9 +696,6 @@
       <Filter>ソース ファイル\shape</Filter>
     </ClCompile>
     <ClCompile Include="source\animation\AnimatorOne.cpp">
-      <Filter>ソース ファイル\animation</Filter>
-    </ClCompile>
-    <ClCompile Include="source\animation\Animator.cpp">
       <Filter>ソース ファイル\animation</Filter>
     </ClCompile>
     <ClCompile Include="source\convenient\Point.cpp">
@@ -871,6 +883,21 @@
     </ClCompile>
     <ClCompile Include="source\camera\CameraWork\_CameraWork.cpp">
       <Filter>ソース ファイル\camera</Filter>
+    </ClCompile>
+    <ClCompile Include="source\collision\PlayerAttackCollision.cpp">
+      <Filter>ソース ファイル\collision\user</Filter>
+    </ClCompile>
+    <ClCompile Include="source\attack\ComboReader.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="source\attack\新しいフォルダー\Homing.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="header\collision\PlayerCollision.cpp">
+      <Filter>ソース ファイル\collision\user</Filter>
+    </ClCompile>
+    <ClCompile Include="source\ui\SpAttackUI.cpp">
+      <Filter>ソース ファイル</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -28,5 +28,5 @@ void EnemyAttackCollision::collision_Enter(HitInformation & _hit)
 
 void EnemyAttackCollision::doDraw(const Renderer & _renderer)
 {
-	m_shape->draw(_renderer);
+	//m_shape->draw(_renderer);
 }

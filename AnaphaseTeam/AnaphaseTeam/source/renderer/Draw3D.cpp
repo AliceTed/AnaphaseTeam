@@ -2,7 +2,6 @@
 #include "../../header/data/CastID.h"
 #include "../../header/data/Model_ID.h"
 #include"../../header/transform/Transform.h"
-#include "../../header/animation/Animator.h"
 #include "../../header/animation/AnimatorOne.h"
 
 Draw3D::Draw3D()
@@ -18,7 +17,8 @@ void Draw3D::drawMesh(GSuint _id, const Transform & _transform, const GScolor & 
 	glPushMatrix();
 	glColor4f(_color.r, _color.g, _color.b, _color.a);
 	glMultMatrixf(_transform.matrix());
-	gsDrawMesh(_id);
+	Data::CastID cast;
+	gsDrawMesh(cast(_id));
 	glPopMatrix();
 }
 void Draw3D::drawMesh(GSuint _id, const Transform & _transform, const GSmatrix4 * _matrix, const GScolor & _color) const

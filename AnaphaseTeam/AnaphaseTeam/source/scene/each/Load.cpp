@@ -53,6 +53,7 @@ const bool Load::isExit() const
 void Load::loadTextrue()
 {
 	Data::LoadTexture tex;
+	tex(TEXTURE_ID::WHITE, "white");
 	tex(TEXTURE_ID::BLACK, "black");
 	tex(TEXTURE_ID::EXIT, "Exit");
 	tex(TEXTURE_ID::OPTION, "option");
@@ -64,6 +65,10 @@ void Load::loadTextrue()
 	tex(TEXTURE_ID::PAD_A, "pad");
 	tex(TEXTURE_ID::PAD_B, "pad");
 	tex(TEXTURE_ID::ROGO, "rogo");
+	tex(TEXTURE_ID::SP_UI, "UI_SP");
+	tex(TEXTURE_ID::SP_UI1, "UI_SP_1");
+	tex(TEXTURE_ID::SP_UI2, "UI_SP_2");
+	tex(TEXTURE_ID::SP_UI3, "UI_SP_3");
 }
 void Load::loadSound()
 {
@@ -86,5 +91,5 @@ void Load::loadModel()
 	//meshïêäÌÅ@äô
 	mesh(MESH_ID::WEAPON, "weapon/weapon");
 	LoadOctree oct;
-	oct(OCTREE_ID::KOUTEI, "koutei");
+	oct(OCTREE_ID::ARENA, "arena");
 }

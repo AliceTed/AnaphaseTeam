@@ -2,9 +2,10 @@
 #include <vector>
 #include "Enemy.h"
 #include <memory>
+typedef std::unique_ptr<Enemy> Enemy_Ptr;
 class EnemyManager
 {
-	typedef std::unique_ptr<Enemy> Enemy_Ptr;
+	
 public:
 	EnemyManager();
 	~EnemyManager() = default;
@@ -17,7 +18,7 @@ public:
 
 	void collision(Actor& _actor);
 	void draw(const Renderer& _renderer,const Camera& _camera);
-	Enemy* nearEnemy(Player* _player);
+	Enemy_Ptr& nearEnemy(Player* _player);
 
 	void thinks(Player* _player);
 	int size();

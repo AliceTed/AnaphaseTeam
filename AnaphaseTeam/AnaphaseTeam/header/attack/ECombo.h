@@ -1,6 +1,6 @@
 #pragma once
 
-enum class Combo
+enum class Combo : unsigned int
 {
 	QFirst,
 	QSecond,
@@ -46,6 +46,6 @@ enum class Combo
 
 
 
-	End,
+	End = 99,
 };
 
