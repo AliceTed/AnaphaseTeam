@@ -24,7 +24,7 @@ void Enemy::initialize()
 	Actor::initialize();
 	Collision_Ptr actor = std::make_shared<EnemyCollision>(this);
 	m_collision.add(actor);
-	m_animatorOne.changeAnimation(static_cast<GSuint>(ENEMY_ANIMATION::SPAWN), true, false);
+	m_animatorOne.changeAnimation(ENEMY_ANIMATION::SPAWN, true, false);
 	m_state = ESTATE::SPAWN;
 	m_stay_timer.initialize();
 	m_hp = 100;
