@@ -60,5 +60,5 @@ private:
 
 	GSvector2						m_rotate;
 
-	E_CameraWorkID					m_current_cameraAction;
+	E_CameraWorkID					m_current_cameraWork;
 };
