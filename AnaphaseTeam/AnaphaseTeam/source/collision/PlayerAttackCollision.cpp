@@ -7,10 +7,6 @@ Player::PlayerAttackCollision::PlayerAttackCollision(Player* _player)
 {
 }
 
-Player::PlayerAttackCollision::~PlayerAttackCollision()
-{
-}
-
 void Player::PlayerAttackCollision::doUpdate(float deltaTime)
 {
 	if (m_player->m_animatorOne.isEndCurrentAnimation())
