@@ -16,7 +16,7 @@ void Attack::initialize(Player* _player)
 
 void Attack::update(float deltaTime, Player * _player)
 {
-	motion(_player);
+	//motion(_player);
 }
 void Attack::motion(Player * _player)
 {

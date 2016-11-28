@@ -2,24 +2,6 @@
 
 enum class Combo : unsigned int
 {
-	QFirst,
-	QSecond,
-	QThird,
-	QFour,
-
-	SFirst,
-	SSecond,
-	SThird,
-	SFour,
-
-	SQSecond,
-	SQThird,
-	SQFour,
-
-	QSSecond,
-	QSThird,
-	QSFour,
-
 	Q,
 	QQ,
 	QQQ,
