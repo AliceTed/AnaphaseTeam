@@ -74,14 +74,15 @@ void Load::loadTextrue()
 }
 void Load::loadSound()
 {
-	//Data::LoadSE loadse;
-	//loadse(SE_ID::TITLE,"down",2);
-
 	//Data::LoadBGM loadbgm;
 	//loadbgm(BGM_ID::TITLE, "a");
 
-	m_sound->loadSE(SE_ID::TITLE, "down");
+	//Data::LoadSE loadse;
+	//loadse(SE_ID::TITLE,"down",2);
+
 	m_sound->loadBGM(BGM_ID::TITLE, "Tulip");
+	m_sound->loadSE(SE_ID::TITLE, "down");
+	
 }
 
 void Load::loadModel()

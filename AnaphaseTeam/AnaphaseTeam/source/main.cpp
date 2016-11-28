@@ -68,8 +68,8 @@ private:
 		Data::Release release;
 		release();
 
-		m_sound.deleteSE();
 		m_sound.deleteBGM();
+		m_sound.deleteSE();
 	}
 private:
 	bool isRunning() { return !m_device.input()->exit() && !m_SceneManager.isExit(); }
