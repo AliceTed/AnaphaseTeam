@@ -1,14 +1,16 @@
 #include "../../../header/scene/each/Load.h"
 #include "../../../header/data/Loader.h"
 #include "../../../header/renderer/Renderer.h"
+#include "../../../header/sound/Sound.h"
 
 #include "../../../header/data/ANIMATION_ID.h"
 #include "../../../header/data/MESH_ID.h"
 #include "../../../header/data/Model_ID.h" 
 #include "../../../header/data/SE_ID.h"
 #include "../../../header/data/BGM_ID.h"
-Load::Load()
-	:m_IsEnd(false)
+Load::Load(Sound* _sound)
+	:m_IsEnd(false),
+	m_sound(_sound)
 {
 }
 Load::~Load()
@@ -72,11 +74,14 @@ void Load::loadTextrue()
 }
 void Load::loadSound()
 {
-	Data::LoadSE loadse;
-	loadse(SE_ID::TITLE,"down",2);
+	//Data::LoadSE loadse;
+	//loadse(SE_ID::TITLE,"down",2);
 
-	Data::LoadBGM loadbgm;
-	loadbgm(BGM_ID::TITLE, "a");
+	//Data::LoadBGM loadbgm;
+	//loadbgm(BGM_ID::TITLE, "a");
+
+	m_sound->loadSE(SE_ID::TITLE, "down");
+	m_sound->loadBGM(BGM_ID::TITLE, "Tulip");
 }
 
 void Load::loadModel()

@@ -2,10 +2,12 @@
 #define _LOAD_H_
 #include "../IScene.h"
 
+class Sound;
+
 class Load :public IScene
 {
 public:
-	Load();
+	Load(Sound* _sound);
 	~Load();
 	void initialize();
 	void update(float deltaTime);
@@ -20,5 +22,6 @@ private:
 	void loadModel();
 private:
 	bool m_IsEnd;
+	Sound* m_sound;
 };
 #endif

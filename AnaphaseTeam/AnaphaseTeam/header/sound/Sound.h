@@ -1,14 +1,41 @@
+/**
+ * @file Sound.h
+ * @brief サウンドクラス
+ * @author Ruri
+ * @date 2016.11.28
+ */
+
 #pragma once
-#include "../../header/data/SE_ID.h"
+
+#include <GSmusic.h>
+#include <string>
 #include "../../header/data/BGM_ID.h"
+#include "../../header/data/SE_ID.h"
+using namespace std;
 
 class Sound
 {
 public:
 	Sound();
 	~Sound();
-	const void playBGM(BGM_ID _bgmID) const;
-	const void stopBGM() const;
-	const void playSE(SE_ID _seID) const;
-	const void stopSE(SE_ID _seID) const;
+	void loadBGM(BGM_ID _id, const string& _name, const string& _path = "res/sound/", const string& _extension = ".wav");
+	void deleteBGM();
+	void playBGM(BGM_ID _id);
+	void stopBGM(BGM_ID _id);
+	void pauseBGM(BGM_ID _id);
+	void restartBGM(BGM_ID _id);
+	void bgmVolume(BGM_ID _id, float _volume);
+	void bgmFadeIn(BGM_ID _id, float _deltaTime);
+	void bgmFadeOut(BGM_ID _id, float _deltaTime);
+
+	void loadSE(SE_ID _id, const string& _name, const string& _path = "res/sound/", const string& _extension = ".wav");
+	void deleteSE();
+	void playSE(SE_ID _id);
+
+	void lerp(float* _out, const float* _min, const float* _max, float _time);
+
+private:
+	float m_volume;
+	float m_max;
+
 };

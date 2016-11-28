@@ -12,15 +12,18 @@
 #include "../header/scene/each/GameClear.h"
 
 #include "../header/renderer/Renderer.h"
+#include "../header/sound/Sound.h"
 #include "../header/device/GameDevice.h"
+
 class MyGame : public gslib::Game
 {
 public:
 	MyGame()
-		:Game(1280, 720, true, 60.0f),
+		:Game(1280, 720, false, 60.0f),
 		m_SceneManager(),
 		m_Renderer(),
-		m_device()
+		m_sound(),
+		m_device(&m_sound)
 	{
 	}
 
@@ -32,7 +35,7 @@ private:
 		無名作成はしない
 		無名作成( add(id,std::make_shared<Scene>()) )
 		*/
-		std::shared_ptr<IScene>load = std::make_shared<Load>();
+		std::shared_ptr<IScene>load = std::make_shared<Load>(&m_sound);
 		std::shared_ptr<IScene>opening= std::make_shared<Opening>(&m_device);
 		std::shared_ptr<IScene>title = std::make_shared<Title>(&m_device);
 		std::shared_ptr<IScene>option = std::make_shared<Option>(&m_device);
@@ -64,6 +67,9 @@ private:
 	{
 		Data::Release release;
 		release();
+
+		m_sound.deleteSE();
+		m_sound.deleteBGM();
 	}
 private:
 	bool isRunning() { return !m_device.input()->exit() && !m_SceneManager.isExit(); }
@@ -73,6 +79,7 @@ private:
 	//以下デバイスクラスでまとめる予定
 	//本当はインターフェイス作りたいが変更時面倒
 	Renderer m_Renderer;
+	Sound m_sound;
 	GameDevice m_device;
 };
 
