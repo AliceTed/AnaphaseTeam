@@ -1,4 +1,4 @@
-#include "../../../header/camera/CameraWork/CameraWork.h"
+#include "../../../header/camera/CameraWork/_CameraWork.h"
 #include "../../../header/camera/Camera.h"
 
 CameraWork::CameraWork(Camera* _camera) : 

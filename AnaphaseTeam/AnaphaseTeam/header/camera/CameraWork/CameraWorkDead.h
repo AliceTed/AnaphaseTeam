@@ -6,7 +6,7 @@
 *********************************************************************/
 #pragma once
 
-#include "CameraWork.h"
+#include "_CameraWork.h"
 
 class CameraWorkDead : public CameraWork
 {

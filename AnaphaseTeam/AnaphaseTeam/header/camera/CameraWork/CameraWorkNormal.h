@@ -7,7 +7,7 @@
 #pragma once
 
 #include <memory>
-#include "CameraWork.h"
+#include "_CameraWork.h"
 
 class CWParameterReader;
 

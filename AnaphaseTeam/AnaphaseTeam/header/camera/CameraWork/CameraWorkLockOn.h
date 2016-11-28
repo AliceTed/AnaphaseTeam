@@ -7,7 +7,7 @@
 #pragma once
 
 #include <gslib.h>
-#include "CameraWork.h"
+#include "_CameraWork.h"
 
 class CameraWorkLockOn : public CameraWork
 {

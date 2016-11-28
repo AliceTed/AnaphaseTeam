@@ -172,7 +172,7 @@
     <ClCompile Include="source\camera\Camera.cpp" />
     <ClCompile Include="source\camera\CameraController.cpp" />
     <ClCompile Include="source\camera\CameraTarget.cpp" />
-    <ClCompile Include="source\camera\CameraWork\CameraWork.cpp" />
+    <ClCompile Include="source\camera\CameraWork\_CameraWork.cpp" />
     <ClCompile Include="source\camera\CameraWork\CameraWorkData.cpp" />
     <ClCompile Include="source\camera\CameraWork\CameraWorkDead.cpp" />
     <ClCompile Include="source\camera\CameraWork\CameraWorkLockOn.cpp" />
@@ -278,7 +278,7 @@
     <ClInclude Include="header\camera\Camera.h" />
     <ClInclude Include="header\camera\CameraController.h" />
     <ClInclude Include="header\camera\CameraTarget.h" />
-    <ClInclude Include="header\camera\CameraWork\CameraWork.h" />
+    <ClInclude Include="header\camera\CameraWork\_CameraWork.h" />
     <ClInclude Include="header\camera\CameraWork\CameraWorkData.h" />
     <ClInclude Include="header\camera\CameraWork\CameraWorkDead.h" />
     <ClInclude Include="header\camera\CameraWork\CameraWorkLockOn.h" />
