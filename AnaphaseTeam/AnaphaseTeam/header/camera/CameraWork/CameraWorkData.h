@@ -13,9 +13,6 @@
 class Camera;
 class I_CameraWork;
 
-typedef std::shared_ptr<I_CameraWork> CameraWork_Ptr;
-typedef std::unordered_map<int, CameraWork_Ptr> CameraWork_Map;
-
 class CameraWorkData
 {
 public:
@@ -39,7 +36,7 @@ public:
 	@param[_data]	ÉfÅ[É^
 	*****************************************************************/
 	void add(
-		const E_CameraWorkID	_id,
+		E_CameraWorkID	_id,
 		I_CameraWork*	_data
 	);
 
@@ -52,6 +49,9 @@ public:
 	I_CameraWork* get(const E_CameraWorkID _id);
 
 private:
+	typedef std::shared_ptr<I_CameraWork> CameraWork_Ptr;
+	typedef std::unordered_map<E_CameraWorkID, CameraWork_Ptr> CameraWork_Map;
+
 	CameraWork_Map m_cameraWorks;
 };
 
