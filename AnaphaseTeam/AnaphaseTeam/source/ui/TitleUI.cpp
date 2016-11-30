@@ -1,10 +1,7 @@
 #include "../../header/ui/TitleUI.h"
-#include "../../header/renderer/Renderer.h"
 #include "../../header/scene/SceneChange.h"
-#include "../../header/device/Input.h"
 #include "../../header/scene/each/Title.h"
 #include "../../header/device/GameDevice.h"
-#include "../../header/data/TEXTURE_ID.h"
 TitleUI::TitleUI()
 	:m_select(),
 	m_fade(TEXTURE_ID::TITLE_ROGO)
@@ -28,7 +25,7 @@ void TitleUI::update(float deltaTime)
 	m_fade.update(deltaTime);
 }
 
-void TitleUI::draw(const Renderer & _renderer)
+void TitleUI::draw(IRenderer* _renderer)
 {
 	m_fade.draw(_renderer);
 	m_select.draw(_renderer);

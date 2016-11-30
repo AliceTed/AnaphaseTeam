@@ -3,7 +3,7 @@
 #define _SHAPE_H_
 
 #include <gslib.h>
-class Renderer;
+class IRenderer;
 
 //class Ray;
 class Sphere;
@@ -25,7 +25,7 @@ public:
 
 	virtual const bool isCollision(const Shape* _shape, GSvector3* _out)const = 0;
 
-	virtual void draw(const Renderer& _renderer, const GScolor& color = GScolor(1.0f, 1.0f, 1.0f, 1.0f)) = 0;
+	virtual void draw(IRenderer * _renderer, const GScolor& color = GScolor(1.0f, 1.0f, 1.0f, 1.0f)) = 0;
 };
 
 #endif

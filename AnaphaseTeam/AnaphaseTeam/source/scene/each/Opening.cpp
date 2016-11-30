@@ -1,9 +1,10 @@
 #include "../../../header/scene/each/Opening.h"
 #include "../../../header/device/GameDevice.h"
-#include "../../../header/renderer/Renderer.h"
+#include "../../../header/renderer/IRenderer.h"
+#include "../../../header/renderer/define/SpriteRenderDesc.h"
+#include "../../../header/data/id/TEXTURE_ID.h"
 Opening::Opening()
-	:
-	m_change(),
+	:m_change(),
 	m_lerp(GScolor(1,1,1,0))
 {
 }
@@ -23,16 +24,17 @@ void Opening::update(float deltaTime)
 {
 	if (m_change.update(deltaTime))return;
 	m_lerp.update(deltaTime);
-	if (m_lerp.isEnd()|| GameDevice::getInstacnce().input()->jump())
+	if (m_lerp.isEnd()||GameDevice::getInstacnce().input()->jump())
 	{
 		m_change.end(SceneMode::TITLE);
 	}
 }
 
-void Opening::draw(const Renderer & renderer)
+void Opening::draw(IRenderer * renderer)
 {
-	// Ÿè“ú–{HŠw‰@ƒƒS‚É‰æ‘œ‚ÆˆÊ’u‚ğ•Ï‚¦‚½‚æ by—L•y
-	renderer.getDraw2D().textrue(TEXTURE_ID::ROGO,&GSvector2(0,0),&m_lerp.current());
+	SpriteRenderDesc desc;
+	desc.textureID = static_cast<GSuint>(TEXTURE_ID::ROGO);
+	renderer->render(desc);
 	m_change.draw(renderer);
 }
 

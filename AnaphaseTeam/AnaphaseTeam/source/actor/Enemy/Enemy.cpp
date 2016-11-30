@@ -1,10 +1,10 @@
 #include "../../../header/actor/Enemy/Enemy.h"
-#include "../../../header/renderer/Renderer.h"
+#include "../../../header/renderer/IRenderer.h"
 #include "../../../header/collision/EnemyCollision.h"
 #include "../../../header/math/Random.h"
 #include "../../../header/math/Calculate.h"
 #include "../../../header/actor/Player/Player.h"
-#include "../../../header/data/ENEMY_ANIMATION.h"
+#include "../../../header/data/id/ENEMY_ANIMATION.h"
 #include "../../../header/collision/EnemyAttackCollision.h"
 const float Enemy::PLAYER_DISTANCE = 10;
 Enemy::Enemy(const Transform & _transform)
@@ -42,7 +42,7 @@ void Enemy::update(float deltatime)
 	m_collision.update(deltatime);
 }
 
-void Enemy::draw(const Renderer & _renderer)
+void Enemy::draw(IRenderer * _renderer)
 {
 	m_collision.draw(_renderer);
 	m_animatorOne.draw(_renderer, m_transform, GScolor(1, 1, 1, m_alpha));

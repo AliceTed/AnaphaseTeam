@@ -18,7 +18,7 @@ public:
 
 	const bool isCollision(const Shape* _shape, GSvector3* _out)const;
 
-	void draw(const Renderer& renderer, const GScolor& color = GScolor(1.0f, 1.0f, 1.0f, 1.0f));
+	void draw(IRenderer * renderer, const GScolor& color = GScolor(1.0f, 1.0f, 1.0f, 1.0f));
 
 	const bool isCollisionSphere(const GSvector3& _center, float radius, GSvector3* _out)const;
 private:

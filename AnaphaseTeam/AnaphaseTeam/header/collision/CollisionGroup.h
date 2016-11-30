@@ -10,7 +10,7 @@ public:
 	void initialize();
 	void update(float deltaTime);
 	void collision(CollisionGroup& _group);
-	void draw(const Renderer& _renderer);
+	void draw(IRenderer* _renderer);
 	
 	void clear();
 	unsigned int size()const;

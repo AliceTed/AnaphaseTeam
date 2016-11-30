@@ -17,7 +17,7 @@ void CollisionActor::update(float deltaTime)
 	doUpdate(deltaTime);
 }
 
-void CollisionActor::draw(const Renderer & _renderer)
+void CollisionActor::draw(IRenderer * _renderer)
 {
 	doDraw(_renderer);
 }
@@ -67,7 +67,7 @@ void CollisionActor::doUpdate(float deltaTime)
 {
 }
 
-void CollisionActor::doDraw(const Renderer & _renderer)
+void CollisionActor::doDraw(IRenderer * _renderer)
 {
 }
 

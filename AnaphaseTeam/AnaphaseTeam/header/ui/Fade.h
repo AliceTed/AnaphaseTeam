@@ -2,9 +2,9 @@
 #define _FADE_H_
 #include <gslib.h>
 #include <functional>
+#include "../data/id/TEXTURE_ID.h"
 #include "../math/TimeLerpVector.h"
-#include "../../header/data/TEXTURE_ID.h"
-class Renderer;
+class IRenderer;
 class Fade
 {
 public:
@@ -18,7 +18,7 @@ public:
 	/*start‚µ‚Ä‚é‚©H*/
 	const bool isStart()const;
 	const bool isEnd()const;
-	void draw(const Renderer& renderer);
+	void draw(IRenderer * renderer);
 private:
 	void endFunction();
 private:

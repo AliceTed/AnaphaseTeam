@@ -1,5 +1,6 @@
 #include "../../header/ui/Fade.h"
-#include "../../header/renderer/Renderer.h"
+#include "../../header/renderer/IRenderer.h"
+#include "../../header/renderer/define/SpriteRenderDesc.h"
 Fade::Fade(TEXTURE_ID _id, const GSvector2& _position)
 	:m_isStart(false),
 	m_Lerp(GScolor(0, 0, 0, 0)),
@@ -44,10 +45,13 @@ const bool Fade::isEnd()const
 {
 	return m_Lerp.isEnd();
 }
-
-void Fade::draw(const Renderer& renderer)
+void Fade::draw(IRenderer * renderer)
 {
-	renderer.getDraw2D().textrue(m_TextureID, &m_position, &m_Lerp.current());
+	//renderer.getDraw2D().textrue(m_TextureID, &m_position, &m_Lerp.current());
+	SpriteRenderDesc desc;
+	desc.textureID =static_cast<GSuint>(m_TextureID);
+	desc.color = m_Lerp.current();
+	renderer->render(desc);
 }
 
 void Fade::endFunction()

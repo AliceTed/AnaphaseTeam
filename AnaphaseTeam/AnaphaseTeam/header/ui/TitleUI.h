@@ -9,7 +9,7 @@ public:
 	~TitleUI();
 	void initialize();
 	void update(float deltaTime);
-	void draw(const Renderer& _renderer);
+	void draw(IRenderer* _renderer);
 	void finish();
 	void operation(Title& _title);
 private:

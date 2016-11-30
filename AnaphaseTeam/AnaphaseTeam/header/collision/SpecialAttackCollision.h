@@ -7,7 +7,9 @@ public:
 	Player::SpecialAttackCollision(Player* _player);
 private:
 	void doUpdate(float deltaTime)override;
-	void doDraw(const Renderer& _renderer)override;
+
+	//以下一時的なテスト用
+	void doDraw(IRenderer * _renderer)override;
 private:
 	Player* m_player;
 };

@@ -9,7 +9,7 @@ public:
 	~SceneChange();
 	void initialize();
 	const bool update(float deltaTime);
-	void draw(const Renderer& _renderer);
+	void draw(IRenderer * _renderer);
 	void begin(float _fadetime=1.0f);
 	void end(SceneMode _next,float _fadetime = 1.0f);
 	const SceneMode next()const;

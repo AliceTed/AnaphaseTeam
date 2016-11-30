@@ -11,7 +11,7 @@
 #include "../../../header/state/player/LimitFallState.h"
 #include "../../../header/state/player/LandingRigidityState.h"
 
-#include "../../../header/renderer/Renderer.h"
+#include "../../../header/renderer/IRenderer.h"
 #include "../../../header/device/GameDevice.h"
 #include "../../../header/camera/Camera.h"
 #include "../../../header/shape/Ray.h"
@@ -25,6 +25,7 @@
 #include "../../../header/collision/PlayerAttackCollision.h"
 #include "../../../header/collision/PlayerCollision.h"
 #include "../../../header/collision/SpecialAttackCollision.h"
+#include "../../../header/renderer/define/SpriteRectRenderDesc.h"
 const float Player::ROTATESPEED = -2.0f;
 Player::Player(Camera * _camera, LockOn* _lockon)
 	:Actor(
@@ -77,17 +78,29 @@ void Player::update(float deltatime)
 	}
 }
 
-void Player::draw(const Renderer & _renderer)
+void Player::draw(IRenderer *_renderer)
 {
 	m_animatorOne.draw(_renderer, m_transform);
 	m_collision.draw(_renderer);
 	m_Gauge.draw(_renderer);
 	m_scythe.draw(_renderer);
-	_renderer.getDraw2D().textrue(TEXTURE_ID::BLACK, &GSvector2(0, 0),
-		&GSrect(0, 0, 1000, 30), &GSvector2(0, 0), &GSvector2(1, 1), 0.0f);
-	_renderer.getDraw2D().textrue(TEXTURE_ID::WHITE, &GSvector2(0, 0),
-		&GSrect(0, 0, m_status.getHp() * 10.0f, 30), &GSvector2(0, 0), &GSvector2(1, 1), 0.0f, &GScolor(0.0f, 1.0f, 0.0f, 1.0f));
 
+	GSmatrix4 mat;
+	mat.identity();
+	mat.translate(0, 10, 0);
+
+	SpriteRectRenderDesc back;
+	back.textureID = static_cast<GSuint>(TEXTURE_ID::BLACK);
+	back.matrix = mat;
+	back.srcRect = GSrect(0,0, 100, 30);
+	_renderer->render(back);
+
+	SpriteRectRenderDesc front;
+	front.textureID = static_cast<GSuint>(TEXTURE_ID::CLEAR);
+	front.matrix = mat;
+	front.srcRect = GSrect(0,0, m_status.getHp(), 30);
+	front.color = GScolor(0.0f, 1.0f, 0.0f, 1.0f);
+	_renderer->render(front);
 	m_SpecialSkillManager.draw(_renderer);
 }
 AttackStatus Player::status()

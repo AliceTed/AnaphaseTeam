@@ -1,5 +1,5 @@
 #include "../../../header/state/player/AttackState.h"
-#include "../../../header/data/ANIMATION_ID.h"
+#include "../../../header/data/id/ANIMATION_ID.h"
 #include "../../../header/device/GameDevice.h"
 Player::AttackState::AttackState(Player* _player)
 	:ActorState(_player),

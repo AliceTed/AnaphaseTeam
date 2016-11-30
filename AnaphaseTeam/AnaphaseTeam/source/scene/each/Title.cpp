@@ -1,7 +1,7 @@
 #include "../../../header/scene/each/Title.h"
-#include "../../../header/renderer/Renderer.h"
+#include "../../../header/renderer/IRenderer.h"
 #include "../../../header/device/GameDevice.h"
-#include "../../../header/data/BGM_ID.h"
+#include "../../../header/data/id/BGM_ID.h"
 Title::Title()
 	:m_IsExit(false),
 	m_title(),
@@ -29,7 +29,7 @@ void Title::update(float deltaTime)
 	m_title.operation(*this);
 }
 
-void Title::draw(const Renderer & renderer)
+void Title::draw(IRenderer * renderer)
 {
 	m_title.draw(renderer);
 	m_change.draw(renderer);

@@ -1,6 +1,7 @@
 #include "../../header/ui/SpAttackUI.h"
-#include "../../header/data/TEXTURE_ID.h"
-#include "../../header/renderer/Renderer.h"
+#include "../../header/data/id/TEXTURE_ID.h"
+#include "../../header/renderer/IRenderer.h"
+#include "../../header/renderer/define/SpriteRenderDesc.h"
 #include "../../header/device/GameDevice.h"
 
 SpAttackUI::SpAttackUI()
@@ -34,12 +35,15 @@ void SpAttackUI::update()
 	{
 		m_scale = GSvector2(0.6, 0.6);
 	}
-
 }
 
-void SpAttackUI::draw(const Renderer& _renderer)
+void SpAttackUI::draw(IRenderer * _renderer)
 {
-	_renderer.getDraw2D().textrue(m_ID, &GSvector2(1000, 450),NULL,NULL,&m_scale,0);
+	SpriteRenderDesc desc;
+	desc.textureID =static_cast<GSuint>(m_ID);
+	desc.matrix.scale(m_scale);
+	desc.matrix.translate(1000,500, 0);
+	_renderer->render(desc);
 }
 
 void SpAttackUI::spChange(TEXTURE_ID _ID)

@@ -15,6 +15,6 @@ void Player::SpecialAttackCollision::doUpdate(float deltaTime)
 	}
 }
 
-void Player::SpecialAttackCollision::doDraw(const Renderer & _renderer)
+void Player::SpecialAttackCollision::doDraw(IRenderer * _renderer)
 {
 }

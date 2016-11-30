@@ -8,12 +8,12 @@
 #include <unordered_map>
 #include <memory>
 #include "../../header/transform/Transform.h"
-#include "../data/Model_ID.h"
+#include "../data/id/Model_ID.h"
 #include "../animation/AnimatorOne.h"
 #include "../actor/Actor_Tag.h"
 #include "../collision/CollisionGroup.h"
 #include "../state/ACTOR_STATE.h"
-class Renderer;
+class IRenderer;
 class Map;
 class IActorState;
 class Actor
@@ -23,7 +23,7 @@ public:
 	virtual ~Actor();
 	virtual void initialize();
 	virtual void update(float deltatime) = 0;
-	virtual void draw(const Renderer& _renderer) = 0;
+	virtual void draw(IRenderer* _renderer) = 0;
 	virtual void finish();	
 public:
 	/**

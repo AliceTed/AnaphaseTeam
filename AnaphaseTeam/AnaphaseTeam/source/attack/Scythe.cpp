@@ -1,8 +1,8 @@
 #include "../../header/attack/Scythe.h"
 
 #include "../../header/animation/AnimatorOne.h"
-#include "../../header/renderer/Renderer.h"
-#include "../../header/collision/CollisionGroup.h"
+#include "../../header/renderer/IRenderer.h"
+#include "../../header/renderer/define/MeshRenderDesc.h"
 Scythe::Scythe()
 	:m_bone(14),//14‚Í‰Eè‚Ì”z—ñ”Ô†
 	m_local(
@@ -23,7 +23,10 @@ void Scythe::update(float deltaTime, const AnimatorOne & _animator, const Transf
 	m_world = m_local.parent_synthesis(world_right);
 }
 
-void Scythe::draw(const Renderer & _renderer)
+void Scythe::draw(IRenderer * _renderer)
 {
-	_renderer.getDraw3D().drawMesh(static_cast<GSuint>(MESH_ID::WEAPON), m_world);
+	MeshRenderDesc desc;
+	desc.matrix = m_world.matrix();
+	desc.meshID = static_cast<GSuint>(MESH_ID::WEAPON);
+	_renderer->render(desc);
 }

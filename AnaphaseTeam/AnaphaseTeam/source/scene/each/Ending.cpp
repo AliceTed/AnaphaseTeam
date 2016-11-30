@@ -1,6 +1,8 @@
 #include "../../../header/scene/each/Ending.h"
-#include "../../../header/renderer/Renderer.h"
+#include "../../../header/renderer/IRenderer.h"
 #include "../../../header/device/GameDevice.h"
+#include "../../../header/renderer/define/SpriteRenderDesc.h"
+#include "../../../header/data/id/TEXTURE_ID.h"
 Ending::Ending()
 	:m_IsEnd(false),
 	m_change()
@@ -27,9 +29,12 @@ void Ending::update(float _deltaTime)
 	}
 }
 
-void Ending::draw(const Renderer & _renderer)
+void Ending::draw(IRenderer * _renderer)
 {
-	_renderer.getDraw2D().textrue(TEXTURE_ID::CLEAR, &GSvector2(0, 0));
+	SpriteRenderDesc desc;
+	desc.textureID = static_cast<GSuint>(TEXTURE_ID::CLEAR);
+	_renderer->render(desc);
+
 	m_change.draw(_renderer);
 }
 
