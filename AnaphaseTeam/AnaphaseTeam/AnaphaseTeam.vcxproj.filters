@@ -624,9 +624,6 @@
     <ClInclude Include="header\data\release\DataRelease.h">
       <Filter>ヘッダー ファイル\data\release</Filter>
     </ClInclude>
-    <ClInclude Include="header\data\release\DeleteModel.h">
-      <Filter>ヘッダー ファイル\data\release</Filter>
-    </ClInclude>
     <ClInclude Include="header\renderer\define\AnimationRenderDesc.h">
       <Filter>ヘッダー ファイル\renderer\define</Filter>
     </ClInclude>
@@ -696,7 +693,13 @@
     <ClInclude Include="header\data\id\SHADER_ID.h">
       <Filter>ヘッダー ファイル\data\id</Filter>
     </ClInclude>
-    <ClInclude Include="header\data\release\Release.h">
+    <ClInclude Include="header\renderer\define\SpriteRectRenderDesc.h">
+      <Filter>ヘッダー ファイル\renderer\define</Filter>
+    </ClInclude>
+    <ClInclude Include="header\data\release\DeleteModel.h">
+      <Filter>ヘッダー ファイル\data\release</Filter>
+    </ClInclude>
+    <ClInclude Include="header\data\release\DataAllRelease.h">
       <Filter>ヘッダー ファイル\data\release</Filter>
     </ClInclude>
   </ItemGroup>
@@ -1034,7 +1037,7 @@
     <ClCompile Include="source\renderer\Renderer.cpp">
       <Filter>ソース ファイル\renderer</Filter>
     </ClCompile>
-    <ClCompile Include="source\data\release\Release.cpp">
+    <ClCompile Include="source\data\release\DataAllRelease.cpp">
       <Filter>ソース ファイル\data\release</Filter>
     </ClCompile>
   </ItemGroup>

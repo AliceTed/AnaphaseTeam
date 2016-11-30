@@ -36,8 +36,6 @@ void Opening::draw(IRenderer * renderer)
 {
 	SpriteRenderDesc desc;
 	desc.textureID = static_cast<GSuint>(TEXTURE_ID::ROGO);
-	ViewportDesc view=renderer->getViewPort();
-	desc.srcRect = GSrect(0, 0, view.width, view.height);
 	renderer->render(desc);
 	m_change.draw(renderer);
 }

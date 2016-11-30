@@ -205,7 +205,7 @@
     <ClCompile Include="source\data\loader\TextureLoader.cpp" />
     <ClCompile Include="source\data\Message.cpp" />
     <ClCompile Include="source\data\release\DeleteModel.cpp" />
-    <ClCompile Include="source\data\release\Release.cpp" />
+    <ClCompile Include="source\data\release\DataAllRelease.cpp" />
     <ClCompile Include="source\device\GameDevice.cpp" />
     <ClCompile Include="source\device\InputPattern_A.cpp" />
     <ClCompile Include="source\device\InputPattern_B.cpp" />
@@ -332,7 +332,7 @@
     <ClInclude Include="header\data\Message.h" />
     <ClInclude Include="header\data\release\DataRelease.h" />
     <ClInclude Include="header\data\release\DeleteModel.h" />
-    <ClInclude Include="header\data\release\Release.h" />
+    <ClInclude Include="header\data\release\DataAllRelease.h" />
     <ClInclude Include="header\device\GameDevice.h" />
     <ClInclude Include="header\device\IInputPattern.h" />
     <ClInclude Include="header\device\InputPattern_A.h" />
@@ -352,6 +352,7 @@
     <ClInclude Include="header\renderer\define\ResourceID.h" />
     <ClInclude Include="header\renderer\define\SkinnedMeshRenderDesc.h" />
     <ClInclude Include="header\renderer\define\SpriteRenderDesc.h" />
+    <ClInclude Include="header\renderer\define\SpriteRectRenderDesc.h" />
     <ClInclude Include="header\renderer\define\StringRenderDesc.h" />
     <ClInclude Include="header\renderer\define\Type.h" />
     <ClInclude Include="header\renderer\define\Vector2.h" />

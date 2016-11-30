@@ -21,7 +21,7 @@ void SpAttackUI::initilize()
 void SpAttackUI::update()
 {
 	resetID();
-	if (m_input.spState())
+	if (m_input->spState())
 	{
 		if (m_ID == TEXTURE_ID::SP_UI)
 		{
@@ -30,7 +30,7 @@ void SpAttackUI::update()
 
 	}
 
-	if (!m_input.spState())
+	if (!m_input->spState())
 	{
 		m_scale = GSvector2(0.6, 0.6);
 	}
@@ -42,8 +42,6 @@ void SpAttackUI::draw(IRenderer * _renderer)
 	desc.textureID =static_cast<GSuint>(m_ID);
 	desc.matrix.setScale(m_scale);
 	desc.matrix.setTranslation(250, 250, 0);
-	GStexture* tex = gsGetTexture(desc.textureID);
-	desc.srcRect = GSrect(0, 0, tex->dwWidth, tex->dwHeight);
 	_renderer->render(desc);
 }
 

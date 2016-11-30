@@ -1,6 +1,6 @@
 #include "../../header/ui/Fade.h"
 #include "../../header/renderer/IRenderer.h"
-#include "../../header/renderer/define/RectangleRenderDesc.h"
+#include "../../header/renderer/define/SpriteRenderDesc.h"
 #include "../../header/renderer/define/ViewportDesc.h"
 Fade::Fade()
 	:m_isStart(false),
@@ -50,10 +50,8 @@ const bool Fade::isEnd()const
 }*/
 void Fade::draw(IRenderer * renderer)
 {
-	RectangleRenderDesc desc;
+	SpriteRenderDesc desc;
 	desc.color = m_Lerp.current();
-	ViewportDesc view = renderer->getViewPort();
-	desc.rect = GSrect(0,0,view.width,view.height);
 	renderer->render(desc);
 }
 

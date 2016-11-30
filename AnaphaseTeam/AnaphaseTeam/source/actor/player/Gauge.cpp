@@ -1,7 +1,7 @@
 #include "..\..\..\header\actor\Player\Gauge.h"
 #include "../../../header/math/Calculate.h"
 #include "../../../header/data/id/TEXTURE_ID.h"
-#include "../../../header/renderer/define/SpriteRenderDesc.h"
+#include "../../../header/renderer/define/SpriteRectRenderDesc.h"
 #include <math.h>
 
 Gauge::Gauge()
@@ -22,13 +22,13 @@ void Gauge::initialize()
 
 void Gauge::draw(IRenderer * _renderer)
 {
-	SpriteRenderDesc back;
+	SpriteRectRenderDesc back;
 	back.textureID = static_cast<GSuint>(TEXTURE_ID::BLACK);
 	back.matrix.setTranslation(0, 50, 0);
 	back.srcRect = GSrect(0,0, (int)RankGauge::MAX, 30);
 	_renderer->render(back);
 	
-	SpriteRenderDesc front;
+	SpriteRectRenderDesc front;
 	front.textureID = static_cast<GSuint>(TEXTURE_ID::CLEAR);
 	front.matrix.setTranslation(0, 50, 0);
 	front.srcRect = GSrect(0, 50, m_gauge, 30);

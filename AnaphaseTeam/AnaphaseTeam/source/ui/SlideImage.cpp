@@ -33,7 +33,5 @@ void SlideImage::draw(IRenderer * _renderer)
 	SpriteRenderDesc desc;
 	desc.textureID = static_cast<GSuint>(m_id);
 	desc.matrix.setTranslation(m_lerp.current());
-	GStexture* tex = gsGetTexture(desc.textureID);
-	desc.srcRect = GSrect(0, 0, tex->dwWidth, tex->dwHeight);
 	_renderer->render(desc);
 }

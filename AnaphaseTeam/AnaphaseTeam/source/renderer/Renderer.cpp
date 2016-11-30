@@ -8,6 +8,7 @@
 
 #include "../../header/renderer/define/RectangleRenderDesc.h"
 #include "../../header/renderer/define/SpriteRenderDesc.h"
+#include "../../header/renderer/define/SpriteRectRenderDesc.h"
 #include "../../header/renderer/define/StringRenderDesc.h"
 #include "../../header/renderer/define/Type.h"
 #include "../../header/renderer/define/ViewportDesc.h"
@@ -273,6 +274,40 @@ void Renderer::render(const SpriteRenderDesc & desc)
 	// 中心位置の補正を行う
 	glTranslatef(-desc.center.x, -desc.center.y, 0);
 
+	// テクスチャのレンダリングを行う
+	renderTexture(desc.textureID, desc.color);
+
+	// レンダリングモードの復帰
+	glPopAttrib();
+}
+
+void Renderer::render(const SpriteRectRenderDesc & desc)
+{
+	// 各種レンダリングモードの退避
+	glPushAttrib(GL_ENABLE_BIT | GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+	// 面カリングを無効にする
+	glDisable(GL_CULL_FACE);
+	// ライティングを無効にする
+	glDisable(GL_LIGHTING);
+	// ｚバッファを無効にする
+	glDisable(GL_DEPTH_TEST);
+
+	// ブレンド方法の設定
+	setBlendFunc(desc.blendFunc);
+
+	// 透視変換行列の設定
+	glMatrixMode(GL_PROJECTION);
+	glLoadIdentity();
+	gluOrtho2D(0, mViewport.width, mViewport.height, 0);
+
+	// モデルビュー変換行列の設定
+	glMatrixMode(GL_MODELVIEW);
+	glLoadMatrixf((GLfloat*)&desc.matrix);
+
+	// 中心位置の補正を行う
+	glTranslatef(-desc.center.x, -desc.center.y, 0);
+
 	// スプライトの幅と高さを求める
 	float width = desc.srcRect.right - desc.srcRect.left;
 	float height = desc.srcRect.bottom - desc.srcRect.top;
@@ -366,6 +401,37 @@ void Renderer::setBlendFunc(BlendFunc blendFunc)
 	default:
 		break;
 	}
+}
+
+void Renderer::renderTexture(ResourceID id, const Color4 & color)
+{// テクスチャをバインドする
+	gsBindTexture(id);
+
+	// バインド中のテクスチャの幅と高さを取得
+	GLsizei texWidth;
+	glGetTexLevelParameteriv(GL_TEXTURE_2D, 0, GL_TEXTURE_WIDTH, &texWidth);
+	GLsizei	texHeight;
+	glGetTexLevelParameteriv(GL_TEXTURE_2D, 0, GL_TEXTURE_HEIGHT, &texHeight);
+	// スプライトの幅と高さを求める
+	GSrect rect(0,0,texWidth,texHeight);
+	// テクスチャ座標の計算を行う
+	GSrect texCoord(0.0f,0.0f,1.0f,1.0f);
+
+	// 四角形の描画
+	glBegin(GL_QUADS);
+	glColor4fv((GLfloat*)&color);
+	glTexCoord2f(texCoord.left, texCoord.top);
+	glVertex2f(rect.left, rect.top);
+	glTexCoord2f(texCoord.left, texCoord.bottom);
+	glVertex2f(rect.left, rect.bottom);
+	glTexCoord2f(texCoord.right, texCoord.bottom);
+	glVertex2f(rect.right, rect.bottom);
+	glTexCoord2f(texCoord.right, texCoord.top);
+	glVertex2f(rect.right, rect.top);
+	glEnd();
+
+	// テクスチャを無効にする
+	glBindTexture(GL_TEXTURE_2D, 0);
 }
 
 void Renderer::renderTexture(ResourceID id, const Rect & rect, const Rect & srcRect, const Color4 & color)

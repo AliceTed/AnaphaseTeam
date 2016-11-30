@@ -39,11 +39,14 @@ public:
 
 	virtual void render(const SpriteRenderDesc & desc) override;
 
+	virtual void render(const SpriteRectRenderDesc& desc)override;
+
 	virtual void render(const StringRenderDesc & desc) override;
 
 	virtual void render(const RectangleRenderDesc & desc) override;
 private:
 	void setBlendFunc(BlendFunc blendFunc);
+	void renderTexture(ResourceID id,const Color4& color);
 	void renderTexture(ResourceID id, const Rect& rect, const Rect& srcRect, const Color4& color);
 
 	Matrix4 mProjectionMatrix;

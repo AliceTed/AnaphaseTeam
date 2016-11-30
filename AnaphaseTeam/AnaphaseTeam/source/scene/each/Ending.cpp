@@ -36,8 +36,6 @@ void Ending::draw(IRenderer * _renderer)
 	SpriteRenderDesc desc;
 	desc.textureID = static_cast<GSuint>(TEXTURE_ID::CLEAR);
 	ViewportDesc view = _renderer->getViewPort();
-	desc.srcRect = GSrect(0, 0, view.width, view.height);
-	desc.matrix.setTranslation(170, 90, 0);
 	_renderer->render(desc);
 
 	m_change.draw(_renderer);

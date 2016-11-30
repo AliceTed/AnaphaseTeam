@@ -29,8 +29,6 @@ void TitleUI::draw(IRenderer * _renderer)
 {
 	SpriteRenderDesc desc;
 	desc.textureID = static_cast<GSuint>(TEXTURE_ID::TITLE_ROGO);
-	GStexture* tex=gsGetTexture(desc.textureID);
-	desc.srcRect = GSrect(0, 0, tex->dwWidth, tex->dwHeight);
 	_renderer->render(desc);
 	m_select.draw(_renderer);
 	m_cursor.draw(_renderer, m_select.currentSelect());

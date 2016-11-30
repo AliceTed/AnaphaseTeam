@@ -18,7 +18,7 @@
 #include "../../../header/camera/LockOn.h"
 #include "../../../header/actor/Enemy/Enemy.h"
 #include "../../../header/collision/PlayerAttackCollision.h"
-#include "../../../header/renderer/define/SpriteRenderDesc.h"
+#include "../../../header/renderer/define/SpriteRectRenderDesc.h"
 const float Player::MOVESPEED = 0.3f;
 const float Player::ROTATESPEED = -2.0f;
 const float Player::WALKSPEED = 0.1f;
@@ -91,13 +91,13 @@ void Player::draw(IRenderer * _renderer, const Camera & _camera)
 	m_Gauge.draw(_renderer);
 	m_scythe.draw(_renderer);
 
-	SpriteRenderDesc back;
+	SpriteRectRenderDesc back;
 	back.textureID = static_cast<GSuint>(TEXTURE_ID::BLACK);
 	back.matrix.setTranslation(0, 50,0);
 	back.srcRect = GSrect(0,0, 100, 30);
 	_renderer->render(back);
 
-	SpriteRenderDesc front;
+	SpriteRectRenderDesc front;
 	front.textureID = static_cast<GSuint>(TEXTURE_ID::CLEAR);
 	front.matrix.setTranslation(0, 50, 0);
 	front.srcRect = GSrect(0,0, m_status.getHp(), 30);

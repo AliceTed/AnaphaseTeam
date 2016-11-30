@@ -30,11 +30,9 @@ void ScaleImage::draw(IRenderer * _renderer)
 		pos -= getSizeMarge(scale)*0.5f;
 	}
 	SpriteRenderDesc desc;
-	desc.matrix.setScale(scale);
-	desc.matrix.setTranslation(pos);
+	desc.matrix.scale(scale);
+	desc.matrix.translate(pos);
 	desc.textureID = static_cast<GSuint>(m_id);
-	GStexture* tex = gsGetTexture(desc.textureID);
-	desc.srcRect = GSrect(0, 0, tex->dwWidth, tex->dwHeight);
 	_renderer->render(desc);
 }
 const GSvector2 ScaleImage::getTextureSize() const

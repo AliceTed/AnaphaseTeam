@@ -1,14 +1,13 @@
 #pragma once
-
 #include "Type.h"
 #include "ResourceID.h"
 #include "BlendFunc.h"
-
-struct SpriteRenderDesc
+struct SpriteRectRenderDesc
 {
-	SpriteRenderDesc() :
+	SpriteRectRenderDesc() :
 		textureID(0),
-		center(0,0),
+		srcRect(0, 0, 0, 0),
+		center(0, 0),
 		color(1, 1, 1, 1),
 		blendFunc(BlendFunc::DEFAULT)
 	{
@@ -16,6 +15,7 @@ struct SpriteRenderDesc
 	}
 
 	ResourceID textureID;
+	Rect srcRect;
 	Vector2 center;
 	Matrix4 matrix;
 	Color4 color;
