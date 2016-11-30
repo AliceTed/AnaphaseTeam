@@ -172,11 +172,11 @@
     <Filter Include="ソース ファイル\data\stream">
       <UniqueIdentifier>{a854fa81-4dd8-4f58-9a81-488b57a9faf2}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ソース ファイル\shape\ui">
-      <UniqueIdentifier>{e1c7c17e-ffc4-403f-bd11-65fe45527639}</UniqueIdentifier>
-    </Filter>
     <Filter Include="ヘッダー ファイル\camera">
       <UniqueIdentifier>{8b26a032-4802-4034-ae6c-fef2d4b00838}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\ui">
+      <UniqueIdentifier>{e1c7c17e-ffc4-403f-bd11-65fe45527639}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -642,22 +642,22 @@
       <Filter>ソース ファイル\actor</Filter>
     </ClCompile>
     <ClCompile Include="source\ui\Cursor.cpp">
-      <Filter>ソース ファイル\shape\ui</Filter>
+      <Filter>ソース ファイル\ui</Filter>
     </ClCompile>
     <ClCompile Include="source\ui\ScaleImage.cpp">
-      <Filter>ソース ファイル\shape\ui</Filter>
+      <Filter>ソース ファイル\ui</Filter>
     </ClCompile>
     <ClCompile Include="source\ui\SelectUI.cpp">
-      <Filter>ソース ファイル\shape\ui</Filter>
+      <Filter>ソース ファイル\ui</Filter>
     </ClCompile>
     <ClCompile Include="source\ui\TitleUI.cpp">
-      <Filter>ソース ファイル\shape\ui</Filter>
+      <Filter>ソース ファイル\ui</Filter>
     </ClCompile>
     <ClCompile Include="source\scene\SceneChange.cpp">
       <Filter>ソース ファイル\scene</Filter>
     </ClCompile>
     <ClCompile Include="source\ui\Fade.cpp">
-      <Filter>ソース ファイル\shape\ui</Filter>
+      <Filter>ソース ファイル\ui</Filter>
     </ClCompile>
     <ClCompile Include="source\actor\Actor.cpp">
       <Filter>ソース ファイル\actor</Filter>
@@ -705,10 +705,7 @@
       <Filter>ソース ファイル\scene\each</Filter>
     </ClCompile>
     <ClCompile Include="source\ui\SlideImage.cpp">
-      <Filter>ソース ファイル\shape\ui</Filter>
-    </ClCompile>
-    <ClCompile Include="source\scene\each\GameClear.cpp">
-      <Filter>ソース ファイル</Filter>
+      <Filter>ソース ファイル\ui</Filter>
     </ClCompile>
     <ClCompile Include="source\actor\Boss\Boss.cpp">
       <Filter>ソース ファイル\actor\Boss</Filter>
@@ -766,9 +763,6 @@
     </ClCompile>
     <ClCompile Include="source\collision\PlayerAttackCollision.cpp">
       <Filter>ソース ファイル\collision\user</Filter>
-    </ClCompile>
-    <ClCompile Include="source\ui\SpAttackUI.cpp">
-      <Filter>ソース ファイル</Filter>
     </ClCompile>
     <ClCompile Include="source\state\player\AttackState.cpp">
       <Filter>ソース ファイル\state\player</Filter>
@@ -841,6 +835,12 @@
     </ClCompile>
     <ClCompile Include="source\camera\CameraWork\CWParameterReader.cpp">
       <Filter>ソース ファイル\camera</Filter>
+    </ClCompile>
+    <ClCompile Include="source\scene\each\GameClear.cpp">
+      <Filter>ソース ファイル\scene\each</Filter>
+    </ClCompile>
+    <ClCompile Include="source\ui\SpAttackUI.cpp">
+      <Filter>ソース ファイル\ui</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
