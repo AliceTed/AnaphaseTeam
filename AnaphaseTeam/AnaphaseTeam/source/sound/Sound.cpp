@@ -1,6 +1,6 @@
 #include "../../header/sound/Sound.h"
 #include <GSmath.h>
-
+#include <GSmusic.h>
 Sound::Sound() :
 	m_volume(0),
 	m_max(1)
@@ -10,21 +10,6 @@ Sound::Sound() :
 Sound::~Sound()
 {
 }
-
-void Sound::loadBGM(BGM_ID _id, const string& _name, const string& _path, const string& _extension)
-{
-	string fullpath = _path + _name + _extension;
-	gsLoadMusic(static_cast<GSuint>(_id), fullpath.c_str(), GS_TRUE);
-}
-
-void Sound::deleteBGM()
-{
-	for (int i = 0; i < static_cast<int>(BGM_ID::SIZE); i++)
-	{
-		gsDeleteMusic(i);
-	}
-}
-
 void Sound::playBGM(BGM_ID _id)
 {
 	gsBindMusic(static_cast<GSuint>(_id));
@@ -71,21 +56,6 @@ void Sound::bgmFade(BGM_ID _id, float _deltaTime)
 		gsSetMusicVolume(m_volume);
 	}
 }
-
-void Sound::loadSE(SE_ID _id, const string& _name, const string& _path, const string& _extension)
-{
-	string fullpath = _path + _name + _extension;
-	gsLoadMusic(static_cast<GSuint>(_id), fullpath.c_str(), GS_FALSE);
-}
-
-void Sound::deleteSE()
-{
-	for (int i = static_cast<int>(SE_ID::SIZE); i < static_cast<int>(SE_ID::SIZE); i++)
-	{
-		gsDeleteMusic(i);
-	}
-}
-
 void Sound::playSE(SE_ID _id)
 {
 	gsBindMusic(static_cast<GSuint>(_id));

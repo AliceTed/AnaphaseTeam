@@ -654,14 +654,17 @@
     <ClInclude Include="header\data\release\DataAllRelease.h">
       <Filter>ヘッダー ファイル\data\release</Filter>
     </ClInclude>
-    <ClInclude Include="header\collision\WeaponCollision.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="header\data\ENEMY_ANIMATION.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
     <ClInclude Include="header\collision\SpecialAttackCollision.h">
+      <Filter>ヘッダー ファイル\collision</Filter>
+    </ClInclude>
+    <ClInclude Include="header\data\id\BGM_ID.h">
       <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="header\data\id\SE_ID.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="header\data\loader\SoundLoader.h">
+      <Filter>ヘッダー ファイル\data\loader</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -964,6 +967,9 @@
     </ClCompile>
     <ClCompile Include="source\data\release\DataAllRelease.cpp">
       <Filter>ソース ファイル\data\release</Filter>
+    </ClCompile>
+    <ClCompile Include="source\data\loader\SoundLoader.cpp">
+      <Filter>ソース ファイル\data\loader</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
