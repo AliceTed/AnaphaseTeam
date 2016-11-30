@@ -364,7 +364,6 @@
     <ClInclude Include="header\convenient\Timer.h" />
     <ClInclude Include="header\data\id\ANIMATION_ID.h" />
     <ClInclude Include="header\data\id\Model_ID.h" />
-    <ClInclude Include="header\data\id\PLAYERACTION_ID.h" />
     <ClInclude Include="header\data\id\CastID.h" />
     <ClInclude Include="header\data\id\MESH_ID.h" />
     <ClInclude Include="header\data\id\OCTREE_ID.h" />

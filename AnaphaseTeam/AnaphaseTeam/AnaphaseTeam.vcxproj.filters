@@ -540,9 +540,6 @@
     <ClInclude Include="header\data\id\OCTREE_ID.h">
       <Filter>ヘッダー ファイル\data\id</Filter>
     </ClInclude>
-    <ClInclude Include="header\data\id\PLAYERACTION_ID.h">
-      <Filter>ヘッダー ファイル\data\id</Filter>
-    </ClInclude>
     <ClInclude Include="header\data\id\TEXTURE_ID.h">
       <Filter>ヘッダー ファイル\data\id</Filter>
     </ClInclude>
@@ -657,14 +654,14 @@
     <ClInclude Include="header\collision\SpecialAttackCollision.h">
       <Filter>ヘッダー ファイル\collision</Filter>
     </ClInclude>
-    <ClInclude Include="header\data\id\BGM_ID.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="header\data\id\SE_ID.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
     <ClInclude Include="header\data\loader\SoundLoader.h">
       <Filter>ヘッダー ファイル\data\loader</Filter>
+    </ClInclude>
+    <ClInclude Include="header\data\id\BGM_ID.h">
+      <Filter>ヘッダー ファイル\data\id</Filter>
+    </ClInclude>
+    <ClInclude Include="header\data\id\SE_ID.h">
+      <Filter>ヘッダー ファイル\data\id</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
