@@ -3,9 +3,8 @@
 #include "../../../header/renderer/IRenderer.h"
 #include "../../../header/renderer/define/SpriteRenderDesc.h"
 #include "../../../header/data/id/TEXTURE_ID.h"
-Opening::Opening(GameDevice * _device)
-	:m_device(_device),
-	m_change(),
+Opening::Opening()
+	:m_change(),
 	m_lerp(GScolor(1,1,1,0))
 {
 }
@@ -25,7 +24,7 @@ void Opening::update(float deltaTime)
 {
 	if (m_change.update(deltaTime))return;
 	m_lerp.update(deltaTime);
-	if (m_lerp.isEnd()||m_device->input()->jump())
+	if (m_lerp.isEnd()||GameDevice::getInstacnce().input()->jump())
 	{
 		m_change.end(SceneMode::TITLE);
 	}

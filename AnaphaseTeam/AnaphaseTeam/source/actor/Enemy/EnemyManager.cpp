@@ -34,7 +34,7 @@ void EnemyManager::collision(Actor & _actor)
 	for (auto& i : m_enemys) { i->collision(_actor); }
 }
 
-void EnemyManager::draw(const IRenderer & _renderer)
+void EnemyManager::draw(IRenderer * _renderer)
 {
 	for (auto& i : m_enemys) { i->draw(_renderer); }
 	//_renderer.getDraw2D().string(std::to_string(size()).c_str(), &GSvector2(200,300),50);

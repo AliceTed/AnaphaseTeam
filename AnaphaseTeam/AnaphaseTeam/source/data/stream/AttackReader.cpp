@@ -2,15 +2,15 @@
 #include "../../../header/data/stream/AttackConverter.h"
 #include "../../../header/data/stream/DataReader.h"
 #include "../../../header/attack/LoadAttack.h"
-#include "../../../header/data/LoadError.h"
+#include "../../../header/data/Message.h"
 void AttackReader::operator()(std::unordered_map<ATTACK_TYPE,Attack>* _out, const std::string & _name, const std::string & _path)
 {
 	if (load(_out, _path + _name))
 	{
 		return;
 	}
-	Data::ErrorMessage error;
-	error(_path + _name, "ATTACKDATA");
+	Message error;
+	error("ATTACKDATA", _path + _name);
 }
 
 const bool AttackReader::load(std::unordered_map<ATTACK_TYPE, Attack>* _out, const std::string & _fullname) const

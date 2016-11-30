@@ -132,7 +132,7 @@ void AnimatorOne::skeltonCalculateTransform(GSmatrix4* _mat)
 		m_orientedMat.get());
 }
 
-void AnimatorOne::draw(const IRenderer& _renderer, const Transform &_transform, const GScolor &_color)
+void AnimatorOne::draw(IRenderer* _renderer, const Transform &_transform, const GScolor &_color)
 {
 	std::unique_ptr<GSmatrix4>mat(new GSmatrix4[256]);
 	skeltonCalculateTransform(mat.get());

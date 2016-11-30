@@ -19,7 +19,7 @@ void Player::PlayerCollision::collision_Enter(HitInformation & _hit)
 	m_player->hpDown();
 }
 
-void Player::PlayerCollision::doDraw(const Renderer & _renderer)
+void Player::PlayerCollision::doDraw(IRenderer *_renderer)
 {
 	//m_shape->draw(_renderer);
 }

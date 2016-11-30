@@ -15,7 +15,7 @@ const bool OctreeLoader::load(unsigned int _id, const std::string & _fullname, b
 {
 	if (_isShader)
 	{
-		return gsLoadOctreeEx(_id, _fullname.c_str());
+		return gsLoadOctreeEx(_id, _fullname.c_str())==GS_TRUE;
 	}
-	return gsLoadOctree(_id, _fullname.c_str());
+	return gsLoadOctree(_id, _fullname.c_str()) == GS_TRUE;
 }

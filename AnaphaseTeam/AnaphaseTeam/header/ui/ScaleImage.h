@@ -11,7 +11,7 @@ public:
 	void start(const GSvector2& _start, const GSvector2& _end, float _time);
 	void moveStart(const GSvector2& _end, float _time);
 	void update(float deltaTime);
-	void draw(const IRenderer& _renderer);
+	void draw(IRenderer* _renderer);
 	const bool isLerpEnd();
 private:
 	const GSvector2 getTextureSize()const;

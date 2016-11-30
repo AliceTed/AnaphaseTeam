@@ -2,6 +2,7 @@
 #define _FADE_H_
 #include <gslib.h>
 #include <functional>
+#include "../data/id/TEXTURE_ID.h"
 #include "../math/TimeLerpVector.h"
 class IRenderer;
 class Fade

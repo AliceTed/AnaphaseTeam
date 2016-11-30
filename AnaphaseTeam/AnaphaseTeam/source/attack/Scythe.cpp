@@ -2,7 +2,7 @@
 
 #include "../../header/animation/AnimatorOne.h"
 #include "../../header/renderer/IRenderer.h"
-#include "../../header/collision/CollisionGroup.h"
+#include "../../header/renderer/define/MeshRenderDesc.h"
 Scythe::Scythe()
 	:m_bone(14),//14‚Í‰Eè‚Ì”z—ñ”Ô†
 	m_local(

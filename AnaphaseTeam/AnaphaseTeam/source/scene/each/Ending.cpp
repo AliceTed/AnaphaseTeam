@@ -3,7 +3,7 @@
 #include "../../../header/device/GameDevice.h"
 #include "../../../header/renderer/define/SpriteRenderDesc.h"
 #include "../../../header/data/id/TEXTURE_ID.h"
-Ending::Ending(GameDevice* _device)
+Ending::Ending()
 	:m_IsEnd(false),
 	m_change()
 {
@@ -33,7 +33,6 @@ void Ending::draw(IRenderer * _renderer)
 {
 	SpriteRenderDesc desc;
 	desc.textureID = static_cast<GSuint>(TEXTURE_ID::CLEAR);
-	ViewportDesc view = _renderer->getViewPort();
 	_renderer->render(desc);
 
 	m_change.draw(_renderer);

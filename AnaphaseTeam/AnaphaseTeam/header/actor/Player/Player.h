@@ -7,16 +7,13 @@
 */
 #include<gslib.h>
 #include "../Actor.h"
-#include "../../animation/Animation.h"
 #include "../../attack/ComboAttack.h"
-#include "../../data/ANIMATION_ID.h"
 #include "Status.h"
 #include "../../attack/Scythe.h"
 #include "Gauge.h"
 #include "specialSkill/SpecialSkillManager.h"
 
 class CameraController;
-class TestActor;
 class LockOn;
 class Enemy;
 class Camera;
@@ -39,7 +36,7 @@ public:
 public://Actoråpè≥
 	void initialize() override;
 	void update(float deltatime) override;
-	void draw(const IRenderer& _renderer) override;
+	void draw(IRenderer* _renderer) override;
 	AttackStatus status();
 private:
 	void subActionStart();

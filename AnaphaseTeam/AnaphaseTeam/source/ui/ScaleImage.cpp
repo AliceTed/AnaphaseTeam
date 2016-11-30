@@ -41,6 +41,10 @@ void ScaleImage::draw(IRenderer * _renderer)
 	desc.textureID = static_cast<GSuint>(m_id);
 	_renderer->render(desc);
 }
+const bool ScaleImage::isLerpEnd()
+{
+	return false;
+}
 const GSvector2 ScaleImage::getTextureSize() const
 {
 	GStexture* tex = gsGetTexture(static_cast<GSuint>(m_id));

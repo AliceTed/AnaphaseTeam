@@ -57,7 +57,6 @@ const bool Load::isExit() const
 void Load::loadTextrue()
 {
 	TextureLoader tex;
-	Data::LoadTexture tex;
 	tex(TEXTURE_ID::WHITE, "white");
 	tex(TEXTURE_ID::BLACK, "black");
 	tex(TEXTURE_ID::EXIT, "Exit");
@@ -77,9 +76,9 @@ void Load::loadTextrue()
 }
 void Load::loadSound()
 {
-	GameDevice::getInstacnce().sound().loadBGM(BGM_ID::TITLE, "Tulip");
+	/*GameDevice::getInstacnce().sound().loadBGM(BGM_ID::TITLE, "Tulip");
 	GameDevice::getInstacnce().sound().loadSE(SE_ID::ENTER, "enter");
-	GameDevice::getInstacnce().sound().loadSE(SE_ID::SELECT, "select");
+	GameDevice::getInstacnce().sound().loadSE(SE_ID::SELECT, "select");*/
 }
 
 void Load::loadModel()

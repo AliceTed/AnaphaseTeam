@@ -1,11 +1,8 @@
 #include "../../header/ui/TitleUI.h"
-#include "../../header/renderer/Renderer.h"
-#include "../../header/scene/SceneChange.h"
-#include "../../header/device/Input.h"
 #include "../../header/scene/each/Title.h"
 TitleUI::TitleUI()
 	:m_select(),
-	m_cursor()
+	m_fade(TEXTURE_ID::BLACK)
 {
 }
 
@@ -18,33 +15,28 @@ void TitleUI::initialize()
 	createSelect();
 }
 
-void TitleUI::update(float deltaTime, Title& _title)
+void TitleUI::update(float deltaTime)
 {
 	m_select.update(deltaTime);
-	operation(_title);
 }
 
-void TitleUI::draw(const Renderer & _renderer)
+void TitleUI::draw(IRenderer * _renderer)
 {
-	_renderer.getDraw2D().textrue(TEXTURE_ID::TITLE_ROGO, &GSvector2(0, 0));
 	m_select.draw(_renderer);
-	m_cursor.draw(_renderer, m_select.currentSelect());
+	m_fade.draw(_renderer);
 }
 
 void TitleUI::finish()
 {
 	m_select.initialize();
-	m_cursor.initialize();
 }
 void TitleUI::operation(Title& _title)
 {
-	_title.select(m_select);
 	_title.decision(m_select.currentSelect());
 }
 void TitleUI::createSelect()
 {
 	m_select.initialize();
-	m_cursor.initialize();
 	const unsigned int size = 3;
 	Select select[size] =
 	{
@@ -65,7 +57,6 @@ void TitleUI::createSelect()
 		GSvector2 position(base + marge*i);
 		ScaleImage image(id[i], position,false);
 		m_select.add(select[i],image);
-		m_cursor.add(select[i], position+GSvector2(-70,0));
 	}
 	m_select.startChange();
 }

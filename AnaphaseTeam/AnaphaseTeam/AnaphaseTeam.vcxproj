@@ -285,6 +285,7 @@
     <ClInclude Include="header\collision\HitInformation.h" />
     <ClInclude Include="header\collision\PlayerAttackCollision.h" />
     <ClInclude Include="header\collision\PlayerCollision.h" />
+    <ClInclude Include="header\collision\SpecialAttackCollision.h" />
     <ClInclude Include="header\collision\WeaponCollision.h" />
     <ClInclude Include="header\data\id\ENEMY_ANIMATION.h" />
     <ClInclude Include="header\data\id\SHADER_ID.h" />
@@ -361,13 +362,11 @@
     <ClInclude Include="header\array\Array2D.h" />
     <ClInclude Include="header\convenient\Timer.h" />
     <ClInclude Include="header\data\id\ANIMATION_ID.h" />
-    <ClInclude Include="header\data\id\BGM_ID.h" />
     <ClInclude Include="header\data\id\Model_ID.h" />
     <ClInclude Include="header\data\id\PLAYERACTION_ID.h" />
     <ClInclude Include="header\data\id\CastID.h" />
     <ClInclude Include="header\data\id\MESH_ID.h" />
     <ClInclude Include="header\data\id\OCTREE_ID.h" />
-    <ClInclude Include="header\data\id\SE_ID.h" />
     <ClInclude Include="header\data\id\TEXTURE_ID.h" />
     <ClInclude Include="header\device\Input.h" />
     <ClInclude Include="header\entity\CloneCreator.h" />

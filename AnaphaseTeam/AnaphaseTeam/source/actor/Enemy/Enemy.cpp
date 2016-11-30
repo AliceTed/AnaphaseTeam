@@ -42,7 +42,7 @@ void Enemy::update(float deltatime)
 	m_collision.update(deltatime);
 }
 
-void Enemy::draw(const IRenderer & _renderer)
+void Enemy::draw(IRenderer * _renderer)
 {
 	m_collision.draw(_renderer);
 	m_animatorOne.draw(_renderer, m_transform, GScolor(1, 1, 1, m_alpha));

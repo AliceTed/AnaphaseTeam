@@ -80,7 +80,7 @@ void Sound::loadSE(SE_ID _id, const string& _name, const string& _path, const st
 
 void Sound::deleteSE()
 {
-	for (int i = static_cast<int>(SE_ID::SIZE) - 1; i < static_cast<int>(SE_ID::SIZE); i++)
+	for (int i = static_cast<int>(SE_ID::SIZE); i < static_cast<int>(SE_ID::SIZE); i++)
 	{
 		gsDeleteMusic(i);
 	}

@@ -276,15 +276,6 @@
     <ClInclude Include="header\actor\Actor_Tag.h">
       <Filter>ヘッダー ファイル\actor</Filter>
     </ClInclude>
-    <ClInclude Include="header\actor\AttackActor.h">
-      <Filter>ヘッダー ファイル\actor</Filter>
-    </ClInclude>
-    <ClInclude Include="header\data\PLAYERACTION_ID.h">
-      <Filter>ヘッダー ファイル\data\id</Filter>
-    </ClInclude>
-    <ClInclude Include="header\data\Model_ID.h">
-      <Filter>ヘッダー ファイル\data\id</Filter>
-    </ClInclude>
     <ClInclude Include="header\shape\Capsule.h">
       <Filter>ヘッダー ファイル\shape</Filter>
     </ClInclude>
@@ -420,9 +411,6 @@
     <ClInclude Include="header\collision\EnemyCollision.h">
       <Filter>ヘッダー ファイル\collision\user</Filter>
     </ClInclude>
-    <ClInclude Include="header\collision\SpecialAttackCollision.h">
-      <Filter>ヘッダー ファイル\collision\user</Filter>
-    </ClInclude>
     <ClInclude Include="header\collision\EnemyAttackCollision.h">
       <Filter>ヘッダー ファイル\collision\user</Filter>
     </ClInclude>
@@ -537,9 +525,6 @@
     <ClInclude Include="header\data\id\ANIMATION_ID.h">
       <Filter>ヘッダー ファイル\data\id</Filter>
     </ClInclude>
-    <ClInclude Include="header\data\id\BGM_ID.h">
-      <Filter>ヘッダー ファイル\data\id</Filter>
-    </ClInclude>
     <ClInclude Include="header\data\id\CastID.h">
       <Filter>ヘッダー ファイル\data</Filter>
     </ClInclude>
@@ -556,9 +541,6 @@
       <Filter>ヘッダー ファイル\data\id</Filter>
     </ClInclude>
     <ClInclude Include="header\data\id\PLAYERACTION_ID.h">
-      <Filter>ヘッダー ファイル\data\id</Filter>
-    </ClInclude>
-    <ClInclude Include="header\data\id\SE_ID.h">
       <Filter>ヘッダー ファイル\data\id</Filter>
     </ClInclude>
     <ClInclude Include="header\data\id\TEXTURE_ID.h">
@@ -671,6 +653,21 @@
     </ClInclude>
     <ClInclude Include="header\data\release\DataAllRelease.h">
       <Filter>ヘッダー ファイル\data\release</Filter>
+    </ClInclude>
+    <ClInclude Include="header\collision\WeaponCollision.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="header\data\ENEMY_ANIMATION.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="header\data\id\SE_ID.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="header\data\id\BGM_ID.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="header\collision\SpecialAttackCollision.h">
+      <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -973,6 +970,9 @@
     </ClCompile>
     <ClCompile Include="source\data\release\DataAllRelease.cpp">
       <Filter>ソース ファイル\data\release</Filter>
+    </ClCompile>
+    <ClCompile Include="source\collision\WeaponCollision.cpp">
+      <Filter>ソース ファイル</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

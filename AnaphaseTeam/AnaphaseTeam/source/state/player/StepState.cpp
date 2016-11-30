@@ -1,5 +1,5 @@
 #include"../../../header/state/player/StepState.h"
-#include "../../../header/data/ANIMATION_ID.h"
+#include "../../../header/data/id/ANIMATION_ID.h"
 #include "../../../header/device/GameDevice.h"
 Player::StepState::StepState(Player* _player)
 	:ActorState(_player),

@@ -1,5 +1,5 @@
 #include"../../../header/state/player/DamageState.h"
-#include "../../../header/data/ANIMATION_ID.h"
+#include "../../../header/data/id/ANIMATION_ID.h"
 Player::DamageState::DamageState(Player* _player)
 	:ActorState(_player)
 {

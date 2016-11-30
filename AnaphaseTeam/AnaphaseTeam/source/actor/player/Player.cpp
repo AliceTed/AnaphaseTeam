@@ -78,7 +78,7 @@ void Player::update(float deltatime)
 	}
 }
 
-void Player::draw(const IRenderer & _renderer)
+void Player::draw(IRenderer *_renderer)
 {
 	m_animatorOne.draw(_renderer, m_transform);
 	m_collision.draw(_renderer);

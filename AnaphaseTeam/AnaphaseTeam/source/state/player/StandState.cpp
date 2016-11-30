@@ -1,6 +1,6 @@
 #include "../../../header/state/player/StandState.h"
 
-#include "../../../header/data/ANIMATION_ID.h"
+#include "../../../header/data/id/ANIMATION_ID.h"
 #include "../../../header/device/GameDevice.h"
 Player::StandState::StandState(Player* _player)
 	:ActorState(_player)

@@ -1,5 +1,5 @@
 #include"../../../header/state/player/MoveState.h"
-#include "../../../header/data/ANIMATION_ID.h"
+#include "../../../header/data/id/ANIMATION_ID.h"
 #include "../../../header/device/GameDevice.h"
 const float Player::MoveState::SPEED = 0.1f;
 Player::MoveState::MoveState(Player* _player)

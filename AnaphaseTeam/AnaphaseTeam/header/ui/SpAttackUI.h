@@ -1,10 +1,7 @@
 #pragma once
 #include <gslib.h>
 #include "../data/id/TEXTURE_ID.h"
-#include "../../header/device/Input.h"
-
 class IRenderer;
-
 class SpAttackUI
 {
 public:

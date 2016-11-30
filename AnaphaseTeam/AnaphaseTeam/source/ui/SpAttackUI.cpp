@@ -35,6 +35,7 @@ void SpAttackUI::update()
 	{
 		m_scale = GSvector2(0.6, 0.6);
 	}
+}
 
 void SpAttackUI::draw(IRenderer * _renderer)
 {
