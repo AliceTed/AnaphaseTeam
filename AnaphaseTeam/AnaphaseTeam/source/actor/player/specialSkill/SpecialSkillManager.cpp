@@ -131,15 +131,12 @@ void SpecialSkillManager::draw(const Renderer & _renderer)
 		break;
 	case SPECIALTYPE::RECOVERY:
 		m_spAttackUI.spChange(TEXTURE_ID::SP_UI1);
-		//resetTime++;
 		break;
 	case SPECIALTYPE::SUPERARMOR:
 		m_spAttackUI.spChange(TEXTURE_ID::SP_UI2);
-		//resetTime++;
 		break;
 	case SPECIALTYPE::SPECIALATTACK:
 		m_spAttackUI.spChange(TEXTURE_ID::SP_UI3);
-		//resetTime++;
 		break;
 	}
 }
