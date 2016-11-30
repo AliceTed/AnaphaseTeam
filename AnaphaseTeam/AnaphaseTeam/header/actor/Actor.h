@@ -13,7 +13,7 @@
 #include "../actor/Actor_Tag.h"
 #include "../collision/CollisionGroup.h"
 #include "../state/ACTOR_STATE.h"
-class Renderer;
+class IRenderer;
 class Map;
 class IActorState;
 class Actor
@@ -23,7 +23,7 @@ public:
 	virtual ~Actor();
 	virtual void initialize();
 	virtual void update(float deltatime) = 0;
-	virtual void draw(const Renderer& _renderer) = 0;
+	virtual void draw(const IRenderer& _renderer) = 0;
 	virtual void finish();	
 public:
 	/**

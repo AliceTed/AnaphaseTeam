@@ -1,7 +1,7 @@
 #include "../../../header/actor/Enemy/EnemyManager.h"
 #include "../../../header/actor/Player/Player.h"
 #include <algorithm>
-#include "..\..\..\header\actor\Enemy\EnemyManager.h"
+
 EnemyManager::EnemyManager()
 	:m_enemys()
 {
@@ -34,7 +34,7 @@ void EnemyManager::collision(Actor & _actor)
 	for (auto& i : m_enemys) { i->collision(_actor); }
 }
 
-void EnemyManager::draw(const Renderer & _renderer)
+void EnemyManager::draw(const IRenderer & _renderer)
 {
 	for (auto& i : m_enemys) { i->draw(_renderer); }
 	//_renderer.getDraw2D().string(std::to_string(size()).c_str(), &GSvector2(200,300),50);

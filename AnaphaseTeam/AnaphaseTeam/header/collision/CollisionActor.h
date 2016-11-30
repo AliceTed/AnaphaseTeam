@@ -11,7 +11,7 @@
 #include "../shape/Shape.h"
 #include "Collision_Tag.h"
 class Actor;
-class Renderer;
+class IRenderer;
 struct HitInformation;
 class CollisionActor;
 typedef std::shared_ptr<CollisionActor> Collision_Ptr;
@@ -22,7 +22,7 @@ public:
 	virtual ~CollisionActor();
 	
 	void update(float deltaTime);
-	void draw(const Renderer& _renderer);	
+	void draw(IRenderer * _renderer);	
 	void collision(Collision_Ptr&  _other, HitInformation& _hit);
 	void exit(Collision_Ptr& _other, HitInformation& _hit);
 	const bool isCollision(Collision_Ptr&  _other, HitInformation* _out1, HitInformation* _out2)const;
@@ -30,7 +30,7 @@ public:
 	void destroy();
 private:
 	virtual void doUpdate(float deltaTime);
-	virtual void doDraw(const Renderer& _renderer);
+	virtual void doDraw(IRenderer * _renderer);
 	virtual void collision_Enter(HitInformation& _hit);
 	virtual void collision_Stay(HitInformation& _hit);
 	virtual void collision_Exit(HitInformation& _hit);

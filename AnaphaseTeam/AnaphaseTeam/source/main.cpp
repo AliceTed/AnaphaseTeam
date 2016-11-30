@@ -1,7 +1,5 @@
 #include <GSgame.h>
-#include "../header/math/Calculate.h"
-#include "../header/data/Release.h"
-
+#include <memory>
 #include "../header/scene/SceneManager.h"
 #include "../header/scene/each/Load.h"
 #include "../header/scene/each/Opening.h"
@@ -11,22 +9,37 @@
 #include "../header/scene/each/Ending.h"
 #include "../header/scene/each/GameClear.h"
 
+#include "../header/renderer/IRenderer.h"
 #include "../header/renderer/Renderer.h"
 #include "../header/device/GameDevice.h"
 
+#include"../header/data/release/DataAllRelease.h"
+#include "../header/renderer/define/ViewportDesc.h"
 class MyGame : public gslib::Game
 {
 public:
 	MyGame()
 		:Game(1280, 720, false, 60.0f),
 		m_SceneManager(),
-		m_Renderer()
+		m_renderer(std::make_unique<Renderer>())
 	{
 	}
 
 private:
 	virtual void start() override
 	{
+		m_renderer->initialize();
+		ViewportDesc desc;
+		desc.height =720;
+		desc.width=1280;
+		m_renderer->viewport(desc);
+		LightDesc light;
+		light.ambient = Color4(0.5f, 0.5f, 0.5f, 1.0f);
+		light.diffuse = Color4(1.0f, 1.0f, 1.0f, 1.0f);
+		light.specular = Color4(1.0f, 1.0f, 1.0f, 1.0f);
+		light.position = Vector3(100.0f, 100.f, 100.0f);
+		m_renderer->light(light);
+
 		/*
 		シェアードポインタは変数に作ってから追加する
 		無名作成はしない
@@ -57,12 +70,12 @@ private:
 	// 描画
 	virtual void draw() override
 	{
-		m_SceneManager.draw(m_Renderer);
+		m_SceneManager.draw(m_renderer.get());
 	}
 	// 終了
 	virtual void end() override
 	{
-		Data::Release release;
+		DataAllRelease release;
 		release();
 
 		GameDevice::getInstacnce().sound().deleteBGM();
@@ -72,10 +85,7 @@ private:
 	bool isRunning() { return !GameDevice::getInstacnce().input()->exit() && !m_SceneManager.isExit(); }
 private:
 	SceneManager m_SceneManager;
-
-	//以下デバイスクラスでまとめる予定
-	//本当はインターフェイス作りたいが変更時面倒
-	Renderer m_Renderer;
+	std::unique_ptr<IRenderer>m_renderer;
 };
 
 int main()

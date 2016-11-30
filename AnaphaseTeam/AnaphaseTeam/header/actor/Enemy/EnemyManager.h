@@ -17,7 +17,7 @@ public:
 	void collisionGround(const Map& _map);
 
 	void collision(Actor& _actor);
-	void draw(const Renderer& _renderer);
+	void draw(const IRenderer& _renderer);
 	Enemy_Ptr& nearEnemy(Player* _player);
 
 	void thinks(Player* _player);

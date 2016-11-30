@@ -1,5 +1,6 @@
 #include "../../header/ui/ScaleImage.h"
-#include "../../header/renderer/Renderer.h"
+#include "../../header/renderer/IRenderer.h"
+#include "../../header/renderer/define/SpriteRenderDesc.h"
 ScaleImage::ScaleImage(TEXTURE_ID _id, const GSvector2& _position, bool _isPexis)
 	:m_id(_id), m_position(_position),
 	m_scaleLerp(GSvector2(1.0f, 1.0f)),
@@ -26,7 +27,7 @@ void ScaleImage::update(float deltaTime)
 	m_moveLerp.update(deltaTime);
 }
 
-void ScaleImage::draw(const Renderer & _renderer)
+void ScaleImage::draw(IRenderer * _renderer)
 {
 	GSvector2 scale = m_scaleLerp.current();
 	GSvector2 pos = m_moveLerp.current();
@@ -34,7 +35,11 @@ void ScaleImage::draw(const Renderer & _renderer)
 	{
 		pos -= getSizeMarge(scale)*0.5f;
 	}
-	_renderer.getDraw2D().textrue(m_id, &pos, &scale);
+	SpriteRenderDesc desc;
+	desc.matrix.scale(scale);
+	desc.matrix.translate(pos);
+	desc.textureID = static_cast<GSuint>(m_id);
+	_renderer->render(desc);
 }
 const GSvector2 ScaleImage::getTextureSize() const
 {

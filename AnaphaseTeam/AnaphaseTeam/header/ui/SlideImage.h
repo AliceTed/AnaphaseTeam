@@ -6,8 +6,8 @@ enum class MODE
 	NORMAL,
 	REVERSE
 };
-#include "../data/TEXTURE_ID.h"
-class Renderer;
+#include "../data/id/TEXTURE_ID.h"
+class IRenderer;
 class SlideImage
 {
 public:
@@ -15,7 +15,7 @@ public:
 	~SlideImage();
 	void slide(float _time=1.0f,MODE _mode=MODE::NORMAL);
 	void update(float deltaTime);
-	void draw(const Renderer& _renderer);
+	void draw(IRenderer * _renderer);
 private:
 	GSvector2 m_begin;
 	GSvector2 m_end;

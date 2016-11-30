@@ -43,7 +43,7 @@ void CollisionGroup::collision(CollisionGroup & _group)
 	}
 }
 
-void CollisionGroup::draw(const Renderer & _renderer)
+void CollisionGroup::draw(IRenderer * _renderer)
 {
 	for (auto& i : m_container){i->draw(_renderer);}
 }

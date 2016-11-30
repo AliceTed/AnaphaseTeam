@@ -40,7 +40,7 @@ void EnemyCollision::collision_Enter(HitInformation & _hit)
 	player->recovery();
 }
 
-void EnemyCollision::doDraw(const Renderer & _renderer)
+void EnemyCollision::doDraw(IRenderer * _renderer)
 {
 	//m_shape->draw(_renderer);
 }

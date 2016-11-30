@@ -5,7 +5,7 @@
 #include <memory>
 typedef std::shared_ptr<IScene>Scene_Ptr;
 typedef std::unordered_map<SceneMode, Scene_Ptr> Scenes;
-class Renderer;
+class IRenderer;
 class SceneManager
 {
 public:
@@ -13,7 +13,7 @@ public:
 	void add(SceneMode _name, Scene_Ptr _scene);
 	void change(SceneMode _name);
 	void update(float _deltaTime);
-	void draw(const Renderer& _renderer);
+	void draw(IRenderer * _renderer);
 	void finish();
 	const bool isExit()const;
 private:

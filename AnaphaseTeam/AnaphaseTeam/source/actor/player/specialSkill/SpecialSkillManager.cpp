@@ -122,7 +122,7 @@ bool SpecialSkillManager::isSuperArmor()
 	return m_superArmor.isSuperArmor();
 }
 
-void SpecialSkillManager::draw(const Renderer & _renderer)
+void SpecialSkillManager::draw(IRenderer * _renderer)
 {
 	m_spAttackUI.draw(_renderer);
 	switch (m_type)

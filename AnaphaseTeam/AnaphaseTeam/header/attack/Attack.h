@@ -5,7 +5,7 @@
 * @author ¼”ö—T–ç
 * @date 2016/8/26
 */
-#include "../data/ANIMATION_ID.h"
+#include "../data/id/ANIMATION_ID.h"
 #include "AttackStatus.h"
 #include "ATTACK_TYPE.h"
 class Player;
