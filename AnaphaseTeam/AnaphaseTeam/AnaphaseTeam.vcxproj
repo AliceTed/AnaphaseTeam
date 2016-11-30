@@ -177,7 +177,6 @@
     <ClCompile Include="source\collision\HitInformation.cpp" />
     <ClCompile Include="source\collision\PlayerAttackCollision.cpp" />
     <ClCompile Include="source\collision\SpecialAttackCollision.cpp" />
-    <ClCompile Include="source\collision\WeaponCollision.cpp" />
     <ClCompile Include="source\data\loader\AnimationLoader.cpp" />
     <ClCompile Include="source\data\loader\MeshEXLoader.cpp" />
     <ClCompile Include="source\data\loader\MeshLoader.cpp" />

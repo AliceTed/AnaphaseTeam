@@ -30,7 +30,6 @@ public:
 	const bool isEnd()const;
 	const bool isExit()const;
 private:
-	bool m_IsEnd;
 	SceneChange m_change;
 	Map m_Map;
 	Camera m_Camera;
