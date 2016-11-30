@@ -3,7 +3,7 @@
 #include "../../header/device/GameDevice.h"
 TitleUI::TitleUI()
 	:m_select(),
-	m_fade(TEXTURE_ID::BLACK)
+	m_fade(TEXTURE_ID::TITLE_ROGO)
 {
 }
 
