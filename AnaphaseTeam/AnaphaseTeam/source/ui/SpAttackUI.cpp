@@ -41,8 +41,8 @@ void SpAttackUI::draw(IRenderer * _renderer)
 {
 	SpriteRenderDesc desc;
 	desc.textureID =static_cast<GSuint>(m_ID);
-	desc.matrix.setScale(m_scale);
-	desc.matrix.  setTranslation(250, 250, 0);
+	desc.matrix.scale(m_scale);
+	desc.matrix.translate(1000,500, 0);
 	_renderer->render(desc);
 }
 

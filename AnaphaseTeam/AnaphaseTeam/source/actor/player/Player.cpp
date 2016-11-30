@@ -85,15 +85,19 @@ void Player::draw(IRenderer *_renderer)
 	m_Gauge.draw(_renderer);
 	m_scythe.draw(_renderer);
 
+	GSmatrix4 mat;
+	mat.identity();
+	mat.translate(0, 10, 0);
+
 	SpriteRectRenderDesc back;
 	back.textureID = static_cast<GSuint>(TEXTURE_ID::BLACK);
-	back.matrix.setTranslation(0, 50,0);
+	back.matrix = mat;
 	back.srcRect = GSrect(0,0, 100, 30);
 	_renderer->render(back);
 
 	SpriteRectRenderDesc front;
 	front.textureID = static_cast<GSuint>(TEXTURE_ID::CLEAR);
-	front.matrix.setTranslation(0, 50, 0);
+	front.matrix = mat;
 	front.srcRect = GSrect(0,0, m_status.getHp(), 30);
 	front.color = GScolor(0.0f, 1.0f, 0.0f, 1.0f);
 	_renderer->render(front);
