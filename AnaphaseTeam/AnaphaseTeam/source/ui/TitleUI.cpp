@@ -1,5 +1,6 @@
 #include "../../header/ui/TitleUI.h"
 #include "../../header/scene/each/Title.h"
+#include "../../header/device/GameDevice.h"
 TitleUI::TitleUI()
 	:m_select(),
 	m_fade(TEXTURE_ID::BLACK)
@@ -32,7 +33,24 @@ void TitleUI::finish()
 }
 void TitleUI::operation(Title& _title)
 {
-	_title.decision(m_select.currentSelect());
+	if (m_fade.isStart())
+	{
+		return;
+	}
+	if (GameDevice::getInstacnce().input()->up())
+	{
+		m_select.previous();
+	}
+	if (GameDevice::getInstacnce().input()->down())
+	{
+		m_select.next();
+	}
+	if (GameDevice::getInstacnce().input()->jump())
+	{
+		_title.decision(m_select.currentSelect());
+		m_select.startMove();
+		m_fade.start(GScolor(1.0f, 1.0f, 1.0f, 1.0f), GScolor(1.0f, 1.0f, 1.0f, 0.0f), 1.3f);
+	}
 }
 void TitleUI::createSelect()
 {
