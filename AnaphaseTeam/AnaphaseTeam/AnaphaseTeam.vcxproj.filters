@@ -663,6 +663,12 @@
     <ClInclude Include="header\data\id\SE_ID.h">
       <Filter>ヘッダー ファイル\data\id</Filter>
     </ClInclude>
+    <ClInclude Include="header\renderer\define\SkyBoxRenderDesc.h">
+      <Filter>ヘッダー ファイル\renderer\define</Filter>
+    </ClInclude>
+    <ClInclude Include="header\renderer\define\OctreeRenderDesc.h">
+      <Filter>ヘッダー ファイル\renderer\define</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="source\main.cpp">

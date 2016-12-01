@@ -5,6 +5,8 @@
 #include "../../header/renderer/define/MeshDesc.h"
 #include "../../header/renderer/define/AnimationRenderDesc.h"
 #include "../../header/renderer/define/SkinnedMeshRenderDesc.h"
+#include "../../header/renderer/define/OctreeRenderDesc.h"
+#include "../../header/renderer/define/SkyBoxRenderDesc.h"
 
 #include "../../header/renderer/define/RectangleRenderDesc.h"
 #include "../../header/renderer/define/SpriteRenderDesc.h"
@@ -369,6 +371,59 @@ void Renderer::render(const RectangleRenderDesc & desc)
 
 	//レンダリングモード復帰
 	glPopAttrib();
+}
+void Renderer::render(const OctreeRenderDesc & desc)
+{
+	//ブレンド方法の設定
+	setBlendFunc(desc.blendFunc);
+	//カラーの設定
+	glColor4fv((GLfloat*)&desc.color);
+	//透視変換行列の設定
+	glMatrixMode(GL_PROJECTION);
+	glLoadMatrixf((GLfloat*)&mProjectionMatrix);
+	//視野変換行列の設定
+	glMatrixMode(GL_MODELVIEW);
+	glLoadMatrixf((GLfloat*)&mViewMatrix);
+	//ライトの座標設定
+	GLfloat lightPosition[] = {
+		mLight.position.x,
+		mLight.position.y,
+		mLight.position.z,
+		0.0f
+	};
+	glEnable(GL_LIGHTING);
+	glLightfv(GL_LIGHT0, GL_POSITION, lightPosition);
+	glEnable(GL_LIGHT0);
+
+	glMultMatrixf((GLfloat*)&desc.matrix);
+	gsDrawOctree(desc.octreeID);	
+}
+
+void Renderer::render(const SkyBoxRenderDesc & desc)
+{
+	//ブレンド方法の設定
+	setBlendFunc(desc.blendFunc);
+	//カラーの設定
+	glColor4fv((GLfloat*)&desc.color);
+	//透視変換行列の設定
+	glMatrixMode(GL_PROJECTION);
+	glLoadMatrixf((GLfloat*)&mProjectionMatrix);
+	//視野変換行列の設定
+	glMatrixMode(GL_MODELVIEW);
+	glLoadMatrixf((GLfloat*)&mViewMatrix);
+	//ライトの座標設定
+	GLfloat lightPosition[] = {
+		mLight.position.x,
+		mLight.position.y,
+		mLight.position.z,
+		0.0f
+	};
+	glEnable(GL_LIGHTING);
+	glLightfv(GL_LIGHT0, GL_POSITION, lightPosition);
+	glEnable(GL_LIGHT0);
+
+	glMultMatrixf((GLfloat*)&desc.matrix);
+	gsDrawSkyBox(desc.meshID);
 }
 //ブレンド関数の設定
 void Renderer::setBlendFunc(BlendFunc blendFunc)

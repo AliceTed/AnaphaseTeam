@@ -1,6 +1,7 @@
 #include "..\..\header\map\Map.h"
 #include "../../header/data/id/CastID.h"
 #include "../../header/renderer/IRenderer.h"
+#include "../../header/renderer/define/OctreeRenderDesc.h"
 Map::Map(OCTREE_ID _id)
 	:m_ID(_id)
 {
@@ -24,6 +25,7 @@ const bool Map::isCollisionSphere(const GSvector3 & _center, float _radius, GSve
 
 void Map::draw(IRenderer * _renderer)
 {
-	//Œã‚Årendere
-	gsDrawOctree(static_cast<GSuint>(m_ID));
+	OctreeRenderDesc desc;
+	desc.octreeID = static_cast<GSuint>(m_ID);
+	_renderer->render(desc);
 }

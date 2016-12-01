@@ -320,11 +320,13 @@
     <ClInclude Include="header\renderer\define\Matrix4.h" />
     <ClInclude Include="header\renderer\define\MeshDesc.h" />
     <ClInclude Include="header\renderer\define\MeshRenderDesc.h" />
+    <ClInclude Include="header\renderer\define\OctreeRenderDesc.h" />
     <ClInclude Include="header\renderer\define\Ray.h" />
     <ClInclude Include="header\renderer\define\Rect.h" />
     <ClInclude Include="header\renderer\define\RectangleRenderDesc.h" />
     <ClInclude Include="header\renderer\define\ResourceID.h" />
     <ClInclude Include="header\renderer\define\SkinnedMeshRenderDesc.h" />
+    <ClInclude Include="header\renderer\define\SkyBoxRenderDesc.h" />
     <ClInclude Include="header\renderer\define\SpriteRenderDesc.h" />
     <ClInclude Include="header\renderer\define\SpriteRectRenderDesc.h" />
     <ClInclude Include="header\renderer\define\StringRenderDesc.h" />

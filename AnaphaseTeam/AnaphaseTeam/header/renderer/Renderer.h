@@ -44,6 +44,10 @@ public:
 	virtual void render(const StringRenderDesc & desc) override;
 
 	virtual void render(const RectangleRenderDesc & desc) override;
+
+	virtual void render(const OctreeRenderDesc& desc) override;
+	//スカイボックス描画
+	virtual void render(const SkyBoxRenderDesc& desc)override;
 private:
 	void setBlendFunc(BlendFunc blendFunc);
 	void renderTexture(ResourceID id,const Color4& color);

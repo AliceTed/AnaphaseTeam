@@ -77,9 +77,6 @@ private:
 	{
 		DataAllRelease release;
 		release();
-
-		GameDevice::getInstacnce().sound().deleteBGM();
-		GameDevice::getInstacnce().sound().deleteSE();
 	}
 private:
 	bool isRunning() { return !GameDevice::getInstacnce().input()->exit() && !m_SceneManager.isExit(); }

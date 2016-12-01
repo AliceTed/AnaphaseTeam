@@ -14,6 +14,8 @@ struct SpriteRenderDesc;
 struct SpriteRectRenderDesc;
 struct StringRenderDesc;
 struct RectangleRenderDesc;
+struct OctreeRenderDesc;
+struct SkyBoxRenderDesc;
 class Ray;
 enum class TexColorKey;
 
@@ -57,4 +59,8 @@ public:
 	virtual void render(const StringRenderDesc& desc) = 0;
 	//矩形の描画
 	virtual void render(const RectangleRenderDesc& desc) = 0;
+	//オクツリー描画
+	virtual void render(const OctreeRenderDesc& desc) = 0;
+	//スカイボックス描画
+	virtual void render(const SkyBoxRenderDesc& desc) = 0;
 };

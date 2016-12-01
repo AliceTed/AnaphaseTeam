@@ -1,6 +1,7 @@
 #include "../../../header/scene/each/GamePlay.h"
 #include "../../../header/scene/each/Ending.h"
 #include "../../../header/renderer/IRenderer.h"
+#include "../../../header/renderer/define/SkyBoxRenderDesc.h"
 #include "../../../header/device/GameDevice.h"
 #include "../../../header/math/Random.h"
 GamePlay::GamePlay()
@@ -60,9 +61,9 @@ void GamePlay::update(float deltaTime)
 
 void GamePlay::draw(IRenderer * _renderer)
 {
-	//Œã‚Årender‚É’Ç‰Á‚·‚é(map‚à)
-	gsDrawSkyBox(static_cast<GSuint>(MESH_ID::SKY));
-	//_renderer.getDraw3D().drawSky(MESH_ID::SKY);
+	SkyBoxRenderDesc desc;
+	desc.meshID = static_cast<unsigned int>(MESH_ID::SKY);
+	_renderer->render(desc);
 	//m_enemys[0].look_at(&m_cameracontroller, &m_player);
 	m_lockon.look_at(&m_cameracontroller);
 	m_cameracontroller.draw();
