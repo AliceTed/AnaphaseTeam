@@ -17,4 +17,5 @@ void Player::SpecialAttackCollision::doUpdate(float deltaTime)
 
 void Player::SpecialAttackCollision::doDraw(IRenderer * _renderer)
 {
+	m_shape->draw(_renderer);
 }
