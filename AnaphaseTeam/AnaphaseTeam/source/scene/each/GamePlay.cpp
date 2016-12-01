@@ -64,7 +64,6 @@ void GamePlay::draw(IRenderer * _renderer)
 	SkyBoxRenderDesc desc;
 	desc.meshID = static_cast<unsigned int>(MESH_ID::SKY);
 	_renderer->render(desc);
-	//m_enemys[0].look_at(&m_cameracontroller, &m_player);
 	m_lockon.look_at(&m_cameracontroller);
 	m_cameracontroller.draw();
 	_renderer->lookAt({ 0,0,0 }, { 0,0,0 }, { 0,0,0 });
