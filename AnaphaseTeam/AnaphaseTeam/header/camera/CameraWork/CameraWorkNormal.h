@@ -34,7 +34,7 @@ private:
 private:
 	GSvector2* m_rotate;
 
-	//std::unique_ptr<CWParameterReader> m_parameter;
+	std::unique_ptr<CWParameterReader> m_parameter;
 
 	float m_speed_input;
 	float m_distance;

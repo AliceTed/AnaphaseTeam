@@ -2,11 +2,21 @@
 #include "../../../header/camera/Camera.h"
 #include "../../../header/camera/ACalc.h"
 #include "../../../header/math/Calculate.h"
+#include "../../../header/camera/CameraWork/CWParameterReader.h"
 
 CameraWorkLockOn::CameraWorkLockOn(Camera* _camera, GSvector2* _rotate) :
 	CameraWork(_camera),
-	m_rotate(_rotate)
+	m_parameter(std::make_unique<CWParameterReader>("./res/data/CameraWorkLockOn.cw")),
+	m_rotate(_rotate),
+	m_elevation(0.0f),
+	m_distance(0.0f),
+	m_followSpeed_position(0.0f),
+	m_followSpeed_target(0.0f)
 {
+	m_elevation = m_parameter->get(0);
+	m_distance = m_parameter->get(1);
+	m_followSpeed_position = m_parameter->get(2);
+	m_followSpeed_target = m_parameter->get(2);
 }
 
 
@@ -22,32 +32,29 @@ void CameraWorkLockOn::draw_cameraWork(void)
 {
 	m_camera->zoom(90.0f);
 
-	GSvector2 rotate;
-	float distance;
-	GSvector3 vector;
+	Math::Clamp clamp;
 	const GSvector3& player = m_camera->cameraTarget_player();
 	const GSvector3& enemy = m_camera->cameraTarget_enemy();
+	GSvector3 vector = enemy - player;
+	GSvector3 center = (player + enemy) / 2;
+	float distance_p_e = gsVector3Distance(&player, &enemy);
+	float distance_p_c = gsVector3Distance(&player, &center);
 
-	distance = gsVector3Distance(&player, &enemy);
+	if (distance_p_c > m_distance)
+	{
+		gsVector3ToEleDir(&m_rotate->x, &m_rotate->y, &vector);
 
-	vector = enemy - player;
-
-	gsVector3ToEleDir(&rotate.x, &rotate.y, &vector);
-
-	rotate.x = 30;
-	rotate.y += 180;
+		m_rotate->x = m_elevation;
+		m_rotate->y += 180;
+	}
 
 	m_camera->cameraWork_dolly(
-		player,
-		rotate,
-		5,
-		0.1f,
-		0.5f
+		center,
+		*m_rotate,
+		distance_p_c + m_distance,
+		m_followSpeed_position,
+		m_followSpeed_target
 	);
-
-	(*m_rotate) = rotate;
-
-	m_camera->follow_target(enemy, 0.5f);
 
 	return;
 }

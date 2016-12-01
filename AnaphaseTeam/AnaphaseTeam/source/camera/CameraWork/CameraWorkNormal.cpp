@@ -9,16 +9,16 @@
 CameraWorkNormal::CameraWorkNormal(Camera* _camera, GSvector2* _rotate) :
 	CameraWork(_camera),
 	m_rotate(_rotate),
-	//m_parameter(std::make_unique<CWParameterReader>("./res/document/CameraWorkNormal.csv")),
-	m_speed_input(3.0f),
-	m_distance(5.0f),
-	m_followSpeed_position(0.5f),
-	m_followSpeed_target(0.5f)
+	m_parameter(std::make_unique<CWParameterReader>("./res/data/CameraWorkNormal.cw")),
+	m_speed_input(0.0f),
+	m_distance(0.0f),
+	m_followSpeed_position(0.0f),
+	m_followSpeed_target(0.0f)
 {
-	//m_speed_input = m_parameter->get(0);
-	//m_distance = m_parameter->get(1);
-	//m_followSpeed_position = m_parameter->get(2);
-	//m_followSpeed_target = m_parameter->get(3);
+	m_speed_input			= m_parameter->get(0);
+	m_distance				= m_parameter->get(1);
+	m_followSpeed_position	= m_parameter->get(2);
+	m_followSpeed_target	= m_parameter->get(3);
 }
 
 
