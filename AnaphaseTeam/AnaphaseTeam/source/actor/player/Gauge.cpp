@@ -81,11 +81,6 @@ float Gauge::scale(float def)
 	return log(m_lerpmax*0.01f + def);
 }
 
-float Gauge::nowGauge()
-{
-	return m_gauge;
-}
-
 void Gauge::add(float _point)
 {
 	Math::Clamp clamp;

@@ -11,7 +11,7 @@
 #include "Status.h"
 #include "../../attack/Scythe.h"
 #include "Gauge.h"
-#include "specialSkill/SpecialSkillManager.h"
+#include "../../specialskill/SpecialSkillManager.h"
 
 class CameraController;
 class LockOn;
@@ -28,11 +28,8 @@ public:
 	void look_at(CameraController* _camera, GSvector3* _target);
 	//void gaugeUp(float _scale);
 	void homing();
-	void specialAttack();
-	void gaugeAdd();
 	void createAttackCollision();
 	void hpDown();
-	void recovery();
 public://Actor継承
 	void initialize() override;
 	void update(float deltatime) override;
@@ -52,7 +49,7 @@ private:
 	Camera * m_camera;
 	LockOn* m_lockon;
 	Scythe m_scythe;
-	SpecialSkillManager m_SpecialSkillManager;
+	SpecialSkillManager m_specialskill;
 
 	GSvector3 target;
 private://state宣言
@@ -61,6 +58,7 @@ private://state宣言
 	class MoveState;
 	class StandState;
 	class StepState;
+	class SpecialAttackState;
 	/*
 	空中状態で別で作るのではなく
 	プレイヤーの状態として各種追加する
@@ -74,8 +72,9 @@ private://state宣言
 	friend DamageState;
 	friend MoveState;
 	friend StandState;
+	friend SpecialAttackState;
+	
 	friend StepState;
-
 	friend SingleJumpState;
 	friend DoubleJumpState;
 	friend LimitFallState;

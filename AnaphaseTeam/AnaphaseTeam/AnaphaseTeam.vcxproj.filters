@@ -139,12 +139,6 @@
     <Filter Include="ヘッダー ファイル\transform">
       <UniqueIdentifier>{1cac667a-7706-4899-88f1-8521269775bd}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ソース ファイル\actor\Player\specialSkill">
-      <UniqueIdentifier>{c0592eba-d6ba-4757-ad12-fca0f45c1f0c}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ヘッダー ファイル\actor\Player\specialSkill">
-      <UniqueIdentifier>{d0cdda7b-e670-4bce-8fa6-16d63201e6e4}</UniqueIdentifier>
-    </Filter>
     <Filter Include="ソース ファイル\math">
       <UniqueIdentifier>{cfe83fe5-37e3-4713-adef-911f2563b574}</UniqueIdentifier>
     </Filter>
@@ -192,6 +186,12 @@
     </Filter>
     <Filter Include="ソース ファイル\data\release">
       <UniqueIdentifier>{08118a73-cce9-48ef-86d2-8142ab2d0754}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\specialskill">
+      <UniqueIdentifier>{14d6b4e4-950f-444d-9dfe-4d181a76bcce}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\specialskill">
+      <UniqueIdentifier>{b54e2d1f-ac6c-4d08-8e69-60a38e673578}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -387,15 +387,6 @@
     <ClInclude Include="header\transform\Transform.h">
       <Filter>ヘッダー ファイル\transform</Filter>
     </ClInclude>
-    <ClInclude Include="header\actor\Player\specialSkill\Recovery.h">
-      <Filter>ヘッダー ファイル\actor\Player\specialSkill</Filter>
-    </ClInclude>
-    <ClInclude Include="header\actor\Player\specialSkill\SpecialSkillManager.h">
-      <Filter>ヘッダー ファイル\actor\Player\specialSkill</Filter>
-    </ClInclude>
-    <ClInclude Include="header\actor\Player\specialSkill\SuperArmor.h">
-      <Filter>ヘッダー ファイル\actor\Player\specialSkill</Filter>
-    </ClInclude>
     <ClInclude Include="header\collision\Collision_Tag.h">
       <Filter>ヘッダー ファイル\collision</Filter>
     </ClInclude>
@@ -404,9 +395,6 @@
     </ClInclude>
     <ClInclude Include="header\actor\Enemy\EnemyManager.h">
       <Filter>ヘッダー ファイル\actor\Enemy</Filter>
-    </ClInclude>
-    <ClInclude Include="header\actor\Player\specialSkill\SpecialAttack.h">
-      <Filter>ヘッダー ファイル\actor\Player\specialSkill</Filter>
     </ClInclude>
     <ClInclude Include="header\collision\EnemyCollision.h">
       <Filter>ヘッダー ファイル\collision\user</Filter>
@@ -445,9 +433,6 @@
       <Filter>ヘッダー ファイル\state\player</Filter>
     </ClInclude>
     <ClInclude Include="header\state\player\StepState.h">
-      <Filter>ヘッダー ファイル\state\player</Filter>
-    </ClInclude>
-    <ClInclude Include="header\state\player\AirState.h">
       <Filter>ヘッダー ファイル\state\player</Filter>
     </ClInclude>
     <ClInclude Include="header\state\player\DoubleJumpState.h">
@@ -669,6 +654,27 @@
     <ClInclude Include="header\renderer\define\OctreeRenderDesc.h">
       <Filter>ヘッダー ファイル\renderer\define</Filter>
     </ClInclude>
+    <ClInclude Include="header\specialskill\SPECIALSKILL_TYPE.h">
+      <Filter>ヘッダー ファイル\specialskill</Filter>
+    </ClInclude>
+    <ClInclude Include="header\specialskill\Recovery.h">
+      <Filter>ヘッダー ファイル\specialskill</Filter>
+    </ClInclude>
+    <ClInclude Include="header\specialskill\ISpecialSkill.h">
+      <Filter>ヘッダー ファイル\specialskill</Filter>
+    </ClInclude>
+    <ClInclude Include="header\specialskill\SuperArmor.h">
+      <Filter>ヘッダー ファイル\specialskill</Filter>
+    </ClInclude>
+    <ClInclude Include="header\specialskill\SpecialAttack.h">
+      <Filter>ヘッダー ファイル\specialskill</Filter>
+    </ClInclude>
+    <ClInclude Include="header\specialskill\SpecialSkillManager.h">
+      <Filter>ヘッダー ファイル\specialskill</Filter>
+    </ClInclude>
+    <ClInclude Include="header\state\player\SpecialAttackState.h">
+      <Filter>ヘッダー ファイル\state\player</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="source\main.cpp">
@@ -821,15 +827,6 @@
     <ClCompile Include="source\transform\Transform.cpp">
       <Filter>ソース ファイル\transform</Filter>
     </ClCompile>
-    <ClCompile Include="source\actor\player\specialSkill\Recovery.cpp">
-      <Filter>ソース ファイル\actor\Player\specialSkill</Filter>
-    </ClCompile>
-    <ClCompile Include="source\actor\player\specialSkill\SpecialSkillManager.cpp">
-      <Filter>ソース ファイル\actor\Player\specialSkill</Filter>
-    </ClCompile>
-    <ClCompile Include="source\actor\player\specialSkill\SuperArmor.cpp">
-      <Filter>ソース ファイル\actor\Player\specialSkill</Filter>
-    </ClCompile>
     <ClCompile Include="source\actor\Enemy\EnemyManager.cpp">
       <Filter>ソース ファイル\actor\Enemy</Filter>
     </ClCompile>
@@ -838,9 +835,6 @@
     </ClCompile>
     <ClCompile Include="source\collision\HitInformation.cpp">
       <Filter>ソース ファイル\collision</Filter>
-    </ClCompile>
-    <ClCompile Include="source\actor\player\specialSkill\SpecialAttack.cpp">
-      <Filter>ソース ファイル\actor\Player\specialSkill</Filter>
     </ClCompile>
     <ClCompile Include="source\collision\SpecialAttackCollision.cpp">
       <Filter>ソース ファイル\collision\user</Filter>
@@ -973,6 +967,21 @@
     </ClCompile>
     <ClCompile Include="source\data\loader\SoundLoader.cpp">
       <Filter>ソース ファイル\data\loader</Filter>
+    </ClCompile>
+    <ClCompile Include="source\specialskill\Recovery.cpp">
+      <Filter>ソース ファイル\specialskill</Filter>
+    </ClCompile>
+    <ClCompile Include="source\specialskill\SuperArmor.cpp">
+      <Filter>ソース ファイル\specialskill</Filter>
+    </ClCompile>
+    <ClCompile Include="source\specialskill\SpecialAttack.cpp">
+      <Filter>ソース ファイル\specialskill</Filter>
+    </ClCompile>
+    <ClCompile Include="source\specialskill\SpecialSkillManager.cpp">
+      <Filter>ソース ファイル\specialskill</Filter>
+    </ClCompile>
+    <ClCompile Include="source\state\player\SpecialAttackState.cpp">
+      <Filter>ソース ファイル\state\player</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

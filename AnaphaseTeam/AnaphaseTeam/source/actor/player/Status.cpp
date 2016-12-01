@@ -16,7 +16,7 @@ Status::~Status()
 void Status::initialize()
 {
 	m_AttackSpeed = def;
-	m_hp = 100;
+	m_hp = 80;
 }
 
 void Status::change(Gauge & _gauge)
