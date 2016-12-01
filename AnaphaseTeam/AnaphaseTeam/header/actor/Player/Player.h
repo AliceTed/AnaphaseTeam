@@ -26,10 +26,8 @@ public:
 	void avoidAction(const GSvector3& _velocity);
 	void attackmotion(Attack& _attack);
 	void look_at(CameraController* _camera, GSvector3* _target);
-	//void gaugeUp(float _scale);
 	void homing();
 	void createAttackCollision();
-	void hpDown();
 public://Actoråpè≥
 	void initialize() override;
 	void update(float deltatime) override;

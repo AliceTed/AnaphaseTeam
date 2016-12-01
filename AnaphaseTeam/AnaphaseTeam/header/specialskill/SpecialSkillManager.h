@@ -21,7 +21,6 @@ private:
 private:
 	using Special_Ptr= std::shared_ptr<ISpecialSkill>;
 	using Container = std::unordered_map<SPECIALSKILL_TYPE,Special_Ptr>;
-	
 	Container m_container;
 	Container m_current;
 
