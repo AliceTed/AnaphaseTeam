@@ -156,10 +156,7 @@ void Player::createAttackCollision()
 	Collision_Ptr act =Collision_Ptr(new PlayerAttackCollision(this));
 	m_collision.add(act);
 }
-void Player::hpDown()
-{
-	m_status.down();
-}
+
 void Player::avoidAction(const GSvector3 & _velocity)
 {
 	m_transform.translate(_velocity);
