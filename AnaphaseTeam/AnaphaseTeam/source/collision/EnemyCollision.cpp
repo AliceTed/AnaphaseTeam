@@ -36,8 +36,6 @@ void EnemyCollision::collision_Enter(HitInformation & _hit)
 	Player* player = dynamic_cast<Player*>(act);
 	if (player == nullptr)return;
 	m_enemy->damage(player);
-	player->gaugeAdd();
-	player->recovery();
 }
 
 void EnemyCollision::doDraw(IRenderer * _renderer)

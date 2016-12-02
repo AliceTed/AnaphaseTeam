@@ -1,5 +1,6 @@
 #include "..\..\header\collision\PlayerAttackCollision.h"
 #include "../../header/shape/Sphere.h"
+#include "../../header/collision/HitInformation.h"
 #include "../../header/actor/Player/Player.h"
 Player::PlayerAttackCollision::PlayerAttackCollision(Player* _player)
 	:CollisionActor(new Sphere(_player->m_transform.m_translate,0.7f),Collision_Tag::PLAYER_WEAPON),
@@ -26,4 +27,11 @@ void Player::PlayerAttackCollision::doDraw(IRenderer *_renderer)
 
 void Player::PlayerAttackCollision::collision_Enter(HitInformation & _hit)
 {
+	if (_hit.m_tag != Collision_Tag::ENEMY)return;
+	m_player->m_Gauge.up(10);
+	
+	if (m_player->m_specialskill.isStart(SPECIALSKILL_TYPE::RECOVERY))
+	{
+		m_player->m_status.add();
+	}
 }

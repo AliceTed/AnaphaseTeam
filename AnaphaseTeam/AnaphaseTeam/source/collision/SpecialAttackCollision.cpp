@@ -1,6 +1,5 @@
 #include "../../header/collision/SpecialAttackCollision.h"
 #include "../../header/shape/Sphere.h"
-#include "../../header/actor/Player/specialSkill/SpecialAttack.h"
 Player::SpecialAttackCollision::SpecialAttackCollision(Player* _player)
 	:CollisionActor(new Sphere(GSvector3(0, 0, 0), 5.0f), Collision_Tag::PLAYER_SPECIALATTACK),
 	m_player(_player)

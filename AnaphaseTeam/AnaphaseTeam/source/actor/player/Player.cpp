@@ -5,6 +5,7 @@
 #include "../../../header/state/player/MoveState.h"
 #include "../../../header/state/player/StandState.h"
 #include "../../../header/state/player/StepState.h"
+#include "../../../header/state/player/SpecialAttackState.h"
 
 #include "../../../header/state/player/SingleJumpState.h"
 #include "../../../header/state/player/DoubleJumpState.h"
@@ -26,6 +27,12 @@
 #include "../../../header/collision/PlayerCollision.h"
 #include "../../../header/collision/SpecialAttackCollision.h"
 #include "../../../header/renderer/define/SpriteRectRenderDesc.h"
+
+#include "../../../header/specialskill/Recovery.h"
+#include "../../../header/specialskill/SpecialAttack.h"
+#include "../../../header/specialskill/SuperArmor.h"
+
+#include "../../../header/data/id/TEXTURE_ID.h"
 const float Player::ROTATESPEED = -2.0f;
 Player::Player(Camera * _camera, LockOn* _lockon)
 	:Actor(
@@ -39,7 +46,7 @@ Player::Player(Camera * _camera, LockOn* _lockon)
 	m_Gauge(),
 	m_lockon(_lockon),
 	m_scythe(),
-	m_SpecialSkillManager(m_Gauge, this),
+	m_specialskill(&m_Gauge),
 	target(0, 0, 0)
 {
 }
@@ -56,9 +63,13 @@ void Player::initialize()
 	m_Gauge.initialize();
 	m_status.initialize();
 	m_scythe.initialize();
-	m_SpecialSkillManager.initialize(SPECIALTYPE::NONE);
 	target = m_transform.m_translate;
 	m_combo.initialize();
+
+	m_specialskill.clear();
+	m_specialskill.add(SPECIALSKILL_TYPE::RECOVERY, new Recovery());
+	m_specialskill.add(SPECIALSKILL_TYPE::SPECIALLATTACK, new SpecialAttack(this));
+	m_specialskill.add(SPECIALSKILL_TYPE::SUPERARMOR, new SuperArmor());
 }
 
 void Player::update(float deltatime)
@@ -67,8 +78,7 @@ void Player::update(float deltatime)
 	m_animatorOne.update(deltatime);
 	m_scythe.update(deltatime, m_animatorOne, m_transform);
 	m_status.change(m_Gauge);
-	m_SpecialSkillManager.update(deltatime);
-	m_SpecialSkillManager.endCheck();
+	m_specialskill.update(deltatime);
 
 	m_collision.update(deltatime);
 	m_Gauge.update(deltatime);
@@ -101,7 +111,7 @@ void Player::draw(IRenderer *_renderer)
 	front.srcRect = GSrect(0,0, m_status.getHp() * 10, 30);
 	front.color = GScolor(0.0f, 1.0f, 0.0f, 1.0f);
 	_renderer->render(front);
-	m_SpecialSkillManager.draw(_renderer);
+	m_specialskill.draw(_renderer);
 }
 AttackStatus Player::status()
 {
@@ -130,11 +140,6 @@ void Player::subActionStart()
 		}
 	}
 }
-
-//void Player::gaugeUp(float _scale)
-//{
-//	m_Gauge.up(_scale);
-//}
 void Player::homing()
 {
 	Enemy* target = m_lockon->getTarget();
@@ -145,33 +150,11 @@ void Player::homing()
 	velocity = clamp(m_Gauge.scale(velocity), 0.0f, distanceActor(*target) - 1.0f);
 	this->target = m_transform.m_translate + (m_transform.front() * velocity);
 }
-void Player::specialAttack()
-{
-	m_animatorOne.changeAnimation(static_cast<GSuint>(ANIMATION_ID::SPECIALATTACK));
-	m_SpecialSkillManager.addAttackCollision(&m_collision);
-}
-
-void Player::gaugeAdd()
-{
-	m_Gauge.up(10);
-}
 
 void Player::createAttackCollision()
 {
 	Collision_Ptr act =Collision_Ptr(new PlayerAttackCollision(this));
 	m_collision.add(act);
-}
-
-
-
-void Player::hpDown()
-{
-	m_status.down();
-}
-
-void Player::recovery()
-{
-	m_SpecialSkillManager.recovery(m_status);
 }
 
 void Player::avoidAction(const GSvector3 & _velocity)
@@ -189,17 +172,17 @@ void Player::control()
 	{
 		if (GameDevice::getInstacnce().input()->gaugeAttack1())
 		{
-			m_SpecialSkillManager.initialize(SPECIALTYPE::RECOVERY);
+			m_specialskill.start(SPECIALSKILL_TYPE::RECOVERY);
 		}
 		if (GameDevice::getInstacnce().input()->gaugeAttack2())
 		{
-			m_SpecialSkillManager.initialize(SPECIALTYPE::SUPERARMOR);
+			m_specialskill.start(SPECIALSKILL_TYPE::SUPERARMOR);
 		}
 		if (GameDevice::getInstacnce().input()->gaugeAttack3())
 		{
-			m_SpecialSkillManager.initialize(SPECIALTYPE::SPECIALATTACK);
+			m_specialskill.start(SPECIALSKILL_TYPE::SPECIALLATTACK);
 		}
-		//return;
+		return;
 	}
 	/*ƒ{ƒ^ƒ“‰Ÿ‚µ‚½‚çAttackState‚ÉØ‚è‘Ö‚í‚é*/
 	if (GameDevice::getInstacnce().input()->quickAttackTrigger())
@@ -242,6 +225,7 @@ void Player::createStates()
 	registerState(ACTOR_STATE::RUN, new MoveState(this));
 	registerState(ACTOR_STATE::STAND, new StandState(this));
 	registerState(ACTOR_STATE::STEP, new StepState(this));
+	registerState(ACTOR_STATE::SPECIALATTACK, new SpecialAttackState(this));
 
 	registerState(ACTOR_STATE::SINGLEJUMP, new SingleJumpState(this));
 	registerState(ACTOR_STATE::DOUBLEJUMP, new DoubleJumpState(this));

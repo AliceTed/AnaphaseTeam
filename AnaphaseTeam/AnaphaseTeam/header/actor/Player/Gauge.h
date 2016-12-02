@@ -23,7 +23,6 @@ public:
 	void update(float deltatime);
 
 	float scale(float def);
-	float nowGauge();
 private:
 	void add(float _point);
 private:

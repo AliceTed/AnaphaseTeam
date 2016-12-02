@@ -15,8 +15,12 @@ void Player::PlayerCollision::doUpdate(float deltaTime)
 void Player::PlayerCollision::collision_Enter(HitInformation & _hit)
 {
 	if (_hit.m_tag != Collision_Tag::ENEMY_ATTACK)return;
-	m_player->changeState(ACTOR_STATE::DAMAGE);
-	m_player->hpDown();
+	//エネミーがダメージを食らったかチェック
+	m_player->m_status.down();
+	if (!m_player->m_specialskill.isStart(SPECIALSKILL_TYPE::SUPERARMOR))
+	{
+		m_player->changeState(ACTOR_STATE::DAMAGE);
+	}
 }
 
 void Player::PlayerCollision::doDraw(IRenderer *_renderer)
