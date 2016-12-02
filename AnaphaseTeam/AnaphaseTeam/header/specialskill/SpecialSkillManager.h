@@ -3,9 +3,10 @@
 #include <memory>
 #include "SPECIALSKILL_TYPE.h"
 #include "ISpecialSkill.h"
+#include "../../header/ui/IPlayUI.h"
 class Gauge;
 class IRenderer;
-class SpecialSkillManager
+class SpecialSkillManager:public IPlayUI
 {
 public:
 	SpecialSkillManager(Gauge* _gauge);

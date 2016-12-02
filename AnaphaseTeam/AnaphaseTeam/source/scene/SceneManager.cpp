@@ -24,7 +24,7 @@ void SceneManager::draw(IRenderer * _renderer)
 }
 void SceneManager::finish()
 {
-
+	m_CurrentScene->finish();
 }
 
 const bool SceneManager::isExit() const

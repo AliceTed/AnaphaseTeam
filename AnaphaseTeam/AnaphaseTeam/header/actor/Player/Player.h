@@ -12,7 +12,6 @@
 #include "../../attack/Scythe.h"
 #include "Gauge.h"
 #include "../../specialskill/SpecialSkillManager.h"
-
 class CameraController;
 class LockOn;
 class Enemy;
@@ -33,7 +32,7 @@ public://Actoråpè≥
 	void update(float deltatime) override;
 	void draw(IRenderer* _renderer) override;
 	void damage(const AttackStatus & _attackStatus) override;
-
+	void finish() override;
 private:
 	void subActionStart();
 	void control();
@@ -43,12 +42,12 @@ private:
 private:
 	ComboAttack m_combo;
 	Status m_status;
-	Gauge m_Gauge;
+	std::shared_ptr<Gauge> m_Gauge;
 
 	Camera * m_camera;
 	LockOn* m_lockon;
 	Scythe m_scythe;
-	SpecialSkillManager m_specialskill;
+	std::shared_ptr<SpecialSkillManager> m_specialskill;
 
 	GSvector3 target;
 private://stateêÈåæ

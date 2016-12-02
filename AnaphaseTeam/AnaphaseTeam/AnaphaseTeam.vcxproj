@@ -246,11 +246,14 @@
     <ClCompile Include="source\transform\Transform.cpp" />
     <ClCompile Include="source\ui\Cursor.cpp" />
     <ClCompile Include="source\ui\Fade.cpp" />
+    <ClCompile Include="source\ui\HPGaugeUI.cpp" />
     <ClCompile Include="source\ui\ScaleImage.cpp" />
     <ClCompile Include="source\ui\SelectUI.cpp" />
     <ClCompile Include="source\ui\SlideImage.cpp" />
     <ClCompile Include="source\ui\SpAttackUI.cpp" />
+    <ClCompile Include="source\ui\SPGaugeUI.cpp" />
     <ClCompile Include="source\ui\TitleUI.cpp" />
+    <ClCompile Include="source\ui\UIManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="header\actor\Actor.h" />
@@ -304,6 +307,7 @@
     <ClInclude Include="header\data\loader\SoundLoader.h" />
     <ClInclude Include="header\data\loader\TextureLoader.h" />
     <ClInclude Include="header\data\Message.h" />
+    <ClInclude Include="header\data\release\DataAllRelease.h" />
     <ClInclude Include="header\data\release\DataDelete.h" />
     <ClInclude Include="header\data\release\DataRelease.h" />
     <ClInclude Include="header\data\release\DeleteModel.h" />
@@ -414,11 +418,15 @@
     <ClInclude Include="header\transform\Transform.h" />
     <ClInclude Include="header\ui\Cursor.h" />
     <ClInclude Include="header\ui\Fade.h" />
+    <ClInclude Include="header\ui\HPGaugeUI.h" />
+    <ClInclude Include="header\ui\IPlayUI.h" />
     <ClInclude Include="header\ui\ScaleImage.h" />
     <ClInclude Include="header\ui\SelectUI.h" />
     <ClInclude Include="header\ui\SlideImage.h" />
     <ClInclude Include="header\ui\SpAttackUI.h" />
+    <ClInclude Include="header\ui\SPGaugeUI.h" />
     <ClInclude Include="header\ui\TitleUI.h" />
+    <ClInclude Include="header\ui\UIManager.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
