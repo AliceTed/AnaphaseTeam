@@ -102,7 +102,7 @@ void Player::draw(IRenderer *_renderer)
 	SpriteRectRenderDesc back;
 	back.textureID = static_cast<GSuint>(TEXTURE_ID::BLACK);
 	back.matrix = mat;
-	back.srcRect = GSrect(0,0, 100, 30);
+	back.srcRect = GSrect(0,0, 1000, 30);
 	_renderer->render(back);
 
 	SpriteRectRenderDesc front;
@@ -113,9 +113,10 @@ void Player::draw(IRenderer *_renderer)
 	_renderer->render(front);
 	m_specialskill.draw(_renderer);
 }
-AttackStatus Player::status()
+
+void Player::damage(const AttackStatus & _attackStatus)
 {
-	return m_combo.getStatus();
+	m_status.down(_attackStatus.m_power);
 }
 void Player::jumping(float _velocity)
 {
@@ -251,3 +252,5 @@ void Player::movement(float deltaTime, float _speed)
 	GSvector3 forward(m_transform.front()*speed);
 	m_transform.translate(forward*deltaTime*_speed);
 }
+
+

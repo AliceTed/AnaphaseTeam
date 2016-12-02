@@ -193,6 +193,12 @@
     <Filter Include="ソース ファイル\specialskill">
       <UniqueIdentifier>{b54e2d1f-ac6c-4d08-8e69-60a38e673578}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\state\enemy">
+      <UniqueIdentifier>{33e2b51a-9efa-44c9-a970-f8a4460dd7e5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\state\enemy">
+      <UniqueIdentifier>{b56c9820-80fd-43ce-8cc8-640662d69b9f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="header\math\Calculate.h">
@@ -675,6 +681,27 @@
     <ClInclude Include="header\data\release\DataDelete.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
+    <ClInclude Include="header\state\enemy\EAttackState.h">
+      <Filter>ヘッダー ファイル\state\enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="header\state\enemy\EDamageState.h">
+      <Filter>ヘッダー ファイル\state\enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="header\state\enemy\EDeadState.h">
+      <Filter>ヘッダー ファイル\state\enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="header\state\enemy\EMoveState.h">
+      <Filter>ヘッダー ファイル\state\enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="header\state\enemy\ESlideState.h">
+      <Filter>ヘッダー ファイル\state\enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="header\state\enemy\ESpawnState.h">
+      <Filter>ヘッダー ファイル\state\enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="header\state\enemy\EStandState.h">
+      <Filter>ヘッダー ファイル\state\enemy</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="source\main.cpp">
@@ -982,6 +1009,27 @@
     </ClCompile>
     <ClCompile Include="source\data\release\DataAllRelease.cpp">
       <Filter>ソース ファイル\data\release</Filter>
+    </ClCompile>
+    <ClCompile Include="source\state\enemy\EAttackState.cpp">
+      <Filter>ソース ファイル\state\enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="source\state\enemy\EDeadState.cpp">
+      <Filter>ソース ファイル\state\enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="source\state\enemy\EDamageState.cpp">
+      <Filter>ソース ファイル\state\enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="source\state\enemy\EMoveState.cpp">
+      <Filter>ソース ファイル\state\enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="source\state\enemy\ESlideState.cpp">
+      <Filter>ソース ファイル\state\enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="source\state\enemy\ESpawnState.cpp">
+      <Filter>ソース ファイル\state\enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="source\state\enemy\EStandState.cpp">
+      <Filter>ソース ファイル\state\enemy</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

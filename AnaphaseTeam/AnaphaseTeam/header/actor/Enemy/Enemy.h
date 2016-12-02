@@ -4,6 +4,7 @@
 #include "../../convenient/Timer.h"
 //#include "../../attack/AttackIncidence.h"
 #include "../../attack/AttackStatus.h"
+#include "../../actor/Player/Status.h"
 class EnemyCollision;
 class Player;
 //éÊÇËÇ†Ç¶Ç∏enumÇ≈èÛë‘ï™ÇØ
@@ -26,6 +27,7 @@ public:
 	void initialize() override;
 	void update(float deltatime)override;
 	void draw(IRenderer* _renderer)override;
+	void damage(const AttackStatus& _attackStatus)override;
 public:
 	void collisionChase(EnemyCollision* _collision);
 	void damage(Player* _player);
@@ -37,16 +39,33 @@ private:
 	const bool isNear(float _distance)const;
 	void state(float deltaTime);
 	const bool isDamageState()const;
+	void createStates();
 private:
 	void slide(Actor* _actor);
 	void move(Actor* _actor);
 	void attack_start();
 	void stay_start();
 private:
-	ESTATE m_state;
 	Timer m_stay_timer;
 	static const float PLAYER_DISTANCE;
-	float m_hp;
-	AttackStatus m_status;
 	float m_alpha;
+	Status m_status;
+
+private://state
+	class EAttackState;
+	class EDamageState;
+	class EMoveState;
+	class EStandState;
+	class ESlideState;
+	class ESpawnState;
+	class EDeadState;
+
+	friend EAttackState;
+	friend EDamageState;
+	friend EMoveState;
+	friend EStandState;
+	friend ESlideState;
+	friend ESpawnState;
+	friend EDeadState;
+
 };

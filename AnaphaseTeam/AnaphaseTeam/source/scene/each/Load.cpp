@@ -77,6 +77,7 @@ void Load::loadTextrue()
 	tex(TEXTURE_ID::SP_UI1, "UI_SP_1");
 	tex(TEXTURE_ID::SP_UI2, "UI_SP_2");
 	tex(TEXTURE_ID::SP_UI3, "UI_SP_3");
+	tex(TEXTURE_ID::GAMEOVER, "gameover");
 }
 void Load::loadSound()
 {

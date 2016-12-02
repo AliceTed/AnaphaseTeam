@@ -32,7 +32,7 @@ void Ending::update(float _deltaTime)
 void Ending::draw(IRenderer * _renderer)
 {
 	SpriteRenderDesc desc;
-	desc.textureID = static_cast<GSuint>(TEXTURE_ID::CLEAR);
+	desc.textureID = static_cast<GSuint>(TEXTURE_ID::GAMEOVER);
 	_renderer->render(desc);
 
 	m_change.draw(_renderer);

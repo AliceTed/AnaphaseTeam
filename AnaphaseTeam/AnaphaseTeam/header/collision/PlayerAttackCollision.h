@@ -2,6 +2,7 @@
 #include "CollisionActor.h"
 #include "../actor/Player/Player.h"
 #include "../convenient/Timer.h"
+
 class Player::PlayerAttackCollision:public CollisionActor
 {
 public:

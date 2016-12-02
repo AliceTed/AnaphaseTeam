@@ -10,4 +10,5 @@ public:
 	void doDraw(IRenderer *_renderer)override;
 private:
 	Player* m_player;
+
 };

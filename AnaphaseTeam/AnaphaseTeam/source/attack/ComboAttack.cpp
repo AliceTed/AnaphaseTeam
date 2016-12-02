@@ -14,6 +14,7 @@ void ComboAttack::initialize()
 	m_container.clear();
 	AttackReader reader;
 	reader(&m_container, "combo");
+
 }
 
 void ComboAttack::start(bool _isSlow)
