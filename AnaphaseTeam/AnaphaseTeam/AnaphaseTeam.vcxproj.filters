@@ -678,6 +678,18 @@
     <ClInclude Include="header\data\release\DataAllRelease.h">
       <Filter>ヘッダー ファイル\data\release</Filter>
     </ClInclude>
+    <ClInclude Include="header\ui\IPlayUI.h">
+      <Filter>ヘッダー ファイル\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="header\ui\HPGaugeUI.h">
+      <Filter>ヘッダー ファイル\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="header\ui\SPGaugeUI.h">
+      <Filter>ヘッダー ファイル\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="header\ui\UIManager.h">
+      <Filter>ヘッダー ファイル\ui</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="source\main.cpp">
@@ -985,6 +997,15 @@
     </ClCompile>
     <ClCompile Include="source\data\release\DataAllRelease.cpp">
       <Filter>ソース ファイル\data\release</Filter>
+    </ClCompile>
+    <ClCompile Include="source\ui\HPGaugeUI.cpp">
+      <Filter>ソース ファイル\ui</Filter>
+    </ClCompile>
+    <ClCompile Include="source\ui\SPGaugeUI.cpp">
+      <Filter>ソース ファイル\ui</Filter>
+    </ClCompile>
+    <ClCompile Include="source\ui\UIManager.cpp">
+      <Filter>ソース ファイル\ui</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

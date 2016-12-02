@@ -28,9 +28,9 @@ void Player::PlayerAttackCollision::doDraw(IRenderer *_renderer)
 void Player::PlayerAttackCollision::collision_Enter(HitInformation & _hit)
 {
 	if (_hit.m_tag != Collision_Tag::ENEMY)return;
-	m_player->m_Gauge.up(10);
+	m_player->m_Gauge->up(10);
 	
-	if (m_player->m_specialskill.isStart(SPECIALSKILL_TYPE::RECOVERY))
+	if (m_player->m_specialskill->isStart(SPECIALSKILL_TYPE::RECOVERY))
 	{
 		m_player->m_status.add();
 	}

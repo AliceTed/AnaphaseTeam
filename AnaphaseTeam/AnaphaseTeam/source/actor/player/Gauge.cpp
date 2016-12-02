@@ -87,3 +87,8 @@ void Gauge::add(float _point)
 	m_gauge = clamp(m_gauge + _point, 0.0f, static_cast<float>(RankGauge::MAX));
 	
 }
+
+float Gauge::getGauge()
+{
+	return m_gauge;
+}

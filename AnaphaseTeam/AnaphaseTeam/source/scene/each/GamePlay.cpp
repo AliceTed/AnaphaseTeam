@@ -4,6 +4,7 @@
 #include "../../../header/renderer/define/SkyBoxRenderDesc.h"
 #include "../../../header/device/GameDevice.h"
 #include "../../../header/math/Random.h"
+#include "../../../header/ui/UIManager.h"
 GamePlay::GamePlay()
 	:m_Map(OCTREE_ID::ARENA),
 	m_Camera(),
@@ -33,6 +34,7 @@ void GamePlay::initialize()
 	}
 
 	m_lockon.addPlayer(&m_player);
+	UIManager::getInstance();
 }
 
 void GamePlay::update(float deltaTime)
@@ -46,6 +48,7 @@ void GamePlay::update(float deltaTime)
 	m_enemys.update(deltaTime);
 	m_enemys.collision(m_player);
 	m_cameracontroller.update(deltaTime);
+	
 	for (int i = 0; i < 2- m_enemys.size(); i++)
 	{
 		Math::Random rnd;
@@ -57,6 +60,7 @@ void GamePlay::update(float deltaTime)
 	{
 		m_change.end(SceneMode::ENDING);
 	}
+	UIManager::getInstance().update(deltaTime);
 }
 
 void GamePlay::draw(IRenderer * _renderer)
@@ -71,10 +75,12 @@ void GamePlay::draw(IRenderer * _renderer)
 	m_enemys.draw(_renderer);
 	m_player.draw(_renderer);	
 	m_change.draw(_renderer);
+	UIManager::getInstance().draw(_renderer);
 }
 
 void GamePlay::finish()
 {
+	m_player.finish();
 }
 
 const SceneMode GamePlay::next() const
