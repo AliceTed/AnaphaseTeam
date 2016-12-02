@@ -13,9 +13,9 @@ GamePlay::GamePlay()
 	m_change(),
 	m_lockon(),
 	m_player(&m_Camera, &m_lockon),
-	test1(GSvector2(500, 300), TEXTURE_ID::SPECIAL_ATTACK,MYANIMATION_ID::SPECIAL_ATTACK,GScolor(1,0,0,1)),
-	test2(GSvector2(500, 300), TEXTURE_ID::SPECIAL_SUPERARMOR,MYANIMATION_ID::SPECIAL_SUPERARMOR, GScolor(1, 0, 0, 1)),
-	test3(GSvector2(500, 300), TEXTURE_ID::SPECIAL_RECOVERY,MYANIMATION_ID::SPECIAL_RECOVERY, GScolor(1, 0, 0, 1))
+	test1(TEXTURE_ID::SPECIAL_ATTACK,MYANIMATION_ID::SPECIAL_ATTACK,GScolor(1,0,0,1)),
+	test2( TEXTURE_ID::SPECIAL_SUPERARMOR,MYANIMATION_ID::SPECIAL_SUPERARMOR, GScolor(1, 0, 0, 1)),
+	test3(TEXTURE_ID::SPECIAL_RECOVERY,MYANIMATION_ID::SPECIAL_RECOVERY, GScolor(1, 0, 0, 1))
 {
 }
 GamePlay::~GamePlay()
@@ -92,9 +92,9 @@ void GamePlay::draw(IRenderer * _renderer)
 	m_player.draw(_renderer);	
 	m_change.draw(_renderer);
 
-	test1.draw(_renderer);
-	test2.draw(_renderer);
-	test3.draw(_renderer);
+	test1.draw(_renderer, GSvector2(500, 300));
+	test2.draw(_renderer,GSvector2(500, 300));
+	test3.draw(_renderer, GSvector2(500, 300));
 
 	SpriteRenderDesc s;
 	s.matrix.translate(GSvector2(460, 265));
