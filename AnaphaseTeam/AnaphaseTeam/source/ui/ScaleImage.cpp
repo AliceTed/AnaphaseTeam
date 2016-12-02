@@ -23,23 +23,45 @@ void ScaleImage::moveStart(const GSvector2 & _end, float _time)
 }
 void ScaleImage::update(float deltaTime)
 {
+	scroll();
 	m_scaleLerp.update(deltaTime);
 	m_moveLerp.update(deltaTime);
 }
 
 void ScaleImage::draw(IRenderer * _renderer)
 {
-	GSvector2 scale = m_scaleLerp.current();
-	GSvector2 pos = m_moveLerp.current();
-	if (!m_isPexis)
-	{
-		pos -= getSizeMarge(scale)*0.5f;
-	}
 	SpriteRenderDesc desc;
-	desc.matrix.scale(scale);
-	desc.matrix.translate(pos);
-	desc.textureID = static_cast<GSuint>(m_id);
+	if (!scroll()) {
+		GSvector2 scale = m_scaleLerp.current();
+		GSvector2 pos = m_moveLerp.current();
+		if (!m_isPexis)
+		{
+			pos -= getSizeMarge(scale)*0.5f;
+		}
+		desc.matrix.scale(scale);
+		desc.matrix.translate(pos);
+	}
+
+	if (scroll())
+	{
+		desc.matrix.translate(m_position);
+		desc.textureID = static_cast<GSuint>(m_id);
+	}
 	_renderer->render(desc);
+}
+bool ScaleImage::scroll()
+{
+	if (m_position.x < 0)
+	{
+		m_position.x ++;
+		return true;
+	}
+
+	//if (m_position.x >= -180)
+	//{
+	//	m_position.x = 180;
+	//}
+	return false;
 }
 const GSvector2 ScaleImage::getTextureSize() const
 {

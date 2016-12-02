@@ -16,21 +16,21 @@ TitleUI::~TitleUI()
 
 void TitleUI::initialize()
 {
+	m_scroll = -70.0f;
 	createSelect();
 	m_fade.initialize();
 	m_fade.start(GScolor(1.0f, 1.0f, 1.0f, 1.0f), GScolor(1.0f, 1.0f, 1.0f, 1.0f), 0);
-	m_scroll = -170.0f;
 }
 
 void TitleUI::update(float deltaTime)
 {
-	scroll();
 	m_select.update(deltaTime);
 	m_fade.update(deltaTime);
 }
 
 void TitleUI::draw(IRenderer* _renderer)
 {
+	
 	m_fade.draw(_renderer);
 	m_select.draw(_renderer);
 }
@@ -67,6 +67,7 @@ void TitleUI::scroll()
 	{
 		m_scroll = 180;
 	}
+	
 }
 void TitleUI::createSelect()
 {
@@ -91,6 +92,7 @@ void TitleUI::createSelect()
 		GSvector2 position(base + marge*i);
 		ScaleImage image(id[i], position, false);
 		m_select.add(select[i], image);
+		
 	}
 	m_select.startChange();
 }
