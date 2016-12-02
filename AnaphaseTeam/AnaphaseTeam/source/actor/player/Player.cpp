@@ -219,7 +219,7 @@ void Player::look_at(CameraController * _camera, GSvector3 * _target)
 	m_camera->lookAt_cameraTarget_enemy(*_target);
 
 	//by —L•y
-	/*distance = target.distance(*_target);
+	distance = target.distance(*_target);
 	if (distance < 10)
 	{
 		_camera->change_cameraWork(E_CameraWorkID::LOCK_ON);
@@ -227,8 +227,7 @@ void Player::look_at(CameraController * _camera, GSvector3 * _target)
 	else
 	{
 		_camera->change_cameraWork(E_CameraWorkID::NORMAL);
-	}*/
-	_camera->change_cameraWork(E_CameraWorkID::LOCK_ON);
+	}
 }
 void Player::createStates()
 {
