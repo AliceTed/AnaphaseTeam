@@ -633,9 +633,6 @@
     <ClInclude Include="header\data\release\DeleteModel.h">
       <Filter>ヘッダー ファイル\data\release</Filter>
     </ClInclude>
-    <ClInclude Include="header\data\release\DataAllRelease.h">
-      <Filter>ヘッダー ファイル\data\release</Filter>
-    </ClInclude>
     <ClInclude Include="header\collision\SpecialAttackCollision.h">
       <Filter>ヘッダー ファイル\collision</Filter>
     </ClInclude>
@@ -961,9 +958,6 @@
     </ClCompile>
     <ClCompile Include="source\renderer\Renderer.cpp">
       <Filter>ソース ファイル\renderer</Filter>
-    </ClCompile>
-    <ClCompile Include="source\data\release\DataAllRelease.cpp">
-      <Filter>ソース ファイル\data\release</Filter>
     </ClCompile>
     <ClCompile Include="source\data\loader\SoundLoader.cpp">
       <Filter>ソース ファイル\data\loader</Filter>

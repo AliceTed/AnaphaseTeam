@@ -183,8 +183,8 @@
     <ClCompile Include="source\data\loader\SoundLoader.cpp" />
     <ClCompile Include="source\data\loader\TextureLoader.cpp" />
     <ClCompile Include="source\data\Message.cpp" />
+    <ClCompile Include="source\data\release\DataDelete.cpp" />
     <ClCompile Include="source\data\release\DeleteModel.cpp" />
-    <ClCompile Include="source\data\release\DataAllRelease.cpp" />
     <ClCompile Include="source\data\stream\AttackConverter.cpp" />
     <ClCompile Include="source\data\stream\AttackReader.cpp" />
     <ClCompile Include="source\data\stream\DataReader.cpp" />
@@ -297,9 +297,9 @@
     <ClInclude Include="header\data\loader\SoundLoader.h" />
     <ClInclude Include="header\data\loader\TextureLoader.h" />
     <ClInclude Include="header\data\Message.h" />
+    <ClInclude Include="header\data\release\DataDelete.h" />
     <ClInclude Include="header\data\release\DataRelease.h" />
     <ClInclude Include="header\data\release\DeleteModel.h" />
-    <ClInclude Include="header\data\release\DataAllRelease.h" />
     <ClInclude Include="header\data\stream\AttackConverter.h" />
     <ClInclude Include="header\data\stream\AttackReader.h" />
     <ClInclude Include="header\data\stream\DataReader.h" />
