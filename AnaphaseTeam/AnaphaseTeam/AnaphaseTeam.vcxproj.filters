@@ -696,9 +696,6 @@
     <ClInclude Include="header\data\stream\LoadMyAnimation.h">
       <Filter>ヘッダー ファイル\data\stream</Filter>
     </ClInclude>
-    <ClInclude Include="header\data\stream\Convert.h">
-      <Filter>ヘッダー ファイル\data\stream</Filter>
-    </ClInclude>
     <ClInclude Include="header\data\loader\MyAnimationLoader.h">
       <Filter>ヘッダー ファイル\data\loader</Filter>
     </ClInclude>
@@ -713,6 +710,9 @@
     </ClInclude>
     <ClInclude Include="header\myanimation\MyAnimationFunc.h">
       <Filter>ヘッダー ファイル\myanimation</Filter>
+    </ClInclude>
+    <ClInclude Include="header\data\stream\TimeKeyFrameConvert.h">
+      <Filter>ヘッダー ファイル\data\stream</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -1034,9 +1034,6 @@
     <ClCompile Include="source\data\stream\LoadMyAnimation.cpp">
       <Filter>ソース ファイル\data\stream</Filter>
     </ClCompile>
-    <ClCompile Include="source\data\stream\Convert.cpp">
-      <Filter>ソース ファイル\data\stream</Filter>
-    </ClCompile>
     <ClCompile Include="source\data\loader\MyAnimationLoader.cpp">
       <Filter>ソース ファイル\data\loader</Filter>
     </ClCompile>
@@ -1045,6 +1042,9 @@
     </ClCompile>
     <ClCompile Include="source\myanimation\MyAnimationFunc.cpp">
       <Filter>ソース ファイル\myanimation</Filter>
+    </ClCompile>
+    <ClCompile Include="source\data\stream\TimeKeyFrameConvert.cpp">
+      <Filter>ソース ファイル\data\stream</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
