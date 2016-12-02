@@ -5,6 +5,7 @@
 #include "../header/scene/each/Opening.h"
 #include "../header/scene/each/Option.h"
 #include "../header/scene/each/Title.h"
+#include "../header/scene/each/Menu.h"
 #include "../header/scene/each/GamePlay.h"
 #include "../header/scene/each/Ending.h"
 #include "../header/scene/each/GameClear.h"
@@ -48,6 +49,7 @@ private:
 		std::shared_ptr<IScene>load = std::make_shared<Load>();
 		std::shared_ptr<IScene>opening= std::make_shared<Opening>();
 		std::shared_ptr<IScene>title = std::make_shared<Title>();
+		std::shared_ptr<IScene>menu = std::make_shared<Menu>();
 		std::shared_ptr<IScene>option = std::make_shared<Option>();
 		std::shared_ptr<IScene>gameplay = std::make_shared<GamePlay>();
 		std::shared_ptr<IScene>ending = std::make_shared<Ending>();
@@ -55,6 +57,7 @@ private:
 		m_SceneManager.add(SceneMode::LOAD, load);
 		m_SceneManager.add(SceneMode::OPENING, opening);
 		m_SceneManager.add(SceneMode::TITLE, title);
+		m_SceneManager.add(SceneMode::MENU, menu);
 		m_SceneManager.add(SceneMode::OPTION, option);
 		m_SceneManager.add(SceneMode::GAMEPLAY, gameplay);
 		m_SceneManager.add(SceneMode::ENDING, ending);

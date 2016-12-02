@@ -678,6 +678,9 @@
     <ClInclude Include="header\data\release\DataAllRelease.h">
       <Filter>ヘッダー ファイル\data\release</Filter>
     </ClInclude>
+    <ClInclude Include="header\scene\each\Menu.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="source\main.cpp">
@@ -985,6 +988,9 @@
     </ClCompile>
     <ClCompile Include="source\data\release\DataAllRelease.cpp">
       <Filter>ソース ファイル\data\release</Filter>
+    </ClCompile>
+    <ClCompile Include="source\scene\each\Menu.cpp">
+      <Filter>ソース ファイル</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

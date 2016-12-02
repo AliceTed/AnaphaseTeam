@@ -8,6 +8,7 @@ enum class TEXTURE_ID :unsigned int
 	BLACK,
 	EXIT,
 	GAMESTART,
+	PRESSKEY,
 	OPTION,
 	CURSOR,
 	TITLE_ROGO,

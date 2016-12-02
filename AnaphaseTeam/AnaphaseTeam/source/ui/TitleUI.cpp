@@ -1,10 +1,12 @@
 #include "../../header/ui/TitleUI.h"
 #include "../../header/scene/SceneChange.h"
 #include "../../header/scene/each/Title.h"
+#include "../../header/scene/each/Menu.h"
 #include "../../header/device/GameDevice.h"
 TitleUI::TitleUI()
 	:m_select(),
-	m_fade(TEXTURE_ID::TITLE_ROGO)
+	m_fade(TEXTURE_ID::TITLE_ROGO),
+	m_scroll(0.0f)
 {
 }
 
@@ -17,10 +19,12 @@ void TitleUI::initialize()
 	createSelect();
 	m_fade.initialize();
 	m_fade.start(GScolor(1.0f, 1.0f, 1.0f, 1.0f), GScolor(1.0f, 1.0f, 1.0f, 1.0f), 0);
+	m_scroll = -170.0f;
 }
 
 void TitleUI::update(float deltaTime)
 {
+	scroll();
 	m_select.update(deltaTime);
 	m_fade.update(deltaTime);
 }
@@ -35,7 +39,7 @@ void TitleUI::finish()
 {
 	m_select.initialize();
 }
-void TitleUI::operation(Title& _title)
+void TitleUI::operation(Menu& _menu)
 {
 	if (m_fade.isStart())
 	{
@@ -51,9 +55,17 @@ void TitleUI::operation(Title& _title)
 	}
 	if (GameDevice::getInstacnce().input()->jump())
 	{
-		_title.decision(m_select.currentSelect());
+		_menu.decision(m_select.currentSelect());
 		m_select.startMove();
 		m_fade.start(GScolor(1.0f, 1.0f, 1.0f, 1.0f), GScolor(1.0f, 1.0f, 1.0f, 0.0f), 1.3f);
+	}
+}
+void TitleUI::scroll()
+{
+	m_scroll++;
+	if (m_scroll >= 180)
+	{
+		m_scroll = 180;
 	}
 }
 void TitleUI::createSelect()
@@ -72,8 +84,8 @@ void TitleUI::createSelect()
 		TEXTURE_ID::OPTION,
 		TEXTURE_ID::EXIT
 	};
-	GSvector2 base(550, 500);
-	GSvector2 marge(0, 60);
+	GSvector2 base(m_scroll, 180);
+	GSvector2 marge(0, 80);
 	for (unsigned int i = 0; i < size; i++)
 	{
 		GSvector2 position(base + marge*i);

@@ -2,6 +2,8 @@
 #include "SelectUI.h"
 #include "Fade.h"
 class Title;
+class Menu;
+
 class TitleUI
 {
 public:
@@ -11,11 +13,13 @@ public:
 	void update(float deltaTime);
 	void draw(IRenderer* _renderer);
 	void finish();
-	void operation(Title& _title);
+	void operation(Menu& _menu);
+	void scroll();
 private:
 	void createSelect();
 private:
 	SelectUI m_select;
 	Fade m_fade;
+	float m_scroll;
 };
 
