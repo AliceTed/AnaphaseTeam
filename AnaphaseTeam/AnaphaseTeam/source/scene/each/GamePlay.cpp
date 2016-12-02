@@ -4,6 +4,7 @@
 #include "../../../header/renderer/define/SkyBoxRenderDesc.h"
 #include "../../../header/device/GameDevice.h"
 #include "../../../header/math/Random.h"
+
 GamePlay::GamePlay()
 	:m_Map(OCTREE_ID::ARENA),
 	m_Camera(),
@@ -11,7 +12,10 @@ GamePlay::GamePlay()
 	m_enemys(),
 	m_change(),
 	m_lockon(),
-	m_player(&m_Camera, &m_lockon)
+	m_player(&m_Camera, &m_lockon),
+	test1(GSvector2(500, 300), TEXTURE_ID::SPECIAL_ATTACK,MYANIMATION_ID::SPECIAL_ATTACK,GScolor(1,0,0,1)),
+	test2(GSvector2(500, 300), TEXTURE_ID::SPECIAL_SUPERARMOR,MYANIMATION_ID::SPECIAL_SUPERARMOR, GScolor(1, 0, 0, 1)),
+	test3(GSvector2(500, 300), TEXTURE_ID::SPECIAL_RECOVERY,MYANIMATION_ID::SPECIAL_RECOVERY, GScolor(1, 0, 0, 1))
 {
 }
 GamePlay::~GamePlay()
@@ -37,6 +41,18 @@ void GamePlay::initialize()
 
 void GamePlay::update(float deltaTime)
 {
+	if (gsGetKeyTrigger(GKEY_F))
+	{
+		test1.start();
+		test2.start();
+		test3.start();
+	}
+	if (gsGetKeyTrigger(GKEY_G))
+	{
+		test1.rev();
+		test2.rev();
+		test3.rev();
+	}
 	m_player.collisionGround(m_Map);
 	m_enemys.collisionGround(m_Map);
 	m_change.update(deltaTime);
@@ -57,8 +73,12 @@ void GamePlay::update(float deltaTime)
 	{
 		m_change.end(SceneMode::ENDING);
 	}
-}
 
+	test1.update(deltaTime);
+	test2.update(deltaTime);
+	test3.update(deltaTime);
+}
+#include "../../../header/renderer/define/SpriteRenderDesc.h"
 void GamePlay::draw(IRenderer * _renderer)
 {
 	SkyBoxRenderDesc desc;
@@ -71,6 +91,15 @@ void GamePlay::draw(IRenderer * _renderer)
 	m_enemys.draw(_renderer);
 	m_player.draw(_renderer);	
 	m_change.draw(_renderer);
+
+	test1.draw(_renderer);
+	test2.draw(_renderer);
+	test3.draw(_renderer);
+
+	SpriteRenderDesc s;
+	s.matrix.translate(GSvector2(460, 265));
+	s.textureID = static_cast<GSuint>(TEXTURE_ID::SPECIAL_MAIN);
+	_renderer->render(s);
 }
 
 void GamePlay::finish()

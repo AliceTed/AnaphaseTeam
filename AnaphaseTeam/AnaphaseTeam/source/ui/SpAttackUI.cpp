@@ -5,7 +5,7 @@
 #include "../../header/device/GameDevice.h"
 
 SpAttackUI::SpAttackUI()
-	:m_ID(TEXTURE_ID::SP_UI)
+	:m_ID(TEXTURE_ID::SPECIAL_ATTACK)
 	,m_Time(0)
 	,m_scale(0.6,0.6)
 {}
@@ -16,7 +16,7 @@ SpAttackUI::~SpAttackUI()
 
 void SpAttackUI::initilize()
 {
-	m_ID = TEXTURE_ID::SP_UI;
+	m_ID = TEXTURE_ID::SPECIAL_ATTACK;
 	m_Time = 0;
 }
 
@@ -25,7 +25,7 @@ void SpAttackUI::update()
 	resetID();
 	if (GameDevice::getInstacnce().input()->specialSkillMode())
 	{
-		if (m_ID == TEXTURE_ID::SP_UI)
+		if (m_ID == TEXTURE_ID::SPECIAL_ATTACK)
 		{
 			m_scale = GSvector2(1, 1);
 		}
@@ -53,12 +53,12 @@ void SpAttackUI::spChange(TEXTURE_ID _ID)
 
 void SpAttackUI::resetID()
 {
-	if (m_ID != TEXTURE_ID::SP_UI)
+	if (m_ID != TEXTURE_ID::SPECIAL_ATTACK)
 	{
 		m_Time++;
 		if (m_Time > 60)
 		{
-			m_ID = TEXTURE_ID::SP_UI;
+			m_ID = TEXTURE_ID::SPECIAL_ATTACK;
 			m_Time = 0;
 		}
 	}

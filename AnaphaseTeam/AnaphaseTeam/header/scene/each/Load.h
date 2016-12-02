@@ -18,6 +18,7 @@ private:
 	void loadTextrue();
 	void loadSound();
 	void loadModel();
+	void loadMyAnimation();
 private:
 	bool m_IsEnd;
 };

@@ -14,7 +14,7 @@
 #include "../../camera/CameraController.h"
 #include "../SceneChange.h"
 #include "../../actor/Enemy/EnemyManager.h"
-
+#include "../../ui/SkillUI.h"
 typedef std::shared_ptr<Actor>Actor_Ptr;
 class GamePlay :public IScene
 {
@@ -37,6 +37,8 @@ private:
 	Player m_player;
 	EnemyManager m_enemys;
 	LockOn m_lockon;
-
+	SkillUI test1;
+	SkillUI test2;
+	SkillUI test3;
 };
 #endif

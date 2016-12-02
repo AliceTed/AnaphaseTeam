@@ -193,6 +193,12 @@
     <Filter Include="ソース ファイル\specialskill">
       <UniqueIdentifier>{b54e2d1f-ac6c-4d08-8e69-60a38e673578}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ヘッダー ファイル\myanimation">
+      <UniqueIdentifier>{6256515c-6174-4da4-83e4-36aae37e571d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\myanimation">
+      <UniqueIdentifier>{1fa01639-dbe1-4daa-941e-ad60a072249f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="header\math\Calculate.h">
@@ -672,8 +678,41 @@
     <ClInclude Include="header\state\player\SpecialAttackState.h">
       <Filter>ヘッダー ファイル\state\player</Filter>
     </ClInclude>
-    <ClInclude Include="header\data\release\DataDelete.h">
-      <Filter>ヘッダー ファイル</Filter>
+    <ClInclude Include="header\ui\SpecialSkillUI.h">
+      <Filter>ヘッダー ファイル\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="header\ui\SkillUI.h">
+      <Filter>ヘッダー ファイル\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="header\myanimation\MyAnimation.h">
+      <Filter>ヘッダー ファイル\myanimation</Filter>
+    </ClInclude>
+    <ClInclude Include="header\myanimation\TimeKeyFrame.h">
+      <Filter>ヘッダー ファイル\myanimation</Filter>
+    </ClInclude>
+    <ClInclude Include="header\math\TargetLerp.h">
+      <Filter>ヘッダー ファイル\math</Filter>
+    </ClInclude>
+    <ClInclude Include="header\data\stream\LoadMyAnimation.h">
+      <Filter>ヘッダー ファイル\data\stream</Filter>
+    </ClInclude>
+    <ClInclude Include="header\data\stream\Convert.h">
+      <Filter>ヘッダー ファイル\data\stream</Filter>
+    </ClInclude>
+    <ClInclude Include="header\data\loader\MyAnimationLoader.h">
+      <Filter>ヘッダー ファイル\data\loader</Filter>
+    </ClInclude>
+    <ClInclude Include="header\myanimation\MyAnimationContainer.h">
+      <Filter>ヘッダー ファイル\myanimation</Filter>
+    </ClInclude>
+    <ClInclude Include="header\myanimation\MYANIMATION_MODE.h">
+      <Filter>ヘッダー ファイル\myanimation</Filter>
+    </ClInclude>
+    <ClInclude Include="header\data\id\MYANIMATION_ID.h">
+      <Filter>ヘッダー ファイル\data\id</Filter>
+    </ClInclude>
+    <ClInclude Include="header\myanimation\MyAnimationFunc.h">
+      <Filter>ヘッダー ファイル\myanimation</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -982,6 +1021,30 @@
     </ClCompile>
     <ClCompile Include="source\data\release\DataAllRelease.cpp">
       <Filter>ソース ファイル\data\release</Filter>
+    </ClCompile>
+    <ClCompile Include="source\myanimation\MyAnimation.cpp">
+      <Filter>ソース ファイル\myanimation</Filter>
+    </ClCompile>
+    <ClCompile Include="source\myanimation\TimeKeyFrame.cpp">
+      <Filter>ソース ファイル\myanimation</Filter>
+    </ClCompile>
+    <ClCompile Include="source\ui\SkillUI.cpp">
+      <Filter>ソース ファイル\ui</Filter>
+    </ClCompile>
+    <ClCompile Include="source\data\stream\LoadMyAnimation.cpp">
+      <Filter>ソース ファイル\data\stream</Filter>
+    </ClCompile>
+    <ClCompile Include="source\data\stream\Convert.cpp">
+      <Filter>ソース ファイル\data\stream</Filter>
+    </ClCompile>
+    <ClCompile Include="source\data\loader\MyAnimationLoader.cpp">
+      <Filter>ソース ファイル\data\loader</Filter>
+    </ClCompile>
+    <ClCompile Include="source\myanimation\MyAnimationContainer.cpp">
+      <Filter>ソース ファイル\myanimation</Filter>
+    </ClCompile>
+    <ClCompile Include="source\myanimation\MyAnimationFunc.cpp">
+      <Filter>ソース ファイル\myanimation</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
