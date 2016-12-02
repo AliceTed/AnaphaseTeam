@@ -96,9 +96,9 @@ void Player::draw(IRenderer *_renderer)
 	_renderer->render(back);
 
 	SpriteRectRenderDesc front;
-	front.textureID = static_cast<GSuint>(TEXTURE_ID::CLEAR);
+	front.textureID = static_cast<GSuint>(TEXTURE_ID::WHITE);
 	front.matrix = mat;
-	front.srcRect = GSrect(0,0, m_status.getHp(), 30);
+	front.srcRect = GSrect(0,0, m_status.getHp() * 10, 30);
 	front.color = GScolor(0.0f, 1.0f, 0.0f, 1.0f);
 	_renderer->render(front);
 	m_SpecialSkillManager.draw(_renderer);

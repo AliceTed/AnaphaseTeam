@@ -29,7 +29,7 @@ void Gauge::draw(IRenderer * _renderer)
 	_renderer->render(back);
 	
 	SpriteRectRenderDesc front;
-	front.textureID = static_cast<GSuint>(TEXTURE_ID::CLEAR);
+	front.textureID = static_cast<GSuint>(TEXTURE_ID::WHITE);
 	front.matrix.translate(0, 50, 0);
 	front.srcRect = GSrect(0,0, m_gauge, 30);
 	front.color = GScolor(1.0f, 1.0f, 0.0f, 1.0f);
