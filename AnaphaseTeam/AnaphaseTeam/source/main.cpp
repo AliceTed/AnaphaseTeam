@@ -13,7 +13,7 @@
 #include "../header/renderer/Renderer.h"
 #include "../header/device/GameDevice.h"
 
-#include"../header/data/release/DataAllRelease.h"
+#include"../header/data/release/DataDelete.h"
 #include "../header/renderer/define/ViewportDesc.h"
 class MyGame : public gslib::Game
 {
@@ -75,7 +75,7 @@ private:
 	// èIóπ
 	virtual void end() override
 	{
-		DataAllRelease release;
+		DataDelete release;
 		release();
 	}
 private:

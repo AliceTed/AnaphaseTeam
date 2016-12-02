@@ -648,9 +648,6 @@
     <ClInclude Include="header\data\release\DeleteModel.h">
       <Filter>ヘッダー ファイル\data\release</Filter>
     </ClInclude>
-    <ClInclude Include="header\data\release\DataAllRelease.h">
-      <Filter>ヘッダー ファイル\data\release</Filter>
-    </ClInclude>
     <ClInclude Include="header\collision\SpecialAttackCollision.h">
       <Filter>ヘッダー ファイル\collision</Filter>
     </ClInclude>
@@ -668,6 +665,9 @@
     </ClInclude>
     <ClInclude Include="header\renderer\define\OctreeRenderDesc.h">
       <Filter>ヘッダー ファイル\renderer\define</Filter>
+    </ClInclude>
+    <ClInclude Include="header\data\release\DataDelete.h">
+      <Filter>ヘッダー ファイル\data\release</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -968,11 +968,11 @@
     <ClCompile Include="source\renderer\Renderer.cpp">
       <Filter>ソース ファイル\renderer</Filter>
     </ClCompile>
-    <ClCompile Include="source\data\release\DataAllRelease.cpp">
-      <Filter>ソース ファイル\data\release</Filter>
-    </ClCompile>
     <ClCompile Include="source\data\loader\SoundLoader.cpp">
       <Filter>ソース ファイル\data\loader</Filter>
+    </ClCompile>
+    <ClCompile Include="source\data\release\DataDelete.cpp">
+      <Filter>ソース ファイル\data\release</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
