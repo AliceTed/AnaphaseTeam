@@ -675,6 +675,9 @@
     <ClInclude Include="header\data\release\DataDelete.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
+    <ClInclude Include="header\data\release\DataAllRelease.h">
+      <Filter>ヘッダー ファイル\data\release</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="source\main.cpp">
