@@ -183,6 +183,7 @@
     <ClCompile Include="source\data\loader\SoundLoader.cpp" />
     <ClCompile Include="source\data\loader\TextureLoader.cpp" />
     <ClCompile Include="source\data\Message.cpp" />
+    <ClCompile Include="source\data\release\DataAllRelease.cpp" />
     <ClCompile Include="source\data\release\DeleteModel.cpp" />
     <ClCompile Include="source\data\stream\AttackConverter.cpp" />
     <ClCompile Include="source\data\stream\AttackReader.cpp" />

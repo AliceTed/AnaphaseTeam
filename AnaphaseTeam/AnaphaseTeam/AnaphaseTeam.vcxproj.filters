@@ -980,5 +980,8 @@
     <ClCompile Include="source\state\player\SpecialAttackState.cpp">
       <Filter>ソース ファイル\state\player</Filter>
     </ClCompile>
+    <ClCompile Include="source\data\release\DataAllRelease.cpp">
+      <Filter>ソース ファイル\data\release</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>
