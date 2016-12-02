@@ -47,7 +47,8 @@ Player::Player(Camera * _camera, LockOn* _lockon)
 	m_lockon(_lockon),
 	m_scythe(),
 	m_specialskill(&m_Gauge),
-	target(0, 0, 0)
+	target(0, 0, 0),
+	m_specialUI(GSvector2(1100,50))
 {
 }
 
@@ -70,6 +71,7 @@ void Player::initialize()
 	m_specialskill.add(SPECIALSKILL_TYPE::RECOVERY, new Recovery());
 	m_specialskill.add(SPECIALSKILL_TYPE::SPECIALLATTACK, new SpecialAttack(this));
 	m_specialskill.add(SPECIALSKILL_TYPE::SUPERARMOR, new SuperArmor());
+	m_specialUI.initialize();
 }
 
 void Player::update(float deltatime)
@@ -86,6 +88,7 @@ void Player::update(float deltatime)
 	{
 		m_collision.clear();
 	}
+	m_specialUI.update(deltatime);
 }
 
 void Player::draw(IRenderer *_renderer)
@@ -112,6 +115,7 @@ void Player::draw(IRenderer *_renderer)
 	front.color = GScolor(0.0f, 1.0f, 0.0f, 1.0f);
 	_renderer->render(front);
 	m_specialskill.draw(_renderer);
+	m_specialUI.draw(_renderer);
 }
 AttackStatus Player::status()
 {
@@ -170,20 +174,25 @@ void Player::control()
 {
 	if (GameDevice::getInstacnce().input()->specialSkillMode())
 	{
+		m_specialUI.open();
 		if (GameDevice::getInstacnce().input()->gaugeAttack1())
 		{
 			m_specialskill.start(SPECIALSKILL_TYPE::RECOVERY);
+			m_specialUI.select(SPECIALSKILL_TYPE::RECOVERY);
 		}
 		if (GameDevice::getInstacnce().input()->gaugeAttack2())
 		{
 			m_specialskill.start(SPECIALSKILL_TYPE::SUPERARMOR);
+			m_specialUI.select(SPECIALSKILL_TYPE::SUPERARMOR);
 		}
 		if (GameDevice::getInstacnce().input()->gaugeAttack3())
 		{
 			m_specialskill.start(SPECIALSKILL_TYPE::SPECIALLATTACK);
+			m_specialUI.select(SPECIALSKILL_TYPE::SPECIALLATTACK);
 		}
 		return;
 	}
+	m_specialUI.close();
 	/*ƒ{ƒ^ƒ“‰Ÿ‚µ‚½‚çAttackState‚ÉØ‚è‘Ö‚í‚é*/
 	if (GameDevice::getInstacnce().input()->quickAttackTrigger())
 	{

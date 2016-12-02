@@ -12,7 +12,7 @@
 #include "../../attack/Scythe.h"
 #include "Gauge.h"
 #include "../../specialskill/SpecialSkillManager.h"
-
+#include "../../ui/SpecialSkillUI.h"
 class CameraController;
 class LockOn;
 class Enemy;
@@ -48,7 +48,7 @@ private:
 	LockOn* m_lockon;
 	Scythe m_scythe;
 	SpecialSkillManager m_specialskill;
-
+	SpecialSkillUI m_specialUI;
 	GSvector3 target;
 private://stateêÈåæ
 	class AttackState;

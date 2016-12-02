@@ -25,7 +25,7 @@ const bool LoadMyAnimation::operator()(unsigned int _id, const std::string& _fil
 		}
 		animation->add(key);
 	}
-	MyAnimationContainer::getInstance().add(animation);
+	MyAnimationContainer::getInstance().add(_id,animation);
 	data.clear();
 	return true;
 }

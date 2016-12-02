@@ -510,9 +510,6 @@
     <ClInclude Include="header\camera\CameraWork\I_CameraWork.h">
       <Filter>ヘッダー ファイル\camera</Filter>
     </ClInclude>
-    <ClInclude Include="header\ui\SpAttackUI.h">
-      <Filter>ヘッダー ファイル\camera</Filter>
-    </ClInclude>
     <ClInclude Include="header\data\id\ANIMATION_ID.h">
       <Filter>ヘッダー ファイル\data\id</Filter>
     </ClInclude>
@@ -965,9 +962,6 @@
     <ClCompile Include="source\scene\each\GameClear.cpp">
       <Filter>ソース ファイル\scene\each</Filter>
     </ClCompile>
-    <ClCompile Include="source\ui\SpAttackUI.cpp">
-      <Filter>ソース ファイル\ui</Filter>
-    </ClCompile>
     <ClCompile Include="source\data\Message.cpp">
       <Filter>ソース ファイル\data</Filter>
     </ClCompile>
@@ -1045,6 +1039,9 @@
     </ClCompile>
     <ClCompile Include="source\data\stream\TimeKeyFrameConvert.cpp">
       <Filter>ソース ファイル\data\stream</Filter>
+    </ClCompile>
+    <ClCompile Include="source\ui\SpecialSkillUI.cpp">
+      <Filter>ソース ファイル\ui</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

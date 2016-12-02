@@ -25,7 +25,6 @@ public:
 private:
 	float m_Current;
 	float m_End;
-
 	static const float FLAMETIME;
 };
 #endif

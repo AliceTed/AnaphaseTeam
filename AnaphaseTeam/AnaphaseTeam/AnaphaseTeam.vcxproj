@@ -250,7 +250,7 @@
     <ClCompile Include="source\ui\SelectUI.cpp" />
     <ClCompile Include="source\ui\SkillUI.cpp" />
     <ClCompile Include="source\ui\SlideImage.cpp" />
-    <ClCompile Include="source\ui\SpAttackUI.cpp" />
+    <ClCompile Include="source\ui\SpecialSkillUI.cpp" />
     <ClCompile Include="source\ui\TitleUI.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -421,7 +421,6 @@
     <ClInclude Include="header\ui\SelectUI.h" />
     <ClInclude Include="header\ui\SkillUI.h" />
     <ClInclude Include="header\ui\SlideImage.h" />
-    <ClInclude Include="header\ui\SpAttackUI.h" />
     <ClInclude Include="header\ui\SpecialSkillUI.h" />
     <ClInclude Include="header\ui\TitleUI.h" />
   </ItemGroup>
