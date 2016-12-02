@@ -46,8 +46,6 @@ private:
 protected:
 	Camera* m_camera;
 
-	int c;
-
 	std::unique_ptr<CWParameterReader>	m_paramater_def;
 
 	GSvector3							m_offset_target;

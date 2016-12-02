@@ -21,7 +21,6 @@ CameraController::CameraController(Camera* _camera) :
 }
 
 
-
 CameraController::CameraController(
 	Camera* _camera, 
 	const float _distance,
@@ -40,12 +39,12 @@ CameraController::CameraController(
 }
 
 
-
 void CameraController::update(float _deltaTime)
 {
+	battle_normal();
+
 	m_cameraWorkManager->update(_deltaTime);
 }
-
 
 
 void CameraController::draw(void)
@@ -56,15 +55,21 @@ void CameraController::draw(void)
 }
 
 
-
-
-void CameraController::change_control(Camera* _camera)
+void CameraController::battle_normal(void)
 {
-	m_camera = _camera;
+	GSvector3 player = m_camera->cameraTarget_player();
+	GSvector3 enemy = m_camera->cameraTarget_enemy();
+	float distance = enemy.distance(player);
 
-	return;
+	if (distance < 10)
+	{
+		change_cameraWork(E_CameraWorkID::LOCK_ON);
+	}
+	else
+	{
+		change_cameraWork(E_CameraWorkID::NORMAL);
+	}
 }
-
 
 
 void CameraController::change_cameraWork(const E_CameraWorkID _id)
