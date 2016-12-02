@@ -37,7 +37,7 @@ void CameraWorkNormal::draw_cameraWork(void)
 	m_rotate->y += velocity().x * m_speed_input;
 
 	m_camera->cameraWork_dolly(
-		(player + GSvector3(0, 1, 0)),
+		(player + m_offset_target),
 		(*m_rotate),
 		m_distance,
 		m_followSpeed_position,
