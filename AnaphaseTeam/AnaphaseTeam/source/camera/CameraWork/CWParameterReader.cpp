@@ -47,6 +47,7 @@ void CWParameterReader::read(const std::string _fileName)
 
 	if (reading_file.fail())
 	{
+
 		return;
 	}
 

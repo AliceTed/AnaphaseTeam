@@ -32,7 +32,6 @@ void CameraWorkLockOn::draw_cameraWork(void)
 {
 	m_camera->zoom(90.0f);
 
-	Math::Clamp clamp;
 	const GSvector3& player = m_camera->cameraTarget_player();
 	const GSvector3& enemy = m_camera->cameraTarget_enemy();
 	GSvector3 vector = enemy - player;
@@ -49,7 +48,7 @@ void CameraWorkLockOn::draw_cameraWork(void)
 	}
 
 	m_camera->cameraWork_dolly(
-		center,
+		(center + GSvector3(0, 1, 0)),
 		*m_rotate,
 		distance_p_c + m_distance,
 		m_followSpeed_position,
