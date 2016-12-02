@@ -672,6 +672,9 @@
     <ClInclude Include="header\state\player\SpecialAttackState.h">
       <Filter>ヘッダー ファイル\state\player</Filter>
     </ClInclude>
+    <ClInclude Include="header\data\release\DataDelete.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="source\main.cpp">
