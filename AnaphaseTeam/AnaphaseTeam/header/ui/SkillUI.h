@@ -19,6 +19,7 @@ public:
 	void initialize();
 	void open();
 	void close();
+	void canSelect();
 	void select();
 	void update(float deltaTime);
 	void draw(IRenderer* _renderer,const GSvector2& _pivot);

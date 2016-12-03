@@ -2,6 +2,7 @@
 #include <algorithm>
 #include "../../header/actor/Player/Gauge.h"
 #include "../../header/renderer/IRenderer.h"
+#include "../../header/ui/SpecialSkillUI.h"
 SpecialSkillManager::SpecialSkillManager(Gauge* _gauge)
 	:m_container(),m_current(),m_gauge(_gauge)
 {
@@ -58,6 +59,17 @@ void SpecialSkillManager::clear()
 {
 	m_container.clear();
 	m_current.clear();
+}
+
+void SpecialSkillManager::canSelectCheck(SpecialSkillUI * _skillUI) const
+{
+	for (auto& i:m_container)
+	{
+		if (m_gauge->isDown(i.second->consumption()))
+		{
+			_skillUI->canSelect(i.first);
+		}
+	}
 }
 
 void SpecialSkillManager::endRemove()

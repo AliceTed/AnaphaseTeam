@@ -13,6 +13,7 @@ public:
 	void add(SPECIALSKILL_TYPE _type, const SkillUI & _skill);
 	void open();
 	void close();
+	void canSelect(SPECIALSKILL_TYPE _type);
 	void select(SPECIALSKILL_TYPE _type);
 	void update(float deltaTime);
 	void draw(IRenderer* _renderer);

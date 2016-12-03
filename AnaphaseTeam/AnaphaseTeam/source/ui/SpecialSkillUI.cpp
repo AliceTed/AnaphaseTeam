@@ -38,6 +38,11 @@ void SpecialSkillUI::close()
 	for (auto& i : m_conatiner){i.second.close();}
 }
 
+void SpecialSkillUI::canSelect(SPECIALSKILL_TYPE _type)
+{
+	m_conatiner.at(_type).canSelect();
+}
+
 void SpecialSkillUI::select(SPECIALSKILL_TYPE _type)
 {
 	m_isSelect = true;
@@ -65,7 +70,8 @@ void SpecialSkillUI::draw(IRenderer * _renderer)
 		i.second.draw(_renderer,m_position);
 	}
 	SpriteRenderDesc s;
-	s.matrix.translate(m_position-GSvector2(40,35));
+	s.matrix.translate(m_position);
+	s.center =GSvector2(77,78);
 	s.textureID = static_cast<GSuint>(TEXTURE_ID::SPECIAL_MAIN);
 	_renderer->render(s);
 }

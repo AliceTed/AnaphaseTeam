@@ -48,7 +48,7 @@ Player::Player(Camera * _camera, LockOn* _lockon)
 	m_scythe(),
 	m_specialskill(&m_Gauge),
 	target(0, 0, 0),
-	m_specialUI(GSvector2(1100,50))
+	m_specialUI(GSvector2(1100,80))
 {
 }
 
@@ -175,6 +175,7 @@ void Player::control()
 	if (GameDevice::getInstacnce().input()->specialSkillMode())
 	{
 		m_specialUI.open();
+		m_specialskill.canSelectCheck(&m_specialUI);
 		if (GameDevice::getInstacnce().input()->gaugeAttack1())
 		{
 			m_specialskill.start(SPECIALSKILL_TYPE::RECOVERY);

@@ -30,6 +30,12 @@ void SkillUI::close()
 	startMyAnimation(static_cast<unsigned int>(m_animationID), &m_transform,MYANIMATION_MODE::REVERSE);
 }
 
+void SkillUI::canSelect()
+{
+	m_color = m_selectColor;
+	m_color.a = 0.5f;
+}
+
 void SkillUI::select()
 {
 	m_color = m_selectColor;
@@ -44,6 +50,7 @@ void SkillUI::draw(IRenderer * _renderer, const GSvector2 & _pivot)
 {
 	SpriteRenderDesc desc;
 	desc.matrix = m_transform.parent_synthesis(Transform({ 0,0,0 }, _pivot)).matrix();
+	desc.center=  GSvector2(44, 41);
 	desc.textureID = static_cast<GSuint>(m_textureID);
 	desc.color = m_color;
 	_renderer->render(desc);

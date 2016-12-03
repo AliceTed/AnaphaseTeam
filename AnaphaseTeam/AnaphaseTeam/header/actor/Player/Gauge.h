@@ -23,6 +23,8 @@ public:
 	void update(float deltatime);
 
 	float scale(float def);
+
+	const bool isDown(float _value)const;
 private:
 	void add(float _point);
 private:

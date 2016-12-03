@@ -4,6 +4,7 @@
 #include "SPECIALSKILL_TYPE.h"
 #include "ISpecialSkill.h"
 class Gauge;
+class SpecialSkillUI;
 class IRenderer;
 class SpecialSkillManager
 {
@@ -16,6 +17,8 @@ public:
 	void draw(IRenderer* _renderer);
 	const bool isStart(SPECIALSKILL_TYPE _type)const;
 	void clear();
+
+	void canSelectCheck(SpecialSkillUI* _skillUI)const;
 private:
 	void endRemove();
 private:
