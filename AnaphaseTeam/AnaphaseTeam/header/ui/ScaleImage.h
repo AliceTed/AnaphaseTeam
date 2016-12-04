@@ -12,7 +12,7 @@ public:
 	void moveStart(const GSvector2& _end, float _time);
 	void update(float deltaTime);
 	void draw(IRenderer* _renderer);
-	bool scroll();
+	void scroll();
 private:
 	const GSvector2 getTextureSize()const;
 	const GSvector2 getSizeMarge(const GSvector2& _scale)const;
@@ -22,4 +22,5 @@ private:
 	bool m_isPexis;
 	Math::TimeLerpVector<GSvector2> m_scaleLerp;
 	Math::TimeLerpVector<GSvector2> m_moveLerp;
+	bool m_a;
 };

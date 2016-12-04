@@ -5,8 +5,9 @@
 #include "../../header/device/GameDevice.h"
 TitleUI::TitleUI()
 	:m_select(),
-	m_fade(TEXTURE_ID::TITLE_ROGO),
-	m_scroll(0.0f)
+	m_fade(TEXTURE_ID::BLACK),
+	m_scroll(0)
+	//m_pos(0, 180)
 {
 }
 
@@ -16,7 +17,6 @@ TitleUI::~TitleUI()
 
 void TitleUI::initialize()
 {
-	m_scroll = -70.0f;
 	createSelect();
 	m_fade.initialize();
 	m_fade.start(GScolor(1.0f, 1.0f, 1.0f, 1.0f), GScolor(1.0f, 1.0f, 1.0f, 1.0f), 0);
@@ -30,7 +30,6 @@ void TitleUI::update(float deltaTime)
 
 void TitleUI::draw(IRenderer* _renderer)
 {
-	
 	m_fade.draw(_renderer);
 	m_select.draw(_renderer);
 }
@@ -60,15 +59,6 @@ void TitleUI::operation(Menu& _menu)
 		m_fade.start(GScolor(1.0f, 1.0f, 1.0f, 1.0f), GScolor(1.0f, 1.0f, 1.0f, 0.0f), 1.3f);
 	}
 }
-void TitleUI::scroll()
-{
-	m_scroll++;
-	if (m_scroll >= 180)
-	{
-		m_scroll = 180;
-	}
-	
-}
 void TitleUI::createSelect()
 {
 	m_select.initialize();
@@ -85,14 +75,15 @@ void TitleUI::createSelect()
 		TEXTURE_ID::OPTION,
 		TEXTURE_ID::EXIT
 	};
-	GSvector2 base(m_scroll, 180);
+	GSvector2 base(0, 180);
 	GSvector2 marge(0, 80);
 	for (unsigned int i = 0; i < size; i++)
 	{
 		GSvector2 position(base + marge*i);
 		ScaleImage image(id[i], position, false);
 		m_select.add(select[i], image);
-		
+
 	}
 	m_select.startChange();
+	
 }

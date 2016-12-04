@@ -20,6 +20,7 @@ void Title::initialize()
 	m_IsExit = false;
 	m_change.initialize();
 	m_change.begin();
+	m_title.initialize();
 }
 void Title::update(float _deltaTime)
 {
