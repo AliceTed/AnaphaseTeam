@@ -678,9 +678,6 @@
     <ClInclude Include="header\state\player\SpecialAttackState.h">
       <Filter>ヘッダー ファイル\state\player</Filter>
     </ClInclude>
-    <ClInclude Include="header\data\release\DataDelete.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
     <ClInclude Include="header\state\enemy\EAttackState.h">
       <Filter>ヘッダー ファイル\state\enemy</Filter>
     </ClInclude>
@@ -701,6 +698,21 @@
     </ClInclude>
     <ClInclude Include="header\state\enemy\EStandState.h">
       <Filter>ヘッダー ファイル\state\enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="header\ui\IPlayUI.h">
+      <Filter>ヘッダー ファイル\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="header\ui\HPGaugeUI.h">
+      <Filter>ヘッダー ファイル\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="header\ui\SPGaugeUI.h">
+      <Filter>ヘッダー ファイル\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="header\ui\UIManager.h">
+      <Filter>ヘッダー ファイル\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="header\data\release\DataAllRelease.h">
+      <Filter>ヘッダー ファイル\data\release</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -1030,6 +1042,15 @@
     </ClCompile>
     <ClCompile Include="source\state\enemy\EStandState.cpp">
       <Filter>ソース ファイル\state\enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="source\ui\HPGaugeUI.cpp">
+      <Filter>ソース ファイル\ui</Filter>
+    </ClCompile>
+    <ClCompile Include="source\ui\SPGaugeUI.cpp">
+      <Filter>ソース ファイル\ui</Filter>
+    </ClCompile>
+    <ClCompile Include="source\ui\UIManager.cpp">
+      <Filter>ソース ファイル\ui</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

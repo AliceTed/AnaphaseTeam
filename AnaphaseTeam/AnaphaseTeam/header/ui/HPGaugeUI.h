@@ -12,4 +12,5 @@ public:
 private:
 	Status& m_status;
 	float m_maxHelth;
+	static const float MAGNI;
 };

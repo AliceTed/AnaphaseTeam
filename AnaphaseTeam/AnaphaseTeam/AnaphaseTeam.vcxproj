@@ -308,7 +308,6 @@
     <ClInclude Include="header\data\loader\TextureLoader.h" />
     <ClInclude Include="header\data\Message.h" />
     <ClInclude Include="header\data\release\DataAllRelease.h" />
-    <ClInclude Include="header\data\release\DataDelete.h" />
     <ClInclude Include="header\data\release\DataRelease.h" />
     <ClInclude Include="header\data\release\DeleteModel.h" />
     <ClInclude Include="header\data\stream\AttackConverter.h" />

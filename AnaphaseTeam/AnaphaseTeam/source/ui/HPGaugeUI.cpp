@@ -4,7 +4,7 @@
 #include "../../header/data/id/TEXTURE_ID.h"
 #include "../../header/actor/Player/Status.h"
 
-static const float MAGNI = 10;
+const float HPGaugeUI::MAGNI = 10;
 
 HPGaugeUI::HPGaugeUI(Status& _status)
 	:m_status(_status)
