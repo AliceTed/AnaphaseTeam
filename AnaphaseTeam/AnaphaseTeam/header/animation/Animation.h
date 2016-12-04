@@ -28,11 +28,6 @@ public:
 	void initialize();
 	void update(float deltaTime);
 
-	/*
-	animatorができ次第ボーンのボーンのバインドをアニメータに移動
-	*/
-	//void bind(GSuint anim_id);
-	void bind()const;
 	void stop();
 	void start();
 	const bool getIsEnd()const;
