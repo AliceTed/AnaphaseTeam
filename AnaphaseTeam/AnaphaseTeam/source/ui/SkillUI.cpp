@@ -2,13 +2,15 @@
 #include "../../header/renderer/IRenderer.h"
 #include "../../header/renderer/define/SpriteRenderDesc.h"
 #include "../../header/myanimation/MyAnimationFunc.h"
-SkillUI::SkillUI(TEXTURE_ID _textureID, MYANIMATION_ID _animationID, const GScolor & _color)
+SkillUI::SkillUI(TEXTURE_ID _textureID, MYANIMATION_ID _popID, MYANIMATION_ID _backID, const GScolor & _color)
 	:m_textureID(_textureID),
-	m_animationID(_animationID),
-	m_color(1,1,1,1),
+	m_popID(_popID),
+	m_backID(_backID),
+	m_color(1, 1, 1, 1),
 	m_selectColor(_color),
 	m_transform(),
-	m_isOpen(false)
+	m_isOpen(false),
+	m_current(_popID)
 {
 }
 
@@ -21,13 +23,15 @@ void SkillUI::initialize()
 void SkillUI::open()
 {
 	m_isOpen = true;
-	startMyAnimation(static_cast<unsigned int>(m_animationID), &m_transform);
+	m_current = m_popID;
+	startMyAnimation(static_cast<unsigned int>(m_popID), &m_transform);
 }
 
 void SkillUI::close()
 {
 	m_isOpen = false;
-	startMyAnimation(static_cast<unsigned int>(m_animationID), &m_transform,MYANIMATION_MODE::REVERSE);
+	m_current = m_backID;
+	startMyAnimation(static_cast<unsigned int>(m_backID), &m_transform);
 }
 
 void SkillUI::canSelect()
@@ -43,7 +47,7 @@ void SkillUI::select()
 
 void SkillUI::update(float deltaTime)
 {
-	updateMyAnimation(static_cast<unsigned int>(m_animationID), deltaTime);
+	updateMyAnimation(static_cast<unsigned int>(m_current), deltaTime);
 }
 
 void SkillUI::draw(IRenderer * _renderer, const GSvector2 & _pivot)

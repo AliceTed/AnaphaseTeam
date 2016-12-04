@@ -111,7 +111,10 @@ void Load::loadModel()
 void Load::loadMyAnimation()
 {
 	MyAnimationLoader loader;
-	loader(MYANIMATION_ID::SPECIAL_ATTACK,"SpecialAttack_pop");
-	loader(MYANIMATION_ID::SPECIAL_SUPERARMOR, "SpecialsSuperArmor_pop");
-	loader(MYANIMATION_ID::SPECIAL_RECOVERY, "SpecialRecovery_pop");
+	loader(MYANIMATION_ID::SPECIAL_ATTACK_POP,"SpecialAttack_pop");
+	loader(MYANIMATION_ID::SPECIAL_SUPERARMOR_POP, "SpecialsSuperArmor_pop");
+	loader(MYANIMATION_ID::SPECIAL_RECOVERY_POP, "SpecialRecovery_pop");
+	loader(MYANIMATION_ID::SPECIAL_ATTACK_BACK, "SpecialAttack_back");
+	loader(MYANIMATION_ID::SPECIAL_SUPERARMOR_BACK, "SpecialsSuperArmor_back");
+	loader(MYANIMATION_ID::SPECIAL_RECOVERY_BACK, "SpecialRecovery_back");
 }
