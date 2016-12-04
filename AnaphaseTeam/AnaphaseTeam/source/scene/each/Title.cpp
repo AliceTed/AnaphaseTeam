@@ -6,7 +6,6 @@
 #include "../../../header/data/id/BGM_ID.h"
 Title::Title()
 	:m_IsExit(false),
-	m_title(),
 	m_change()
 {
 }
@@ -20,7 +19,6 @@ void Title::initialize()
 	m_IsExit = false;
 	m_change.initialize();
 	m_change.begin();
-	m_title.initialize();
 }
 void Title::update(float _deltaTime)
 {
@@ -52,7 +50,6 @@ void Title::finish()
 {
 	GameDevice::getInstacnce().sound().stopBGM(BGM_ID::TITLE);
 	GameDevice::getInstacnce().sound().stopSE(SE_ID::ENTER);
-	m_title.finish();
 }
 
 const SceneMode Title::next() const

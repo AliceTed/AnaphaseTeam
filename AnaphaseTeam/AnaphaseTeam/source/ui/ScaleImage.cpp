@@ -24,7 +24,6 @@ void ScaleImage::moveStart(const GSvector2 & _end, float _time)
 }
 void ScaleImage::update(float deltaTime)
 {
-	
 	if (!m_a)
 	{
 		scroll();
@@ -38,13 +37,12 @@ void ScaleImage::draw(IRenderer * _renderer)
 	SpriteRenderDesc desc;
 	GSvector2 scale = m_scaleLerp.current();
 	GSvector2 pos = m_moveLerp.current();
-	GSvector2 pod(180, 180);
-	pod = m_moveLerp.current();
-	//m_position = m_scaleLerp.current();
-	if (m_a) {
+	if (m_a) 
+	{
+		m_position = m_moveLerp.current() + GSvector2(180.0f, 0);
 		if (!m_isPexis)
 		{
-			m_position -= getSizeMarge(scale)*0.5f;
+			//m_position -= getSizeMarge(scale)*0.5f;
 			//pos  -= getSizeMarge(scale)*0.5f;
 			//pod -= getSizeMarge(scale)*0.5f;
 		}

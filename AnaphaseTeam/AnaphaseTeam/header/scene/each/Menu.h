@@ -10,7 +10,7 @@ public:
 	~Menu();
 	void initialize();
 	void update(float deltaTime);
-	void draw(IRenderer * renderer);
+	void draw(IRenderer * _renderer);
 	void finish();
 	const SceneMode next()const;
 	const bool isEnd()const;

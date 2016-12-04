@@ -19,7 +19,7 @@ void TitleUI::initialize()
 {
 	createSelect();
 	m_fade.initialize();
-	m_fade.start(GScolor(1.0f, 1.0f, 1.0f, 1.0f), GScolor(1.0f, 1.0f, 1.0f, 1.0f), 0);
+	//m_fade.start(GScolor(1.0f, 1.0f, 1.0f, 1.0f), GScolor(1.0f, 1.0f, 1.0f, 1.0f), 0);
 }
 
 void TitleUI::update(float deltaTime)

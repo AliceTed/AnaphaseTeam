@@ -2,6 +2,7 @@
 #include "../../../header/renderer/IRenderer.h"
 #include "../../../header/device/GameDevice.h"
 #include "../../../header/data/id/BGM_ID.h"
+#include "../../../header/renderer/define/SpriteRenderDesc.h"
 
 Menu::Menu()
 	:m_IsExit(false),
@@ -31,10 +32,10 @@ void Menu::update(float deltaTime)
 	m_menu.operation(*this);
 }
 
-void Menu::draw(IRenderer * renderer)
+void Menu::draw(IRenderer * _renderer)
 {
-	m_menu.draw(renderer);
-	m_change.draw(renderer);
+	m_menu.draw(_renderer);
+	m_change.draw(_renderer);
 }
 
 void Menu::finish()
