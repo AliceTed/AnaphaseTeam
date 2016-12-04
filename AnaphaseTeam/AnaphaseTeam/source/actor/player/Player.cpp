@@ -46,18 +46,17 @@ Player::Player(Camera * _camera, LockOn* _lockon)
 	m_combo(this),
 	m_camera(_camera),
 	m_status(),
-	m_Gauge(new Gauge()),
+	m_Gauge(std::shader<Gauge>(new Gauge())),
 	m_lockon(_lockon),
 	m_scythe(),
-	m_specialskill(new SpecialSkillManager(m_Gauge.get())),
-	target(0, 0, 0)
+	m_specialskill(m_Gauge.get()),
+	target(0, 0, 0),
+	m_specialUI(GSvector2(1100,80))
 {
 }
 
 Player::~Player()
-{
-	UIManager::getInstance().release(EUI::GAUGE);
-}
+{}
 void Player::initialize()
 {
 	Actor::initialize();
@@ -65,17 +64,17 @@ void Player::initialize()
 	changeState(ACTOR_STATE::STAND);
 	Collision_Ptr actor = std::make_shared<PlayerCollision>(this);
 	m_collision.add(actor);
-	m_Gauge->initialize();
+	m_Gauge.initialize();
 	m_status.initialize();
 	m_scythe.initialize();
 	target = m_transform.m_translate;
 	m_combo.initialize();
 
-	m_specialskill->clear();
-	m_specialskill->add(SPECIALSKILL_TYPE::RECOVERY, new Recovery());
-	m_specialskill->add(SPECIALSKILL_TYPE::SPECIALLATTACK, new SpecialAttack(this));
-	m_specialskill->add(SPECIALSKILL_TYPE::SUPERARMOR, new SuperArmor());
-
+	m_specialskill.clear();
+	m_specialskill.add(SPECIALSKILL_TYPE::RECOVERY, new Recovery());
+	m_specialskill.add(SPECIALSKILL_TYPE::SPECIALLATTACK, new SpecialAttack(this));
+	m_specialskill.add(SPECIALSKILL_TYPE::SUPERARMOR, new SuperArmor());
+	m_specialUI.initialize();
 
 	UIManager::getInstance().add(EUI::HP, std::shared_ptr<HPGaugeUI>(new HPGaugeUI(m_status)));
 	UIManager::getInstance().add(EUI::GAUGE, m_Gauge);
@@ -87,13 +86,16 @@ void Player::update(float deltatime)
 	action(deltatime);
 	m_animatorOne.update(deltatime);
 	m_scythe.update(deltatime, m_animatorOne, m_transform);
-	m_status.change(*m_Gauge);
+	m_status.change(m_Gauge);
+	m_specialskill.update(deltatime);
 
 	m_collision.update(deltatime);
+	m_Gauge.update(deltatime);
 	if (m_isDead = m_status.getHp() <= 0)
 	{
 		m_collision.clear();
 	}
+	m_specialUI.update(deltatime);
 }
 
 void Player::draw(IRenderer *_renderer)
@@ -102,17 +104,12 @@ void Player::draw(IRenderer *_renderer)
 	m_collision.draw(_renderer);
 	m_scythe.draw(_renderer);
 
-	GSmatrix4 mat;
-	mat.identity();
-	mat.translate(0, 10, 0);
 
-	SpriteRectRenderDesc back;
-	back.textureID = static_cast<GSuint>(TEXTURE_ID::BLACK);
-	back.matrix = mat;
-	back.srcRect = GSrect(0, 0, 1000, 30);
-	_renderer->render(back);
+
+
+	m_specialskill.draw(_renderer);
+	m_specialUI.draw(_renderer);
 }
-
 void Player::finish()
 {
 	UIManager::getInstance().release(EUI::SIZE);
@@ -121,6 +118,11 @@ void Player::finish()
 void Player::damage(const AttackStatus & _attackStatus)
 {
 	m_status.down(_attackStatus.m_power);
+}
+
+AttackStatus Player::status()
+{
+	return m_combo.getStatus();
 }
 void Player::jumping(float _velocity)
 {
@@ -138,7 +140,7 @@ void Player::subActionStart()
 
 	if (GameDevice::getInstacnce().input()->avoid())
 	{
-		if (m_Gauge->down(5))
+		if (m_Gauge.down(5))
 		{
 			changeState(ACTOR_STATE::STEP);
 
@@ -152,7 +154,7 @@ void Player::homing()
 	m_transform.m_rotate = targetDirection(*target);
 	float velocity = distanceActor(*target) / 5.0f;
 	Math::Clamp clamp;
-	velocity = clamp(m_Gauge->scale(velocity), 0.0f, distanceActor(*target) - 1.0f);
+	velocity = clamp(m_Gauge.scale(velocity), 0.0f, distanceActor(*target) - 1.0f);
 	this->target = m_transform.m_translate + (m_transform.front() * velocity);
 }
 
@@ -175,20 +177,26 @@ void Player::control()
 {
 	if (GameDevice::getInstacnce().input()->specialSkillMode())
 	{
+		m_specialUI.open();
+		m_specialskill.canSelectCheck(&m_specialUI);
 		if (GameDevice::getInstacnce().input()->gaugeAttack1())
 		{
-			m_specialskill->start(SPECIALSKILL_TYPE::RECOVERY);
+			m_specialskill.start(SPECIALSKILL_TYPE::RECOVERY);
+			m_specialUI.select(SPECIALSKILL_TYPE::RECOVERY);
 		}
 		if (GameDevice::getInstacnce().input()->gaugeAttack2())
 		{
-			m_specialskill->start(SPECIALSKILL_TYPE::SUPERARMOR);
+			m_specialskill.start(SPECIALSKILL_TYPE::SUPERARMOR);
+			m_specialUI.select(SPECIALSKILL_TYPE::SUPERARMOR);
 		}
 		if (GameDevice::getInstacnce().input()->gaugeAttack3())
 		{
-			m_specialskill->start(SPECIALSKILL_TYPE::SPECIALLATTACK);
+			m_specialskill.start(SPECIALSKILL_TYPE::SPECIALLATTACK);
+			m_specialUI.select(SPECIALSKILL_TYPE::SPECIALLATTACK);
 		}
 		return;
 	}
+	m_specialUI.close();
 	/*ƒ{ƒ^ƒ“‰Ÿ‚µ‚½‚çAttackState‚ÉØ‚è‘Ö‚í‚é*/
 	if (GameDevice::getInstacnce().input()->quickAttackTrigger())
 	{
@@ -256,5 +264,3 @@ void Player::movement(float deltaTime, float _speed)
 	GSvector3 forward(m_transform.front()*speed);
 	m_transform.translate(forward*deltaTime*_speed);
 }
-
-

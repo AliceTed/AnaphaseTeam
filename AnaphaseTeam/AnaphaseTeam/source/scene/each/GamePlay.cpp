@@ -39,6 +39,11 @@ void GamePlay::initialize()
 
 void GamePlay::update(float deltaTime)
 {
+	if (gsGetKeyTrigger(GKEY_F))
+	{
+		m_change.end(SceneMode::GAMEPLAY,0.1f);
+	}
+
 	m_player.collisionGround(m_Map);
 	m_enemys.collisionGround(m_Map);
 	m_change.update(deltaTime);

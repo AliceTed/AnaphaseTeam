@@ -48,11 +48,7 @@ void Gauge::up(float _scale)
 
 bool Gauge::down(float _scale)
 {
-	if (_scale > m_gauge)
-	{
-		return false;
-	}
-	if (static_cast<int>(m_gauge) != static_cast<int>(m_lerpmax))
+	if (!isDown(_scale))
 	{
 		return false;
 	}
@@ -81,11 +77,17 @@ float Gauge::scale(float def)
 	return log(m_lerpmax*0.01f + def);
 }
 
+const bool Gauge::isDown(float _value) const
+{
+	if (_value > m_gauge)return false;
+
+	return static_cast<int>(m_gauge) == static_cast<int>(m_lerpmax);
+}
+
 void Gauge::add(float _point)
 {
 	Math::Clamp clamp;
-	m_gauge = clamp(m_gauge + _point, 0.0f, static_cast<float>(RankGauge::MAX));
-	
+	m_gauge = clamp(m_gauge + _point, 0.0f, static_cast<float>(RankGauge::MAX));	
 }
 
 float Gauge::getGauge()

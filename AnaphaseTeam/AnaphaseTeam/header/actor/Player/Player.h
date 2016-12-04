@@ -12,6 +12,7 @@
 #include "../../attack/Scythe.h"
 #include "Gauge.h"
 #include "../../specialskill/SpecialSkillManager.h"
+#include "../../ui/SpecialSkillUI.h"
 class CameraController;
 class LockOn;
 class Enemy;
@@ -27,12 +28,13 @@ public:
 	void look_at(CameraController* _camera, GSvector3* _target);
 	void homing();
 	void createAttackCollision();
+	void damage(const AttackStatus & _attackStatus) override;
+	void finish() override;
 public://Actoråpè≥
 	void initialize() override;
 	void update(float deltatime) override;
 	void draw(IRenderer* _renderer) override;
-	void damage(const AttackStatus & _attackStatus) override;
-	void finish() override;
+	AttackStatus status();
 private:
 	void subActionStart();
 	void control();
@@ -47,8 +49,8 @@ private:
 	Camera * m_camera;
 	LockOn* m_lockon;
 	Scythe m_scythe;
-	std::shared_ptr<SpecialSkillManager> m_specialskill;
-
+	SpecialSkillManager m_specialskill;
+	SpecialSkillUI m_specialUI;
 	GSvector3 target;
 private://stateêÈåæ
 	class AttackState;

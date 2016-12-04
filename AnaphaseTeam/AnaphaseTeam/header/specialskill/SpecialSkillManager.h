@@ -5,6 +5,7 @@
 #include "ISpecialSkill.h"
 #include "../../header/ui/IPlayUI.h"
 class Gauge;
+class SpecialSkillUI;
 class IRenderer;
 class SpecialSkillManager:public IPlayUI
 {
@@ -17,6 +18,8 @@ public:
 	void draw(IRenderer* _renderer);
 	const bool isStart(SPECIALSKILL_TYPE _type)const;
 	void clear();
+
+	void canSelectCheck(SpecialSkillUI* _skillUI)const;
 private:
 	void endRemove();
 private:

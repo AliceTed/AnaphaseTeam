@@ -14,7 +14,6 @@
 #include "../../camera/CameraController.h"
 #include "../SceneChange.h"
 #include "../../actor/Enemy/EnemyManager.h"
-
 typedef std::shared_ptr<Actor>Actor_Ptr;
 class GamePlay :public IScene
 {
@@ -37,6 +36,5 @@ private:
 	Player m_player;
 	EnemyManager m_enemys;
 	LockOn m_lockon;
-
 };
 #endif
