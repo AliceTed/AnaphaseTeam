@@ -3,8 +3,9 @@
 #include"SkillUI.h"
 #include "../specialskill/SPECIALSKILL_TYPE.h"
 #include "../convenient/Timer.h"
+#include "../ui/IPlayUI.h"
 class IRenderer;
-class SpecialSkillUI
+class SpecialSkillUI:public IPlayUI
 {
 public:
 	SpecialSkillUI(const GSvector2& _position);

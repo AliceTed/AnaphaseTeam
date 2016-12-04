@@ -31,7 +31,7 @@ void Player::PlayerAttackCollision::collision_Enter(HitInformation & _hit)
 	Actor* act = _hit.m_parent;
 	act->damage(m_player->m_combo.getStatus());
 	
-	if (m_player->m_specialskill->isStart(SPECIALSKILL_TYPE::RECOVERY))
+	if (m_player->m_specialskill.isStart(SPECIALSKILL_TYPE::RECOVERY))
 	{
 		m_player->m_status.add();
 	}

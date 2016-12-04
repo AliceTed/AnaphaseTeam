@@ -45,12 +45,11 @@ private:
 	ComboAttack m_combo;
 	Status m_status;
 	std::shared_ptr<Gauge> m_Gauge;
-
+	std::shared_ptr<SpecialSkillUI> m_specialUI;
 	Camera * m_camera;
 	LockOn* m_lockon;
 	Scythe m_scythe;
 	SpecialSkillManager m_specialskill;
-	SpecialSkillUI m_specialUI;
 	GSvector3 target;
 private://stateéŒ¾
 	class AttackState;
