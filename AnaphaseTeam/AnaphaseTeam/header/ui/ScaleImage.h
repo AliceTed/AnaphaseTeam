@@ -22,5 +22,5 @@ private:
 	bool m_isPexis;
 	Math::TimeLerpVector<GSvector2> m_scaleLerp;
 	Math::TimeLerpVector<GSvector2> m_moveLerp;
-	bool m_a;
+	bool m_change;
 };

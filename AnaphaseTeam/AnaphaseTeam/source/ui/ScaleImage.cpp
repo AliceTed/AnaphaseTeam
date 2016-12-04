@@ -6,7 +6,7 @@ ScaleImage::ScaleImage(TEXTURE_ID _id, const GSvector2& _position, bool _isPexis
 	m_scaleLerp(GSvector2(1.0f, 1.0f)),
 	m_moveLerp(m_position),
 	m_isPexis(_isPexis),
-	m_a(false)
+	m_change(false)
 {
 }
 
@@ -24,8 +24,8 @@ void ScaleImage::moveStart(const GSvector2 & _end, float _time)
 }
 void ScaleImage::update(float deltaTime)
 {
-	
-	if (!m_a)
+
+	if (!m_change)
 	{
 		scroll();
 	};
@@ -38,47 +38,40 @@ void ScaleImage::draw(IRenderer * _renderer)
 	SpriteRenderDesc desc;
 	GSvector2 scale = m_scaleLerp.current();
 	GSvector2 pos = m_moveLerp.current();
-	GSvector2 pod(180, 180);
-	pod = m_moveLerp.current();
 	//m_position = m_scaleLerp.current();
-	if (m_a) {
+	if (m_change) {
 		if (!m_isPexis)
 		{
-			m_position -= getSizeMarge(scale)*0.5f;
+			//m_position -= getSizeMarge(scale)*0.5f;
 			//pos  -= getSizeMarge(scale)*0.5f;
 			//pod -= getSizeMarge(scale)*0.5f;
 		}
-		//desc.matrix.scale(scale);
-		//.matrix.translate(pos);
-		//desc.matrix.translate(m_position);
+		desc.matrix.scale(scale);
+		//desc.matrix.translate(pos);
+		desc.matrix.translate(m_position);
 		//desc.matrix.translate(pod);
-		//desc.textureID = static_cast<GSuint>(m_id);
+		desc.textureID = static_cast<GSuint>(m_id);
 	}
-	
-	//if (m_a)
-	//{
-		//desc.matrix.translate(m_position);
-		//desc.textureID = static_cast<GSuint>(m_id);
-		
-	//}
-	desc.matrix.scale(scale);
+
+	if (!m_change)
+	{
+		desc.matrix.translate(m_position);
+		desc.textureID = static_cast<GSuint>(m_id);
+
+	}
+	//desc.matrix.scale(scale);
 	//desc.matrix.translate(pos);
-	desc.matrix.translate(m_position);
-	desc.textureID = static_cast<GSuint>(m_id);
+	//desc.matrix.translate(m_position);
+	//desc.textureID = static_cast<GSuint>(m_id);
 	_renderer->render(desc);
 }
 void ScaleImage::scroll()
 {
-	m_a = false;
-	if (m_position.x < 180)
-	{
-		m_position.x ++;
-		
-	}
+
+	m_position.x++;
 	if (m_position.x >= 180)
 	{
-		m_position.x = 180;
-		m_a = true;
+		m_change = true;
 	}
 }
 

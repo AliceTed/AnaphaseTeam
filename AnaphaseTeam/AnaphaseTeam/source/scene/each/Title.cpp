@@ -41,6 +41,7 @@ void Title::draw(IRenderer * _renderer)
 	SpriteRenderDesc presskey;
 	presskey.textureID = static_cast<GSuint>(TEXTURE_ID::PRESSKEY);
 	presskey.matrix.translate(420, 600, 0);
+	presskey.color = GSvector4(10, 10, 10, 10);
 	_renderer->render(presskey);
 
 	m_change.draw(_renderer);
@@ -68,4 +69,12 @@ const bool Title::isEnd() const
 const bool Title::isExit() const
 {
 	return false;
+}
+
+void Title::clor()
+{
+	for (int i = 10; i > 10; i--)
+	{
+
+	}
 }

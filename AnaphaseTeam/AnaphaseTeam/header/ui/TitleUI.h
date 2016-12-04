@@ -14,7 +14,6 @@ public:
 	void draw(IRenderer* _renderer);
 	void finish();
 	void operation(Menu& _menu);
-	void scroll();
 private:
 	void createSelect();
 private:

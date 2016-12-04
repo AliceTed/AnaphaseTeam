@@ -16,10 +16,11 @@ public:
 	const SceneMode next()const;
 	const bool isEnd()const;
 	const bool isExit()const;
+	void clor();
 private:
 	bool m_IsExit;
 	SceneChange m_change;
 	TitleUI m_title;
-
+	GSvector4 m_color;
 };
 #endif
