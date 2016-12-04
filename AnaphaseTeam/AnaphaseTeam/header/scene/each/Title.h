@@ -1,7 +1,6 @@
 #ifndef _TITLE_H_
 #define _TITLE_H_
 #include "../IScene.h"
-#include "../../ui/TitleUI.h"
 #include "../SceneChange.h"
 
 class Title :public IScene

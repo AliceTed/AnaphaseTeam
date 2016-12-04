@@ -74,13 +74,13 @@ void SelectUI::startChange()
 
 void SelectUI::startMove()
 {
-	m_images.at(m_current).moveStart(GSvector2(0, 200), LERPTIME * 10.0f);
+	m_images.at(m_current).moveStart(GSvector2(180, 200), LERPTIME * 10.0f);
 	m_images.at(m_current).start(SELECTSCALE, DECISIONSCALE, LERPTIME *10.0f);
 	for (auto& i : m_images)
 	{
 		if (i.first != m_current)
 		{
-			m_images.at(i.first).moveStart(GSvector2(0, 800), LERPTIME* 10.0f);
+			m_images.at(i.first).moveStart(GSvector2(180, 800), LERPTIME* 10.0f);
 		}
 	}
 }

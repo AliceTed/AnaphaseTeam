@@ -38,8 +38,9 @@ void ScaleImage::draw(IRenderer * _renderer)
 	SpriteRenderDesc desc;
 	GSvector2 scale = m_scaleLerp.current();
 	GSvector2 pos = m_moveLerp.current();
-	//m_position = m_scaleLerp.current();
-	if (m_change) {
+	if (m_a) 
+	{
+		m_position = m_moveLerp.current() + GSvector2(180.0f, 0);
 		if (!m_isPexis)
 		{
 			//m_position -= getSizeMarge(scale)*0.5f;
@@ -52,12 +53,12 @@ void ScaleImage::draw(IRenderer * _renderer)
 		//desc.matrix.translate(pod);
 		desc.textureID = static_cast<GSuint>(m_id);
 	}
-
+	
 	if (!m_change)
 	{
 		desc.matrix.translate(m_position);
 		desc.textureID = static_cast<GSuint>(m_id);
-
+		
 	}
 	//desc.matrix.scale(scale);
 	//desc.matrix.translate(pos);
@@ -67,7 +68,7 @@ void ScaleImage::draw(IRenderer * _renderer)
 }
 void ScaleImage::scroll()
 {
-
+		
 	m_position.x++;
 	if (m_position.x >= 180)
 	{
