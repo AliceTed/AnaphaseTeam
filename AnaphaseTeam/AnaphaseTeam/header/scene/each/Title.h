@@ -3,6 +3,7 @@
 #include "../IScene.h"
 #include "../SceneChange.h"
 
+
 class Title :public IScene
 {
 public:
@@ -15,11 +16,12 @@ public:
 	const SceneMode next()const;
 	const bool isEnd()const;
 	const bool isExit()const;
-	void clor();
+	void alpha(float _time);
 private:
 	bool m_IsExit;
 	SceneChange m_change;
-	TitleUI m_title;
-	GSvector4 m_color;
+	float m_alpha;
+	float m_decrease;
+	bool m_IsChange;
 };
 #endif

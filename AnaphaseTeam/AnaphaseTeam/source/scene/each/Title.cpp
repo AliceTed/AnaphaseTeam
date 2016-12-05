@@ -6,7 +6,10 @@
 #include "../../../header/data/id/BGM_ID.h"
 Title::Title()
 	:m_IsExit(false),
-	m_change()
+	m_change(),
+	m_alpha(1.0f),
+	m_decrease(0.0f),
+	m_IsChange(true)
 {
 }
 
@@ -23,11 +26,11 @@ void Title::initialize()
 void Title::update(float _deltaTime)
 {
 	if (m_change.update(_deltaTime))return;
-	if(GameDevice::getInstacnce().input()->jump())
+	if (GameDevice::getInstacnce().input()->jump())
 	{
 		m_change.end(SceneMode::MENU);
 	}
-
+	alpha(2.0f);
 }
 
 void Title::draw(IRenderer * _renderer)
@@ -39,12 +42,12 @@ void Title::draw(IRenderer * _renderer)
 	SpriteRenderDesc presskey;
 	presskey.textureID = static_cast<GSuint>(TEXTURE_ID::PRESSKEY);
 	presskey.matrix.translate(420, 600, 0);
-	presskey.color = GSvector4(10, 10, 10, 10);
+	presskey.color.a = m_alpha;
 	_renderer->render(presskey);
 
 	m_change.draw(_renderer);
-	
-	
+
+
 }
 
 void Title::finish()
@@ -68,10 +71,23 @@ const bool Title::isExit() const
 	return false;
 }
 
-void Title::clor()
+void Title::alpha(float _time)
 {
-	for (int i = 10; i > 10; i--)
+	m_decrease = 1 / (_time * 60);
+	if (m_IsChange)
 	{
-
+		m_alpha -= m_decrease;
+		if (m_alpha < 0)
+		{
+			m_IsChange = false;
+		}
+	}
+	if (!m_IsChange)
+	{
+		m_alpha += m_decrease;
+		if (m_alpha > 1.0f)
+		{
+			m_IsChange = true;
+		}
 	}
 }

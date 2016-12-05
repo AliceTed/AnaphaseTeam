@@ -5,9 +5,7 @@
 #include "../../header/device/GameDevice.h"
 TitleUI::TitleUI()
 	:m_select(),
-	m_fade(TEXTURE_ID::BLACK),
-	m_scroll(0)
-	//m_pos(0, 180)
+	m_fade(TEXTURE_ID::BLACK)
 {
 }
 
@@ -62,18 +60,18 @@ void TitleUI::operation(Menu& _menu)
 void TitleUI::createSelect()
 {
 	m_select.initialize();
-	const unsigned int size = 3;
+	const unsigned int size = 2;
 	Select select[size] =
 	{
 		Select::GAMESTART,
 		Select::OPTION,
-		Select::EXIT
+		//Select::EXIT
 	};
 	TEXTURE_ID id[size] =
 	{
 		TEXTURE_ID::GAMESTART,
 		TEXTURE_ID::OPTION,
-		TEXTURE_ID::EXIT
+		//TEXTURE_ID::EXIT
 	};
 	GSvector2 base(0, 180);
 	GSvector2 marge(0, 80);
@@ -84,6 +82,10 @@ void TitleUI::createSelect()
 		m_select.add(select[i], image);
 
 	}
+
+	ScaleImage image(TEXTURE_ID::EXIT, GSvector2(0,500), false);
+	m_select.add(Select::EXIT, image);
+
 	m_select.startChange();
 	
 }

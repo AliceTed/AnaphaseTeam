@@ -19,6 +19,5 @@ private:
 private:
 	SelectUI m_select;
 	Fade m_fade;
-	float m_scroll;
 };
 
