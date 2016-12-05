@@ -1,7 +1,5 @@
 #include <GSgame.h>
-#include "../header/math/Calculate.h"
-#include "../header/data/Release.h"
-
+#include <memory>
 #include "../header/scene/SceneManager.h"
 #include "../header/scene/each/Load.h"
 #include "../header/scene/each/Opening.h"
@@ -11,37 +9,49 @@
 #include "../header/scene/each/Ending.h"
 #include "../header/scene/each/GameClear.h"
 
+#include "../header/renderer/IRenderer.h"
 #include "../header/renderer/Renderer.h"
-#include "../header/sound/Sound.h"
 #include "../header/device/GameDevice.h"
 
+#include"../header/data/release/DataAllRelease.h"
+#include "../header/renderer/define/ViewportDesc.h"
 class MyGame : public gslib::Game
 {
 public:
 	MyGame()
 		:Game(1280, 720, false, 60.0f),
 		m_SceneManager(),
-		m_Renderer(),
-		m_sound(),
-		m_device(&m_sound)
+		m_renderer(std::make_unique<Renderer>())
 	{
 	}
 
 private:
 	virtual void start() override
 	{
+		m_renderer->initialize();
+		ViewportDesc desc;
+		desc.height =720;
+		desc.width=1280;
+		m_renderer->viewport(desc);
+		LightDesc light;
+		light.ambient = Color4(0.5f, 0.5f, 0.5f, 1.0f);
+		light.diffuse = Color4(1.0f, 1.0f, 1.0f, 1.0f);
+		light.specular = Color4(1.0f, 1.0f, 1.0f, 1.0f);
+		light.position = Vector3(100.0f, 100.f, 100.0f);
+		m_renderer->light(light);
+
 		/*
 		シェアードポインタは変数に作ってから追加する
 		無名作成はしない
 		無名作成( add(id,std::make_shared<Scene>()) )
 		*/
-		std::shared_ptr<IScene>load = std::make_shared<Load>(&m_sound);
-		std::shared_ptr<IScene>opening= std::make_shared<Opening>(&m_device);
-		std::shared_ptr<IScene>title = std::make_shared<Title>(&m_device);
-		std::shared_ptr<IScene>option = std::make_shared<Option>(&m_device);
-		std::shared_ptr<IScene>gameplay = std::make_shared<GamePlay>(&m_device);
-		std::shared_ptr<IScene>ending = std::make_shared<Ending>(&m_device);
-		std::shared_ptr<IScene>gameclaer = std::make_shared<GameClear>(&m_device);
+		std::shared_ptr<IScene>load = std::make_shared<Load>();
+		std::shared_ptr<IScene>opening= std::make_shared<Opening>();
+		std::shared_ptr<IScene>title = std::make_shared<Title>();
+		std::shared_ptr<IScene>option = std::make_shared<Option>();
+		std::shared_ptr<IScene>gameplay = std::make_shared<GamePlay>();
+		std::shared_ptr<IScene>ending = std::make_shared<Ending>();
+		std::shared_ptr<IScene>gameclaer = std::make_shared<GameClear>();
 		m_SceneManager.add(SceneMode::LOAD, load);
 		m_SceneManager.add(SceneMode::OPENING, opening);
 		m_SceneManager.add(SceneMode::TITLE, title);
@@ -60,27 +70,19 @@ private:
 	// 描画
 	virtual void draw() override
 	{
-		m_SceneManager.draw(m_Renderer);
+		m_SceneManager.draw(m_renderer.get());
 	}
 	// 終了
 	virtual void end() override
 	{
-		Data::Release release;
+		DataAllRelease release;
 		release();
-
-		m_sound.deleteBGM();
-		m_sound.deleteSE();
 	}
 private:
-	bool isRunning() { return !m_device.input()->exit() && !m_SceneManager.isExit(); }
+	bool isRunning() { return !GameDevice::getInstacnce().input()->exit() && !m_SceneManager.isExit(); }
 private:
 	SceneManager m_SceneManager;
-
-	//以下デバイスクラスでまとめる予定
-	//本当はインターフェイス作りたいが変更時面倒
-	Renderer m_Renderer;
-	Sound m_sound;
-	GameDevice m_device;
+	std::unique_ptr<IRenderer>m_renderer;
 };
 
 int main()

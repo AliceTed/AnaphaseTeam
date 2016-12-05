@@ -8,12 +8,14 @@
 #include <unordered_map>
 #include <memory>
 #include "../../header/transform/Transform.h"
-#include "../data/Model_ID.h"
+#include "../data/id/Model_ID.h"
 #include "../animation/AnimatorOne.h"
 #include "../actor/Actor_Tag.h"
 #include "../collision/CollisionGroup.h"
 #include "../state/ACTOR_STATE.h"
-class Renderer;
+
+struct AttackStatus;
+class IRenderer;
 class Map;
 class IActorState;
 class Actor
@@ -23,8 +25,10 @@ public:
 	virtual ~Actor();
 	virtual void initialize();
 	virtual void update(float deltatime) = 0;
-	virtual void draw(const Renderer& _renderer) = 0;
+	virtual void draw(IRenderer* _renderer) = 0;
 	virtual void finish();	
+	virtual void damage(const AttackStatus& _attackStatus) = 0;
+
 public:
 	/**
 	* @fn
@@ -39,6 +43,7 @@ public:
 	const bool isSameActor(const Actor* _other)const;
 	const bool isSameTag(Actor_Tag _tag)const;
 	void changeState(ACTOR_STATE _state);
+
 protected:	
 	//ïœêîÇprotectedÇ…égópÇ©îYÇÒÇ≈Ç¢ÇÈ
 	void action(float deltaTime);

@@ -56,9 +56,10 @@ public:
 	***********************************************/
 	void draw(void);
 
-private:
-	void battle_normal(void);
-
+	/***********************************************
+	@brief カメラワークの状態を切り替える
+	@param[_id] カメラワークＩＤ
+	***********************************************/
 	void change_cameraWork(const E_CameraWorkID _id);
 
 private:

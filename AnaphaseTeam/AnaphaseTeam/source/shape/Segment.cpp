@@ -1,5 +1,5 @@
 #include "..\..\header\shape\Segment.h"
-#include "../../header/renderer/Renderer.h"
+#include "../../header/renderer/IRenderer.h"
 
 #include "../../header/shape/Sphere.h"
 #include "../../header/shape/Capsule.h"
@@ -46,9 +46,19 @@ const bool Segment::isCollision(const Shape * _shape, GSvector3* _out) const
 	return _shape->isCollision(this, _out);
 }
 
-void Segment::draw(const Renderer & renderer, const GScolor & color)
+void Segment::draw(IRenderer * renderer, const GScolor & color)
 {
-	renderer.getDraw3D().drawLine(&m_begin, &end(), color, 2);
+	//renderer.getDraw3D().drawLine(&m_begin, &end(), color, 2);
+	GSvector3 p1 = m_begin,p2=end();
+	glPushMatrix();
+	glLineWidth(2);
+	glMaterialfv(GL_FRONT, GL_DIFFUSE, color);
+	glBegin(GL_LINES);
+	glVertex3f(p1.x, p1.y, p1.z);
+	glVertex3f(p2.x, p2.y, p2.z);
+	glEnd();
+	glLineWidth(1.0f);
+	glPopMatrix();
 }
 
 const bool Segment::isCollisionSphere(const GSvector3& _center, float _radius, GSvector3* _out) const

@@ -1,9 +1,10 @@
 #include "../../../header/scene/each/Ending.h"
-#include "../../../header/renderer/Renderer.h"
+#include "../../../header/renderer/IRenderer.h"
 #include "../../../header/device/GameDevice.h"
-Ending::Ending(GameDevice* _device)
+#include "../../../header/renderer/define/SpriteRenderDesc.h"
+#include "../../../header/data/id/TEXTURE_ID.h"
+Ending::Ending()
 	:m_IsEnd(false),
-	m_device(_device),
 	m_change()
 {
 }
@@ -22,15 +23,18 @@ void Ending::update(float _deltaTime)
 {
 	if (m_change.update(_deltaTime))return;
 	//Œˆ’èƒ{ƒ^ƒ“ì‚Á‚Ä‚à‚¢‚¢‚©‚à
-	if (m_device->input()->jump())
+	if (GameDevice::getInstacnce().input()->jump())
 	{
 		m_change.end(SceneMode::TITLE);
 	}
 }
 
-void Ending::draw(const Renderer & _renderer)
+void Ending::draw(IRenderer * _renderer)
 {
-	_renderer.getDraw2D().textrue(TEXTURE_ID::CLEAR, &GSvector2(0, 0));
+	SpriteRenderDesc desc;
+	desc.textureID = static_cast<GSuint>(TEXTURE_ID::GAMEOVER);
+	_renderer->render(desc);
+
 	m_change.draw(_renderer);
 }
 

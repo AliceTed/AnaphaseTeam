@@ -18,13 +18,13 @@ void SceneManager::update(float _deltaTime)
 
 	currentFinish();
 }
-void SceneManager::draw(const Renderer& _renderer)
+void SceneManager::draw(IRenderer * _renderer)
 {
 	m_CurrentScene->draw(_renderer);
 }
 void SceneManager::finish()
 {
-
+	m_CurrentScene->finish();
 }
 
 const bool SceneManager::isExit() const

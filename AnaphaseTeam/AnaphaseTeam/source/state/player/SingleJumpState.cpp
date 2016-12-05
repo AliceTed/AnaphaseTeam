@@ -1,5 +1,5 @@
 #include"../../../header/state/player/SingleJumpState.h"
-#include "../../../header/data/ANIMATION_ID.h"
+#include "../../../header/data/id/ANIMATION_ID.h"
 #include "../../../header/device/GameDevice.h"
 Player::SingleJumpState::SingleJumpState(Player* _player)
 	:ActorState(_player),
@@ -26,7 +26,7 @@ void Player::SingleJumpState::action(float deltaTime)
 		changeState(ACTOR_STATE::LANDINGRIGIDITY);
 		return;
 	}
-	if (m_actor->m_device->input()->jump())
+	if (GameDevice::getInstacnce().input()->jump())
 	{
 		changeState(ACTOR_STATE::DOUBLEJUMP);
 	}

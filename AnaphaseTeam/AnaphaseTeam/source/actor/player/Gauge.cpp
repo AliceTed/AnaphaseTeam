@@ -1,6 +1,7 @@
 #include "../../../header/actor/Player/Gauge.h"
 #include "../../../header/math/Calculate.h"
-#include "../../../header/data/TEXTURE_ID.h"
+#include "../../../header/data/id/TEXTURE_ID.h"
+#include "../../../header/renderer/define/SpriteRectRenderDesc.h"
 #include <math.h>
 
 Gauge::Gauge()
@@ -19,14 +20,20 @@ void Gauge::initialize()
 	m_lerpmax = m_gauge;
 }
 
-void Gauge::draw(const Renderer& _renderer)
+void Gauge::draw(IRenderer * _renderer)
 {
-	_renderer.getDraw2D().textrue(TEXTURE_ID::BLACK, &GSvector2(0,50),
-		&GSrect(0,0,(int)RankGauge::MAX,30),&GSvector2(0,0),&GSvector2(1,1),0.0f);
-	_renderer.getDraw2D().textrue(TEXTURE_ID::WHITE, &GSvector2(0, 50),
-		&GSrect(0, 0, m_gauge, 30), &GSvector2(0, 0), &GSvector2(1, 1),0.0f,&GScolor(1.0f,1.0f,0.0f,1.0f));
-
-	_renderer.getDraw2D().string(std::to_string(m_gauge), &GSvector2(100, 100), 20);
+	SpriteRectRenderDesc back;
+	back.textureID = static_cast<GSuint>(TEXTURE_ID::BLACK);
+	back.matrix.translate(0, 50, 0);
+	back.srcRect = GSrect(0,0, (int)RankGauge::MAX, 30);
+	_renderer->render(back);
+	
+	SpriteRectRenderDesc front;
+	front.textureID = static_cast<GSuint>(TEXTURE_ID::WHITE);
+	front.matrix.translate(0, 50, 0);
+	front.srcRect = GSrect(0,0, m_gauge, 30);
+	front.color = GScolor(1.0f, 1.0f, 0.0f, 1.0f);
+	_renderer->render(front);
 }
 
 void Gauge::up(float _scale)
@@ -41,11 +48,7 @@ void Gauge::up(float _scale)
 
 bool Gauge::down(float _scale)
 {
-	if (_scale > m_gauge)
-	{
-		return false;
-	}
-	if (static_cast<int>(m_gauge) != static_cast<int>(m_lerpmax))
+	if (!isDown(_scale))
 	{
 		return false;
 	}
@@ -66,7 +69,7 @@ void Gauge::downGauge(RankGauge _rankGauge)
 
 void Gauge::update(float deltatime)
 {
-	m_gauge = LERP(deltatime * 0.1f, m_gauge, m_lerpmax);
+	m_gauge = LERP(deltatime * 0.5f, m_gauge, m_lerpmax);
 }
 
 float Gauge::scale(float def)
@@ -74,14 +77,20 @@ float Gauge::scale(float def)
 	return log(m_lerpmax*0.01f + def);
 }
 
-float Gauge::nowGauge()
+const bool Gauge::isDown(float _value) const
 {
-	return m_gauge;
+	if (_value > m_gauge)return false;
+
+	return static_cast<int>(m_gauge) == static_cast<int>(m_lerpmax);
 }
 
 void Gauge::add(float _point)
 {
 	Math::Clamp clamp;
-	m_gauge = clamp(m_gauge + _point, 0.0f, static_cast<float>(RankGauge::MAX));
-	
+	m_gauge = clamp(m_gauge + _point, 0.0f, static_cast<float>(RankGauge::MAX));	
+}
+
+float Gauge::getGauge()
+{
+	return m_gauge;
 }

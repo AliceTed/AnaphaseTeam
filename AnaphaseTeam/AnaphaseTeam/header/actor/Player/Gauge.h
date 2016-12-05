@@ -1,5 +1,6 @@
 #pragma once
-#include "../../../header/renderer/Renderer.h"
+#include "../../../header/renderer/IRenderer.h"
+#include "../../ui/IPlayUI.h"
 #include <vector>
 
 enum class RankGauge
@@ -10,20 +11,22 @@ enum class RankGauge
 	MAX = 1000
 };
 
-class Gauge
+class Gauge:public IPlayUI
 {
 public:
 	Gauge();
 	~Gauge();
 	void initialize();
-	void draw(const Renderer& _renderer);
+	void draw(IRenderer * _renderer);
 	void up(float _scale);
 	bool down(float _scale);
 	void downGauge(RankGauge _rankGauge);
 	void update(float deltatime);
 
 	float scale(float def);
-	float nowGauge();
+
+	const bool isDown(float _value)const;
+	float getGauge();
 private:
 	void add(float _point);
 private:

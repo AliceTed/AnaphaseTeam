@@ -1,6 +1,6 @@
 #include "../../../header/state/player/StandState.h"
 
-#include "../../../header/data/ANIMATION_ID.h"
+#include "../../../header/data/id/ANIMATION_ID.h"
 #include "../../../header/device/GameDevice.h"
 Player::StandState::StandState(Player* _player)
 	:ActorState(_player)
@@ -20,7 +20,7 @@ void Player::StandState::action(float deltaTime)
 		changeState(ACTOR_STATE::LIMITFALL);
 		return;
 	}
-	if (m_actor->m_device->input()->move())
+	if (GameDevice::getInstacnce().input()->move())
 	{
 		changeState(ACTOR_STATE::RUN);
 		return;

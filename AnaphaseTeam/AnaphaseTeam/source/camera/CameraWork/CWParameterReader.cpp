@@ -2,7 +2,7 @@
 #include <fstream>
 #include <sstream>
 #include "../../../header/camera/CameraWork/CWParameterReader.h"
-#include "../../../header/data/LoadError.h"
+#include "../../../header/data/Message.h"
 
 CWParameterReader::CWParameterReader(const std::string _fileName) :
 	m_parameters()
@@ -48,7 +48,7 @@ void CWParameterReader::read(const std::string _fileName)
 
 	if (reading_file.fail())
 	{
-		Data::ErrorMessage error;
+		Message error;
 		error(_fileName, _fileName);
 		return;
 	}

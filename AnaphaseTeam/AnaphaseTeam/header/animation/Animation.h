@@ -3,8 +3,8 @@
 #define _ANIMATION_H_
 
 #include "AnimationTimer.h"
-#include "../data/ANIMATION_ID.h"
-#include "../data/Model_ID.h"
+#include "../data/id/ANIMATION_ID.h"
+#include "../data/id/Model_ID.h"
 /*
 animation情報の管理
 
@@ -28,11 +28,6 @@ public:
 	void initialize();
 	void update(float deltaTime);
 
-	/*
-	animatorができ次第ボーンのボーンのバインドをアニメータに移動
-	*/
-	//void bind(GSuint anim_id);
-	void bind()const;
 	void stop();
 	void start();
 	const bool getIsEnd()const;

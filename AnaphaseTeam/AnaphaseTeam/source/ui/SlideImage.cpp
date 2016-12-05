@@ -1,5 +1,6 @@
 #include "../../header/ui/SlideImage.h"
-#include "../../header/renderer/Renderer.h"
+#include "../../header/renderer/IRenderer.h"
+#include "../../header/renderer/define/SpriteRenderDesc.h"
 SlideImage::SlideImage(TEXTURE_ID _id, const GSvector2 & _begin, const GSvector2 & _end)
 	:m_begin(_begin),
 	m_end(_end),
@@ -27,7 +28,10 @@ void SlideImage::update(float deltaTime)
 	m_lerp.update(deltaTime);
 }
 
-void SlideImage::draw(const Renderer & _renderer)
+void SlideImage::draw(IRenderer * _renderer)
 {
-	_renderer.getDraw2D().textrue(m_id,&m_lerp.current());
+	SpriteRenderDesc desc;
+	desc.textureID = static_cast<GSuint>(m_id);
+	desc.matrix.setTranslation(m_lerp.current());
+	_renderer->render(desc);
 }

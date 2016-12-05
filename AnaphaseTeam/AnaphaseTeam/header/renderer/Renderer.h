@@ -1,17 +1,61 @@
 #pragma once
-#ifndef _RENDERER_H_
-#define _RENDERER_H_
-#include "Draw2D.h"
-#include "Draw3D.h"
-//とりあえず
-class Renderer
+#include "IRenderer.h"
+#include "../renderer/define/ViewportDesc.h"
+#include "../renderer/define/LightDesc.h"
+#include "../renderer/define/BlendFunc.h"
+
+class Renderer : public IRenderer
 {
 public:
 	Renderer();
-	const Draw2D& getDraw2D()const;
-	const Draw3D& getDraw3D()const;
+	virtual ~Renderer();
+
+	// IRenderer を介して継承されました
+	virtual void initialize() override;
+
+	virtual void viewport(const ViewportDesc & desc) override;
+
+	virtual void perspective(float fov, float aspect, float near, float far) override;
+
+	virtual void lookAt(const Vector3 & eye, const Vector3 & at, const Vector3 & up) override;
+
+	virtual const ViewportDesc & getViewPort() const override;
+
+	virtual const Matrix4 & getProjectionMatrix() const override;
+
+	virtual const Matrix4 & getViewMatrix() const override;
+
+	virtual void light(const LightDesc & desc) override;
+
+	virtual Ray caluclateRay(const Vector2 & screenPosition) override;
+
+	virtual void render(const MeshRenderDesc & desc) override;
+
+	virtual void render(const AnimationRenderDesc& desc)override;
+
+	virtual void render(const SkinnedMeshRenderDesc& desc)override;
+
+	virtual void render(const BillboardRenderDesc & desc) override;
+
+	virtual void render(const SpriteRenderDesc & desc) override;
+
+	virtual void render(const SpriteRectRenderDesc& desc)override;
+
+	virtual void render(const StringRenderDesc & desc) override;
+
+	virtual void render(const RectangleRenderDesc & desc) override;
+
+	virtual void render(const OctreeRenderDesc& desc) override;
+	//スカイボックス描画
+	virtual void render(const SkyBoxRenderDesc& desc)override;
 private:
-	Draw2D m_Draw2D;
-	Draw3D m_Draw3D;
+	void setBlendFunc(BlendFunc blendFunc);
+	void renderTexture(ResourceID id,const Color4& color);
+	void renderTexture(ResourceID id, const Rect& rect, const Rect& srcRect, const Color4& color);
+
+	Matrix4 mProjectionMatrix;
+	Matrix4 mViewMatrix;
+	ViewportDesc mViewport;
+	LightDesc mLight;
 };
-#endif
+

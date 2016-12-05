@@ -16,13 +16,6 @@ void Animation::update(float deltaTime)
 	m_timer.update(deltaTime);
 	looping();
 }
-//Žg‚Á‚Ä‚È‚¢
-void Animation::bind()const
-{
-	gsBindAnimation(m_anim_id, m_animNo, m_timer.getTime());
-	//gsBindSkeleton(m_bone_id);
-}
-
 const bool Animation::getIsEnd() const
 {
 	return (!m_isLoop) && m_timer.getIsEnd();

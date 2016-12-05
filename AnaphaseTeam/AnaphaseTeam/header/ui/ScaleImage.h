@@ -1,8 +1,8 @@
 #pragma once
 #include <gslib.h>
-#include "../data/TEXTURE_ID.h"
+#include "../data/id/TEXTURE_ID.h"
 #include "../math/TimeLerpVector.h"
-class Renderer;
+class IRenderer;
 class ScaleImage
 {
 public:
@@ -11,8 +11,7 @@ public:
 	void start(const GSvector2& _start, const GSvector2& _end, float _time);
 	void moveStart(const GSvector2& _end, float _time);
 	void update(float deltaTime);
-	void draw(const Renderer& _renderer);
-	const bool isLerpEnd();
+	void draw(IRenderer* _renderer);
 private:
 	const GSvector2 getTextureSize()const;
 	const GSvector2 getSizeMarge(const GSvector2& _scale)const;

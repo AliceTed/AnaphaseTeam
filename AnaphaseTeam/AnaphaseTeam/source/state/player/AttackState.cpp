@@ -1,5 +1,5 @@
 #include "../../../header/state/player/AttackState.h"
-#include "../../../header/data/ANIMATION_ID.h"
+#include "../../../header/data/id/ANIMATION_ID.h"
 #include "../../../header/device/GameDevice.h"
 Player::AttackState::AttackState(Player* _player)
 	:ActorState(_player),
@@ -33,7 +33,7 @@ void Player::AttackState::input(float deltaTime)
 		changeState(ACTOR_STATE::STAND);
 		return;
 	}
-	Input_Ptr& input = m_actor->m_device->input();
+	Input_Ptr& input = GameDevice::getInstacnce().input();
 	bool isSlow = input->slowAttackTrigger();
 	if (!input->quickAttackTrigger() && !isSlow)return;
 	m_inputTimer.initialize();

@@ -41,8 +41,6 @@ CameraController::CameraController(
 
 void CameraController::update(float _deltaTime)
 {
-	battle_normal();
-
 	m_cameraWorkManager->update(_deltaTime);
 }
 
@@ -52,23 +50,6 @@ void CameraController::draw(void)
 	m_cameraWorkManager->draw();
 
 	m_camera->update();
-}
-
-
-void CameraController::battle_normal(void)
-{
-	GSvector3 player = m_camera->cameraTarget_player();
-	GSvector3 enemy = m_camera->cameraTarget_enemy();
-	float distance = enemy.distance(player);
-
-	if (distance < 10)
-	{
-		change_cameraWork(E_CameraWorkID::LOCK_ON);
-	}
-	else
-	{
-		change_cameraWork(E_CameraWorkID::NORMAL);
-	}
 }
 
 

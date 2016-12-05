@@ -3,15 +3,15 @@
 #include "../IScene.h"
 #include "../../ui/TitleUI.h"
 #include "../SceneChange.h"
-class GameDevice;
+
 class Title :public IScene
 {
 public:
-	Title(GameDevice* _device);
+	Title();
 	~Title();
 	void initialize();
 	void update(float deltaTime);
-	void draw(const Renderer& renderer);
+	void draw(IRenderer * renderer);
 	void finish();
 	const SceneMode next()const;
 	const bool isEnd()const;
@@ -22,6 +22,6 @@ private:
 	bool m_IsExit;
 	SceneChange m_change;
 	TitleUI m_title;
-	GameDevice* m_device;
+
 };
 #endif

@@ -1,18 +1,18 @@
 #include "../../../header/scene/each/GamePlay.h"
 #include "../../../header/scene/each/Ending.h"
-#include "../../../header/renderer/Renderer.h"
+#include "../../../header/renderer/IRenderer.h"
+#include "../../../header/renderer/define/SkyBoxRenderDesc.h"
 #include "../../../header/device/GameDevice.h"
 #include "../../../header/math/Random.h"
-GamePlay::GamePlay(GameDevice* _device)
-	:m_IsEnd(false),
-	m_device(_device),
-	m_Map(OCTREE_ID::ARENA),
+#include "../../../header/ui/UIManager.h"
+GamePlay::GamePlay()
+	:m_Map(OCTREE_ID::ARENA),
 	m_Camera(),
 	m_cameracontroller(&m_Camera),
 	m_enemys(),
 	m_change(),
-	m_lockon(_device),
-	m_player(_device, &m_Camera, &m_lockon)
+	m_lockon(),
+	m_player(&m_Camera, &m_lockon)
 {
 }
 GamePlay::~GamePlay()
@@ -23,7 +23,6 @@ void GamePlay::initialize()
 {
 	m_change.initialize();
 	m_change.begin(2);
-	m_IsEnd = false;
 
 	m_player.initialize();
 	m_enemys.initialize();
@@ -35,10 +34,16 @@ void GamePlay::initialize()
 	}
 
 	m_lockon.addPlayer(&m_player);
+	UIManager::getInstance();
 }
 
 void GamePlay::update(float deltaTime)
 {
+	if (gsGetKeyTrigger(GKEY_F))
+	{
+		m_change.end(SceneMode::GAMEPLAY,0.1f);
+	}
+
 	m_player.collisionGround(m_Map);
 	m_enemys.collisionGround(m_Map);
 	m_change.update(deltaTime);
@@ -48,6 +53,7 @@ void GamePlay::update(float deltaTime)
 	m_enemys.update(deltaTime);
 	m_enemys.collision(m_player);
 	m_cameracontroller.update(deltaTime);
+	
 	for (int i = 0; i < 2- m_enemys.size(); i++)
 	{
 		Math::Random rnd;
@@ -59,21 +65,27 @@ void GamePlay::update(float deltaTime)
 	{
 		m_change.end(SceneMode::ENDING);
 	}
+	UIManager::getInstance().update(deltaTime);
 }
 
-void GamePlay::draw(const Renderer & _renderer)
+void GamePlay::draw(IRenderer * _renderer)
 {
-	_renderer.getDraw3D().drawSky(MESH_ID::SKY);
+	SkyBoxRenderDesc desc;
+	desc.meshID = static_cast<unsigned int>(MESH_ID::SKY);
+	_renderer->render(desc);
 	m_lockon.look_at(&m_cameracontroller);
 	m_cameracontroller.draw();
+	_renderer->lookAt({ 0,0,0 }, { 0,0,0 }, { 0,0,0 });
 	m_Map.draw(_renderer);
 	m_enemys.draw(_renderer);
 	m_player.draw(_renderer);	
 	m_change.draw(_renderer);
+	UIManager::getInstance().draw(_renderer);
 }
 
 void GamePlay::finish()
 {
+	m_player.finish();
 }
 
 const SceneMode GamePlay::next() const

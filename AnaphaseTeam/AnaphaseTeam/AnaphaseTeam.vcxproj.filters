@@ -139,12 +139,6 @@
     <Filter Include="ヘッダー ファイル\transform">
       <UniqueIdentifier>{1cac667a-7706-4899-88f1-8521269775bd}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ソース ファイル\actor\Player\specialSkill">
-      <UniqueIdentifier>{c0592eba-d6ba-4757-ad12-fca0f45c1f0c}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ヘッダー ファイル\actor\Player\specialSkill">
-      <UniqueIdentifier>{d0cdda7b-e670-4bce-8fa6-16d63201e6e4}</UniqueIdentifier>
-    </Filter>
     <Filter Include="ソース ファイル\math">
       <UniqueIdentifier>{cfe83fe5-37e3-4713-adef-911f2563b574}</UniqueIdentifier>
     </Filter>
@@ -172,11 +166,44 @@
     <Filter Include="ソース ファイル\data\stream">
       <UniqueIdentifier>{a854fa81-4dd8-4f58-9a81-488b57a9faf2}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ソース ファイル\shape\ui">
-      <UniqueIdentifier>{e1c7c17e-ffc4-403f-bd11-65fe45527639}</UniqueIdentifier>
-    </Filter>
     <Filter Include="ヘッダー ファイル\camera">
       <UniqueIdentifier>{8b26a032-4802-4034-ae6c-fef2d4b00838}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\ui">
+      <UniqueIdentifier>{e1c7c17e-ffc4-403f-bd11-65fe45527639}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\data\loader">
+      <UniqueIdentifier>{82692b87-9f44-4733-88d5-c001f5a7c030}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\data\release">
+      <UniqueIdentifier>{1349821b-89f8-4079-8f0a-ca98973390e2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\renderer\define">
+      <UniqueIdentifier>{5ed4ec42-4b90-43eb-a3f0-4cb703c08bd9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\data\loader">
+      <UniqueIdentifier>{654a986c-bb5c-45f9-8faa-f222fa53c26c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\data\release">
+      <UniqueIdentifier>{08118a73-cce9-48ef-86d2-8142ab2d0754}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\specialskill">
+      <UniqueIdentifier>{14d6b4e4-950f-444d-9dfe-4d181a76bcce}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\specialskill">
+      <UniqueIdentifier>{b54e2d1f-ac6c-4d08-8e69-60a38e673578}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\state\enemy">
+      <UniqueIdentifier>{33e2b51a-9efa-44c9-a970-f8a4460dd7e5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\state\enemy">
+      <UniqueIdentifier>{b56c9820-80fd-43ce-8cc8-640662d69b9f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\myanimation">
+      <UniqueIdentifier>{639559a3-484d-4188-bccc-4a0c11e8cc82}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\myanimation">
+      <UniqueIdentifier>{4cd0ce32-2d56-4438-946e-f678364af05f}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -200,12 +227,6 @@
     </ClInclude>
     <ClInclude Include="header\entity\Factory.h">
       <Filter>ヘッダー ファイル\entity</Filter>
-    </ClInclude>
-    <ClInclude Include="header\renderer\Draw2D.h">
-      <Filter>ヘッダー ファイル\renderer</Filter>
-    </ClInclude>
-    <ClInclude Include="header\data\Loader.h">
-      <Filter>ヘッダー ファイル\data</Filter>
     </ClInclude>
     <ClInclude Include="header\device\Input.h">
       <Filter>ヘッダー ファイル\device</Filter>
@@ -240,33 +261,6 @@
     <ClInclude Include="header\scene\SceneMode.h">
       <Filter>ヘッダー ファイル\scene</Filter>
     </ClInclude>
-    <ClInclude Include="header\data\Release.h">
-      <Filter>ヘッダー ファイル\data</Filter>
-    </ClInclude>
-    <ClInclude Include="header\data\CastID.h">
-      <Filter>ヘッダー ファイル\data</Filter>
-    </ClInclude>
-    <ClInclude Include="header\data\LoadError.h">
-      <Filter>ヘッダー ファイル\data</Filter>
-    </ClInclude>
-    <ClInclude Include="header\data\ANIMATION_ID.h">
-      <Filter>ヘッダー ファイル\data\id</Filter>
-    </ClInclude>
-    <ClInclude Include="header\data\BGM_ID.h">
-      <Filter>ヘッダー ファイル\data\id</Filter>
-    </ClInclude>
-    <ClInclude Include="header\data\MESH_ID.h">
-      <Filter>ヘッダー ファイル\data\id</Filter>
-    </ClInclude>
-    <ClInclude Include="header\data\OCTREE_ID.h">
-      <Filter>ヘッダー ファイル\data\id</Filter>
-    </ClInclude>
-    <ClInclude Include="header\data\SE_ID.h">
-      <Filter>ヘッダー ファイル\data\id</Filter>
-    </ClInclude>
-    <ClInclude Include="header\data\TEXTURE_ID.h">
-      <Filter>ヘッダー ファイル\data\id</Filter>
-    </ClInclude>
     <ClInclude Include="header\actor\Actor.h">
       <Filter>ヘッダー ファイル\actor</Filter>
     </ClInclude>
@@ -278,15 +272,6 @@
     </ClInclude>
     <ClInclude Include="header\animation\AnimationTimer.h">
       <Filter>ヘッダー ファイル\animation</Filter>
-    </ClInclude>
-    <ClInclude Include="header\data\PathConnect.h">
-      <Filter>ヘッダー ファイル\data</Filter>
-    </ClInclude>
-    <ClInclude Include="header\renderer\Draw3D.h">
-      <Filter>ヘッダー ファイル\renderer</Filter>
-    </ClInclude>
-    <ClInclude Include="header\renderer\Renderer.h">
-      <Filter>ヘッダー ファイル\renderer</Filter>
     </ClInclude>
     <ClInclude Include="header\shape\Sphere.h">
       <Filter>ヘッダー ファイル\shape</Filter>
@@ -302,12 +287,6 @@
     </ClInclude>
     <ClInclude Include="header\actor\Actor_Tag.h">
       <Filter>ヘッダー ファイル\actor</Filter>
-    </ClInclude>
-    <ClInclude Include="header\data\PLAYERACTION_ID.h">
-      <Filter>ヘッダー ファイル\data\id</Filter>
-    </ClInclude>
-    <ClInclude Include="header\data\Model_ID.h">
-      <Filter>ヘッダー ファイル\data\id</Filter>
     </ClInclude>
     <ClInclude Include="header\shape\Capsule.h">
       <Filter>ヘッダー ファイル\shape</Filter>
@@ -420,15 +399,6 @@
     <ClInclude Include="header\transform\Transform.h">
       <Filter>ヘッダー ファイル\transform</Filter>
     </ClInclude>
-    <ClInclude Include="header\actor\Player\specialSkill\Recovery.h">
-      <Filter>ヘッダー ファイル\actor\Player\specialSkill</Filter>
-    </ClInclude>
-    <ClInclude Include="header\actor\Player\specialSkill\SpecialSkillManager.h">
-      <Filter>ヘッダー ファイル\actor\Player\specialSkill</Filter>
-    </ClInclude>
-    <ClInclude Include="header\actor\Player\specialSkill\SuperArmor.h">
-      <Filter>ヘッダー ファイル\actor\Player\specialSkill</Filter>
-    </ClInclude>
     <ClInclude Include="header\collision\Collision_Tag.h">
       <Filter>ヘッダー ファイル\collision</Filter>
     </ClInclude>
@@ -438,16 +408,7 @@
     <ClInclude Include="header\actor\Enemy\EnemyManager.h">
       <Filter>ヘッダー ファイル\actor\Enemy</Filter>
     </ClInclude>
-    <ClInclude Include="header\actor\Player\specialSkill\SpecialAttack.h">
-      <Filter>ヘッダー ファイル\actor\Player\specialSkill</Filter>
-    </ClInclude>
-    <ClInclude Include="header\data\ENEMY_ANIMATION.h">
-      <Filter>ヘッダー ファイル\data\id</Filter>
-    </ClInclude>
     <ClInclude Include="header\collision\EnemyCollision.h">
-      <Filter>ヘッダー ファイル\collision\user</Filter>
-    </ClInclude>
-    <ClInclude Include="header\collision\SpecialAttackCollision.h">
       <Filter>ヘッダー ファイル\collision\user</Filter>
     </ClInclude>
     <ClInclude Include="header\collision\EnemyAttackCollision.h">
@@ -484,9 +445,6 @@
       <Filter>ヘッダー ファイル\state\player</Filter>
     </ClInclude>
     <ClInclude Include="header\state\player\StepState.h">
-      <Filter>ヘッダー ファイル\state\player</Filter>
-    </ClInclude>
-    <ClInclude Include="header\state\player\AirState.h">
       <Filter>ヘッダー ファイル\state\player</Filter>
     </ClInclude>
     <ClInclude Include="header\state\player\DoubleJumpState.h">
@@ -558,10 +516,241 @@
     <ClInclude Include="header\camera\CameraWork\I_CameraWork.h">
       <Filter>ヘッダー ファイル\camera</Filter>
     </ClInclude>
-    <ClInclude Include="header\ui\SpAttackUI.h">
-      <Filter>ヘッダー ファイル\camera</Filter>
+    <ClInclude Include="header\data\id\ANIMATION_ID.h">
+      <Filter>ヘッダー ファイル\data\id</Filter>
     </ClInclude>
-    <ClInclude Include="header\camera\AMath.h">
+    <ClInclude Include="header\data\id\CastID.h">
+      <Filter>ヘッダー ファイル\data</Filter>
+    </ClInclude>
+    <ClInclude Include="header\data\id\ENEMY_ANIMATION.h">
+      <Filter>ヘッダー ファイル\data\id</Filter>
+    </ClInclude>
+    <ClInclude Include="header\data\id\MESH_ID.h">
+      <Filter>ヘッダー ファイル\data\id</Filter>
+    </ClInclude>
+    <ClInclude Include="header\data\id\Model_ID.h">
+      <Filter>ヘッダー ファイル\data\id</Filter>
+    </ClInclude>
+    <ClInclude Include="header\data\id\OCTREE_ID.h">
+      <Filter>ヘッダー ファイル\data\id</Filter>
+    </ClInclude>
+    <ClInclude Include="header\data\id\TEXTURE_ID.h">
+      <Filter>ヘッダー ファイル\data\id</Filter>
+    </ClInclude>
+    <ClInclude Include="header\data\Message.h">
+      <Filter>ヘッダー ファイル\data</Filter>
+    </ClInclude>
+    <ClInclude Include="header\data\loader\AnimationLoader.h">
+      <Filter>ヘッダー ファイル\data\loader</Filter>
+    </ClInclude>
+    <ClInclude Include="header\data\loader\MeshEXLoader.h">
+      <Filter>ヘッダー ファイル\data\loader</Filter>
+    </ClInclude>
+    <ClInclude Include="header\data\loader\MeshLoader.h">
+      <Filter>ヘッダー ファイル\data\loader</Filter>
+    </ClInclude>
+    <ClInclude Include="header\data\loader\ModelLoader.h">
+      <Filter>ヘッダー ファイル\data\loader</Filter>
+    </ClInclude>
+    <ClInclude Include="header\data\loader\OctreeLoader.h">
+      <Filter>ヘッダー ファイル\data\loader</Filter>
+    </ClInclude>
+    <ClInclude Include="header\data\loader\ShaderLoader.h">
+      <Filter>ヘッダー ファイル\data\loader</Filter>
+    </ClInclude>
+    <ClInclude Include="header\data\loader\SkeletonLoader.h">
+      <Filter>ヘッダー ファイル\data\loader</Filter>
+    </ClInclude>
+    <ClInclude Include="header\data\loader\TextureLoader.h">
+      <Filter>ヘッダー ファイル\data\loader</Filter>
+    </ClInclude>
+    <ClInclude Include="header\data\release\DataRelease.h">
+      <Filter>ヘッダー ファイル\data\release</Filter>
+    </ClInclude>
+    <ClInclude Include="header\renderer\define\AnimationRenderDesc.h">
+      <Filter>ヘッダー ファイル\renderer\define</Filter>
+    </ClInclude>
+    <ClInclude Include="header\renderer\define\BillBoardRenderDesc.h">
+      <Filter>ヘッダー ファイル\renderer\define</Filter>
+    </ClInclude>
+    <ClInclude Include="header\renderer\define\BillborardRenderDesc.h">
+      <Filter>ヘッダー ファイル\renderer\define</Filter>
+    </ClInclude>
+    <ClInclude Include="header\renderer\define\BlendFunc.h">
+      <Filter>ヘッダー ファイル\renderer\define</Filter>
+    </ClInclude>
+    <ClInclude Include="header\renderer\define\Color4.h">
+      <Filter>ヘッダー ファイル\renderer\define</Filter>
+    </ClInclude>
+    <ClInclude Include="header\renderer\define\LightDesc.h">
+      <Filter>ヘッダー ファイル\renderer\define</Filter>
+    </ClInclude>
+    <ClInclude Include="header\renderer\define\Matrix4.h">
+      <Filter>ヘッダー ファイル\renderer\define</Filter>
+    </ClInclude>
+    <ClInclude Include="header\renderer\define\MeshDesc.h">
+      <Filter>ヘッダー ファイル\renderer\define</Filter>
+    </ClInclude>
+    <ClInclude Include="header\renderer\define\MeshRenderDesc.h">
+      <Filter>ヘッダー ファイル\renderer\define</Filter>
+    </ClInclude>
+    <ClInclude Include="header\renderer\define\Ray.h">
+      <Filter>ヘッダー ファイル\renderer\define</Filter>
+    </ClInclude>
+    <ClInclude Include="header\renderer\define\Rect.h">
+      <Filter>ヘッダー ファイル\renderer\define</Filter>
+    </ClInclude>
+    <ClInclude Include="header\renderer\define\RectangleRenderDesc.h">
+      <Filter>ヘッダー ファイル\renderer\define</Filter>
+    </ClInclude>
+    <ClInclude Include="header\renderer\define\ResourceID.h">
+      <Filter>ヘッダー ファイル\renderer\define</Filter>
+    </ClInclude>
+    <ClInclude Include="header\renderer\define\SkinnedMeshRenderDesc.h">
+      <Filter>ヘッダー ファイル\renderer\define</Filter>
+    </ClInclude>
+    <ClInclude Include="header\renderer\define\SpriteRenderDesc.h">
+      <Filter>ヘッダー ファイル\renderer\define</Filter>
+    </ClInclude>
+    <ClInclude Include="header\renderer\define\StringRenderDesc.h">
+      <Filter>ヘッダー ファイル\renderer\define</Filter>
+    </ClInclude>
+    <ClInclude Include="header\renderer\define\Type.h">
+      <Filter>ヘッダー ファイル\renderer\define</Filter>
+    </ClInclude>
+    <ClInclude Include="header\renderer\define\Vector2.h">
+      <Filter>ヘッダー ファイル\renderer\define</Filter>
+    </ClInclude>
+    <ClInclude Include="header\renderer\define\Vector3.h">
+      <Filter>ヘッダー ファイル\renderer\define</Filter>
+    </ClInclude>
+    <ClInclude Include="header\renderer\define\ViewportDesc.h">
+      <Filter>ヘッダー ファイル\renderer\define</Filter>
+    </ClInclude>
+    <ClInclude Include="header\renderer\IRenderer.h">
+      <Filter>ヘッダー ファイル\renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="header\renderer\Renderer.h">
+      <Filter>ヘッダー ファイル\renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="header\data\id\SHADER_ID.h">
+      <Filter>ヘッダー ファイル\data\id</Filter>
+    </ClInclude>
+    <ClInclude Include="header\renderer\define\SpriteRectRenderDesc.h">
+      <Filter>ヘッダー ファイル\renderer\define</Filter>
+    </ClInclude>
+    <ClInclude Include="header\data\release\DeleteModel.h">
+      <Filter>ヘッダー ファイル\data\release</Filter>
+    </ClInclude>
+    <ClInclude Include="header\collision\SpecialAttackCollision.h">
+      <Filter>ヘッダー ファイル\collision</Filter>
+    </ClInclude>
+    <ClInclude Include="header\data\loader\SoundLoader.h">
+      <Filter>ヘッダー ファイル\data\loader</Filter>
+    </ClInclude>
+    <ClInclude Include="header\data\id\BGM_ID.h">
+      <Filter>ヘッダー ファイル\data\id</Filter>
+    </ClInclude>
+    <ClInclude Include="header\data\id\SE_ID.h">
+      <Filter>ヘッダー ファイル\data\id</Filter>
+    </ClInclude>
+    <ClInclude Include="header\renderer\define\SkyBoxRenderDesc.h">
+      <Filter>ヘッダー ファイル\renderer\define</Filter>
+    </ClInclude>
+    <ClInclude Include="header\renderer\define\OctreeRenderDesc.h">
+      <Filter>ヘッダー ファイル\renderer\define</Filter>
+    </ClInclude>
+    <ClInclude Include="header\specialskill\SPECIALSKILL_TYPE.h">
+      <Filter>ヘッダー ファイル\specialskill</Filter>
+    </ClInclude>
+    <ClInclude Include="header\specialskill\Recovery.h">
+      <Filter>ヘッダー ファイル\specialskill</Filter>
+    </ClInclude>
+    <ClInclude Include="header\specialskill\ISpecialSkill.h">
+      <Filter>ヘッダー ファイル\specialskill</Filter>
+    </ClInclude>
+    <ClInclude Include="header\specialskill\SuperArmor.h">
+      <Filter>ヘッダー ファイル\specialskill</Filter>
+    </ClInclude>
+    <ClInclude Include="header\specialskill\SpecialAttack.h">
+      <Filter>ヘッダー ファイル\specialskill</Filter>
+    </ClInclude>
+    <ClInclude Include="header\specialskill\SpecialSkillManager.h">
+      <Filter>ヘッダー ファイル\specialskill</Filter>
+    </ClInclude>
+    <ClInclude Include="header\state\player\SpecialAttackState.h">
+      <Filter>ヘッダー ファイル\state\player</Filter>
+    </ClInclude>
+    <ClInclude Include="header\state\enemy\EAttackState.h">
+      <Filter>ヘッダー ファイル\state\enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="header\state\enemy\EDamageState.h">
+      <Filter>ヘッダー ファイル\state\enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="header\state\enemy\EDeadState.h">
+      <Filter>ヘッダー ファイル\state\enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="header\state\enemy\EMoveState.h">
+      <Filter>ヘッダー ファイル\state\enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="header\state\enemy\ESlideState.h">
+      <Filter>ヘッダー ファイル\state\enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="header\state\enemy\ESpawnState.h">
+      <Filter>ヘッダー ファイル\state\enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="header\state\enemy\EStandState.h">
+      <Filter>ヘッダー ファイル\state\enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="header\ui\IPlayUI.h">
+      <Filter>ヘッダー ファイル\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="header\ui\HPGaugeUI.h">
+      <Filter>ヘッダー ファイル\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="header\ui\SPGaugeUI.h">
+      <Filter>ヘッダー ファイル\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="header\ui\UIManager.h">
+      <Filter>ヘッダー ファイル\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="header\myanimation\MyAnimation.h">
+      <Filter>ヘッダー ファイル\myanimation</Filter>
+    </ClInclude>
+    <ClInclude Include="header\myanimation\MYANIMATION_MODE.h">
+      <Filter>ヘッダー ファイル\myanimation</Filter>
+    </ClInclude>
+    <ClInclude Include="header\myanimation\MyAnimationContainer.h">
+      <Filter>ヘッダー ファイル\myanimation</Filter>
+    </ClInclude>
+    <ClInclude Include="header\myanimation\MyAnimationFunc.h">
+      <Filter>ヘッダー ファイル\myanimation</Filter>
+    </ClInclude>
+    <ClInclude Include="header\myanimation\TimeKeyFrame.h">
+      <Filter>ヘッダー ファイル\myanimation</Filter>
+    </ClInclude>
+    <ClInclude Include="header\data\loader\MyAnimationLoader.h">
+      <Filter>ヘッダー ファイル\data\loader</Filter>
+    </ClInclude>
+    <ClInclude Include="header\data\id\MYANIMATION_ID.h">
+      <Filter>ヘッダー ファイル\data\id</Filter>
+    </ClInclude>
+    <ClInclude Include="header\data\stream\LoadMyAnimation.h">
+      <Filter>ヘッダー ファイル\data\stream</Filter>
+    </ClInclude>
+    <ClInclude Include="header\data\stream\TimeKeyFrameConvert.h">
+      <Filter>ヘッダー ファイル\data\stream</Filter>
+    </ClInclude>
+    <ClInclude Include="header\ui\SpecialSkillUI.h">
+      <Filter>ヘッダー ファイル\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="header\ui\SkillUI.h">
+      <Filter>ヘッダー ファイル\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="header\math\TargetLerp.h">
+      <Filter>ヘッダー ファイル\math</Filter>
+    </ClInclude>
+    <ClInclude Include="header\data\release\DataAllRelease.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
   </ItemGroup>
@@ -578,9 +767,6 @@
     <ClCompile Include="source\light\SpotLight.cpp">
       <Filter>ソース ファイル\light</Filter>
     </ClCompile>
-    <ClCompile Include="source\renderer\Draw2D.cpp">
-      <Filter>ソース ファイル\renderer</Filter>
-    </ClCompile>
     <ClCompile Include="source\scene\SceneManager.cpp">
       <Filter>ソース ファイル\scene</Filter>
     </ClCompile>
@@ -596,23 +782,11 @@
     <ClCompile Include="source\scene\each\Title.cpp">
       <Filter>ソース ファイル\scene\each</Filter>
     </ClCompile>
-    <ClCompile Include="source\data\Release.cpp">
-      <Filter>ソース ファイル\data</Filter>
-    </ClCompile>
-    <ClCompile Include="source\data\LoadError.cpp">
-      <Filter>ソース ファイル\data</Filter>
-    </ClCompile>
     <ClCompile Include="source\animation\Animation.cpp">
       <Filter>ソース ファイル\animation</Filter>
     </ClCompile>
     <ClCompile Include="source\animation\AnimationTimer.cpp">
       <Filter>ソース ファイル\animation</Filter>
-    </ClCompile>
-    <ClCompile Include="source\renderer\Draw3D.cpp">
-      <Filter>ソース ファイル\renderer</Filter>
-    </ClCompile>
-    <ClCompile Include="source\renderer\Renderer.cpp">
-      <Filter>ソース ファイル\renderer</Filter>
     </ClCompile>
     <ClCompile Include="source\shape\Sphere.cpp">
       <Filter>ソース ファイル\shape</Filter>
@@ -645,22 +819,22 @@
       <Filter>ソース ファイル\actor</Filter>
     </ClCompile>
     <ClCompile Include="source\ui\Cursor.cpp">
-      <Filter>ソース ファイル\shape\ui</Filter>
+      <Filter>ソース ファイル\ui</Filter>
     </ClCompile>
     <ClCompile Include="source\ui\ScaleImage.cpp">
-      <Filter>ソース ファイル\shape\ui</Filter>
+      <Filter>ソース ファイル\ui</Filter>
     </ClCompile>
     <ClCompile Include="source\ui\SelectUI.cpp">
-      <Filter>ソース ファイル\shape\ui</Filter>
+      <Filter>ソース ファイル\ui</Filter>
     </ClCompile>
     <ClCompile Include="source\ui\TitleUI.cpp">
-      <Filter>ソース ファイル\shape\ui</Filter>
+      <Filter>ソース ファイル\ui</Filter>
     </ClCompile>
     <ClCompile Include="source\scene\SceneChange.cpp">
       <Filter>ソース ファイル\scene</Filter>
     </ClCompile>
     <ClCompile Include="source\ui\Fade.cpp">
-      <Filter>ソース ファイル\shape\ui</Filter>
+      <Filter>ソース ファイル\ui</Filter>
     </ClCompile>
     <ClCompile Include="source\actor\Actor.cpp">
       <Filter>ソース ファイル\actor</Filter>
@@ -708,10 +882,7 @@
       <Filter>ソース ファイル\scene\each</Filter>
     </ClCompile>
     <ClCompile Include="source\ui\SlideImage.cpp">
-      <Filter>ソース ファイル\shape\ui</Filter>
-    </ClCompile>
-    <ClCompile Include="source\scene\each\GameClear.cpp">
-      <Filter>ソース ファイル</Filter>
+      <Filter>ソース ファイル\ui</Filter>
     </ClCompile>
     <ClCompile Include="source\actor\Boss\Boss.cpp">
       <Filter>ソース ファイル\actor\Boss</Filter>
@@ -734,15 +905,6 @@
     <ClCompile Include="source\transform\Transform.cpp">
       <Filter>ソース ファイル\transform</Filter>
     </ClCompile>
-    <ClCompile Include="source\actor\player\specialSkill\Recovery.cpp">
-      <Filter>ソース ファイル\actor\Player\specialSkill</Filter>
-    </ClCompile>
-    <ClCompile Include="source\actor\player\specialSkill\SpecialSkillManager.cpp">
-      <Filter>ソース ファイル\actor\Player\specialSkill</Filter>
-    </ClCompile>
-    <ClCompile Include="source\actor\player\specialSkill\SuperArmor.cpp">
-      <Filter>ソース ファイル\actor\Player\specialSkill</Filter>
-    </ClCompile>
     <ClCompile Include="source\actor\Enemy\EnemyManager.cpp">
       <Filter>ソース ファイル\actor\Enemy</Filter>
     </ClCompile>
@@ -751,9 +913,6 @@
     </ClCompile>
     <ClCompile Include="source\collision\HitInformation.cpp">
       <Filter>ソース ファイル\collision</Filter>
-    </ClCompile>
-    <ClCompile Include="source\actor\player\specialSkill\SpecialAttack.cpp">
-      <Filter>ソース ファイル\actor\Player\specialSkill</Filter>
     </ClCompile>
     <ClCompile Include="source\collision\SpecialAttackCollision.cpp">
       <Filter>ソース ファイル\collision\user</Filter>
@@ -769,9 +928,6 @@
     </ClCompile>
     <ClCompile Include="source\collision\PlayerAttackCollision.cpp">
       <Filter>ソース ファイル\collision\user</Filter>
-    </ClCompile>
-    <ClCompile Include="source\ui\SpAttackUI.cpp">
-      <Filter>ソース ファイル</Filter>
     </ClCompile>
     <ClCompile Include="source\state\player\AttackState.cpp">
       <Filter>ソース ファイル\state\player</Filter>
@@ -845,8 +1001,119 @@
     <ClCompile Include="source\camera\CameraWork\CWParameterReader.cpp">
       <Filter>ソース ファイル\camera</Filter>
     </ClCompile>
-    <ClCompile Include="source\camera\AMath.cpp">
-      <Filter>ソース ファイル</Filter>
+    <ClCompile Include="source\scene\each\GameClear.cpp">
+      <Filter>ソース ファイル\scene\each</Filter>
+    </ClCompile>
+    <ClCompile Include="source\data\Message.cpp">
+      <Filter>ソース ファイル\data</Filter>
+    </ClCompile>
+    <ClCompile Include="source\data\loader\AnimationLoader.cpp">
+      <Filter>ソース ファイル\data\loader</Filter>
+    </ClCompile>
+    <ClCompile Include="source\data\loader\MeshEXLoader.cpp">
+      <Filter>ソース ファイル\data\loader</Filter>
+    </ClCompile>
+    <ClCompile Include="source\data\loader\MeshLoader.cpp">
+      <Filter>ソース ファイル\data\loader</Filter>
+    </ClCompile>
+    <ClCompile Include="source\data\loader\ModelLoader.cpp">
+      <Filter>ソース ファイル\data\loader</Filter>
+    </ClCompile>
+    <ClCompile Include="source\data\loader\OctreeLoader.cpp">
+      <Filter>ソース ファイル\data\loader</Filter>
+    </ClCompile>
+    <ClCompile Include="source\data\loader\ShaderLoader.cpp">
+      <Filter>ソース ファイル\data\loader</Filter>
+    </ClCompile>
+    <ClCompile Include="source\data\loader\SkeletonLoader.cpp">
+      <Filter>ソース ファイル\data\loader</Filter>
+    </ClCompile>
+    <ClCompile Include="source\data\loader\TextureLoader.cpp">
+      <Filter>ソース ファイル\data\loader</Filter>
+    </ClCompile>
+    <ClCompile Include="source\data\release\DeleteModel.cpp">
+      <Filter>ソース ファイル\data\release</Filter>
+    </ClCompile>
+    <ClCompile Include="source\renderer\Renderer.cpp">
+      <Filter>ソース ファイル\renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="source\data\loader\SoundLoader.cpp">
+      <Filter>ソース ファイル\data\loader</Filter>
+    </ClCompile>
+    <ClCompile Include="source\specialskill\Recovery.cpp">
+      <Filter>ソース ファイル\specialskill</Filter>
+    </ClCompile>
+    <ClCompile Include="source\specialskill\SuperArmor.cpp">
+      <Filter>ソース ファイル\specialskill</Filter>
+    </ClCompile>
+    <ClCompile Include="source\specialskill\SpecialAttack.cpp">
+      <Filter>ソース ファイル\specialskill</Filter>
+    </ClCompile>
+    <ClCompile Include="source\specialskill\SpecialSkillManager.cpp">
+      <Filter>ソース ファイル\specialskill</Filter>
+    </ClCompile>
+    <ClCompile Include="source\state\player\SpecialAttackState.cpp">
+      <Filter>ソース ファイル\state\player</Filter>
+    </ClCompile>
+    <ClCompile Include="source\data\release\DataAllRelease.cpp">
+      <Filter>ソース ファイル\data\release</Filter>
+    </ClCompile>
+    <ClCompile Include="source\state\enemy\EAttackState.cpp">
+      <Filter>ソース ファイル\state\enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="source\state\enemy\EDeadState.cpp">
+      <Filter>ソース ファイル\state\enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="source\state\enemy\EDamageState.cpp">
+      <Filter>ソース ファイル\state\enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="source\state\enemy\EMoveState.cpp">
+      <Filter>ソース ファイル\state\enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="source\state\enemy\ESlideState.cpp">
+      <Filter>ソース ファイル\state\enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="source\state\enemy\ESpawnState.cpp">
+      <Filter>ソース ファイル\state\enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="source\state\enemy\EStandState.cpp">
+      <Filter>ソース ファイル\state\enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="source\ui\HPGaugeUI.cpp">
+      <Filter>ソース ファイル\ui</Filter>
+    </ClCompile>
+    <ClCompile Include="source\ui\SPGaugeUI.cpp">
+      <Filter>ソース ファイル\ui</Filter>
+    </ClCompile>
+    <ClCompile Include="source\ui\UIManager.cpp">
+      <Filter>ソース ファイル\ui</Filter>
+    </ClCompile>
+    <ClCompile Include="source\myanimation\MyAnimation.cpp">
+      <Filter>ソース ファイル\myanimation</Filter>
+    </ClCompile>
+    <ClCompile Include="source\myanimation\MyAnimationContainer.cpp">
+      <Filter>ソース ファイル\myanimation</Filter>
+    </ClCompile>
+    <ClCompile Include="source\myanimation\MyAnimationFunc.cpp">
+      <Filter>ソース ファイル\myanimation</Filter>
+    </ClCompile>
+    <ClCompile Include="source\myanimation\TimeKeyFrame.cpp">
+      <Filter>ソース ファイル\myanimation</Filter>
+    </ClCompile>
+    <ClCompile Include="source\data\loader\MyAnimationLoader.cpp">
+      <Filter>ソース ファイル\data\loader</Filter>
+    </ClCompile>
+    <ClCompile Include="source\data\stream\TimeKeyFrameConvert.cpp">
+      <Filter>ソース ファイル\data\stream</Filter>
+    </ClCompile>
+    <ClCompile Include="source\data\stream\LoadMyAnimation.cpp">
+      <Filter>ソース ファイル\data\stream</Filter>
+    </ClCompile>
+    <ClCompile Include="source\ui\SkillUI.cpp">
+      <Filter>ソース ファイル\ui</Filter>
+    </ClCompile>
+    <ClCompile Include="source\ui\SpecialSkillUI.cpp">
+      <Filter>ソース ファイル\ui</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

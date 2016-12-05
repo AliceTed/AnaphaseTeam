@@ -7,39 +7,33 @@
 */
 #include<gslib.h>
 #include "../Actor.h"
-#include "../../animation/Animation.h"
 #include "../../attack/ComboAttack.h"
-#include "../../data/ANIMATION_ID.h"
 #include "Status.h"
 #include "../../attack/Scythe.h"
 #include "Gauge.h"
-#include "specialSkill/SpecialSkillManager.h"
-class GameDevice;
+#include "../../specialskill/SpecialSkillManager.h"
+#include "../../ui/SpecialSkillUI.h"
 class CameraController;
-class TestActor;
 class LockOn;
 class Enemy;
 class Camera;
 class Player :public Actor
 {
 public:
-	Player(GameDevice* _device, Camera * _camera, LockOn* _lockon);
+	Player(Camera * _camera, LockOn* _lockon);
 	~Player();
 	void jumping(float _velocity);
 	void avoidAction(const GSvector3& _velocity);
 	void attackmotion(Attack& _attack);
 	void look_at(CameraController* _camera, GSvector3* _target);
-	//void gaugeUp(float _scale);
 	void homing();
-	void specialAttack();
-	void gaugeAdd();
 	void createAttackCollision();
-	void hpDown();
-	void recovery();
+	void damage(const AttackStatus & _attackStatus) override;
+	void finish() override;
 public://Actor継承
 	void initialize() override;
 	void update(float deltatime) override;
-	void draw(const Renderer& _renderer) override;
+	void draw(IRenderer* _renderer) override;
 	AttackStatus status();
 private:
 	void subActionStart();
@@ -48,26 +42,22 @@ private:
 	void rotate(float deltaTime, Transform& _transform);
 	void movement(float deltaTime, float _speed);
 private:
-	GameDevice* m_device;
 	ComboAttack m_combo;
 	Status m_status;
-	Gauge m_Gauge;
-
+	std::shared_ptr<Gauge> m_Gauge;
+	std::shared_ptr<SpecialSkillUI> m_specialUI;
 	Camera * m_camera;
 	LockOn* m_lockon;
 	Scythe m_scythe;
-	SpecialSkillManager m_SpecialSkillManager;
-
+	SpecialSkillManager m_specialskill;
 	GSvector3 target;
-
-	std::string u;
-	int count=0;
 private://state宣言
 	class AttackState;
 	class DamageState;
 	class MoveState;
 	class StandState;
 	class StepState;
+	class SpecialAttackState;
 	/*
 	空中状態で別で作るのではなく
 	プレイヤーの状態として各種追加する
@@ -81,8 +71,9 @@ private://state宣言
 	friend DamageState;
 	friend MoveState;
 	friend StandState;
+	friend SpecialAttackState;
+	
 	friend StepState;
-
 	friend SingleJumpState;
 	friend DoubleJumpState;
 	friend LimitFallState;

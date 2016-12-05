@@ -1,5 +1,5 @@
 #include"../../../header/state/player/MoveState.h"
-#include "../../../header/data/ANIMATION_ID.h"
+#include "../../../header/data/id/ANIMATION_ID.h"
 #include "../../../header/device/GameDevice.h"
 const float Player::MoveState::SPEED = 0.1f;
 Player::MoveState::MoveState(Player* _player)
@@ -16,7 +16,7 @@ void Player::MoveState::action(float deltaTime)
 	m_actor->movement(deltaTime,SPEED);
 	m_actor->subActionStart();
 	m_actor->control();
-	if (!m_actor->m_device->input()->move())
+	if (!GameDevice::getInstacnce().input()->move())
 	{
 		changeState(ACTOR_STATE::STAND);
 	}

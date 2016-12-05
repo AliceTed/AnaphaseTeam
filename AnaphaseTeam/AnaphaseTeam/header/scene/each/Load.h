@@ -2,16 +2,14 @@
 #define _LOAD_H_
 #include "../IScene.h"
 
-class Sound;
-
 class Load :public IScene
 {
 public:
-	Load(Sound* _sound);
+	Load();
 	~Load();
 	void initialize();
 	void update(float deltaTime);
-	void draw(const Renderer& renderer);
+	void draw(IRenderer * renderer);
 	void finish();
 	const SceneMode next()const;
 	const bool isEnd()const;
@@ -20,8 +18,8 @@ private:
 	void loadTextrue();
 	void loadSound();
 	void loadModel();
+	void loadMyAnimation();
 private:
 	bool m_IsEnd;
-	Sound* m_sound;
 };
 #endif

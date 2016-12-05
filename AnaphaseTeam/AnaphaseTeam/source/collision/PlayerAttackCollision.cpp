@@ -1,6 +1,6 @@
 #include "..\..\header\collision\PlayerAttackCollision.h"
 #include "../../header/shape/Sphere.h"
-#include "../../header/actor/Player/Player.h"
+#include "../../header/collision/HitInformation.h"
 Player::PlayerAttackCollision::PlayerAttackCollision(Player* _player)
 	:CollisionActor(new Sphere(_player->m_transform.m_translate,0.7f),Collision_Tag::PLAYER_WEAPON),
 	m_player(_player),
@@ -19,11 +19,20 @@ void Player::PlayerAttackCollision::doUpdate(float deltaTime)
 	}
 }
 
-void Player::PlayerAttackCollision::doDraw(const Renderer & _renderer)
+void Player::PlayerAttackCollision::doDraw(IRenderer *_renderer)
 {
-	m_shape->draw(_renderer);
+	//m_shape->draw(_renderer);
 }
 
 void Player::PlayerAttackCollision::collision_Enter(HitInformation & _hit)
 {
+	if (_hit.m_tag != Collision_Tag::ENEMY)return;
+	m_player->m_Gauge->up(10);
+	Actor* act = _hit.m_parent;
+	act->damage(m_player->m_combo.getStatus());
+	
+	if (m_player->m_specialskill.isStart(SPECIALSKILL_TYPE::RECOVERY))
+	{
+		m_player->m_status.add();
+	}
 }
