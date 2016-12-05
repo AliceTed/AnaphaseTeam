@@ -1,5 +1,7 @@
 #pragma once
+#include <gslib.h>
 #include "IPlayUI.h"
+
 class Status;
 class HPGaugeUI :public IPlayUI
 {

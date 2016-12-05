@@ -8,7 +8,6 @@ class Enemy::EnemyAttackCollision:public CollisionActor
 public:
 	//time‚Í•bŽw’è
 	Enemy::EnemyAttackCollision(const GSvector3& _point,float _destroytime);
-	Enemy::~EnemyAttackCollision();
 private:
 	void doUpdate(float deltaTime)override;
 	void collision_Enter(HitInformation& _hit)override;

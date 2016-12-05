@@ -9,10 +9,6 @@ Enemy::EnemyAttackCollision::EnemyAttackCollision(const GSvector3& _point, float
 {
 }
 
-Enemy::EnemyAttackCollision::~EnemyAttackCollision()
-{
-}
-
 void Enemy::EnemyAttackCollision::doUpdate(float deltaTime)
 {
 	m_destory_timer.update(deltaTime);
