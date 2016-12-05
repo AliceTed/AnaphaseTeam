@@ -24,6 +24,12 @@ public:
 	*************************************************/
 	static float to_rad(float _deg);
 
+	/*************************************************
+	@brief ラジアンに変換
+	@param[_rotate]		回転軸
+	@return				回転軸（ラジアン変換済み）
+	*************************************************/
+	static GSvector2 to_rad(const GSvector2& _rotate);
 
 	/*************************************************
 	@brief 角度に変換
@@ -62,6 +68,19 @@ public:
 		const GSvector3&	_center,
 		const GSvector2&	_rotate,
 		const float			_distance
+	);
+
+
+	/*************************************************
+	@brief pitch,yow回転のラープ
+	@param[_my]			自分
+	@param[_target]		ターゲット
+	@param[_speed]		速度
+	*************************************************/
+	static void lerp_eleDir(
+		GSvector2*			_my,
+		const GSvector2&	_target,
+		float				_speed
 	);
 };
 
