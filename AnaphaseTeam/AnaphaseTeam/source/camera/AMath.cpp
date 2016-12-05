@@ -12,6 +12,16 @@ float AMath::to_rad(float _degree)
 	return result;
 }
 
+GSvector2 AMath::to_rad(const GSvector2& _rotate)
+{
+	GSvector2 result = {
+		to_rad(_rotate.x),
+		to_rad(_rotate.y)
+	};
+
+	return result;
+}
+
 
 float AMath::to_deg(float _radian)
 {
@@ -58,4 +68,20 @@ GSvector3 AMath::rotate_sphericalCoordinates(
 	result.z = _center.z + sinf(_rotate.y) * cosf(_rotate.x) * _distance;
 
 	return result;
+}
+
+void AMath::lerp_eleDir(
+	GSvector2*			_my,
+	const GSvector2&	_target,
+	float				_speed
+)
+{
+	GSvector2 rotate = GSvector2(
+		AMath::subtractAngle(_my->x, _target.x),
+		AMath::subtractAngle(_my->y, _target.y)
+	);
+
+	(*_my) += rotate * _speed;
+
+	return;
 }

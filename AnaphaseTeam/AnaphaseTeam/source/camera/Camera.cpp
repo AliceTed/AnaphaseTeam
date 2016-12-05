@@ -98,18 +98,13 @@ void Camera::cameraWork_dolly(
 
 	GSvector2 rotate;
 
-	float difference_elevation =
-		AMath::subtractAngle(m_rotate_dolly.x, _rotate.x);
-	float difference_direction =
-		AMath::subtractAngle(m_rotate_dolly.y, _rotate.y);
-
-	m_rotate_dolly.x += difference_elevation * _followSpeed_camera;
-	m_rotate_dolly.y += difference_direction * _followSpeed_camera;
-
-	rotate = GSvector2(
-		AMath::to_rad(m_rotate_dolly.x),
-		AMath::to_rad(m_rotate_dolly.y)
+	AMath::lerp_eleDir(
+		&m_rotate_dolly,
+		_rotate,
+		_followSpeed_camera
 	);
+
+	rotate = AMath::to_rad(m_rotate_dolly);
 
 	position = AMath::rotate_sphericalCoordinates(
 		_position_target,
@@ -117,7 +112,7 @@ void Camera::cameraWork_dolly(
 		_distance
 	);
 
-	follow_position(position, 1.0f);
+	follow_position(position, _followSpeed_camera);
 
 	follow_target(_position_target, _followSpeed_target);
 
