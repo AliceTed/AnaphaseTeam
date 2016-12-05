@@ -32,6 +32,7 @@ public:
 	const bool exit();
 public:
 	const bool reset();
+	const bool decision();
 private:
 	Input* m_input;
 };

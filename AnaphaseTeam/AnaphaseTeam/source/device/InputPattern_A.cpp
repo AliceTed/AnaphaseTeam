@@ -104,3 +104,8 @@ const bool InputPattern_A::reset()
 {
 	return m_input->isJoyTriggerSTART();
 }
+
+const bool InputPattern_A::decision()
+{
+	return m_input->isJoyTriggerB();
+}

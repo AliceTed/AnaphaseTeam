@@ -762,6 +762,15 @@
     <ClInclude Include="header\scene\each\GameClear.h">
       <Filter>ヘッダー ファイル\scene\each</Filter>
     </ClInclude>
+    <ClInclude Include="header\scene\each\Pause.h">
+      <Filter>ヘッダー ファイル\scene\each</Filter>
+    </ClInclude>
+    <ClInclude Include="header\ui\Image2D.h">
+      <Filter>ソース ファイル\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="header\ui\PauseUI.h">
+      <Filter>ヘッダー ファイル\ui</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="source\main.cpp">
@@ -1126,6 +1135,12 @@
     </ClCompile>
     <ClCompile Include="source\camera\CameraWork\_CameraWork.cpp">
       <Filter>ソース ファイル\camera\CameraWork</Filter>
+    </ClCompile>
+    <ClCompile Include="source\scene\each\Pause.cpp">
+      <Filter>ソース ファイル\scene\each</Filter>
+    </ClCompile>
+    <ClCompile Include="source\ui\PauseUI.cpp">
+      <Filter>ソース ファイル\ui</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -29,4 +29,5 @@ public:
 	virtual const bool exit() = 0;
 public://debug
 	virtual const bool reset() = 0;
+	virtual const bool decision()=0;
 };
