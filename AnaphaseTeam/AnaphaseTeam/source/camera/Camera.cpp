@@ -1,7 +1,7 @@
 #include "../../header/camera/Camera.h"
 #include "../../header/camera/CameraTarget.h"
 #include "../../header/math/Calculate.h"
-#include "../../header/camera/AMath.h"
+#include "../../header/math/AMath.h"
 #include "../../header/data/id/OCTREE_ID.h"
 
 const GSvector3 Camera::RAY_DONW = GSvector3(0, -1, 0);

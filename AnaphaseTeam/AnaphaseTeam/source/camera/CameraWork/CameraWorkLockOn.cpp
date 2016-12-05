@@ -1,6 +1,5 @@
 #include "../../../header/camera/CameraWork/CameraWorkLockOn.h"
 #include "../../../header/camera/Camera.h"
-#include "../../../header/camera/ACalc.h"
 #include "../../../header/math/Calculate.h"
 #include "../../../header/camera/CameraWork/CWParameterReader.h"
 

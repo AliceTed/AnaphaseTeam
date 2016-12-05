@@ -4,7 +4,7 @@
 @author Yuuho Aritomi*/
 #include "../../header/camera\CameraController.h"
 #include "../../header/camera/Camera.h"
-#include "../../header/camera/ACalc.h"
+#include "../../header/math/AMath.h"
 #include "../../header/math/Calculate.h"
 #include <string>
 
@@ -32,8 +32,8 @@ CameraController::CameraController(
 	m_pitch(_pitch),
 	m_yow(_yow)
 {
-	ACalc::to_rad(&m_pitch);
-	ACalc::to_rad(&m_yow);
+	m_pitch = AMath::to_rad(m_pitch);
+	m_yow = AMath::to_rad(m_yow);
 
 	m_cameraWorkManager->load();
 }

@@ -145,6 +145,7 @@
   <ItemGroup>
     <ClCompile Include="source\camera\AMath.cpp" />
     <ClCompile Include="source\attack\KnockBack.cpp" />
+    <ClCompile Include="source\math\AMath.cpp" />
     <ClCompile Include="source\collision\PlayerCollision.cpp" />
     <ClCompile Include="source\actor\Actor.cpp" />
     <ClCompile Include="source\actor\Boss\Boss.cpp" />
@@ -156,7 +157,6 @@
     <ClCompile Include="source\attack\Attack.cpp" />
     <ClCompile Include="source\attack\Scythe.cpp" />
     <ClCompile Include="source\actor\player\Player.cpp" />
-    <ClCompile Include="source\camera\ACalc.cpp" />
     <ClCompile Include="source\camera\Camera.cpp" />
     <ClCompile Include="source\camera\CameraController.cpp" />
     <ClCompile Include="source\camera\CameraTarget.cpp" />
@@ -268,7 +268,7 @@
     <ClCompile Include="source\ui\UIManager.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="header\camera\AMath.h" />
+    <ClInclude Include="header\math\AMath.h" />
     <ClInclude Include="header\actor\Actor.h" />
     <ClInclude Include="header\actor\Actor_Tag.h" />
     <ClInclude Include="header\actor\Boss\Boss.h" />
@@ -284,7 +284,6 @@
     <ClInclude Include="header\attack\LoadAttack.h" />
     <ClInclude Include="header\attack\Scythe.h" />
     <ClInclude Include="header\actor\Player\Player.h" />
-    <ClInclude Include="header\camera\ACalc.h" />
     <ClInclude Include="header\camera\Camera.h" />
     <ClInclude Include="header\camera\CameraController.h" />
     <ClInclude Include="header\camera\CameraTarget.h" />
