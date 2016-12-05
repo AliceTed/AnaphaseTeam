@@ -132,6 +132,6 @@ void Enemy::think(Player * _player)
 void Enemy::start_lockOn()
 {
 	UIManager::getInstance().release(EUI::ENEMYHP);
-	std::shared_ptr<HPGaugeUI> hp = std::make_shared<HPGaugeUI>(GSvector2(800,600),m_status,1.0f);
+	std::shared_ptr<HPGaugeUI> hp = std::make_shared<HPGaugeUI>(GSvector2(800,600),m_status,3.0f);
 	UIManager::getInstance().add(EUI::ENEMYHP,hp);
 }

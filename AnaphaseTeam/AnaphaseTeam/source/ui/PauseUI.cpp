@@ -19,7 +19,7 @@ void PauseUI::initialize()
 }
 void PauseUI::update(float deltaTime)
 {
-	std::_For_each(m_images.begin(), m_images.end(), [deltaTime](Image_Ptr value) {value->update(deltaTime); });
+	std::for_each(m_images.begin(), m_images.end(), [deltaTime](Image_Ptr value) {value->update(deltaTime); });
 }
 void PauseUI::start(int _select)
 {
