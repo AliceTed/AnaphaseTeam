@@ -60,12 +60,6 @@ void Enemy::damage(const AttackStatus & _attackStatus)
 	m_transform.translate_front(_attackStatus.m_blowOff.x);//nockback
 	m_status.down(_attackStatus.m_power);
 }
-
-void Enemy::collisionChase(EnemyCollision * _collision)
-{
-	_collision->chase(m_transform.m_translate);
-}
-
 void Enemy::damage(Player * _player)
 {
 	//if (isDamageState())return;

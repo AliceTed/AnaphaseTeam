@@ -2,13 +2,13 @@
 #include "CollisionActor.h"
 #include "../actor/Player/Player.h"
 #include "../convenient/Timer.h"
-class Enemy;
-class EnemyAttackCollision:public CollisionActor
+#include "../actor/Enemy/Enemy.h"
+class Enemy::EnemyAttackCollision:public CollisionActor
 {
 public:
 	//time‚Í•bŽw’è
-	EnemyAttackCollision(const GSvector3& _point,float _destroytime);
-	~EnemyAttackCollision();
+	Enemy::EnemyAttackCollision(const GSvector3& _point,float _destroytime);
+	Enemy::~EnemyAttackCollision();
 private:
 	void doUpdate(float deltaTime)override;
 	void collision_Enter(HitInformation& _hit)override;

@@ -76,7 +76,7 @@ void Player::initialize()
 	m_specialskill.add(SPECIALSKILL_TYPE::SUPERARMOR, new SuperArmor());
 	m_specialUI->initialize();
 	m_Gauge->initialize();
-	UIManager::getInstance().add(EUI::HP, std::shared_ptr<HPGaugeUI>(new HPGaugeUI(m_status)));
+	UIManager::getInstance().add(EUI::HP, std::shared_ptr<HPGaugeUI>(new HPGaugeUI(GSvector2(0,10),m_status)));
 	UIManager::getInstance().add(EUI::GAUGE, m_Gauge);
 	UIManager::getInstance().add(EUI::SPICON, m_specialUI);
 }
