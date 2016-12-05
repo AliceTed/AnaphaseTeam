@@ -11,6 +11,7 @@ public:
 	~Option();
 	void initialize();
 	void update(float deltaTime);
+	void slideStart(unsigned int _index);
 	void draw(IRenderer * renderer);
 	void finish();
 	const SceneMode next()const;
@@ -19,4 +20,6 @@ public:
 private:
 	SceneChange m_change;
 	std::vector<SlideImage> m_image;
+	float m_timer;
+	bool m_slideStart[2];
 };
