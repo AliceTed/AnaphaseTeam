@@ -6,11 +6,12 @@
 
 const GSvector3 Camera::RAY_DONW = GSvector3(0, -1, 0);
 
+const float Camera::DEF_FOV_MIN = 2;
+const float Camera::DEF_FOV_MAX = 180;
+
 Camera::Camera(void) :
 	m_perspective(Perspective(45.0f, 1280.0f / 720.0f, 0.3f, 1000.0f)),
-	DEF_FOV(m_perspective.x),
-	DEF_FOV_MIN(2),
-	DEF_FOV_MAX(180),
+	m_def_fov(m_perspective.x),
 	m_fov_min(DEF_FOV_MIN),
 	m_fov_max(DEF_FOV_MAX),
 	m_position(0.0f, 0.0f, 0.0f),
@@ -30,7 +31,7 @@ Camera::~Camera()
 
 void Camera::initialize_zoom(void)
 {
-	m_perspective.x = DEF_FOV;
+	m_perspective.x = m_def_fov;
 	m_fov_min		= DEF_FOV_MIN;
 	m_fov_max		= DEF_FOV_MAX;
 }
@@ -282,7 +283,7 @@ void Camera::update_zoom(const float _speed)
 }
 
 void Camera::hit_ground(GSvector3* _position)
-{//’n–Ê‚ ‚½‚è”»’è
+{
 	GSvector3 rayDir;
 	GSvector3 intersectPos;
 
