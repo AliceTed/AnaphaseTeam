@@ -204,6 +204,7 @@
     <ClCompile Include="source\scene\each\Opening.cpp" />
     <ClCompile Include="source\scene\each\Option.cpp" />
     <ClCompile Include="source\scene\each\GameClear.cpp" />
+    <ClCompile Include="source\scene\each\Pause.cpp" />
     <ClCompile Include="source\sound\Sound.cpp" />
     <ClCompile Include="source\specialskill\Recovery.cpp" />
     <ClCompile Include="source\specialskill\SpecialAttack.cpp" />
@@ -254,6 +255,7 @@
     <ClCompile Include="source\ui\Cursor.cpp" />
     <ClCompile Include="source\ui\Fade.cpp" />
     <ClCompile Include="source\ui\HPGaugeUI.cpp" />
+    <ClCompile Include="source\ui\PauseUI.cpp" />
     <ClCompile Include="source\ui\ScaleImage.cpp" />
     <ClCompile Include="source\ui\SelectUI.cpp" />
     <ClCompile Include="source\ui\SkillUI.cpp" />
@@ -364,6 +366,7 @@
     <ClInclude Include="header\scene\each\Opening.h" />
     <ClInclude Include="header\scene\each\Option.h" />
     <ClInclude Include="header\scene\each\GameClear.h" />
+    <ClInclude Include="header\scene\each\Pause.h" />
     <ClInclude Include="header\sound\Sound.h" />
     <ClInclude Include="header\specialskill\ISpecialSkill.h" />
     <ClInclude Include="header\specialskill\Recovery.h" />
@@ -433,10 +436,12 @@
     <ClInclude Include="header\transform\Quaternion_Utility.h" />
     <ClInclude Include="header\transform\ToString.h" />
     <ClInclude Include="header\transform\Transform.h" />
+    <ClInclude Include="header\ui\Image2D.h" />
     <ClInclude Include="header\ui\Cursor.h" />
     <ClInclude Include="header\ui\Fade.h" />
     <ClInclude Include="header\ui\HPGaugeUI.h" />
     <ClInclude Include="header\ui\IPlayUI.h" />
+    <ClInclude Include="header\ui\PauseUI.h" />
     <ClInclude Include="header\ui\ScaleImage.h" />
     <ClInclude Include="header\ui\SelectUI.h" />
     <ClInclude Include="header\ui\SkillUI.h" />
