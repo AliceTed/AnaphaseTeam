@@ -83,3 +83,8 @@ const bool InputPattern_B::reset()
 {
 	return false;
 }
+
+const bool InputPattern_B::decision()
+{
+	return m_input->isJoyTriggerB();
+}

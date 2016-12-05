@@ -204,6 +204,7 @@
     <ClCompile Include="source\scene\each\Opening.cpp" />
     <ClCompile Include="source\scene\each\Option.cpp" />
     <ClCompile Include="source\scene\each\GameClear.cpp" />
+    <ClCompile Include="source\scene\each\Pause.cpp" />
     <ClCompile Include="source\sound\Sound.cpp" />
     <ClCompile Include="source\specialskill\Recovery.cpp" />
     <ClCompile Include="source\specialskill\SpecialAttack.cpp" />
@@ -363,6 +364,7 @@
     <ClInclude Include="header\scene\each\Opening.h" />
     <ClInclude Include="header\scene\each\Option.h" />
     <ClInclude Include="header\scene\each\GameClear.h" />
+    <ClInclude Include="header\scene\each\Pause.h" />
     <ClInclude Include="header\sound\Sound.h" />
     <ClInclude Include="header\specialskill\ISpecialSkill.h" />
     <ClInclude Include="header\specialskill\Recovery.h" />
