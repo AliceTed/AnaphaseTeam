@@ -7,7 +7,7 @@
 #include "../../../header/ui/UIManager.h"
 GamePlay::GamePlay()
 	:m_Map(OCTREE_ID::ARENA),
-	m_Camera(),
+	m_Camera(&m_Map),
 	m_cameracontroller(&m_Camera),
 	m_enemys(),
 	m_change(),

@@ -765,9 +765,6 @@
     <ClInclude Include="header\ui\PauseUI.h">
       <Filter>ヘッダー ファイル\ui</Filter>
     </ClInclude>
-    <ClInclude Include="header\attack\KnockBack.h">
-      <Filter>ヘッダー ファイル\attack</Filter>
-    </ClInclude>
     <ClInclude Include="header\math\AMath.h">
       <Filter>ヘッダー ファイル\math</Filter>
     </ClInclude>
@@ -1135,9 +1132,6 @@
     </ClCompile>
     <ClCompile Include="source\ui\PauseUI.cpp">
       <Filter>ソース ファイル\ui</Filter>
-    </ClCompile>
-    <ClCompile Include="source\attack\KnockBack.cpp">
-      <Filter>ソース ファイル\Attack</Filter>
     </ClCompile>
     <ClCompile Include="source\math\AMath.cpp">
       <Filter>ソース ファイル\math</Filter>

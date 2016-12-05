@@ -14,6 +14,7 @@
 typedef GSvector4 Perspective;
 
 class CameraTarget;
+class Map;
 
 class Camera
 {
@@ -22,7 +23,7 @@ public:
 	/********************************************************
 	@brief コンストラクタ
 	********************************************************/
-	Camera(void);
+	Camera(Map* _map);
 
 
 	/********************************************************
@@ -215,6 +216,8 @@ private:
 
 	static const float				DEF_FOV_MIN;
 	static const float				DEF_FOV_MAX;
+
+	Map*							m_map;
 
 	Perspective						m_perspective;
 	float							m_def_fov;

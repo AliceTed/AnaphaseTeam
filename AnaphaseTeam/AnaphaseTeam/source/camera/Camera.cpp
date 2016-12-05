@@ -3,13 +3,15 @@
 #include "../../header/math/Calculate.h"
 #include "../../header/math/AMath.h"
 #include "../../header/data/id/OCTREE_ID.h"
+#include "../../header/map/Map.h"
 
 const GSvector3 Camera::RAY_DONW = GSvector3(0, -1, 0);
 
 const float Camera::DEF_FOV_MIN = 2;
 const float Camera::DEF_FOV_MAX = 180;
 
-Camera::Camera(void) :
+Camera::Camera(Map* _map) :
+	m_map(_map),
 	m_perspective(Perspective(45.0f, 1280.0f / 720.0f, 0.3f, 1000.0f)),
 	m_def_fov(m_perspective.x),
 	m_fov_min(DEF_FOV_MIN),
@@ -284,18 +286,11 @@ void Camera::update_zoom(const float _speed)
 
 void Camera::hit_ground(GSvector3* _position)
 {
-	GSvector3 rayDir;
 	GSvector3 intersectPos;
 
-	gsVector3Init(&rayDir, 0.0f, -1.0f, 0.0f);
-
-
 	if (
-		collisionRay_octree(
-			&intersectPos,
-			(*_position),
-			RAY_DONW
-		) && _position->y < intersectPos.y
+		m_map->isCollisionRay((*_position), RAY_DONW, &intersectPos) && 
+		_position->y < intersectPos.y
 		)
 	{
 		_position->y = intersectPos.y;
