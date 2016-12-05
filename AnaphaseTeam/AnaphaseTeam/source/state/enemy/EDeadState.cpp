@@ -9,7 +9,7 @@ Enemy::EDeadState::EDeadState(Enemy* _enemy)
 
 void Enemy::EDeadState::start()
 {
-	m_actor->m_animatorOne.changeAnimation(static_cast<GSuint>(ENEMY_ANIMATION::DEAD),false);
+	m_actor->m_animatorOne.changeAnimation(static_cast<GSuint>(ENEMY_ANIMATION::DEAD));
 }
 
 void Enemy::EDeadState::action(float deltaTime)
