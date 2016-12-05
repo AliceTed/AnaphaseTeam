@@ -23,11 +23,11 @@ void EnemyAttackCollision::doUpdate(float deltaTime)
 }
 
 void EnemyAttackCollision::collision_Enter(HitInformation & _hit)
-{
-	AttackStatus attackStatus;
-	attackStatus.m_power=10;
+{	
 	if (_hit.m_tag != Collision_Tag::PLAYER)return;
 	Actor* act = _hit.m_parent;
+	AttackStatus attackStatus;
+	attackStatus.m_power = 10;
 	act->damage(attackStatus);
 }
 

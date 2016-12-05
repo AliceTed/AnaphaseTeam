@@ -67,5 +67,10 @@ private://state
 	friend ESlideState;
 	friend ESpawnState;
 	friend EDeadState;
+private://collision
+	class EnemyCollision;
+	class EnemyAttackCollision;
 
+	friend EnemyCollision;
+	friend EnemyAttackCollision;
 };
