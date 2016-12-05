@@ -21,7 +21,6 @@ CameraController::CameraController(Camera* _camera) :
 }
 
 
-
 CameraController::CameraController(
 	Camera* _camera, 
 	const float _distance,
@@ -40,12 +39,10 @@ CameraController::CameraController(
 }
 
 
-
 void CameraController::update(float _deltaTime)
 {
 	m_cameraWorkManager->update(_deltaTime);
 }
-
 
 
 void CameraController::draw(void)
@@ -54,17 +51,6 @@ void CameraController::draw(void)
 
 	m_camera->update();
 }
-
-
-
-
-void CameraController::change_control(Camera* _camera)
-{
-	m_camera = _camera;
-
-	return;
-}
-
 
 
 void CameraController::change_cameraWork(const E_CameraWorkID _id)
