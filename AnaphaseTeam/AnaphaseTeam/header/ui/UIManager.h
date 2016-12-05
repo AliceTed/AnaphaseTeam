@@ -11,6 +11,7 @@ enum class EUI
 	HP,
 	GAUGE,
 	SPICON,
+	ENEMYHP,
 	SIZE
 };
 
@@ -21,6 +22,7 @@ class UIManager
 public:
 	static UIManager& getInstance();
 	void release(EUI _key);
+	void clear();
 	~UIManager()=default;
 	void add(EUI _key,UI_Ptr _ui);
 	void update(float deltatime);

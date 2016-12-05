@@ -143,6 +143,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="source\attack\KnockBack.cpp" />
     <ClCompile Include="source\collision\PlayerCollision.cpp" />
     <ClCompile Include="source\actor\Actor.cpp" />
     <ClCompile Include="source\actor\Boss\Boss.cpp" />
@@ -275,6 +276,7 @@
     <ClInclude Include="header\attack\ATTACK_TYPE.h" />
     <ClInclude Include="header\attack\ComboAttack.h" />
     <ClInclude Include="header\attack\Attack.h" />
+    <ClInclude Include="header\attack\KnockBack.h" />
     <ClInclude Include="header\attack\LoadAttack.h" />
     <ClInclude Include="header\attack\Scythe.h" />
     <ClInclude Include="header\actor\Player\Player.h" />

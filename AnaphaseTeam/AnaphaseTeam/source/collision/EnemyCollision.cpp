@@ -21,12 +21,6 @@ void Enemy::EnemyCollision::collision_Enter(HitInformation & _hit)
 		m_enemy->specialDamage();
 		return;
 	}
-	if (_hit.m_tag != Collision_Tag::PLAYER_WEAPON)return;
-	Actor* act = _hit.m_parent;
-	if (!act->isSameTag(Actor_Tag::PLAYER))return;
-	Player* player = dynamic_cast<Player*>(act);
-	if (player == nullptr)return;
-	m_enemy->damage(player);
 }
 
 void Enemy::EnemyCollision::doDraw(IRenderer * _renderer)

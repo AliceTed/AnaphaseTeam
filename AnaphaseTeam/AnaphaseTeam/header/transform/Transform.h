@@ -34,6 +34,8 @@ public:
 	const GSvector3 front()const;
 	const GSvector3 left()const;
 	const GSvector3 up()const;
+	const GSvector3 rotate_vector(const GSvector3& _vec)const;
+
 	const GSmatrix4 matrix()const;
 
 	Transform lerp(Transform& _target, float _t);

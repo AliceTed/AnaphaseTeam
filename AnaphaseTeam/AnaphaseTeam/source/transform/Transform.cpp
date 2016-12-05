@@ -113,22 +113,23 @@ const float Transform::getRoll() const
 
 const GSvector3 Transform::front() const
 {
-	Quaternion_Utility util;
-	GSvector3 f = util.rotation(m_rotate, GSvector3(0.0f, 0.0f, 1.0f));
-	return f.normalize();
+	return rotate_vector(GSvector3(0.0f, 0.0f,1.0f));
 }
 
 const GSvector3 Transform::left() const
 {
-	Quaternion_Utility util;
-	GSvector3 r = util.rotation(m_rotate, GSvector3(1.0f, 0.0f, 0.0f));
-	return r.normalize();
+	return rotate_vector(GSvector3(1.0f, 0.0f, 0.0f));
 }
 
 const GSvector3 Transform::up() const
 {
+	return rotate_vector(GSvector3(0.0f, 1.0f, 0.0f));
+}
+
+const GSvector3 Transform::rotate_vector(const GSvector3 & _vec) const
+{
 	Quaternion_Utility util;
-	GSvector3 r = util.rotation(m_rotate, GSvector3(0.0f,1.0f, 0.0f));
+	GSvector3 r = util.rotation(m_rotate,_vec);
 	return r.normalize();
 }
 

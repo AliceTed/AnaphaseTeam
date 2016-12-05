@@ -22,6 +22,7 @@ void LockOn::nearEnemyFind(EnemyManager * _enemys)
 	if (m_target == nullptr || GameDevice::getInstacnce().input()->lockOn())
 	{
 		m_target = &_enemys->nearEnemy(m_player);
+		(*m_target)->start_lockOn();
 	}
 }
 

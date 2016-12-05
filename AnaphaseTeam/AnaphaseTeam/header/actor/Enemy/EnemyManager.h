@@ -21,7 +21,8 @@ public:
 	Enemy_Ptr& nearEnemy(Player* _player);
 
 	void thinks(Player* _player);
-	int size();
+
+	const unsigned int size()const;
 private:
 	EnemyManager(EnemyManager&);
 	EnemyManager& operator=(EnemyManager&);
