@@ -1,4 +1,4 @@
-#include "../../header/camera/AMath.h"
+#include "../../header/math/AMath.h"
 #include <cmath>
 
 const float AMath::PI = 3.14159265359f;
