@@ -2,6 +2,9 @@
 #include "../../header/camera/CameraTarget.h"
 #include "../../header/math/Calculate.h"
 #include "../../header/camera/AMath.h"
+#include "../../header/data/id/OCTREE_ID.h"
+
+const GSvector3 Camera::RAY_DONW = GSvector3(0, -1, 0);
 
 Camera::Camera(void) :
 	m_perspective(Perspective(45.0f, 1280.0f / 720.0f, 0.3f, 1000.0f)),
@@ -111,6 +114,8 @@ void Camera::cameraWork_dolly(
 		rotate,
 		_distance
 	);
+	
+	hit_ground(&position);
 
 	follow_position(position, _followSpeed_camera);
 
@@ -274,4 +279,41 @@ void Camera::update_zoom(const float _speed)
 	);
 
 	return;
+}
+
+void Camera::hit_ground(GSvector3* _position)
+{//’n–Ê‚ ‚½‚è”»’è
+	GSvector3 rayDir;
+	GSvector3 intersectPos;
+
+	gsVector3Init(&rayDir, 0.0f, -1.0f, 0.0f);
+
+
+	if (
+		collisionRay_octree(
+			&intersectPos,
+			(*_position),
+			RAY_DONW
+		) && _position->y < intersectPos.y
+		)
+	{
+		_position->y = intersectPos.y;
+	}
+}
+
+bool Camera::collisionRay_octree(
+	GSvector3* _intersectPos, 
+	const GSvector3& _position, 
+	const GSvector3 & _rayDir
+)
+{
+	bool result = gsOctreeCollisionRay(
+		gsGetOctree((int)OCTREE_ID::ARENA),
+		&_position,
+		&_rayDir,
+		_intersectPos,
+		NULL
+	) == GS_TRUE;
+
+	return result;
 }

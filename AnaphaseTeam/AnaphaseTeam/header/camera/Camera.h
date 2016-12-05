@@ -202,7 +202,17 @@ private:
 
 	void update_zoom(const float _speed);
 
+	void hit_ground(GSvector3* _position);
+
+	bool collisionRay_octree(
+		GSvector3* _intersectPos, 
+		const GSvector3& _position, 
+		const GSvector3& _rayDir
+	);
+
 private:
+	static const GSvector3			RAY_DONW;
+
 	Perspective						m_perspective;
 	const float						DEF_FOV;
 	const float						DEF_FOV_MIN;

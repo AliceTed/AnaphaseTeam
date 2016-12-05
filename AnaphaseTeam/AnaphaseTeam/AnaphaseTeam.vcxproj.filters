@@ -205,6 +205,12 @@
     <Filter Include="ヘッダー ファイル\myanimation">
       <UniqueIdentifier>{4cd0ce32-2d56-4438-946e-f678364af05f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\camera\CameraWork">
+      <UniqueIdentifier>{65c16a96-dc38-4033-b1b2-2f1e2471b6db}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\camera\CameraWork">
+      <UniqueIdentifier>{a20e3e16-08b2-4175-bbcd-9e8a23603204}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="header\math\Calculate.h">
@@ -486,36 +492,6 @@
     <ClInclude Include="header\attack\LoadAttack.h">
       <Filter>ヘッダー ファイル\attack</Filter>
     </ClInclude>
-    <ClInclude Include="header\camera\CameraWork\_CameraWork.h">
-      <Filter>ヘッダー ファイル\camera</Filter>
-    </ClInclude>
-    <ClInclude Include="header\camera\CameraWork\CameraWorkData.h">
-      <Filter>ヘッダー ファイル\camera</Filter>
-    </ClInclude>
-    <ClInclude Include="header\camera\CameraWork\CameraWorkDead.h">
-      <Filter>ヘッダー ファイル\camera</Filter>
-    </ClInclude>
-    <ClInclude Include="header\camera\CameraWork\CameraWorkLockOn.h">
-      <Filter>ヘッダー ファイル\camera</Filter>
-    </ClInclude>
-    <ClInclude Include="header\camera\CameraWork\CameraWorkManager.h">
-      <Filter>ヘッダー ファイル\camera</Filter>
-    </ClInclude>
-    <ClInclude Include="header\camera\CameraWork\CameraWorkNormal.h">
-      <Filter>ヘッダー ファイル\camera</Filter>
-    </ClInclude>
-    <ClInclude Include="header\camera\CameraWork\CWParameterReader.h">
-      <Filter>ヘッダー ファイル\camera</Filter>
-    </ClInclude>
-    <ClInclude Include="header\camera\CameraWork\E_CameraWorkID.h">
-      <Filter>ヘッダー ファイル\camera</Filter>
-    </ClInclude>
-    <ClInclude Include="header\scene\each\GameClear.h">
-      <Filter>ヘッダー ファイル\camera</Filter>
-    </ClInclude>
-    <ClInclude Include="header\camera\CameraWork\I_CameraWork.h">
-      <Filter>ヘッダー ファイル\camera</Filter>
-    </ClInclude>
     <ClInclude Include="header\data\id\ANIMATION_ID.h">
       <Filter>ヘッダー ファイル\data\id</Filter>
     </ClInclude>
@@ -750,8 +726,41 @@
     <ClInclude Include="header\math\TargetLerp.h">
       <Filter>ヘッダー ファイル\math</Filter>
     </ClInclude>
+    <ClInclude Include="header\camera\AMath.h">
+      <Filter>ヘッダー ファイル\camera</Filter>
+    </ClInclude>
     <ClInclude Include="header\data\release\DataAllRelease.h">
-      <Filter>ヘッダー ファイル</Filter>
+      <Filter>ヘッダー ファイル\data\release</Filter>
+    </ClInclude>
+    <ClInclude Include="header\camera\CameraWork\_CameraWork.h">
+      <Filter>ヘッダー ファイル\camera\CameraWork</Filter>
+    </ClInclude>
+    <ClInclude Include="header\camera\CameraWork\CameraWorkData.h">
+      <Filter>ヘッダー ファイル\camera\CameraWork</Filter>
+    </ClInclude>
+    <ClInclude Include="header\camera\CameraWork\CameraWorkDead.h">
+      <Filter>ヘッダー ファイル\camera\CameraWork</Filter>
+    </ClInclude>
+    <ClInclude Include="header\camera\CameraWork\CameraWorkLockOn.h">
+      <Filter>ヘッダー ファイル\camera\CameraWork</Filter>
+    </ClInclude>
+    <ClInclude Include="header\camera\CameraWork\CameraWorkManager.h">
+      <Filter>ヘッダー ファイル\camera\CameraWork</Filter>
+    </ClInclude>
+    <ClInclude Include="header\camera\CameraWork\CameraWorkNormal.h">
+      <Filter>ヘッダー ファイル\camera\CameraWork</Filter>
+    </ClInclude>
+    <ClInclude Include="header\camera\CameraWork\CWParameterReader.h">
+      <Filter>ヘッダー ファイル\camera\CameraWork</Filter>
+    </ClInclude>
+    <ClInclude Include="header\camera\CameraWork\I_CameraWork.h">
+      <Filter>ヘッダー ファイル\camera\CameraWork</Filter>
+    </ClInclude>
+    <ClInclude Include="header\camera\CameraWork\E_CameraWorkID.h">
+      <Filter>ヘッダー ファイル\camera\CameraWork</Filter>
+    </ClInclude>
+    <ClInclude Include="header\scene\each\GameClear.h">
+      <Filter>ヘッダー ファイル\scene\each</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -980,27 +989,6 @@
     <ClCompile Include="source\collision\PlayerCollision.cpp">
       <Filter>ソース ファイル\collision\user</Filter>
     </ClCompile>
-    <ClCompile Include="source\camera\CameraWork\_CameraWork.cpp">
-      <Filter>ソース ファイル\camera</Filter>
-    </ClCompile>
-    <ClCompile Include="source\camera\CameraWork\CameraWorkData.cpp">
-      <Filter>ソース ファイル\camera</Filter>
-    </ClCompile>
-    <ClCompile Include="source\camera\CameraWork\CameraWorkDead.cpp">
-      <Filter>ソース ファイル\camera</Filter>
-    </ClCompile>
-    <ClCompile Include="source\camera\CameraWork\CameraWorkLockOn.cpp">
-      <Filter>ソース ファイル\camera</Filter>
-    </ClCompile>
-    <ClCompile Include="source\camera\CameraWork\CameraWorkManager.cpp">
-      <Filter>ソース ファイル\camera</Filter>
-    </ClCompile>
-    <ClCompile Include="source\camera\CameraWork\CameraWorkNormal.cpp">
-      <Filter>ソース ファイル\camera</Filter>
-    </ClCompile>
-    <ClCompile Include="source\camera\CameraWork\CWParameterReader.cpp">
-      <Filter>ソース ファイル\camera</Filter>
-    </ClCompile>
     <ClCompile Include="source\scene\each\GameClear.cpp">
       <Filter>ソース ファイル\scene\each</Filter>
     </ClCompile>
@@ -1114,6 +1102,30 @@
     </ClCompile>
     <ClCompile Include="source\ui\SpecialSkillUI.cpp">
       <Filter>ソース ファイル\ui</Filter>
+    </ClCompile>
+    <ClCompile Include="source\camera\AMath.cpp">
+      <Filter>ソース ファイル\camera</Filter>
+    </ClCompile>
+    <ClCompile Include="source\camera\CameraWork\CameraWorkData.cpp">
+      <Filter>ソース ファイル\camera\CameraWork</Filter>
+    </ClCompile>
+    <ClCompile Include="source\camera\CameraWork\CameraWorkDead.cpp">
+      <Filter>ソース ファイル\camera\CameraWork</Filter>
+    </ClCompile>
+    <ClCompile Include="source\camera\CameraWork\CameraWorkLockOn.cpp">
+      <Filter>ソース ファイル\camera\CameraWork</Filter>
+    </ClCompile>
+    <ClCompile Include="source\camera\CameraWork\CameraWorkManager.cpp">
+      <Filter>ソース ファイル\camera\CameraWork</Filter>
+    </ClCompile>
+    <ClCompile Include="source\camera\CameraWork\CameraWorkNormal.cpp">
+      <Filter>ソース ファイル\camera\CameraWork</Filter>
+    </ClCompile>
+    <ClCompile Include="source\camera\CameraWork\CWParameterReader.cpp">
+      <Filter>ソース ファイル\camera\CameraWork</Filter>
+    </ClCompile>
+    <ClCompile Include="source\camera\CameraWork\_CameraWork.cpp">
+      <Filter>ソース ファイル\camera\CameraWork</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
