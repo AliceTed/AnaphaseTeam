@@ -7,6 +7,9 @@
 */
 class IRenderer;
 class SceneChange;
+#include "../../ui/ScaleImage.h"
+#include "../../ui/PauseUI.h"
+#include <vector>
 class Pause
 {
 public:
@@ -24,5 +27,6 @@ private:
 private:
 	int m_currentSelect;
 	bool m_isPause;
+	PauseUI m_image;
 	SceneChange& m_change;
 };

@@ -10,16 +10,19 @@
 #include "../../../header/device/GameDevice.h"
 #include "../../../header/renderer/define/StringRenderDesc.h" 
 #include "../../../header/renderer/define/SpriteRenderDesc.h" 
-
+//!アイコンの位置
 static const GSvector2 ICONPOSITION[2] = { GSvector2(450,350),GSvector2(450,550) };
 
 Pause::Pause(SceneChange& _change) :
-	m_currentSelect(0), m_isPause(false), m_change(_change)
+	m_currentSelect(0), m_isPause(false),
+	m_change(_change),
+	m_image()
 {}
 Pause::~Pause()
 {}
 void Pause::initialize()
 {
+	m_image.initialize();
 	m_currentSelect = 0;
 }
 void Pause::update(float deltatime)
@@ -33,45 +36,19 @@ void Pause::update(float deltatime)
 	if (!m_isPause)return;
 	select();
 	decision();
+	m_image.update(deltatime);
 }
 void Pause::draw(IRenderer* _renderer)
 {
 	if (!m_isPause)return;
-	
+
+	SpriteRenderDesc desc;
 	//背景
-	SpriteRenderDesc backDesc;
-	backDesc.textureID = static_cast<GSuint>(TEXTURE_ID::BLACK);
-	backDesc.color = GScolor4(1, 1, 1, 0.4f);
-	_renderer->render(backDesc);
-
-
-	//ゲームに戻る
-	SpriteRenderDesc desc; GSmatrix4 mat;
-	mat.identity();
-	mat.translate(500, 300, 0);
-	desc.matrix = mat;
-	desc.color = GScolor4(1, 1, 1, 1);
-	desc.textureID = static_cast<GSuint>(TEXTURE_ID::PAUSE_GAMEBACK);
+	desc.textureID = static_cast<GSuint>(TEXTURE_ID::BLACK);
+	desc.color = GScolor4(1, 1, 1, 0.4f);
 	_renderer->render(desc);
-
-	//タイトルへ戻る
-	SpriteRenderDesc desc2;
-	GSmatrix4 mat2;
-	mat2.identity();
-	mat2.translate(500, 500, 0);
-	desc2.matrix = mat2;
-	desc2.textureID = static_cast<GSuint>(TEXTURE_ID::PAUSE_TITLEBACK);
-	_renderer->render(desc2);
-
-	//アイコン
-	SpriteRenderDesc iconDesc;
-	GSmatrix4 iconMat;
-	iconMat.identity();
-	iconMat.translate(ICONPOSITION[m_currentSelect]);	
-	iconDesc.matrix = iconMat;
-	iconDesc.textureID = static_cast<GSuint>(TEXTURE_ID::CURSOR);
-	iconDesc.color = GScolor4(1, 1, 1, 1);
-	_renderer->render(iconDesc);
+	//選択肢
+	m_image.draw(_renderer);
 }
 void Pause::finish()
 {
@@ -79,15 +56,19 @@ void Pause::finish()
 }
 void Pause::select()
 {
+	bool isselect = false;
 	if (GameDevice::getInstacnce().input()->up())
 	{
 		m_currentSelect += 1;
+		isselect = true;
 	}
 	if (GameDevice::getInstacnce().input()->down())
 	{
 		m_currentSelect -= 1;
+		isselect = true;
 	}
 	clamp();
+	if (isselect)m_image.start(m_currentSelect);
 }
 void Pause::decision()
 {
