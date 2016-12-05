@@ -143,6 +143,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="source\camera\AMath.cpp" />
     <ClCompile Include="source\collision\PlayerCollision.cpp" />
     <ClCompile Include="source\actor\Actor.cpp" />
     <ClCompile Include="source\actor\Boss\Boss.cpp" />
@@ -237,6 +238,7 @@
     <ClCompile Include="source\ui\TitleUI.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="header\camera\AMath.h" />
     <ClInclude Include="header\actor\Actor.h" />
     <ClInclude Include="header\actor\Actor_Tag.h" />
     <ClInclude Include="header\actor\Boss\Boss.h" />

@@ -202,21 +202,6 @@ private:
 
 	void update_zoom(const float _speed);
 
-	void update_follow(
-		GSvector3*			_vector,
-		const GSvector3&	_target,
-		float				_speed
-	);
-
-	void update_rotate(
-		GSvector3*			_vector,
-		const GSvector3&	_target,
-		const GSvector2&	_rotate,
-		const float			_distance
-	);
-
-	void to_rad(float* _degree);
-
 private:
 	Perspective						m_perspective;
 	const float						DEF_FOV;
@@ -230,6 +215,8 @@ private:
 	GSvector3						m_target;
 	GSvector3						m_up;
 	GSmatrix4						m_matView;
+
+	GSvector2						m_rotate_dolly;
 
 	std::shared_ptr<CameraTarget>	m_cameraTarget_player;
 	std::shared_ptr<CameraTarget>	m_cameraTarget_enemy;

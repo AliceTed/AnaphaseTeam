@@ -1,6 +1,7 @@
 #include "../../header/camera/Camera.h"
 #include "../../header/camera/CameraTarget.h"
 #include "../../header/math/Calculate.h"
+#include "../../header/camera/AMath.h"
 
 Camera::Camera(void) :
 	m_perspective(Perspective(45.0f, 1280.0f / 720.0f, 0.3f, 1000.0f)),
@@ -12,6 +13,7 @@ Camera::Camera(void) :
 	m_position(0.0f, 0.0f, 0.0f),
 	m_target(0.0f, 0.0f, 0.0f),
 	m_up(0.0f, 1.0f, 0.0f),
+	m_rotate_dolly(0.0f, 0.0f),
 	m_cameraTarget_player(std::make_shared<CameraTarget>()),
 	m_cameraTarget_enemy(std::make_shared<CameraTarget>())
 {
@@ -67,11 +69,10 @@ void Camera::cameraWork_tilt_pan(
 {
 	GSvector3 target;
 
-	to_rad(&_rotate.x);
-	to_rad(&_rotate.y);
+	_rotate.x = AMath::to_rad(_rotate.x);
+	_rotate.y = AMath::to_rad(_rotate.y);
 
-	update_rotate(
-		&target,
+	target = AMath::rotate_sphericalCoordinates(
 		m_position,
 		_rotate,
 		10
@@ -95,17 +96,28 @@ void Camera::cameraWork_dolly(
 {
 	GSvector3 position;
 
-	to_rad(&_rotate.x);
-	to_rad(&_rotate.y);
+	GSvector2 rotate;
 
-	update_rotate(
-		&position,
+	float difference_elevation =
+		AMath::subtractAngle(m_rotate_dolly.x, _rotate.x);
+	float difference_direction =
+		AMath::subtractAngle(m_rotate_dolly.y, _rotate.y);
+
+	m_rotate_dolly.x += difference_elevation * _followSpeed_camera;
+	m_rotate_dolly.y += difference_direction * _followSpeed_camera;
+
+	rotate = GSvector2(
+		AMath::to_rad(m_rotate_dolly.x),
+		AMath::to_rad(m_rotate_dolly.y)
+	);
+
+	position = AMath::rotate_sphericalCoordinates(
 		_position_target,
-		_rotate,
+		rotate,
 		_distance
 	);
 
-	follow_position(position, _followSpeed_camera);
+	follow_position(position, 1.0f);
 
 	follow_target(_position_target, _followSpeed_target);
 
@@ -131,7 +143,7 @@ void Camera::lookAt_cameraTarget_enemy(const GSvector3& _target)
 
 void Camera::follow_position(const GSvector3& _target, const float _speed)
 {
-	update_follow(&m_position, _target, _speed);
+	gsVector3Lerp(&m_position, &m_position, &_target, _speed);
 
 	return;
 }
@@ -139,7 +151,7 @@ void Camera::follow_position(const GSvector3& _target, const float _speed)
 
 void Camera::follow_target(const GSvector3& _target, const float _speed)
 {
-	update_follow(&m_target, _target, _speed);
+	gsVector3Lerp(&m_target, &m_target, &_target, _speed);
 
 	return;
 }
@@ -265,46 +277,6 @@ void Camera::update_zoom(const float _speed)
 		m_fov_min,
 		m_fov_max
 	);
-
-	return;
-}
-
-
-void Camera::update_follow(
-	GSvector3* _vector,
-	const GSvector3& _target,
-	float _speed
-)
-{
-	Math::Clamp clamp;
-
-	_speed = clamp(_speed, 0.0f, 1.0f);
-
-	gsVector3Lerp(_vector, _vector, &_target, _speed);
-
-	return;
-
-}
-
-
-void Camera::update_rotate(
-	GSvector3* _vector,
-	const GSvector3& _target,
-	const GSvector2& _rotate,
-	const float _distance
-)
-{
-	_vector->x = _target.x + cosf(_rotate.y) * cosf(_rotate.x) * _distance;
-	_vector->y = _target.y + sinf(_rotate.x) * _distance;
-	_vector->z = _target.z + sinf(_rotate.y) * cosf(_rotate.x) * _distance;
-}
-
-
-void Camera::to_rad(float* _degree)
-{
-	float pi = 3.14159265359f;
-
-	(*_degree) *= pi / 180.0f;
 
 	return;
 }
