@@ -50,8 +50,11 @@ Player::Player(Camera * _camera, LockOn* _lockon)
 	m_lockon(_lockon),
 	m_scythe(),
 	m_specialskill(m_Gauge.get()),
-	target(0, 0, 0),
-	m_specialUI(std::make_shared<SpecialSkillUI>(GSvector2(1100,80)))
+	m_target(0, 0, 0),
+	m_specialUI(std::make_shared<SpecialSkillUI>(GSvector2(1100,80))),
+	m_homing(),
+	m_timer(1.5f),
+	m_isLockOn(false)
 {
 }
 
@@ -67,7 +70,7 @@ void Player::initialize()
 	
 	m_status.initialize();
 	m_scythe.initialize();
-	target = m_transform.m_translate;
+	m_target = m_transform.m_translate;
 	m_combo.initialize();
 
 	m_specialskill.clear();
@@ -79,6 +82,8 @@ void Player::initialize()
 	UIManager::getInstance().add(EUI::HP, std::shared_ptr<HPGaugeUI>(new HPGaugeUI(m_status)));
 	UIManager::getInstance().add(EUI::GAUGE, m_Gauge);
 	UIManager::getInstance().add(EUI::SPICON, m_specialUI);
+	m_timer.initialize();
+	m_isLockOn = false;
 }
 
 void Player::update(float deltatime)
@@ -88,6 +93,7 @@ void Player::update(float deltatime)
 	m_scythe.update(deltatime, m_animatorOne, m_transform);
 	m_status.change(*m_Gauge.get());
 	m_specialskill.update(deltatime);
+	m_timer.update(deltatime);
 
 	m_collision.update(deltatime);
 	if (m_isDead = m_status.getHp() <= 0)
@@ -106,6 +112,11 @@ void Player::draw(IRenderer *_renderer)
 void Player::finish()
 {
 	UIManager::getInstance().release(EUI::SIZE);
+}
+
+void Player::test()
+{
+	//m_transform.m_rotate = targetDirection(*m_lockon->getTarget());
 }
 
 void Player::damage(const AttackStatus & _attackStatus)
@@ -142,13 +153,7 @@ void Player::subActionStart()
 }
 void Player::homing()
 {
-	Enemy* target = m_lockon->getTarget();
-	if (target == nullptr) return;
-	m_transform.m_rotate = targetDirection(*target);
-	float velocity = distanceActor(*target) / 5.0f;
-	Math::Clamp clamp;
-	velocity = clamp(m_Gauge->scale(velocity), 0.0f, distanceActor(*target) - 1.0f);
-	this->target = m_transform.m_translate + (m_transform.front() * velocity);
+	m_homing.start(this, m_lockon->getTarget(), m_transform, *m_Gauge, m_target, m_isLockOn);
 }
 
 void Player::createAttackCollision()
@@ -159,6 +164,8 @@ void Player::createAttackCollision()
 
 void Player::avoidAction(const GSvector3 & _velocity)
 {
+	//Math::Clamp clamp;
+	//clamp(_velocity, GSvector3(0,0,0), m_lockon->getTarget()->test() - GSvector3(1, 1, 1));
 	m_transform.translate(_velocity);
 }
 
@@ -206,16 +213,19 @@ void Player::control()
 
 void Player::look_at(CameraController * _camera, GSvector3 * _target)
 {
-	GSvector3 target = m_transform.m_translate;
+	if (m_timer.isEnd())
+	{
+		m_isLockOn = false;
+	}
+	GSvector3 position = m_transform.m_translate;
 	//by —L•y
-	float distance;
 
-	m_camera->lookAt_cameraTarget_player(target);
+	m_camera->lookAt_cameraTarget_player(position);
 	m_camera->lookAt_cameraTarget_enemy(*_target);
 
 	//by —L•y
-	distance = target.distance(*_target);
-	if (distance < 10)
+	float distance = position.distance(*_target);
+	if (m_isLockOn)
 	{
 		_camera->change_cameraWork(E_CameraWorkID::LOCK_ON);
 	}

@@ -213,3 +213,8 @@ void Enemy::think(Player * _player)
 	//m_state = ESTATE::MOVE;
 	changeState(ACTOR_STATE::EMOVE);
 }
+
+GSvector3 Enemy::test()
+{
+	return m_transform.m_translate;
+}

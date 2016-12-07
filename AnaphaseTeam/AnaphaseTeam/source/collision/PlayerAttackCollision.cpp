@@ -28,6 +28,8 @@ void Player::PlayerAttackCollision::collision_Enter(HitInformation & _hit)
 {
 	if (_hit.m_tag != Collision_Tag::ENEMY)return;
 	m_player->m_Gauge->up(10);
+	m_player->m_timer.initialize();
+	m_player->m_isLockOn = true;
 	Actor* act = _hit.m_parent;
 	act->damage(m_player->m_combo.getStatus());
 	

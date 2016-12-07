@@ -35,6 +35,8 @@ public:
 	void specialDamage();
 
 	void think(Player* _palyer);
+
+	GSvector3 test();
 private:
 	const bool isNear(float _distance)const;
 	void state(float deltaTime);

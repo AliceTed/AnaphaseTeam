@@ -750,6 +750,9 @@
     <ClInclude Include="header\math\TargetLerp.h">
       <Filter>ヘッダー ファイル\math</Filter>
     </ClInclude>
+    <ClInclude Include="header\attack\Homing.h">
+      <Filter>ヘッダー ファイル\attack</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="source\main.cpp">
@@ -1111,6 +1114,9 @@
     </ClCompile>
     <ClCompile Include="source\ui\SpecialSkillUI.cpp">
       <Filter>ソース ファイル\ui</Filter>
+    </ClCompile>
+    <ClCompile Include="source\attack\Homing.cpp">
+      <Filter>ソース ファイル\Attack</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

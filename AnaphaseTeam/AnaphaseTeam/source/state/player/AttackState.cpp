@@ -1,6 +1,7 @@
 #include "../../../header/state/player/AttackState.h"
 #include "../../../header/data/id/ANIMATION_ID.h"
 #include "../../../header/device/GameDevice.h"
+
 Player::AttackState::AttackState(Player* _player)
 	:ActorState(_player),
 	m_inputTimer(0.17f)
@@ -15,7 +16,7 @@ void Player::AttackState::action(float deltaTime)
 {
 	m_actor->m_combo.update(deltaTime);
 	input(deltaTime);
-	gsVector3Lerp(&m_actor->m_transform.m_translate, &m_actor->m_transform.m_translate, &m_actor->target, deltaTime * 0.1f);
+	m_actor->m_homing.update(deltaTime, &m_actor->m_transform.m_translate);
 }
 Player::AttackState* Player::AttackState::clone() const
 {
