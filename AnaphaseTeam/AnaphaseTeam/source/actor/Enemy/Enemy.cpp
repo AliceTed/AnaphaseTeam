@@ -32,7 +32,7 @@ void Enemy::initialize()
 {
 	Actor::initialize();
 	createStates();
-	changeState(ACTOR_STATE::ESPAWN);	
+	changeState(ACTOR_STATE::ESPAWN);
 	Collision_Ptr actor = std::make_shared<EnemyCollision>(this);
 	m_collision.add(actor);
 

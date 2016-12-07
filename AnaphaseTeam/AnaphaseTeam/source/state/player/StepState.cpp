@@ -11,6 +11,13 @@ void Player::StepState::start()
 {
 	m_actor->m_animatorOne.changeAnimation(static_cast<GSuint>(ANIMATION_ID::STAND), true);
 	//¡‚Í³–ÊŒÅ’è
+	//‚±‚ê is ‚È‚É
+	//ƒNƒ\
+	if (m_actor->m_isLockOn)
+	{
+		//m_step.start(m_actor->m_lockon.);
+		m_actor->test();
+	}
 	m_step.start(m_actor->m_transform.front());
 }
 void Player::StepState::action(float deltaTime)

@@ -768,6 +768,9 @@
     <ClInclude Include="header\math\AMath.h">
       <Filter>ヘッダー ファイル\math</Filter>
     </ClInclude>
+    <ClInclude Include="header\attack\Homing.h">
+      <Filter>ヘッダー ファイル\attack</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="source\main.cpp">
@@ -1135,6 +1138,9 @@
     </ClCompile>
     <ClCompile Include="source\math\AMath.cpp">
       <Filter>ソース ファイル\math</Filter>
+    </ClCompile>
+    <ClCompile Include="source\attack\Homing.cpp">
+      <Filter>ソース ファイル\Attack</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

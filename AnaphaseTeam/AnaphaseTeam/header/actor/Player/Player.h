@@ -13,10 +13,14 @@
 #include "Gauge.h"
 #include "../../specialskill/SpecialSkillManager.h"
 #include "../../ui/SpecialSkillUI.h"
+#include "../../attack/Homing.h"
+#include "../../convenient/Timer.h"
+
 class CameraController;
 class LockOn;
 class Enemy;
 class Camera;
+
 class Player :public Actor
 {
 public:
@@ -30,6 +34,9 @@ public:
 	void createAttackCollision();
 	void damage(const AttackStatus & _attackStatus) override;
 	void finish() override;
+
+	void test();
+
 public://Actoråpè≥
 	void initialize() override;
 	void update(float deltatime) override;
@@ -50,7 +57,11 @@ private:
 	LockOn* m_lockon;
 	Scythe m_scythe;
 	SpecialSkillManager m_specialskill;
-	GSvector3 target;
+	GSvector3 m_target;
+	Homing m_homing;
+	Timer m_timer;
+	bool m_isLockOn;
+	
 private://stateêÈåæ
 	class AttackState;
 	class DamageState;

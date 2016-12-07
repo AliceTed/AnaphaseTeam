@@ -13,6 +13,7 @@ Step::Step(Player* _player)
 void Step::start(const GSvector3 & _direction)
 {
 	m_lerp.start(_direction, _direction*VELOCITY, TIME);
+
 	m_prebious = m_lerp.current();
 }
 
