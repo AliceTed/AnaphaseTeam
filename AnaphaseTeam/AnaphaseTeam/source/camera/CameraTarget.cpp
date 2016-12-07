@@ -7,12 +7,10 @@ CameraTarget::CameraTarget(void) :
 }
 
 
-
 CameraTarget::~CameraTarget()
 {
 
 }
-
 
 
 void CameraTarget::lookAt(const GSvector3& _target)

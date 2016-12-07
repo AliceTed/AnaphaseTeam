@@ -9,8 +9,12 @@ UIManager& UIManager::getInstance()
 
 void UIManager::release(EUI _key)
 {
+	m_UI.erase(_key);
+}
+
+void UIManager::clear()
+{
 	m_UI.clear();
-//	m_UI.erase(_key);
 }
 
 void UIManager::add(EUI _key, UI_Ptr _ui)

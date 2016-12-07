@@ -141,6 +141,7 @@ void AnimatorOne::draw(IRenderer* _renderer, const Transform &_transform, const 
 	desc.shaderID = static_cast<GSuint>(SHADER_ID::SKINNEDMESH);
 	desc.matrix = _transform.matrix();
 	desc.animation = mat.get();
+	desc.color = _color;
 	_renderer->render(desc);
 }
 

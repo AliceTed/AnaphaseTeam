@@ -1,12 +1,10 @@
 #pragma once
 #include "CollisionActor.h"
-class Enemy;
-class EnemyCollision:public CollisionActor
+#include "../actor/Enemy/Enemy.h"
+class Enemy::EnemyCollision:public CollisionActor
 {
 public:
-	EnemyCollision(Enemy* _enemy);
-	~EnemyCollision();
-	void chase(const GSvector3& _position);
+	Enemy::EnemyCollision(Enemy* _enemy);
 private:
 	void doUpdate(float deltaTime)override;
 	void collision_Enter(HitInformation& _hit)override;

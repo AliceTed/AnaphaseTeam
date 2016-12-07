@@ -1,7 +1,7 @@
 #include "../../../header/actor/Enemy/EnemyManager.h"
 #include "../../../header/actor/Player/Player.h"
 #include <algorithm>
-
+#include "../../../header/camera/LockOn.h"
 EnemyManager::EnemyManager()
 	:m_enemys()
 {
@@ -37,7 +37,6 @@ void EnemyManager::collision(Actor & _actor)
 void EnemyManager::draw(IRenderer * _renderer)
 {
 	for (auto& i : m_enemys) { i->draw(_renderer); }
-	//_renderer.getDraw2D().string(std::to_string(size()).c_str(), &GSvector2(200,300),50);
 }
 
 Enemy_Ptr& EnemyManager::nearEnemy(Player * _player)
@@ -51,7 +50,7 @@ void EnemyManager::thinks(Player * _player)
 	for (auto& i : m_enemys) { i->think(_player); }
 }
 
-int EnemyManager::size()
+const unsigned int EnemyManager::size()const
 {
 	return m_enemys.size();
 }
@@ -60,27 +59,4 @@ void EnemyManager::remove()
 {
 	auto itr = std::remove_if(m_enemys.begin(), m_enemys.end(), [](Enemy_Ptr& _e) {return _e->isDead();});
 	m_enemys.erase(itr,m_enemys.end());
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 }

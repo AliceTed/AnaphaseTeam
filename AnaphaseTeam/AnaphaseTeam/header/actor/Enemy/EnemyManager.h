@@ -18,10 +18,12 @@ public:
 
 	void collision(Actor& _actor);
 	void draw(IRenderer * _renderer);
+
 	Enemy_Ptr& nearEnemy(Player* _player);
 
 	void thinks(Player* _player);
-	int size();
+
+	const unsigned int size()const;
 private:
 	EnemyManager(EnemyManager&);
 	EnemyManager& operator=(EnemyManager&);

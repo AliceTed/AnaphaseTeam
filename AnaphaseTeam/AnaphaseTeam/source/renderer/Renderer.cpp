@@ -196,11 +196,13 @@ void Renderer::render(const SkinnedMeshRenderDesc & desc)
 	gsSetShaderParam4f("u_lightDiffuse", &mLight.diffuse);
 	gsSetShaderParam4f("u_lightSpecular", &mLight.specular);
 
+
 	gsSetShaderParamMatrix4("u_matWorld", &desc.matrix);
 	gsSetShaderParamMatrix4("u_matView", &mViewMatrix);
 	gsSetShaderParamMatrix4("u_matProjection", &mProjectionMatrix);
 	gsSetShaderParamTexture("u_baseMap", 0);
 	gsSetShaderParamTexture("u_normalMap", 1);
+	gsSetShaderParam4f("u_color",&desc.color);
 	gsSetShaderParamArrayMatrix4("gs_BoneMatrices", gsGetSkeletonNumBones(desc.meshID), desc.animation);
 
 	//ÉÅÉbÉVÉÖï`âÊ

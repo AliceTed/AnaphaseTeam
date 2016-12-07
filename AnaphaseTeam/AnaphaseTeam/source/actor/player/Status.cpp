@@ -5,7 +5,7 @@
 Status::Status(float _hp)
 	:def(3.0f),
 	m_hp(_hp),
-	m_defHp(_hp),
+	m_maxHp(_hp),
 	m_AttackSpeed(def)
 {
 }
@@ -17,7 +17,7 @@ Status::~Status()
 void Status::initialize()
 {
 	m_AttackSpeed = def;
-	m_hp = m_defHp;
+	m_hp = m_maxHp;
 }
 
 void Status::change(Gauge & _gauge)
@@ -33,6 +33,11 @@ float Status::attackSpeed()
 float Status::getHp()
 {
 	return m_hp;
+}
+
+const float Status::getMaxHp() const
+{
+	return m_maxHp;
 }
 
 void Status::down(float _damage)

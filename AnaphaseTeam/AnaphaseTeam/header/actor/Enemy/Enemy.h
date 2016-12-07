@@ -5,19 +5,9 @@
 //#include "../../attack/AttackIncidence.h"
 #include "../../attack/AttackStatus.h"
 #include "../../actor/Player/Status.h"
+#include "../../attack/KnockBack.h"
 class EnemyCollision;
 class Player;
-//éÊÇËÇ†Ç¶Ç∏enumÇ≈èÛë‘ï™ÇØ
-enum class ESTATE
-{
-	SPAWN,
-	STAND,
-	MOVE,
-	SLIDE,
-	ATTACK,
-	DAMAGE,
-	DEAD
-};
 
 class Enemy :public Actor
 {
@@ -29,30 +19,24 @@ public:
 	void draw(IRenderer* _renderer)override;
 	void damage(const AttackStatus& _attackStatus)override;
 public:
-	void collisionChase(EnemyCollision* _collision);
-	void damage(Player* _player);
 	void look_at(CameraController* _camera, Player* _player);
 	void specialDamage();
 
 	void think(Player* _palyer);
 
-	GSvector3 test();
+	void start_lockOn();
+	const bool isDamageState()const;
 private:
 	const bool isNear(float _distance)const;
-	void state(float deltaTime);
-	const bool isDamageState()const;
+	const bool isThink()const;
 	void createStates();
+	void createAttackCollision();
 private:
-	void slide(Actor* _actor);
-	void move(Actor* _actor);
-	void attack_start();
-	void stay_start();
-private:
-	Timer m_stay_timer;
 	static const float PLAYER_DISTANCE;
 	float m_alpha;
 	Status m_status;
 
+	KnockBack m_knockBack;
 private://state
 	class EAttackState;
 	class EDamageState;
@@ -69,5 +53,10 @@ private://state
 	friend ESlideState;
 	friend ESpawnState;
 	friend EDeadState;
+private://collision
+	class EnemyCollision;
+	class EnemyAttackCollision;
 
+	friend EnemyCollision;
+	friend EnemyAttackCollision;
 };

@@ -4,7 +4,7 @@
 @author Yuuho Aritomi*/
 #include "../../header/camera\CameraController.h"
 #include "../../header/camera/Camera.h"
-#include "../../header/camera/ACalc.h"
+#include "../../header/math/AMath.h"
 #include "../../header/math/Calculate.h"
 #include <string>
 
@@ -21,7 +21,6 @@ CameraController::CameraController(Camera* _camera) :
 }
 
 
-
 CameraController::CameraController(
 	Camera* _camera, 
 	const float _distance,
@@ -33,12 +32,11 @@ CameraController::CameraController(
 	m_pitch(_pitch),
 	m_yow(_yow)
 {
-	ACalc::to_rad(&m_pitch);
-	ACalc::to_rad(&m_yow);
+	m_pitch = AMath::to_rad(m_pitch);
+	m_yow = AMath::to_rad(m_yow);
 
 	m_cameraWorkManager->load();
 }
-
 
 
 void CameraController::update(float _deltaTime)
@@ -47,24 +45,12 @@ void CameraController::update(float _deltaTime)
 }
 
 
-
 void CameraController::draw(void)
 {
 	m_cameraWorkManager->draw();
 
 	m_camera->update();
 }
-
-
-
-
-void CameraController::change_control(Camera* _camera)
-{
-	m_camera = _camera;
-
-	return;
-}
-
 
 
 void CameraController::change_cameraWork(const E_CameraWorkID _id)

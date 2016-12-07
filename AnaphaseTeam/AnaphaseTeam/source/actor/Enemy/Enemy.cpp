@@ -13,13 +13,16 @@
 #include "../../../header/state/enemy/ESlideState.h"
 #include "../../../header/state/enemy/ESpawnState.h"
 #include "../../../header/state/enemy/EStandState.h"
+
+#include "../../../header/ui/HPGaugeUI.h"
+#include "../../../header/ui/UIManager.h"
 const float Enemy::PLAYER_DISTANCE = 10;
 Enemy::Enemy(const Transform & _transform)
 	:Actor(_transform, MODEL_ID::ENEMY,
 		Actor_Tag::ENEMY),
-	m_stay_timer(2),
 	m_status(),
-	m_alpha(1)
+	m_alpha(1),
+	m_knockBack(m_transform)
 {
 }
 Enemy::~Enemy()
@@ -27,14 +30,13 @@ Enemy::~Enemy()
 }
 void Enemy::initialize()
 {
+	Actor::initialize();
 	createStates();
 	changeState(ACTOR_STATE::ESPAWN);
-	Actor::initialize();
 	Collision_Ptr actor = std::make_shared<EnemyCollision>(this);
 	m_collision.add(actor);
+
 	m_animatorOne.changeAnimation(ENEMY_ANIMATION::SPAWN, true, false);
-	//m_state = ESTATE::SPAWN;
-	m_stay_timer.initialize();
 	m_status.initialize();
 	m_alpha = 1;
 }
@@ -54,78 +56,23 @@ void Enemy::draw(IRenderer * _renderer)
 void Enemy::damage(const AttackStatus & _attackStatus)
 {
 	if (isDamageState())return;
-	//m_state = ESTATE::DAMAGE;
 	changeState(ACTOR_STATE::EDAMAGE);
 	m_animatorOne.changeAnimation(static_cast<GSuint>(ENEMY_ANIMATION::DAMAGE), true, false, false, 10.0f, 1.5f);
-	m_transform.translate_front(_attackStatus.m_blowOff.x);//nockback
+	m_knockBack.start(_attackStatus.m_blowOff);
 	m_status.down(_attackStatus.m_power);
 }
-
-void Enemy::collisionChase(EnemyCollision * _collision)
-{
-	_collision->chase(m_transform.m_translate);
-}
-
-void Enemy::damage(Player * _player)
-{
-	//if (isDamageState())return;
-	//m_state = ESTATE::DAMAGE;
-	//m_animatorOne.changeAnimation(static_cast<GSuint>(ENEMY_ANIMATION::DAMAGE),true,false,false,10.0f,1.5f);
-	//m_transform.translate_front(_player->m_combo.getStatus().m_blowOff.x);//nockback
-	//m_hp -= _player->.m_power;
-	//_player->gaugeAdd();
-}
-
 const bool Enemy::isNear(float _distance) const
 {
 	return _distance < PLAYER_DISTANCE;
 }
 
-void Enemy::state(float deltaTime)
+const bool Enemy::isThink() const
 {
-	//switch (m_state)
-	//{
-	//case ESTATE::SPAWN:
-	//	if (m_animatorOne.isEndCurrentAnimation())
-	//	{
-	//		m_state = ESTATE::STAND;
-	//	}
-	//	break;
-	//case ESTATE::STAND:
-	//	m_animatorOne.changeAnimation(static_cast<GSuint>(ENEMY_ANIMATION::STAND), true, true);
-	//	m_stay_timer.update(deltaTime);
-	//	break;
-	//case ESTATE::MOVE:
-	//	m_animatorOne.changeAnimation(static_cast<unsigned int>(ENEMY_ANIMATION::RUN), true, true);
-	//	break;
-	//case ESTATE::SLIDE:
-	//	m_animatorOne.changeAnimation(static_cast<unsigned int>(ENEMY_ANIMATION::SLIDE), true, true);
-	//	break;
-	//case ESTATE::ATTACK:
-	//	//m_animatorOne.changeAnimation(static_cast<unsigned int>(ENEMY_ANIMATION::ATTACK), true, false, false, 0);
-	//	if (m_animatorOne.isEndCurrentAnimation())
-	//	{
-	//		m_state = ESTATE::STAND;
-	//	}
-	//	break;
-	//case ESTATE::DAMAGE:
-	//	if (m_animatorOne.isEndCurrentAnimation())
-	//	{
-	//		m_state = ESTATE::STAND;
-	//	}
-	//	break;
-	//case ESTATE::DEAD:
-	//	m_animatorOne.changeAnimation(static_cast<GSuint>(ENEMY_ANIMATION::DEAD));
-	//	m_alpha -= 1 / m_animatorOne.getCurrentAnimationEndTime();
-	//	m_isDead = m_animatorOne.isEndCurrentAnimation();
-	//	break;
-	//}
+	return getState()==ACTOR_STATE::EMOVE||getState()==ACTOR_STATE::ESLIDE;
 }
-
 const bool Enemy::isDamageState() const
 {
-	//return m_state == ESTATE::SPAWN || m_state == ESTATE::ATTACK || m_state == ESTATE::DEAD;
-	return getState() == ACTOR_STATE::ESPAWN || getState() == ACTOR_STATE::EATTACK || getState() == ACTOR_STATE::EDEAD;
+	return getState() == ACTOR_STATE::ESPAWN || getState() == ACTOR_STATE::EDEAD;
 }
 
 void Enemy::createStates()
@@ -139,39 +86,11 @@ void Enemy::createStates()
 	registerState(ACTOR_STATE::ESPAWN, new ESpawnState(this));
 }
 
-void Enemy::slide(Actor * _actor)
+void Enemy::createAttackCollision()
 {
-	m_transform.translate_left(0.03f);
-	m_transform.m_rotate = targetDirection(*_actor);
-	Math::Clamp clamp;
-	m_transform.m_translate = clamp(m_transform.m_translate, GSvector3(-20.0f, -10, -20.0f), GSvector3(20.0f, 10, 20.0f));
-}
-
-void Enemy::move(Actor * _actor)
-{
-	m_transform.translate_up(0.05f);
-	m_transform.m_rotate = targetDirection(*_actor);
-	Math::Clamp clamp;
-	m_transform.m_translate = clamp(m_transform.m_translate, GSvector3(-20.0f, -10, -20.0f), GSvector3(20.0f, 10, 20.0f));
-}
-
-void Enemy::attack_start()
-{
-	m_animatorOne.changeAnimation(static_cast<unsigned int>(ENEMY_ANIMATION::ATTACK), true, false, false, 1.0f);
 	float end = m_animatorOne.getCurrentAnimationEndTime() / 60.0f;
-	Collision_Ptr actor = std::make_shared<EnemyAttackCollision>(m_transform.m_translate + m_transform.front(), end);
+	Collision_Ptr actor = std::make_shared<EnemyAttackCollision>(m_transform.m_translate +m_transform.front(), end);
 	m_collision.add(actor);
-	//m_state = ESTATE::ATTACK;
-	changeState(ACTOR_STATE::EATTACK);
-}
-
-void Enemy::stay_start()
-{
-	Math::Random rnd;
-	//m_state = ESTATE::STAND;
-	changeState(ACTOR_STATE::ESTAND);
-	m_stay_timer.setEndTime(rnd(1.0f, 4.0f));
-	m_stay_timer.initialize();
 }
 
 void Enemy::look_at(CameraController* _camera, Player* _player)
@@ -183,38 +102,36 @@ void Enemy::look_at(CameraController* _camera, Player* _player)
 void Enemy::specialDamage()
 {
 	m_status.down(m_status.getHp());
+	changeState(ACTOR_STATE::EDAMAGE);
 }
 
 void Enemy::think(Player * _player)
 {
-	//if (m_state == ESTATE::DEAD || m_state == ESTATE::DAMAGE || m_state == ESTATE::ATTACK || m_state == ESTATE::SPAWN)return;
-	if (getState() == ACTOR_STATE::EDEAD || getState() == ACTOR_STATE::EDAMAGE || getState() == ACTOR_STATE::EATTACK || getState() == ACTOR_STATE::ESPAWN) return;
-	if (!m_stay_timer.isEnd())return;
+	m_transform.m_rotate = targetDirection(*_player);
+	if (!isThink()) return;	
 	Math::Random rnd;
 	if (rnd(0, 200) == 0)
 	{
-		stay_start();
+		changeState(ACTOR_STATE::ESTAND);
 		return;
 	}
 	if (rnd(0, 200) == 0)
 	{
-		attack_start();
+		changeState(ACTOR_STATE::EATTACK);
 		return;
 	}
 	float distance = distanceActor(*_player);
 	if (isNear(distance))
 	{
-		//m_state = ESTATE::SLIDE;
 		changeState(ACTOR_STATE::ESLIDE);
-		slide(_player);
 		return;
 	}
-	move(_player);
-	//m_state = ESTATE::MOVE;
 	changeState(ACTOR_STATE::EMOVE);
 }
 
-GSvector3 Enemy::test()
+void Enemy::start_lockOn()
 {
-	return m_transform.m_translate;
+	UIManager::getInstance().release(EUI::ENEMYHP);
+	std::shared_ptr<HPGaugeUI> hp = std::make_shared<HPGaugeUI>(GSvector2(800,600),m_status,3.0f);
+	UIManager::getInstance().add(EUI::ENEMYHP,hp);
 }

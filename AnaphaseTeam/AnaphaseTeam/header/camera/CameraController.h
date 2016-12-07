@@ -56,26 +56,17 @@ public:
 	***********************************************/
 	void draw(void);
 
-
-
 	/***********************************************
-	@brief 操作するカメラの変更
-	@param[_camera] 操作するカメラ
-	***********************************************/
-	void change_control(Camera* _camera);
-
-
-
-	/***********************************************
-	@brief カメラワークの変更
+	@brief カメラワークの状態を切り替える
+	@param[_id] カメラワークＩＤ
 	***********************************************/
 	void change_cameraWork(const E_CameraWorkID _id);
 
 private:
-	Camera *m_camera;		// 動かしたいカメラ
-	float m_distance;		// ターゲットとの距離
-	float m_pitch;			// ピッチ
-	float m_yow;			// ヨー
+	Camera*	m_camera;		// 動かしたいカメラ
+	float	m_distance;		// ターゲットとの距離
+	float	m_pitch;		// ピッチ
+	float	m_yow;			// ヨー
 
 	std::shared_ptr<CameraWorkManager> m_cameraWorkManager;
 };

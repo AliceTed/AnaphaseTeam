@@ -7,11 +7,12 @@
 #include "../../../header/ui/UIManager.h"
 GamePlay::GamePlay()
 	:m_Map(OCTREE_ID::ARENA),
-	m_Camera(),
+	m_Camera(&m_Map),
 	m_cameracontroller(&m_Camera),
 	m_enemys(),
 	m_change(),
 	m_lockon(),
+	m_pause(m_change),//ポーズ
 	m_player(&m_Camera, &m_lockon)
 {
 }
@@ -23,13 +24,15 @@ void GamePlay::initialize()
 {
 	m_change.initialize();
 	m_change.begin(2);
+	//ポーズ
+	m_pause.initialize();
 
 	m_player.initialize();
 	m_enemys.initialize();
 	Math::Random rnd;
 	for (int i = 0; i < 2; i++)
 	{
-		Enemy* e = new Enemy(Transform(0, { 0,0,0 }, { rnd(-10.0f,10.0f),0,rnd(-10.0f,10.0f)}));
+		Enemy* e = new Enemy(Transform(0, { 0,0,0 }, { rnd(-10.0f,10.0f),0,rnd(-10.0f,10.0f) }));
 		m_enemys.add(e);
 	}
 
@@ -39,9 +42,15 @@ void GamePlay::initialize()
 
 void GamePlay::update(float deltaTime)
 {
+	m_pause.update(deltaTime);
+	//ポーズ
+	if (m_pause.isPause())
+		return;
+
+
 	if (gsGetKeyTrigger(GKEY_F))
 	{
-		m_change.end(SceneMode::GAMEPLAY,0.1f);
+		m_change.end(SceneMode::GAMEPLAY, 0.1f);
 	}
 
 	m_player.collisionGround(m_Map);
@@ -54,7 +63,7 @@ void GamePlay::update(float deltaTime)
 	m_enemys.collision(m_player);
 	m_cameracontroller.update(deltaTime);
 	
-	for (int i = 0; i < 2- m_enemys.size(); i++)
+	for (int i = 0; i < 2- static_cast<int>(m_enemys.size()); i++)
 	{
 		Math::Random rnd;
 		Enemy* e = new Enemy(Transform(0, { 0,0,0 }, { rnd(-10.0f,10.0f),0,rnd(-10.0f,10.0f) }));
@@ -78,9 +87,10 @@ void GamePlay::draw(IRenderer * _renderer)
 	_renderer->lookAt({ 0,0,0 }, { 0,0,0 }, { 0,0,0 });
 	m_Map.draw(_renderer);
 	m_enemys.draw(_renderer);
-	m_player.draw(_renderer);	
+	m_player.draw(_renderer);
 	m_change.draw(_renderer);
 	UIManager::getInstance().draw(_renderer);
+	m_pause.draw(_renderer);
 }
 
 void GamePlay::finish()

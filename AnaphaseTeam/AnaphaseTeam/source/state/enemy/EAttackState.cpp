@@ -1,5 +1,5 @@
 #include "../../../header/state/enemy/EAttackState.h"
-
+#include "../../../header/data/id/ENEMY_ANIMATION.h"
 Enemy::EAttackState::EAttackState(Enemy* _enemy)
 	:ActorState(_enemy)
 {
@@ -8,13 +8,14 @@ Enemy::EAttackState::EAttackState(Enemy* _enemy)
 
 void Enemy::EAttackState::start()
 {
+	m_actor->m_animatorOne.changeAnimation(static_cast<unsigned int>(ENEMY_ANIMATION::ATTACK), true, false, false, 1.0f);
+	m_actor->createAttackCollision();
 }
 
 void Enemy::EAttackState::action(float deltaTime)
 {
 	if (m_actor->m_animatorOne.isEndCurrentAnimation())
 	{
-		//m_state = ESTATE::STAND;
 		m_actor->changeState(ACTOR_STATE::ESTAND);
 	}
 }

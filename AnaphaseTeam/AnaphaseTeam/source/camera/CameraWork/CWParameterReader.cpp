@@ -2,6 +2,7 @@
 #include <fstream>
 #include <sstream>
 #include "../../../header/camera/CameraWork/CWParameterReader.h"
+#include "../../../header/data/Message.h"
 
 CWParameterReader::CWParameterReader(const std::string _fileName) :
 	m_parameters()
@@ -47,6 +48,8 @@ void CWParameterReader::read(const std::string _fileName)
 
 	if (reading_file.fail())
 	{
+		Message error;
+		error(_fileName, _fileName);
 		return;
 	}
 
@@ -54,8 +57,13 @@ void CWParameterReader::read(const std::string _fileName)
 	{
 		std::string separated_string_buffer;
 		std::istringstream line_separater(reading_line_buffer);
-		std::getline(line_separater, separated_string_buffer, delimiter);
-		m_parameters.emplace_back(std::stof(separated_string_buffer));
+		for (int i = 0; std::getline(line_separater, separated_string_buffer, '='); i++)
+		{
+			if (i == 1)
+			{
+				m_parameters.emplace_back(std::stof(separated_string_buffer));
+			}
+		}
 	}
 
 	reading_file.close();

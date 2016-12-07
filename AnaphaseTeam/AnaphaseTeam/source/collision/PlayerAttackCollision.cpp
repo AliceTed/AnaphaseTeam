@@ -31,7 +31,10 @@ void Player::PlayerAttackCollision::collision_Enter(HitInformation & _hit)
 	m_player->m_timer.initialize();
 	m_player->m_isLockOn = true;
 	Actor* act = _hit.m_parent;
-	act->damage(m_player->m_combo.getStatus());
+	AttackStatus attack = m_player->m_combo.getStatus();
+	GSvector3 direction = m_player->m_transform.rotate_vector(attack.m_blowOff);
+	attack.m_blowOff *= direction;
+	act->damage(attack);
 	
 	if (m_player->m_specialskill.isStart(SPECIALSKILL_TYPE::RECOVERY))
 	{
