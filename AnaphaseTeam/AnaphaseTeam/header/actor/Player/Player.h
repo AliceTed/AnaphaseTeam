@@ -35,8 +35,6 @@ public:
 	void damage(const AttackStatus & _attackStatus) override;
 	void finish() override;
 
-	void test();
-
 public://Actoråpè≥
 	void initialize() override;
 	void update(float deltatime) override;
@@ -48,6 +46,7 @@ private:
 	void createStates();
 	void rotate(float deltaTime, Transform& _transform);
 	void movement(float deltaTime, float _speed);
+	const float stepDistance() const ;
 private:
 	ComboAttack m_combo;
 	Status m_status;

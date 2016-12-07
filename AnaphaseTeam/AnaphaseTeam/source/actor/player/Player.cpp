@@ -42,7 +42,7 @@ Player::Player(Camera * _camera, LockOn* _lockon)
 		Transform({ 0,0,-15 }, GSquaternion(0, 0, 0, 1)),
 		MODEL_ID::PLAYER,
 		Actor_Tag::PLAYER
-	),
+		),
 	m_combo(this),
 	m_camera(_camera),
 	m_status(),
@@ -51,7 +51,7 @@ Player::Player(Camera * _camera, LockOn* _lockon)
 	m_scythe(),
 	m_specialskill(m_Gauge.get()),
 	m_target(0, 0, 0),
-	m_specialUI(std::make_shared<SpecialSkillUI>(GSvector2(1100,80))),
+	m_specialUI(std::make_shared<SpecialSkillUI>(GSvector2(1100, 80))),
 	m_homing(),
 	m_timer(1.5f),
 	m_isLockOn(false)
@@ -67,7 +67,7 @@ void Player::initialize()
 	changeState(ACTOR_STATE::STAND);
 	Collision_Ptr actor = std::make_shared<PlayerCollision>(this);
 	m_collision.add(actor);
-	
+
 	m_status.initialize();
 	m_scythe.initialize();
 	m_target = m_transform.m_translate;
@@ -79,7 +79,7 @@ void Player::initialize()
 	m_specialskill.add(SPECIALSKILL_TYPE::SUPERARMOR, new SuperArmor());
 	m_specialUI->initialize();
 	m_Gauge->initialize();
-	UIManager::getInstance().add(EUI::HP, std::shared_ptr<HPGaugeUI>(new HPGaugeUI(GSvector2(0,10),m_status)));
+	UIManager::getInstance().add(EUI::HP, std::shared_ptr<HPGaugeUI>(new HPGaugeUI(GSvector2(0, 10), m_status)));
 	UIManager::getInstance().add(EUI::GAUGE, m_Gauge);
 	UIManager::getInstance().add(EUI::SPICON, m_specialUI);
 	m_timer.initialize();
@@ -114,9 +114,9 @@ void Player::finish()
 	UIManager::getInstance().release(EUI::SIZE);
 }
 
-void Player::test()
+const float Player::stepDistance() const
 {
-	//m_transform.m_rotate = targetDirection(*m_lockon->getTarget());
+	return distanceActor(*m_lockon->getTarget());
 }
 
 void Player::damage(const AttackStatus & _attackStatus)
@@ -137,18 +137,14 @@ void Player::subActionStart()
 {
 	if (GameDevice::getInstacnce().input()->specialSkillMode())return;
 	if (GameDevice::getInstacnce().input()->jump())
-	{	
+	{
 		changeState(ACTOR_STATE::SINGLEJUMP);
 		return;
 	}
 
 	if (GameDevice::getInstacnce().input()->avoid())
 	{
-		if (m_Gauge->down(5))
-		{
-			changeState(ACTOR_STATE::STEP);
-
-		}
+		changeState(ACTOR_STATE::STEP);
 	}
 }
 void Player::homing()
@@ -158,14 +154,12 @@ void Player::homing()
 
 void Player::createAttackCollision()
 {
-	Collision_Ptr act =Collision_Ptr(new PlayerAttackCollision(this));
+	Collision_Ptr act = Collision_Ptr(new PlayerAttackCollision(this));
 	m_collision.add(act);
 }
 
 void Player::avoidAction(const GSvector3 & _velocity)
 {
-	//Math::Clamp clamp;
-	//clamp(_velocity, GSvector3(0,0,0), m_lockon->getTarget()->test() - GSvector3(1, 1, 1));
 	m_transform.translate(_velocity);
 }
 

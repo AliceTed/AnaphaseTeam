@@ -1,24 +1,30 @@
 #include"../../../header/state/player/StepState.h"
 #include "../../../header/data/id/ANIMATION_ID.h"
 #include "../../../header/device/GameDevice.h"
+#include "../../../header/math/Calculate.h"
 Player::StepState::StepState(Player* _player)
 	:ActorState(_player),
-	m_step(_player)
+	m_step(_player),
+	m_velocity(4.5f)
 {
 }
 
 void Player::StepState::start()
 {
 	m_actor->m_animatorOne.changeAnimation(static_cast<GSuint>(ANIMATION_ID::STAND), true);
-	//¡‚Í³–ÊŒÅ’è
-	//‚±‚ê is ‚È‚É
-	//ƒNƒ\
-	if (m_actor->m_isLockOn)
+	m_velocity = 4.5f;
+	Math::Clamp clamp;
+	m_velocity = clamp(m_velocity, 0.0f, m_actor->stepDistance());
+	if (m_actor->stepDistance() <= 1.0f)
 	{
-		//m_step.start(m_actor->m_lockon.);
-		m_actor->test();
+		m_actor->m_animatorOne.changeAnimation(static_cast<GSuint>(ANIMATION_ID::STAND), true);
+		return;
 	}
-	m_step.start(m_actor->m_transform.front());
+	if (!m_actor->m_Gauge->down(5))
+	{
+		return;
+	}
+	m_step.start(m_actor->m_transform.front(), m_velocity);
 }
 void Player::StepState::action(float deltaTime)
 {

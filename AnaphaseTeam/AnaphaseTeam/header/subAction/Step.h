@@ -9,7 +9,7 @@ class Step
 public:
 	Step(Player* _player);
 	~Step()=default;
-	void start(const GSvector3& _direction);
+	void start(const GSvector3& _direction, float _velocity);
 	void update(float deltaTime);
 	const bool isEnd()const;	
 private:
@@ -17,6 +17,5 @@ private:
 	GSvector3 m_prebious;
 	Math::TimeLerpVector<GSvector3> m_lerp;
 
-	static const float VELOCITY;
 	static const float TIME;
 };

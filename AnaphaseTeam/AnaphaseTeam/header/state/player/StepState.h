@@ -19,4 +19,6 @@ private:
 	Player::StepState* clone() const override;
 private:
 	Step m_step;
+
+	float m_velocity;
 };

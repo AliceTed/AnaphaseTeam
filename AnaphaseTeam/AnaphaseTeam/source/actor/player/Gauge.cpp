@@ -16,7 +16,8 @@ Gauge::~Gauge()
 
 void Gauge::initialize()
 {
-	m_gauge = 150;
+	//m_gauge = 150;
+	m_gauge = 15;
 	m_lerpmax = m_gauge;
 }
 
