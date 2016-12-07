@@ -116,7 +116,7 @@ void Player::finish()
 
 const float Player::stepDistance() const
 {
-	return distanceActor(*m_lockon->getTarget());
+	return distanceActor(*m_lockon->getTarget()) - 1.0f;
 }
 
 void Player::damage(const AttackStatus & _attackStatus)
