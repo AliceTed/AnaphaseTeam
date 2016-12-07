@@ -42,4 +42,6 @@ private:
 
 	float								m_followSpeed_position;
 	float								m_followSpeed_target;
+
+	float								m_offset;
 };
