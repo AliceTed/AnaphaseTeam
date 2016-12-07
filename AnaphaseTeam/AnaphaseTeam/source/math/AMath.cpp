@@ -55,6 +55,16 @@ float AMath::subtractAngle(float _deg1, float _deg2)
 	return d;
 }
 
+GSvector3 AMath::vec3_vector(const GSvector3 _p1, const GSvector3 _p2)
+{ 
+	return _p2 - _p1;
+}
+
+GSvector3 AMath::vec3_center(const GSvector3 _p1, const GSvector3 _p2)
+{
+	return (_p1 + _p2) / 2;
+}
+
 
 GSvector3 AMath::rotate_sphericalCoordinates(
 	const GSvector3& _center, 
@@ -84,4 +94,13 @@ void AMath::lerp_eleDir(
 	(*_my) += rotate * _speed;
 
 	return;
+}
+
+int AMath::side(const GSvector2 & _p, const GSvector2 & _start, const GSvector2 & _end)
+{
+	int n = _p.x * (_start.y - _end.y) + _start.x * (_end.y - _p.y) + _end.x * (_p.y - _start.y);
+	n = n > 0 ? 1 : n;
+	n = n < 0 ? -1 : n;
+	n = n == 0 ? 0 : n;
+	return n;
 }

@@ -18,6 +18,7 @@ Camera::Camera(Map* _map) :
 	m_fov_max(DEF_FOV_MAX),
 	m_position(0.0f, 0.0f, 0.0f),
 	m_target(0.0f, 0.0f, 0.0f),
+	m_target_offset(0.0f, 0.0f, 0.0f),
 	m_up(0.0f, 1.0f, 0.0f),
 	m_rotate_dolly(0.0f, 0.0f),
 	m_cameraTarget_player(std::make_shared<CameraTarget>()),
@@ -258,9 +259,9 @@ void Camera::update_lookAt(void)
 	glLoadIdentity();
 
 	gluLookAt(
-		m_position.x,	m_position.y,	m_position.z,
-		m_target.x,		m_target.y,		m_target.z,
-		m_up.x,			m_up.y,			m_up.z
+		m_position.x,						m_position.y,						m_position.z,
+		m_target.x + m_target_offset.x,		m_target.y + m_target_offset.y,		m_target.z + m_target_offset.z,
+		m_up.x,								m_up.y,								m_up.z
 	);
 
 	glGetFloatv(GL_MODELVIEW_MATRIX, (GLfloat *)&m_matView);
