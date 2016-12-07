@@ -26,9 +26,9 @@ public:
 private:
 	void draw_cameraWork(void) override;
 
-	const GSvector3 centerPoint(const GSvector3& _p1, const GSvector3& _p2);
-
 	void update_toEleDir(const GSvector3& _vec, float _distance);
+
+	void whichSide(const GSvector3& _player, const GSvector3& _target);
 
 private:
 	GSvector2*							m_rotate;
@@ -43,5 +43,6 @@ private:
 	float								m_followSpeed_position;
 	float								m_followSpeed_target;
 
+	float								m_offset_value;
 	float								m_offset;
 };
