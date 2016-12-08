@@ -36,7 +36,7 @@ void Enemy::initialize()
 	Collision_Ptr actor = std::make_shared<EnemyCollision>(this);
 	m_collision.add(actor);
 
-	m_animatorOne.changeAnimation(ENEMY_ANIMATION::SPAWN, true, false);
+	m_animatorOne.changeAnimationLerp(ENEMY_ANIMATION::STANDDYNIG);
 	m_status.initialize();
 	m_alpha = 1;
 }
@@ -55,9 +55,9 @@ void Enemy::draw(IRenderer * _renderer)
 
 void Enemy::damage(const AttackStatus & _attackStatus)
 {
-	if (isDamageState())return;
+	if (isNotDamageState())return;
 	changeState(ACTOR_STATE::EDAMAGE);
-	m_animatorOne.changeAnimation(static_cast<GSuint>(ENEMY_ANIMATION::DAMAGE), true, false, false, 10.0f, 1.5f);
+	m_animatorOne.changeAnimationLerp(ENEMY_ANIMATION::DAMAGE1, 1.5f);
 	m_knockBack.start(_attackStatus.m_blowOff);
 	m_status.down(_attackStatus.m_power);
 }
@@ -68,10 +68,11 @@ const bool Enemy::isNear(float _distance) const
 
 const bool Enemy::isThink() const
 {
-	return getState()==ACTOR_STATE::EMOVE||getState()==ACTOR_STATE::ESLIDE;
+	return getState() == ACTOR_STATE::ESTAND || getState()==ACTOR_STATE::EMOVE||getState()==ACTOR_STATE::ESLIDE;
 }
-const bool Enemy::isDamageState() const
+const bool Enemy::isNotDamageState() const
 {
+	//スポーンと死亡中は食らわない
 	return getState() == ACTOR_STATE::ESPAWN || getState() == ACTOR_STATE::EDEAD;
 }
 
@@ -108,25 +109,30 @@ void Enemy::specialDamage()
 void Enemy::think(Player * _player)
 {
 	m_transform.m_rotate = targetDirection(*_player);
-	if (!isThink()) return;	
+	if (!isThink()) return;
+
+	//*****************距離（小）***********************************//
+	//*****************お互いの攻撃が当たる範囲**********************//
 	Math::Random rnd;
-	if (rnd(0, 200) == 0)
+	if (rnd(0, 5) %5== 0)
 	{
-		changeState(ACTOR_STATE::ESTAND);
+		changeState(ACTOR_STATE::EATTACK);
 		return;
 	}
-	if (rnd(0, 200) == 0)
+
+	if (rnd(0, 10) %10==0 )
 	{
 		changeState(ACTOR_STATE::EATTACK);
 		return;
 	}
 	float distance = distanceActor(*_player);
-	if (isNear(distance))
+	if (isNear(distance))//近づきすぎたら
 	{
-		changeState(ACTOR_STATE::ESLIDE);
+		changeState(ACTOR_STATE::EMOVE);
 		return;
 	}
-	changeState(ACTOR_STATE::EMOVE);
+	changeState(ACTOR_STATE::ESLIDE);
+	//****************************************************//
 }
 
 void Enemy::start_lockOn()

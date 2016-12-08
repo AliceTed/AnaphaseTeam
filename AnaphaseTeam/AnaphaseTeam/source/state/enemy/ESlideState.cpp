@@ -9,7 +9,7 @@ Enemy::ESlideState::ESlideState(Enemy* _enemy)
 
 void Enemy::ESlideState::start()
 {
-	m_actor->m_animatorOne.changeAnimation(static_cast<unsigned int>(ENEMY_ANIMATION::SLIDE), true, true);
+	m_actor->m_animatorOne.changeAnimation(ENEMY_ANIMATION::WORKLEFT, true, true);
 }
 
 void Enemy::ESlideState::action(float deltaTime)
