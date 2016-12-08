@@ -759,9 +759,6 @@
     <ClInclude Include="header\scene\each\Pause.h">
       <Filter>ヘッダー ファイル\scene\each</Filter>
     </ClInclude>
-    <ClInclude Include="header\ui\Image2D.h">
-      <Filter>ソース ファイル\ui</Filter>
-    </ClInclude>
     <ClInclude Include="header\ui\PauseUI.h">
       <Filter>ヘッダー ファイル\ui</Filter>
     </ClInclude>
@@ -770,6 +767,9 @@
     </ClInclude>
     <ClInclude Include="header\attack\Homing.h">
       <Filter>ヘッダー ファイル\attack</Filter>
+    </ClInclude>
+    <ClInclude Include="header\attack\KnockBack.h">
+      <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -1141,6 +1141,9 @@
     </ClCompile>
     <ClCompile Include="source\attack\Homing.cpp">
       <Filter>ソース ファイル\Attack</Filter>
+    </ClCompile>
+    <ClCompile Include="source\attack\KnockBack.cpp">
+      <Filter>ソース ファイル</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

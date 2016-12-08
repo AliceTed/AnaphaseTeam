@@ -440,7 +440,6 @@
     <ClInclude Include="header\transform\Quaternion_Utility.h" />
     <ClInclude Include="header\transform\ToString.h" />
     <ClInclude Include="header\transform\Transform.h" />
-    <ClInclude Include="header\ui\Image2D.h" />
     <ClInclude Include="header\ui\Cursor.h" />
     <ClInclude Include="header\ui\Fade.h" />
     <ClInclude Include="header\ui\HPGaugeUI.h" />
