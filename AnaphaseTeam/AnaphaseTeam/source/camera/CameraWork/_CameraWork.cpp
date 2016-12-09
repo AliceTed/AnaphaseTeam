@@ -15,47 +15,16 @@ CameraWork::CameraWork(Camera* _camera) :
 	);
 }
 
-
-
 CameraWork::~CameraWork()
 {
 
 }
 
-
-
-void CameraWork::update(float _deltaTime)
-{
-	//カメラワーク更新処理
-	update_cameraWork(_deltaTime);
-
-	return;
-}
-
-
-
-void CameraWork::draw(void)
-{
-	//カメラワーク描画処理
-	draw_cameraWork();
-
-	return;
-}
-
-
-
-void CameraWork::update_cameraWork(float _deltaTime)
-{
-
-}
-
-
-
-void CameraWork::draw_cameraWork(void)
+void CameraWork::run(float _deltaTime)
 {
 	//とりあえずカメラの位置とターゲットを適当に設定
 	m_camera->tracking_position(GSvector3(0.0f, 0.0f, 0.0f));
-	m_camera->tracking_lookAt(GSvector3(0.0f, 0.0f, -1.0f));
+	m_camera->tracking_lookAt(GSvector3(0.0f, 0.0f, -1.0f));;
 
 	return;
 }

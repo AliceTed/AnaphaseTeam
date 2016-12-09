@@ -43,7 +43,7 @@ void CameraWorkManager::change_cameraWork(const E_CameraWorkID _id)
 	m_current_cameraWork = _id;
 }
 
-void CameraWorkManager::update(float _deltaTime)
+void CameraWorkManager::run(float _deltaTime)
 {
 	//カメラワークが何もないなら何もしない
 	if (m_current_cameraWork == E_CameraWorkID::NONE)
@@ -51,24 +51,10 @@ void CameraWorkManager::update(float _deltaTime)
 		return;
 	}
 
-	//現在のカメラワークの更新
-	m_cameraData->get(m_current_cameraWork)->update(_deltaTime);
+	//現在のカメラワークの実行
+	m_cameraData->get(m_current_cameraWork)->run(_deltaTime);
 
-	return;
-}
-
-void CameraWorkManager::draw(void)
-{
-	//カメラワークが何もないなら何もしない
-	if (m_current_cameraWork == E_CameraWorkID::NONE)
-	{
-		return;
-	}
-
-	//現在のカメラワークの描画
-	m_cameraData->get(m_current_cameraWork)->draw();
-
-	//カメラワークの更新
+	//カメラの更新
 	m_camera->update();
 
 	return;

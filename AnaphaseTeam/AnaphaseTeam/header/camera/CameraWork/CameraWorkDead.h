@@ -17,14 +17,11 @@ public:
 	*/
 	CameraWorkDead(Camera* _camera);
 
-
-
 	/**
 	@brief デストラクタ
 	*/
 	~CameraWorkDead() override;
 
-private:
-	//カメラワーク描画処理
-	void draw_cameraWork(void) override;
+	//実行処理
+	void run(float _deltaTime) override;
 };
