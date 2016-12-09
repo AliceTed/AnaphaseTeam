@@ -219,13 +219,20 @@ void Player::look_at(CameraController * _camera, GSvector3 * _target)
 
 	//by —L•y
 	float distance = position.distance(*_target);
-	if (m_isLockOn)
+	if (!m_isDead)
 	{
-		_camera->change_cameraWork(E_CameraWorkID::LOCK_ON);
+		if (m_isLockOn)
+		{
+			_camera->change_cameraWork(E_CameraWorkID::LOCK_ON);
+		}
+		else
+		{
+			_camera->change_cameraWork(E_CameraWorkID::NORMAL);
+		}
 	}
 	else
 	{
-		_camera->change_cameraWork(E_CameraWorkID::NORMAL);
+		_camera->change_cameraWork(E_CameraWorkID::DEAD);
 	}
 }
 void Player::createStates()
