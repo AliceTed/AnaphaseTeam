@@ -33,6 +33,11 @@ CameraWorkLockOn::~CameraWorkLockOn()
 
 }
 
+void CameraWorkLockOn::start(void)
+{
+	m_camera->initialize_zoom();
+}
+
 void CameraWorkLockOn::run(float _deltaTime)
 {
 	//’·‚¢•Ï”‚ğ‚¢‚¿‚¢‚¿‘‚­‚Ì‚ª‚ß‚ñ‚Ç‚­‚³‚¢‚Ì‚Å

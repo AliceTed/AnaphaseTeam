@@ -27,6 +27,11 @@ CameraWorkNormal::~CameraWorkNormal()
 {
 }
 
+void CameraWorkNormal::start(void)
+{
+	m_camera->initialize_zoom();
+}
+
 void CameraWorkNormal::run(float _deltaTime)
 {
 	//‚¢‚¿‚¢‚¿‚ß‚ñ‚Ç‚­‚³‚¢‚Ì‚ÅéŒ¾

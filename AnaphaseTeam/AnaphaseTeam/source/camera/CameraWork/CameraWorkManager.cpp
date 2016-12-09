@@ -41,6 +41,15 @@ void CameraWorkManager::change_cameraWork(const E_CameraWorkID _id)
 {
 	//現在のカメラワークの更新
 	m_current_cameraWork = _id;
+
+	//カメラワークが何もないなら何もしない
+	if (m_current_cameraWork == E_CameraWorkID::NONE)
+	{
+		return;
+	}
+
+	//現在のカメラの初期化
+	m_cameraData->get(m_current_cameraWork)->start();
 }
 
 void CameraWorkManager::run(float _deltaTime)

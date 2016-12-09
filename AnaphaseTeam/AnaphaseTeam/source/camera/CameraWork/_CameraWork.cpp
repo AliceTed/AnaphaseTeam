@@ -20,6 +20,10 @@ CameraWork::~CameraWork()
 
 }
 
+void CameraWork::start(void)
+{
+}
+
 void CameraWork::run(float _deltaTime)
 {
 	//とりあえずカメラの位置とターゲットを適当に設定

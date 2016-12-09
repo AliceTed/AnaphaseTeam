@@ -26,6 +26,9 @@ public:
 	*/
 	~CameraWork() override;
 
+	//ŠJnˆ—
+	virtual void start(void) override;
+
 	//Àsˆ—
 	virtual void run(float _deltaTime) override;
 

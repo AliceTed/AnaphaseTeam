@@ -20,7 +20,13 @@ public:
 	}
 
 	/**
-	@brief[_deltaTime] １フレーム毎の秒数
+	@brief 開始処理
+	*/
+	virtual void start(void) = 0;
+
+	/**
+	@brief 実行処理
+	@parma[_deltaTime] １フレーム毎の秒数
 	*/
 	virtual void run(float _deltaTime) = 0;
 };

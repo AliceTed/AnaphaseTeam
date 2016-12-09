@@ -22,6 +22,9 @@ public:
 	*/
 	~CameraWorkDead() override;
 
+	//ŠJnˆ—
+	void start(void) override;
+
 	//Àsˆ—
 	void run(float _deltaTime) override;
 };

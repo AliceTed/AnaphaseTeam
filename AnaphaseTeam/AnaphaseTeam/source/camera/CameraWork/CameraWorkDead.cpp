@@ -4,8 +4,6 @@
 CameraWorkDead::CameraWorkDead(Camera* _camera) :
 	CameraWork(_camera)
 {
-	//カメラのズーム範囲を設定
-	m_camera->zoom_clamp(20, 180);
 }
 
 
@@ -13,6 +11,12 @@ CameraWorkDead::CameraWorkDead(Camera* _camera) :
 CameraWorkDead::~CameraWorkDead()
 {
 
+}
+
+void CameraWorkDead::start(void)
+{
+	//カメラのズーム範囲を設定
+	m_camera->zoom_clamp(20, 180);
 }
 
 //未完成
