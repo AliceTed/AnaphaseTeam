@@ -21,6 +21,8 @@ class LockOn;
 class Enemy;
 class Camera;
 
+class EnemyManager;
+
 class Player :public Actor
 {
 public:
@@ -34,6 +36,8 @@ public:
 	void createAttackCollision();
 	void damage(const AttackStatus & _attackStatus) override;
 	void finish() override;
+	
+	void targetFind(EnemyManager * _enemys);
 
 public://Actoråpè≥
 	void initialize() override;
@@ -47,6 +51,7 @@ private:
 	void rotate(float deltaTime, Transform& _transform);
 	void movement(float deltaTime, float _speed);
 	const float stepDistance() const ;
+	void lookTarget();
 private:
 	ComboAttack m_combo;
 	Status m_status;

@@ -17,6 +17,7 @@ void Player::AttackState::action(float deltaTime)
 	m_actor->m_combo.update(deltaTime);
 	input(deltaTime);
 	m_actor->m_homing.update(deltaTime, &m_actor->m_transform.m_translate);
+	m_actor->subActionStart();
 }
 Player::AttackState* Player::AttackState::clone() const
 {
@@ -26,7 +27,7 @@ Player::AttackState* Player::AttackState::clone() const
 void Player::AttackState::input(float deltaTime)
 {
 	if (!m_actor->m_animatorOne.isEndCurrentAnimation())return;
-//	m_actor->m_animatorOne.changeAnimationLerp(static_cast<GSuint>(ANIMATION_ID::STAND));
+	//	m_actor->m_animatorOne.changeAnimationLerp(static_cast<GSuint>(ANIMATION_ID::STAND));
 	m_inputTimer.update(deltaTime);
 
 	if (m_inputTimer.isEnd())

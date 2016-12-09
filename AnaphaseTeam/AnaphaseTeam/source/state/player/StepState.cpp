@@ -13,8 +13,13 @@ void Player::StepState::start()
 {
 	m_actor->m_animatorOne.changeAnimation(static_cast<GSuint>(ANIMATION_ID::STAND), true);
 	m_velocity = 4.5f;
-	Math::Clamp clamp;
-	m_velocity = clamp(m_velocity, 0.0f, m_actor->stepDistance());
+	if (m_actor->m_isLockOn)
+	{
+		//Math::Clamp clamp;
+		//m_velocity = clamp(m_velocity, 0.0f, m_actor->stepDistance());
+		m_actor->lookTarget();
+		m_velocity = m_actor->stepDistance();
+	}
 	if (m_velocity <= 1.0f)
 	{
 		changeState(ACTOR_STATE::STAND);
