@@ -2,11 +2,12 @@
 #include <algorithm>
 const GSvector2 SelectUI::DEFAULTSCALE = GSvector2(1.0f, 1.0f);
 const GSvector2 SelectUI::SELECTSCALE = GSvector2(1.3f, 1.3f);
-const GSvector2 SelectUI::DECISIONSCALE = GSvector2(2.5f,2.5f);
+const GSvector2 SelectUI::DECISIONSCALE = GSvector2(2.5f, 2.5f);
 const float SelectUI::LERPTIME = 0.05f;
 SelectUI::SelectUI()
 	:m_current(Select::GAMESTART),
-	m_images()
+	m_images(),
+	m_timer(0.0f)
 {
 }
 
@@ -17,6 +18,7 @@ SelectUI::~SelectUI()
 void SelectUI::initialize()
 {
 	m_images.clear();
+	m_timer = 0;
 }
 
 void SelectUI::add(Select _name, const ScaleImage & _image)
@@ -26,8 +28,28 @@ void SelectUI::add(Select _name, const ScaleImage & _image)
 
 void SelectUI::update(float deltaTime)
 {
-	
-	std::for_each(m_images.begin(), m_images.end(), [deltaTime](SelectValue& value) {value.second.update(deltaTime); });
+	//std::for_each(m_images.begin(), m_images.end(), [deltaTime](SelectValue& value) {value.second.update(deltaTime); });
+	const unsigned int size = 3;
+	Select select[size] =
+	{
+		Select::GAMESTART,
+		Select::OPTION,
+		Select::EXIT
+	};
+	m_timer++;
+	for (unsigned int i = 0; i < size; i++)
+	{
+		if (m_timer > i * 60.0f)
+		{
+			m_images.at(select[i]).update(deltaTime);
+		}
+
+	}
+	if (m_timer > 3 * 60.0f)
+	{
+		m_timer = 3 * 60.0f;
+	}
+
 }
 
 void SelectUI::draw(IRenderer * _renderer)
@@ -74,14 +96,20 @@ void SelectUI::startChange()
 
 void SelectUI::startMove()
 {
-	m_images.at(m_current).moveStart(GSvector2(180, 200), LERPTIME * 10.0f);
+	m_images.at(m_current).moveStart(GSvector2(365, 200), LERPTIME * 10.0f);
 	m_images.at(m_current).start(SELECTSCALE, DECISIONSCALE, LERPTIME *10.0f);
 	for (auto& i : m_images)
 	{
 		if (i.first != m_current)
 		{
-			m_images.at(i.first).moveStart(GSvector2(180, 800), LERPTIME* 10.0f);
+			m_images.at(i.first).moveStart(GSvector2(365, 800), LERPTIME* 10.0f);
 		}
 	}
 }
+
+bool SelectUI::isStart()
+{
+	return m_images.at(Select::EXIT).isStart();
+}
+
 

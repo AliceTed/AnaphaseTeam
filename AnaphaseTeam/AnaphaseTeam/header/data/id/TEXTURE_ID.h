@@ -21,6 +21,8 @@ enum class TEXTURE_ID :unsigned int
 	SP_UI1,
 	SP_UI2,
 	SP_UI3,
+	UI_STAFF,
+
 
 
 	SIZE

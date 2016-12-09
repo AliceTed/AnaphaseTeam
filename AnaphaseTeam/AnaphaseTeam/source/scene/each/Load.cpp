@@ -63,12 +63,12 @@ void Load::loadTextrue()
 	TextureLoader tex;
 	tex(TEXTURE_ID::WHITE, "white");
 	tex(TEXTURE_ID::BLACK, "black");
-	tex(TEXTURE_ID::EXIT, "TitleCharExit");
-	tex(TEXTURE_ID::OPTION, "TitleCharOption");
-	tex(TEXTURE_ID::GAMESTART, "TitleCharStart");
-	tex(TEXTURE_ID::PRESSKEY, "TitlePressKey");
+	tex(TEXTURE_ID::EXIT, "TitleUI_EXIT");
+	tex(TEXTURE_ID::OPTION, "TitleUI_OPTION");
+	tex(TEXTURE_ID::GAMESTART, "TitleUI_START");
+	tex(TEXTURE_ID::PRESSKEY, "TitleUI_PressKey");
 	tex(TEXTURE_ID::CURSOR, "cursor");
-	tex(TEXTURE_ID::TITLE_ROGO, "title_rogo");
+	tex(TEXTURE_ID::TITLE_ROGO, "TitleRogo_Black");
 	tex(TEXTURE_ID::CLEAR, "clear");
 	tex(TEXTURE_ID::OPTION_BACKGROUND, "option_background");
 	tex(TEXTURE_ID::PAD_A, "pad");
@@ -78,6 +78,8 @@ void Load::loadTextrue()
 	tex(TEXTURE_ID::SP_UI1, "UI_SP_1");
 	tex(TEXTURE_ID::SP_UI2, "UI_SP_2");
 	tex(TEXTURE_ID::SP_UI3, "UI_SP_3");
+	tex(TEXTURE_ID::UI_STAFF, "TitleUI_STAFF");
+
 	
 }
 void Load::loadSound()

@@ -238,7 +238,9 @@
     <ClCompile Include="source\shape\Sphere.cpp" />
     <ClCompile Include="source\transform\Quaternion_Utility.cpp" />
     <ClCompile Include="source\transform\Transform.cpp" />
+    <ClCompile Include="source\ui\alpha.cpp" />
     <ClCompile Include="source\ui\Cursor.cpp" />
+    <ClCompile Include="source\ui\EndingUI.cpp" />
     <ClCompile Include="source\ui\Fade.cpp" />
     <ClCompile Include="source\ui\ScaleImage.cpp" />
     <ClCompile Include="source\ui\SelectUI.cpp" />
@@ -401,7 +403,9 @@
     <ClInclude Include="header\transform\Quaternion_Utility.h" />
     <ClInclude Include="header\transform\ToString.h" />
     <ClInclude Include="header\transform\Transform.h" />
+    <ClInclude Include="header\ui\alpha.h" />
     <ClInclude Include="header\ui\Cursor.h" />
+    <ClInclude Include="header\ui\EndingUI.h" />
     <ClInclude Include="header\ui\Fade.h" />
     <ClInclude Include="header\ui\ScaleImage.h" />
     <ClInclude Include="header\ui\SelectUI.h" />

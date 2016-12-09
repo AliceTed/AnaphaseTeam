@@ -1,6 +1,6 @@
 #pragma once
 #include "../IScene.h"
-#include "../../renderer/Renderer.h";
+#include "../../renderer/Renderer.h"
 #include "../../ui/TitleUI.h"
 #include "../SceneChange.h"
 class Menu :public IScene

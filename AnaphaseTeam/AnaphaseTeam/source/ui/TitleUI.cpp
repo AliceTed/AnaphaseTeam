@@ -42,6 +42,12 @@ void TitleUI::operation(Menu& _menu)
 	{
 		return;
 	}
+
+	if (!m_select.isStart())
+	{
+		return;
+	}
+
 	if (GameDevice::getInstacnce().input()->up())
 	{
 		m_select.previous();

@@ -7,9 +7,7 @@
 Title::Title()
 	:m_IsExit(false),
 	m_change(),
-	m_alpha(1.0f),
-	m_decrease(0.0f),
-	m_IsChange(true)
+	m_pressKey(TEXTURE_ID::PRESSKEY, GSvector2(40, 600), 1.0f)
 {
 }
 
@@ -22,6 +20,8 @@ void Title::initialize()
 	m_IsExit = false;
 	m_change.initialize();
 	m_change.begin();
+	GameDevice::getInstacnce().sound().playBGM(BGM_ID::TITLE);
+	m_pressKey.initilize();
 }
 void Title::update(float _deltaTime)
 {
@@ -29,8 +29,9 @@ void Title::update(float _deltaTime)
 	if (GameDevice::getInstacnce().input()->jump())
 	{
 		m_change.end(SceneMode::MENU);
+		GameDevice::getInstacnce().sound().playSE(SE_ID::ENTER);
 	}
-	alpha(2.0f);
+	m_pressKey.flashing(0.7f);
 }
 
 void Title::draw(IRenderer * _renderer)
@@ -39,15 +40,8 @@ void Title::draw(IRenderer * _renderer)
 	tatle.textureID = static_cast<GSuint>(TEXTURE_ID::TITLE_ROGO);
 	_renderer->render(tatle);
 
-	SpriteRenderDesc presskey;
-	presskey.textureID = static_cast<GSuint>(TEXTURE_ID::PRESSKEY);
-	presskey.matrix.translate(420, 600, 0);
-	presskey.color.a = m_alpha;
-	_renderer->render(presskey);
-
+	m_pressKey.draw(_renderer);
 	m_change.draw(_renderer);
-
-
 }
 
 void Title::finish()
@@ -70,24 +64,4 @@ const bool Title::isExit() const
 {
 	return false;
 }
-
-void Title::alpha(float _time)
-{
-	m_decrease = 1 / (_time * 60);
-	if (m_IsChange)
-	{
-		m_alpha -= m_decrease;
-		if (m_alpha < 0)
-		{
-			m_IsChange = false;
-		}
-	}
-	if (!m_IsChange)
-	{
-		m_alpha += m_decrease;
-		if (m_alpha > 1.0f)
-		{
-			m_IsChange = true;
-		}
-	}
-}
+	

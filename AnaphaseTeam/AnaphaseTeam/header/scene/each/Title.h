@@ -2,6 +2,7 @@
 #define _TITLE_H_
 #include "../IScene.h"
 #include "../SceneChange.h"
+#include "../../ui/alpha.h"
 
 
 class Title :public IScene
@@ -16,12 +17,9 @@ public:
 	const SceneMode next()const;
 	const bool isEnd()const;
 	const bool isExit()const;
-	void alpha(float _time);
 private:
 	bool m_IsExit;
 	SceneChange m_change;
-	float m_alpha;
-	float m_decrease;
-	bool m_IsChange;
+	alpha m_pressKey;
 };
 #endif

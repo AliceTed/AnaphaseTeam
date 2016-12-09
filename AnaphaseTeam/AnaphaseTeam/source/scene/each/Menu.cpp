@@ -68,7 +68,8 @@ void Menu::decision(Select _select)
 		m_change.end(SceneMode::GAMEPLAY);
 		break;
 	case Select::OPTION:
-		m_change.end(SceneMode::OPTION);
+		//m_change.end(SceneMode::OPTION);
+		m_change.end(SceneMode::ENDING);
 		break;
 	case Select::EXIT:
 		m_IsExit = true;

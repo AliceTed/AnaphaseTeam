@@ -13,6 +13,8 @@ public:
 	void update(float deltaTime);
 	void draw(IRenderer* _renderer);
 	void scroll();
+	void alpha();
+	bool isStart();
 private:
 	const GSvector2 getTextureSize()const;
 	const GSvector2 getSizeMarge(const GSvector2& _scale)const;
@@ -23,4 +25,7 @@ private:
 	Math::TimeLerpVector<GSvector2> m_scaleLerp;
 	Math::TimeLerpVector<GSvector2> m_moveLerp;
 	bool m_change;
+	float m_alpha;
+	float m_value;
+	float m_speed;
 };
