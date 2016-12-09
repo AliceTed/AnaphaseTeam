@@ -23,15 +23,11 @@ CameraWorkNormal::CameraWorkNormal(Camera* _camera, GSvector2* _rotate) :
 	};
 }
 
-
-
 CameraWorkNormal::~CameraWorkNormal()
 {
 }
 
-
-
-void CameraWorkNormal::draw_cameraWork(void)
+void CameraWorkNormal::run(float _deltaTime)
 {
 	//‚¢‚¿‚¢‚¿‚ß‚ñ‚Ç‚­‚³‚¢‚Ì‚ÅéŒ¾
 	const GSvector3& player = m_camera->cameraTarget_player();
@@ -50,7 +46,6 @@ void CameraWorkNormal::draw_cameraWork(void)
 
 	return;
 }
-
 
 const GSvector2 CameraWorkNormal::velocity(void)
 {

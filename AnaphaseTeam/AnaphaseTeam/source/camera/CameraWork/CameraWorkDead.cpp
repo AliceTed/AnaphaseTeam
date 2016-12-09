@@ -15,9 +15,8 @@ CameraWorkDead::~CameraWorkDead()
 
 }
 
-
 //–¢Š®¬
-void CameraWorkDead::draw_cameraWork(void)
+void CameraWorkDead::run(float _deltaTime)
 {
 	//•Ï”‚Ì–¼‘O‚ª’·‚¢‚Ì‚Å’Z‚¢–¼‘O‚É•ÏX
 	const GSvector3& player = m_camera->cameraTarget_player();
