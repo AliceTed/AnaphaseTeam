@@ -12,8 +12,8 @@ public:
 	void decrease(float _time);
 	void increase(float _time);
 	void flashing(float _time);
-	bool up(float _position);
-	bool down(float _position);
+	bool scrollUp(float _position);
+	bool scrollDown(float _position);
 
 private:
 	TEXTURE_ID m_textureID;

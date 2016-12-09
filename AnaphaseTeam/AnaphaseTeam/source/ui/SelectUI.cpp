@@ -39,15 +39,15 @@ void SelectUI::update(float deltaTime)
 	m_timer++;
 	for (unsigned int i = 0; i < size; i++)
 	{
-		if (m_timer > i * 60.0f)
+		if (m_timer > (i - 0.5) * 60.0f)
 		{
 			m_images.at(select[i]).update(deltaTime);
 		}
 
 	}
-	if (m_timer > 3 * 60.0f)
+	if (m_timer > (2 - 0.5) * 60.0f)
 	{
-		m_timer = 3 * 60.0f;
+		m_timer = (2 - 0.5) * 60.0f;
 	}
 
 }
@@ -109,7 +109,7 @@ void SelectUI::startMove()
 
 bool SelectUI::isStart()
 {
-	return m_images.at(Select::EXIT).isStart();
+	return m_images.at(Select::EXIT).isEndscroll();
 }
 
 

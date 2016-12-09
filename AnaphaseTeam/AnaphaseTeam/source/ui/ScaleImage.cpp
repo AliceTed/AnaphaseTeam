@@ -8,10 +8,10 @@ ScaleImage::ScaleImage(TEXTURE_ID _id, const GSvector2& _position, bool _isPexis
 	m_scaleLerp(GSvector2(1.0f, 1.0f)),
 	m_moveLerp(GSvector2(endPosiX, m_position.y)),
 	m_isPexis(_isPexis),
-	m_change(false),
+	m_changeScroll(false),
 	m_alpha(0.0f),
 	m_value(0.0f),
-	m_speed(5.0f)
+	m_speed(10.0f)
 
 {
 }
@@ -32,10 +32,10 @@ void ScaleImage::update(float deltaTime)
 {
 	m_scaleLerp.update(deltaTime);
 	m_moveLerp.update(deltaTime);
-	if (!m_change)
+	if (!m_changeScroll)
 	{
 		scroll();
-		alpha();
+		alpha(1.0f);
 		return;
 	};
 	m_position = m_moveLerp.current();
@@ -51,33 +51,34 @@ void ScaleImage::draw(IRenderer * _renderer)
 	desc.textureID = static_cast<GSuint>(m_id);
 	_renderer->render(desc);
 }
+
 void ScaleImage::scroll()
 {
 	m_position.x += m_speed;
 
-	if (m_position.x > 300)
+	if (m_position.x > 365)
 	{
-		m_speed -= 0.07;
+		m_speed -= 0.5;
 	}
 
 	if (m_position.x >= endPosiX)
 	{
-		m_change = true;
+		m_changeScroll = true;
 	}
 }
 
-void ScaleImage::alpha()
+void ScaleImage::alpha(float _timer)
 {
-	m_value = 1.0f / 100.0f;
+	m_value = 1 / (_timer * 60);
 	if (m_alpha <= 1.0f)
 	{
 		m_alpha += m_value;
 	}
 }
 
-bool ScaleImage::isStart()
+bool ScaleImage::isEndscroll()
 {
-	return m_change;
+	return m_changeScroll;
 }
 
 const GSvector2 ScaleImage::getTextureSize() const

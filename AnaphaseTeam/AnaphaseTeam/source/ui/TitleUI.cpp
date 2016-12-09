@@ -79,8 +79,8 @@ void TitleUI::createSelect()
 		TEXTURE_ID::OPTION,
 		//TEXTURE_ID::EXIT
 	};
-	GSvector2 base(0, 180);
-	GSvector2 marge(0, 80);
+	GSvector2 base(0, 90);
+	GSvector2 marge(0, 120);
 	for (unsigned int i = 0; i < size; i++)
 	{
 		GSvector2 position(base + marge*i);
@@ -89,7 +89,7 @@ void TitleUI::createSelect()
 
 	}
 
-	ScaleImage image(TEXTURE_ID::EXIT, GSvector2(0,500), false);
+	ScaleImage image(TEXTURE_ID::EXIT, GSvector2(0,610), false);
 	m_select.add(Select::EXIT, image);
 
 	m_select.startChange();

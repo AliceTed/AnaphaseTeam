@@ -52,6 +52,7 @@ void alpha::decrease(float _time)
 	}
 }
 
+
 void alpha::increase(float _time)
 {
 	//‰ÁŽZ
@@ -73,6 +74,7 @@ void alpha::flashing(float _time)
 		}
 	}
 	if (!m_change)
+
 	{
 		increase(_time);
 		if (m_currentAlpha > 1.0f)
@@ -82,7 +84,7 @@ void alpha::flashing(float _time)
 	}
 }
 
-bool alpha::up(float _position)
+bool alpha::scrollUp(float _position)
 {
 	m_position.y -= 2;
 	if (m_position.y > _position)
@@ -92,7 +94,12 @@ bool alpha::up(float _position)
 	return false;
 }
 
-bool alpha::down(float _position)
+bool alpha::scrollDown(float _position)
 {
+	m_position.y += 2;
+	if (m_position.y > _position)
+	{
+		return true;
+	}
 	return true;
 }
