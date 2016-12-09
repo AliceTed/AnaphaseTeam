@@ -143,6 +143,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="source\camera\SLookAt.cpp" />
     <ClCompile Include="source\attack\Homing.cpp" />
     <ClCompile Include="source\attack\KnockBack.cpp" />
     <ClCompile Include="source\math\AMath.cpp" />
@@ -454,6 +455,7 @@
     <ClInclude Include="header\ui\SPGaugeUI.h" />
     <ClInclude Include="header\ui\TitleUI.h" />
     <ClInclude Include="header\ui\UIManager.h" />
+    <ClInclude Include="header\camera\SLookAt.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

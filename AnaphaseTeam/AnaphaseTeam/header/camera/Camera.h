@@ -11,10 +11,9 @@
 
 #include "../../header/transform/Transform.h"
 
-typedef GSvector4 Perspective;
-
-class CameraTarget;
-class Map;
+class SLookAt;		//カメラの位置情報（先頭のＳはきにすんな）
+class CameraTarget;	//カメラのターゲット
+class Map;			//マップ（std::mapじゃないよ）
 
 class Camera
 {
@@ -45,34 +44,20 @@ public:
 
 
 	/**
-	@brief 指定した位置に移動する
-	@param[_position] 位置
-	*/
-	void move(const GSvector3& _position);
-
-
-	/**
-	@brief カメラが見ている位置を設定する
-	@param[_target] ターゲット
-	*/
-	void lookAt(const GSvector3& _target);
-
-
-	/**
 	@brief	ティルト・パンカメラワーク
 			カメラの位置は固定したまま被写体を見る
 	@param[_position_camera]	カメラの位置
 	@param[_rotate]				回転
 								x回転を固定するとティルト
 								y回転を固定するとパン
-	@param[_followSpeed_camera]	カメラの追尾速度
-	@param[_followSpeed_target]	ターゲットの追尾速度
+	@param[_trackingSpeed]		速度
+								x：カメラの追尾速度
+								y：ターゲットの追尾速度
 	*/
 	void cameraWork_tilt_pan(
-		const GSvector3& _position_camera,
-		GSvector2 _rotate,
-		const float _followSpeed_camera,
-		const float _followSpeed_target
+		const GSvector3&	_position_camera,
+		const GSvector2&	_rotate,
+		const GSvector2&	_trackingSpeed
 	);
 
 
@@ -80,18 +65,17 @@ public:
 	@brief	カメラワーク・ドリー
 	ターゲットに追従する
 	@param[_position_target]	ターゲット位置
-	@param[_elevation]			仰角
-	@param[_direction]			方位角
+	@param[_rotate]				回転
 	@param[_distance]			距離
-	@param[_followSpeed_camera]	カメラの追尾速度
-	@param[_followSpeed_target] ターゲットの追尾速度
+	@param[_trackingSpeed]		速度
+								x：カメラの追尾速度
+								y：ターゲットの追尾速度
 	*/
 	void cameraWork_dolly(
 		const GSvector3&	_position_target,
-		GSvector2			_rotate,
+		const GSvector2&	_rotate,
 		const float			_distance,
-		const float			_followSpeed_camera,
-		const float			_followSpeed_target
+		const GSvector2&	_trackingSpeed
 	);
 
 
@@ -113,22 +97,22 @@ public:
 	@brief カメラがターゲットに追尾
 	@param[_target] ターゲット
 	@param[_speed]	速度
-					[0] 追尾無し
-					[1] ディレイありの追尾
-					[2] 完全追尾
+					[0]			追尾無し
+					[0 < x < 1] ディレイありの追尾
+					[1]			完全追尾
 	*/
-	void follow_position(const GSvector3& _target, const float _speed);
+	void tracking_position(const GSvector3& _target, float _speed = 1.0f);
 
 
 	/**
 	@brief 注視点がターゲットに追尾
 	@param[_target] ターゲット
 	@param[_speed]	速度
-	[0] 追尾無し
-	[1] ディレイありの追尾
-	[2] 完全追尾
+					[0]			追尾無し
+					[0 < x < 1] ディレイありの追尾
+					[1]			完全追尾
 	*/
-	void follow_target(const GSvector3& _target, const float _speed);
+	void tracking_lookAt(const GSvector3& _target, float _speed = 1.0f);
 
 
 	/**
@@ -193,51 +177,57 @@ public:
 	*/
 	const float distance(const GSvector3& ohter)const;
 
-	//取りあえず
+	/**
+	@author Matuo
+	*/
 	const Transform transform()const;
 
-	const GSvector3& position(void)
-	{
-		return m_position;
-	}
+	/**
+	@return カメラの位置
+	*/
+	const GSvector3& position(void);
 
 private:
+	//カメラの視野角と遠近情報を更新
 	void update_perspective(void);
 
+	//カメラの位置情報を更新
 	void update_lookAt(void);
 
+	//カメラのズーム値を更新
 	void update_zoom(const float _speed);
 
+	//追尾処理更新
+	void update_tracking(
+		const GSvector3& _position,
+		const GSvector3& _lookAt,
+		const GSvector2& _trackingSpeed);
+
+	//地面とのあたり判定
 	void hit_ground(GSvector3* _position);
 
-	bool collisionRay_octree(
-		GSvector3* _intersectPos, 
-		const GSvector3& _position, 
-		const GSvector3& _rayDir
-	);
+	//地面と当たっているか？
+	bool isHitGround(GSvector3 * _intersectPos, GSvector3* _position);
+
 
 private:
-	static const GSvector3			RAY_DONW;
+	using Perspective = GSvector4;							//４次元ベクトルをパースペクティブとして設定
 
-	static const float				DEF_FOV_MIN;
-	static const float				DEF_FOV_MAX;
+	static const GSvector3			RAY_DONW;				//レイを下に飛ばす
 
-	Map*							m_map;
+	static const float				DEF_FOV;				//視野角のデフォルト値
+	static const GSvector2			DEF_FOV_CLAMP;			//視野角の範囲のデフォルト値
 
-	Perspective						m_perspective;
-	float							m_def_fov;
-	float							m_fov_min;
-	float							m_fov_max;
-	GSmatrix4						m_matProjection;
+	Map*							m_map;					//マップ
 
-	GSvector3						m_position;
-	GSvector3						m_target;
-	GSvector3						m_target_offset;
-	GSvector3						m_up;
-	GSmatrix4						m_matView;
+	Perspective						m_perspective;			//視野角と遠近情報
+	GSvector2						m_fov_clamp;			//視野角の範囲
+	GSmatrix4						m_mat_projection;		//シェーダー用投射変換行列
 
-	GSvector2						m_rotate_dolly;
+	std::unique_ptr<SLookAt>		m_lookAt;				//カメラの位置情報の集合体
 
-	std::shared_ptr<CameraTarget>	m_cameraTarget_player;
-	std::shared_ptr<CameraTarget>	m_cameraTarget_enemy;
+	GSvector2						m_rotate_dolly;			//ドリー処理時のディレイ用変数
+
+	std::shared_ptr<CameraTarget>	m_cameraTarget_player;	//プレイヤーの位置
+	std::shared_ptr<CameraTarget>	m_cameraTarget_enemy;	//エネミーの位置
 };

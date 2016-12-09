@@ -11,49 +11,29 @@
 #include "../../header/camera/CameraWork/CameraWorkManager.h"
 
 CameraController::CameraController(Camera* _camera) :
-	m_camera(_camera),
-	m_distance(1),
-	m_pitch(0),
-	m_yow(0),
 	m_cameraWorkManager(new CameraWorkManager(_camera))
 {
-
-}
-
-
-CameraController::CameraController(
-	Camera* _camera, 
-	const float _distance,
-	const float _pitch,
-	const float _yow
-) :
-	m_camera(_camera),
-	m_distance(_distance),
-	m_pitch(_pitch),
-	m_yow(_yow)
-{
-	m_pitch = AMath::to_rad(m_pitch);
-	m_yow = AMath::to_rad(m_yow);
-
+	//カメラワークの読み込み
 	m_cameraWorkManager->load();
 }
 
 
 void CameraController::update(float _deltaTime)
 {
+	//カメラワーク・マネージャー更新処理
 	m_cameraWorkManager->update(_deltaTime);
 }
 
 
 void CameraController::draw(void)
 {
+	//カメラワーク・マネージャー描画処理
 	m_cameraWorkManager->draw();
-
-	m_camera->update();
 }
 
 
 void CameraController::change_cameraWork(const E_CameraWorkID _id)
 {
+	//カメラワークを指定ＩＤのものに変更
 	m_cameraWorkManager->change_cameraWork(_id);
 }

@@ -771,6 +771,12 @@
     <ClInclude Include="header\attack\Homing.h">
       <Filter>ヘッダー ファイル\attack</Filter>
     </ClInclude>
+    <ClInclude Include="header\attack\KnockBack.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="header\camera\SLookAt.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="source\main.cpp">
@@ -1141,6 +1147,12 @@
     </ClCompile>
     <ClCompile Include="source\attack\Homing.cpp">
       <Filter>ソース ファイル\Attack</Filter>
+    </ClCompile>
+    <ClCompile Include="source\attack\KnockBack.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="source\camera\SLookAt.cpp">
+      <Filter>ソース ファイル</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
