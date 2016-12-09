@@ -27,6 +27,7 @@ public:
 
 	/**
 	@brief 更新処理
+	@param[_deltaTime] １フレーム毎の秒数
 	*/
 	void update(float _deltaTime);
 
@@ -43,4 +44,6 @@ public:
 
 private:
 	std::shared_ptr<CameraWorkManager> m_cameraWorkManager;	//カメラワーク・マネージャー 
+
+	float m_deltaTime;										//１フレーム毎の秒数
 };

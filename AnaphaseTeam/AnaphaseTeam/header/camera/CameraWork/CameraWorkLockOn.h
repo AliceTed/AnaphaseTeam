@@ -17,16 +17,15 @@ public:
 	*/
 	CameraWorkLockOn(Camera* _camera, GSvector2* _rotate);
 
-
 	/**
 	@brief デストラクタ
 	*/
 	~CameraWorkLockOn();
 
-private:
-	//カメラ描画処理
-	void draw_cameraWork(void) override;
+	//実行処理
+	void run(float _deltaTime) override;
 
+private:
 	//カメラの位置をプレイヤーと中点の対角線上になるように更新
 	void update_toEleDir(const GSvector3& _vec, float _distance);
 

@@ -40,16 +40,11 @@ public:
 	*/
 	void change_cameraWork(const E_CameraWorkID _id);
 
-	/**
-	@brief 更新処理
+	/** 
+	@brief 実行
 	@param[_deltaTime] １フレーム毎の秒数
 	*/
-	void update(float _deltaTime);
-
-	/**
-	@brief 描画
-	*/
-	void draw(void);
+	void run(float _deltaTime);
 
 private:
 	Camera*							m_camera;				//カメラ

@@ -11,7 +11,8 @@
 #include "../../header/camera/CameraWork/CameraWorkManager.h"
 
 CameraController::CameraController(Camera* _camera) :
-	m_cameraWorkManager(new CameraWorkManager(_camera))
+	m_cameraWorkManager(new CameraWorkManager(_camera)),
+	m_deltaTime(0.0f)
 {
 	//カメラワークの読み込み
 	m_cameraWorkManager->load();
@@ -20,15 +21,14 @@ CameraController::CameraController(Camera* _camera) :
 
 void CameraController::update(float _deltaTime)
 {
-	//カメラワーク・マネージャー更新処理
-	m_cameraWorkManager->update(_deltaTime);
+	m_deltaTime = _deltaTime;
 }
 
 
 void CameraController::draw(void)
 {
-	//カメラワーク・マネージャー描画処理
-	m_cameraWorkManager->draw();
+	//カメラワーク・マネージャー実行
+	m_cameraWorkManager->run(m_deltaTime);
 }
 
 

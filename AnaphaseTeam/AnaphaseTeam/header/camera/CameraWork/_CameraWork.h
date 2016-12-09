@@ -21,29 +21,13 @@ public:
 	*/
 	CameraWork(Camera* _camera);
 
-
-
 	/**
 	@brief デストラクタ
 	*/
 	~CameraWork() override;
 
-
-
-	//更新処理
-	void update(float _deltaTime);
-
-
-
-	//描画処理
-	void draw(void);
-
-private:
-	//カメラワーク更新処理
-	virtual void update_cameraWork(float _deltaTime);
-
-	//カメラワーク描画処理
-	virtual void draw_cameraWork(void);
+	//実行処理
+	virtual void run(float _deltaTime) override;
 
 protected:
 	Camera*								m_camera;			//カメラ

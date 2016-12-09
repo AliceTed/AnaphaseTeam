@@ -33,8 +33,7 @@ CameraWorkLockOn::~CameraWorkLockOn()
 
 }
 
-
-void CameraWorkLockOn::draw_cameraWork(void)
+void CameraWorkLockOn::run(float _deltaTime)
 {
 	//長い変数をいちいち書くのがめんどくさいので
 	const GSvector3& player = m_camera->cameraTarget_player();
@@ -53,7 +52,7 @@ void CameraWorkLockOn::draw_cameraWork(void)
 	float distance_p_e = vector.length();						//プレイヤーからエネミーまでの距離
 	float distance_p_c = gsVector3Distance(&player, &center);	//プレイヤーから中点までの距離
 
-	//カメラの位置をプレイヤーと中点の対角線上になるように更新
+																//カメラの位置をプレイヤーと中点の対角線上になるように更新
 	update_toEleDir(vector, distance_p_c);
 
 	//カメラワーク・ドリーの処理

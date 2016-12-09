@@ -19,18 +19,8 @@ public:
 
 	}
 
-
-
 	/**
-	@brief XVˆ—
-	@param[_deltaTime] ‚PƒtƒŒ[ƒ€–ˆ‚Ì•b”
+	@brief[_deltaTime] ‚PƒtƒŒ[ƒ€–ˆ‚Ì•b”
 	*/
-	virtual void update(float _deltaTime) = 0;
-
-
-
-	/**
-	@brief •`‰æˆ—
-	*/
-	virtual void draw(void) = 0;
+	virtual void run(float _deltaTime) = 0;
 };
