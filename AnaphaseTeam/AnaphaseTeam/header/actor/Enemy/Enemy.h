@@ -6,6 +6,8 @@
 #include "../../attack/AttackStatus.h"
 #include "../../actor/Player/Status.h"
 #include "../../attack/KnockBack.h"
+#include "../../state/enemy/EnemyAIController.h"
+class IEnemyAI;
 class EnemyCollision;
 class Player;
 
@@ -42,6 +44,7 @@ public:
 	* @param (&_player)　プレイヤー
 	*/
 	void think(Player* _palyer);
+	void distanceThink(float _distance);
 	/**
 	* @fn
 	* @brief ロックオン時のHPUIの初期化登録
@@ -52,22 +55,30 @@ public:
 	* @brief
 	*/
 	const bool isNotDamageState()const;
-private:
 	/**
 	* @fn
 	* @brief 距離をはかる
 	* @param
 	*/
 	const bool isNear(float _distance)const;
+	const bool blowDead()const;
 	/**
 	* @fn
 	* @brief 考える時か否か
 	*/
 	const bool isThink()const;
+private:
 	/**
 	* @fn
-	* @brief stateを初期化代入
+	* @brief 距離をはかる
+	* @param
 	*/
+	//	const bool isNear(float _distance)const;
+
+		/**
+		* @fn
+		* @brief stateを初期化代入
+		*/
 	void createStates();
 	/**
 	* @fn
@@ -78,7 +89,7 @@ private:
 	static const float PLAYER_DISTANCE;
 	float m_alpha;
 	Status m_status;
-
+	EnemyAIController m_AI;
 	KnockBack m_knockBack;
 private://state
 	class EAttackState;
@@ -88,6 +99,9 @@ private://state
 	class ESlideState;
 	class ESpawnState;
 	class EDeadState;
+	class EMoveBackState;
+	class EDashFrontState;
+	class EThinkState;
 
 	friend EAttackState;
 	friend EDamageState;
@@ -96,6 +110,9 @@ private://state
 	friend ESlideState;
 	friend ESpawnState;
 	friend EDeadState;
+	friend EMoveBackState;
+	friend EDashFrontState;
+	friend EThinkState;
 private://collision
 	class EnemyCollision;
 	class EnemyAttackCollision;

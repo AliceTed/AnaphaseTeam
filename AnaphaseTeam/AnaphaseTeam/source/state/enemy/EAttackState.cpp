@@ -16,7 +16,7 @@ void Enemy::EAttackState::action(float deltaTime)
 {
 	if (m_actor->m_animatorOne.isEndCurrentAnimation())
 	{
-		m_actor->changeState(ACTOR_STATE::ESTAND);
+		m_actor->changeState(ACTOR_STATE::ETHINK);
 	}
 }
 

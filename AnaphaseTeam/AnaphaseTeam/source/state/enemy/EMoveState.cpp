@@ -9,7 +9,7 @@ Enemy::EMoveState::EMoveState(Enemy* _enemy)
 
 void Enemy::EMoveState::start()
 {
-	m_actor->m_animatorOne.changeAnimation(ENEMY_ANIMATION::RUN, true, true);
+	m_actor->m_animatorOne.changeAnimation(ENEMY_ANIMATION::WALKFORWORD, true, true);
 }
 
 void Enemy::EMoveState::action(float deltaTime)
