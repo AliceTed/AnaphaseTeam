@@ -56,7 +56,7 @@ void TitleUI::operation(Menu& _menu)
 	{
 		m_select.next();
 	}
-	if (GameDevice::getInstacnce().input()->jump())
+	if (GameDevice::getInstacnce().input()->decision())
 	{
 		_menu.decision(m_select.currentSelect());
 		m_select.startMove();

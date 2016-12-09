@@ -143,6 +143,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="header\state\enemy\EnemyAIController.cpp" />
     <ClCompile Include="source\camera\SLookAt.cpp" />
     <ClCompile Include="source\attack\Homing.cpp" />
     <ClCompile Include="source\attack\KnockBack.cpp" />
@@ -215,12 +216,17 @@
     <ClCompile Include="source\specialskill\SpecialSkillManager.cpp" />
     <ClCompile Include="source\specialskill\SuperArmor.cpp" />
     <ClCompile Include="source\state\enemy\EAttackState.cpp" />
+    <ClCompile Include="source\state\enemy\EDashFrontState.cpp" />
     <ClCompile Include="source\state\enemy\EDeadState.cpp" />
     <ClCompile Include="source\state\enemy\EDamageState.cpp" />
+    <ClCompile Include="source\state\enemy\EMoveBackState.cpp" />
     <ClCompile Include="source\state\enemy\EMoveState.cpp" />
     <ClCompile Include="source\state\enemy\ESlideState.cpp" />
     <ClCompile Include="source\state\enemy\ESpawnState.cpp" />
     <ClCompile Include="source\state\enemy\EStandState.cpp" />
+    <ClCompile Include="source\state\enemy\EThinkState.cpp" />
+    <ClCompile Include="source\state\enemy\NearAI.cpp" />
+    <ClCompile Include="source\state\enemy\OverNearAI.cpp" />
     <ClCompile Include="source\state\player\AttackState.cpp" />
     <ClCompile Include="source\state\player\DamageState.cpp" />
     <ClCompile Include="source\state\player\DoubleJumpState.cpp" />
@@ -385,13 +391,20 @@
     <ClInclude Include="header\specialskill\SuperArmor.h" />
     <ClInclude Include="header\state\ActorState.h" />
     <ClInclude Include="header\state\ACTOR_STATE.h" />
+    <ClInclude Include="header\state\enemy\EDashFrontState.h" />
     <ClInclude Include="header\state\enemy\EAttackState.h" />
     <ClInclude Include="header\state\enemy\EDamageState.h" />
     <ClInclude Include="header\state\enemy\EDeadState.h" />
     <ClInclude Include="header\state\enemy\EMoveState.h" />
+    <ClInclude Include="header\state\enemy\EnemyAIController.h" />
     <ClInclude Include="header\state\enemy\ESlideState.h" />
     <ClInclude Include="header\state\enemy\ESpawnState.h" />
     <ClInclude Include="header\state\enemy\EStandState.h" />
+    <ClInclude Include="header\state\enemy\EMoveBackState.h" />
+    <ClInclude Include="header\state\enemy\EThinkState.h" />
+    <ClInclude Include="header\state\enemy\IEnemyAI.h" />
+    <ClInclude Include="header\state\enemy\NearAI.h" />
+    <ClInclude Include="header\state\enemy\OverNearAI.h" />
     <ClInclude Include="header\state\IActorState.h" />
     <ClInclude Include="header\state\player\AttackState.h" />
     <ClInclude Include="header\state\player\DamageState.h" />
