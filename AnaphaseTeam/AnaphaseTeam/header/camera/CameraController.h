@@ -25,6 +25,9 @@ public:
 	*/
 	CameraController(Camera* _camera);
 
+	//デストラクタ
+	~CameraController();
+
 	/**
 	@brief 更新処理
 	@param[_deltaTime] １フレーム毎の秒数

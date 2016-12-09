@@ -16,14 +16,10 @@ class I_CameraWork;
 class CameraWorkData
 {
 public:
-	/**
-	@brief コンストラクタ
-	*/
+	//コンストラクタ
 	CameraWorkData();
 
-	/**
-	@brief デストラクタ
-	*/
+	//デストラクタ
 	~CameraWorkData();
 
 	/**

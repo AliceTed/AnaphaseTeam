@@ -14,9 +14,7 @@ public:
 	*/
 	CameraTarget(void);
 
-	/**
-	@brief デストラクタ
-	*/
+	//デストラクタ
 	~CameraTarget();
 
 	/**

@@ -1,8 +1,8 @@
-#include "../../../header/camera/CameraWork/_CameraWork.h"
+#include "../../../header/camera/CameraWork/CameraWorkEmpty.h"
 #include "../../../header/camera/Camera.h"
 #include "../../../header/camera/CameraWork/CWParameterReader.h"
 
-CameraWork::CameraWork(Camera* _camera) : 
+CameraWorkEmpty::CameraWorkEmpty(Camera* _camera) :
 	m_camera(_camera),
 	m_paramater_def(std::make_unique<CWParameterReader>("./res/data/CameraWorkDef.cw")),
 	m_offset_target(0.0f, 0.0f, 0.0f)
@@ -15,16 +15,16 @@ CameraWork::CameraWork(Camera* _camera) :
 	);
 }
 
-CameraWork::~CameraWork()
+CameraWorkEmpty::~CameraWorkEmpty()
 {
 
 }
 
-void CameraWork::start(void)
+void CameraWorkEmpty::start(void)
 {
 }
 
-void CameraWork::run(float _deltaTime)
+void CameraWorkEmpty::run(float _deltaTime)
 {
 	//とりあえずカメラの位置とターゲットを適当に設定
 	m_camera->tracking_position(GSvector3(0.0f, 0.0f, 0.0f));

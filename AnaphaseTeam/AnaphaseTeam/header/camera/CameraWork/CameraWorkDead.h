@@ -6,9 +6,9 @@
 */
 #pragma once
 
-#include "_CameraWork.h"
+#include "CameraWorkEmpty.h"
 
-class CameraWorkDead : public CameraWork
+class CameraWorkDead : public CameraWorkEmpty
 {
 public:
 	/**
@@ -17,9 +17,7 @@ public:
 	*/
 	CameraWorkDead(Camera* _camera);
 
-	/**
-	@brief デストラクタ
-	*/
+	//デストラクタ
 	~CameraWorkDead() override;
 
 	//開始処理
