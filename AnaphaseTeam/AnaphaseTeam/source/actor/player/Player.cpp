@@ -22,6 +22,7 @@
 
 #include "../../../header/camera/LockOn.h"
 #include "../../../header/actor/Enemy/Enemy.h"
+#include "../../../header/actor/Enemy/EnemyManager.h"
 
 #include "../../../header/collision/PlayerAttackCollision.h"
 #include "../../../header/collision/PlayerCollision.h"
@@ -114,9 +115,20 @@ void Player::finish()
 	UIManager::getInstance().release(EUI::SIZE);
 }
 
+void Player::targetFind(EnemyManager * _enemys)
+{
+	if (m_isLockOn) return;
+	m_lockon->nearEnemyFind(_enemys);
+}
+
 const float Player::stepDistance() const
 {
 	return distanceActor(*m_lockon->getTarget()) - 1.0f;
+}
+
+void Player::lookTarget()
+{
+	m_transform.m_rotate = targetDirection(*m_lockon->getTarget());
 }
 
 void Player::damage(const AttackStatus & _attackStatus)
@@ -212,13 +224,10 @@ void Player::look_at(CameraController * _camera, GSvector3 * _target)
 		m_isLockOn = false;
 	}
 	GSvector3 position = m_transform.m_translate;
-	//by —L•y
 
 	m_camera->lookAt_cameraTarget_player(position);
 	m_camera->lookAt_cameraTarget_enemy(*_target);
 
-	//by —L•y
-	float distance = position.distance(*_target);
 	if (m_isLockOn)
 	{
 		_camera->change_cameraWork(E_CameraWorkID::LOCK_ON);

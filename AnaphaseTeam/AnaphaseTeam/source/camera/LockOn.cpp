@@ -15,10 +15,11 @@ LockOn::~LockOn()
 
 void LockOn::nearEnemyFind(EnemyManager * _enemys)
 {
-	if (m_player == nullptr)
+	/*if (m_player == nullptr)
 	{
 		return;
-	}
+	}*/
+	//if (m_player->flg()) return;
 	m_target = &_enemys->nearEnemy(m_player);
 	(*m_target)->start_lockOn();
 }

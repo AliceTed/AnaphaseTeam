@@ -14,6 +14,11 @@ void Player::PlayerCollision::doUpdate(float deltaTime)
 
 void Player::PlayerCollision::collision_Enter(HitInformation & _hit)
 {
+	if (_hit.m_tag == Collision_Tag::ENEMY)
+	{
+		m_player->changeState(ACTOR_STATE::STAND);
+	}
+
 	if (_hit.m_tag != Collision_Tag::ENEMY_ATTACK)return;
 	//エネミーがダメージを食らったかチェックをしろ
 

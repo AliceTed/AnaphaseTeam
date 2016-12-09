@@ -57,7 +57,8 @@ void GamePlay::update(float deltaTime)
 	m_enemys.collisionGround(m_Map);
 	m_change.update(deltaTime);
 	m_lockon.thinksEnemy(&m_enemys);
-	m_lockon.nearEnemyFind(&m_enemys);
+	//m_lockon.nearEnemyFind(&m_enemys);
+	m_player.targetFind(&m_enemys);
 	m_player.update(deltaTime);
 	m_enemys.update(deltaTime);
 	m_enemys.collision(m_player);
