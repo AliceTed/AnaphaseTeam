@@ -2,7 +2,7 @@
 #include "../../../header/camera/Camera.h"
 
 CameraWorkDead::CameraWorkDead(Camera* _camera) :
-	CameraWork(_camera)
+	CameraWorkEmpty(_camera)
 {
 }
 

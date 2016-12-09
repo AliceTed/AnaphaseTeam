@@ -7,11 +7,11 @@
 #pragma once
 
 #include <memory>
-#include "_CameraWork.h"
+#include "CameraWorkEmpty.h"
 
 class CWParameterReader;	//カメラワークのパラメータの読み込み機
 
-class CameraWorkNormal : public CameraWork
+class CameraWorkNormal : public CameraWorkEmpty
 {
 public:
 	/**

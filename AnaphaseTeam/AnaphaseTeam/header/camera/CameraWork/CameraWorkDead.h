@@ -6,9 +6,9 @@
 */
 #pragma once
 
-#include "_CameraWork.h"
+#include "CameraWorkEmpty.h"
 
-class CameraWorkDead : public CameraWork
+class CameraWorkDead : public CameraWorkEmpty
 {
 public:
 	/**

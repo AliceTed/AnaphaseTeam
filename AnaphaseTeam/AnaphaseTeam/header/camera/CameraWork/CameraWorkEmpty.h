@@ -13,18 +13,18 @@
 class Camera;				//カメラ
 class CWParameterReader;	//カメラワーク・パラメータ読み込み機
 
-class CameraWork : public I_CameraWork
+class CameraWorkEmpty : public I_CameraWork
 {
 public:
 	/**
 	@brief コンストラクタ
 	*/
-	CameraWork(Camera* _camera);
+	CameraWorkEmpty(Camera* _camera);
 
 	/**
 	@brief デストラクタ
 	*/
-	~CameraWork() override;
+	~CameraWorkEmpty() override;
 
 	//開始処理
 	virtual void start(void) override;

@@ -7,7 +7,7 @@
 #include "../../../header/camera/CameraWork/CWParameterReader.h"
 
 CameraWorkNormal::CameraWorkNormal(Camera* _camera, GSvector2* _rotate) :
-	CameraWork(_camera),
+	CameraWorkEmpty(_camera),
 	m_rotate(_rotate),
 	m_parameter(std::make_unique<CWParameterReader>("./res/data/CameraWorkNormal.cw")),
 	m_speed_input(0.0f),

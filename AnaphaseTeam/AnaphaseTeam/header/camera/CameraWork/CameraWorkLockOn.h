@@ -6,9 +6,9 @@
 */
 #pragma once
 
-#include "_CameraWork.h"
+#include "CameraWorkEmpty.h"
 
-class CameraWorkLockOn : public CameraWork
+class CameraWorkLockOn : public CameraWorkEmpty
 {
 public:
 	/**
@@ -17,9 +17,7 @@ public:
 	*/
 	CameraWorkLockOn(Camera* _camera, GSvector2* _rotate);
 
-	/**
-	@brief デストラクタ
-	*/
+	//デストラクタ
 	~CameraWorkLockOn();
 
 	//開始処理
