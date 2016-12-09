@@ -143,6 +143,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="source\camera\SLookAt.cpp" />
     <ClCompile Include="source\attack\Homing.cpp" />
     <ClCompile Include="source\attack\KnockBack.cpp" />
     <ClCompile Include="source\math\AMath.cpp" />
@@ -203,6 +204,7 @@
     <ClCompile Include="source\myanimation\MyAnimationFunc.cpp" />
     <ClCompile Include="source\myanimation\TimeKeyFrame.cpp" />
     <ClCompile Include="source\renderer\Renderer.cpp" />
+    <ClCompile Include="source\scene\each\Menu.cpp" />
     <ClCompile Include="source\scene\each\Opening.cpp" />
     <ClCompile Include="source\scene\each\Option.cpp" />
     <ClCompile Include="source\scene\each\GameClear.cpp" />
@@ -254,7 +256,9 @@
     <ClCompile Include="source\shape\Sphere.cpp" />
     <ClCompile Include="source\transform\Quaternion_Utility.cpp" />
     <ClCompile Include="source\transform\Transform.cpp" />
+    <ClCompile Include="source\ui\alpha.cpp" />
     <ClCompile Include="source\ui\Cursor.cpp" />
+    <ClCompile Include="source\ui\EndingUI.cpp" />
     <ClCompile Include="source\ui\Fade.cpp" />
     <ClCompile Include="source\ui\HPGaugeUI.cpp" />
     <ClCompile Include="source\ui\PauseUI.cpp" />
@@ -367,6 +371,7 @@
     <ClInclude Include="header\renderer\define\ViewportDesc.h" />
     <ClInclude Include="header\renderer\IRenderer.h" />
     <ClInclude Include="header\renderer\Renderer.h" />
+    <ClInclude Include="header\scene\each\Menu.h" />
     <ClInclude Include="header\scene\each\Opening.h" />
     <ClInclude Include="header\scene\each\Option.h" />
     <ClInclude Include="header\scene\each\GameClear.h" />
@@ -440,7 +445,9 @@
     <ClInclude Include="header\transform\Quaternion_Utility.h" />
     <ClInclude Include="header\transform\ToString.h" />
     <ClInclude Include="header\transform\Transform.h" />
+    <ClInclude Include="header\ui\alpha.h" />
     <ClInclude Include="header\ui\Cursor.h" />
+    <ClInclude Include="header\ui\EndingUI.h" />
     <ClInclude Include="header\ui\Fade.h" />
     <ClInclude Include="header\ui\HPGaugeUI.h" />
     <ClInclude Include="header\ui\IPlayUI.h" />
@@ -453,6 +460,7 @@
     <ClInclude Include="header\ui\SPGaugeUI.h" />
     <ClInclude Include="header\ui\TitleUI.h" />
     <ClInclude Include="header\ui\UIManager.h" />
+    <ClInclude Include="header\camera\SLookAt.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

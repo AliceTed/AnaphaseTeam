@@ -12,46 +12,51 @@ CameraWorkNormal::CameraWorkNormal(Camera* _camera, GSvector2* _rotate) :
 	m_parameter(std::make_unique<CWParameterReader>("./res/data/CameraWorkNormal.cw")),
 	m_speed_input(0.0f),
 	m_distance(0.0f),
-	m_followSpeed_position(0.0f),
-	m_followSpeed_target(0.0f)
+	m_trackingSpeed(0.0f, 0.0f)
 {
-	m_speed_input			= m_parameter->get(0);
-	m_distance				= m_parameter->get(1);
-	m_followSpeed_position	= m_parameter->get(2);
-	m_followSpeed_target	= m_parameter->get(3);
+	//読み込んだパラメータを各変数に代入
+	m_speed_input			= (*m_parameter)[0];
+	m_distance				= (*m_parameter)[1];
+	m_trackingSpeed = {
+		(*m_parameter)[2],
+		(*m_parameter)[3]
+	};
 }
-
-
 
 CameraWorkNormal::~CameraWorkNormal()
 {
 }
 
-
-
-void CameraWorkNormal::draw_cameraWork(void)
+void CameraWorkNormal::start(void)
 {
+	m_camera->initialize_zoom();
+}
+
+void CameraWorkNormal::run(float _deltaTime)
+{
+	//いちいちめんどくさいので宣言
 	const GSvector3& player = m_camera->cameraTarget_player();
 
-	m_rotate->x -= velocity().y * m_speed_input;
+	//回転軸を更新
+	m_rotate->x -= velocity().y * m_speed_input;	//逆に動かしたいので引いとく
 	m_rotate->y += velocity().x * m_speed_input;
 
+	//カメラワーク・ドリーの処理
 	m_camera->cameraWork_dolly(
 		(player + m_offset_target),
 		(*m_rotate),
 		m_distance,
-		m_followSpeed_position,
-		m_followSpeed_target
+		m_trackingSpeed
 	);
 
 	return;
 }
 
-
 const GSvector2 CameraWorkNormal::velocity(void)
 {
 	GSvector2 velocity;
 
+	//右スティックの倒れた方向を取得する
 	gsXBoxPadGetRightAxis(0, &velocity);
 
 	return velocity;
