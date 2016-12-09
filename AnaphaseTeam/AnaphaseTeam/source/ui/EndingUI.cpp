@@ -8,7 +8,7 @@ EndingUI::EndingUI()
 	:m_position(0, 0, 0),
 	m_change(true),
 	m_count(0),
-	m_credit(TEXTURE_ID::UI_STAFF, GSvector2(450, 720), 1.0f),
+	m_credit(TEXTURE_ID::STAFFROLL, GSvector2(450, 720), 1.0f),
 	m_still(TEXTURE_ID::PRESSKEY, GSvector2(40, 600), 0.0f)
 {
 }

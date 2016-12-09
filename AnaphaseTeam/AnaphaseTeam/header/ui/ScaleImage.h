@@ -22,11 +22,9 @@ private:
 private:
 	TEXTURE_ID m_id;
 	GSvector2 m_position;
-	bool m_isPexis;
 	Math::TimeLerpVector<GSvector2> m_scaleLerp;
 	Math::TimeLerpVector<GSvector2> m_moveLerp;
 	bool m_changeScroll;
-	//alpha m_alpha;
 	float m_alpha;
 	float m_value;
 	float m_speed;

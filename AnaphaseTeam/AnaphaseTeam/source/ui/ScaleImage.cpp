@@ -7,10 +7,8 @@ ScaleImage::ScaleImage(TEXTURE_ID _id, const GSvector2& _position, bool _isPexis
 	:m_id(_id), m_position(_position),
 	m_scaleLerp(GSvector2(1.0f, 1.0f)),
 	m_moveLerp(GSvector2(endPosiX, m_position.y)),
-	m_isPexis(_isPexis),
 	m_changeScroll(false),
-	m_alpha(0.0f),
-	m_value(0.0f),
+	m_alpha(0.0f), m_value(0.0f),
 	m_speed(10.0f)
 
 {
@@ -45,8 +43,9 @@ void ScaleImage::draw(IRenderer * _renderer)
 {
 	SpriteRenderDesc desc;
 	GSvector2 scale = m_scaleLerp.current();
+	desc.center = GSvector2(m_position.x / 2, m_position.y / 2);
 	desc.matrix.scale(scale);
-	desc.matrix.translate(m_position);
+	desc.matrix.translate(m_position+desc.center);
 	desc.color.a = m_alpha;
 	desc.textureID = static_cast<GSuint>(m_id);
 	_renderer->render(desc);

@@ -85,7 +85,7 @@ void Load::loadTextrue()
 	tex(TEXTURE_ID::GAMEOVER, "gameover");
 	tex(TEXTURE_ID::PAUSE_GAMEBACK, "gameBack");
 	tex(TEXTURE_ID::PAUSE_TITLEBACK, "titleBack");
-	tex(TEXTURE_ID::UI_STAFF, "TitleUI_STAFF");
+	tex(TEXTURE_ID::STAFFROLL, "TitleUI_STAFF");
 }
 void Load::loadSound()
 {
