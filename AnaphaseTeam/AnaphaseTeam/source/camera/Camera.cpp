@@ -13,7 +13,7 @@ const GSvector2 Camera::DEF_FOV_CLAMP	= { 2.0f, 180.0f };	//Ž‹–ìŠp‚Ì”ÍˆÍ‚Í2.0~18
 
 Camera::Camera(Map* _map) :
 	m_map(_map),
-	m_perspective(Perspective(DEF_FOV, 1280.0f / 720.0f, 0.3f, 1000.0f)),
+	m_perspective(GSvector4(DEF_FOV, 1280.0f / 720.0f, 0.3f, 1000.0f)),
 	m_fov_clamp(DEF_FOV_CLAMP.x, DEF_FOV_CLAMP.y),
 	m_lookAt(std::make_unique<SLookAt>(GSvector3(0.0f, 0.0f, 0.0f), GSvector3(0.0f, 0.0f, 0.0f), GSvector3(0.0f, 1.0f, 0.0f))),
 	m_rotate_dolly(0.0f, 0.0f),
