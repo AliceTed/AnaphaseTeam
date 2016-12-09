@@ -1,9 +1,9 @@
-/*********************************************************************
+/**
 @file	CameraActionData.h
 @brief	カメラアクションデータ
 @author Yuuho Aritomi
 @date	2016/11/21
-*********************************************************************/
+*/
 #pragma once
 
 #include <unordered_map>
@@ -16,42 +16,36 @@ class I_CameraWork;
 class CameraWorkData
 {
 public:
-	/*****************************************************************
+	/**
 	@brief コンストラクタ
-	*****************************************************************/
+	*/
 	CameraWorkData();
 
-
-
-	/*****************************************************************
+	/**
 	@brief デストラクタ
-	*****************************************************************/
+	*/
 	~CameraWorkData();
 
-
-
-	/*****************************************************************
+	/**
 	@brief 読み込み
 	@param[_id]		アクションID
 	@param[_data]	データ
-	*****************************************************************/
+	*/
 	void add(
 		E_CameraWorkID	_id,
 		I_CameraWork*	_data
 	);
 
-
-
-	/*****************************************************************
+	/**
 	@brief 実行
 	@param[_id] アクションID
-	*****************************************************************/
+	*/
 	I_CameraWork* get(const E_CameraWorkID _id);
 
 private:
-	typedef std::shared_ptr<I_CameraWork> CameraWork_Ptr;
-	typedef std::unordered_map<E_CameraWorkID, CameraWork_Ptr> CameraWork_Map;
+	using CameraWork_Ptr = std::shared_ptr<I_CameraWork>;						//いちいち書くのがめんどくさいので
+	using CameraWork_Map = std::unordered_map<E_CameraWorkID, CameraWork_Ptr>;	//いちいち書くのがめんどくさいので
 
-	CameraWork_Map m_cameraWorks;
+	CameraWork_Map m_cameraWorks;												//カメラワーク
 };
 

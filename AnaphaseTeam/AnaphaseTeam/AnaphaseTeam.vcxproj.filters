@@ -759,6 +759,9 @@
     <ClInclude Include="header\scene\each\Pause.h">
       <Filter>ヘッダー ファイル\scene\each</Filter>
     </ClInclude>
+    <ClInclude Include="header\ui\Image2D.h">
+      <Filter>ソース ファイル\ui</Filter>
+    </ClInclude>
     <ClInclude Include="header\ui\PauseUI.h">
       <Filter>ヘッダー ファイル\ui</Filter>
     </ClInclude>
@@ -769,6 +772,9 @@
       <Filter>ヘッダー ファイル\attack</Filter>
     </ClInclude>
     <ClInclude Include="header\attack\KnockBack.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="header\camera\SLookAt.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
   </ItemGroup>
@@ -1143,6 +1149,9 @@
       <Filter>ソース ファイル\Attack</Filter>
     </ClCompile>
     <ClCompile Include="source\attack\KnockBack.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="source\camera\SLookAt.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
   </ItemGroup>

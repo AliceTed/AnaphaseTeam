@@ -4,6 +4,7 @@
 CameraWorkDead::CameraWorkDead(Camera* _camera) :
 	CameraWork(_camera)
 {
+	//カメラのズーム範囲を設定
 	m_camera->zoom_clamp(20, 180);
 }
 
@@ -18,13 +19,14 @@ CameraWorkDead::~CameraWorkDead()
 //未完成
 void CameraWorkDead::draw_cameraWork(void)
 {
+	//変数の名前が長いので短い名前に変更
 	const GSvector3& player = m_camera->cameraTarget_player();
 
-	m_camera->follow_target(player + GSvector3(0, 1, 0), 0.5f);
+	//注視点をプレイヤーに固定
+	m_camera->tracking_lookAt(player + m_offset_target, 0.5f);
 
+	//カメラをズームアップする
 	m_camera->zoom_in(1.0f);
-
-	m_camera->update();
 
 	return;
 }
