@@ -26,9 +26,7 @@ public:
 	*/
 	SLookAt(GSvector3 _position, GSvector3 _target, GSvector3 _up);
 
-	/**
-	@brief デストラクタ
-	*/
+	//デストラクタ
 	~SLookAt();
 };
 

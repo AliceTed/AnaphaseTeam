@@ -24,10 +24,7 @@ public:
 	*/
 	Camera(Map* _map);
 
-
-	/**
-	@brief デストラクタ
-	*/
+	//デストラクタ
 	~Camera();
 
 

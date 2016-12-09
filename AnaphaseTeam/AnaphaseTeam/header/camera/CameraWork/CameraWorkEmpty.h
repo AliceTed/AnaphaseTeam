@@ -18,12 +18,11 @@ class CameraWorkEmpty : public I_CameraWork
 public:
 	/**
 	@brief コンストラクタ
+	@param[_camera] カメラ
 	*/
 	CameraWorkEmpty(Camera* _camera);
 
-	/**
-	@brief デストラクタ
-	*/
+	//デストラクタ
 	~CameraWorkEmpty() override;
 
 	//開始処理

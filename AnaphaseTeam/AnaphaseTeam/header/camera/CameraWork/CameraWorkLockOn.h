@@ -14,6 +14,7 @@ public:
 	/**
 	@brief コンストラクタ
 	@param[_camera] カメラ
+	@param[_rotate] 回転
 	*/
 	CameraWorkLockOn(Camera* _camera, GSvector2* _rotate);
 

@@ -16,12 +16,12 @@ class CameraWorkNormal : public CameraWorkEmpty
 public:
 	/**
 	@brief コンストラクタ
+	@param[_camera] カメラ
+	@param[_rotate] 回転
 	*/
 	CameraWorkNormal(Camera* _camera, GSvector2* _rotate);
 
-	/**
-	@brief デストラクタ
-	*/
+	//デストラクタ
 	~CameraWorkNormal() override;
 
 	//開始処理

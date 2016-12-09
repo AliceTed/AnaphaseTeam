@@ -17,9 +17,7 @@ public:
 	*/
 	CameraWorkDead(Camera* _camera);
 
-	/**
-	@brief デストラクタ
-	*/
+	//デストラクタ
 	~CameraWorkDead() override;
 
 	//開始処理
