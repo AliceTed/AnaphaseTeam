@@ -1,25 +1,24 @@
-#ifndef _TITLE_H_
-#define _TITLE_H_
+#pragma once
 #include "../IScene.h"
+#include "../../renderer/Renderer.h"
+#include "../../ui/TitleUI.h"
 #include "../SceneChange.h"
-#include "../../ui/alpha.h"
-
-
-class Title :public IScene
+class Menu :public IScene
 {
 public:
-	Title();
-	~Title();
+	Menu();
+	~Menu();
 	void initialize();
-	void update(float _deltaTime);
+	void update(float deltaTime);
 	void draw(IRenderer * _renderer);
 	void finish();
 	const SceneMode next()const;
 	const bool isEnd()const;
 	const bool isExit()const;
+
+	void decision(Select _select);
 private:
 	bool m_IsExit;
 	SceneChange m_change;
-	alpha m_pressKey;
+	TitleUI m_menu;
 };
-#endif

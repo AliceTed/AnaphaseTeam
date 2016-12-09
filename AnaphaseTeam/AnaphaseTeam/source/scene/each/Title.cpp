@@ -1,11 +1,13 @@
 #include "../../../header/scene/each/Title.h"
+#include "../../../header/device/GameDevice.h"
 #include "../../../header/renderer/IRenderer.h"
+#include "../../../header/renderer/define/SpriteRenderDesc.h"
 #include "../../../header/device/GameDevice.h"
 #include "../../../header/data/id/BGM_ID.h"
 Title::Title()
 	:m_IsExit(false),
-	m_title(),
-	m_change()
+	m_change(),
+	m_pressKey(TEXTURE_ID::PRESSKEY, GSvector2(40, 600), 1.0f)
 {
 }
 
@@ -18,28 +20,34 @@ void Title::initialize()
 	m_IsExit = false;
 	m_change.initialize();
 	m_change.begin();
-	m_title.initialize();
 	GameDevice::getInstacnce().sound().playBGM(BGM_ID::TITLE);
+	m_pressKey.initilize();
 }
-void Title::update(float deltaTime)
+void Title::update(float _deltaTime)
 {
-	GameDevice::getInstacnce().sound().bgmFade(BGM_ID::TITLE, deltaTime * 0.01f);
-	m_title.update(deltaTime);
-	if (m_change.update(deltaTime))return;
-	m_title.operation(*this);
+	if (m_change.update(_deltaTime))return;
+	if (GameDevice::getInstacnce().input()->jump())
+	{
+		m_change.end(SceneMode::MENU);
+		GameDevice::getInstacnce().sound().playSE(SE_ID::ENTER);
+	}
+	m_pressKey.flashing(0.7f);
 }
 
-void Title::draw(IRenderer * renderer)
+void Title::draw(IRenderer * _renderer)
 {
-	m_title.draw(renderer);
-	m_change.draw(renderer);
+	SpriteRenderDesc tatle;
+	tatle.textureID = static_cast<GSuint>(TEXTURE_ID::TITLE_ROGO);
+	_renderer->render(tatle);
+
+	m_pressKey.draw(_renderer);
+	m_change.draw(_renderer);
 }
 
 void Title::finish()
 {
 	GameDevice::getInstacnce().sound().stopBGM(BGM_ID::TITLE);
 	GameDevice::getInstacnce().sound().stopSE(SE_ID::ENTER);
-	m_title.finish();
 }
 
 const SceneMode Title::next() const
@@ -54,21 +62,6 @@ const bool Title::isEnd() const
 
 const bool Title::isExit() const
 {
-	return m_IsExit;
+	return false;
 }
-void Title::decision(Select _select)
-{
-	GameDevice::getInstacnce().sound().playSE(SE_ID::ENTER);
-	switch (_select)
-	{
-	case Select::GAMESTART:
-		m_change.end(SceneMode::GAMEPLAY);
-		break;
-	case Select::OPTION:
-		m_change.end(SceneMode::OPTION);
-		break;
-	case Select::EXIT:
-		m_IsExit = true;
-		break;
-	}
-}
+	

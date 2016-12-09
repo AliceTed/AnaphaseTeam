@@ -24,11 +24,13 @@ public:
 	const Select currentSelect()const;
 	void startChange();
 	void startMove();
+	bool isStart();
 private:
 	void change(Select _next);
 private:
 	Select m_current;
 	std::unordered_map<Select, ScaleImage> m_images;
+	float m_timer;
 
 	const static GSvector2 DEFAULTSCALE;
 	const static GSvector2 SELECTSCALE;
