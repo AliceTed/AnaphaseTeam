@@ -9,8 +9,10 @@ public:
 	~KnockBack()=default;
 	void start(const GSvector3& blowOff);
 	void update(float deltaTime);
+	const bool isBlow()const;
 private:
 	Transform& m_transform;
 	GSvector3 m_current;
 	Math::TargetLerp<GSvector3> m_lerp;
+	bool m_blowAway;
 };

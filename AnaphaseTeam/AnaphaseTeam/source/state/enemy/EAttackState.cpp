@@ -8,7 +8,7 @@ Enemy::EAttackState::EAttackState(Enemy* _enemy)
 
 void Enemy::EAttackState::start()
 {
-	m_actor->m_animatorOne.changeAnimation(static_cast<unsigned int>(ENEMY_ANIMATION::ATTACK), true, false, false, 1.0f);
+	m_actor->m_animatorOne.changeAnimationLerp(ENEMY_ANIMATION::ATTACK1);
 	m_actor->createAttackCollision();
 }
 
@@ -16,7 +16,7 @@ void Enemy::EAttackState::action(float deltaTime)
 {
 	if (m_actor->m_animatorOne.isEndCurrentAnimation())
 	{
-		m_actor->changeState(ACTOR_STATE::ESTAND);
+		m_actor->changeState(ACTOR_STATE::ETHINK);
 	}
 }
 
