@@ -27,18 +27,15 @@ public:
 	//デストラクタ
 	~Camera();
 
-
 	/**
 	@brief ズーム関係初期化
 	*/
 	void initialize_zoom(void);
 
-
 	/**
 	@brief 更新処理
 	*/
 	void update(void);
-
 
 	/**
 	@brief	ティルト・パンカメラワーク
@@ -57,7 +54,6 @@ public:
 		const GSvector2&	_trackingSpeed
 	);
 
-
 	/**
 	@brief	カメラワーク・ドリー
 	ターゲットに追従する
@@ -75,7 +71,6 @@ public:
 		const GSvector2&	_trackingSpeed
 	);
 
-
 	/**
 	@brief プレイヤーの位置を保持
 	@param[_target] プレイヤーの位置を入れてね
@@ -89,7 +84,6 @@ public:
 	*/
 	void lookAt_cameraTarget_enemy(const GSvector3& _target);
 
-
 	/**
 	@brief カメラがターゲットに追尾
 	@param[_target] ターゲット
@@ -99,7 +93,6 @@ public:
 					[1]			完全追尾
 	*/
 	void tracking_position(const GSvector3& _target, float _speed = 1.0f);
-
 
 	/**
 	@brief 注視点がターゲットに追尾
@@ -111,7 +104,6 @@ public:
 	*/
 	void tracking_lookAt(const GSvector3& _target, float _speed = 1.0f);
 
-
 	/**
 	@brief 拡大範囲を設定
 	@param[_min] 最小値
@@ -122,27 +114,23 @@ public:
 		const float _max
 	);
 
-
 	/**
 	@brief ズーム
 	@param[_value] 値
 	*/
 	void zoom(const float _value);
-
-
+	
 	/**
 	@brief ズームイン
 	@param[_speed] 速度
 	*/
 	void zoom_in(const float _speed);
 
-
 	/**
 	@brief ズームアウト
 	@param[_speed] 速度
 	*/
 	void zoom_out(const float _speed);
-
 
 	/**
 	@return カメラターゲット（プレイヤー）
@@ -153,11 +141,6 @@ public:
 	@return カメラターゲット（エネミー）
 	*/
 	const GSvector3& cameraTarget_enemy(void) const;
-
-	/**
-	@author Matuo
-	*/
-	//void lookAt(const GSvector3& target, float dir);
 
 	/**
 	@author Matuo
@@ -208,8 +191,6 @@ private:
 
 
 private:
-	using Perspective = GSvector4;							//４次元ベクトルをパースペクティブとして設定
-
 	static const GSvector3			RAY_DONW;				//レイを下に飛ばす
 
 	static const float				DEF_FOV;				//視野角のデフォルト値
@@ -217,7 +198,7 @@ private:
 
 	Map*							m_map;					//マップ
 
-	Perspective						m_perspective;			//視野角と遠近情報
+	GSvector4						m_perspective;			//視野角と遠近情報
 	GSvector2						m_fov_clamp;			//視野角の範囲
 	GSmatrix4						m_mat_projection;		//シェーダー用投射変換行列
 
