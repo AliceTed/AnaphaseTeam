@@ -1,10 +1,11 @@
 #include "../../header/ui/TitleUI.h"
 #include "../../header/scene/SceneChange.h"
 #include "../../header/scene/each/Title.h"
+#include "../../header/scene/each/Menu.h"
 #include "../../header/device/GameDevice.h"
 TitleUI::TitleUI()
 	:m_select(),
-	m_fade(TEXTURE_ID::TITLE_ROGO)
+	m_fade(TEXTURE_ID::BLACK)
 {
 }
 
@@ -16,7 +17,7 @@ void TitleUI::initialize()
 {
 	createSelect();
 	m_fade.initialize();
-	m_fade.start(GScolor(1.0f, 1.0f, 1.0f, 1.0f), GScolor(1.0f, 1.0f, 1.0f, 1.0f), 0);
+	//m_fade.start(GScolor(1.0f, 1.0f, 1.0f, 1.0f), GScolor(1.0f, 1.0f, 1.0f, 1.0f), 0);
 }
 
 void TitleUI::update(float deltaTime)
@@ -35,12 +36,18 @@ void TitleUI::finish()
 {
 	m_select.initialize();
 }
-void TitleUI::operation(Title& _title)
+void TitleUI::operation(Menu& _menu)
 {
 	if (m_fade.isStart())
 	{
 		return;
 	}
+
+	if (!m_select.isStart())
+	{
+		return;
+	}
+
 	if (GameDevice::getInstacnce().input()->up())
 	{
 		m_select.previous();
@@ -51,7 +58,7 @@ void TitleUI::operation(Title& _title)
 	}
 	if (GameDevice::getInstacnce().input()->jump())
 	{
-		_title.decision(m_select.currentSelect());
+		_menu.decision(m_select.currentSelect());
 		m_select.startMove();
 		m_fade.start(GScolor(1.0f, 1.0f, 1.0f, 1.0f), GScolor(1.0f, 1.0f, 1.0f, 0.0f), 1.3f);
 	}
@@ -59,26 +66,32 @@ void TitleUI::operation(Title& _title)
 void TitleUI::createSelect()
 {
 	m_select.initialize();
-	const unsigned int size = 3;
+	const unsigned int size = 2;
 	Select select[size] =
 	{
 		Select::GAMESTART,
 		Select::OPTION,
-		Select::EXIT
+		//Select::EXIT
 	};
 	TEXTURE_ID id[size] =
 	{
 		TEXTURE_ID::GAMESTART,
 		TEXTURE_ID::OPTION,
-		TEXTURE_ID::EXIT
+		//TEXTURE_ID::EXIT
 	};
-	GSvector2 base(550, 500);
-	GSvector2 marge(0, 60);
+	GSvector2 base(0, 90);
+	GSvector2 marge(0, 120);
 	for (unsigned int i = 0; i < size; i++)
 	{
 		GSvector2 position(base + marge*i);
 		ScaleImage image(id[i], position, false);
 		m_select.add(select[i], image);
+
 	}
+
+	ScaleImage image(TEXTURE_ID::EXIT, GSvector2(0,610), false);
+	m_select.add(Select::EXIT, image);
+
 	m_select.startChange();
+	
 }

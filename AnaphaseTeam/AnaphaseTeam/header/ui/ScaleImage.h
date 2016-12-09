@@ -2,6 +2,7 @@
 #include <gslib.h>
 #include "../data/id/TEXTURE_ID.h"
 #include "../math/TimeLerpVector.h"
+#include "../ui/alpha.h"
 class IRenderer;
 class ScaleImage
 {
@@ -12,6 +13,9 @@ public:
 	void moveStart(const GSvector2& _end, float _time);
 	void update(float deltaTime);
 	void draw(IRenderer* _renderer);
+	void scroll();
+	void alpha(float _timer);
+	bool isEndscroll();
 private:
 	const GSvector2 getTextureSize()const;
 	const GSvector2 getSizeMarge(const GSvector2& _scale)const;
@@ -21,4 +25,9 @@ private:
 	bool m_isPexis;
 	Math::TimeLerpVector<GSvector2> m_scaleLerp;
 	Math::TimeLerpVector<GSvector2> m_moveLerp;
+	bool m_changeScroll;
+	//alpha m_alpha;
+	float m_alpha;
+	float m_value;
+	float m_speed;
 };

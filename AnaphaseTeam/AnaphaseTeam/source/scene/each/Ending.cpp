@@ -3,9 +3,15 @@
 #include "../../../header/device/GameDevice.h"
 #include "../../../header/renderer/define/SpriteRenderDesc.h"
 #include "../../../header/data/id/TEXTURE_ID.h"
+#include "../../../header/device/GameDevice.h"
+#include "../../../header/data/id/BGM_ID.h"
+
 Ending::Ending()
 	:m_IsEnd(false),
-	m_change()
+	m_change(),
+	m_endUI(),
+	m_nex(false),
+	m_count(0)
 {
 }
 Ending::~Ending()
@@ -14,32 +20,37 @@ Ending::~Ending()
 
 void Ending::initialize()
 {
+	GameDevice::getInstacnce().sound().playBGM(BGM_ID::TITLE);
 	m_IsEnd = false;
 	m_change.initialize();
 	m_change.begin();
+	m_endUI.initilize();
 }
 
 void Ending::update(float _deltaTime)
 {
 	if (m_change.update(_deltaTime))return;
-	//Œˆ’èƒ{ƒ^ƒ“ì‚Á‚Ä‚à‚¢‚¢‚©‚à
-	if (GameDevice::getInstacnce().input()->jump())
-	{
+	m_endUI.update();
+	if (!m_endUI.isNext()) {
 		m_change.end(SceneMode::TITLE);
 	}
+
 }
 
 void Ending::draw(IRenderer * _renderer)
 {
+
 	SpriteRenderDesc desc;
-	desc.textureID = static_cast<GSuint>(TEXTURE_ID::GAMEOVER);
+	desc.textureID = static_cast<GSuint>(TEXTURE_ID::BLACK);
 	_renderer->render(desc);
 
+	m_endUI.draw(_renderer);
 	m_change.draw(_renderer);
 }
 
 void Ending::finish()
 {
+	GameDevice::getInstacnce().sound().stopBGM(BGM_ID::TITLE);
 }
 
 const SceneMode Ending::next() const
@@ -55,4 +66,17 @@ const bool Ending::isEnd() const
 const bool Ending::isExit() const
 {
 	return false;
+}
+
+void Ending::count()
+{
+	if (GameDevice::getInstacnce().input()->jump())
+	{
+		m_count += 1;
+	}
+
+	if (m_count >= 3)
+	{
+		m_change.end(SceneMode::TITLE);
+	}
 }
