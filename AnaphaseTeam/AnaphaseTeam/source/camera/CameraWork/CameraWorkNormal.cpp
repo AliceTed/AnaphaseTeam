@@ -1,10 +1,7 @@
-#include <iostream>
-#include <string>
-#include <fstream>
-#include <sstream>
 #include "../../../header/camera/CameraWork/CameraWorkNormal.h"
 #include "../../../header/camera/Camera.h"
 #include "../../../header/camera/CameraWork/CWParameterReader.h"
+#include "../../../header/math/Calculate.h"
 
 CameraWorkNormal::CameraWorkNormal(Camera* _camera, GSvector2* _rotate) :
 	CameraWorkEmpty(_camera),
@@ -12,7 +9,8 @@ CameraWorkNormal::CameraWorkNormal(Camera* _camera, GSvector2* _rotate) :
 	m_parameter(std::make_unique<CWParameterReader>("./res/data/CameraWorkNormal.cw")),
 	m_speed_input(0.0f),
 	m_distance(0.0f),
-	m_trackingSpeed(0.0f, 0.0f)
+	m_trackingSpeed(0.0f, 0.0f),
+	m_clamp_elevation(70.0f)
 {
 	//読み込んだパラメータを各変数に代入
 	m_speed_input			= (*m_parameter)[0];
@@ -34,12 +32,16 @@ void CameraWorkNormal::start(void)
 
 void CameraWorkNormal::run(float _deltaTime)
 {
+	Math::Clamp clamp;
 	//いちいちめんどくさいので宣言
 	const GSvector3& player = m_camera->cameraTarget_player();
 
 	//回転軸を更新
 	m_rotate->x -= velocity().y * m_speed_input;	//逆に動かしたいので引いとく
 	m_rotate->y += velocity().x * m_speed_input;
+
+	//ｘ軸の回転を制限
+	m_rotate->x = clamp(m_rotate->x, -m_clamp_elevation, m_clamp_elevation);
 
 	//カメラワーク・ドリーの処理
 	m_camera->cameraWork_dolly(

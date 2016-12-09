@@ -40,6 +40,10 @@ private:
 	std::unique_ptr<CWParameterReader> m_parameter;	//パラメータ
 
 	float m_speed_input;							//入力速度
+
 	float m_distance;								//距離
+
 	GSvector2 m_trackingSpeed;						//カメラとターゲットの追尾速度
+
+	float m_clamp_elevation;						//ｘ軸回転の範囲
 };
