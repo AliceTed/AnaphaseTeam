@@ -13,16 +13,21 @@
 #include "../../../header/state/enemy/ESlideState.h"
 #include "../../../header/state/enemy/ESpawnState.h"
 #include "../../../header/state/enemy/EStandState.h"
-
+#include "../../../header/state/enemy/EDashFrontState.h"
+#include "../../../header/state/enemy/EMoveBackState.h"
+#include "../../../header/state/enemy/EThinkState.h"
 #include "../../../header/ui/HPGaugeUI.h"
 #include "../../../header/ui/UIManager.h"
-const float Enemy::PLAYER_DISTANCE = 10;
+#include "../../../header/state/enemy/NearAI.h"
+#include "../../../header/state/enemy/OverNearAI.h"
+
+const float Enemy::PLAYER_DISTANCE = 1.5f;
 Enemy::Enemy(const Transform & _transform)
 	:Actor(_transform, MODEL_ID::ENEMY,
 		Actor_Tag::ENEMY),
 	m_status(),
 	m_alpha(1),
-	m_knockBack(m_transform)
+	m_knockBack(m_transform), m_AI()
 {
 }
 Enemy::~Enemy()
@@ -35,8 +40,11 @@ void Enemy::initialize()
 	changeState(ACTOR_STATE::ESPAWN);
 	Collision_Ptr actor = std::make_shared<EnemyCollision>(this);
 	m_collision.add(actor);
-
-	m_animatorOne.changeAnimation(ENEMY_ANIMATION::SPAWN, true, false);
+	m_AI.initialize();
+	m_AI.add(EAI::ATTACKRANGE, std::shared_ptr<NearAI>(new NearAI(this)));
+	m_AI.add(EAI::OVERNEAR, std::shared_ptr<OverNearAI>(new OverNearAI(this)));
+	m_AI.change(EAI::ATTACKRANGE);
+	m_animatorOne.changeAnimationLerp(ENEMY_ANIMATION::STANDDYNIG);
 	m_status.initialize();
 	m_alpha = 1;
 }
@@ -55,9 +63,9 @@ void Enemy::draw(IRenderer * _renderer)
 
 void Enemy::damage(const AttackStatus & _attackStatus)
 {
-	if (isDamageState())return;
+	if (isNotDamageState())return;
 	changeState(ACTOR_STATE::EDAMAGE);
-	m_animatorOne.changeAnimation(static_cast<GSuint>(ENEMY_ANIMATION::DAMAGE), true, false, false, 10.0f, 1.5f);
+	m_animatorOne.changeAnimationLerp(ENEMY_ANIMATION::DAMAGE1, 1.5f);
 	m_knockBack.start(_attackStatus.m_blowOff);
 	m_status.down(_attackStatus.m_power);
 }
@@ -65,13 +73,18 @@ const bool Enemy::isNear(float _distance) const
 {
 	return _distance < PLAYER_DISTANCE;
 }
+const bool Enemy::blowDead()const
+{
+	return	m_knockBack.isBlow();
+}
 
 const bool Enemy::isThink() const
 {
-	return getState()==ACTOR_STATE::EMOVE||getState()==ACTOR_STATE::ESLIDE;
+	return getState() == ACTOR_STATE::ETHINK;// || getState() == ACTOR_STATE::EMOVE;
 }
-const bool Enemy::isDamageState() const
+const bool Enemy::isNotDamageState() const
 {
+	//スポーンと死亡中は食らわない
 	return getState() == ACTOR_STATE::ESPAWN || getState() == ACTOR_STATE::EDEAD;
 }
 
@@ -89,12 +102,15 @@ void Enemy::createStates()
 	registerState(ACTOR_STATE::EMOVE, new EMoveState(this));
 	registerState(ACTOR_STATE::ESLIDE, new ESlideState(this));
 	registerState(ACTOR_STATE::ESPAWN, new ESpawnState(this));
+	registerState(ACTOR_STATE::EDASH, new EDashFrontState(this));
+	registerState(ACTOR_STATE::EMOVEBACK, new EMoveBackState(this));
+	registerState(ACTOR_STATE::ETHINK, new EThinkState(this));
 }
 
 void Enemy::createAttackCollision()
 {
 	float end = m_animatorOne.getCurrentAnimationEndTime() / 60.0f;
-	Collision_Ptr actor = std::make_shared<EnemyAttackCollision>(m_transform.m_translate +m_transform.front(), end);
+	Collision_Ptr actor = std::make_shared<EnemyAttackCollision>(m_transform.m_translate + m_transform.front(), end);
 	m_collision.add(actor);
 }
 
@@ -113,30 +129,24 @@ void Enemy::specialDamage()
 void Enemy::think(Player * _player)
 {
 	m_transform.m_rotate = targetDirection(*_player);
-	if (!isThink()) return;	
-	Math::Random rnd;
-	if (rnd(0, 200) == 0)
-	{
-		changeState(ACTOR_STATE::ESTAND);
-		return;
-	}
-	if (rnd(0, 200) == 0)
-	{
-		changeState(ACTOR_STATE::EATTACK);
-		return;
-	}
 	float distance = distanceActor(*_player);
-	if (isNear(distance))
+	distanceThink(distance);
+	m_AI.think(_player);
+}
+
+void Enemy::distanceThink(float _distance)
+{
+	if (isNear(_distance))
 	{
-		changeState(ACTOR_STATE::ESLIDE);
+		m_AI.change(EAI::OVERNEAR);
 		return;
 	}
-	changeState(ACTOR_STATE::EMOVE);
+	m_AI.change(EAI::ATTACKRANGE);
 }
 
 void Enemy::start_lockOn()
 {
 	UIManager::getInstance().release(EUI::ENEMYHP);
-	std::shared_ptr<HPGaugeUI> hp = std::make_shared<HPGaugeUI>(GSvector2(800,600),m_status,3.0f);
-	UIManager::getInstance().add(EUI::ENEMYHP,hp);
+	std::shared_ptr<HPGaugeUI> hp = std::make_shared<HPGaugeUI>(GSvector2(800, 600), m_status, 3.0f);
+	UIManager::getInstance().add(EUI::ENEMYHP, hp);
 }

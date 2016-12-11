@@ -18,9 +18,7 @@ public:
 	*/
 	CWParameterReader(const std::string _fileName);
 
-	/**
-	@brief デストラクタ
-	*/
+	//デストラクタ
 	~CWParameterReader();
 
 	/**

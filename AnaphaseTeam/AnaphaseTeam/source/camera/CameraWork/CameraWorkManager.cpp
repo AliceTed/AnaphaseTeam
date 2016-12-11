@@ -1,5 +1,6 @@
 #include "../../../header/camera/CameraWork/CameraWorkManager.h"
 #include "../../../header/camera/Camera.h"
+#include "../../../header/camera/CameraWork/CameraWorkEmpty.h"
 #include "../../../header/camera/CameraWork/CameraWorkNormal.h"
 #include "../../../header/camera/CameraWork/CameraWorkLockOn.h"
 #include "../../../header/camera/CameraWork/CameraWorkDead.h"
@@ -23,6 +24,10 @@ CameraWorkManager::~CameraWorkManager()
 void CameraWorkManager::load(void)
 {
 	//各カメラの追加
+	m_cameraData->add(								//何もしない
+		E_CameraWorkID::NONE,
+		new CameraWorkEmpty(m_camera)
+	);
 	m_cameraData->add(								//通常カメラ
 		E_CameraWorkID::NORMAL,
 		new CameraWorkNormal(m_camera, &m_rotate)
@@ -42,24 +47,12 @@ void CameraWorkManager::change_cameraWork(const E_CameraWorkID _id)
 	//現在のカメラワークの更新
 	m_current_cameraWork = _id;
 
-	//カメラワークが何もないなら何もしない
-	if (m_current_cameraWork == E_CameraWorkID::NONE)
-	{
-		return;
-	}
-
 	//現在のカメラの初期化
 	m_cameraData->get(m_current_cameraWork)->start();
 }
 
 void CameraWorkManager::run(float _deltaTime)
 {
-	//カメラワークが何もないなら何もしない
-	if (m_current_cameraWork == E_CameraWorkID::NONE)
-	{
-		return;
-	}
-
 	//現在のカメラワークの実行
 	m_cameraData->get(m_current_cameraWork)->run(_deltaTime);
 

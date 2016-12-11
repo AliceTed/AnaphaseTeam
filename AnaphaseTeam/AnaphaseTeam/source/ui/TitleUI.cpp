@@ -56,7 +56,7 @@ void TitleUI::operation(Menu& _menu)
 	{
 		m_select.next();
 	}
-	if (GameDevice::getInstacnce().input()->jump())
+	if (GameDevice::getInstacnce().input()->decision())
 	{
 		_menu.decision(m_select.currentSelect());
 		m_select.startMove();
@@ -66,18 +66,18 @@ void TitleUI::operation(Menu& _menu)
 void TitleUI::createSelect()
 {
 	m_select.initialize();
-	const unsigned int size = 2;
+	const unsigned int size = 3;
 	Select select[size] =
 	{
 		Select::GAMESTART,
 		Select::OPTION,
-		//Select::EXIT
+		Select::STAFFROLL
 	};
 	TEXTURE_ID id[size] =
 	{
 		TEXTURE_ID::GAMESTART,
 		TEXTURE_ID::OPTION,
-		//TEXTURE_ID::EXIT
+		TEXTURE_ID::STAFFROLL
 	};
 	GSvector2 base(0, 90);
 	GSvector2 marge(0, 120);
@@ -86,7 +86,6 @@ void TitleUI::createSelect()
 		GSvector2 position(base + marge*i);
 		ScaleImage image(id[i], position, false);
 		m_select.add(select[i], image);
-
 	}
 
 	ScaleImage image(TEXTURE_ID::EXIT, GSvector2(0,610), false);

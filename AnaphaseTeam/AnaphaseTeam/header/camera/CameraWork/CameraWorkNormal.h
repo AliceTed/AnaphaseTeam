@@ -7,21 +7,21 @@
 #pragma once
 
 #include <memory>
-#include "_CameraWork.h"
+#include "CameraWorkEmpty.h"
 
 class CWParameterReader;	//カメラワークのパラメータの読み込み機
 
-class CameraWorkNormal : public CameraWork
+class CameraWorkNormal : public CameraWorkEmpty
 {
 public:
 	/**
 	@brief コンストラクタ
+	@param[_camera] カメラ
+	@param[_rotate] 回転
 	*/
 	CameraWorkNormal(Camera* _camera, GSvector2* _rotate);
 
-	/**
-	@brief デストラクタ
-	*/
+	//デストラクタ
 	~CameraWorkNormal() override;
 
 	//開始処理
@@ -40,6 +40,10 @@ private:
 	std::unique_ptr<CWParameterReader> m_parameter;	//パラメータ
 
 	float m_speed_input;							//入力速度
+
 	float m_distance;								//距離
+
 	GSvector2 m_trackingSpeed;						//カメラとターゲットの追尾速度
+
+	float m_clamp_elevation;						//ｘ軸回転の範囲
 };

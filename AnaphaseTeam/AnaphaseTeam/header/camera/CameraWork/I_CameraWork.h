@@ -11,9 +11,7 @@
 class I_CameraWork
 {
 public:
-	/**
-	@brief デストラクタ
-	*/
+	//デストラクタ
 	virtual ~I_CameraWork()
 	{
 

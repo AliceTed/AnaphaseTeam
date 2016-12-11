@@ -6,6 +6,7 @@ enum class Select
 {
 	GAMESTART,
 	OPTION,
+	STAFFROLL,
 	EXIT
 };
 typedef std::pair<const Select,ScaleImage> SelectValue;

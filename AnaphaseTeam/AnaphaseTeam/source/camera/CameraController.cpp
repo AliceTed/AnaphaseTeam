@@ -18,6 +18,10 @@ CameraController::CameraController(Camera* _camera) :
 	m_cameraWorkManager->load();
 }
 
+CameraController::~CameraController()
+{
+}
+
 
 void CameraController::update(float _deltaTime)
 {

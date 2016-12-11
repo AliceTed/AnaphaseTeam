@@ -19,15 +19,11 @@ class CameraWorkManager
 public:
 	/**
 	@brief コンストラクタ
-	@param[_camera]			カメラ
-	@param[_cameraTarget]	カメラターゲット
-	@param[_input]			インプット
+	@param[_camera] カメラ
 	*/
 	CameraWorkManager(Camera* _camera);
 
-	/**
-	@brief デストラクタ
-	**/
+	//デストラクタ
 	~CameraWorkManager();
 
 	/**

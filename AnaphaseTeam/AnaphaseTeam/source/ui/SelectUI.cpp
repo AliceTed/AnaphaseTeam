@@ -19,6 +19,7 @@ void SelectUI::initialize()
 {
 	m_images.clear();
 	m_timer = 0;
+	m_current = Select::GAMESTART;
 }
 
 void SelectUI::add(Select _name, const ScaleImage & _image)
@@ -29,25 +30,26 @@ void SelectUI::add(Select _name, const ScaleImage & _image)
 void SelectUI::update(float deltaTime)
 {
 	//std::for_each(m_images.begin(), m_images.end(), [deltaTime](SelectValue& value) {value.second.update(deltaTime); });
-	const unsigned int size = 3;
+	const unsigned int size = 4;
 	Select select[size] =
 	{
 		Select::GAMESTART,
 		Select::OPTION,
+		Select::STAFFROLL,
 		Select::EXIT
 	};
 	m_timer++;
 	for (unsigned int i = 0; i < size; i++)
 	{
-		if (m_timer > (i - 0.5) * 60.0f)
+		if (m_timer > i * 30.0f)
 		{
 			m_images.at(select[i]).update(deltaTime);
 		}
 
 	}
-	if (m_timer > (2 - 0.5) * 60.0f)
+	if (m_timer > 4 * 30.0f)
 	{
-		m_timer = (2 - 0.5) * 60.0f;
+		m_timer = 4 * 30.0f;
 	}
 
 }
@@ -96,13 +98,13 @@ void SelectUI::startChange()
 
 void SelectUI::startMove()
 {
-	m_images.at(m_current).moveStart(GSvector2(365, 200), LERPTIME * 10.0f);
+	m_images.at(m_current).moveStart(GSvector2(465, 200), LERPTIME * 10.0f);
 	m_images.at(m_current).start(SELECTSCALE, DECISIONSCALE, LERPTIME *10.0f);
 	for (auto& i : m_images)
 	{
 		if (i.first != m_current)
 		{
-			m_images.at(i.first).moveStart(GSvector2(365, 800), LERPTIME* 10.0f);
+			m_images.at(i.first).moveStart(GSvector2(465, 800), LERPTIME* 10.0f);
 		}
 	}
 }

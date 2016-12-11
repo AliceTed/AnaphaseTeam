@@ -6,20 +6,19 @@
 */
 #pragma once
 
-#include "_CameraWork.h"
+#include "CameraWorkEmpty.h"
 
-class CameraWorkLockOn : public CameraWork
+class CameraWorkLockOn : public CameraWorkEmpty
 {
 public:
 	/**
 	@brief コンストラクタ
 	@param[_camera] カメラ
+	@param[_rotate] 回転
 	*/
 	CameraWorkLockOn(Camera* _camera, GSvector2* _rotate);
 
-	/**
-	@brief デストラクタ
-	*/
+	//デストラクタ
 	~CameraWorkLockOn();
 
 	//開始処理

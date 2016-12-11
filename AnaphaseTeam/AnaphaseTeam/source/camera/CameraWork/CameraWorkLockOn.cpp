@@ -5,7 +5,7 @@
 #include "../../../header/camera/CameraWork/CWParameterReader.h"
 
 CameraWorkLockOn::CameraWorkLockOn(Camera* _camera, GSvector2* _rotate) :
-	CameraWork(_camera),
+	CameraWorkEmpty(_camera),
 	m_parameter(std::make_unique<CWParameterReader>("./res/data/CameraWorkLockOn.cw")),
 	m_rotate(_rotate),
 	m_elevation(0.0f),
