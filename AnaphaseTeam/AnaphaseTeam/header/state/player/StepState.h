@@ -17,6 +17,7 @@ private:
 	void action(float deltaTime)override;
 	//ƒNƒ[ƒ“‚ğì¬‚·‚é
 	Player::StepState* clone() const override;
+	void tracking();
 private:
 	Step m_step;
 

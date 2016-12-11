@@ -60,6 +60,8 @@ public:
 	const float distance(const GSvector3& _position)const;
 	//_target‚Ì•ûŒü‚ğ‹‚ß‚é
 	const GSquaternion targetDirection(const Actor& _target)const;
+
+	const bool isTargetAerial(const Actor& _target)const;
 private:
 	//ƒRƒs[‹Ö~
 	Actor(const Actor&);

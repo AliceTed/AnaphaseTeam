@@ -52,6 +52,7 @@ private:
 	void movement(float deltaTime, float _speed);
 	const float stepDistance() const ;
 	void lookTarget();
+	void aerialTracking(float _velocity);
 private:
 	ComboAttack m_combo;
 	Status m_status;

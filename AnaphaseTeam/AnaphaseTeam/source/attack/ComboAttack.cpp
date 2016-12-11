@@ -41,6 +41,7 @@ const bool ComboAttack::next(bool _isSlow)
 	ATTACK_TYPE next = m_current.next(_isSlow);
 	if (next == ATTACK_TYPE::End)
 	{
+		m_isEnd = true;
 		return false;
 	}
 	m_current = m_container.at(next);
