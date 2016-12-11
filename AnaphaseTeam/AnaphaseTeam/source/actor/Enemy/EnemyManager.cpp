@@ -36,7 +36,7 @@ void EnemyManager::collision(Actor & _actor)
 
 void EnemyManager::draw(IRenderer * _renderer)
 {
-	for (auto& i : m_enemys) { i->draw(_renderer); }
+	for (auto& i : m_enemys) { i->draw(_renderer);}
 }
 
 Enemy_Ptr& EnemyManager::nearEnemy(Player * _player)

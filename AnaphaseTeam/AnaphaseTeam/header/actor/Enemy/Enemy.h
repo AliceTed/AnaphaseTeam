@@ -26,6 +26,7 @@ public:
 
 	void start_lockOn();
 	const bool isDamageState()const;
+	const bool isDeadState() const;
 private:
 	const bool isNear(float _distance)const;
 	const bool isThink()const;

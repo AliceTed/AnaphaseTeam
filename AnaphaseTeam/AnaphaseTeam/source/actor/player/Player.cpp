@@ -227,7 +227,7 @@ void Player::control()
 
 void Player::look_at(CameraController * _camera, GSvector3 * _target)
 {
-	if (m_timer.isEnd())
+	if (m_timer.isEnd() || m_lockon->getTarget()->isDeadState())
 	{
 		m_isLockOn = false;
 	}
