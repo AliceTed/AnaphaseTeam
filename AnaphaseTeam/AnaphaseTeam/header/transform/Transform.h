@@ -18,6 +18,7 @@ public:
 	void translate_front(float _velocity);
 	void translate_left(float _velocity);
 	void translate_up(float _velocity);
+	void translate_diagonal(float _velocity);
 	void rotate(const GSquaternion& _q);
 	void rotate(float _angle, const GSvector3& _axis);
 	//ロール,ヨー,ピッチ
@@ -34,6 +35,7 @@ public:
 	const GSvector3 front()const;
 	const GSvector3 left()const;
 	const GSvector3 up()const;
+	const GSvector3 diagonal() const;
 	const GSvector3 rotate_vector(const GSvector3& _vec)const;
 
 	const GSmatrix4 matrix()const;

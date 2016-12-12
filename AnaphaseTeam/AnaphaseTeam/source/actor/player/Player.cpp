@@ -135,7 +135,7 @@ void Player::aerialTracking(float _velocity)
 {
 	if(isTargetAerial(*m_lockon->getTarget()))
 	{
-		m_transform.translate_up(_velocity);
+		m_transform.translate_diagonal(_velocity);
 	}
 }
 
