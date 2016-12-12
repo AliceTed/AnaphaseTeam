@@ -222,6 +222,7 @@
     <ClCompile Include="source\state\enemy\EMoveBackState.cpp" />
     <ClCompile Include="source\state\enemy\EMoveState.cpp" />
     <ClCompile Include="source\state\enemy\EnemyAIController.cpp" />
+    <ClCompile Include="source\state\enemy\ESecoundAttackState.cpp" />
     <ClCompile Include="source\state\enemy\ESlideState.cpp" />
     <ClCompile Include="source\state\enemy\ESpawnState.cpp" />
     <ClCompile Include="source\state\enemy\EStandState.cpp" />
@@ -415,6 +416,7 @@
     <ClInclude Include="header\state\enemy\NearAI.h" />
     <ClInclude Include="header\state\enemy\OverFarAI.h" />
     <ClInclude Include="header\state\enemy\OverNearAI.h" />
+    <ClInclude Include="header\state\enemy\ESecoundAttackState.h" />
     <ClInclude Include="header\state\IActorState.h" />
     <ClInclude Include="header\state\player\AttackState.h" />
     <ClInclude Include="header\state\player\DamageState.h" />
