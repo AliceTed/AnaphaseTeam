@@ -8,19 +8,17 @@ Enemy::EMoveBackState::EMoveBackState(Enemy* _enemy)
 
 void Enemy::EMoveBackState::start()
 {
-	//m_timer = 0;
-	m_actor->m_animatorOne.changeAnimation(ENEMY_ANIMATION::WALKBACK,true,true);
+	m_actor->m_animatorOne.changeAnimation(ENEMY_ANIMATION::WALKBACK, true, true);
 }
 
 void Enemy::EMoveBackState::action(float deltaTime)
 {
-	//m_timer += 1 * deltaTime;
-	//if (m_timer<50)
-	//{
-		m_actor->m_transform.translate_front(-0.05f);
+	if (m_actor->distaceToPlayer() > m_actor->PLAYER_DISTANCE_NEAR)
+	{
+		m_actor->changeState(ACTOR_STATE::ETHINK);
 		return;
-	//}
-	//m_actor->changeState(ACTOR_STATE::ESTAND);
+	}
+	m_actor->m_transform.translate_front(-0.05f);
 }
 
 Enemy::EMoveBackState * Enemy::EMoveBackState::clone() const

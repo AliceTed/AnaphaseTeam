@@ -3,7 +3,7 @@
 #include "../../../header/data/stream/DataReader.h"
 #include "../../../header/attack/LoadAttack.h"
 #include "../../../header/data/Message.h"
-void AttackReader::operator()(std::unordered_map<ATTACK_TYPE,Attack>* _out, const std::string & _name, const std::string & _path)
+void AttackReader::operator()(std::unordered_map<std::string,Attack>* _out, const std::string & _name, const std::string & _path)
 {
 	if (load(_out, _path + _name))
 	{
@@ -13,7 +13,7 @@ void AttackReader::operator()(std::unordered_map<ATTACK_TYPE,Attack>* _out, cons
 	error("ATTACKDATA", _path + _name);
 }
 
-const bool AttackReader::load(std::unordered_map<ATTACK_TYPE, Attack>* _out, const std::string & _fullname) const
+const bool AttackReader::load(std::unordered_map<std::string, Attack>* _out, const std::string & _fullname) const
 {
 	std::vector<std::string> data;
 	data.clear();
@@ -24,7 +24,7 @@ const bool AttackReader::load(std::unordered_map<ATTACK_TYPE, Attack>* _out, con
 	{
 		LoadAttack load;
 		if (!convert(&load, i))return false;
-		_out->insert(std::make_pair(load.m_type, load.m_attack));
+		_out->insert(std::make_pair(load.selfID,Attack(load.parameter)));
 	}
 	return true;
 }

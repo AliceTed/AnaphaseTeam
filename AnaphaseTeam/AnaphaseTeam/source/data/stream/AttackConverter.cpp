@@ -2,39 +2,81 @@
 #include <algorithm>
 #include <sstream>
 #include "../../../header/attack/LoadAttack.h"
+#include "../../../header/shape/Sphere.h"
+#include "../../../header/shape/Capsule.h"
 const bool AttackConverter::operator()(LoadAttack * _out, const std::string & _data) const
 {
 	std::string text = _data;
 	std::replace(text.begin(), text.end(), ',', ' ');
 	std::stringstream data(text);
 	
-	unsigned int itype;
+	std::string self;
+	data >> self;
+
+	float power;
+	data >> power;
+	GSvector3 blowoff;
+	data >> blowoff.x;
+	data >> blowoff.y;
+	data >> blowoff.z;
+	unsigned int animationID;
+	data >> animationID;
+
+	std::string slowID;
+	data >> slowID;
+	std::string quickID;
+	data >> quickID;
+
+	float spawnTime;
+	data >> spawnTime;
+	float destroyTime;
+	data >> destroyTime;
+
+	int itype;
 	data >> itype;
-	ATTACK_TYPE type= static_cast<ATTACK_TYPE>(itype);
+	SHAPE_TYPE shapeType = static_cast<SHAPE_TYPE>(itype);
 
-	AttackStatus status;
-	data >> status.m_power;
-	data >> status.m_blowOff.x;
-	data >> status.m_blowOff.y;
-	data >> status.m_blowOff.z;
+	GSvector3 offset;
+	data >>offset.x;
+	data >>offset.y;
+	data >>offset.z;
 
-	unsigned int ianimation;
-	data >> ianimation;
-	ANIMATION_ID animation = static_cast<ANIMATION_ID>(ianimation);
+	float radius;
+	data >> radius;
+	GSvector3 pos(0.0f, 0.0f, 0.0f);
+	std::shared_ptr<Shape> shape;
+	if (SHAPE_TYPE::SPHERE == shapeType)
+	{
+		shape = std::make_shared<Sphere>(pos, radius);
+	}
+	else
+	{
+		GSvector3 dir;
+		data >> dir.x;
+		data >> dir.y;
+		data >> dir.z;
+		dir.normalize();
+		float hight;
+		data >> hight;
 
-	unsigned int iquick;
-	data >> iquick;
-	ATTACK_TYPE quick= static_cast<ATTACK_TYPE>(iquick);
-
-	unsigned int islow;
-	data >> islow;
-	ATTACK_TYPE slow = static_cast<ATTACK_TYPE>(islow);
-
+		dir *= hight;
+		Segment seg(pos, dir);
+		shape = std::make_shared<Capsule>(seg, radius);
+	}
 	if (data.fail())
 	{
 		return false;
 	}
-	_out->m_type = type;
-	_out->m_attack = Attack(status, animation, quick, slow);	
+	_out->selfID = self;
+	_out->parameter.animationID = animationID;
+	_out->parameter.quickID = quickID;
+	_out->parameter.slowID = slowID;
+	_out->parameter.status.m_blowOff = blowoff;
+	_out->parameter.status.m_power = power;
+	_out->parameter.shapeData.destroyTime = destroyTime;
+	_out->parameter.shapeData.spawnTime = spawnTime;
+	_out->parameter.shapeData.type = shapeType;
+	_out->parameter.shapeData.offset = offset;
+	_out->parameter.shapeData.shape = shape;
 	return true;
 }

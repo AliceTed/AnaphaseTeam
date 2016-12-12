@@ -5,13 +5,12 @@
 * @author èºîˆóTñÁ
 * @date 2016/11/27
 */
-#include "Attack.h"
+#include "AttackParameter.h"
 struct LoadAttack
 {
-	ATTACK_TYPE m_type;
-	Attack m_attack;
+	std::string selfID;
+	AttackParameter parameter;
 	LoadAttack()
-		:m_attack(AttackStatus(),ANIMATION_ID::ATTACK,ATTACK_TYPE::End, ATTACK_TYPE::End),
-		m_type(ATTACK_TYPE::End)
-	{}
+		:selfID(""),
+		parameter() {}
 };
