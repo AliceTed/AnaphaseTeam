@@ -15,3 +15,8 @@ void KnockBack::update(float deltaTime)
 	m_lerp.update(deltaTime);
 	m_transform.translate(m_current);
 }
+
+const bool KnockBack::isEnd() const
+{
+	return m_lerp.isEnd();
+}

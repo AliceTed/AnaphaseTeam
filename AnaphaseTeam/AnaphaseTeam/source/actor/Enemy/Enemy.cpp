@@ -58,8 +58,14 @@ void Enemy::damage(const AttackStatus & _attackStatus)
 	if (isDamageState())return;
 	changeState(ACTOR_STATE::EDAMAGE);
 	m_animatorOne.changeAnimation(static_cast<GSuint>(ENEMY_ANIMATION::DAMAGE), true, false, false, 10.0f, 1.5f);
-	m_knockBack.start(_attackStatus.m_blowOff);
 	m_status.down(_attackStatus.m_power);
+	if (!m_isGround)
+	{
+		m_knockBack.start(GSvector3(0, 0.3f, 0));
+		return;
+	}
+	m_knockBack.start(_attackStatus.m_blowOff);
+	
 }
 const bool Enemy::isNear(float _distance) const
 {
