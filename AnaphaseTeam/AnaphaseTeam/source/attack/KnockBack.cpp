@@ -21,3 +21,8 @@ const bool KnockBack::isBlow()const
 {
 	return m_blowAway;
 }
+
+const bool KnockBack::isEnd() const
+{
+	return m_lerp.isEnd();
+}
