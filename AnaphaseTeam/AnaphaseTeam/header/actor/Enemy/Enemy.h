@@ -117,6 +117,7 @@ private://state
 	class EMoveBackState;
 	class EDashFrontState;
 	class EThinkState;
+	class ESecoundAttackState;
 
 	friend EAttackState;
 	friend EDamageState;
@@ -128,6 +129,7 @@ private://state
 	friend EMoveBackState;
 	friend EDashFrontState;
 	friend EThinkState;
+	friend ESecoundAttackState;
 private://collision
 	class EnemyCollision;
 	class EnemyAttackCollision;

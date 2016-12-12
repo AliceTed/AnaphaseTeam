@@ -780,41 +780,26 @@
     <ClInclude Include="header\ui\EndingUI.h">
       <Filter>ヘッダー ファイル\ui</Filter>
     </ClInclude>
-    <ClInclude Include="header\camera\CameraWork\CameraWorkEmpty.h">
+    <ClInclude Include="header\state\enemy\EDashFrontState.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="header\state\enemy\EnemyAIController.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="header\state\enemy\EMoveBackState.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="header\state\enemy\EThinkState.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="header\state\enemy\IEnemyAI.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="header\state\enemy\NearAI.h">
-      <Filter>ヘッダー ファイル\state\enemy</Filter>
+      <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="header\state\enemy\OverNearAI.h">
-      <Filter>ヘッダー ファイル\state\enemy</Filter>
-    </ClInclude>
-    <ClInclude Include="header\state\enemy\IEnemyAI.h">
-      <Filter>ヘッダー ファイル\state\enemy</Filter>
-    </ClInclude>
-    <ClInclude Include="header\state\enemy\EThinkState.h">
-      <Filter>ヘッダー ファイル\state\enemy</Filter>
-    </ClInclude>
-    <ClInclude Include="header\state\enemy\EnemyAIController.h">
-      <Filter>ヘッダー ファイル\state\enemy</Filter>
-    </ClInclude>
-    <ClInclude Include="header\state\enemy\EMoveBackState.h">
-      <Filter>ヘッダー ファイル\state\enemy</Filter>
-    </ClInclude>
-    <ClInclude Include="header\state\enemy\EDashFrontState.h">
-      <Filter>ヘッダー ファイル\state\enemy</Filter>
-    </ClInclude>
-    <ClInclude Include="header\state\enemy\EAI.h">
-      <Filter>ヘッダー ファイル\state\enemy</Filter>
-    </ClInclude>
-    <ClInclude Include="header\state\enemy\MiddleRangeAI.h">
-      <Filter>ヘッダー ファイル\state\enemy</Filter>
-    </ClInclude>
-    <ClInclude Include="header\state\enemy\OverFarAI.h">
-      <Filter>ヘッダー ファイル\state\enemy</Filter>
-    </ClInclude>
-    <ClInclude Include="header\actor\Enemy\EnemyMediator.h">
-      <Filter>ヘッダー ファイル\actor\Enemy</Filter>
+      <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="header\camera\CameraWork\CameraWorkEmpty.h">
       <Filter>ヘッダー ファイル</Filter>
@@ -827,6 +812,21 @@
     </ClInclude>
     <ClInclude Include="header\attack\AttackParameter.h">
       <Filter>ヘッダー ファイル\attack</Filter>
+    </ClInclude>
+    <ClInclude Include="header\actor\Enemy\EnemyMediator.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="header\state\enemy\EAI.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="header\state\enemy\MiddleRangeAI.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="header\state\enemy\OverFarAI.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="header\state\enemy\ESecoundAttackState.h">
+      <Filter>ヘッダー ファイル\state\enemy</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -1211,6 +1211,15 @@
     <ClCompile Include="source\camera\SLookAt.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
+    <ClCompile Include="source\state\enemy\EDashFrontState.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="source\state\enemy\EMoveBackState.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="source\state\enemy\EThinkState.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
     <ClCompile Include="source\state\enemy\OverNearAI.cpp">
       <Filter>ソース ファイル\state\enemy</Filter>
     </ClCompile>
@@ -1220,29 +1229,20 @@
     <ClCompile Include="source\camera\CameraWork\CameraWorkEmpty.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="source\state\enemy\EDashFrontState.cpp">
-      <Filter>ソース ファイル\state\enemy</Filter>
-    </ClCompile>
-    <ClCompile Include="source\state\enemy\EMoveBackState.cpp">
-      <Filter>ソース ファイル\state\enemy</Filter>
-    </ClCompile>
-    <ClCompile Include="source\state\enemy\EThinkState.cpp">
-      <Filter>ソース ファイル\state\enemy</Filter>
-    </ClCompile>
-    <ClCompile Include="source\state\enemy\EnemyAIController.cpp">
-      <Filter>ソース ファイル\state\enemy</Filter>
-    </ClCompile>
-    <ClCompile Include="source\state\enemy\MiddleRangeAI.cpp">
-      <Filter>ソース ファイル\state\enemy</Filter>
-    </ClCompile>
-    <ClCompile Include="source\state\enemy\OverFarAI.cpp">
-      <Filter>ソース ファイル\state\enemy</Filter>
-    </ClCompile>
-    <ClCompile Include="source\camera\CameraWork\CameraWorkEmpty.cpp">
+    <ClCompile Include="source\actor\Enemy\EnemyMediator.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="source\actor\Enemy\EnemyMediator.cpp">
-      <Filter>ソース ファイル\actor\Enemy</Filter>
+    <ClCompile Include="source\state\enemy\EnemyAIController.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="source\state\enemy\MiddleRangeAI.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="source\state\enemy\OverFarAI.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="source\state\enemy\ESecoundAttackState.cpp">
+      <Filter>ソース ファイル\state\enemy</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

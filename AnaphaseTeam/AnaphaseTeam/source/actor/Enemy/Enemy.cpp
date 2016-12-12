@@ -16,6 +16,7 @@
 #include "../../../header/state/enemy/EDashFrontState.h"
 #include "../../../header/state/enemy/EMoveBackState.h"
 #include "../../../header/state/enemy/EThinkState.h"
+#include "../../../header/state/enemy/ESecoundAttackState.h"
 #include "../../../header/ui/HPGaugeUI.h"
 #include "../../../header/ui/UIManager.h"
 #include "../../../header/state/enemy/NearAI.h"
@@ -145,6 +146,7 @@ void Enemy::createStates()
 	registerState(ACTOR_STATE::EDASH, new EDashFrontState(this));
 	registerState(ACTOR_STATE::EMOVEBACK, new EMoveBackState(this));
 	registerState(ACTOR_STATE::ETHINK, new EThinkState(this));
+	registerState(ACTOR_STATE::ESECOUNDATTACK, new ESecoundAttackState(this));
 }
 
 void Enemy::createAttackCollision()
