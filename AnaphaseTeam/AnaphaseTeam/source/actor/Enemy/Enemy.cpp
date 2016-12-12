@@ -68,7 +68,7 @@ void Enemy::update(float deltatime)
 	m_collision.update(deltatime);
 	if (!m_isGround)
 	{
-		m_gravity -= 0.005f;
+		m_gravity -= 0.004f;
 		changeGravity(m_gravity);
 		return;
 	}
