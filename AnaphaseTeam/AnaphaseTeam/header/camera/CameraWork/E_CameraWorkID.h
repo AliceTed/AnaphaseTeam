@@ -9,6 +9,7 @@
 enum class E_CameraWorkID : int
 {
 	NONE = 0,		//**@brief なし
+	TEST,			//**@brief テスト
 	LOCK_ON,		//**@brief ロックオン
 	NORMAL,			//**@brief 通常
 	DEAD,			//**@brief 死亡

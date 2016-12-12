@@ -1,5 +1,7 @@
 #include "../../header/math/AMath.h"
+#include "../../header/math/Calculate.h"
 #include <cmath>
+#include <algorithm>
 
 const float AMath::PI = 3.14159265359f;
 
@@ -103,4 +105,43 @@ int AMath::side(const GSvector2 & _p, const GSvector2 & _start, const GSvector2 
 	n = n < 0 ? -1 : n;
 	n = n == 0 ? 0 : n;
 	return n;
+}
+
+GSvector3 AMath::bezierCurve(std::list<GSvector3> vertexes, float t)
+{
+	Math::Clamp clamp;
+	GSvector3 result = { 0.0f, 0.0f, 0.0f };
+	std::list<GSvector3>::iterator itr = vertexes.begin();
+	int i = 1;
+	int size = vertexes.size();
+	t = clamp(t, 0.0f, 1.0f);
+
+	result += pow(1 - t, --size) * (*itr);
+
+	size--;
+	itr++;
+
+	while (i < vertexes.size() - 1)
+	{
+		result += 3 * pow(t, i) * pow(1 - t, size--) * (*itr);
+
+		itr++;
+		i++;
+	}
+
+	result += pow(t, i) * (*itr);
+
+	return result;
+}
+
+float AMath::pow(float _num, int _n)
+{
+	float result = 1;
+
+	for (int i = 0; i < _n; i++)
+	{
+		result *= _num;
+	}
+
+	return result;
 }

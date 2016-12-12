@@ -1,6 +1,7 @@
 #include "../../../header/camera/CameraWork/CameraWorkManager.h"
 #include "../../../header/camera/Camera.h"
 #include "../../../header/camera/CameraWork/CameraWorkEmpty.h"
+#include "../../../header/camera/CameraWork/CameraWorkTest.h"
 #include "../../../header/camera/CameraWork/CameraWorkNormal.h"
 #include "../../../header/camera/CameraWork/CameraWorkLockOn.h"
 #include "../../../header/camera/CameraWork/CameraWorkDead.h"
@@ -27,6 +28,10 @@ void CameraWorkManager::load(void)
 	m_cameraData->add(								//何もしない
 		E_CameraWorkID::NONE,
 		new CameraWorkEmpty(m_camera)
+	);
+	m_cameraData->add(								//テスト
+		E_CameraWorkID::TEST,
+		new CameraWorkTest(m_camera)
 	);
 	m_cameraData->add(								//通常カメラ
 		E_CameraWorkID::NORMAL,

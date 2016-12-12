@@ -144,6 +144,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="header\state\enemy\EnemyAIController.cpp" />
+    <ClCompile Include="source\camera\CameraWork\CameraWorkTest.cpp" />
     <ClCompile Include="source\camera\SLookAt.cpp" />
     <ClCompile Include="source\attack\Homing.cpp" />
     <ClCompile Include="source\attack\KnockBack.cpp" />
@@ -200,6 +201,7 @@
     <ClCompile Include="source\device\InputPattern_A.cpp" />
     <ClCompile Include="source\device\InputPattern_B.cpp" />
     <ClCompile Include="source\math\Random.cpp" />
+    <ClCompile Include="source\math\Spline.cpp" />
     <ClCompile Include="source\myanimation\MyAnimation.cpp" />
     <ClCompile Include="source\myanimation\MyAnimationContainer.cpp" />
     <ClCompile Include="source\myanimation\MyAnimationFunc.cpp" />
@@ -278,6 +280,7 @@
     <ClCompile Include="source\ui\UIManager.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="header\camera\CameraWork\CameraWorkTest.h" />
     <ClInclude Include="header\math\AMath.h" />
     <ClInclude Include="header\actor\Actor.h" />
     <ClInclude Include="header\actor\Actor_Tag.h" />
@@ -346,6 +349,7 @@
     <ClInclude Include="header\device\IInputPattern.h" />
     <ClInclude Include="header\device\InputPattern_A.h" />
     <ClInclude Include="header\device\InputPattern_B.h" />
+    <ClInclude Include="header\math\Spline.h" />
     <ClInclude Include="header\math\TargetLerp.h" />
     <ClInclude Include="header\myanimation\MyAnimation.h" />
     <ClInclude Include="header\myanimation\MyAnimationContainer.h" />

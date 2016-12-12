@@ -43,7 +43,7 @@ Player::Player(Camera * _camera, LockOn* _lockon)
 		Transform({ 0,0,-15 }, GSquaternion(0, 0, 0, 1)),
 		MODEL_ID::PLAYER,
 		Actor_Tag::PLAYER
-		),
+	),
 	m_combo(this),
 	m_camera(_camera),
 	m_status(),
@@ -133,7 +133,7 @@ void Player::lookTarget()
 
 void Player::aerialTracking(float _velocity)
 {
-	if(isTargetAerial(*m_lockon->getTarget()))
+	if (isTargetAerial(*m_lockon->getTarget()))
 	{
 		m_transform.translate_up(_velocity);
 	}
@@ -236,14 +236,16 @@ void Player::look_at(CameraController * _camera, GSvector3 * _target)
 	m_camera->lookAt_cameraTarget_player(position);
 	m_camera->lookAt_cameraTarget_enemy(*_target);
 
-	if (m_isLockOn)
+	_camera->change_cameraWork(E_CameraWorkID::TEST);
+
+	/*if (m_isLockOn)
 	{
 		_camera->change_cameraWork(E_CameraWorkID::LOCK_ON);
 	}
 	else
 	{
 		_camera->change_cameraWork(E_CameraWorkID::NORMAL);
-	}
+	}*/
 }
 void Player::createStates()
 {
