@@ -3,7 +3,6 @@
 Enemy::EDamageState::EDamageState(Enemy* _enemy)
 	:ActorState(_enemy), m_gravity(0.0f)
 {
-
 }
 
 void Enemy::EDamageState::start()
