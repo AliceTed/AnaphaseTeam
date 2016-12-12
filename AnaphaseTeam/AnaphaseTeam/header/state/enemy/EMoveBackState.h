@@ -10,5 +10,4 @@ public:
 	void action(float deltaTime) override;
 	EMoveBackState * clone() const override;
 private:
-	float m_timer;
 };

@@ -9,11 +9,11 @@ GamePlay::GamePlay()
 	:m_Map(OCTREE_ID::ARENA),
 	m_Camera(&m_Map),
 	m_cameracontroller(&m_Camera),
-	m_enemys(),
 	m_change(),
 	m_lockon(),
 	m_pause(m_change),//É|Å[ÉY
-	m_player(&m_Camera, &m_lockon)
+	m_player(&m_Camera, &m_lockon),
+	m_enemys(&m_player)
 {
 }
 GamePlay::~GamePlay()
@@ -32,7 +32,7 @@ void GamePlay::initialize()
 	Math::Random rnd;
 	for (int i = 0; i < 2; i++)
 	{
-		Enemy* e = new Enemy(Transform(0, { 0,0,0 }, { rnd(-10.0f,10.0f),0,rnd(-10.0f,10.0f) }));
+		Enemy* e = new Enemy(Transform(0, { 0,0,0 }, { rnd(-10.0f,10.0f),0,rnd(-10.0f,10.0f) }),m_enemys);
 		m_enemys.add(e);
 	}
 
@@ -66,7 +66,7 @@ void GamePlay::update(float deltaTime)
 	for (int i = 0; i < 2- static_cast<int>(m_enemys.size()); i++)
 	{
 		Math::Random rnd;
-		Enemy* e = new Enemy(Transform(0, { 0,0,0 }, { rnd(-10.0f,10.0f),0,rnd(-10.0f,10.0f) }));
+		Enemy* e = new Enemy(Transform(0, { 0,0,0 }, { rnd(-10.0f,10.0f),0,rnd(-10.0f,10.0f) }),m_enemys);
 		m_enemys.add(e);
 	}
 

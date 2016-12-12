@@ -804,6 +804,18 @@
     <ClInclude Include="header\state\enemy\EDashFrontState.h">
       <Filter>ヘッダー ファイル\state\enemy</Filter>
     </ClInclude>
+    <ClInclude Include="header\state\enemy\EAI.h">
+      <Filter>ヘッダー ファイル\state\enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="header\state\enemy\MiddleRangeAI.h">
+      <Filter>ヘッダー ファイル\state\enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="header\state\enemy\OverFarAI.h">
+      <Filter>ヘッダー ファイル\state\enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="header\actor\Enemy\EnemyMediator.h">
+      <Filter>ヘッダー ファイル\actor\Enemy</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="source\main.cpp">
@@ -1202,11 +1214,20 @@
     <ClCompile Include="source\state\enemy\EMoveBackState.cpp">
       <Filter>ソース ファイル\state\enemy</Filter>
     </ClCompile>
-    <ClCompile Include="header\state\enemy\EnemyAIController.cpp">
-      <Filter>ソース ファイル\state\enemy</Filter>
-    </ClCompile>
     <ClCompile Include="source\state\enemy\EThinkState.cpp">
       <Filter>ソース ファイル\state\enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="source\state\enemy\EnemyAIController.cpp">
+      <Filter>ソース ファイル\state\enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="source\state\enemy\MiddleRangeAI.cpp">
+      <Filter>ソース ファイル\state\enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="source\state\enemy\OverFarAI.cpp">
+      <Filter>ソース ファイル\state\enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="source\actor\Enemy\EnemyMediator.cpp">
+      <Filter>ソース ファイル\actor\Enemy</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
