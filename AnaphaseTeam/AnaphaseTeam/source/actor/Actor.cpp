@@ -74,6 +74,10 @@ const GSquaternion Actor::targetDirection(const Actor & _target) const
 	float radian = atan(vector.z, vector.x);
 	return GSquaternion(radian, { 0,1,0 });
 }
+const bool Actor::isTargetAerial(const Actor & _target) const
+{
+	return _target.m_transform.m_translate.y > m_transform.m_translate.y;
+}
 void Actor::changeState(ACTOR_STATE _state)
 {
 	m_currentStateKey = _state;

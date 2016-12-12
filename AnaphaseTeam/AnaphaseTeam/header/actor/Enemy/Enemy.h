@@ -60,13 +60,18 @@ public:
 	* @brief ‹——£‚ğ‚Í‚©‚é
 	* @param
 	*/
-	const bool isNear(float _distance)const;
-	const bool blowDead()const;
+	const bool isDamageState()const;
+	const bool isDeadState() const;
+
 	/**
 	* @fn
 	* @brief l‚¦‚é‚©”Û‚©
 	*/
 	const bool isThink()const;
+private:
+	const bool isNear(float _distance)const;
+	const bool blowDead()const;
+	
 private:
 	/**
 	* @fn

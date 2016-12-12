@@ -131,6 +131,14 @@ void Player::lookTarget()
 	m_transform.m_rotate = targetDirection(*m_lockon->getTarget());
 }
 
+void Player::aerialTracking(float _velocity)
+{
+	if(isTargetAerial(*m_lockon->getTarget()))
+	{
+		m_transform.translate_up(_velocity);
+	}
+}
+
 void Player::damage(const AttackStatus & _attackStatus)
 {
 	m_status.down(_attackStatus.m_power);
@@ -219,7 +227,7 @@ void Player::control()
 
 void Player::look_at(CameraController * _camera, GSvector3 * _target)
 {
-	if (m_timer.isEnd())
+	if (m_timer.isEnd() || m_lockon->getTarget()->isDeadState())
 	{
 		m_isLockOn = false;
 	}

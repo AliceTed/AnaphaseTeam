@@ -19,7 +19,7 @@ namespace Math
 		Vector m_start;
 		Vector m_end;
 		Vector m_current;
-		bool isStart;
+		bool m_isStart;
 	};
 }
 template<class Vector>
@@ -28,7 +28,7 @@ Math::TimeLerpVector<Vector>::TimeLerpVector(const Vector & _current)
 	m_end(),
 	m_current(_current),
 	m_timer(1.0f),
-	isStart(false)
+	m_isStart(false)
 {
 }
 
@@ -44,17 +44,17 @@ void Math::TimeLerpVector<Vector>::start(const Vector & _start, const Vector & _
 	m_current = _start;
 	m_timer.setEndTime(_time);
 	m_timer.initialize();
-	isStart = true;
+	m_isStart = true;
 }
 
 template<class Vector>
 void Math::TimeLerpVector<Vector>::update(float deltaTime)
 {
-	if (!isStart)return;
+	if (!m_isStart)return;
 
 	if (m_timer.isEnd())
 	{
-		isStart = false;
+		m_isStart = false;
 		m_current = m_end;
 		return;
 	}

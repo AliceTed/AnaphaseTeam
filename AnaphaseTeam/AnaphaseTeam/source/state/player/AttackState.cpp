@@ -17,7 +17,16 @@ void Player::AttackState::action(float deltaTime)
 	m_actor->m_combo.update(deltaTime);
 	input(deltaTime);
 	m_actor->m_homing.update(deltaTime, &m_actor->m_transform.m_translate);
-	m_actor->subActionStart();
+	if (m_actor->m_isGround)
+	{
+		m_actor->subActionStart();
+		return;
+	}
+	if (m_inputTimer.isEnd())
+	{
+		changeState(ACTOR_STATE::LIMITFALL);
+	}
+	
 }
 Player::AttackState* Player::AttackState::clone() const
 {

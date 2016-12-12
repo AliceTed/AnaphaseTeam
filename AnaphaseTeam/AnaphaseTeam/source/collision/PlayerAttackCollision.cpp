@@ -13,7 +13,7 @@ void Player::PlayerAttackCollision::doUpdate(float deltaTime)
 	GSvector3 pos = m_player->m_transform.m_translate + m_player->m_transform.front() + GSvector3(0, 1, 0);
 	m_shape->transfer(pos);
 	m_destroy.update(deltaTime*m_player->m_status.attackSpeed());
-	if (m_destroy.isEnd())
+	if (m_destroy.isEnd() || m_player->getState() == ACTOR_STATE::STEP)
 	{
 		destroy();
 	}

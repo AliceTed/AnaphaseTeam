@@ -88,6 +88,11 @@ const bool Enemy::isNotDamageState() const
 	return getState() == ACTOR_STATE::ESPAWN || getState() == ACTOR_STATE::EDEAD;
 }
 
+const bool Enemy::isDeadState() const
+{
+	return getState() == ACTOR_STATE::EDEAD;
+}
+
 void Enemy::createStates()
 {
 	registerState(ACTOR_STATE::EATTACK, new EAttackState(this));
