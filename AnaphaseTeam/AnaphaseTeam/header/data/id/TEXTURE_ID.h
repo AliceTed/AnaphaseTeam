@@ -27,6 +27,7 @@ enum class TEXTURE_ID :unsigned int
 	GAMEOVER,
 	PAUSE_GAMEBACK,
 	PAUSE_TITLEBACK,
+	UI_STAFF,
 
 	SIZE
 	
