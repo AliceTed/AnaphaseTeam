@@ -17,8 +17,6 @@ void NearAI::initialize()
 
 void NearAI::think(Player * _player)
 {
-	if (!m_actor->isThink()) return;
-
 	//*****************‹——£i¬j**********************************
 	//*****************‚¨Œİ‚¢‚ÌUŒ‚‚ª“–‚½‚é”ÍˆÍ**********************
 	Math::Random rnd;
