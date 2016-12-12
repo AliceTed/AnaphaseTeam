@@ -103,6 +103,9 @@ private:
 	EnemyMediator& m_mediator;
 	EnemyAIController m_AI;
 	KnockBack m_knockBack;
+
+	float m_gravity;
+
 private://state
 	class EAttackState;
 	class EDamageState;

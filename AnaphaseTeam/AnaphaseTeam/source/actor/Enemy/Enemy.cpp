@@ -33,7 +33,9 @@ Enemy::Enemy(const Transform & _transform,EnemyMediator& _mediator)
 	m_status(),
 	m_alpha(1),
 	m_knockBack(m_transform),
-	m_AI(),m_mediator(_mediator)
+	m_AI(),m_mediator(_mediator),
+
+	m_gravity(0.0f)
 {
 }
 Enemy::~Enemy()
@@ -55,12 +57,22 @@ void Enemy::initialize()
 	m_animatorOne.changeAnimationLerp(ENEMY_ANIMATION::STANDDYNIG);
 	m_status.initialize();
 	m_alpha = 1;
+
+	m_gravity = 0.0f;
 }
 void Enemy::update(float deltatime)
 {
 	m_animatorOne.update(deltatime);
 	action(deltatime);
 	m_collision.update(deltatime);
+	if (!m_isGround)
+	{
+		m_gravity -= 0.005f;
+		changeGravity(m_gravity);
+		return;
+	}
+	m_gravity = 0.0f;
+	changeGravity(-0.05f);
 }
 
 void Enemy::draw(IRenderer * _renderer)
