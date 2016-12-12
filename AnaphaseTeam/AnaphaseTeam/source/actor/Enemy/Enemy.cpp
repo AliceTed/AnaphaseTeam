@@ -65,9 +65,16 @@ void Enemy::damage(const AttackStatus & _attackStatus)
 {
 	if (isNotDamageState())return;
 	changeState(ACTOR_STATE::EDAMAGE);
+	//m_animatorOne.changeAnimation(static_cast<GSuint>(ENEMY_ANIMATION::DAMAGE), true, false, false, 10.0f, 1.5f);
+	m_status.down(_attackStatus.m_power);
+	if (!m_isGround)
+	{
+		m_knockBack.start(GSvector3(0, 0.3f, 0));
+		return;
+	}
 	m_animatorOne.changeAnimationLerp(ENEMY_ANIMATION::DAMAGE1, 1.5f);
 	m_knockBack.start(_attackStatus.m_blowOff);
-	m_status.down(_attackStatus.m_power);
+	
 }
 const bool Enemy::isNear(float _distance) const
 {
@@ -132,10 +139,10 @@ void Enemy::think(Player * _player)
 	float distance = distanceActor(*_player);
 	distanceThink(distance);
 	m_AI.think(_player);
-}
+	}
 
 void Enemy::distanceThink(float _distance)
-{
+	{
 	if (isNear(_distance))
 	{
 		m_AI.change(EAI::OVERNEAR);

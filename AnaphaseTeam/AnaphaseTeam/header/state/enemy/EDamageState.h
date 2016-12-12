@@ -9,4 +9,7 @@ public:
 	void start() override;
 	void action(float deltaTime) override;
 	EDamageState * clone() const override;
+
+private:
+	float m_gravity;
 };
