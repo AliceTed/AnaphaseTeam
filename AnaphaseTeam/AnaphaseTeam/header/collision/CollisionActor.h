@@ -19,6 +19,7 @@ class CollisionActor
 {
 public:
 	CollisionActor(Shape* _shape,Collision_Tag _tag);
+	CollisionActor(std::shared_ptr<Shape> _shape, Collision_Tag _tag);
 	virtual ~CollisionActor();
 	
 	void update(float deltaTime);

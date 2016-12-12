@@ -172,9 +172,9 @@ void Player::homing()
 	m_homing.start(this, m_lockon->getTarget(), m_transform, *m_Gauge, m_target, m_isLockOn);
 }
 
-void Player::createAttackCollision()
+void Player::createAttackCollision(const ShapeData& _data)
 {
-	Collision_Ptr act = Collision_Ptr(new PlayerAttackCollision(this));
+	Collision_Ptr act = std::make_shared<PlayerAttackCollision>(this, _data);
 	m_collision.add(act);
 }
 

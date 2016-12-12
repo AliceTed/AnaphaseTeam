@@ -5,13 +5,9 @@
 * @brief ƒRƒ“ƒ{UŒ‚—pƒNƒ‰ƒX
 * @author ¼”ö—T–ç
 * @date 2016/11/27
-
-‚©‚È‚è‚Ğ‚Ç‚¢UŒ‚ŠÖŒW‚ÌƒNƒ\[ƒX‰»‚Æ
-İŒv‚Ì”j’]‚ª‚ ‚Á‚½‚Ì‚ÅUŒ‚ŠÖŒW‚ğ‘SC³
 */
 #include <unordered_map>
 #include <memory>
-#include "ATTACK_TYPE.h"
 #include "Attack.h"
 class Player;
 class ComboAttack
@@ -29,6 +25,6 @@ public:
 private:
 	Player* m_player;
 	Attack m_current;
-	std::unordered_map<ATTACK_TYPE, Attack> m_container;
+	std::unordered_map<std::string, Attack> m_container;
 	bool m_isEnd;
 };
