@@ -3,6 +3,7 @@
 #include <algorithm>
 #include "../../../header/camera/LockOn.h"
 #include "../../../header/actor/Enemy/Enemy.h"
+#include "../../../header/map/Map.h"
 EnemyManager::EnemyManager()
 	:m_enemys()
 {

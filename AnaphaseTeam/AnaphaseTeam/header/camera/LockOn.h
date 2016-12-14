@@ -17,6 +17,12 @@ class EnemyManager;
 class Enemy;
 class Player;
 
+/*
+Enemyの管理をシェアードポインタに変えたので
+Enemyの基本的な受け渡しをシェアードポインタに変更
+ターゲットをweakポインタに変更
+2016/12/14 松尾
+*/
 class LockOn
 {
 public:
@@ -31,10 +37,10 @@ public:
 	void look_at(CameraController* _camera);
 	//取りあえずプレイヤーを持ってるのでここに書いた
 	void thinksEnemy(EnemyManager* _enemys);
-	Enemy* getTarget()const;
+	std::shared_ptr<Enemy> getTarget()const;
 
 private:
 	Player* m_player;
-	unique_ptr<Enemy>*  m_target;
+	std::weak_ptr<Enemy>  m_target;
 
 };

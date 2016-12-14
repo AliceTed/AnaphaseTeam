@@ -5,6 +5,7 @@ class Enemy;
 class IRenderer;
 class Actor;
 class Player;
+class Map;
 //ユニークポインタをシェアードポインタに変更
 using Enemy_Ptr = std::shared_ptr<Enemy>;
 class EnemyManager

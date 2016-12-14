@@ -169,7 +169,7 @@ void Player::subActionStart()
 }
 void Player::homing()
 {
-	m_homing.start(this, m_lockon->getTarget(), m_transform, *m_Gauge, m_target, m_isLockOn);
+	m_homing.start(this, m_lockon->getTarget().get(), m_transform, *m_Gauge, m_target, m_isLockOn);
 }
 
 void Player::createAttackCollision(const ShapeData& _data)
