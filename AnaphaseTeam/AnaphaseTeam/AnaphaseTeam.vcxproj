@@ -147,6 +147,7 @@
     <ClCompile Include="source\camera\SLookAt.cpp" />
     <ClCompile Include="source\attack\Homing.cpp" />
     <ClCompile Include="source\attack\KnockBack.cpp" />
+    <ClCompile Include="source\data\stream\SpawnConverter.cpp" />
     <ClCompile Include="source\math\AMath.cpp" />
     <ClCompile Include="source\collision\PlayerCollision.cpp" />
     <ClCompile Include="source\actor\Actor.cpp" />
@@ -211,6 +212,8 @@
     <ClCompile Include="source\scene\each\GameClear.cpp" />
     <ClCompile Include="source\scene\each\Pause.cpp" />
     <ClCompile Include="source\sound\Sound.cpp" />
+    <ClCompile Include="source\spawn\SpawnManager.cpp" />
+    <ClCompile Include="source\spawn\SpawnPoint.cpp" />
     <ClCompile Include="source\specialskill\Recovery.cpp" />
     <ClCompile Include="source\specialskill\SpecialAttack.cpp" />
     <ClCompile Include="source\specialskill\SpecialSkillManager.cpp" />
@@ -281,6 +284,7 @@
     <ClInclude Include="header\attack\AttackParameter.h" />
     <ClInclude Include="header\attack\ShapeData.h" />
     <ClInclude Include="header\attack\SHAPE_TYPE.h" />
+    <ClInclude Include="header\data\stream\SpawnConverter.h" />
     <ClInclude Include="header\math\AMath.h" />
     <ClInclude Include="header\actor\Actor.h" />
     <ClInclude Include="header\actor\Actor_Tag.h" />
@@ -386,6 +390,11 @@
     <ClInclude Include="header\scene\each\GameClear.h" />
     <ClInclude Include="header\scene\each\Pause.h" />
     <ClInclude Include="header\sound\Sound.h" />
+    <ClInclude Include="header\actor\Enemy\ENEMY_TYPE.h" />
+    <ClInclude Include="header\spawn\SpawnArea.h" />
+    <ClInclude Include="header\spawn\SpawnData.h" />
+    <ClInclude Include="header\spawn\SpawnManager.h" />
+    <ClInclude Include="header\spawn\SpawnPoint.h" />
     <ClInclude Include="header\specialskill\ISpecialSkill.h" />
     <ClInclude Include="header\specialskill\Recovery.h" />
     <ClInclude Include="header\specialskill\SpecialAttack.h" />

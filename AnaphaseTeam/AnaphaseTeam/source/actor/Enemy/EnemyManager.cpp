@@ -2,6 +2,7 @@
 #include "../../../header/actor/Player/Player.h"
 #include <algorithm>
 #include "../../../header/camera/LockOn.h"
+#include "../../../header/actor/Enemy/Enemy.h"
 EnemyManager::EnemyManager()
 	:m_enemys()
 {
@@ -39,7 +40,7 @@ void EnemyManager::draw(IRenderer * _renderer)
 	for (auto& i : m_enemys) { i->draw(_renderer);}
 }
 
-Enemy_Ptr& EnemyManager::nearEnemy(Player * _player)
+Enemy_Ptr EnemyManager::nearEnemy(Player * _player)
 {
 	std::sort(m_enemys.begin(), m_enemys.end(), [_player](Enemy_Ptr& _x, Enemy_Ptr& _y){return _x->distanceActor(*_player) < _y->distanceActor(*_player);});
 	return *m_enemys.begin();
