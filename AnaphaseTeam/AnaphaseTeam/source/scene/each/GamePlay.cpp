@@ -1,11 +1,11 @@
 #include "../../../header/scene/each/GamePlay.h"
-#include "../../../header/scene/each/Ending.h"
 #include "../../../header/renderer/IRenderer.h"
 #include "../../../header/renderer/define/SkyBoxRenderDesc.h"
 #include "../../../header/device/GameDevice.h"
 #include "../../../header/ui/UIManager.h"
 #include "../../../header/data/id/MESH_ID.h"
 #include "../../../header/stage/Phase.h"
+
 GamePlay::GamePlay()
 	:m_Map(OCTREE_ID::ARENA),
 	m_Camera(&m_Map),
