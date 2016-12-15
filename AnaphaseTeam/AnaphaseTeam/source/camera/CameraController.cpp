@@ -10,8 +10,9 @@
 
 #include "../../header/camera/CameraWork/CameraWorkManager.h"
 
-CameraController::CameraController(Camera* _camera) :
-	m_cameraWorkManager(new CameraWorkManager(_camera)),
+CameraController::CameraController() :
+	m_camera(std::make_unique<Camera>()),
+	m_cameraWorkManager(std::make_unique<CameraWorkManager>(m_camera.get())),
 	m_deltaTime(0.0f)
 {
 	//カメラワークの読み込み
@@ -36,8 +37,18 @@ void CameraController::draw(void)
 }
 
 
+void CameraController::collisionGround(const Map & _map)
+{
+	m_camera->collisionGround(_map);
+}
+
 void CameraController::change_cameraWork(const E_CameraWorkID _id)
 {
 	//カメラワークを指定ＩＤのものに変更
 	m_cameraWorkManager->change_cameraWork(_id);
+}
+
+Camera * CameraController::get_camera(void)
+{
+	return m_camera.get();
 }

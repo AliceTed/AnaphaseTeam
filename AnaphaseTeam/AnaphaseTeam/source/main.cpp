@@ -16,6 +16,7 @@
 
 #include"../header/data/release/DataAllRelease.h"
 #include "../header/renderer/define/ViewportDesc.h"
+
 class MyGame : public gslib::Game
 {
 public:
@@ -62,6 +63,7 @@ private:
 		m_SceneManager.add(SceneMode::GAMEPLAY, gameplay);
 		m_SceneManager.add(SceneMode::ENDING, ending);
 		m_SceneManager.add(SceneMode::GAMECLEAR, gameclaer);
+
 		m_SceneManager.change(SceneMode::LOAD);
 	}
 	// çXêV

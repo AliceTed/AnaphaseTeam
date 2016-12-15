@@ -8,12 +8,11 @@
 #include "../../../header/data/stream/SpawnReader.h"
 GamePlay::GamePlay()
 	:m_Map(OCTREE_ID::ARENA),
-	m_Camera(&m_Map),
-	m_cameracontroller(&m_Camera),
+	m_cameracontroller(),
 	m_change(),
 	m_lockon(),
 	m_pause(m_change),//É|Å[ÉY
-	m_player(&m_Camera, &m_lockon),
+	m_player(m_cameracontroller.get_camera(), &m_lockon),
 	m_spawnmanager(),
 	m_enemys(&m_player)
 {
@@ -54,6 +53,7 @@ void GamePlay::update(float deltaTime)
 	}
 	m_player.collisionGround(m_Map);
 	m_enemys.collisionGround(m_Map);
+	m_cameracontroller.collisionGround(m_Map);
 	m_change.update(deltaTime);
 	m_lockon.thinksEnemy(&m_enemys);
 	m_player.targetFind(&m_enemys);

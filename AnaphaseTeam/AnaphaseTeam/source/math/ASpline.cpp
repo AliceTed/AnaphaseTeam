@@ -17,13 +17,13 @@ ASpline::~ASpline()
 
 }
 
-void ASpline::init(const std::vector<float>& _sp, int _num)
+void ASpline::init(const std::vector<float>& _sp)
 {
 	float tmp;
 	std::vector<float> w(MaxSplineSize + 1);
 	int i;
 
-	m_num = _num - 1;
+	m_num = _sp.size() - 1;
 
 	//３次多項目式の０次係数（a）を設定
 	for (i = 0; i <= m_num; i++)
@@ -66,7 +66,7 @@ float ASpline::culc(float _t)
 {
 	int j;
 	float dt;
-	j = (int)floor(_t);	//小数点以下切り捨て
+	j = static_cast<int>(floor(_t));	//小数点以下切り捨て
 	if (j < 0)
 	{
 		j = 0;
@@ -75,7 +75,7 @@ float ASpline::culc(float _t)
 	else if (j >= m_num)
 	{
 		j = m_num - 1;	//丸め誤差を考慮
-		_t = m_num;
+		_t = static_cast<float>(m_num);
 	}
 
 	dt = _t - (float)j;

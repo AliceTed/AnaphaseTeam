@@ -22,7 +22,7 @@ public:
 	/**
 	@brief コンストラクタ
 	*/
-	Camera(Map* _map);
+	Camera();
 
 	//デストラクタ
 	~Camera();
@@ -108,6 +108,12 @@ public:
 					[1]			完全追尾
 	*/
 	void tracking_lookAt(const GSvector3& _target, float _speed = 1.0f);
+
+	/**
+	@brief 地面とのあたり判定
+	@param[_map]
+	*/
+	void collisionGround(const Map& _map);
 
 	/**
 	@brief シェイク処理
@@ -200,11 +206,8 @@ private:
 		const GSvector3& _lookAt,
 		const GSvector2& _trackingSpeed);
 
-	//地面とのあたり判定
-	void hit_ground(GSvector3* _position);
-
 	//地面と当たっているか？
-	bool isHitGround(GSvector3 * _intersectPos, GSvector3* _position);
+	bool isHitGround(const Map& _map,GSvector3 * _intersectPos, GSvector3* _position);
 
 
 private:
@@ -212,8 +215,6 @@ private:
 
 	static const float				DEF_FOV;				//視野角のデフォルト値
 	static const GSvector2			DEF_FOV_CLAMP;			//視野角の範囲のデフォルト値
-
-	Map*							m_map;					//マップ
 
 	GSvector4						m_perspective;			//視野角と遠近情報
 	GSvector2						m_fov_clamp;			//視野角の範囲

@@ -12,8 +12,7 @@ const GSvector3 Camera::RAY_DONW = GSvector3(0, -1, 0);		//ƒŒƒC‚Í‰º‚É”ò‚Î‚µ‚½‚¢‚
 const float Camera::DEF_FOV				= 45.0f;			//Ž‹–ìŠp‚ÌƒfƒtƒHƒ‹ƒg’l‚Í45“x‚ÅŒÅ’è
 const GSvector2 Camera::DEF_FOV_CLAMP	= { 2.0f, 180.0f };	//Ž‹–ìŠp‚Ì”ÍˆÍ‚Í2.0~180.0‚Ì”ÍˆÍ
 
-Camera::Camera(Map* _map) :
-	m_map(_map),
+Camera::Camera() :
 	m_perspective(GSvector4(DEF_FOV, 1280.0f / 720.0f, 0.3f, 1000.0f)),
 	m_fov_clamp(DEF_FOV_CLAMP.x, DEF_FOV_CLAMP.y),
 	m_lookAt(std::make_unique<SLookAt>(GSvector3(0.0f, 0.0f, 0.0f), GSvector3(0.0f, 0.0f, 0.0f), GSvector3(0.0f, 1.0f, 0.0f))),
@@ -92,9 +91,6 @@ void Camera::cameraWork_dolly(
 		_distance
 	);
 
-	//’n–Ê‚Æ‚Ì‚ ‚½‚è”»’è
-	hit_ground(&position);
-
 	//’Ç”öˆ—XV
 	update_tracking(
 		position,
@@ -141,6 +137,19 @@ void Camera::tracking_lookAt(const GSvector3& _target, float _speed)
 	gsVector3Lerp(target, target, &_target, _speed);
 
 	return;
+}
+
+void Camera::collisionGround(const Map & _map)
+{
+	//‚±‚ê‚ÉƒŒƒC‚Ìƒqƒbƒg‚µ‚½ˆÊ’u‚ª•ÛŽ‚³‚ê‚é
+	GSvector3 intersectPos;
+
+	//ƒJƒƒ‰‚ª’n–Ê‚É“–‚½‚Á‚Ä‚¢‚½‚ç
+	//ƒJƒƒ‰‚ÌˆÊ’u‚ðC³
+	if (isHitGround(_map, &intersectPos, &m_lookAt->position))
+	{
+		m_lookAt->position.y = intersectPos.y;
+	}
 }
 
 void Camera::shake(GSvector2 _scale)
@@ -336,22 +345,9 @@ void Camera::update_tracking(
 	tracking_lookAt(_lookAt, _trackingSpeed.y);
 }
 
-void Camera::hit_ground(GSvector3* _position)
-{
-	//‚±‚ê‚ÉƒŒƒC‚Ìƒqƒbƒg‚µ‚½ˆÊ’u‚ª•ÛŽ‚³‚ê‚é
-	GSvector3 intersectPos;
-
-	//ƒJƒƒ‰‚ª’n–Ê‚É“–‚½‚Á‚Ä‚¢‚½‚ç
-	//ƒJƒƒ‰‚ÌˆÊ’u‚ðC³
-	if (isHitGround(&intersectPos, _position))
-	{
-		_position->y = intersectPos.y;
-	}
-}
-
-bool Camera::isHitGround(GSvector3 * _intersectPos, GSvector3 * _position)
+bool Camera::isHitGround(const Map& _map, GSvector3 * _intersectPos, GSvector3 * _position)
 {
 	//ƒJƒƒ‰‚ª’n–Ê‚É“–‚½‚Á‚Ä‚¢‚é‚©‚ð’²‚×‚é
-	return m_map->isCollisionRay((*_position), RAY_DONW, _intersectPos) &&
+	return _map.isCollisionRay((*_position), RAY_DONW, _intersectPos) &&
 		_position->y < _intersectPos->y;
 }

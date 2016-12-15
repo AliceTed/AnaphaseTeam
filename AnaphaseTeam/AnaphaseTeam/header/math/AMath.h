@@ -114,14 +114,6 @@ public:
 	);
 
 	/**
-	@brief ベジェ曲線
-	@param[_vertexes] 各頂点
-	@param[_t] 速度（0 <= t <= 1）
-	@return ベクトル
-	*/
-	static GSvector3 bezierCurve(std::list<GSvector3> vertexes, float t);
-
-	/**
 	@brief 数値のｎ乗を求める
 	@param[_num]	数値
 	@param[_n]		n乗
