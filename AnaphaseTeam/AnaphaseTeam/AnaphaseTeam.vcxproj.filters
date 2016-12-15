@@ -768,9 +768,6 @@
     <ClInclude Include="header\attack\KnockBack.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="header\camera\SLookAt.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
     <ClInclude Include="header\scene\each\Menu.h">
       <Filter>ヘッダー ファイル\scene\each</Filter>
     </ClInclude>
@@ -801,14 +798,17 @@
     <ClInclude Include="header\state\enemy\OverNearAI.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
+    <ClInclude Include="header\math\ASpline.h">
+      <Filter>ヘッダー ファイル\math</Filter>
+    </ClInclude>
     <ClInclude Include="header\camera\CameraWork\CameraWorkEmpty.h">
-      <Filter>ヘッダー ファイル</Filter>
+      <Filter>ヘッダー ファイル\camera\CameraWork</Filter>
     </ClInclude>
     <ClInclude Include="header\camera\CameraWork\CameraWorkTest.h">
-      <Filter>ヘッダー ファイル</Filter>
+      <Filter>ヘッダー ファイル\camera\CameraWork</Filter>
     </ClInclude>
-    <ClInclude Include="header\math\ASpline.h">
-      <Filter>ヘッダー ファイル</Filter>
+    <ClInclude Include="header\camera\SLookAt.h">
+      <Filter>ヘッダー ファイル\camera</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -1190,9 +1190,6 @@
     <ClCompile Include="source\attack\KnockBack.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="source\camera\SLookAt.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
     <ClCompile Include="header\state\enemy\EnemyAIController.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
@@ -1211,14 +1208,17 @@
     <ClCompile Include="source\state\enemy\NearAI.cpp">
       <Filter>ソース ファイル\state\enemy</Filter>
     </ClCompile>
+    <ClCompile Include="source\math\ASpline.cpp">
+      <Filter>ソース ファイル\math</Filter>
+    </ClCompile>
     <ClCompile Include="source\camera\CameraWork\CameraWorkEmpty.cpp">
-      <Filter>ソース ファイル</Filter>
+      <Filter>ソース ファイル\camera\CameraWork</Filter>
     </ClCompile>
     <ClCompile Include="source\camera\CameraWork\CameraWorkTest.cpp">
-      <Filter>ソース ファイル</Filter>
+      <Filter>ソース ファイル\camera\CameraWork</Filter>
     </ClCompile>
-    <ClCompile Include="source\math\ASpline.cpp">
-      <Filter>ソース ファイル</Filter>
+    <ClCompile Include="source\camera\SLookAt.cpp">
+      <Filter>ソース ファイル\camera</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
