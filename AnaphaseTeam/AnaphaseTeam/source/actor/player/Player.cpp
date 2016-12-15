@@ -43,7 +43,7 @@ Player::Player(Camera * _camera, LockOn* _lockon)
 		Transform({ 0,0,-15 }, GSquaternion(0, 0, 0, 1)),
 		MODEL_ID::PLAYER,
 		Actor_Tag::PLAYER
-		),
+	),
 	m_combo(this),
 	m_camera(_camera),
 	m_status(),
@@ -130,7 +130,7 @@ const float Player::stepDistance() const
 
 void Player::lookTarget()
 {
-	std::weak_ptr<Enemy> target= m_lockon->getTarget();
+	std::weak_ptr<Enemy> target = m_lockon->getTarget();
 	if (target.expired())return;
 	m_transform.m_rotate = targetDirection(*target.lock().get());
 }
@@ -138,12 +138,8 @@ void Player::lookTarget()
 const bool Player::aerialTracking() const
 {
 	std::weak_ptr<Enemy> target = m_lockon->getTarget();
-	if (target.expired())return;
-	if(isTargetAerial(*target.lock().get()))
-	{
-		return true;
-	}
-	return false;
+	if (target.expired())return false;
+	return isTargetAerial(*target.lock().get());
 }
 
 void Player::damage(const AttackStatus & _attackStatus)
@@ -237,8 +233,6 @@ void Player::control()
 void Player::look_at(CameraController * _camera, GSvector3 * _target)
 {
 	std::weak_ptr<Enemy> target = m_lockon->getTarget();
-	if (target.expired())return;
-
 	if (m_timer.isEnd() || target.lock()->isDeadState())
 	{
 		m_isLockOn = false;
@@ -256,6 +250,12 @@ void Player::look_at(CameraController * _camera, GSvector3 * _target)
 	{
 		_camera->change_cameraWork(E_CameraWorkID::NORMAL);
 	}
+}
+void Player::look_at(CameraController * _camera)
+{
+	m_camera->lookAt_cameraTarget_player(m_transform.m_translate);
+	_camera->change_cameraWork(E_CameraWorkID::NORMAL);
+
 }
 void Player::createStates()
 {

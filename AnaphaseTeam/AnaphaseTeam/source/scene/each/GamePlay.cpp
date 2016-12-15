@@ -14,7 +14,8 @@ GamePlay::GamePlay()
 	m_lockon(),
 	m_pause(m_change),//É|Å[ÉY
 	m_player(&m_Camera, &m_lockon),
-	m_spawnmanager()
+	m_spawnmanager(),
+	m_enemys(&m_player)
 {
 }
 GamePlay::~GamePlay()
@@ -60,7 +61,7 @@ void GamePlay::update(float deltaTime)
 	m_enemys.update(deltaTime);
 	m_enemys.collision(m_player);
 	m_cameracontroller.update(deltaTime);
-
+	m_lockon.update(deltaTime);
 	if (m_player.isDead())
 	{
 		m_change.end(SceneMode::ENDING);
@@ -82,6 +83,8 @@ void GamePlay::draw(IRenderer * _renderer)
 	m_change.draw(_renderer);
 	UIManager::getInstance().draw(_renderer);
 	m_pause.draw(_renderer);
+
+	m_spawnmanager.draw(_renderer);
 }
 
 void GamePlay::finish()

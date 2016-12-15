@@ -12,7 +12,7 @@ using Enemy_Ptr = std::shared_ptr<Enemy>;
 class EnemyManager :public EnemyMediator
 {
 public:
-	EnemyManager();
+	EnemyManager(Player* _palyer);
 	~EnemyManager() = default;
 	void initialize();
 	void add(Enemy* _enemy);
@@ -36,5 +36,6 @@ private:
 	void remove();
 private:
 	std::vector<Enemy_Ptr>m_enemys;
+	Player* m_player;
 	// EnemyMediator ‚ğ‰î‚µ‚ÄŒp³‚³‚ê‚Ü‚µ‚½
 };

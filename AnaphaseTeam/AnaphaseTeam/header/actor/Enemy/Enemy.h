@@ -50,6 +50,8 @@ public:
 	* @brief ƒƒbƒNƒIƒ“‚ÌHPUI‚Ì‰Šú‰»“o˜^
 	*/
 	void start_lockOn();
+	void end_lockOn();
+
 	float distaceToPlayer();
 	float distaceToOtherEnemy();
 	EAI currentDistance();

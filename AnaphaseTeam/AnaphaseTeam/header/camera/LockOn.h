@@ -32,6 +32,7 @@ public:
 	* @brief ˆê”Ô‹ß‚¢“G‚ğ’T‚·
 	* @detail Enemy‚ª‘¶İ‚µ‚Ä‚¢‚È‚¢‚Ì‚Å‰¼‚Å‚·
 	*/
+	void update(float deltaTime);
 	void nearEnemyFind(EnemyManager* _enemys);
 	void addPlayer(Player* _player);
 	void look_at(CameraController* _camera);

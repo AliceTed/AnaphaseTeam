@@ -4,8 +4,9 @@
 #include "../../../header/camera/LockOn.h"
 #include "../../../header/actor/Enemy/Enemy.h"
 #include "../../../header/map/Map.h"
-EnemyManager::EnemyManager()
-	:m_enemys()
+EnemyManager::EnemyManager(Player* _player)
+	:m_enemys(),
+	m_player(_player)
 {
 }
 

@@ -19,16 +19,15 @@ void SpawnPoint::update(float deltaTime)
 {
 	remove();
 }
-
 void SpawnPoint::draw(IRenderer * _renderer)
 {
 }
 
 void SpawnPoint::createEnemy(EnemyManager & _manager/*, const EnemyFactory & _factory*/)
 {
-	for (unsigned int i = 0; i <m_data.spawnNum; i++)
+	for (unsigned int i = 0; i < m_data.spawnNum; i++)
 	{
-		_manager.add(createEnemy(/*_factory*/));
+		cloneEnemy(_manager);
 	}
 }
 
@@ -37,18 +36,18 @@ const unsigned int SpawnPoint::getActiveNumber() const
 	return m_data.activeNumber;
 }
 
-std::shared_ptr<Enemy> SpawnPoint::createEnemy(/*const EnemyFactory & _factory*/) 
+void SpawnPoint::cloneEnemy(EnemyManager & _manager/*const EnemyFactory & _factory*/)
 {
 	//std::shared_ptr<Enemy> enemy = _factory.create(m_data.type);
 	float radius = m_data.area.radius;
 	Math::Random rand;
-	GSvector3 area(rand(-radius,radius),0, rand(-radius, radius));
+	GSvector3 area(rand(-radius, radius), 0, rand(-radius, radius));
 	area += m_data.area.position;
 	Transform transform({ 0,0,0 }, area);
-	std::shared_ptr<Enemy> enemy = std::make_shared<Enemy>(transform);
+	std::shared_ptr<Enemy> enemy = std::make_shared<Enemy>(transform, _manager);
 	//weakƒ|ƒCƒ“ƒ^‚ğContainer‚É“o˜^
 	m_container.emplace_back(enemy);
-	return enemy;
+	_manager.add(enemy);
 }
 
 const bool SpawnPoint::isEnd() const
@@ -58,7 +57,7 @@ const bool SpawnPoint::isEnd() const
 
 void SpawnPoint::remove()
 {
-	auto itr = std::remove_if(m_container.begin(),m_container.end(), [](EnemyWeak_Ptr& _enemy)
+	auto itr = std::remove_if(m_container.begin(), m_container.end(), [](EnemyWeak_Ptr& _enemy)
 	{
 		//ŠJ•úÏ‚İ‚©
 		if (_enemy.expired())return  true;

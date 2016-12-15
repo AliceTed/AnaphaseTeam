@@ -183,6 +183,12 @@ void Enemy::start_lockOn()
 	std::shared_ptr<HPGaugeUI> hp = std::make_shared<HPGaugeUI>(GSvector2(800, 600), m_status, 3.0f);
 	UIManager::getInstance().add(EUI::ENEMYHP, hp);
 }
+
+void Enemy::end_lockOn()
+{
+	UIManager::getInstance().release(EUI::ENEMYHP);
+}
+
 float Enemy::distaceToPlayer()
 {
 	return m_mediator.requestDistancePlayer(this);

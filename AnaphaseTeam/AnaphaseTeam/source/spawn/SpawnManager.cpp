@@ -20,23 +20,16 @@ void SpawnManager::add(const SpawnPoint & _point)
 
 void SpawnManager::update(float deltaTime)
 {
-	for (auto& i:m_container )
+	for (auto& i : m_current)
 	{
 		i.update(deltaTime);
 	}
 	remove();
-	for (auto& i : m_current)
-	{
-		if (i.isEnd())
-		{
-			remove();
-		}
-	}
 }
 
 void SpawnManager::draw(IRenderer * _renderer)
 {
-	for (auto& i : m_container)
+	for (auto& i : m_current)
 	{
 		i.draw(_renderer);
 	}
@@ -60,6 +53,7 @@ void SpawnManager::remove()
 
 void SpawnManager::move()
 {
+	if (isEnd())return;
 	auto min = std::min_element(m_container.begin(), m_container.end(), [](SpawnPoint& _x, SpawnPoint& _y) {return _x.getActiveNumber() < _y.getActiveNumber();});
 	unsigned int number=min->getActiveNumber();
 	for (auto& i:m_container)

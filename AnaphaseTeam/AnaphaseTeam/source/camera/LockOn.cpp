@@ -3,6 +3,7 @@
 #include "../../header/actor/Player/Player.h"
 #include "../../header/device/GameDevice.h"
 #include "../../header/actor/Enemy/Enemy.h"
+#include "../../header/ui/UIManager.h"
 LockOn::LockOn()
 	:m_player(nullptr),
 	m_target()
@@ -13,10 +14,23 @@ LockOn::~LockOn()
 {
 }
 
+void LockOn::update(float deltaTime)
+{
+	if (!m_target.expired())
+	{
+		if (m_target.lock()->isDead())
+		{
+			m_target.reset();
+		}
+		return;
+	}
+	UIManager::getInstance().release(EUI::ENEMYHP);
+}
+
 void LockOn::nearEnemyFind(EnemyManager * _enemys)
 {
 	if (m_player == nullptr)return;
-	m_target =_enemys->nearEnemy(m_player);
+	m_target = _enemys->nearEnemy(m_player);
 	m_target.lock()->start_lockOn();
 }
 
@@ -27,7 +41,11 @@ void LockOn::addPlayer(Player * _player)
 
 void LockOn::look_at(CameraController * _camera)
 {
-	if (m_target.expired())return;
+	if (m_target.expired())
+	{
+		m_player->look_at(_camera);
+		return;
+	}
 	m_target.lock()->look_at(_camera, m_player);
 }
 

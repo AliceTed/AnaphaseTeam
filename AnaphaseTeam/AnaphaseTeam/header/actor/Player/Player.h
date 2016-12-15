@@ -32,6 +32,7 @@ public:
 	void avoidAction(const GSvector3& _velocity);
 	void attackmotion(Attack& _attack);
 	void look_at(CameraController* _camera, GSvector3* _target);
+	void look_at(CameraController* _camera);
 	void homing();
 	void createAttackCollision(const ShapeData& _data);
 	void damage(const AttackStatus & _attackStatus) override;
