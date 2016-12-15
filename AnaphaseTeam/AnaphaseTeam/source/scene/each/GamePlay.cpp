@@ -11,7 +11,7 @@ GamePlay::GamePlay()
 	m_cameracontroller(),
 	m_change(),
 	m_pause(m_change),//É|Å[ÉY
-	m_actors(Transform(), &m_Camera),
+	m_actors(Transform(), m_cameracontroller.get_camera()),
 	m_pahsemanager()
 {
 }

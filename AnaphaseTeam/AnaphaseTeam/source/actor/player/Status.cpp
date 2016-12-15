@@ -42,7 +42,7 @@ const float Status::getMaxHp() const
 
 void Status::down(float _damage)
 {
-	m_hp -= _damage;
+	add(-_damage);
 }
 
 void Status::add(float _amount)

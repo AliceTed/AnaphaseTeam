@@ -1,7 +1,6 @@
 #ifndef _GAMEPLAY_H_
 #define _GAMEPLAY_H_
 #include "../IScene.h"
-#include "../../camera/Camera.h"
 #include "../../camera/CameraController.h"
 #include "../../map/Map.h"
 #include "../SceneChange.h"
@@ -24,7 +23,6 @@ public:
 private:
 	SceneChange m_change;
 	Map m_Map;
-	Camera m_Camera;
 	CameraController m_cameracontroller;
 	ActorManager m_actors;
 	Pause m_pause;

@@ -144,7 +144,6 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="source\actor\ActorManager.cpp" />
-    <ClCompile Include="source\actor\Enemy\EnemyMediator.cpp" />
     <ClCompile Include="source\actor\Enemy\IEnemy.cpp" />
     <ClCompile Include="source\camera\CameraWork\CameraWorkTest.cpp" />
     <ClCompile Include="source\camera\SLookAt.cpp" />
