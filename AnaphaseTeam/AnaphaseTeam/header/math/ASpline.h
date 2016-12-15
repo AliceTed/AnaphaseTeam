@@ -7,12 +7,12 @@
 
 #include <vector>
 
-class Spline
+class ASpline
 {
 public:
-	Spline(void);
+	ASpline(void);
 
-	~Spline();
+	~ASpline();
 
 	void init(const std::vector<float>& _sp, int _num);
 

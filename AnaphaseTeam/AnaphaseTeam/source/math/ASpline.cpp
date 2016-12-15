@@ -1,8 +1,8 @@
-#include "../../header/math/Spline.h"
+#include "../../header/math/ASpline.h"
 
-const int Spline::MaxSplineSize = 100;
+const int ASpline::MaxSplineSize = 100;
 
-Spline::Spline(void) :
+ASpline::ASpline(void) :
 	m_num(0),
 	m_a(MaxSplineSize + 1),
 	m_b(MaxSplineSize + 1),
@@ -12,12 +12,12 @@ Spline::Spline(void) :
 	
 }
 
-Spline::~Spline()
+ASpline::~ASpline()
 {
 
 }
 
-void Spline::init(const std::vector<float>& _sp, int _num)
+void ASpline::init(const std::vector<float>& _sp, int _num)
 {
 	float tmp;
 	std::vector<float> w(MaxSplineSize + 1);
@@ -26,7 +26,7 @@ void Spline::init(const std::vector<float>& _sp, int _num)
 	m_num = _num - 1;
 
 	//３次多項目式の０次係数（a）を設定
-	for (i = 0; i <= _num; i++)
+	for (i = 0; i <= m_num; i++)
 	{
 		m_a[i] = _sp[i];
 	}
@@ -34,8 +34,8 @@ void Spline::init(const std::vector<float>& _sp, int _num)
 	//３次多項目式の２次係数（a）を設定
 	//連立方程式を解く
 	//但し、一般開放でなくスプライン計算にチューニングした方法
-	m_c[0] = m_c[_num] = 0.0f;
-	for (i = 1; i < _num; i++)
+	m_c[0] = m_c[m_num] = 0.0f;
+	for (i = 1; i < m_num; i++)
 	{
 		m_c[i] = 3.0f * (m_a[i - 1] - 2.0f * m_a[i] + m_a[i + 1]);
 	}
@@ -44,7 +44,7 @@ void Spline::init(const std::vector<float>& _sp, int _num)
 	for (i = 1; i < m_num; i++)
 	{
 		tmp = 4.0f - w[i - 1];
-		m_c[i] = (m_c[i] - m_c[i - 1] / tmp);
+		m_c[i] = (m_c[i] - m_c[i - 1]) / tmp;
 		w[i] = 1.0f / tmp;
 	}
 	//右上を消す
@@ -54,7 +54,7 @@ void Spline::init(const std::vector<float>& _sp, int _num)
 	}
 
 	//３次多項式の１次係数（b）と３次係数（b）を計算
-	m_b[m_num] = m_d[_num] = 0.0f;
+	m_b[m_num] = m_d[m_num] = 0.0f;
 	for (i = 0; i < m_num; i++)
 	{
 		m_d[i] = (m_c[i + 1] - m_c[i]) / 3.0f;
@@ -62,7 +62,7 @@ void Spline::init(const std::vector<float>& _sp, int _num)
 	}
 }
 
-float Spline::culc(float _t)
+float ASpline::culc(float _t)
 {
 	int j;
 	float dt;
@@ -70,10 +70,12 @@ float Spline::culc(float _t)
 	if (j < 0)
 	{
 		j = 0;
+		_t = 0;
 	}
 	else if (j >= m_num)
 	{
 		j = m_num - 1;	//丸め誤差を考慮
+		_t = m_num;
 	}
 
 	dt = _t - (float)j;

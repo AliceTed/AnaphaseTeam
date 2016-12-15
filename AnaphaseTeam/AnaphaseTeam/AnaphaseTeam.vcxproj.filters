@@ -807,7 +807,7 @@
     <ClInclude Include="header\camera\CameraWork\CameraWorkTest.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="header\math\Spline.h">
+    <ClInclude Include="header\math\ASpline.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
   </ItemGroup>
@@ -1217,7 +1217,7 @@
     <ClCompile Include="source\camera\CameraWork\CameraWorkTest.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="source\math\Spline.cpp">
+    <ClCompile Include="source\math\ASpline.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
   </ItemGroup>

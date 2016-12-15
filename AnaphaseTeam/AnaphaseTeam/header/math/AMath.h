@@ -9,6 +9,7 @@
 #include <gslib.h>
 #include <list>
 #include <vector>
+#include "ASpline.h"
 
 class AMath
 {
