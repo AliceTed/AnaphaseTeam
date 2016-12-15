@@ -5,6 +5,7 @@
 #include "../../header/data/id/OCTREE_ID.h"
 #include "../../header/map/Map.h"
 #include "../../header/camera/SLookAt.h"
+#include <random>
 
 const GSvector3 Camera::RAY_DONW = GSvector3(0, -1, 0);		//レイは下に飛ばしたいのでｙ成分に-1する
 
@@ -35,6 +36,12 @@ void Camera::initialize_zoom(void)
 	//視野角の指定範囲を初期化
 	m_fov_clamp.x		= DEF_FOV_CLAMP.x;
 	m_fov_clamp.y		= DEF_FOV_CLAMP.y;
+}
+
+void Camera::reset_offset(void)
+{
+	m_lookAt->position_offset = { 0.0f, 0.0f, 0.0f };
+	m_lookAt->target_offset = { 0.0f, 0.0f, 0.0f };
 }
 
 void Camera::update(void)
@@ -136,6 +143,26 @@ void Camera::tracking_lookAt(const GSvector3& _target, float _speed)
 	return;
 }
 
+void Camera::shake(GSvector2 _scale)
+{
+	GSvector3 position;
+	std::random_device rnd;
+	std::mt19937 mt(rnd());
+	std::uniform_int_distribution<> randX(0, _scale.x);
+	std::uniform_int_distribution<> randY(0, _scale.y);
+	float x = cos(randX(mt));
+	float y = sin(randY(mt));
+
+	position.x = cos(randX(mt));
+	position.y = sin(randY(mt));
+	position.z = 0;
+
+	tracking_position_offset(position, 0.1f);
+	tracking_target_offset(position, 0.1f);
+
+	return;
+}
+
 void Camera::zoom_clamp(
 	const float _min,
 	const float _max
@@ -214,6 +241,24 @@ const GSvector3 & Camera::position(void)
 	return m_lookAt->position;
 }
 
+void Camera::tracking_position_offset(const GSvector3 & _target, float _speed)
+{
+	//見やすくするために宣言
+	GSvector3* position = &m_lookAt->position_offset;
+
+	//３次元ベクトルの線形補間
+	gsVector3Lerp(position, position, &_target, _speed);
+}
+
+void Camera::tracking_target_offset(const GSvector3 & _target, float _speed)
+{
+	//見やすくするために宣言
+	GSvector3* position = &m_lookAt->target_offset;
+
+	//３次元ベクトルの線形補間
+	gsVector3Lerp(position, position, &_target, _speed);
+}
+
 void Camera::update_perspective(void)
 {
 	//投射変換行列の設定
@@ -245,7 +290,7 @@ void Camera::update_lookAt(void)
 	glLoadIdentity();
 
 	//いちいちm_lookAt呼ぶのがめんどくさいので宣言
-	GSvector3 position	= m_lookAt->position;
+	GSvector3 position	= m_lookAt->position + m_lookAt->position_offset;
 	GSvector3 target	= m_lookAt->target + m_lookAt->target_offset;
 	GSvector3 up		= m_lookAt->up;
 

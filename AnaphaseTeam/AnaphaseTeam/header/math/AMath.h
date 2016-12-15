@@ -121,18 +121,18 @@ public:
 	static GSvector3 bezierCurve(std::list<GSvector3> vertexes, float t);
 
 	/**
-	@brief スプライン曲線
-	@param[_p] 配列
-	@param[_interpolate] 補間数
- 	@return ３次元ベクトルリスト
-	*/
-	std::list<GSvector3> splineStream(std::vector<GSvector3> _p, int interpolate);
-
-	/**
 	@brief 数値のｎ乗を求める
 	@param[_num]	数値
 	@param[_n]		n乗
 	@return 結果
 	*/
 	static float pow(float _num, int _n);
+
+	/**
+	@brief 揺れ処理
+	@param[_scale]	揺れ幅
+	@param[_t]		(仮)		
+	@return 求めた揺れ幅（仮）
+	*/
+	static GSvector3 shake();
 };

@@ -33,6 +33,11 @@ public:
 	void initialize_zoom(void);
 
 	/**
+	@brief リセットオフセット
+	*/
+	void reset_offset(void);
+
+	/**
 	@brief 更新処理
 	*/
 	void update(void);
@@ -105,6 +110,12 @@ public:
 	void tracking_lookAt(const GSvector3& _target, float _speed = 1.0f);
 
 	/**
+	@brief シェイク処理
+	@param[_scale] 揺れ幅
+	*/
+	void shake(GSvector2 _scale);
+
+	/**
 	@brief 拡大範囲を設定
 	@param[_min] 最小値
 	@param[_max] 最大値
@@ -168,6 +179,12 @@ public:
 	const GSvector3& position(void);
 
 private:
+	// カメラオフセットがターゲットに追尾
+	void tracking_position_offset(const GSvector3& _target, float _speed = 1.0f);
+
+	// ターゲットオフセットがターゲットに追尾
+	void tracking_target_offset(const GSvector3& _target, float _speed = 1.0f);
+
 	//カメラの視野角と遠近情報を更新
 	void update_perspective(void);
 

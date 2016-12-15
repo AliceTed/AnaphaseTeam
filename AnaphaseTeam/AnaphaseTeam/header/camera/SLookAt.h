@@ -12,6 +12,7 @@ class SLookAt
 {
 public:
 	GSvector3 position;			//**@brief カメラの位置
+	GSvector3 position_offset;	//**@brief 位置のオフセット
 	GSvector3 target;			//**@brief 注視点
 	GSvector3 target_offset;	//**@brief 注視点オフセット
 	GSvector3 up;				//**@brief カメラの上方向
@@ -29,5 +30,3 @@ public:
 	//デストラクタ
 	~SLookAt();
 };
-
-
