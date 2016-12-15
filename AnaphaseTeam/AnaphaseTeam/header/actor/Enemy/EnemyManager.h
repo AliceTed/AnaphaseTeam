@@ -15,13 +15,14 @@ public:
 	~EnemyManager() = default;
 	void initialize();
 	void add(Enemy* _enemy);
+	void add(Enemy_Ptr _enemy);
 	void update(float deltaTime);
 	void collisionGround(const Map& _map);
 
 	void collision(Actor& _actor);
 	void draw(IRenderer * _renderer);
 
-	Enemy_Ptr nearEnemy(Player* _player);
+	std::weak_ptr<Enemy> nearEnemy(Player* _player);
 
 	void thinks(Player* _player);
 

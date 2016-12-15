@@ -37,8 +37,7 @@ void LockOn::thinksEnemy(EnemyManager * _enemys)
 	_enemys->thinks(m_player);
 }
 
-std::shared_ptr<Enemy> LockOn::getTarget() const
+std::weak_ptr<Enemy> LockOn::getTarget() const
 {
-	if (m_target.expired())return nullptr;
-	return m_target.lock();
+	return m_target;
 }

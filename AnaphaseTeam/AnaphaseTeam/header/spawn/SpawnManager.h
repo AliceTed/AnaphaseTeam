@@ -6,19 +6,24 @@
 */
 #pragma once
 #include "SpawnPoint.h"
+class EnemyManager;
 class SpawnManager
 {
 public:
 	SpawnManager();
 	~SpawnManager() = default;
+	void initialize();
 	void add(const SpawnPoint& _point);
 	void update(float deltaTime);
 	void draw(IRenderer *_renderer);
+	void createEnemy(EnemyManager& _enemyManager);
+	const bool isCurrentEnd()const;
+	const bool isEnd()const;
 private:
-	//ç~èá
-	void sort();
 	void remove();
+	void move();	
 private:
 	using Container = std::vector<SpawnPoint>;
 	Container m_container;
+	Container m_current;
 };

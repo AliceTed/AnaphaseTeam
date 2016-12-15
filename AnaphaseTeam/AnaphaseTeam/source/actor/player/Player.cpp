@@ -123,17 +123,23 @@ void Player::targetFind(EnemyManager * _enemys)
 
 const float Player::stepDistance() const
 {
-	return distanceActor(*m_lockon->getTarget()) - 1.0f;
+	std::weak_ptr<Enemy> target = m_lockon->getTarget();
+	if (target.expired())return 0;
+	return distanceActor(*target.lock().get()) - 1.0f;
 }
 
 void Player::lookTarget()
 {
-	m_transform.m_rotate = targetDirection(*m_lockon->getTarget());
+	std::weak_ptr<Enemy> target= m_lockon->getTarget();
+	if (target.expired())return;
+	m_transform.m_rotate = targetDirection(*target.lock().get());
 }
 
 void Player::aerialTracking(float _velocity)
 {
-	if(isTargetAerial(*m_lockon->getTarget()))
+	std::weak_ptr<Enemy> target = m_lockon->getTarget();
+	if (target.expired())return;
+	if(isTargetAerial(*target.lock().get()))
 	{
 		m_transform.translate_diagonal(_velocity);
 	}
@@ -169,7 +175,9 @@ void Player::subActionStart()
 }
 void Player::homing()
 {
-	m_homing.start(this, m_lockon->getTarget().get(), m_transform, *m_Gauge, m_target, m_isLockOn);
+	std::weak_ptr<Enemy> target = m_lockon->getTarget();
+	if (target.expired())return;
+	m_homing.start(this, target.lock().get(), m_transform, *m_Gauge, m_target, m_isLockOn);
 }
 
 void Player::createAttackCollision(const ShapeData& _data)
@@ -227,7 +235,10 @@ void Player::control()
 
 void Player::look_at(CameraController * _camera, GSvector3 * _target)
 {
-	if (m_timer.isEnd() || m_lockon->getTarget()->isDeadState())
+	std::weak_ptr<Enemy> target = m_lockon->getTarget();
+	if (target.expired())return;
+
+	if (m_timer.isEnd() || target.lock()->isDeadState())
 	{
 		m_isLockOn = false;
 	}

@@ -11,6 +11,7 @@
 class IRenderer;
 class Enemy;
 class EnemyFactory;
+class EnemyManager;
 class SpawnPoint
 {
 	using EnemyWeak_Ptr = std::weak_ptr<Enemy>;
@@ -22,13 +23,13 @@ public:
 	void update(float deltaTime);
 	void draw(IRenderer* _renderer);
 
+	void createEnemy(EnemyManager& _manager/*,const EnemyFactory& _factory*/);
 	const unsigned int getActiveNumber()const;
-	std::shared_ptr<Enemy> createEnemy(const EnemyFactory& _factory);
  	const bool isEnd()const;
 private:
+	std::shared_ptr<Enemy> createEnemy(/*const EnemyFactory& _factory*/);
 	void remove();
 private:
-	bool m_isStart;
 	SpawnData m_data;	
 	Container m_container;
 };

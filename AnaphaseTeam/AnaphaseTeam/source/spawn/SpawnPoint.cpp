@@ -2,17 +2,16 @@
 #include "../../header/actor/Enemy/Enemy.h"
 #include "../../header/renderer/IRenderer.h"
 #include "../../header/math/Random.h"
+#include "../../header/actor/Enemy/EnemyManager.h"
 #include <algorithm>
 SpawnPoint::SpawnPoint(const SpawnData & _data)
-	:m_isStart(false),
-	m_data(_data),
+	:m_data(_data),
 	m_container()
 {
 }
 
 void SpawnPoint::initialize()
 {
-	m_isStart=false;
 	m_container.clear();
 }
 
@@ -25,12 +24,20 @@ void SpawnPoint::draw(IRenderer * _renderer)
 {
 }
 
+void SpawnPoint::createEnemy(EnemyManager & _manager/*, const EnemyFactory & _factory*/)
+{
+	for (unsigned int i = 0; i <m_data.spawnNum; i++)
+	{
+		_manager.add(createEnemy(/*_factory*/));
+	}
+}
+
 const unsigned int SpawnPoint::getActiveNumber() const
 {
 	return m_data.activeNumber;
 }
 
-std::shared_ptr<Enemy> SpawnPoint::createEnemy(const EnemyFactory & _factory) 
+std::shared_ptr<Enemy> SpawnPoint::createEnemy(/*const EnemyFactory & _factory*/) 
 {
 	//std::shared_ptr<Enemy> enemy = _factory.create(m_data.type);
 	float radius = m_data.area.radius;
@@ -46,7 +53,7 @@ std::shared_ptr<Enemy> SpawnPoint::createEnemy(const EnemyFactory & _factory)
 
 const bool SpawnPoint::isEnd() const
 {
-	return m_container.empty()&& m_isStart;
+	return m_container.empty();
 }
 
 void SpawnPoint::remove()

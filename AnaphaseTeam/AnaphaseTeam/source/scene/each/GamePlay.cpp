@@ -5,6 +5,7 @@
 #include "../../../header/device/GameDevice.h"
 #include "../../../header/math/Random.h"
 #include "../../../header/ui/UIManager.h"
+#include "../../../header/data/stream/SpawnReader.h"
 GamePlay::GamePlay()
 	:m_Map(OCTREE_ID::ARENA),
 	m_Camera(&m_Map),
@@ -13,7 +14,8 @@ GamePlay::GamePlay()
 	m_change(),
 	m_lockon(),
 	m_pause(m_change),//É|Å[ÉY
-	m_player(&m_Camera, &m_lockon)
+	m_player(&m_Camera, &m_lockon),
+	m_spawnmanager()
 {
 }
 GamePlay::~GamePlay()
@@ -29,12 +31,10 @@ void GamePlay::initialize()
 
 	m_player.initialize();
 	m_enemys.initialize();
-	Math::Random rnd;
-	for (int i = 0; i < 2; i++)
-	{
-		Enemy* e = new Enemy(Transform(0, { 0,0,0 }, { rnd(-10.0f,10.0f),0,rnd(-10.0f,10.0f) }));
-		m_enemys.add(e);
-	}
+	m_spawnmanager.initialize();
+
+	SpawnReader spawnReader;
+	spawnReader(&m_spawnmanager, "spawn");
 
 	m_lockon.addPlayer(&m_player);
 	UIManager::getInstance();
@@ -47,12 +47,11 @@ void GamePlay::update(float deltaTime)
 	if (m_pause.isPause())
 		return;
 
-
-	if (gsGetKeyTrigger(GKEY_F))
+	m_spawnmanager.update(deltaTime);
+	if (m_spawnmanager.isCurrentEnd())
 	{
-		m_change.end(SceneMode::GAMEPLAY, 0.1f);
+		m_spawnmanager.createEnemy(m_enemys);
 	}
-
 	m_player.collisionGround(m_Map);
 	m_enemys.collisionGround(m_Map);
 	m_change.update(deltaTime);
@@ -62,13 +61,6 @@ void GamePlay::update(float deltaTime)
 	m_enemys.update(deltaTime);
 	m_enemys.collision(m_player);
 	m_cameracontroller.update(deltaTime);
-	
-	for (int i = 0; i < 2- static_cast<int>(m_enemys.size()); i++)
-	{
-		Math::Random rnd;
-		Enemy* e = new Enemy(Transform(0, { 0,0,0 }, { rnd(-10.0f,10.0f),0,rnd(-10.0f,10.0f) }));
-		m_enemys.add(e);
-	}
 
 	if (m_player.isDead())
 	{

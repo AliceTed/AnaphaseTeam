@@ -148,6 +148,7 @@
     <ClCompile Include="source\attack\Homing.cpp" />
     <ClCompile Include="source\attack\KnockBack.cpp" />
     <ClCompile Include="source\data\stream\SpawnConverter.cpp" />
+    <ClCompile Include="source\data\stream\SpawnReader.cpp" />
     <ClCompile Include="source\math\AMath.cpp" />
     <ClCompile Include="source\collision\PlayerCollision.cpp" />
     <ClCompile Include="source\actor\Actor.cpp" />
@@ -285,6 +286,7 @@
     <ClInclude Include="header\attack\ShapeData.h" />
     <ClInclude Include="header\attack\SHAPE_TYPE.h" />
     <ClInclude Include="header\data\stream\SpawnConverter.h" />
+    <ClInclude Include="header\data\stream\SpawnReader.h" />
     <ClInclude Include="header\math\AMath.h" />
     <ClInclude Include="header\actor\Actor.h" />
     <ClInclude Include="header\actor\Actor_Tag.h" />
