@@ -21,7 +21,7 @@
 #include "../../../header/math/Calculate.h"
 
 #include "../../../header/camera/LockOn.h"
-#include "../../../header/actor/Enemy/Enemy.h"
+#include "../../../header/actor/Enemy/Goblin.h"
 #include "../../../header/actor/Enemy/EnemyManager.h"
 
 #include "../../../header/collision/PlayerAttackCollision.h"
@@ -123,21 +123,21 @@ void Player::targetFind(EnemyManager * _enemys)
 
 const float Player::stepDistance() const
 {
-	std::weak_ptr<Enemy> target = m_lockon->getTarget();
+	std::weak_ptr<IEnemy> target = m_lockon->getTarget();
 	if (target.expired())return 0;
 	return distanceActor(*target.lock().get()) - 1.0f;
 }
 
 void Player::lookTarget()
 {
-	std::weak_ptr<Enemy> target = m_lockon->getTarget();
+	std::weak_ptr<IEnemy> target = m_lockon->getTarget();
 	if (target.expired())return;
 	m_transform.m_rotate = targetDirection(*target.lock().get());
 }
 
 const bool Player::aerialTracking() const
 {
-	std::weak_ptr<Enemy> target = m_lockon->getTarget();
+	std::weak_ptr<IEnemy> target = m_lockon->getTarget();
 	if (target.expired())return false;
 	return isTargetAerial(*target.lock().get());
 }
@@ -172,7 +172,7 @@ void Player::subActionStart()
 }
 void Player::homing()
 {
-	std::weak_ptr<Enemy> target = m_lockon->getTarget();
+	std::weak_ptr<IEnemy> target = m_lockon->getTarget();
 	if (target.expired())return;
 	m_homing.start(this, target.lock().get(), m_transform, *m_Gauge, m_target, m_isLockOn);
 }
@@ -232,7 +232,7 @@ void Player::control()
 
 void Player::look_at(CameraController * _camera, GSvector3 * _target)
 {
-	std::weak_ptr<Enemy> target = m_lockon->getTarget();
+	std::weak_ptr<IEnemy> target = m_lockon->getTarget();
 	if (m_timer.isEnd() || target.lock()->isDeadState())
 	{
 		m_isLockOn = false;

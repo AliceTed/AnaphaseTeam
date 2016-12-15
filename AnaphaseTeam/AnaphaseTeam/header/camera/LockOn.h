@@ -14,7 +14,7 @@ using namespace std;
 
 class CameraController;
 class EnemyManager;
-class Enemy;
+class IEnemy;
 class Player;
 
 /*
@@ -38,10 +38,10 @@ public:
 	void look_at(CameraController* _camera);
 	//æ‚è‚ ‚¦‚¸ƒvƒŒƒCƒ„[‚ğ‚Á‚Ä‚é‚Ì‚Å‚±‚±‚É‘‚¢‚½
 	void thinksEnemy(EnemyManager* _enemys);
-	std::weak_ptr<Enemy> getTarget()const;
+	std::weak_ptr<IEnemy> getTarget()const;
 
 private:
 	Player* m_player;
-	std::weak_ptr<Enemy>  m_target;
+	std::weak_ptr<IEnemy>  m_target;
 
 };

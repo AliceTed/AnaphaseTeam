@@ -48,6 +48,10 @@ void Load::finish()
 
 const SceneMode Load::next() const
 {
+#ifdef _DEBUG
+	return SceneMode::GAMEPLAY;
+#endif // DEBUG
+
 	return SceneMode::OPENING;
 }
 
@@ -91,14 +95,14 @@ void Load::loadSound()
 {
 	SoundLoader sound;
 	sound(BGM_ID::TITLE, "Tulip");
-	sound(SE_ID::ENTER,"enter");
+	sound(SE_ID::ENTER, "enter");
 	sound(SE_ID::SELECT, "select");
 }
 
 void Load::loadModel()
 {
 	ShaderLoader shader;
-	shader(SHADER_ID::SKINNEDMESH,"skinned_mesh_bump");
+	shader(SHADER_ID::SKINNEDMESH, "skinned_mesh_bump");
 
 	ModelLoader model;
 	MeshLoader mesh;
@@ -116,7 +120,7 @@ void Load::loadModel()
 void Load::loadMyAnimation()
 {
 	MyAnimationLoader loader;
-	loader(MYANIMATION_ID::SPECIAL_ATTACK_POP,"SpecialAttack_pop");
+	loader(MYANIMATION_ID::SPECIAL_ATTACK_POP, "SpecialAttack_pop");
 	loader(MYANIMATION_ID::SPECIAL_SUPERARMOR_POP, "SpecialsSuperArmor_pop");
 	loader(MYANIMATION_ID::SPECIAL_RECOVERY_POP, "SpecialRecovery_pop");
 	loader(MYANIMATION_ID::SPECIAL_ATTACK_BACK, "SpecialAttack_back");

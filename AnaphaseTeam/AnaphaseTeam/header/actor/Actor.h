@@ -76,6 +76,8 @@ protected:
 	Transform m_transform;
 	bool m_isDead;
 	bool m_isGround;
+	//çsìÆâ¬î\
+	bool m_isBlock;
 	AnimatorOne m_animatorOne;
 	CollisionGroup m_collision;
 private:
@@ -85,6 +87,7 @@ private:
 	StatePtr m_currentState;
 	ACTOR_STATE m_currentStateKey;
 
+	GSvector3 m_previousIntersect;
 	Actor_Tag m_Tag;
 	//èdóÕ
 	static const float GRAVITY;

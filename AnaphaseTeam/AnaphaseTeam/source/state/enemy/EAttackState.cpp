@@ -1,21 +1,22 @@
 #include "../../../header/state/enemy/EAttackState.h"
 #include "../../../header/data/id/ENEMY_ANIMATION.h"
 #include "../../../header/math/Random.h"
-Enemy::EAttackState::EAttackState(Enemy* _enemy)
+Goblin::EAttackState::EAttackState(Goblin* _enemy)
 	:ActorState(_enemy),m_secoundAttack()
 {
 
 }
 
-void Enemy::EAttackState::start()
+void Goblin::EAttackState::start()
 {
+	m_actor->lookAtToPlayer();
 	Math::Random rnd;
 	m_secoundAttack = rnd(0, 2) == 0 ? true : false;
 	m_actor->m_animatorOne.changeAnimationLerp(ENEMY_ANIMATION::ATTACK1);
 	m_actor->createAttackCollision();
 }
 
-void Enemy::EAttackState::action(float deltaTime)
+void Goblin::EAttackState::action(float deltaTime)
 {
 	if (m_actor->m_animatorOne.isEndCurrentAnimation())
 	{
@@ -28,7 +29,7 @@ void Enemy::EAttackState::action(float deltaTime)
 	}
 }
 
-Enemy::EAttackState * Enemy::EAttackState::clone() const
+Goblin::EAttackState * Goblin::EAttackState::clone() const
 {
 	return new EAttackState(*this);
 }
