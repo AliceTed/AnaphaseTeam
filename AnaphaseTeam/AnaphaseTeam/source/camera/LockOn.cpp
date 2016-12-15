@@ -18,8 +18,10 @@ void LockOn::update(float deltaTime)
 {
 	if (!m_target.expired())
 	{
-		if (m_target.lock()->isDead())
+		Enemy_Ptr enemy = m_target.lock();
+		if (enemy->isDead())
 		{
+			enemy->end_lockOn();
 			m_target.reset();
 		}
 		return;
