@@ -30,9 +30,9 @@ void GamePlay::initialize()
 	m_player.initialize();
 	m_enemys.initialize();
 	Math::Random rnd;
-	for (int i = 0; i < 2; i++)
+	for (int i = 0; i < 1; i++)
 	{
-		Enemy* e = new Enemy(Transform(0, { 0,0,0 }, { rnd(-10.0f,10.0f),0,rnd(-10.0f,10.0f) }),m_enemys);
+		Goblin* e = new Goblin(Transform(0, { 0,0,0 }, { rnd(-10.0f,10.0f),0,rnd(-10.0f,10.0f) }),m_enemys);
 		m_enemys.add(e);
 	}
 
@@ -63,10 +63,10 @@ void GamePlay::update(float deltaTime)
 	m_enemys.collision(m_player);
 	m_cameracontroller.update(deltaTime);
 	
-	for (int i = 0; i < 2- static_cast<int>(m_enemys.size()); i++)
+	for (int i = 0; i < 1- static_cast<int>(m_enemys.size()); i++)
 	{
 		Math::Random rnd;
-		Enemy* e = new Enemy(Transform(0, { 0,0,0 }, { rnd(-10.0f,10.0f),0,rnd(-10.0f,10.0f) }),m_enemys);
+		IEnemy* e = new Goblin(Transform(0, { 0,0,0 }, { rnd(-10.0f,10.0f),0,rnd(-10.0f,10.0f) }),m_enemys);
 		m_enemys.add(e);
 	}
 

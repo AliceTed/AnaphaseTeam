@@ -1,15 +1,15 @@
 #include "../../../header/state/enemy/EDamageState.h"
 
-Enemy::EDamageState::EDamageState(Enemy* _enemy)
+Goblin::EDamageState::EDamageState(Goblin* _enemy)
 	:ActorState(_enemy)
 {
 }
 
-void Enemy::EDamageState::start()
+void Goblin::EDamageState::start()
 {
 }
 
-void Enemy::EDamageState::action(float deltaTime)
+void Goblin::EDamageState::action(float deltaTime)
 {
 	m_actor->m_knockBack.update(deltaTime);
 
@@ -24,7 +24,7 @@ void Enemy::EDamageState::action(float deltaTime)
 	}
 }
 
-Enemy::EDamageState * Enemy::EDamageState::clone() const
+Goblin::EDamageState * Goblin::EDamageState::clone() const
 {
 	return new EDamageState(*this);
 }

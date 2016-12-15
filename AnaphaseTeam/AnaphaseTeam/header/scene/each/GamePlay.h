@@ -8,7 +8,7 @@
 #include <memory>
 #include "../../actor/Player/Player.h"
 #include "../../actor/Boss/Boss.h"
-#include "../../actor/Enemy/Enemy.h"
+#include "../../actor/Enemy/Goblin.h"
 #include "../../camera/LockOn.h"
 
 #include "../../camera/CameraController.h"

@@ -21,7 +21,7 @@
 #include "../../../header/math/Calculate.h"
 
 #include "../../../header/camera/LockOn.h"
-#include "../../../header/actor/Enemy/Enemy.h"
+#include "../../../header/actor/Enemy/Goblin.h"
 #include "../../../header/actor/Enemy/EnemyManager.h"
 
 #include "../../../header/collision/PlayerAttackCollision.h"

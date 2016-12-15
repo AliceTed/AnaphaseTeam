@@ -12,7 +12,7 @@ void EnemyManager::initialize()
 	m_enemys.clear();
 }
 
-void EnemyManager::add(Enemy * _enemy)
+void EnemyManager::add(IEnemy * _enemy)
 {
 	m_enemys.emplace_back(Enemy_Ptr(_enemy));
 	m_enemys.back()->initialize();
@@ -61,12 +61,15 @@ void EnemyManager::remove()
 	m_enemys.erase(itr, m_enemys.end());
 }
 
-float EnemyManager::requestDistancePlayer(Enemy * _enemy)
+float EnemyManager::requestDistancePlayer(IEnemy * _enemy)
 {
 	return _enemy->distanceActor(*m_player);
 }
-
-bool EnemyManager::requestDistanceOtherEnemy(Enemy * _enemy)
+GSquaternion EnemyManager::requestDirectionPlayer(IEnemy * _enemy)
+{
+	return _enemy->targetDirection(*m_player);
+}
+bool EnemyManager::requestDistanceOtherEnemy(IEnemy * _enemy)
 {
 	return false;
 }

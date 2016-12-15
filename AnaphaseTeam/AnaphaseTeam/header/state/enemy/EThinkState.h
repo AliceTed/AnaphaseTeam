@@ -1,11 +1,11 @@
 #pragma once
-#include "../../actor/Enemy/Enemy.h"
+#include "../../actor/Enemy/Goblin.h"
 #include "../ActorState.h"
-class Enemy::EThinkState : public ActorState<Enemy>
+class Goblin::EThinkState : public ActorState<Goblin>
 {
 public:
-	Enemy::EThinkState(Enemy* _enemy);
+	Goblin::EThinkState(Goblin* _enemy);
 	void start() override;
 	void action(float deltaTime) override;
-	Enemy::EThinkState* clone() const override;
+	Goblin::EThinkState* clone() const override;
 };

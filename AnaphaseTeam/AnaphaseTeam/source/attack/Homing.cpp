@@ -1,5 +1,5 @@
 #include "..\..\header\attack\Homing.h"
-#include "../../header/actor/Enemy/Enemy.h"
+#include "../../header/actor/Enemy/IEnemy.h"
 #include "../../header/math/Calculate.h"
 #include "../../header/actor/Player/Gauge.h"
 #include "../../header/actor/Player/Player.h"
@@ -15,9 +15,9 @@ Homing::~Homing()
 {
 }
 
-void Homing::start(Player * _player, Enemy * _enemy, Transform& _transform, Gauge& _gauge,GSvector3 _distance, bool _islockon)
+void Homing::start(Player * _player, IEnemy * _enemy, Transform& _transform, Gauge& _gauge,GSvector3 _distance, bool _islockon)
 {
-	Enemy* target = _enemy;
+	IEnemy* target = _enemy;
 	if (target == nullptr) return;
 	if (_player->distanceActor(*target) >= 3.0f)
 	{

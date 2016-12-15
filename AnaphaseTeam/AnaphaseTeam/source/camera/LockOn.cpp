@@ -47,7 +47,7 @@ void LockOn::thinksEnemy(EnemyManager * _enemys)
 	_enemys->thinks(m_player);
 }
 
-Enemy * LockOn::getTarget() const
+IEnemy * LockOn::getTarget() const
 {
 	if (m_target == nullptr)
 	{

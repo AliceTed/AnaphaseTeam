@@ -381,9 +381,6 @@
     <ClInclude Include="header\actor\Boss\Boss.h">
       <Filter>ヘッダー ファイル\actor\Boss</Filter>
     </ClInclude>
-    <ClInclude Include="header\actor\Enemy\Enemy.h">
-      <Filter>ヘッダー ファイル\actor\Enemy</Filter>
-    </ClInclude>
     <ClInclude Include="header\actor\Player\Gauge.h">
       <Filter>ヘッダー ファイル\actor\Player</Filter>
     </ClInclude>
@@ -828,6 +825,12 @@
     <ClInclude Include="header\state\enemy\ESecoundAttackState.h">
       <Filter>ヘッダー ファイル\state\enemy</Filter>
     </ClInclude>
+    <ClInclude Include="header\actor\Enemy\IEnemy.h">
+      <Filter>ヘッダー ファイル\actor\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="header\actor\Enemy\Goblin.h">
+      <Filter>ヘッダー ファイル\actor\Enemy</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="source\main.cpp">
@@ -958,9 +961,6 @@
     </ClCompile>
     <ClCompile Include="source\actor\Boss\Boss.cpp">
       <Filter>ソース ファイル\actor\Boss</Filter>
-    </ClCompile>
-    <ClCompile Include="source\actor\Enemy\Enemy.cpp">
-      <Filter>ソース ファイル\actor\Enemy</Filter>
     </ClCompile>
     <ClCompile Include="source\actor\player\Gauge.cpp">
       <Filter>ソース ファイル\actor\Player</Filter>
@@ -1229,9 +1229,6 @@
     <ClCompile Include="source\camera\CameraWork\CameraWorkEmpty.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="source\actor\Enemy\EnemyMediator.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
     <ClCompile Include="source\state\enemy\EnemyAIController.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
@@ -1243,6 +1240,12 @@
     </ClCompile>
     <ClCompile Include="source\state\enemy\ESecoundAttackState.cpp">
       <Filter>ソース ファイル\state\enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="source\actor\Enemy\IEnemy.cpp">
+      <Filter>ソース ファイル\actor\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="source\actor\Enemy\Goblin.cpp">
+      <Filter>ソース ファイル\actor\Enemy</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

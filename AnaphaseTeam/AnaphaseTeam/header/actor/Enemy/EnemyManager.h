@@ -1,10 +1,11 @@
 #pragma once
 #include <vector>
-#include "Enemy.h"
+#include "Goblin.h"
+#include "IEnemy.h"
 #include <memory>
 #include "EnemyMediator.h"
 
-typedef std::unique_ptr<Enemy> Enemy_Ptr;
+typedef std::unique_ptr<IEnemy> Enemy_Ptr;
 class EnemyManager :public EnemyMediator
 {
 public:
@@ -13,7 +14,7 @@ public:
 	//ムーブコンストラクタ
 	EnemyManager(EnemyManager&&) = default;
 	void initialize();
-	void add(Enemy* _enemy);
+	void add(IEnemy* _enemy);
 	void update(float deltaTime);
 	void collisionGround(const Map& _map);
 
@@ -25,8 +26,9 @@ public:
 	void thinks(Player* _player);
 
 	const unsigned int size()const;
-	virtual float requestDistancePlayer(Enemy * _enemy) override;
-	virtual bool requestDistanceOtherEnemy(Enemy * _enemy)override;
+	virtual float requestDistancePlayer(IEnemy * _enemy) override;
+	virtual GSquaternion requestDirectionPlayer(IEnemy * _enemy)override;
+	virtual bool requestDistanceOtherEnemy(IEnemy * _enemy)override;
 	virtual bool reqestGoToNear()override;
 	virtual bool reqestGoToMid()override;
 private:

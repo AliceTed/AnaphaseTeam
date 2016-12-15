@@ -18,7 +18,7 @@
 
 class CameraController;
 class LockOn;
-class Enemy;
+class Goblin;
 class Camera;
 
 class EnemyManager;

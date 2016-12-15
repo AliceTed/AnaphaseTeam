@@ -1,17 +1,18 @@
 #include "../../../header/state/enemy/ESpawnState.h"
 #include "../../../header/data/id/ENEMY_ANIMATION.h"
-Enemy::ESpawnState::ESpawnState(Enemy* _enemy)
+Goblin::ESpawnState::ESpawnState(Goblin* _enemy)
 	:ActorState(_enemy)
 {
 
 }
 
-void Enemy::ESpawnState::start()
+void Goblin::ESpawnState::start()
 {
+	m_actor->lookAtToPlayer();
 	m_actor->m_animatorOne.changeAnimationLerp(ENEMY_ANIMATION::SCREAM);
 }
 
-void Enemy::ESpawnState::action(float deltaTime)
+void Goblin::ESpawnState::action(float deltaTime)
 {
 	if (m_actor->m_animatorOne.isEndCurrentAnimation())
 	{
@@ -19,7 +20,7 @@ void Enemy::ESpawnState::action(float deltaTime)
 	}
 }
 
-Enemy::ESpawnState * Enemy::ESpawnState::clone() const
+Goblin::ESpawnState * Goblin::ESpawnState::clone() const
 {
 	return new ESpawnState(*this);
 }

@@ -1,11 +1,11 @@
 #pragma once
-#include "../../actor/Enemy/Enemy.h"
+#include "../../actor/Enemy/Goblin.h"
 #include "../ActorState.h"
 
-class Enemy::ESecoundAttackState : public ActorState<Enemy>
+class Goblin::ESecoundAttackState : public ActorState<Goblin>
 {
 public:
-	Enemy::ESecoundAttackState(Enemy* _enemy);
+	Goblin::ESecoundAttackState(Goblin* _enemy);
 
 	void start() override;
 	void action(float deltaTime) override;
