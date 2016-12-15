@@ -1,5 +1,4 @@
 #include "../../../header/state/enemy/EnemyAIController.h"
-
 EnemyAIController::EnemyAIController():
 m_aicontainer(),m_currentKey(EAI::ATTACKRANGE)
 {
@@ -27,4 +26,9 @@ void EnemyAIController::change(EAI _key)
 	if (m_currentKey == _key)return;
 	m_currentKey = _key;
 	m_aicontainer.at(m_currentKey)->initialize();
+}
+
+EAI EnemyAIController::currentDistanceJudg()
+{
+	return m_currentKey;
 }

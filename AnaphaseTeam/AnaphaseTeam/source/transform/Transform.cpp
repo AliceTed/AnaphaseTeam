@@ -59,6 +59,11 @@ void Transform::translate_up(float _velocity)
 	m_translate += up()*_velocity;
 }
 
+void Transform::translate_diagonal(float _velocity)
+{
+	m_translate += diagonal()*_velocity;
+}
+
 void Transform::rotate(const GSquaternion & _q)
 {
 	m_rotate *= _q;
@@ -124,6 +129,11 @@ const GSvector3 Transform::left() const
 const GSvector3 Transform::up() const
 {
 	return rotate_vector(GSvector3(0.0f, 1.0f, 0.0f));
+}
+
+const GSvector3 Transform::diagonal() const
+{
+	return rotate_vector(GSvector3(0.0f, 1.0f, 1.0f));
 }
 
 const GSvector3 Transform::rotate_vector(const GSvector3 & _vec) const

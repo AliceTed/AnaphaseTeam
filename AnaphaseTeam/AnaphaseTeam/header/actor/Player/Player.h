@@ -32,8 +32,9 @@ public:
 	void avoidAction(const GSvector3& _velocity);
 	void attackmotion(Attack& _attack);
 	void look_at(CameraController* _camera, GSvector3* _target);
+	void look_at(CameraController* _camera);
 	void homing();
-	void createAttackCollision();
+	void createAttackCollision(const ShapeData& _data);
 	void damage(const AttackStatus & _attackStatus) override;
 	void finish() override;
 	
@@ -52,7 +53,7 @@ private:
 	void movement(float deltaTime, float _speed);
 	const float stepDistance() const ;
 	void lookTarget();
-	void aerialTracking(float _velocity);
+	const bool aerialTracking() const;
 private:
 	ComboAttack m_combo;
 	Status m_status;

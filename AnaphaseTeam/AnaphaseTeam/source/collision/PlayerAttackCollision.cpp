@@ -1,17 +1,20 @@
 #include "..\..\header\collision\PlayerAttackCollision.h"
 #include "../../header/shape/Sphere.h"
 #include "../../header/collision/HitInformation.h"
-Player::PlayerAttackCollision::PlayerAttackCollision(Player* _player)
-	:CollisionActor(new Sphere(_player->m_transform.m_translate,0.7f),Collision_Tag::PLAYER_WEAPON),
+#include  "../../header/attack/ShapeData.h"
+Player::PlayerAttackCollision::PlayerAttackCollision(Player* _player, const ShapeData& _data)
+	:CollisionActor(_data.shape,Collision_Tag::PLAYER_WEAPON),
 	m_player(_player),
-	m_destroy(_player->m_animatorOne.getNextAnimationEndTime()/60.0f)
+	m_destroy(_data.destroyTime),
+	m_offset(_data.offset)
 {
 }
 
 void Player::PlayerAttackCollision::doUpdate(float deltaTime)
 {
-	GSvector3 pos = m_player->m_transform.m_translate + m_player->m_transform.front() + GSvector3(0, 1, 0);
-	m_shape->transfer(pos);
+	Transform t = Transform({ 0,0,0 }, m_offset);
+	t=t.parent_synthesis(m_player->m_transform);
+	m_shape->transfer(t.m_translate);
 	m_destroy.update(deltaTime*m_player->m_status.attackSpeed());
 	if (m_destroy.isEnd() || m_player->getState() == ACTOR_STATE::STEP)
 	{
@@ -21,7 +24,7 @@ void Player::PlayerAttackCollision::doUpdate(float deltaTime)
 
 void Player::PlayerAttackCollision::doDraw(IRenderer *_renderer)
 {
-	//m_shape->draw(_renderer);
+	m_shape->draw(_renderer);
 }
 
 void Player::PlayerAttackCollision::collision_Enter(HitInformation & _hit)

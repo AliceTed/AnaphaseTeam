@@ -15,7 +15,7 @@
 #include "../SceneChange.h"
 #include "../../actor/Enemy/EnemyManager.h"
 #include "Pause.h" 
-typedef std::shared_ptr<Actor>Actor_Ptr;
+#include "../../spawn/SpawnManager.h"
 class GamePlay :public IScene
 {
 public:
@@ -38,5 +38,6 @@ private:
 	EnemyManager m_enemys;
 	LockOn m_lockon;
 	Pause m_pause;
+	SpawnManager m_spawnmanager;
 };
 #endif

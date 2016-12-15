@@ -1,6 +1,7 @@
 #pragma once
 #include "../../actor/Enemy/Enemy.h"
 #include "../ActorState.h"
+#include "../../convenient/Timer.h"
 class Enemy::EDashFrontState : public ActorState<Enemy>
 {
 public:

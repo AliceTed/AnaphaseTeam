@@ -6,6 +6,14 @@ CollisionActor::CollisionActor(Shape * _shape, Collision_Tag _tag)
 {
 }
 
+CollisionActor::CollisionActor(std::shared_ptr<Shape> _shape, Collision_Tag _tag)
+	:m_shape(_shape),
+	m_tag(_tag),
+	m_isDead(false),
+	m_previous()
+{
+}
+
 CollisionActor::~CollisionActor()
 {
 	m_previous.clear();

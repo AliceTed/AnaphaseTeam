@@ -3,10 +3,11 @@
 #include "../actor/Player/Player.h"
 #include "../convenient/Timer.h"
 
+struct ShapeData;
 class Player::PlayerAttackCollision:public CollisionActor
 {
 public:
-	Player::PlayerAttackCollision(Player* _player);
+	Player::PlayerAttackCollision(Player* _player,const ShapeData& _data);
 private:
 	void doUpdate(float deltaTime);
 	void doDraw(IRenderer * _renderer);
@@ -14,4 +15,5 @@ private:
 private:
 	Player* m_player;
 	Timer m_destroy;
+	GSvector3 m_offset;
 };

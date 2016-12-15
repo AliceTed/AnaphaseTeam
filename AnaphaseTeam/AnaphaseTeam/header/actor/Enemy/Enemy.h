@@ -7,6 +7,7 @@
 #include "../../actor/Player/Status.h"
 #include "../../attack/KnockBack.h"
 #include "../../state/enemy/EnemyAIController.h"
+class EnemyMediator;
 class IEnemyAI;
 class EnemyCollision;
 class Player;
@@ -14,7 +15,7 @@ class Player;
 class Enemy :public Actor
 {
 public:
-	Enemy(const Transform& _transform);
+	Enemy(const Transform& _transform,EnemyMediator& _mediator);
 	~Enemy();
 	void initialize() override;
 	void update(float deltatime)override;
@@ -44,12 +45,17 @@ public:
 	* @param (&_player)　プレイヤー
 	*/
 	void think(Player* _palyer);
-	void distanceThink(float _distance);
 	/**
 	* @fn
 	* @brief ロックオン時のHPUIの初期化登録
 	*/
 	void start_lockOn();
+	void end_lockOn();
+
+	float distaceToPlayer();
+	float distaceToOtherEnemy();
+	EAI currentDistance();
+	bool requestDistance(EAI _distance);
 	/**
 	* @fn ダメージを食らわないタイミング
 	* @brief
@@ -69,7 +75,7 @@ public:
 	*/
 	const bool isThink()const;
 private:
-	const bool isNear(float _distance)const;
+	const EAI isNear(float _distance)const;
 	const bool blowDead()const;
 	
 private:
@@ -91,11 +97,17 @@ private:
 	*/
 	void createAttackCollision();
 private:
-	static const float PLAYER_DISTANCE;
+	static const float Enemy::PLAYER_DISTANCE_NEAR;
+	static const float Enemy::PLAYER_DISTANCE_MID;
+	static const float Enemy::PLAYER_DISTANCE_FAR;
 	float m_alpha;
 	Status m_status;
+	EnemyMediator& m_mediator;
 	EnemyAIController m_AI;
 	KnockBack m_knockBack;
+
+	float m_gravity;
+
 private://state
 	class EAttackState;
 	class EDamageState;
@@ -107,6 +119,7 @@ private://state
 	class EMoveBackState;
 	class EDashFrontState;
 	class EThinkState;
+	class ESecoundAttackState;
 
 	friend EAttackState;
 	friend EDamageState;
@@ -118,6 +131,7 @@ private://state
 	friend EMoveBackState;
 	friend EDashFrontState;
 	friend EThinkState;
+	friend ESecoundAttackState;
 private://collision
 	class EnemyCollision;
 	class EnemyAttackCollision;

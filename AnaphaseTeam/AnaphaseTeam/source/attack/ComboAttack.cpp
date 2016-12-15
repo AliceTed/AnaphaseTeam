@@ -4,7 +4,7 @@
 ComboAttack::ComboAttack(Player* _player)
 	:m_player(_player),
 	m_container(),
-	m_current(AttackStatus(), ANIMATION_ID::STAND, ATTACK_TYPE::End, ATTACK_TYPE::End),
+	m_current(AttackParameter()),
 	m_isEnd(false)
 {
 }
@@ -14,7 +14,6 @@ void ComboAttack::initialize()
 	m_container.clear();
 	AttackReader reader;
 	reader(&m_container, "combo");
-
 }
 
 void ComboAttack::start(bool _isSlow)
@@ -22,24 +21,23 @@ void ComboAttack::start(bool _isSlow)
 	m_isEnd = false;
 	if (_isSlow)
 	{
-		m_current = m_container.at(ATTACK_TYPE::S);
+		m_current = m_container.at("SlowFirst");
 		m_current.initialize(m_player);
 		return;
 	}
-	m_current = m_container.at(ATTACK_TYPE::Q);
+	m_current = m_container.at("QucikFirst");
 	m_current.initialize(m_player);
 }
 
 void ComboAttack::update(float deltaTime)
 {
-	//lerpでアニメーションが変わらないときがある
-	//m_current.motion(m_player);
+	m_current.update(deltaTime, m_player);
 }
 
 const bool ComboAttack::next(bool _isSlow)
 {
-	ATTACK_TYPE next = m_current.next(_isSlow);
-	if (next == ATTACK_TYPE::End)
+	std::string next = m_current.next(_isSlow);
+	if (next =="END")
 	{
 		m_isEnd = true;
 		return false;

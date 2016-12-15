@@ -10,5 +10,6 @@ public:
 	void start() override;
 	void action(float deltaTime) override;
 	EAttackState * clone() const override;
-
+private:
+	bool m_secoundAttack;
 };

@@ -123,20 +123,23 @@ void Player::targetFind(EnemyManager * _enemys)
 
 const float Player::stepDistance() const
 {
-	return distanceActor(*m_lockon->getTarget()) - 1.0f;
+	std::weak_ptr<Enemy> target = m_lockon->getTarget();
+	if (target.expired())return 0;
+	return distanceActor(*target.lock().get()) - 1.0f;
 }
 
 void Player::lookTarget()
 {
-	m_transform.m_rotate = targetDirection(*m_lockon->getTarget());
+	std::weak_ptr<Enemy> target = m_lockon->getTarget();
+	if (target.expired())return;
+	m_transform.m_rotate = targetDirection(*target.lock().get());
 }
 
-void Player::aerialTracking(float _velocity)
+const bool Player::aerialTracking() const
 {
-	if (isTargetAerial(*m_lockon->getTarget()))
-	{
-		m_transform.translate_up(_velocity);
-	}
+	std::weak_ptr<Enemy> target = m_lockon->getTarget();
+	if (target.expired())return false;
+	return isTargetAerial(*target.lock().get());
 }
 
 void Player::damage(const AttackStatus & _attackStatus)
@@ -169,12 +172,14 @@ void Player::subActionStart()
 }
 void Player::homing()
 {
-	m_homing.start(this, m_lockon->getTarget(), m_transform, *m_Gauge, m_target, m_isLockOn);
+	std::weak_ptr<Enemy> target = m_lockon->getTarget();
+	if (target.expired())return;
+	m_homing.start(this, target.lock().get(), m_transform, *m_Gauge, m_target, m_isLockOn);
 }
 
-void Player::createAttackCollision()
+void Player::createAttackCollision(const ShapeData& _data)
 {
-	Collision_Ptr act = Collision_Ptr(new PlayerAttackCollision(this));
+	Collision_Ptr act = std::make_shared<PlayerAttackCollision>(this, _data);
 	m_collision.add(act);
 }
 
@@ -227,7 +232,8 @@ void Player::control()
 
 void Player::look_at(CameraController * _camera, GSvector3 * _target)
 {
-	if (m_timer.isEnd() || m_lockon->getTarget()->isDeadState())
+	std::weak_ptr<Enemy> target = m_lockon->getTarget();
+	if (m_timer.isEnd() || target.lock()->isDeadState())
 	{
 		m_isLockOn = false;
 	}
@@ -236,16 +242,20 @@ void Player::look_at(CameraController * _camera, GSvector3 * _target)
 	m_camera->lookAt_cameraTarget_player(position);
 	m_camera->lookAt_cameraTarget_enemy(*_target);
 
-	_camera->change_cameraWork(E_CameraWorkID::TEST);
-
-	/*if (m_isLockOn)
+	if (m_isLockOn)
 	{
 		_camera->change_cameraWork(E_CameraWorkID::LOCK_ON);
 	}
 	else
 	{
 		_camera->change_cameraWork(E_CameraWorkID::NORMAL);
-	}*/
+	}
+}
+void Player::look_at(CameraController * _camera)
+{
+	m_camera->lookAt_cameraTarget_player(m_transform.m_translate);
+	_camera->change_cameraWork(E_CameraWorkID::NORMAL);
+
 }
 void Player::createStates()
 {

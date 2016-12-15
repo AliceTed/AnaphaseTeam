@@ -3,7 +3,8 @@
 #include "../../header/shape/Ray.h"
 #include "../../header/math/Calculate.h"
 #include "../../header/state/IActorState.h"
-const float Actor::GRAVITY = -0.1f;
+
+const float Actor::GRAVITY = -0.05f;
 
 Actor::Actor(const Transform & _transform, MODEL_ID _modelID,Actor_Tag _tag)
 	:m_transform(_transform), 
@@ -14,7 +15,9 @@ Actor::Actor(const Transform & _transform, MODEL_ID _modelID,Actor_Tag _tag)
 	m_collision(this),
 	m_states(),
 	m_currentState(nullptr),
-	m_currentStateKey(ACTOR_STATE::STAND)
+	m_currentStateKey(ACTOR_STATE::STAND),
+
+	m_velocity(-0.05f)
 {
 }
 
@@ -45,7 +48,11 @@ void Actor::collisionGround(const Map& _map)
 	m_isGround = position.y <= intersect.y;
 	if (!m_isGround)
 	{
-		m_transform.translate_up(GRAVITY);
+		if (m_currentStateKey != ACTOR_STATE::ATTACK)
+		{
+			//m_transform.translate_up(GRAVITY);
+			m_transform.translate_up(m_velocity);
+		}
 		return;
 	}
 	//map‚É–„‚ßž‚Ü‚ê‚Ä‚¢‚½‚çyÀ•W‚ðŒð“_‚ÉˆÚ“®
@@ -84,6 +91,7 @@ void Actor::changeState(ACTOR_STATE _state)
 	m_currentState = m_states.at(m_currentStateKey);
 	m_currentState->start();
 }
+
 const bool Actor::isSameActor(const Actor * _other) const
 {
 	return this==_other;
