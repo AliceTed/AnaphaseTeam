@@ -26,7 +26,7 @@ class EnemyManager;
 class Player :public Actor
 {
 public:
-	Player(Camera * _camera, LockOn* _lockon);
+	Player(const Transform& _t,Camera * _camera, LockOn* _lockon);
 	~Player();
 	void jumping(float _velocity);
 	void avoidAction(const GSvector3& _velocity);

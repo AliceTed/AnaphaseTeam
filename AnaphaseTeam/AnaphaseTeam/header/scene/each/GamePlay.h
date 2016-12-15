@@ -2,20 +2,13 @@
 #define _GAMEPLAY_H_
 #include "../IScene.h"
 #include "../../camera/Camera.h"
-#include "../../actor/Actor.h"
-#include "../../entity/EntityManager.h"
-#include "../../map/Map.h"
-#include <memory>
-#include "../../actor/Player/Player.h"
-#include "../../actor/Boss/Boss.h"
-#include "../../actor/Enemy/Enemy.h"
-#include "../../camera/LockOn.h"
-
 #include "../../camera/CameraController.h"
+#include "../../map/Map.h"
 #include "../SceneChange.h"
-#include "../../actor/Enemy/EnemyManager.h"
 #include "Pause.h" 
-#include "../../spawn/SpawnManager.h"
+#include "../../actor/ActorManager.h"
+#include <memory>
+class Phase;
 class GamePlay :public IScene
 {
 public:
@@ -34,10 +27,8 @@ private:
 	Map m_Map;
 	Camera m_Camera;
 	CameraController m_cameracontroller;
-	Player m_player;
-	EnemyManager m_enemys;
-	LockOn m_lockon;
+	ActorManager m_actors;
 	Pause m_pause;
-	SpawnManager m_spawnmanager;
+	std::shared_ptr<Phase> m_phase;
 };
 #endif

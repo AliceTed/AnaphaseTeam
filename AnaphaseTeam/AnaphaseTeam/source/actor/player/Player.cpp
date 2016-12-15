@@ -38,9 +38,9 @@
 #include "../../../header/ui/HPGaugeUI.h"
 #include "../../../header/ui/UIManager.h"
 const float Player::ROTATESPEED = -2.0f;
-Player::Player(Camera * _camera, LockOn* _lockon)
+Player::Player(const Transform& _t,Camera * _camera, LockOn* _lockon)
 	:Actor(
-		Transform({ 0,0,-15 }, GSquaternion(0, 0, 0, 1)),
+		_t,
 		MODEL_ID::PLAYER,
 		Actor_Tag::PLAYER
 	),
