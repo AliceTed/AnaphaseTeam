@@ -870,6 +870,9 @@
     <ClInclude Include="header\actor\ActorManager.h">
       <Filter>ヘッダー ファイル\actor</Filter>
     </ClInclude>
+    <ClInclude Include="header\stage\PhaseManager.h">
+      <Filter>ヘッダー ファイル\stage</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="source\main.cpp">
@@ -1303,6 +1306,9 @@
     </ClCompile>
     <ClCompile Include="source\actor\ActorManager.cpp">
       <Filter>ソース ファイル\actor</Filter>
+    </ClCompile>
+    <ClCompile Include="source\stage\PhaseManager.cpp">
+      <Filter>ソース ファイル\stage</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

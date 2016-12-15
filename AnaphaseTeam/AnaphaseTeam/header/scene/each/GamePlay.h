@@ -7,8 +7,7 @@
 #include "../SceneChange.h"
 #include "Pause.h" 
 #include "../../actor/ActorManager.h"
-#include <memory>
-class Phase;
+#include "../../stage/PhaseManager.h"
 class GamePlay :public IScene
 {
 public:
@@ -29,6 +28,6 @@ private:
 	CameraController m_cameracontroller;
 	ActorManager m_actors;
 	Pause m_pause;
-	std::shared_ptr<Phase> m_phase;
+	PhaseManager m_pahsemanager;
 };
 #endif

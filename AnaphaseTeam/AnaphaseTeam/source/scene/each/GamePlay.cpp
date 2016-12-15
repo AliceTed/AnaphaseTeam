@@ -12,7 +12,8 @@ GamePlay::GamePlay()
 	m_cameracontroller(&m_Camera),
 	m_change(),
 	m_pause(m_change),//É|Å[ÉY
-	m_actors(Transform(), &m_Camera)
+	m_actors(Transform(), &m_Camera),
+	m_pahsemanager()
 {
 }
 GamePlay::~GamePlay()
@@ -30,7 +31,12 @@ void GamePlay::initialize()
 	PhaseData data;
 	data.m_octreeID = OCTREE_ID::ARENA;
 	data.spawn = "spawn";
-	m_phase = std::make_shared<Phase>(data);
+	m_pahsemanager.add(new Phase(data));
+	PhaseData data2;
+	data2.m_octreeID = OCTREE_ID::ARENA;
+	data2.spawn = "spawn2";
+	m_pahsemanager.add(new Phase(data2));
+	m_pahsemanager.changeFirst();
 
 	UIManager::getInstance();
 }
@@ -43,7 +49,7 @@ void GamePlay::update(float deltaTime)
 		return;
 	
 	m_actors.update(deltaTime);
-	m_phase->update(deltaTime,m_actors);
+	m_pahsemanager.update(deltaTime,m_actors);
 
 	m_change.update(deltaTime);
 	m_cameracontroller.update(deltaTime);
@@ -62,19 +68,21 @@ void GamePlay::draw(IRenderer * _renderer)
 	_renderer->render(desc);
 	m_actors.lockAt(&m_cameracontroller);
 	m_cameracontroller.draw();
+
 	_renderer->lookAt({ 0,0,0 }, { 0,0,0 }, { 0,0,0 });
 	m_Map.draw(_renderer);
 	m_actors.draw(_renderer);
+	m_pahsemanager.draw(_renderer);
 
-	m_change.draw(_renderer);
 	UIManager::getInstance().draw(_renderer);
 	m_pause.draw(_renderer);
 
-	m_phase->draw(_renderer);
+	m_change.draw(_renderer);
 }
 
 void GamePlay::finish()
 {
+	m_actors.finish();
 }
 
 const SceneMode GamePlay::next() const

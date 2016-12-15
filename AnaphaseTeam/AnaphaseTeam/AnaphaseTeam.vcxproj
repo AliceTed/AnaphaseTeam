@@ -221,6 +221,7 @@
     <ClCompile Include="source\specialskill\SpecialSkillManager.cpp" />
     <ClCompile Include="source\specialskill\SuperArmor.cpp" />
     <ClCompile Include="source\stage\Phase.cpp" />
+    <ClCompile Include="source\stage\PhaseManager.cpp" />
     <ClCompile Include="source\state\enemy\EAttackState.cpp" />
     <ClCompile Include="source\state\enemy\EDashFrontState.cpp" />
     <ClCompile Include="source\state\enemy\EDeadState.cpp" />
@@ -413,6 +414,7 @@
     <ClInclude Include="header\specialskill\SuperArmor.h" />
     <ClInclude Include="header\stage\Phase.h" />
     <ClInclude Include="header\stage\PhaseData.h" />
+    <ClInclude Include="header\stage\PhaseManager.h" />
     <ClInclude Include="header\state\ActorState.h" />
     <ClInclude Include="header\state\ACTOR_STATE.h" />
     <ClInclude Include="header\state\enemy\EAI.h" />
