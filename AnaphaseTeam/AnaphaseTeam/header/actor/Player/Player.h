@@ -39,6 +39,7 @@ public:
 	void finish() override;
 	
 	void targetFind(EnemyManager * _enemys);
+	void recovery();
 
 public://Actoråpè≥
 	void initialize() override;

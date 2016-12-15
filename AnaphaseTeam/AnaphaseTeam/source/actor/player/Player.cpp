@@ -75,7 +75,7 @@ void Player::initialize()
 	m_combo.initialize();
 
 	m_specialskill.clear();
-	m_specialskill.add(SPECIALSKILL_TYPE::RECOVERY, new Recovery());
+	m_specialskill.add(SPECIALSKILL_TYPE::RECOVERY, new Recovery(this));
 	m_specialskill.add(SPECIALSKILL_TYPE::SPECIALLATTACK, new SpecialAttack(this));
 	m_specialskill.add(SPECIALSKILL_TYPE::SUPERARMOR, new SuperArmor());
 	m_specialUI->initialize();
@@ -119,6 +119,11 @@ void Player::targetFind(EnemyManager * _enemys)
 {
 	if (m_isLockOn) return;
 	m_lockon->nearEnemyFind(_enemys);
+}
+
+void Player::recovery()
+{
+	m_status.add(30.0f);
 }
 
 const float Player::stepDistance() const
