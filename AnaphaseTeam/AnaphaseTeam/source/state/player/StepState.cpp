@@ -23,7 +23,12 @@ void Player::StepState::start()
 	{
 		return;
 	}
-	m_actor->aerialTracking(m_velocity);
+	if (m_actor->aerialTracking())
+	{
+		m_velocity += 2;
+		m_step.start(m_actor->m_transform.up(), m_velocity);
+		return;
+	}
 	m_step.start(m_actor->m_transform.front(), m_velocity);
 }
 void Player::StepState::action(float deltaTime)

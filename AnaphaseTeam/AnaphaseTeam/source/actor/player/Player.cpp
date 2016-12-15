@@ -135,14 +135,15 @@ void Player::lookTarget()
 	m_transform.m_rotate = targetDirection(*target.lock().get());
 }
 
-void Player::aerialTracking(float _velocity)
+const bool Player::aerialTracking() const
 {
 	std::weak_ptr<Enemy> target = m_lockon->getTarget();
 	if (target.expired())return;
 	if(isTargetAerial(*target.lock().get()))
 	{
-		m_transform.translate_diagonal(_velocity);
+		return true;
 	}
+	return false;
 }
 
 void Player::damage(const AttackStatus & _attackStatus)

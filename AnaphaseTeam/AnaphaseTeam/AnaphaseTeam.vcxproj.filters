@@ -837,6 +837,21 @@
     <ClInclude Include="header\spawn\SpawnManager.h">
       <Filter>ヘッダー ファイル\spawn</Filter>
     </ClInclude>
+    <ClInclude Include="header\actor\Enemy\EnemyMediator.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="header\state\enemy\EAI.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="header\state\enemy\MiddleRangeAI.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="header\state\enemy\OverFarAI.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="header\state\enemy\ESecoundAttackState.h">
+      <Filter>ヘッダー ファイル\state\enemy</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="source\main.cpp">
@@ -1220,9 +1235,6 @@
     <ClCompile Include="source\camera\SLookAt.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="header\state\enemy\EnemyAIController.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
     <ClCompile Include="source\state\enemy\EDashFrontState.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
@@ -1241,6 +1253,18 @@
     <ClCompile Include="source\camera\CameraWork\CameraWorkEmpty.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
+    <ClCompile Include="source\actor\Enemy\EnemyMediator.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="source\state\enemy\EnemyAIController.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="source\state\enemy\MiddleRangeAI.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="source\state\enemy\OverFarAI.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
     <ClCompile Include="source\data\stream\SpawnConverter.cpp">
       <Filter>ソース ファイル\data\stream</Filter>
     </ClCompile>
@@ -1249,6 +1273,9 @@
     </ClCompile>
     <ClCompile Include="source\spawn\SpawnManager.cpp">
       <Filter>ソース ファイル\spawn</Filter>
+    </ClCompile>
+    <ClCompile Include="source\state\enemy\ESecoundAttackState.cpp">
+      <Filter>ソース ファイル\state\enemy</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

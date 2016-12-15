@@ -3,7 +3,6 @@
 Enemy::EDamageState::EDamageState(Enemy* _enemy)
 	:ActorState(_enemy)
 {
-
 }
 
 void Enemy::EDamageState::start()
@@ -13,6 +12,7 @@ void Enemy::EDamageState::start()
 void Enemy::EDamageState::action(float deltaTime)
 {
 	m_actor->m_knockBack.update(deltaTime);
+
 	if (m_actor->m_animatorOne.isEndCurrentAnimation())
 	{
 		m_actor->changeState(ACTOR_STATE::ESTAND);

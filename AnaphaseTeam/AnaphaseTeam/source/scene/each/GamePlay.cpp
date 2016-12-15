@@ -10,7 +10,6 @@ GamePlay::GamePlay()
 	:m_Map(OCTREE_ID::ARENA),
 	m_Camera(&m_Map),
 	m_cameracontroller(&m_Camera),
-	m_enemys(),
 	m_change(),
 	m_lockon(),
 	m_pause(m_change),//É|Å[ÉY
