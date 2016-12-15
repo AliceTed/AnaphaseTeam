@@ -73,11 +73,9 @@ void GamePlay::draw(IRenderer * _renderer)
 	m_Map.draw(_renderer);
 	m_actors.draw(_renderer);
 	m_pahsemanager.draw(_renderer);
-
 	UIManager::getInstance().draw(_renderer);
-	m_pause.draw(_renderer);
-
-	m_change.draw(_renderer);
+	m_change.draw(_renderer);	
+	m_pause.draw(_renderer);	
 }
 
 void GamePlay::finish()
