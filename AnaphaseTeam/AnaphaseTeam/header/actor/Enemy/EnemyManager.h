@@ -9,12 +9,10 @@ class Player;
 class Map;
 //ユニークポインタをシェアードポインタに変更
 using Enemy_Ptr = std::shared_ptr<Enemy>;
-
-typedef std::unique_ptr<Enemy> Enemy_Ptr;
 class EnemyManager :public EnemyMediator
 {
 public:
-	EnemyManager(Player* _player);
+	EnemyManager();
 	~EnemyManager() = default;
 	void initialize();
 	void add(Enemy* _enemy);
@@ -38,7 +36,5 @@ private:
 	void remove();
 private:
 	std::vector<Enemy_Ptr>m_enemys;
-	Player* m_player;
-
 	// EnemyMediator を介して継承されました
 };

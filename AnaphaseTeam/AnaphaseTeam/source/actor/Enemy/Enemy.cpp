@@ -28,13 +28,13 @@
 const float Enemy::PLAYER_DISTANCE_NEAR = 2.0f;
 const float Enemy::PLAYER_DISTANCE_MID = 3.0f;
 const float Enemy::PLAYER_DISTANCE_FAR = 7.5f;
-Enemy::Enemy(const Transform & _transform,EnemyMediator& _mediator)
+Enemy::Enemy(const Transform & _transform, EnemyMediator& _mediator)
 	:Actor(_transform, MODEL_ID::ENEMY,
 		Actor_Tag::ENEMY),
 	m_status(),
 	m_alpha(1),
 	m_knockBack(m_transform),
-	m_AI(),m_mediator(_mediator),
+	m_AI(), m_mediator(_mediator),
 
 	m_gravity(0.0f)
 {
@@ -95,18 +95,18 @@ void Enemy::damage(const AttackStatus & _attackStatus)
 	}
 	m_animatorOne.changeAnimationLerp(ENEMY_ANIMATION::DAMAGE1, 1.5f);
 	m_knockBack.start(_attackStatus.m_blowOff);
-	
+
 }
 const EAI Enemy::isNear(float _distance) const
 {
-	EAI ai=EAI::ATTACKRANGE;
+	EAI ai = EAI::ATTACKRANGE;
 	//‹ß‚·‚¬
 	if (_distance <= PLAYER_DISTANCE_NEAR)ai = EAI::OVERNEAR;
 	//UŒ‚”ÍˆÍ
-	if(_distance>PLAYER_DISTANCE_NEAR&&_distance<=PLAYER_DISTANCE_MID)
+	if (_distance > PLAYER_DISTANCE_NEAR&&_distance <= PLAYER_DISTANCE_MID)
 		ai = EAI::ATTACKRANGE;
 	//’†ŠÔ
-	if (_distance>PLAYER_DISTANCE_MID&&_distance<=PLAYER_DISTANCE_FAR)
+	if (_distance > PLAYER_DISTANCE_MID&&_distance <= PLAYER_DISTANCE_FAR)
 		ai = EAI::MIDDRANGE;
 	//‰“‚·‚¬
 	if (_distance > PLAYER_DISTANCE_FAR)
@@ -188,9 +188,9 @@ float Enemy::distaceToPlayer()
 	return m_mediator.requestDistancePlayer(this);
 }
 float Enemy::distaceToOtherEnemy()
-	{
+{
 	return m_mediator.requestDistanceOtherEnemy(this);
-	}
+}
 
 EAI Enemy::currentDistance()
 {
