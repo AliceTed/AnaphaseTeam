@@ -1,5 +1,5 @@
 #include "..\..\header\spawn\SpawnPoint.h"
-#include "../../header/actor/Enemy/Enemy.h"
+#include "../../header/actor/Enemy/IEnemy.h"
 #include "../../header/renderer/IRenderer.h"
 #include "../../header/math/Random.h"
 #include "../../header/actor/Enemy/EnemyManager.h"
@@ -44,7 +44,7 @@ void SpawnPoint::cloneEnemy(EnemyManager & _manager/*const EnemyFactory & _facto
 	GSvector3 area(rand(-radius, radius), 0, rand(-radius, radius));
 	area += m_data.area.position;
 	Transform transform({ 0,0,0 }, area);
-	std::shared_ptr<Enemy> enemy = std::make_shared<Enemy>(transform, _manager);
+	std::shared_ptr<IEnemy> enemy = std::make_shared<Goblin>(transform, _manager);
 	//weakƒ|ƒCƒ“ƒ^‚ğContainer‚É“o˜^
 	m_container.emplace_back(enemy);
 	_manager.add(enemy);

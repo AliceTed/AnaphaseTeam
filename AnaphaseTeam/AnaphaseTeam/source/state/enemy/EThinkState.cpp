@@ -1,21 +1,22 @@
 #include"../../../header/state/enemy/EThinkState.h"
 
-Enemy::EThinkState::EThinkState(Enemy* _enemy)
+Goblin::EThinkState::EThinkState(Goblin* _enemy)
 	:ActorState(_enemy)
 {
 
 }
 
-void Enemy::EThinkState::start()
+void Goblin::EThinkState::start()
 {
 }
 
-void Enemy::EThinkState::action(float deltaTime)
+void Goblin::EThinkState::action(float deltaTime)
 {
+	m_actor->directionToPlayer();
 	changeState(ACTOR_STATE::ESTAND);
 }
 
-Enemy::EThinkState* Enemy::EThinkState::clone() const
+Goblin::EThinkState* Goblin::EThinkState::clone() const
 {
 	return new EThinkState(*this);
 }

@@ -2,7 +2,7 @@
 #include "../../header/actor/Enemy/EnemyManager.h"
 #include "../../header/actor/Player/Player.h"
 #include "../../header/device/GameDevice.h"
-#include "../../header/actor/Enemy/Enemy.h"
+#include "../../header/actor/Enemy/IEnemy.h"
 #include "../../header/ui/UIManager.h"
 LockOn::LockOn()
 	:m_player(nullptr),
@@ -57,7 +57,7 @@ void LockOn::thinksEnemy(EnemyManager * _enemys)
 	_enemys->thinks(m_player);
 }
 
-std::weak_ptr<Enemy> LockOn::getTarget() const
-{
+std::weak_ptr<IEnemy> LockOn::getTarget() const
+	{
 	return m_target;
 }

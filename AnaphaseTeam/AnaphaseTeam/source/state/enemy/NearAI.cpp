@@ -1,6 +1,6 @@
 #include "..\..\..\header\state\enemy\NearAI.h"
 #include "../../../header/math/Random.h"
-NearAI::NearAI(Enemy* _enemy) :
+NearAI::NearAI(Goblin* _enemy) :
 	m_actor(_enemy)
 {
 
