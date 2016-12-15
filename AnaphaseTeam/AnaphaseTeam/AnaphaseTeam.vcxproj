@@ -143,7 +143,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="source\actor\Enemy\EnemyMediator.cpp" />
+    <ClCompile Include="source\actor\Enemy\IEnemy.cpp" />
     <ClCompile Include="source\camera\CameraWork\CameraWorkTest.cpp" />
     <ClCompile Include="source\camera\SLookAt.cpp" />
     <ClCompile Include="source\attack\Homing.cpp" />
@@ -154,7 +154,7 @@
     <ClCompile Include="source\collision\PlayerCollision.cpp" />
     <ClCompile Include="source\actor\Actor.cpp" />
     <ClCompile Include="source\actor\Boss\Boss.cpp" />
-    <ClCompile Include="source\actor\Enemy\Enemy.cpp" />
+    <ClCompile Include="source\actor\Enemy\Goblin.cpp" />
     <ClCompile Include="source\actor\Enemy\EnemyManager.cpp" />
     <ClCompile Include="source\actor\player\Gauge.cpp" />
     <ClCompile Include="source\actor\player\Status.cpp" />
@@ -288,6 +288,7 @@
     <ClCompile Include="source\ui\UIManager.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="header\actor\Enemy\IEnemy.h" />
     <ClInclude Include="header\attack\AttackParameter.h" />
     <ClInclude Include="header\attack\ShapeData.h" />
     <ClInclude Include="header\attack\SHAPE_TYPE.h" />
@@ -299,7 +300,7 @@
     <ClInclude Include="header\actor\Actor.h" />
     <ClInclude Include="header\actor\Actor_Tag.h" />
     <ClInclude Include="header\actor\Boss\Boss.h" />
-    <ClInclude Include="header\actor\Enemy\Enemy.h" />
+    <ClInclude Include="header\actor\Enemy\Goblin.h" />
     <ClInclude Include="header\actor\Enemy\EnemyManager.h" />
     <ClInclude Include="header\actor\Player\Gauge.h" />
     <ClInclude Include="header\actor\Player\Status.h" />

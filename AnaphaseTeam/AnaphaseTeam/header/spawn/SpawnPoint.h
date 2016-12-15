@@ -9,12 +9,12 @@
 #include <vector>
 #include "SpawnData.h"
 class IRenderer;
-class Enemy;
+class IEnemy;
 class EnemyFactory;
 class EnemyManager;
 class SpawnPoint
 {
-	using EnemyWeak_Ptr = std::weak_ptr<Enemy>;
+	using EnemyWeak_Ptr = std::weak_ptr<IEnemy>;
 	using Container = std::vector<EnemyWeak_Ptr>;
 public:
 	SpawnPoint(const SpawnData& _data);

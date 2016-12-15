@@ -2,7 +2,7 @@
 #include "../../../header/actor/Player/Player.h"
 #include <algorithm>
 #include "../../../header/camera/LockOn.h"
-#include "../../../header/actor/Enemy/Enemy.h"
+#include "../../../header/actor/Enemy/IEnemy.h"
 #include "../../../header/map/Map.h"
 EnemyManager::EnemyManager(Player* _player)
 	:m_enemys(),
@@ -15,7 +15,7 @@ void EnemyManager::initialize()
 	m_enemys.clear();
 }
 
-void EnemyManager::add(Enemy * _enemy)
+void EnemyManager::add(IEnemy * _enemy)
 {
 	m_enemys.emplace_back(Enemy_Ptr(_enemy));
 	m_enemys.back()->initialize();
@@ -48,12 +48,12 @@ void EnemyManager::draw(IRenderer * _renderer)
 	for (auto& i : m_enemys) { i->draw(_renderer); }
 }
 
-std::weak_ptr<Enemy> EnemyManager::nearEnemy(Player * _player)
+std::weak_ptr<IEnemy> EnemyManager::nearEnemy(Player * _player)
 {
 	std::sort(m_enemys.begin(), m_enemys.end(), [_player](Enemy_Ptr& _x, Enemy_Ptr& _y){return _x->distanceActor(*_player) < _y->distanceActor(*_player);});
 	if (m_enemys.empty())
 	{
-		return std::weak_ptr<Enemy>();
+		return std::weak_ptr<IEnemy>();
 	}
 	return *m_enemys.begin();
 }
@@ -74,12 +74,15 @@ void EnemyManager::remove()
 	m_enemys.erase(itr, m_enemys.end());
 }
 
-float EnemyManager::requestDistancePlayer(Enemy * _enemy)
+float EnemyManager::requestDistancePlayer(IEnemy * _enemy)
 {
 	return _enemy->distanceActor(*m_player);
 }
-
-bool EnemyManager::requestDistanceOtherEnemy(Enemy * _enemy)
+GSquaternion EnemyManager::requestDirectionPlayer(IEnemy * _enemy)
+{
+	return _enemy->targetDirection(*m_player);
+}
+bool EnemyManager::requestDistanceOtherEnemy(IEnemy * _enemy)
 {
 	return false;
 }

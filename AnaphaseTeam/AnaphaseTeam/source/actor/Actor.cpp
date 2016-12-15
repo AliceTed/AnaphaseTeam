@@ -16,7 +16,7 @@ Actor::Actor(const Transform & _transform, MODEL_ID _modelID,Actor_Tag _tag)
 	m_states(),
 	m_currentState(nullptr),
 	m_currentStateKey(ACTOR_STATE::STAND),
-
+	m_previousIntersect(m_transform.m_translate),
 	m_velocity(-0.05f)
 {
 }
@@ -41,10 +41,13 @@ void Actor::collisionGround(const Map& _map)
 	//Œ»İ‚ÌˆÊ’u‚©‚ç‰º•ûŒü‚ÌRay‚ğì‚é
 	GSvector3 position = m_transform.m_translate;
 	Ray ray(position);
-	if (!ray.isCollitionMap(_map, &intersect))
+	if (m_isBlock=!ray.isCollitionMap(_map, &intersect))
 	{
+		m_transform.m_translate.x = m_previousIntersect.x;
+		m_transform.m_translate.z = m_previousIntersect.z;
 		return;
 	}
+	m_previousIntersect = intersect;
 	m_isGround = position.y <= intersect.y;
 	if (!m_isGround)
 	{

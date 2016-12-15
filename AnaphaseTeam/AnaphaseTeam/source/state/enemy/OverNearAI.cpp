@@ -1,5 +1,5 @@
 #include "../../../header/state/enemy/OverNearAI.h"
-OverNearAI::OverNearAI(Enemy* _enemy)
+OverNearAI::OverNearAI(Goblin* _enemy)
 :m_actor(_enemy)
 {
 
