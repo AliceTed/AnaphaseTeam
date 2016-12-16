@@ -7,6 +7,7 @@
 */
 #include "IActorState.h"
 #include "ACTOR_STATE.h"
+#include "../device/GameDevice.h"
 class Actor;
 template<typename T>
 class ActorState:public IActorState

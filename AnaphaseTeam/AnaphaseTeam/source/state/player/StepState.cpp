@@ -12,6 +12,7 @@ Player::StepState::StepState(Player* _player)
 void Player::StepState::start()
 {
 	m_actor->m_animatorOne.changeAnimation(static_cast<GSuint>(ANIMATION_ID::STAND), true);
+	GameDevice::getInstacnce().sound().playSE(SE_ID::PLAYER_STEP);
 	m_velocity = 4.5f;
 	tracking();
 	if (m_velocity <= 1.0f)
@@ -36,6 +37,7 @@ void Player::StepState::action(float deltaTime)
 	m_step.update(deltaTime);
 	if (m_step.isEnd())
 	{
+		GameDevice::getInstacnce().sound().stopSE(SE_ID::PLAYER_STEP);
 		changeState(ACTOR_STATE::STAND);
 	}
 }

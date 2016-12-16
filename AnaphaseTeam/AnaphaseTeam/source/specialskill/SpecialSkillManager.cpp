@@ -3,6 +3,7 @@
 #include "../../header/actor/Player/Gauge.h"
 #include "../../header/renderer/IRenderer.h"
 #include "../../header/ui/SpecialSkillUI.h"
+#include "../../header/device/GameDevice.h"
 SpecialSkillManager::SpecialSkillManager(Gauge* _gauge)
 	:m_container(),m_current(),m_gauge(_gauge)
 {
@@ -15,6 +16,7 @@ void SpecialSkillManager::start(SPECIALSKILL_TYPE _type)
 {
 	Special_Ptr next=m_container.at(_type);
 	if (!m_gauge->down(next->consumption()))return;
+	GameDevice::getInstacnce().sound().playSE(SE_ID::ENTER);
 	m_current.insert(std::make_pair(_type, next));
 	next->start();
 }
