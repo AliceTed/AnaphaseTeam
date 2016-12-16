@@ -23,16 +23,17 @@ void Gauge::initialize()
 void Gauge::draw(IRenderer * _renderer)
 {
 	SpriteRectRenderDesc back;
-	back.textureID = static_cast<GSuint>(TEXTURE_ID::BLACK);
-	back.matrix.translate(0, 120, 0);
-	back.srcRect = GSrect(0,0, (int)RankGauge::MAX, 30);
+	back.textureID = static_cast<GSuint>(TEXTURE_ID::SPGAUGE);
+	back.matrix.translate(102, 100, 0);
+	back.srcRect = GSrect(0,0, (int)RankGauge::MAX * 0.341f, 125);
+	back.color = GScolor(0.0f, 0.0f, 1.0f, 1.0f);
 	_renderer->render(back);
 	
 	SpriteRectRenderDesc front;
-	front.textureID = static_cast<GSuint>(TEXTURE_ID::WHITE);
-	front.matrix.translate(0, 120, 0);
-	front.srcRect = GSrect(0,0, m_gauge, 30);
-	front.color = GScolor(1.0f, 1.0f, 0.0f, 1.0f);
+	front.textureID = static_cast<GSuint>(TEXTURE_ID::SPGAUGE);
+	front.matrix.translate(102, 100, 0);
+	front.srcRect = GSrect(0,0, m_gauge * 0.341f, 125);
+	//front.color = GScolor(1.0f, 1.0f, 0.0f, 1.0f);
 	_renderer->render(front);
 }
 

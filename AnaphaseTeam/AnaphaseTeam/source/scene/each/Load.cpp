@@ -83,6 +83,8 @@ void Load::loadTextrue()
 	tex(TEXTURE_ID::ROGO, "rogo");
 	tex(TEXTURE_ID::PLAYER_HP, "GameUI_HPGauge1");
 	tex(TEXTURE_ID::PLAYER_HP_GAUGE, "GameUI_HPGauge2");
+	tex(TEXTURE_ID::SPGAUGE, "GameUI_SPGauge2");
+
 
 	tex(TEXTURE_ID::SPECIAL_MAIN, "special_main");
 	tex(TEXTURE_ID::SPECIAL_ATTACK, "special_attack");
