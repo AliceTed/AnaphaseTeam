@@ -5,7 +5,9 @@
 #include "../../header/data/id/OCTREE_ID.h"
 #include "../../header/map/Map.h"
 #include "../../header/camera/SLookAt.h"
+#include "../../header/renderer/IRenderer.h"
 #include <random>
+#include <vector>
 
 const GSvector3 Camera::RAY_DONW = GSvector3(0, -1, 0);		//レイは下に飛ばしたいのでｙ成分に-1する
 
@@ -44,13 +46,15 @@ void Camera::reset_offset(void)
 	m_lookAt->target_offset = { 0.0f, 0.0f, 0.0f };
 }
 
-void Camera::update(void)
+void Camera::run(IRenderer* _renderer)
 {
 	//視野角・遠近情報を更新
 	update_perspective();
+	//_renderer->perspective(m_perspective.x, m_perspective.y, m_perspective.z, m_perspective.w);
 
 	//カメラ位置情報を更新
 	update_lookAt();
+	//_renderer->lookAt(m_lookAt->position, m_lookAt->target, m_lookAt->up);
 
 	return;
 }
@@ -164,14 +168,17 @@ void Camera::shake(GSvector2 _scale)
 	GSvector3 position;
 	std::random_device rnd;
 	std::mt19937 mt(rnd());
-	std::uniform_int_distribution<> randX(0, _scale.x);
-	std::uniform_int_distribution<> randY(0, _scale.y);
-	float x = cos(randX(mt));
-	float y = sin(randY(mt));
+	int max_num = 30;
+	std::vector<GSvector3> points(max_num);
 
-	position.x = cos(randX(mt));
-	position.y = sin(randY(mt));
-	position.z = 0;
+	for (int i = 0; i < max_num; i++)
+	{
+		std::uniform_int_distribution<> randX(-_scale.x, _scale.x);
+		std::uniform_int_distribution<> randY(-_scale.y, _scale.y);
+
+		points[i] = GSvector3(randX(mt), randY(mt), 0.0f);
+	}
+
 
 	tracking_position_offset(position, 0.1f);
 	tracking_target_offset(position, 0.1f);

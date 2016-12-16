@@ -61,8 +61,5 @@ void CameraWorkManager::run(float _deltaTime)
 	//現在のカメラワークの実行
 	m_cameraData->get(m_current_cameraWork)->run(_deltaTime);
 
-	//カメラの更新
-	m_camera->update();
-
 	return;
 }

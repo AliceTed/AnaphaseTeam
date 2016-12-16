@@ -3,11 +3,10 @@
 @brief カメラを操作する
 @author Yuuho Aritomi*/
 #include "../../header/camera\CameraController.h"
+#include <string>
 #include "../../header/camera/Camera.h"
 #include "../../header/math/AMath.h"
 #include "../../header/math/Calculate.h"
-#include <string>
-
 #include "../../header/camera/CameraWork/CameraWorkManager.h"
 
 /*
@@ -35,8 +34,9 @@ void CameraController::update(float _deltaTime)
 }
 
 
-void CameraController::draw(void)
+void CameraController::draw(IRenderer* _renderer)
 {
+	m_camera->run(_renderer);
 	//カメラワーク・マネージャー実行
 	m_cameraWorkManager->run(m_deltaTime);
 }

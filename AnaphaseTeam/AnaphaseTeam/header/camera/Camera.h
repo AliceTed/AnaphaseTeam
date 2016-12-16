@@ -14,6 +14,7 @@
 class SLookAt;		//カメラの位置情報（先頭のＳはきにすんな）
 class CameraTarget;	//カメラのターゲット
 class Map;			//マップ（std::mapじゃないよ）
+class IRenderer;
 
 class Camera
 {
@@ -40,7 +41,7 @@ public:
 	/**
 	@brief 更新処理
 	*/
-	void update(void);
+	void run(IRenderer* _renderer);
 
 	/**
 	@brief	ティルト・パンカメラワーク
