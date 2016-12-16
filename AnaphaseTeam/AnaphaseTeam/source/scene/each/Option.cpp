@@ -1,11 +1,15 @@
 #include "../../../header/scene/each/Option.h"
-#include "../../../header/device/GameDevice.h"
 #include "../../../header/renderer/IRenderer.h"
-#include <algorithm>
+#include "../../../header/device/GameDevice.h"
+#include "../../../header/renderer/define/SpriteRenderDesc.h"
+#include "../../../header/data/id/TEXTURE_ID.h"
+
+
 Option::Option()
-	:
-	m_change(),
-	m_image()
+	:m_change(),
+	m_option(),
+	m_optionChange(false),
+	m_padChange(false)
 {
 }
 
@@ -17,40 +21,27 @@ void Option::initialize()
 {
 	m_change.initialize();
 	m_change.begin();
-	m_image.clear();
-	SlideImage image(TEXTURE_ID::PAD_A, GSvector2(-300, 100), GSvector2(100, 100));
-	m_image.emplace_back(image);
-	SlideImage image2(TEXTURE_ID::PAD_B, GSvector2(100, 100), GSvector2(500, 100));
-	m_image.emplace_back(image2);
+	m_option.initialize();
+	m_optionChange = false;
+	m_padChange = true;
 }
 
 void Option::update(float deltaTime)
 {
+	m_option.update(deltaTime);
 	if (m_change.update(deltaTime))return;
-	
-	if (GameDevice::getInstacnce().input()->right())
-	{
-		std::for_each(m_image.begin(), m_image.end(), [](SlideImage& _image) {_image.slide();});
-	}
-	if (GameDevice::getInstacnce().input()->left())
-	{
-		std::for_each(m_image.begin(), m_image.end(), [](SlideImage& _image) {_image.slide(1,MODE::REVERSE);});
-	}
-	std::for_each(m_image.begin(), m_image.end(), [deltaTime](SlideImage& _image) {_image.update(deltaTime);});
-	if (GameDevice::getInstacnce().input()->jump())
-	{
-		m_change.end(SceneMode::TITLE);
-	}
+	m_option.operation(*this);
 }
 
-void Option::draw(IRenderer * renderer)
+void Option::draw(IRenderer * _renderer)
 {
-	//renderer.getDraw2D().textrue(TEXTURE_ID::OPTION_BACKGROUND, &GSvector2(0, 0));
-	//std::for_each(m_image.begin(), m_image.end(), [&renderer](SlideImage& _image) {_image.draw(renderer);});
+	m_option.draw(_renderer);
+	m_change.draw(_renderer);
 }
 
 void Option::finish()
 {
+	m_option.finish();
 }
 
 const SceneMode Option::next() const
@@ -67,3 +58,41 @@ const bool Option::isExit() const
 {
 	return false;
 }
+
+void Option::optionDecision(OPTION _option)
+{
+	switch (_option)
+	{
+	case OPTION::CONFIG:
+		break;
+	case OPTION::SOUND:
+		break;
+	case OPTION::TITLE:
+		m_change.end(SceneMode::TITLE);
+		break;
+	}
+}
+
+void Option::padDecision(PAD _pad)
+{
+	switch (_pad)
+	{
+	case PAD::PAD_A:
+		GameDevice::getInstacnce().inputChange(static_cast<IPUTTERN>(_pad));
+		break;
+	case PAD::PAD_B:
+		GameDevice::getInstacnce().inputChange(static_cast<IPUTTERN>(_pad));
+		break;
+	}
+}
+
+bool Option::isChnage()
+{
+	return m_optionChange;
+}
+
+
+
+
+
+

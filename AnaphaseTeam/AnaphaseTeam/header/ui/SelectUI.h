@@ -32,6 +32,7 @@ private:
 	Select m_current;
 	std::unordered_map<Select, ScaleImage> m_images;
 	float m_timer;
+	GSvector2 m_end;
 
 	const static GSvector2 DEFAULTSCALE;
 	const static GSvector2 SELECTSCALE;

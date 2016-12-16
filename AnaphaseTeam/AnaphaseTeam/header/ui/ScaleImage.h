@@ -7,7 +7,7 @@ class IRenderer;
 class ScaleImage
 {
 public:
-	ScaleImage(TEXTURE_ID _id, const GSvector2& _position,bool _isPexis=true);
+	ScaleImage(TEXTURE_ID _id, const GSvector2 & _position, bool _isPexis, float _stopPos, float _alpha);
 	~ScaleImage();
 	void start(const GSvector2& _start, const GSvector2& _end, float _time);
 	void moveStart(const GSvector2& _end, float _time);
@@ -16,6 +16,7 @@ public:
 	void scroll();
 	void alpha(float _timer);
 	bool isEndscroll();
+	float isPos();
 private:
 	const GSvector2 getTextureSize()const;
 	const GSvector2 getSizeMarge(const GSvector2& _scale)const;
@@ -28,4 +29,5 @@ private:
 	float m_alpha;
 	float m_value;
 	float m_speed;
+	float m_stopPos;
 };

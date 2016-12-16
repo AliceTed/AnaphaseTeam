@@ -726,9 +726,6 @@
     <ClInclude Include="header\data\release\DataAllRelease.h">
       <Filter>ヘッダー ファイル\data\release</Filter>
     </ClInclude>
-    <ClInclude Include="header\camera\CameraWork\_CameraWork.h">
-      <Filter>ヘッダー ファイル\camera\CameraWork</Filter>
-    </ClInclude>
     <ClInclude Include="header\camera\CameraWork\CameraWorkData.h">
       <Filter>ヘッダー ファイル\camera\CameraWork</Filter>
     </ClInclude>
@@ -802,6 +799,24 @@
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="header\state\enemy\OverNearAI.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="header\camera\CameraWork\CameraWorkEmpty.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="header\ui\OptionUI.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="header\ui\OptionSelectUI.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="header\ui\PadSelectUI.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="header\ui\SoundSelectUI.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="header\ui\VolumeSelectUI.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
   </ItemGroup>
@@ -1169,9 +1184,6 @@
     <ClCompile Include="source\camera\CameraWork\CWParameterReader.cpp">
       <Filter>ソース ファイル\camera\CameraWork</Filter>
     </ClCompile>
-    <ClCompile Include="source\camera\CameraWork\_CameraWork.cpp">
-      <Filter>ソース ファイル\camera\CameraWork</Filter>
-    </ClCompile>
     <ClCompile Include="source\scene\each\Pause.cpp">
       <Filter>ソース ファイル\scene\each</Filter>
     </ClCompile>
@@ -1207,6 +1219,24 @@
     </ClCompile>
     <ClCompile Include="source\state\enemy\NearAI.cpp">
       <Filter>ソース ファイル\state\enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="source\camera\CameraWork\CameraWorkEmpty.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="source\ui\OptionUI.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="source\ui\OptionSelectUI.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="source\ui\PadSelectUI.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="source\ui\VolumeSelectUI.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="source\ui\SoundSelectUI.cpp">
+      <Filter>ソース ファイル</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

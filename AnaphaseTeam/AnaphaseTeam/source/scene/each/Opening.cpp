@@ -24,7 +24,7 @@ void Opening::update(float deltaTime)
 {
 	if (m_change.update(deltaTime))return;
 	m_lerp.update(deltaTime);
-	if (m_lerp.isEnd()||GameDevice::getInstacnce().input()->jump())
+	if (m_lerp.isEnd()||GameDevice::getInstacnce().input()->decision())
 	{
 		m_change.end(SceneMode::TITLE);
 	}

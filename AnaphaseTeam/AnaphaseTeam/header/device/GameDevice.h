@@ -1,8 +1,14 @@
 #pragma once
 #include "../device/Input.h" 
-#include "../device/InputPattern_A.h"
+#include "../device/IInputPattern.h"
 #include "../sound/Sound.h"
 #include <memory>
+enum class IPUTTERN
+{
+	INPUT_A,
+	INPUT_B
+};
+
 typedef std::shared_ptr<IInputPattern> Input_Ptr;
 class GameDevice
 {
@@ -11,11 +17,9 @@ public:
 
 	Input_Ptr& input();
 	Sound & sound();
-
+	void inputChange(IPUTTERN _pattern);
 private:
-	GameDevice() :
-		m_pattern(std::make_shared<InputPattern_A>(&m_input))
-	{}
+	GameDevice();
 	GameDevice(const GameDevice& other);
 	GameDevice& operator = (const GameDevice& other);
 

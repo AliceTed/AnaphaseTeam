@@ -5,7 +5,8 @@ SlideImage::SlideImage(TEXTURE_ID _id, const GSvector2 & _begin, const GSvector2
 	:m_begin(_begin),
 	m_end(_end),
 	m_id(_id),
-	m_lerp(_begin)
+	m_lerp(_begin),
+	m_scale(1.0f,1.0f)
 {
 }
 
@@ -33,5 +34,16 @@ void SlideImage::draw(IRenderer * _renderer)
 	SpriteRenderDesc desc;
 	desc.textureID = static_cast<GSuint>(m_id);
 	desc.matrix.setTranslation(m_lerp.current());
+	desc.matrix.scale(m_scale);
 	_renderer->render(desc);
+}
+
+void SlideImage::scaleChange()
+{
+	m_scale = GSvector2(1.1, 1.1);
+}
+
+void SlideImage::reset()
+{
+	m_scale = GSvector2(1.0, 1.0);
 }
