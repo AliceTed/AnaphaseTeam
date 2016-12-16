@@ -48,9 +48,9 @@ void Load::finish()
 
 const SceneMode Load::next() const
 {
-//#ifdef _DEBUG
-	//return SceneMode::GAMEPLAY;
-//#endif // DEBUG
+#ifdef _DEBUG
+	return SceneMode::GAMEPLAY;
+#endif // DEBUG
 
 	return SceneMode::OPENING;
 }
@@ -81,6 +81,8 @@ void Load::loadTextrue()
 	tex(TEXTURE_ID::PAD_A, "pad");
 	tex(TEXTURE_ID::PAD_B, "pad");
 	tex(TEXTURE_ID::ROGO, "rogo");
+	tex(TEXTURE_ID::PLAYER_HP, "GameUI_HPGauge1");
+	tex(TEXTURE_ID::PLAYER_HP_GAUGE, "GameUI_HPGauge2");
 
 	tex(TEXTURE_ID::SPECIAL_MAIN, "special_main");
 	tex(TEXTURE_ID::SPECIAL_ATTACK, "special_attack");

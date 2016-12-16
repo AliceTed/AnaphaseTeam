@@ -55,6 +55,7 @@ private:
 	const float stepDistance() const ;
 	void lookTarget();
 	const bool aerialTracking() const;
+	void specialSkill();
 private:
 	ComboAttack m_combo;
 	Status m_status;
