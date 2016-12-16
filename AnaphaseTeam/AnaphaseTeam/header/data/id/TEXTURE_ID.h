@@ -32,6 +32,8 @@ enum class TEXTURE_ID :unsigned int
 	PLAYER_HP,
 	PLAYER_HP_GAUGE,
 
+	TITLE_MASK,
+
 	SIZE
 	
 };

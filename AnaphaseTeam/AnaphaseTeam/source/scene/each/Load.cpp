@@ -92,6 +92,7 @@ void Load::loadTextrue()
 	tex(TEXTURE_ID::PAUSE_GAMEBACK, "gameBack");
 	tex(TEXTURE_ID::PAUSE_TITLEBACK, "titleBack");
 	tex(TEXTURE_ID::STAFFROLL, "TitleUI_STAFF");
+	tex(TEXTURE_ID::TITLE_MASK, "TitleRogo_Mask");
 }
 void Load::loadSound()
 {
@@ -111,9 +112,10 @@ void Load::loadModel()
 	ShaderLoader shader;
 	shader(SHADER_ID::SKINNEDMESH, "skinned_mesh_bump");
 	shader(SHADER_ID::OCTREE, "octree");
+//	shader(SHADER_ID::TEX_SONAR, "texture_soanr");
 	ModelLoader model;
 	MeshLoader mesh;
-	model(MODEL_ID::PLAYER, "player/woman003");
+	model(MODEL_ID::PLAYER, "player/woman006");
 	model(MODEL_ID::ENEMY, "enemy/ene1");
 
 	mesh(MESH_ID::SKY, "sky/skydome");

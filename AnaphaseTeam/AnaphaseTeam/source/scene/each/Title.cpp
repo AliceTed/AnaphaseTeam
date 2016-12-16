@@ -36,6 +36,7 @@ void Title::update(float _deltaTime)
 
 void Title::draw(IRenderer * _renderer)
 {
+	//gsbr
 	SpriteRenderDesc tatle;
 	tatle.textureID = static_cast<GSuint>(TEXTURE_ID::TITLE_ROGO);
 	_renderer->render(tatle);

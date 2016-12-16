@@ -1,6 +1,5 @@
 #include "../../../header/scene/each/GamePlay.h"
 #include "../../../header/renderer/IRenderer.h"
-
 #include "../../../header/device/GameDevice.h"
 #include "../../../header/stage/Stage.h"
 GamePlay::GamePlay()
@@ -23,7 +22,7 @@ void GamePlay::initialize()
 	//É|Å[ÉY
 	m_pause.initialize();
 	m_stage = std::make_unique<Stage>(Transform({ 0,0,0 }, { 115.0f,1.2f,-7 }));
-	m_stage->initialize();	
+	m_stage->initialize();
 }
 
 void GamePlay::update(float deltaTime)
