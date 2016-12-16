@@ -92,7 +92,6 @@ void Goblin::damage(const AttackStatus & _attackStatus)
 {
 	if (isNotDamageState())return;
 	changeState(ACTOR_STATE::EDAMAGE);
-	//m_animatorOne.changeAnimation(static_cast<GSuint>(ENEMY_ANIMATION::DAMAGE), true, false, false, 10.0f, 1.5f);
 	m_status.down(_attackStatus.m_power);
 	if (!m_isGround)
 	{
