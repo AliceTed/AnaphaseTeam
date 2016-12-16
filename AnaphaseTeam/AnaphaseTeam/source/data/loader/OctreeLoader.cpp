@@ -19,4 +19,3 @@ const bool OctreeLoader::load(unsigned int _id, const std::string & _fullname, b
 	}
 	return gsLoadOctree(_id, _fullname.c_str()) == GS_TRUE;
 }
- 

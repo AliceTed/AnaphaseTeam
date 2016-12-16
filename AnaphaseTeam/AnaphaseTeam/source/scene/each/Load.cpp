@@ -7,6 +7,8 @@
 #include "../../../header/data/loader/TextureLoader.h"
 #include "../../../header/data/loader/SoundLoader.h"
 #include "../../../header/data/loader/MyAnimationLoader.h"
+#include "../../../header/data/loader/EffectLoader.h"
+#include "../../../header/effect/EffectManager.h"
 
 #include "../../../header/data/id/TEXTURE_ID.h"
 #include "../../../header/data/id/ANIMATION_ID.h"
@@ -17,6 +19,7 @@
 #include "../../../header/data/id/BGM_ID.h"
 #include "../../../header/data/id/SE_ID.h"
 #include "../../../header/data/id/MYANIMATION_ID.h"
+#include "../../../header/data/id/EFFECT_ID.h"
 Load::Load()
 	:m_IsEnd(false)
 {
@@ -36,6 +39,7 @@ void Load::update(float deltaTime)
 	loadSound();
 	loadModel();
 	loadMyAnimation();
+	loadEffect();
 	m_IsEnd = true;
 }
 void Load::draw(IRenderer * renderer)
@@ -122,4 +126,9 @@ void Load::loadMyAnimation()
 	loader(MYANIMATION_ID::SPECIAL_ATTACK_BACK, "SpecialAttack_back");
 	loader(MYANIMATION_ID::SPECIAL_SUPERARMOR_BACK, "SpecialsSuperArmor_back");
 	loader(MYANIMATION_ID::SPECIAL_RECOVERY_BACK, "SpecialRecovery_back");
+}
+/* エフェクトロード */
+void Load::loadEffect()
+{
+	EffectManager::getInstance().loadEffect(EFFECT_ID::ATTACK1, (const wchar_t&)L"./Effect/Attack_2effect.efk");
 }

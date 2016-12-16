@@ -59,8 +59,8 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>C:\gslib_2015\gslib_2015\inc;C:\boost\Include\boost_1_57_0;C:\boost\include\boost-1_57;C:\boost\boost\include\boost-1_57;C:\gslib_2015\gslibEXT_2015\inc;D:\gslib_2015\gslibEXT_2015\inc;D:\gslib_2015\gslib_2015\inc;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\gslib_2015\gslib_2015\lib;C:\boost\lib;D:\GSLibrary_2015\boost\lib;C:\gslib_2015\gslibEXT_2015\lib;D:\gslib_2015\gslibEXT_2015\lib;D:\gslib_2015\gslib_2015\lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>D:\libs\Effekseer\EffekseerRuntime122\Compiled\include;C:\gslib_2015\gslib_2015\inc;C:\boost\Include\boost_1_57_0;C:\boost\include\boost-1_57;C:\boost\boost\include\boost-1_57;C:\gslib_2015\gslibEXT_2015\inc;D:\gslib_2015\gslibEXT_2015\inc;D:\gslib_2015\gslib_2015\inc;$(IncludePath)</IncludePath>
+    <LibraryPath>D:\libs\Effekseer\EffekseerRuntime122\Compiled\lib;C:\gslib_2015\gslib_2015\lib;C:\boost\lib;D:\GSLibrary_2015\boost\lib;C:\gslib_2015\gslibEXT_2015\lib;D:\gslib_2015\gslibEXT_2015\lib;D:\gslib_2015\gslib_2015\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
@@ -85,6 +85,7 @@
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -143,10 +144,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="source\data\loader\EffectLoader.cpp" />
     <ClCompile Include="source\actor\Enemy\EnemyMediator.cpp" />
     <ClCompile Include="source\camera\SLookAt.cpp" />
     <ClCompile Include="source\attack\Homing.cpp" />
     <ClCompile Include="source\attack\KnockBack.cpp" />
+    <ClCompile Include="source\effect\EffectManager.cpp" />
     <ClCompile Include="source\math\AMath.cpp" />
     <ClCompile Include="source\collision\PlayerCollision.cpp" />
     <ClCompile Include="source\actor\Actor.cpp" />
@@ -282,6 +285,9 @@
     <ClCompile Include="source\ui\UIManager.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="header\effect\EffectManager.h" />
+    <ClInclude Include="header\data\loader\EffectLoader.h" />
+    <ClInclude Include="header\data\id\EFFECT_ID.h" />
     <ClInclude Include="header\attack\AttackParameter.h" />
     <ClInclude Include="header\attack\ShapeData.h" />
     <ClInclude Include="header\attack\SHAPE_TYPE.h" />
