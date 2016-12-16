@@ -1,6 +1,6 @@
 #include "../../../header/state/enemy/OverNearAI.h"
 OverNearAI::OverNearAI(Goblin* _enemy)
-:m_actor(_enemy)
+	:m_actor(_enemy)
 {
 
 }
@@ -12,5 +12,9 @@ void OverNearAI::initialize()
 }
 void OverNearAI::think(Player * _player)
 {
+	if (m_actor->isBlocked())
+	{
+		m_actor->changeState(ACTOR_STATE::ESLIDE);
+	}
 	m_actor->changeState(ACTOR_STATE::EMOVEBACK);
 }

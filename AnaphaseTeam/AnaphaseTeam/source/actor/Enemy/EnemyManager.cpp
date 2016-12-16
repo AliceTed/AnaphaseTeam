@@ -23,11 +23,8 @@ void EnemyManager::add(IEnemy * _enemy)
 
 void EnemyManager::add(Enemy_Ptr _enemy)
 {
-	if (m_enemys.empty()) {
-		m_enemys.emplace_back(_enemy);
-		m_enemys.back()->initialize();
-
-	}
+	m_enemys.emplace_back(_enemy);
+	m_enemys.back()->initialize();
 }
 
 void EnemyManager::update(float deltaTime)
@@ -53,7 +50,7 @@ void EnemyManager::draw(IRenderer * _renderer)
 
 std::weak_ptr<IEnemy> EnemyManager::nearEnemy(Player * _player)
 {
-	std::sort(m_enemys.begin(), m_enemys.end(), [_player](Enemy_Ptr& _x, Enemy_Ptr& _y){return _x->distanceActor(*_player) < _y->distanceActor(*_player);});
+	std::sort(m_enemys.begin(), m_enemys.end(), [_player](Enemy_Ptr& _x, Enemy_Ptr& _y) {return _x->distanceActor(*_player) < _y->distanceActor(*_player); });
 	if (m_enemys.empty())
 	{
 		return std::weak_ptr<IEnemy>();

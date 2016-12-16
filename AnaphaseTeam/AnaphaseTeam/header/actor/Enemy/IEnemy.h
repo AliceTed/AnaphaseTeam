@@ -71,6 +71,7 @@ public:
 
 	const bool isDamageState()const;*/
 	const bool isDeadState() const;
+	const bool isBlocked()const { return m_isBlock; }
 	/**
 	* @fn
 	* @brief l‚¦‚é‚©”Û‚©

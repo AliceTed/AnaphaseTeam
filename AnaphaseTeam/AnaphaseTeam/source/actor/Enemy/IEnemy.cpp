@@ -120,7 +120,6 @@ const bool IEnemy::isThink()const
 	return getState() == ACTOR_STATE::ETHINK;
 }
 
-
 const EAI IEnemy::isNear(float _distance)const
 {
 	EAI ai = EAI::ATTACKRANGE;
