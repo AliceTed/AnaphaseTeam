@@ -36,6 +36,6 @@ void Player::PlayerAttackCollision::collision_Enter(HitInformation & _hit)
 	Actor* act = _hit.m_parent;
 	AttackStatus attack = m_player->m_combo.getStatus();
 	GSvector3 direction = m_player->m_transform.rotate_vector(attack.m_blowOff);
-	attack.m_blowOff = direction;
+	attack.m_blowOff = direction * 0.3f;
 	act->damage(attack);
 }
