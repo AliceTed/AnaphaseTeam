@@ -10,9 +10,14 @@
 
 #include "../../header/camera/CameraWork/CameraWorkManager.h"
 
+/*
+make_uniqueはunique_ptr作成用関数なので
+正しくはmake_sharedをつかう
+by 松尾
+*/
 CameraController::CameraController() :
-	m_camera(std::make_unique<Camera>()),
-	m_cameraWorkManager(std::make_unique<CameraWorkManager>(m_camera.get())),
+	m_camera(std::make_shared<Camera>()),
+	m_cameraWorkManager(std::make_shared<CameraWorkManager>(m_camera.get())),
 	m_deltaTime(0.0f)
 {
 	//カメラワークの読み込み

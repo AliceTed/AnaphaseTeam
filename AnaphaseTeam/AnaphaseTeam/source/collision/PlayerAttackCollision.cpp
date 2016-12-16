@@ -38,9 +38,4 @@ void Player::PlayerAttackCollision::collision_Enter(HitInformation & _hit)
 	GSvector3 direction = m_player->m_transform.rotate_vector(attack.m_blowOff);
 	attack.m_blowOff *= direction;
 	act->damage(attack);
-	
-	if (m_player->m_specialskill.isStart(SPECIALSKILL_TYPE::RECOVERY))
-	{
-		m_player->m_status.add();
-	}
 }

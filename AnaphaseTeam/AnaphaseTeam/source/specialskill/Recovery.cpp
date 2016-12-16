@@ -1,13 +1,16 @@
 #include "../../header/specialskill/Recovery.h"
 #include "../../header/actor/Player/Gauge.h"
-Recovery::Recovery()
-	:m_limit(20.0f)
+#include "../../header/actor/Player/Player.h"
+Recovery::Recovery(Player* _player)
+	:m_limit(20.0f),
+	m_player(_player)
 {
 }
 
 void Recovery::start()
 {
 	m_limit.initialize();
+	m_player->recovery();
 }
 
 void Recovery::update(float deltaTime)

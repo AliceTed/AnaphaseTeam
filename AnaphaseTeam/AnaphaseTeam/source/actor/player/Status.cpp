@@ -42,12 +42,12 @@ const float Status::getMaxHp() const
 
 void Status::down(float _damage)
 {
-	m_hp -= _damage;
+	add(-_damage);
 }
 
-void Status::add()
+void Status::add(float _amount)
 {
 	Math::Clamp clamp;
-	m_hp += 5;
+	m_hp += _amount;
 	m_hp = clamp(m_hp, 0.0f, 100.0f);
 }
