@@ -12,9 +12,9 @@ void PhaseManager::add(Phase * _phase)
 	m_container.emplace_back(PhasePtr(_phase));
 }
 
-void PhaseManager::update(float deltaTime, ActorManager & _actors)
+void PhaseManager::update(float deltaTime, ActorManager & _actors, CameraController& _camera)
 {
-	m_current->update(deltaTime, _actors);
+	m_current->update(deltaTime, _actors,_camera);
 	if (m_current->isEnd())
 	{
 		changeFirst();

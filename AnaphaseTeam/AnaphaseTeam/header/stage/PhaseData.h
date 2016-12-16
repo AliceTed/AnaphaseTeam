@@ -6,5 +6,4 @@ struct PhaseData
 {
 	std::string spawn;
 	OCTREE_ID octreeID;
-	GSvector3 octreeOffset;
 };

@@ -7,11 +7,11 @@
 #include "../../../header/stage/Phase.h"
 
 GamePlay::GamePlay()
-	:m_Map(OCTREE_ID::ARENA),
+	:m_Map(OCTREE_ID::VISUAL),
 	m_cameracontroller(),
 	m_change(),
 	m_pause(m_change),//É|Å[ÉY
-	m_actors(Transform({ 0,0,0 }, {0,0,0}), m_cameracontroller.get_camera()),
+	m_actors(Transform({ 0,0,0 }, { 115.0f,1.2f,-7 }), m_cameracontroller.get_camera()),
 	m_pahsemanager()
 {
 }
@@ -28,15 +28,20 @@ void GamePlay::initialize()
 	m_actors.initialize();
 
 	PhaseData data;
-	data.octreeID = OCTREE_ID::ARENA;
+	data.octreeID = OCTREE_ID::PHASE1;
 	data.spawn = "spawn";
-	data.octreeOffset = GSvector3(0, 0, 0);
+
 	m_pahsemanager.add(new Phase(data));
 	PhaseData data2;
-	data2.octreeID = OCTREE_ID::ARENA;
+	data2.octreeID = OCTREE_ID::PHASE2;
 	data2.spawn = "spawn2";
-	data2.octreeOffset = GSvector3(0, 0, 0);
+
 	m_pahsemanager.add(new Phase(data2));
+
+	PhaseData data3;
+	data3.octreeID = OCTREE_ID::PHASE3;
+	data3.spawn = "spawn3";
+	m_pahsemanager.add(new Phase(data3));
 	m_pahsemanager.changeFirst();
 
 	UIManager::getInstance();
@@ -50,11 +55,11 @@ void GamePlay::update(float deltaTime)
 		return;
 	
 	m_actors.update(deltaTime);
-	m_pahsemanager.update(deltaTime,m_actors);
+	m_pahsemanager.update(deltaTime,m_actors,m_cameracontroller);
 
 	m_change.update(deltaTime);
 	m_cameracontroller.update(deltaTime);
-	m_cameracontroller.collisionGround(m_Map);
+	
 	
 	if (m_actors.isPlayerDead())
 	{

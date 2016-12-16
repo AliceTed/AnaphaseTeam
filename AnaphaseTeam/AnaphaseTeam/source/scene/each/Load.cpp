@@ -114,7 +114,10 @@ void Load::loadModel()
 	mesh(MESH_ID::WEAPON, "weapon/weapon");
 
 	OctreeLoader oct;
-	oct(OCTREE_ID::ARENA, "arena", true);
+	oct(OCTREE_ID::VISUAL, "map/map1");
+	oct(OCTREE_ID::PHASE1, "map/MAP_colider1");
+	oct(OCTREE_ID::PHASE2, "map/MAP_colider2");
+	oct(OCTREE_ID::PHASE3, "map/MAP_colider3");
 }
 
 void Load::loadMyAnimation()
