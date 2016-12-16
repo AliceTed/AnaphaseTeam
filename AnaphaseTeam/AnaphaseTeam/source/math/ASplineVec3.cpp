@@ -37,6 +37,12 @@ void ASplineVec3::init(const std::vector<GSvector3>& _sp)
 
 GSvector3 ASplineVec3::culc(float _t)
 {
-	GSvector3 result = { m_xs->culc(_t), m_ys->culc(_t), m_zs->culc(_t) };
+	GSvector3 result = { m_xs->culc(_t, m_num), m_ys->culc(_t, m_num), m_zs->culc(_t, m_num) };
+
 	return result;
+}
+
+bool ASplineVec3::isEnd(void)
+{
+	return m_xs->isEnd();
 }
