@@ -270,8 +270,9 @@ void Player::look_at(CameraController * _camera, GSvector3 * _target)
 }
 void Player::look_at(CameraController * _camera)
 {
+	GSvector3 position = m_transform.m_translate;
 	m_isLockOn = false;
-	m_camera->set_cameraTarget_player(m_transform.m_translate);
+	m_camera->set_cameraTarget_player(position);
 	_camera->change_cameraWork(E_CameraWorkID::NORMAL);
 
 }
