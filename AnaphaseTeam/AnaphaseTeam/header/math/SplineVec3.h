@@ -4,16 +4,16 @@
 #include <memory>
 #include <vector>
 
-class ASpline;
+class Spline;
 
-class ASplineVec3
+class SplineVec3
 {
 public:
 	//コンストラクタ
-	ASplineVec3(void);
+	SplineVec3(void);
 
 	//デストラクタ
-	~ASplineVec3(void);
+	~SplineVec3(void);
 
 	/**
 	@brief 初期化
@@ -38,7 +38,7 @@ private:
 
 	int m_num;									//要素数を保持するための変数
 
-	std::unique_ptr<ASpline> m_xs, m_ys, m_zs;	//３次スプライン
+	std::unique_ptr<Spline> m_xs, m_ys, m_zs;	//３次スプライン
 
 	std::vector<float> m_x, m_y, m_z;			//３次
 };

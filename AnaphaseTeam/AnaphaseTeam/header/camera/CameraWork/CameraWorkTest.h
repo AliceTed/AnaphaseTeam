@@ -6,7 +6,12 @@
 */
 #pragma once
 
+#include <vector>
+#include <memory>
 #include "CameraWorkEmpty.h"
+
+class AnimationSpline;
+class SplineVec3;
 
 class CameraWorkTest : public CameraWorkEmpty
 {
@@ -25,4 +30,13 @@ public:
 
 	//é¿çsèàóù
 	void run(float _deltaTime) override;
+
+private:
+	int max_num;
+
+	std::vector<GSvector3> points;
+
+	std::shared_ptr<SplineVec3> vecs;
+
+	std::unique_ptr<AnimationSpline> animSpline;
 };

@@ -789,16 +789,7 @@
     <ClInclude Include="header\camera\CameraWork\CameraWorkEmpty.h">
       <Filter>ヘッダー ファイル\camera\CameraWork</Filter>
     </ClInclude>
-    <ClInclude Include="header\camera\SLookAt.h">
-      <Filter>ヘッダー ファイル\camera</Filter>
-    </ClInclude>
     <ClInclude Include="header\camera\CameraWork\CameraWorkTest.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="header\math\ASpline.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="header\math\ASplineVec3.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="header\actor\ActorManager.h">
@@ -895,6 +886,18 @@
       <Filter>ヘッダー ファイル\actor\Enemy</Filter>
     </ClInclude>
     <ClInclude Include="header\renderer\define\OctreeExRenderDesc.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="header\animation\AnimationSpline.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="header\camera\LookAt.h">
+      <Filter>ヘッダー ファイル\camera</Filter>
+    </ClInclude>
+    <ClInclude Include="header\math\Spline.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="header\math\SplineVec3.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
   </ItemGroup>
@@ -1274,6 +1277,15 @@
     <ClCompile Include="source\attack\KnockBack.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
+    <ClCompile Include="source\state\enemy\EDashFrontState.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="source\state\enemy\EMoveBackState.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="source\state\enemy\EThinkState.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
     <ClCompile Include="source\state\enemy\OverNearAI.cpp">
       <Filter>ソース ファイル\state\enemy</Filter>
     </ClCompile>
@@ -1283,10 +1295,22 @@
     <ClCompile Include="source\camera\CameraWork\CameraWorkEmpty.cpp">
       <Filter>ソース ファイル\camera\CameraWork</Filter>
     </ClCompile>
-    <ClCompile Include="source\camera\SLookAt.cpp">
-      <Filter>ソース ファイル\camera</Filter>
+    <ClCompile Include="source\state\enemy\EnemyAIController.cpp">
+      <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="source\math\ASpline.cpp">
+    <ClCompile Include="source\state\enemy\ESecoundAttackState.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="source\state\enemy\MiddleRangeAI.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="source\state\enemy\OverFarAI.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="source\actor\Enemy\IEnemy.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="source\actor\Enemy\Goblin.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
     <ClCompile Include="source\camera\CameraWork\CameraWorkTest.cpp">
@@ -1325,41 +1349,23 @@
     <ClCompile Include="source\ui\SoundSelectUI.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="source\math\ASplineVec3.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
     <ClCompile Include="source\ui\OptionSelectUI.cpp">
       <Filter>ソース ファイル\ui</Filter>
     </ClCompile>
     <ClCompile Include="source\ui\OptionUI.cpp">
       <Filter>ソース ファイル\ui</Filter>
     </ClCompile>
-    <ClCompile Include="source\state\enemy\EDashFrontState.cpp">
-      <Filter>ソース ファイル\state\enemy</Filter>
+    <ClCompile Include="source\animation\AnimationSpline.cpp">
+      <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="source\state\enemy\EMoveBackState.cpp">
-      <Filter>ソース ファイル\state\enemy</Filter>
+    <ClCompile Include="source\camera\LookAt.cpp">
+      <Filter>ソース ファイル\camera</Filter>
     </ClCompile>
-    <ClCompile Include="source\state\enemy\EnemyAIController.cpp">
-      <Filter>ソース ファイル\state\enemy</Filter>
+    <ClCompile Include="source\math\Spline.cpp">
+      <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="source\state\enemy\ESecoundAttackState.cpp">
-      <Filter>ソース ファイル\state\enemy</Filter>
-    </ClCompile>
-    <ClCompile Include="source\state\enemy\EThinkState.cpp">
-      <Filter>ソース ファイル\state\enemy</Filter>
-    </ClCompile>
-    <ClCompile Include="source\state\enemy\MiddleRangeAI.cpp">
-      <Filter>ソース ファイル\state\enemy</Filter>
-    </ClCompile>
-    <ClCompile Include="source\state\enemy\OverFarAI.cpp">
-      <Filter>ソース ファイル\state\enemy</Filter>
-    </ClCompile>
-    <ClCompile Include="source\actor\Enemy\Goblin.cpp">
-      <Filter>ソース ファイル\actor\Enemy</Filter>
-    </ClCompile>
-    <ClCompile Include="source\actor\Enemy\IEnemy.cpp">
-      <Filter>ソース ファイル\actor\Enemy</Filter>
+    <ClCompile Include="source\math\SplineVec3.cpp">
+      <Filter>ソース ファイル</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -1,13 +1,13 @@
-#include "../../header/math\ASplineVec3.h"
-#include "../../header/math/ASpline.h"
+#include "../../header/math\SplineVec3.h"
+#include "../../header/math/Spline.h"
 
-const int ASplineVec3::MaxSplineSize = 100;
+const int SplineVec3::MaxSplineSize = 100;
 
-ASplineVec3::ASplineVec3(void) :
+SplineVec3::SplineVec3(void) :
 	m_num(0),
-	m_xs(std::make_unique<ASpline>()),
-	m_ys(std::make_unique<ASpline>()),
-	m_zs(std::make_unique<ASpline>()),
+	m_xs(std::make_unique<Spline>()),
+	m_ys(std::make_unique<Spline>()),
+	m_zs(std::make_unique<Spline>()),
 	m_x(MaxSplineSize + 1),
 	m_y(MaxSplineSize + 1),
 	m_z(MaxSplineSize + 1)
@@ -15,11 +15,11 @@ ASplineVec3::ASplineVec3(void) :
 
 }
 
-ASplineVec3::~ASplineVec3(void)
+SplineVec3::~SplineVec3(void)
 {
 }
 
-void ASplineVec3::init(const std::vector<GSvector3>& _sp)
+void SplineVec3::init(const std::vector<GSvector3>& _sp)
 {
 	m_num = _sp.size();
 
@@ -35,14 +35,14 @@ void ASplineVec3::init(const std::vector<GSvector3>& _sp)
 	m_zs->init(m_z);
 }
 
-GSvector3 ASplineVec3::culc(float _t)
+GSvector3 SplineVec3::culc(float _t)
 {
 	GSvector3 result = { m_xs->culc(_t, m_num), m_ys->culc(_t, m_num), m_zs->culc(_t, m_num) };
 
 	return result;
 }
 
-bool ASplineVec3::isEnd(void)
+bool SplineVec3::isEnd(void)
 {
 	return m_xs->isEnd();
 }

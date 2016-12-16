@@ -1,12 +1,33 @@
-#include "../../../header/camera/CameraWork/CameraWorkTest.h"
 #include <vector>
+#include <random>
+#include "../../../header/camera/CameraWork/CameraWorkTest.h"
 #include "../../../header/data/id/Model_ID.h"
 #include "../../../header/camera/Camera.h"
 #include "../../../header/math/AMath.h"
+#include "../../../header/animation/AnimationSpline.h"
 
 CameraWorkTest::CameraWorkTest(Camera * _camera) :
-	CameraWorkEmpty(_camera)
+	CameraWorkEmpty(_camera),
+	max_num(10),
+	points(max_num),
+	vecs(std::make_shared<SplineVec3>()),
+	animSpline(std::make_unique<AnimationSpline>(vecs.get()))
 {
+
+	std::random_device rnd;
+	std::mt19937 mt(rnd());
+	int i;
+
+	for (i = 0; i < max_num - 1; i++)
+	{
+		std::uniform_real_distribution<> randX(-0.1f, 0.1f);
+		std::uniform_real_distribution<> randY(1, 1.5f);
+
+		points[i] = GSvector3(randX(mt), randY(mt), 0.0f);
+	}
+	points[i] = GSvector3(0.0f, 1.3f, 0.0f);
+
+	vecs->init(points);
 }
 
 CameraWorkTest::~CameraWorkTest()
@@ -20,33 +41,18 @@ void CameraWorkTest::start(void)
 static float t = 0;
 void CameraWorkTest::run(float _deltaTime)
 {
-	if (gsGetKeyState(GKEY_Z))
+	if (gsGetKeyTrigger(GKEY_Z))
 	{
-		t += 0.01f;
+		animSpline->resetTime();
 	}
-	if (gsGetKeyState(GKEY_X))
-	{
-		t -= 0.01f;
-	}
-	ASplineVec3 vecs;
 
 	GSvector3 position = m_camera->get_cameraTarget_player();
 
-	std::vector<GSvector3> vec =
-	{
-		GSvector3(0, 7, -7),
-		GSvector3(-6, 6, 0),
-		GSvector3(0, 5, 5),
-		GSvector3(4, 4, 0),
-		GSvector3(0, 3, -3),
-		GSvector3(-2, 2, 0),
-		GSvector3(0, 1.3f, 1.3f)
-	};
+	m_camera->tracking_lookAtOffset(animSpline->run(0.3f));
+	m_camera->tracking_positionOffset(animSpline->run(0.3f));
 
-	vecs.init(vec);
-
-	m_camera->tracking_lookAt(position + GSvector3(0, 1.3f, 0), 1.0f);
-	m_camera->tracking_position(position + vecs.culc(t), 1.0f);
+	m_camera->tracking_lookAt(position, 1.0f);
+	m_camera->tracking_position(position + GSvector3(0.0f, 1.3f, 5.0f), 1.0f);
 
 	return;
 }

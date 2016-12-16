@@ -4,7 +4,7 @@
 #include "../../header/math/AMath.h"
 #include "../../header/data/id/OCTREE_ID.h"
 #include "../../header/map/Map.h"
-#include "../../header/camera/SLookAt.h"
+#include "../../header/camera/LookAt.h"
 #include "../../header/renderer/IRenderer.h"
 #include <random>
 #include <vector>
@@ -17,7 +17,7 @@ const GSvector2 Camera::DEF_FOV_CLAMP	= { 2.0f, 180.0f };	//視野角の範囲は2.0~18
 Camera::Camera() :
 	m_perspective(GSvector4(DEF_FOV, 1280.0f / 720.0f, 0.3f, 1000.0f)),
 	m_fov_clamp(DEF_FOV_CLAMP.x, DEF_FOV_CLAMP.y),
-	m_lookAt(std::make_unique<SLookAt>(GSvector3(0.0f, 0.0f, 0.0f), GSvector3(0.0f, 0.0f, 0.0f), GSvector3(0.0f, 1.0f, 0.0f))),
+	m_lookAt(std::make_unique<LookAt>(GSvector3(0.0f, 0.0f, 0.0f), GSvector3(0.0f, 0.0f, 0.0f), GSvector3(0.0f, 1.0f, 0.0f))),
 	m_rotate_dolly(0.0f, 0.0f),
 	m_cameraTarget_player(std::make_shared<CameraTarget>()),
 	m_cameraTarget_enemy(std::make_shared<CameraTarget>()),
@@ -139,10 +139,32 @@ void Camera::tracking_position(const GSvector3& _target, float _speed)
 	return;
 }
 
+void Camera::tracking_positionOffset(const GSvector3 & _target, float _speed)
+{
+	//見やすくするために宣言
+	GSvector3* position = &m_lookAt->position_offset; 
+
+	//３次元ベクトルの線形補間
+	gsVector3Lerp(position, position, &_target, _speed);
+
+	return;
+}
+
 void Camera::tracking_lookAt(const GSvector3& _target, float _speed)
 {
 	//見やすくするために宣言
 	GSvector3* target = &m_lookAt->target;
+
+	//３次元ベクトルの線形補間
+	gsVector3Lerp(target, target, &_target, _speed);
+
+	return;
+}
+
+void Camera::tracking_lookAtOffset(const GSvector3 & _target, float _speed)
+{
+	//見やすくするために宣言
+	GSvector3* target = &m_lookAt->target_offset;
 
 	//３次元ベクトルの線形補間
 	gsVector3Lerp(target, target, &_target, _speed);
