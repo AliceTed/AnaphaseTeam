@@ -23,8 +23,11 @@ void EnemyManager::add(IEnemy * _enemy)
 
 void EnemyManager::add(Enemy_Ptr _enemy)
 {
-	m_enemys.emplace_back(_enemy);
-	m_enemys.back()->initialize();
+	if (m_enemys.empty()) {
+		m_enemys.emplace_back(_enemy);
+		m_enemys.back()->initialize();
+
+	}
 }
 
 void EnemyManager::update(float deltaTime)
