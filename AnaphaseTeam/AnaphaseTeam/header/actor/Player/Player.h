@@ -41,6 +41,9 @@ public:
 	void targetFind(EnemyManager * _enemys);
 	void recovery();
 
+	//マスター前の仮実装
+	//要リファクタ
+	const float getAttackSpeed() const;
 public://Actor継承
 	void initialize() override;
 	void update(float deltatime) override;
