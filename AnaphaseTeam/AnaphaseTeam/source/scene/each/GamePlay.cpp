@@ -11,7 +11,7 @@ GamePlay::GamePlay()
 	m_cameracontroller(),
 	m_change(),
 	m_pause(m_change),//É|Å[ÉY
-	m_actors(Transform(), m_cameracontroller.get_camera()),
+	m_actors(Transform({ 0,0,0 }, {0,0,0}), m_cameracontroller.get_camera()),
 	m_pahsemanager()
 {
 }
@@ -28,12 +28,14 @@ void GamePlay::initialize()
 	m_actors.initialize();
 
 	PhaseData data;
-	data.m_octreeID = OCTREE_ID::ARENA;
+	data.octreeID = OCTREE_ID::ARENA;
 	data.spawn = "spawn";
+	data.octreeOffset = GSvector3(0, 0, 0);
 	m_pahsemanager.add(new Phase(data));
 	PhaseData data2;
-	data2.m_octreeID = OCTREE_ID::ARENA;
+	data2.octreeID = OCTREE_ID::ARENA;
 	data2.spawn = "spawn2";
+	data2.octreeOffset = GSvector3(0, 0, 0);
 	m_pahsemanager.add(new Phase(data2));
 	m_pahsemanager.changeFirst();
 

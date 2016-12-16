@@ -885,6 +885,9 @@
     <ClInclude Include="header\actor\Enemy\ENEMY_TYPE.h">
       <Filter>ヘッダー ファイル\actor\Enemy</Filter>
     </ClInclude>
+    <ClInclude Include="header\renderer\define\OctreeExRenderDesc.h">
+      <Filter>ヘッダー ファイル\renderer\define</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="source\main.cpp">

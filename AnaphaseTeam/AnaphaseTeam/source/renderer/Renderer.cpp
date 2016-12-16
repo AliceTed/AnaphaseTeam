@@ -91,6 +91,10 @@ const Matrix4 & Renderer::getViewMatrix() const
 {
 	return mViewMatrix;
 }
+const LightDesc & Renderer::getLight() const
+{
+	return mLight;
+}
 //ƒ‰ƒCƒgİ’è
 void Renderer::light(const LightDesc & desc)
 {
