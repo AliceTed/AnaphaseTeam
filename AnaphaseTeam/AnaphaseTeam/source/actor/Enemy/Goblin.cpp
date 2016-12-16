@@ -26,7 +26,6 @@
 #include "../../../header/state/enemy/EAI.h"
 #include "../../../header/actor/Enemy/EnemyMediator.h"
 #include <math.h>
-#include "../../../header/renderer/define/StringRenderDesc.h"
 Goblin::Goblin(const Transform & _transform, EnemyMediator& _mediator)
 	:IEnemy(_transform, MODEL_ID::ENEMY, _mediator)
 {
@@ -77,14 +76,6 @@ void Goblin::update(float deltatime)
 void Goblin::draw(IRenderer * _renderer)
 {
 	m_collision.draw(_renderer);
-	StringRenderDesc desc;
-	desc.position = GSvector2(200, 200);
-	desc.string =std::to_string(m_debug.getAngle());
-	_renderer->render(desc);
-	desc.string =std::to_string(m_transform.m_rotate.getYaw());
-	desc.position = GSvector2(200, 300);
-	_renderer->render(desc);
-
 	m_animatorOne.draw(_renderer, m_transform, GScolor(1, 1, 1, m_alpha));
 }
 
