@@ -18,7 +18,7 @@ public:
 	float getHp();
 	const float getMaxHp()const;
 	void down(float _damage);
-	void add();
+	void add(float _amount);
 private:
 	float m_hp;
 	const float m_maxHp;

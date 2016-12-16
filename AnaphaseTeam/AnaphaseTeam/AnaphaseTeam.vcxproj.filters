@@ -211,6 +211,18 @@
     <Filter Include="ソース ファイル\ui">
       <UniqueIdentifier>{e1c7c17e-ffc4-403f-bd11-65fe45527639}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ヘッダー ファイル\stage">
+      <UniqueIdentifier>{f7c9d038-70bb-4496-b685-1250306addb6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\spawn">
+      <UniqueIdentifier>{dfb361fd-3e77-4601-88fe-f9b81c52da4b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\stage">
+      <UniqueIdentifier>{4e5ec736-c26f-47fe-b219-f852eb5f23e0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\spawn">
+      <UniqueIdentifier>{2fe8f75c-1654-4e11-8f13-b52c256cf6d9}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="header\math\Calculate.h">
@@ -801,37 +813,7 @@
     <ClInclude Include="header\camera\SLookAt.h">
       <Filter>ヘッダー ファイル\camera</Filter>
     </ClInclude>
-    <ClInclude Include="header\attack\AttackParameter.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="header\attack\ShapeData.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="header\attack\SHAPE_TYPE.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="header\data\stream\SpawnConverter.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="header\data\stream\SpawnReader.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
     <ClInclude Include="header\actor\Enemy\EnemyMediator.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="header\actor\Enemy\ENEMY_TYPE.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="header\spawn\SpawnArea.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="header\spawn\SpawnData.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="header\spawn\SpawnManager.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="header\spawn\SpawnPoint.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="header\state\enemy\EAI.h">
@@ -860,6 +842,48 @@
     </ClInclude>
     <ClInclude Include="header\math\ASplineVec3.h">
       <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="header\actor\ActorManager.h">
+      <Filter>ヘッダー ファイル\actor</Filter>
+    </ClInclude>
+    <ClInclude Include="header\stage\Phase.h">
+      <Filter>ヘッダー ファイル\stage</Filter>
+    </ClInclude>
+    <ClInclude Include="header\stage\PhaseData.h">
+      <Filter>ヘッダー ファイル\stage</Filter>
+    </ClInclude>
+    <ClInclude Include="header\stage\PhaseManager.h">
+      <Filter>ヘッダー ファイル\stage</Filter>
+    </ClInclude>
+    <ClInclude Include="header\spawn\SpawnArea.h">
+      <Filter>ヘッダー ファイル\spawn</Filter>
+    </ClInclude>
+    <ClInclude Include="header\spawn\SpawnManager.h">
+      <Filter>ヘッダー ファイル\spawn</Filter>
+    </ClInclude>
+    <ClInclude Include="header\spawn\SpawnPoint.h">
+      <Filter>ヘッダー ファイル\spawn</Filter>
+    </ClInclude>
+    <ClInclude Include="header\spawn\SpawnData.h">
+      <Filter>ヘッダー ファイル\spawn</Filter>
+    </ClInclude>
+    <ClInclude Include="header\attack\ShapeData.h">
+      <Filter>ヘッダー ファイル\attack</Filter>
+    </ClInclude>
+    <ClInclude Include="header\attack\SHAPE_TYPE.h">
+      <Filter>ヘッダー ファイル\attack</Filter>
+    </ClInclude>
+    <ClInclude Include="header\data\stream\SpawnReader.h">
+      <Filter>ヘッダー ファイル\data\stream</Filter>
+    </ClInclude>
+    <ClInclude Include="header\data\stream\SpawnConverter.h">
+      <Filter>ヘッダー ファイル\data\stream</Filter>
+    </ClInclude>
+    <ClInclude Include="header\attack\AttackParameter.h">
+      <Filter>ヘッダー ファイル\attack</Filter>
+    </ClInclude>
+    <ClInclude Include="header\actor\Enemy\ENEMY_TYPE.h">
+      <Filter>ヘッダー ファイル\actor\Enemy</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -1259,18 +1283,6 @@
     <ClCompile Include="source\camera\SLookAt.cpp">
       <Filter>ソース ファイル\camera</Filter>
     </ClCompile>
-    <ClCompile Include="source\data\stream\SpawnConverter.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="source\data\stream\SpawnReader.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="source\spawn\SpawnManager.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="source\spawn\SpawnPoint.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
     <ClCompile Include="source\state\enemy\EnemyAIController.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
@@ -1295,8 +1307,26 @@
     <ClCompile Include="source\camera\CameraWork\CameraWorkTest.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="source\math\ASplineVec3.cpp">
-      <Filter>ソース ファイル</Filter>
+    <ClCompile Include="source\actor\ActorManager.cpp">
+      <Filter>ソース ファイル\actor</Filter>
+    </ClCompile>
+    <ClCompile Include="source\stage\Phase.cpp">
+      <Filter>ソース ファイル\stage</Filter>
+    </ClCompile>
+    <ClCompile Include="source\stage\PhaseManager.cpp">
+      <Filter>ソース ファイル\stage</Filter>
+    </ClCompile>
+    <ClCompile Include="source\spawn\SpawnManager.cpp">
+      <Filter>ソース ファイル\spawn</Filter>
+    </ClCompile>
+    <ClCompile Include="source\spawn\SpawnPoint.cpp">
+      <Filter>ソース ファイル\spawn</Filter>
+    </ClCompile>
+    <ClCompile Include="source\data\stream\SpawnReader.cpp">
+      <Filter>ソース ファイル\data\stream</Filter>
+    </ClCompile>
+    <ClCompile Include="source\data\stream\SpawnConverter.cpp">
+      <Filter>ソース ファイル\data\stream</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

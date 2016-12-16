@@ -143,6 +143,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="source\actor\ActorManager.cpp" />
     <ClCompile Include="source\actor\Enemy\IEnemy.cpp" />
     <ClCompile Include="source\camera\CameraWork\CameraWorkTest.cpp" />
     <ClCompile Include="source\camera\SLookAt.cpp" />
@@ -222,6 +223,8 @@
     <ClCompile Include="source\specialskill\SpecialAttack.cpp" />
     <ClCompile Include="source\specialskill\SpecialSkillManager.cpp" />
     <ClCompile Include="source\specialskill\SuperArmor.cpp" />
+    <ClCompile Include="source\stage\Phase.cpp" />
+    <ClCompile Include="source\stage\PhaseManager.cpp" />
     <ClCompile Include="source\state\enemy\EAttackState.cpp" />
     <ClCompile Include="source\state\enemy\EDashFrontState.cpp" />
     <ClCompile Include="source\state\enemy\EDeadState.cpp" />
@@ -290,6 +293,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="header\actor\Enemy\IEnemy.h" />
+    <ClInclude Include="header\actor\ActorManager.h" />
     <ClInclude Include="header\attack\AttackParameter.h" />
     <ClInclude Include="header\attack\ShapeData.h" />
     <ClInclude Include="header\attack\SHAPE_TYPE.h" />
@@ -415,6 +419,9 @@
     <ClInclude Include="header\specialskill\SpecialSkillManager.h" />
     <ClInclude Include="header\specialskill\SPECIALSKILL_TYPE.h" />
     <ClInclude Include="header\specialskill\SuperArmor.h" />
+    <ClInclude Include="header\stage\Phase.h" />
+    <ClInclude Include="header\stage\PhaseData.h" />
+    <ClInclude Include="header\stage\PhaseManager.h" />
     <ClInclude Include="header\state\ActorState.h" />
     <ClInclude Include="header\state\ACTOR_STATE.h" />
     <ClInclude Include="header\state\enemy\EAI.h" />

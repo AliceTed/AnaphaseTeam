@@ -10,8 +10,13 @@
 
 #include "../../header/camera/CameraWork/CameraWorkManager.h"
 
+/*
+make_unique‚Íunique_ptrì¬—pŠÖ”‚È‚Ì‚Å
+³‚µ‚­‚Ímake_shared‚ğ‚Â‚©‚¤
+by ¼”ö
+*/
 CameraController::CameraController() :
-	m_camera(std::make_unique<Camera>()),
+	m_camera(std::make_shared<Camera>()),
 	m_cameraWorkManager(std::make_shared<CameraWorkManager>(m_camera.get())),
 	m_deltaTime(0.0f)
 {
