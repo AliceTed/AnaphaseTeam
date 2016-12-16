@@ -12,6 +12,7 @@ void Goblin::ESecoundAttackState::start()
 	m_timer = 0;
 	m_actor->m_animatorOne.changeAnimationLerp(ENEMY_ANIMATION::ATTACK2);
 	m_actor->createAttackCollision();
+	GameDevice::getInstacnce().sound().playSE(SE_ID::ENEMY_ATTACK);
 }
 
 void Goblin::ESecoundAttackState::action(float deltaTime)
@@ -24,6 +25,7 @@ void Goblin::ESecoundAttackState::action(float deltaTime)
 	}
 	if (m_actor->m_animatorOne.isEndCurrentAnimation())
 	{
+		GameDevice::getInstacnce().sound().stopSE(SE_ID::ENEMY_ATTACK);
 		m_actor->changeState(ACTOR_STATE::ETHINK);
 	}
 

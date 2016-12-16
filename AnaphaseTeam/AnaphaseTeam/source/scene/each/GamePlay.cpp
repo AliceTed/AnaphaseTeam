@@ -21,6 +21,9 @@ GamePlay::~GamePlay()
 
 void GamePlay::initialize()
 {
+	GameDevice::getInstacnce().sound().playBGM(BGM_ID::GAMEPLAY);
+	GameDevice::getInstacnce().sound().bgmVolume(BGM_ID::GAMEPLAY, 0.8f);
+
 	m_change.initialize();
 	m_change.begin(2);
 	//ポーズ
@@ -46,14 +49,14 @@ void GamePlay::update(float deltaTime)
 	//ポーズ
 	if (m_pause.isPause())
 		return;
-	
+
 	m_actors.update(deltaTime);
-	m_pahsemanager.update(deltaTime,m_actors);
+	m_pahsemanager.update(deltaTime, m_actors);
 
 	m_change.update(deltaTime);
 	m_cameracontroller.update(deltaTime);
 	m_cameracontroller.collisionGround(m_Map);
-	
+
 	if (m_actors.isPlayerDead())
 	{
 		m_change.end(SceneMode::ENDING);
@@ -74,12 +77,13 @@ void GamePlay::draw(IRenderer * _renderer)
 	m_actors.draw(_renderer);
 	m_pahsemanager.draw(_renderer);
 	UIManager::getInstance().draw(_renderer);
-	m_change.draw(_renderer);	
-	m_pause.draw(_renderer);	
+	m_change.draw(_renderer);
+	m_pause.draw(_renderer);
 }
 
 void GamePlay::finish()
 {
+	GameDevice::getInstacnce().sound().stopBGM(BGM_ID::GAMEPLAY);
 	m_actors.finish();
 }
 

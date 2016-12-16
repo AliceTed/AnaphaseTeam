@@ -51,10 +51,12 @@ void TitleUI::operation(Menu& _menu)
 	if (GameDevice::getInstacnce().input()->up())
 	{
 		m_select.previous();
+		GameDevice::getInstacnce().sound().playSE(SE_ID::SELECT);
 	}
 	if (GameDevice::getInstacnce().input()->down())
 	{
 		m_select.next();
+		GameDevice::getInstacnce().sound().playSE(SE_ID::SELECT);
 	}
 	if (GameDevice::getInstacnce().input()->decision())
 	{
