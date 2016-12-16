@@ -76,7 +76,7 @@ const bool InputPattern_B::left()
 
 const bool InputPattern_B::exit()
 {
-	return false;
+	return m_input->isJoyTriggerBACK() || m_input->isEscapeTrigger();
 }
 
 const bool InputPattern_B::reset()
@@ -87,4 +87,34 @@ const bool InputPattern_B::reset()
 const bool InputPattern_B::decision()
 {
 	return m_input->isJoyTriggerB();
+}
+
+const bool InputPattern_B::slowAttackTrigger()
+{
+	return false;
+}
+
+const bool InputPattern_B::quickAttackTrigger()
+{
+	return false;
+}
+
+const bool InputPattern_B::gaugeAttack1()
+{
+	return false;
+}
+
+const bool InputPattern_B::gaugeAttack2()
+{
+	return false;
+}
+
+const bool InputPattern_B::gaugeAttack3()
+{
+	return false;
+}
+
+const bool InputPattern_B::lockOn()
+{
+	return false;
 }

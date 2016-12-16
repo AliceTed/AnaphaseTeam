@@ -1,7 +1,7 @@
 #pragma once
 #include "IInputPattern.h"
 class Input;
-class InputPattern_B
+class InputPattern_B :public IInputPattern
 {
 public:
 	InputPattern_B(Input* _input);
@@ -30,4 +30,12 @@ public:
 	const bool decision();
 private:
 	Input* m_input;
+
+	// IInputPattern ‚ğ‰î‚µ‚ÄŒp³‚³‚ê‚Ü‚µ‚½
+	virtual const bool slowAttackTrigger() override;
+	virtual const bool quickAttackTrigger() override;
+	virtual const bool gaugeAttack1() override;
+	virtual const bool gaugeAttack2() override;
+	virtual const bool gaugeAttack3() override;
+	virtual const bool lockOn() override;
 };
