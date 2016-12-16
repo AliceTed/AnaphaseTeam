@@ -8,6 +8,7 @@ Player::DamageState::DamageState(Player* _player)
 void Player::DamageState::start()
 {
 	m_actor->m_animatorOne.changeAnimationLerp(static_cast<GSuint>(ANIMATION_ID::DAMAGE),2.0f);
+	GameDevice::getInstacnce().sound().playSE(SE_ID::PLAYER_STEP);
 }
 void Player::DamageState::action(float deltaTime)
 {
@@ -20,6 +21,7 @@ void Player::DamageState::action(float deltaTime)
 
 	if (m_actor->m_animatorOne.isEndCurrentAnimation())
 	{
+		GameDevice::getInstacnce().sound().stopSE(SE_ID::PLAYER_STEP);
 		changeState(ACTOR_STATE::STAND);
 	}
 }
