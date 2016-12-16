@@ -19,4 +19,7 @@ private:
 	GSvector3 m_blowOff;
 	bool m_blowAway;
 	Timer m_timer;
+
+	//‰¼
+	float m_easing;
 };

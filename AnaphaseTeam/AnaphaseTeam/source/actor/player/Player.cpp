@@ -61,6 +61,10 @@ Player::Player(const Transform& _t,Camera * _camera, LockOn* _lockon)
 
 Player::~Player()
 {}
+const float Player::getAttackSpeed() const
+{
+	return m_status.attackSpeed();
+}
 void Player::initialize()
 {
 	Actor::initialize();
