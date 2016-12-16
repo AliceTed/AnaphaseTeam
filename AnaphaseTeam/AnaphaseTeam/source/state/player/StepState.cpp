@@ -22,6 +22,7 @@ void Player::StepState::start()
 	}
 	if (!m_actor->m_Gauge->down(5))
 	{
+		changeState(ACTOR_STATE::STAND);
 		return;
 	}
 	if (m_actor->aerialTracking())
