@@ -12,7 +12,7 @@ Attack::~Attack()
 }
 void Attack::initialize(Player* _player)
 {
-	GameDevice::getInstacnce().sound().playSE(SE_ID::ENTER);
+	GameDevice::getInstacnce().sound().playSE(SE_ID::PLAYER_ATTACK);
 	motion(_player);
 	_player->homing();
 	m_spawnTimer.initialize();

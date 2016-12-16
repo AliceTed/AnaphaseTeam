@@ -25,6 +25,8 @@ public:
 
 	virtual const Matrix4 & getViewMatrix() const override;
 
+	virtual const LightDesc& getLight()const override;
+
 	virtual void light(const LightDesc & desc) override;
 
 	virtual Ray caluclateRay(const Vector2 & screenPosition) override;

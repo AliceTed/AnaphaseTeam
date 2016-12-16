@@ -3,7 +3,7 @@
 #include "../../header/actor/ActorManager.h"
 Phase::Phase(const PhaseData & _data)
 	:m_dataname(_data.spawn),
-	m_collisionMap(_data.m_octreeID),
+	m_collisionMap(_data.octreeID, _data.octreeOffset),
 	m_spawns()
 {
 }
@@ -28,6 +28,7 @@ void Phase::update(float deltaTime,ActorManager& _actors)
 void Phase::draw(IRenderer * _renderer)
 {
 	m_spawns.draw(_renderer);
+	//m_collisionMap.draw(_renderer);
 }
 
 const bool Phase::isEnd() const

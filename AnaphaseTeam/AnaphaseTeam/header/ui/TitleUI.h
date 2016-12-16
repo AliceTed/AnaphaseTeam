@@ -1,7 +1,7 @@
 #pragma once
 #include "SelectUI.h"
 #include "Fade.h"
-class Title;
+//class Title;
 class Menu;
 
 class TitleUI

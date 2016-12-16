@@ -1,7 +1,7 @@
 #include "../../../header/state/enemy/EStandState.h"
 #include "../../../header/data/id/ENEMY_ANIMATION.h"
 Goblin::EStandState::EStandState(Goblin* _enemy)
-	:ActorState(_enemy), m_tiemr(2.0f)
+	:ActorState(_enemy), m_tiemr(1.5f)
 {
 
 }
@@ -14,7 +14,7 @@ void Goblin::EStandState::start()
 
 void Goblin::EStandState::action(float deltaTime)
 {
-	m_actor->directionToPlayer();
+	//m_actor->directionToPlayer();
 	m_tiemr.update(deltaTime);
 	if (m_tiemr.isEnd())
 	{

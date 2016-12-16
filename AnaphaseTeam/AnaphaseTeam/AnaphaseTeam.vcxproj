@@ -282,15 +282,20 @@
     <ClCompile Include="source\ui\EndingUI.cpp" />
     <ClCompile Include="source\ui\Fade.cpp" />
     <ClCompile Include="source\ui\HPGaugeUI.cpp" />
+    <ClCompile Include="source\ui\OptionSelectUI.cpp" />
+    <ClCompile Include="source\ui\OptionUI.cpp" />
+    <ClCompile Include="source\ui\PadSelectUI.cpp" />
     <ClCompile Include="source\ui\PauseUI.cpp" />
     <ClCompile Include="source\ui\ScaleImage.cpp" />
     <ClCompile Include="source\ui\SelectUI.cpp" />
     <ClCompile Include="source\ui\SkillUI.cpp" />
     <ClCompile Include="source\ui\SlideImage.cpp" />
+    <ClCompile Include="source\ui\SoundSelectUI.cpp" />
     <ClCompile Include="source\ui\SpecialSkillUI.cpp" />
     <ClCompile Include="source\ui\SPGaugeUI.cpp" />
     <ClCompile Include="source\ui\TitleUI.cpp" />
     <ClCompile Include="source\ui\UIManager.cpp" />
+    <ClCompile Include="source\ui\VolumeSelectUI.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="header\actor\Enemy\IEnemy.h" />
@@ -387,6 +392,7 @@
     <ClInclude Include="header\renderer\define\Matrix4.h" />
     <ClInclude Include="header\renderer\define\MeshDesc.h" />
     <ClInclude Include="header\renderer\define\MeshRenderDesc.h" />
+    <ClInclude Include="header\renderer\define\OctreeExRenderDesc.h" />
     <ClInclude Include="header\renderer\define\OctreeRenderDesc.h" />
     <ClInclude Include="header\renderer\define\Ray.h" />
     <ClInclude Include="header\renderer\define\Rect.h" />
@@ -502,16 +508,19 @@
     <ClInclude Include="header\ui\Fade.h" />
     <ClInclude Include="header\ui\HPGaugeUI.h" />
     <ClInclude Include="header\ui\IPlayUI.h" />
+    <ClInclude Include="header\ui\PadSelectUI.h" />
     <ClInclude Include="header\ui\PauseUI.h" />
     <ClInclude Include="header\ui\ScaleImage.h" />
     <ClInclude Include="header\ui\SelectUI.h" />
     <ClInclude Include="header\ui\SkillUI.h" />
     <ClInclude Include="header\ui\SlideImage.h" />
+    <ClInclude Include="header\ui\SoundSelectUI.h" />
     <ClInclude Include="header\ui\SpecialSkillUI.h" />
     <ClInclude Include="header\ui\SPGaugeUI.h" />
     <ClInclude Include="header\ui\TitleUI.h" />
     <ClInclude Include="header\ui\UIManager.h" />
     <ClInclude Include="header\camera\SLookAt.h" />
+    <ClInclude Include="header\ui\VolumeSelectUI.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -26,7 +26,6 @@ void Menu::initialize()
 
 void Menu::update(float deltaTime)
 {
-	GameDevice::getInstacnce().sound().bgmFade(BGM_ID::TITLE, deltaTime * 0.01f);
 	m_menu.update(deltaTime);
 	if (m_change.update(deltaTime))return;
 	m_menu.operation(*this);
@@ -74,7 +73,8 @@ void Menu::decision(Select _select)
 		m_change.end(SceneMode::ENDING);
 		break;
 	case Select::EXIT:
-		m_IsExit = true;
+		m_change.end(SceneMode::TITLE);
+		//m_IsExit = true;
 		break;
 	}
 }

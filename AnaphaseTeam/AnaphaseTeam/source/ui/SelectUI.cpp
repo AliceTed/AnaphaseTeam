@@ -7,7 +7,9 @@ const float SelectUI::LERPTIME = 0.05f;
 SelectUI::SelectUI()
 	:m_current(Select::GAMESTART),
 	m_images(),
-	m_timer(0.0f)
+	m_timer(0.0f),
+	m_end(0, 0)
+
 {
 }
 
@@ -20,6 +22,7 @@ void SelectUI::initialize()
 	m_images.clear();
 	m_timer = 0;
 	m_current = Select::GAMESTART;
+	m_end = GSvector2(0, 0);
 }
 
 void SelectUI::add(Select _name, const ScaleImage & _image)
@@ -98,7 +101,13 @@ void SelectUI::startChange()
 
 void SelectUI::startMove()
 {
-	m_images.at(m_current).moveStart(GSvector2(465, 200), LERPTIME * 10.0f);
+	
+	m_end = GSvector2(m_images.at(m_current).isPos(), 100);
+	if (m_current == Select::STAFFROLL)
+	{
+		m_end = GSvector2(m_images.at(m_current).isPos(), 100);
+	}
+	m_images.at(m_current).moveStart(m_end, LERPTIME * 10.0f);
 	m_images.at(m_current).start(SELECTSCALE, DECISIONSCALE, LERPTIME *10.0f);
 	for (auto& i : m_images)
 	{

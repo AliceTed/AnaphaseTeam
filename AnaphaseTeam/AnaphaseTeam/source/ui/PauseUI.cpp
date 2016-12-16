@@ -13,8 +13,8 @@ PauseUI::~PauseUI()
 void PauseUI::initialize()
 {
 	m_images.clear();
-	m_images.emplace_back(std::make_shared<ScaleImage>(TEXTURE_ID::PAUSE_GAMEBACK, defPosi[0]));
-	m_images.emplace_back(std::make_shared<ScaleImage>(TEXTURE_ID::PAUSE_TITLEBACK,defPosi[1]));
+	m_images.emplace_back(std::make_shared<ScaleImage>(TEXTURE_ID::PAUSE_GAMEBACK, defPosi[0], true, 0, 1.0));
+	m_images.emplace_back(std::make_shared<ScaleImage>(TEXTURE_ID::PAUSE_TITLEBACK, defPosi[1], true, 0, 1.0f));
 	start(0);
 }
 void PauseUI::update(float deltaTime)
@@ -25,7 +25,7 @@ void PauseUI::start(int _select)
 {
 	if (_select == 0)
 	{
-		scale_Game(def,max,maxPosi,defPosi);
+		scale_Game(def, max, maxPosi, defPosi);
 	}
 	if (_select == 1)
 	{
@@ -33,7 +33,7 @@ void PauseUI::start(int _select)
 	}
 }
 
-void PauseUI::scale_Game(const GSvector2 _def,const GSvector2 _max,const GSvector2 _posi0[],const GSvector2 _posi1[])
+void PauseUI::scale_Game(const GSvector2 _def, const GSvector2 _max, const GSvector2 _posi0[], const GSvector2 _posi1[])
 {
 	m_images[0]->start(_def, _max, 0);
 	m_images[1]->start(_max, _def, 0);

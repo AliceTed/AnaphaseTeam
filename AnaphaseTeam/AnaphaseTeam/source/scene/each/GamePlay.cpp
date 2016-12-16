@@ -11,7 +11,7 @@ GamePlay::GamePlay()
 	m_cameracontroller(),
 	m_change(),
 	m_pause(m_change),//ポーズ
-	m_actors(Transform(), m_cameracontroller.get_camera()),
+	m_actors(Transform({ 0,0,0 }, {0,0,0}), m_cameracontroller.get_camera()),
 	m_pahsemanager()
 {
 }
@@ -21,6 +21,9 @@ GamePlay::~GamePlay()
 
 void GamePlay::initialize()
 {
+	GameDevice::getInstacnce().sound().playBGM(BGM_ID::GAMEPLAY);
+	GameDevice::getInstacnce().sound().bgmVolume(BGM_ID::GAMEPLAY, 0.8f);
+
 	m_change.initialize();
 	m_change.begin(2);
 	//ポーズ
@@ -28,12 +31,14 @@ void GamePlay::initialize()
 	m_actors.initialize();
 
 	PhaseData data;
-	data.m_octreeID = OCTREE_ID::ARENA;
+	data.octreeID = OCTREE_ID::ARENA;
 	data.spawn = "spawn";
+	data.octreeOffset = GSvector3(0, 0, 0);
 	m_pahsemanager.add(new Phase(data));
 	PhaseData data2;
-	data2.m_octreeID = OCTREE_ID::ARENA;
+	data2.octreeID = OCTREE_ID::ARENA;
 	data2.spawn = "spawn2";
+	data2.octreeOffset = GSvector3(0, 0, 0);
 	m_pahsemanager.add(new Phase(data2));
 	m_pahsemanager.changeFirst();
 
@@ -46,14 +51,14 @@ void GamePlay::update(float deltaTime)
 	//ポーズ
 	if (m_pause.isPause())
 		return;
-	
+
 	m_actors.update(deltaTime);
-	m_pahsemanager.update(deltaTime,m_actors);
+	m_pahsemanager.update(deltaTime, m_actors);
 
 	m_change.update(deltaTime);
 	m_cameracontroller.update(deltaTime);
 	m_cameracontroller.collisionGround(m_Map);
-	
+
 	if (m_actors.isPlayerDead())
 	{
 		m_change.end(SceneMode::ENDING);
@@ -74,12 +79,13 @@ void GamePlay::draw(IRenderer * _renderer)
 	m_actors.draw(_renderer);
 	m_pahsemanager.draw(_renderer);
 	UIManager::getInstance().draw(_renderer);
-	m_change.draw(_renderer);	
-	m_pause.draw(_renderer);	
+	m_change.draw(_renderer);
+	m_pause.draw(_renderer);
 }
 
 void GamePlay::finish()
 {
+	GameDevice::getInstacnce().sound().stopBGM(BGM_ID::GAMEPLAY);
 	m_actors.finish();
 }
 

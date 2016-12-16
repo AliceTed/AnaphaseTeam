@@ -48,9 +48,9 @@ void Load::finish()
 
 const SceneMode Load::next() const
 {
-#ifdef _DEBUG
-	return SceneMode::GAMEPLAY;
-#endif // DEBUG
+//#ifdef _DEBUG
+	//return SceneMode::GAMEPLAY;
+//#endif // DEBUG
 
 	return SceneMode::OPENING;
 }
@@ -94,16 +94,21 @@ void Load::loadTextrue()
 void Load::loadSound()
 {
 	SoundLoader sound;
-	sound(BGM_ID::TITLE, "Tulip");
+	sound(BGM_ID::TITLE, "titleBGM", true);
+	sound(BGM_ID::GAMEPLAY, "gameplayBGM", true);
 	sound(SE_ID::ENTER, "enter");
 	sound(SE_ID::SELECT, "select");
+	sound(SE_ID::PLAYER_ATTACK, "player_attack");
+	sound(SE_ID::PLAYER_STEP, "player_step");
+	sound(SE_ID::OPEN_SPECIALUI, "open_specialUI");
+	sound(SE_ID::ENEMY_ATTACK, "enemy_attack");
 }
 
 void Load::loadModel()
 {
 	ShaderLoader shader;
 	shader(SHADER_ID::SKINNEDMESH, "skinned_mesh_bump");
-
+	shader(SHADER_ID::OCTREE, "octree");
 	ModelLoader model;
 	MeshLoader mesh;
 	model(MODEL_ID::PLAYER, "player/woman003");
@@ -114,7 +119,7 @@ void Load::loadModel()
 	mesh(MESH_ID::WEAPON, "weapon/weapon");
 
 	OctreeLoader oct;
-	oct(OCTREE_ID::ARENA, "arena");
+	oct(OCTREE_ID::ARENA, "arena", true);
 }
 
 void Load::loadMyAnimation()

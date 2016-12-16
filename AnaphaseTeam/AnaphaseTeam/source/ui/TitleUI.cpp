@@ -1,6 +1,5 @@
 #include "../../header/ui/TitleUI.h"
 #include "../../header/scene/SceneChange.h"
-#include "../../header/scene/each/Title.h"
 #include "../../header/scene/each/Menu.h"
 #include "../../header/device/GameDevice.h"
 TitleUI::TitleUI()
@@ -51,10 +50,12 @@ void TitleUI::operation(Menu& _menu)
 	if (GameDevice::getInstacnce().input()->up())
 	{
 		m_select.previous();
+		GameDevice::getInstacnce().sound().playSE(SE_ID::SELECT);
 	}
 	if (GameDevice::getInstacnce().input()->down())
 	{
 		m_select.next();
+		GameDevice::getInstacnce().sound().playSE(SE_ID::SELECT);
 	}
 	if (GameDevice::getInstacnce().input()->decision())
 	{
@@ -66,31 +67,19 @@ void TitleUI::operation(Menu& _menu)
 void TitleUI::createSelect()
 {
 	m_select.initialize();
-	const unsigned int size = 3;
-	Select select[size] =
-	{
-		Select::GAMESTART,
-		Select::OPTION,
-		Select::STAFFROLL
-	};
-	TEXTURE_ID id[size] =
-	{
-		TEXTURE_ID::GAMESTART,
-		TEXTURE_ID::OPTION,
-		TEXTURE_ID::STAFFROLL
-	};
-	GSvector2 base(0, 90);
-	GSvector2 marge(0, 120);
-	for (unsigned int i = 0; i < size; i++)
-	{
-		GSvector2 position(base + marge*i);
-		ScaleImage image(id[i], position, false);
-		m_select.add(select[i], image);
-	}
 
-	ScaleImage image(TEXTURE_ID::EXIT, GSvector2(0,610), false);
-	m_select.add(Select::EXIT, image);
+	ScaleImage imageStart(TEXTURE_ID::GAMESTART, GSvector2(0, 90), false, 465.0f, 0.0f);
+	m_select.add(Select::GAMESTART, imageStart);
+
+	ScaleImage imageOption(TEXTURE_ID::OPTION, GSvector2(0, 210), false, 460.0f, 0.0f);
+	m_select.add(Select::OPTION, imageOption);
+
+	ScaleImage imageStaff(TEXTURE_ID::STAFFROLL, GSvector2(0, 335), false, 390.0f, 0.0f);
+	m_select.add(Select::STAFFROLL, imageStaff);
+
+	ScaleImage imageExit(TEXTURE_ID::EXIT, GSvector2(0, 610), false, 470.0f, 0.0f);
+	m_select.add(Select::EXIT, imageExit);
 
 	m_select.startChange();
-	
+
 }

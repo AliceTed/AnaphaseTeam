@@ -2,6 +2,7 @@
 #include <algorithm>
 #include "../../header/renderer/define/SpriteRenderDesc.h"
 #include "../../header/renderer/IRenderer.h"
+#include "../../header/device/GameDevice.h"
 SpecialSkillUI::SpecialSkillUI(const GSvector2& _position)
 	:m_position(_position),
 	m_conatiner(),
@@ -30,12 +31,14 @@ void SpecialSkillUI::open()
 	if (isOpen())return;
 	for (auto& i : m_conatiner) { i.second.initialize(); }
 	for (auto& i:m_conatiner){i.second.open();}
+	GameDevice::getInstacnce().sound().playSE(SE_ID::OPEN_SPECIALUI);
 }
 
 void SpecialSkillUI::close()
 {
 	if (!isOpen())return;
 	for (auto& i : m_conatiner){i.second.close();}
+	GameDevice::getInstacnce().sound().stopSE(SE_ID::OPEN_SPECIALUI);
 }
 
 void SpecialSkillUI::canSelect(SPECIALSKILL_TYPE _type)
