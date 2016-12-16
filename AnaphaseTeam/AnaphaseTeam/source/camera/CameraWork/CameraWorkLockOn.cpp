@@ -41,8 +41,8 @@ void CameraWorkLockOn::start(void)
 void CameraWorkLockOn::run(float _deltaTime)
 {
 	//’·‚¢•Ï”‚ğ‚¢‚¿‚¢‚¿‘‚­‚Ì‚ª‚ß‚ñ‚Ç‚­‚³‚¢‚Ì‚Å
-	const GSvector3& player = m_camera->cameraTarget_player();
-	const GSvector3& target = m_camera->cameraTarget_enemy();
+	const GSvector3& player = m_camera->get_cameraTarget_player();
+	const GSvector3& target = m_camera->get_cameraTarget_enemy();
 
 	//‰E‚ª¶‚©
 	whichSide(player, target);

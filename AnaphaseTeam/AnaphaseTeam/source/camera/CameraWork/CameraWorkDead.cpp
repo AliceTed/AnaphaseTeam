@@ -23,8 +23,7 @@ static int i = 0;
 void CameraWorkDead::run(float _deltaTime)
 {
 	//変数の名前が長いので短い名前に変更
-	const GSvector3& player = m_camera->cameraTarget_player();
-
+	const GSvector3& player = m_camera->get_cameraTarget_player();
 	i += _deltaTime;
 
 	//注視点をプレイヤーに固定
