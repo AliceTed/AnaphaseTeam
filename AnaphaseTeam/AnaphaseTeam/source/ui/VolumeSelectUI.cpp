@@ -25,18 +25,6 @@ void VolumeSelectUI::add(VOLUME _name, const ScaleImage & _image)
 	m_images.insert(std::make_pair(_name, _image));
 }
 
-void VolumeSelectUI::next()
-{
-	auto itr = m_images.find(m_volume);
-	itr++;
-	if (itr == m_images.end())
-	{
-		change(m_images.begin()->first);
-		return;
-	}
-	change(itr->first);
-}
-
 void VolumeSelectUI::update(float _deltaTime)
 {
 	std::for_each(m_images.begin(), m_images.end(), [_deltaTime](SelectVolime& value) {value.second.update(_deltaTime); });
@@ -58,14 +46,20 @@ void VolumeSelectUI::previous()
 	change(itr->first);
 }
 
+void VolumeSelectUI::next()
+{
+	auto itr = m_images.find(m_volume);
+	itr++;
+	if (itr == m_images.end())
+	{
+		change(m_images.begin()->first);
+		return;
+	}
+	change(itr->first);
+}
 const VOLUME VolumeSelectUI::current() const
 {
 	return m_volume;
-}
-
-void VolumeSelectUI::startChange()
-{
-	change(m_volume);
 }
 
 void VolumeSelectUI::change(VOLUME _next)
@@ -73,4 +67,9 @@ void VolumeSelectUI::change(VOLUME _next)
 	m_images.at(m_volume).start(SELECTSCALE, DEFAULTSCALE, LERPTIME);
 	m_volume = _next;
 	m_images.at(m_volume).start(DEFAULTSCALE, SELECTSCALE, LERPTIME);
+}
+
+void VolumeSelectUI::startChange()
+{
+	change(m_volume);
 }

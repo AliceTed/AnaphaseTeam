@@ -8,6 +8,7 @@ OptionUI::OptionUI()
 	m_select(),
 	m_pad(),
 	m_sound(),
+	m_volume(),
 	m_cahnge(false)
 {
 }
@@ -20,6 +21,7 @@ void OptionUI::initialize()
 {
 	createSelect();
 	m_fade.initialize();
+	GameDevice::getInstacnce().sound().playBGM(BGM_ID::TITLE);
 }
 
 
@@ -29,6 +31,7 @@ void OptionUI::update(float _deltaTime)
 	m_select.update(_deltaTime);
 	m_pad.update(_deltaTime);
 	m_sound.update(_deltaTime);
+	m_volume.update(_deltaTime);
 }
 
 void OptionUI::draw(IRenderer * _renderer)
@@ -42,8 +45,8 @@ void OptionUI::draw(IRenderer * _renderer)
 	if (m_select.current() == OPTION::SOUND)
 	{
 		m_sound.draw(_renderer);
+		m_volume.draw(_renderer);
 	}
-	//if()
 }
 
 void OptionUI::finish()
@@ -51,6 +54,7 @@ void OptionUI::finish()
 	m_select.initialize();
 	m_pad.initialize();
 	m_sound.initialize();
+	m_volume.initialize();
 }
 
 void OptionUI::operation(Option& _opution)
@@ -60,15 +64,15 @@ void OptionUI::operation(Option& _opution)
 		return;
 	}
 	cancel(_opution);
-	//outionOperation(_opution);
-	//padOperation(_opution);
 	if (GameDevice::getInstacnce().input()->right())
 	{
 		m_pad.previous();
+		m_volume.next();
 	}
 	if (GameDevice::getInstacnce().input()->left())
 	{
 		m_pad.next();
+		m_volume.previous();
 	}
 	if (GameDevice::getInstacnce().input()->up())
 	{
@@ -80,8 +84,15 @@ void OptionUI::operation(Option& _opution)
 	}
 	if (GameDevice::getInstacnce().input()->decision())
 	{
-		_opution.optionDecision(m_select.current());
-		_opution.padDecision(m_pad.current());
+		if (m_select.current() == OPTION::CONFIG || m_select.current() == OPTION::TITLE)
+		{
+			_opution.optionDecision(m_select.current());
+		}
+		if (m_pad.current() == PAD::PAD_A)
+		{
+			_opution.padDecision(m_pad.current());
+		}
+		_opution.bgmDecision(m_volume.current());
 	}
 
 }
@@ -119,26 +130,27 @@ void OptionUI::createSelect()
 	m_select.startChange();
 
 	m_pad.initialize();
-	ScaleImage padA(TEXTURE_ID::PAD_A, GSvector2(400, 100), false, 400.0f, 1.0f);
+	ScaleImage padA(TEXTURE_ID::PAD_A, GSvector2(500, 100), false, 500.0f, 1.0f);
 	m_pad.add(PAD::PAD_A, padA);
-	ScaleImage padB(TEXTURE_ID::EXIT, GSvector2(800, 100), false, 800.0f, 1.0f);
+	ScaleImage padB(TEXTURE_ID::EXIT, GSvector2(1000, 100), false, 1000.0f, 1.0f);
 	m_pad.add(PAD::PAD_B, padB);
 	m_pad.startChange();
 
 	m_sound.initialize();
-	ScaleImage bgm(TEXTURE_ID::STAFFROLL, GSvector2(300, 200), false, 300.0f, 1.0f);
+	ScaleImage bgm(TEXTURE_ID::STAFFROLL, GSvector2(600, 300), false, 600.0f, 1.0f);
 	m_sound.add(SOUND::BGM, bgm);
-	ScaleImage se(TEXTURE_ID::EXIT, GSvector2(300, 500), false, 300.0f, 1.0f);
-	m_sound.add(SOUND::SE, se);
+	//ScaleImage se(TEXTURE_ID::EXIT, GSvector2(300, 500), false, 300.0f, 1.0f);
+	//m_sound.add(SOUND::SE, se);
 	m_sound.startChange();
 
 	m_volume.initialize();
-	ScaleImage low(TEXTURE_ID::SPECIAL_RECOVERY, GSvector2(400, 200), false, 400.0f, 1.0f);
+	ScaleImage low(TEXTURE_ID::SPECIAL_RECOVERY, GSvector2(600, 400), false, 600.0f, 1.0f);
 	m_volume.add(VOLUME::LOW, low);
-	ScaleImage normal(TEXTURE_ID::SPECIAL_SUPERARMOR, GSvector2(450, 200), false, 450.0f, 1.0f);
+	ScaleImage normal(TEXTURE_ID::SPECIAL_SUPERARMOR, GSvector2(700, 400), false, 700.0f, 1.0f);
 	m_volume.add(VOLUME::NORMAL, normal);
-	ScaleImage high(TEXTURE_ID::SPECIAL_ATTACK, GSvector2(500, 200), false, 500.0f, 1.0f);
+	ScaleImage high(TEXTURE_ID::SPECIAL_ATTACK, GSvector2(800, 400), false, 800.0f, 1.0f);
 	m_volume.add(VOLUME::HIGH, high);
+	m_volume.startChange();
 
 }
 
