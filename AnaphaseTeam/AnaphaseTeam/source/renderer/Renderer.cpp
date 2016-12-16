@@ -401,7 +401,6 @@ void Renderer::render(const OctreeRenderDesc & desc)
 	glLightfv(GL_LIGHT0, GL_POSITION, lightPosition);
 	glEnable(GL_LIGHT0);
 
-	glMultMatrixf((GLfloat*)&desc.matrix);
 	gsDrawOctree(desc.octreeID);	
 }
 

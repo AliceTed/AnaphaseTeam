@@ -69,8 +69,8 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
-    <IncludePath>C:\gslib_2015\gslib_2015\inc;C:\boost\Include\boost_1_57_0;D:\GSLibrary_2015\gslib_2015\gslib_2015\inc;C:\boost\include\boost-1_57;C:\boost\boost\include\boost-1_57;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\gslib_2015\gslib_2015\lib;C:\boost\lib;D:\GSLibrary_2015\gslib_2015\gslib_2015\lib;D:\GSLibrary_2015\boost\lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>C:\gslib_2015\gslib_2015\inc;C:\boost\Include\boost_1_57_0;D:\GSLibrary_2015\gslib_2015\gslib_2015\inc;C:\boost\include\boost-1_57;C:\boost\boost\include\boost-1_57;C:\gslib_2015\gslibEXT_2015\inc;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\gslib_2015\gslib_2015\lib;C:\boost\lib;D:\GSLibrary_2015\gslib_2015\gslib_2015\lib;D:\GSLibrary_2015\boost\lib;C:\gslib_2015\gslibEXT_2015\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
@@ -227,6 +227,7 @@
     <ClCompile Include="source\specialskill\SuperArmor.cpp" />
     <ClCompile Include="source\stage\Phase.cpp" />
     <ClCompile Include="source\stage\PhaseManager.cpp" />
+    <ClCompile Include="source\stage\Stage.cpp" />
     <ClCompile Include="source\state\enemy\EAttackState.cpp" />
     <ClCompile Include="source\state\enemy\EDashFrontState.cpp" />
     <ClCompile Include="source\state\enemy\EDeadState.cpp" />
@@ -431,6 +432,7 @@
     <ClInclude Include="header\stage\Phase.h" />
     <ClInclude Include="header\stage\PhaseData.h" />
     <ClInclude Include="header\stage\PhaseManager.h" />
+    <ClInclude Include="header\stage\Stage.h" />
     <ClInclude Include="header\state\ActorState.h" />
     <ClInclude Include="header\state\ACTOR_STATE.h" />
     <ClInclude Include="header\state\enemy\EAI.h" />
