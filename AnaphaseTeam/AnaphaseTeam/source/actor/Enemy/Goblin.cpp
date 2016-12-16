@@ -17,8 +17,6 @@
 #include "../../../header/state/enemy/EMoveBackState.h"
 #include "../../../header/state/enemy/EThinkState.h"
 #include "../../../header/state/enemy/ESecoundAttackState.h"
-#include "../../../header/ui/HPGaugeUI.h"
-#include "../../../header/ui/UIManager.h"
 #include "../../../header/state/enemy/NearAI.h"
 #include "../../../header/state/enemy/OverNearAI.h"
 #include "../../../header/state/enemy/MiddleRangeAI.h"

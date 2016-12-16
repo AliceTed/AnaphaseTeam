@@ -897,6 +897,9 @@
     <ClInclude Include="header\renderer\define\OctreeExRenderDesc.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
+    <ClInclude Include="header\actor\Enemy\SlahHand.h">
+      <Filter>ヘッダー ファイル\actor\Enemy</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="source\main.cpp">
@@ -1359,6 +1362,9 @@
       <Filter>ソース ファイル\actor\Enemy</Filter>
     </ClCompile>
     <ClCompile Include="source\actor\Enemy\IEnemy.cpp">
+      <Filter>ソース ファイル\actor\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="source\actor\Enemy\SlahHand.cpp">
       <Filter>ソース ファイル\actor\Enemy</Filter>
     </ClCompile>
   </ItemGroup>
