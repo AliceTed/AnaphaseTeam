@@ -67,15 +67,19 @@ void Goblin::update(float deltatime)
 	m_gravity = 0.0f;
 	changeGravity(-0.05f);
 	m_timer.update(deltatime);
-	m_transform= m_transform.lerp(Transform(m_transform.m_translate, m_targetDirection, m_transform.m_scale),m_timer.time/m_timer.maxTime);
+
+	rotateLerp(&m_transform.m_rotate, m_timer.time / m_timer.maxTime);
 }
+
+
+
 
 void Goblin::draw(IRenderer * _renderer)
 {
 	m_collision.draw(_renderer);
 	StringRenderDesc desc;
 	desc.position = GSvector2(200, 200);
-	desc.string =std::to_string( m_targetDirection.getYaw());
+	desc.string =std::to_string(m_debug.getAngle());
 	_renderer->render(desc);
 	desc.string =std::to_string(m_transform.m_rotate.getYaw());
 	desc.position = GSvector2(200, 300);
@@ -117,6 +121,7 @@ void Goblin::createStates()
 void Goblin::think(Player * _player)
 {
 	float distance = distanceActor(*_player);
+	m_debug = targetDirection(*_player);
 	if (!isThink())return;
 	m_AI.change(isNear(distance));
 	m_AI.think(_player);
