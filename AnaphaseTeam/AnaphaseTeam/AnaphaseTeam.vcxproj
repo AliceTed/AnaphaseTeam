@@ -506,8 +506,6 @@
     <ClInclude Include="header\ui\Fade.h" />
     <ClInclude Include="header\ui\HPGaugeUI.h" />
     <ClInclude Include="header\ui\IPlayUI.h" />
-    <ClInclude Include="header\ui\OptionSelectUI.h" />
-    <ClInclude Include="header\ui\OptionUI.h" />
     <ClInclude Include="header\ui\PadSelectUI.h" />
     <ClInclude Include="header\ui\PauseUI.h" />
     <ClInclude Include="header\ui\ScaleImage.h" />
