@@ -789,9 +789,6 @@
     <ClInclude Include="header\camera\CameraWork\CameraWorkEmpty.h">
       <Filter>ヘッダー ファイル\camera\CameraWork</Filter>
     </ClInclude>
-    <ClInclude Include="header\camera\CameraWork\CameraWorkTest.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
     <ClInclude Include="header\actor\ActorManager.h">
       <Filter>ヘッダー ファイル\actor</Filter>
     </ClInclude>
@@ -888,16 +885,22 @@
     <ClInclude Include="header\renderer\define\OctreeExRenderDesc.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="header\animation\AnimationSpline.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
     <ClInclude Include="header\camera\LookAt.h">
       <Filter>ヘッダー ファイル\camera</Filter>
     </ClInclude>
+    <ClInclude Include="header\animation\AnimationSpline.h">
+      <Filter>ヘッダー ファイル\animation</Filter>
+    </ClInclude>
+    <ClInclude Include="header\camera\CameraWork\CameraWorkTest.h">
+      <Filter>ヘッダー ファイル\camera\CameraWork</Filter>
+    </ClInclude>
     <ClInclude Include="header\math\Spline.h">
-      <Filter>ヘッダー ファイル</Filter>
+      <Filter>ヘッダー ファイル\math</Filter>
     </ClInclude>
     <ClInclude Include="header\math\SplineVec3.h">
+      <Filter>ヘッダー ファイル\math</Filter>
+    </ClInclude>
+    <ClInclude Include="header\function\Shake.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
   </ItemGroup>
@@ -1313,9 +1316,6 @@
     <ClCompile Include="source\actor\Enemy\Goblin.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="source\camera\CameraWork\CameraWorkTest.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
     <ClCompile Include="source\actor\ActorManager.cpp">
       <Filter>ソース ファイル\actor</Filter>
     </ClCompile>
@@ -1355,16 +1355,22 @@
     <ClCompile Include="source\ui\OptionUI.cpp">
       <Filter>ソース ファイル\ui</Filter>
     </ClCompile>
-    <ClCompile Include="source\animation\AnimationSpline.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
     <ClCompile Include="source\camera\LookAt.cpp">
       <Filter>ソース ファイル\camera</Filter>
     </ClCompile>
+    <ClCompile Include="source\animation\AnimationSpline.cpp">
+      <Filter>ソース ファイル\animation</Filter>
+    </ClCompile>
+    <ClCompile Include="source\camera\CameraWork\CameraWorkTest.cpp">
+      <Filter>ソース ファイル\camera\CameraWork</Filter>
+    </ClCompile>
     <ClCompile Include="source\math\Spline.cpp">
-      <Filter>ソース ファイル</Filter>
+      <Filter>ソース ファイル\math</Filter>
     </ClCompile>
     <ClCompile Include="source\math\SplineVec3.cpp">
+      <Filter>ソース ファイル\math</Filter>
+    </ClCompile>
+    <ClCompile Include="source\function\Shake.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
   </ItemGroup>
