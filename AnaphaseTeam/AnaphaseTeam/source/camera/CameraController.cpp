@@ -12,7 +12,7 @@
 
 CameraController::CameraController() :
 	m_camera(std::make_unique<Camera>()),
-	m_cameraWorkManager(std::make_unique<CameraWorkManager>(m_camera.get())),
+	m_cameraWorkManager(std::make_shared<CameraWorkManager>(m_camera.get())),
 	m_deltaTime(0.0f)
 {
 	//ƒJƒƒ‰ƒ[ƒN‚Ì“Ç‚İ‚İ

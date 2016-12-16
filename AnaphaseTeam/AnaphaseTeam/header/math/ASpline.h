@@ -29,11 +29,10 @@ public:
 	*/
 	float culc(float _t);
 
-protected:
+private:
 	static const int MaxSplineSize;			//”z—ñ‚ÌÅ‘å—v‘f”‚ğæ‚ÉŒˆ‚ß‚Ä‚¨‚­
 
-private:
-
 	int m_num;								//—v‘f”‚ğ•Û‚·‚é‚½‚ß‚Ì•Ï”
+
 	std::vector<float> m_a, m_b, m_c, m_d;	//‚²‚ß‚ñ‚æ‚­‚í‚©‚ç‚È‚¢
 };
