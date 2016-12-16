@@ -108,7 +108,7 @@ void Load::loadModel()
 {
 	ShaderLoader shader;
 	shader(SHADER_ID::SKINNEDMESH, "skinned_mesh_bump");
-
+	shader(SHADER_ID::OCTREE, "octree");
 	ModelLoader model;
 	MeshLoader mesh;
 	model(MODEL_ID::PLAYER, "player/woman003");
@@ -119,7 +119,7 @@ void Load::loadModel()
 	mesh(MESH_ID::WEAPON, "weapon/weapon");
 
 	OctreeLoader oct;
-	oct(OCTREE_ID::ARENA, "arena");
+	oct(OCTREE_ID::ARENA, "arena", true);
 }
 
 void Load::loadMyAnimation()

@@ -39,6 +39,9 @@ public:
 	virtual const Matrix4& getProjectionMatrix() const = 0;
 	//視野変換行列の取得
 	virtual const Matrix4& getViewMatrix()  const = 0;
+	//ライトの取得
+	virtual const LightDesc& getLight()const = 0;
+
 	//ライトの設定
 	virtual void light(const LightDesc& desc) = 0;
 	//レイの計算を行う

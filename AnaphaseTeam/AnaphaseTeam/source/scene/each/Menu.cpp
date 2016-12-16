@@ -73,7 +73,8 @@ void Menu::decision(Select _select)
 		m_change.end(SceneMode::ENDING);
 		break;
 	case Select::EXIT:
-		m_IsExit = true;
+		m_change.end(SceneMode::TITLE);
+		//m_IsExit = true;
 		break;
 	}
 }

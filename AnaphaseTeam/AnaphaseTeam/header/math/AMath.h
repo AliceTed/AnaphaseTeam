@@ -10,6 +10,7 @@
 #include <list>
 #include <vector>
 #include "ASpline.h"
+#include "ASplineVec3.h"
 
 class AMath
 {
