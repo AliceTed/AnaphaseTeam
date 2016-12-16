@@ -1,12 +1,10 @@
 #ifndef _GAMEPLAY_H_
 #define _GAMEPLAY_H_
+#include <memory>
 #include "../IScene.h"
-#include "../../camera/CameraController.h"
-#include "../../map/Map.h"
 #include "../SceneChange.h"
 #include "Pause.h" 
-#include "../../actor/ActorManager.h"
-#include "../../stage/PhaseManager.h"
+class Stage;
 class GamePlay :public IScene
 {
 public:
@@ -22,10 +20,8 @@ public:
 	const bool isExit()const;
 private:
 	SceneChange m_change;
-	Map m_Map;
-	CameraController m_cameracontroller;
-	ActorManager m_actors;
 	Pause m_pause;
-	PhaseManager m_pahsemanager;
+	using Stage_Ptr = std::unique_ptr<Stage>;
+	Stage_Ptr m_stage;
 };
 #endif

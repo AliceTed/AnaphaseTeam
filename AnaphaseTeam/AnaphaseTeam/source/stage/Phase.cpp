@@ -28,7 +28,7 @@ void Phase::update(float deltaTime,ActorManager& _actors, CameraController& _cam
 }
 void Phase::draw(IRenderer * _renderer)
 {
-	m_collisionMap.draw(_renderer);
+	//m_collisionMap.draw(_renderer);
 }
 
 const bool Phase::isEnd() const
