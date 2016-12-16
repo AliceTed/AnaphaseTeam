@@ -204,6 +204,7 @@
     <ClCompile Include="source\device\InputPattern_A.cpp" />
     <ClCompile Include="source\device\InputPattern_B.cpp" />
     <ClCompile Include="source\math\ASpline.cpp" />
+    <ClCompile Include="source\math\ASplineVec3.cpp" />
     <ClCompile Include="source\math\Random.cpp" />
     <ClCompile Include="source\myanimation\MyAnimation.cpp" />
     <ClCompile Include="source\myanimation\MyAnimationContainer.cpp" />
