@@ -1328,5 +1328,23 @@
     <ClCompile Include="source\data\stream\SpawnConverter.cpp">
       <Filter>ソース ファイル\data\stream</Filter>
     </ClCompile>
+    <ClCompile Include="source\camera\CameraWork\CameraWorkEmpty.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="source\ui\OptionUI.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="source\ui\OptionSelectUI.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="source\ui\PadSelectUI.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="source\ui\VolumeSelectUI.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="source\ui\SoundSelectUI.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

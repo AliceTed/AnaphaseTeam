@@ -1,15 +1,14 @@
 #include "../../header/ui/ScaleImage.h"
 #include "../../header/renderer/IRenderer.h"
 #include "../../header/renderer/define/SpriteRenderDesc.h"
-static const float  endPosiX = 465;
 
-ScaleImage::ScaleImage(TEXTURE_ID _id, const GSvector2& _position, bool _isPexis)
+ScaleImage::ScaleImage(TEXTURE_ID _id, const GSvector2& _position, bool _isPexis, float _stopPos, float _alpha)
 	:m_id(_id), m_position(_position),
 	m_scaleLerp(GSvector2(1.0f, 1.0f)),
-	m_moveLerp(GSvector2(endPosiX, m_position.y)),
+	m_moveLerp(GSvector2(_stopPos, m_position.y)),
 	m_changeScroll(false),
-	m_alpha(0.0f), m_value(0.0f),
-	m_speed(10.0f)
+	m_alpha(_alpha), m_value(0.0f), m_speed(10.0f),
+	m_stopPos(_stopPos)
 
 {
 }
@@ -37,15 +36,16 @@ void ScaleImage::update(float deltaTime)
 		return;
 	};
 	m_position = m_moveLerp.current();
+
 }
 
 void ScaleImage::draw(IRenderer * _renderer)
 {
 	SpriteRenderDesc desc;
 	GSvector2 scale = m_scaleLerp.current();
-	desc.center = GSvector2(m_position.x / 2, m_position.y / 2);
+	desc.center = getTextureSize()*0.5f;
 	desc.matrix.scale(scale);
-	desc.matrix.translate(m_position+desc.center);
+	desc.matrix.translate(m_position + desc.center);
 	desc.color.a = m_alpha;
 	desc.textureID = static_cast<GSuint>(m_id);
 	_renderer->render(desc);
@@ -55,12 +55,12 @@ void ScaleImage::scroll()
 {
 	m_position.x += m_speed;
 
-	if (m_position.x > 365)
+	if (m_position.x > 375)
 	{
 		m_speed -= 0.5;
 	}
 
-	if (m_position.x >= endPosiX)
+	if (m_position.x >= m_stopPos)
 	{
 		m_changeScroll = true;
 	}
@@ -78,6 +78,11 @@ void ScaleImage::alpha(float _timer)
 bool ScaleImage::isEndscroll()
 {
 	return m_changeScroll;
+}
+
+float ScaleImage::isPos()
+{
+	return m_position.x;
 }
 
 const GSvector2 ScaleImage::getTextureSize() const

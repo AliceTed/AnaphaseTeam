@@ -16,9 +16,13 @@ public:
 	void slide(float _time=1.0f,MODE _mode=MODE::NORMAL);
 	void update(float deltaTime);
 	void draw(IRenderer * _renderer);
+	void scaleChange();
+	void reset();
 private:
 	GSvector2 m_begin;
 	GSvector2 m_end;
 	TEXTURE_ID m_id;
 	Math::TimeLerpVector<GSvector2> m_lerp;
+	GSvector2 m_scale;
+
 };
