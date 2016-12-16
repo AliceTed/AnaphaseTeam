@@ -28,6 +28,11 @@ public:
 	*/
 	GSvector3 culc(float _t);
 
+	/**
+	@return アニメーションが終了したか？
+	*/
+	bool isEnd(void);
+
 private:
 	static const int MaxSplineSize;				//配列の最大要素数を先に決めておく
 

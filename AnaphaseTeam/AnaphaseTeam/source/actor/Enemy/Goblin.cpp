@@ -26,7 +26,6 @@
 #include "../../../header/state/enemy/EAI.h"
 #include "../../../header/actor/Enemy/EnemyMediator.h"
 #include <math.h>
-#include "../../../header/renderer/define/StringRenderDesc.h"
 Goblin::Goblin(const Transform & _transform, EnemyMediator& _mediator)
 	:IEnemy(_transform, MODEL_ID::ENEMY, _mediator)
 {
@@ -67,20 +66,16 @@ void Goblin::update(float deltatime)
 	m_gravity = 0.0f;
 	changeGravity(-0.05f);
 	m_timer.update(deltatime);
-	m_transform= m_transform.lerp(Transform(m_transform.m_translate, m_targetDirection, m_transform.m_scale),m_timer.time/m_timer.maxTime);
+
+	rotateLerp(&m_transform.m_rotate, m_timer.time / m_timer.maxTime);
 }
+
+
+
 
 void Goblin::draw(IRenderer * _renderer)
 {
 	m_collision.draw(_renderer);
-	StringRenderDesc desc;
-	desc.position = GSvector2(200, 200);
-	desc.string =std::to_string( m_targetDirection.getYaw());
-	_renderer->render(desc);
-	desc.string =std::to_string(m_transform.m_rotate.getYaw());
-	desc.position = GSvector2(200, 300);
-	_renderer->render(desc);
-
 	m_animatorOne.draw(_renderer, m_transform, GScolor(1, 1, 1, m_alpha));
 }
 
@@ -88,7 +83,6 @@ void Goblin::damage(const AttackStatus & _attackStatus)
 {
 	if (isNotDamageState())return;
 	changeState(ACTOR_STATE::EDAMAGE);
-	//m_animatorOne.changeAnimation(static_cast<GSuint>(ENEMY_ANIMATION::DAMAGE), true, false, false, 10.0f, 1.5f);
 	m_status.down(_attackStatus.m_power);
 	if (!m_isGround)
 	{
@@ -117,6 +111,7 @@ void Goblin::createStates()
 void Goblin::think(Player * _player)
 {
 	float distance = distanceActor(*_player);
+	m_debug = targetDirection(*_player);
 	if (!isThink())return;
 	m_AI.change(isNear(distance));
 	m_AI.think(_player);

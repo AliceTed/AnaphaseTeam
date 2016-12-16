@@ -30,7 +30,7 @@ void CameraWorkTest::run(float _deltaTime)
 	}
 	ASplineVec3 vecs;
 
-	GSvector3 position = m_camera->cameraTarget_player();
+	GSvector3 position = m_camera->get_cameraTarget_player();
 
 	std::vector<GSvector3> vec =
 	{
@@ -45,7 +45,7 @@ void CameraWorkTest::run(float _deltaTime)
 
 	vecs.init(vec);
 
-	m_camera->tracking_lookAt(m_camera->cameraTarget_player() + GSvector3(0, 1.3f, 0), 1.0f);
+	m_camera->tracking_lookAt(position + GSvector3(0, 1.3f, 0), 1.0f);
 	m_camera->tracking_position(position + vecs.culc(t), 1.0f);
 
 	return;

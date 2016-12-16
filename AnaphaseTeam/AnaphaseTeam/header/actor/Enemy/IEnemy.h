@@ -71,6 +71,7 @@ public:
 
 	const bool isDamageState()const;*/
 	const bool isDeadState() const;
+	const bool isBlocked()const { return m_isBlock; }
 	/**
 	* @fn
 	* @brief 考える時か否か
@@ -83,7 +84,6 @@ public:
 	* @param (&_player)　プレイヤー
 	*/
 	virtual void think(Player* _palyer)=0;
-	void directionLerpBegin();
 protected:
 		/**
 		* @fn
@@ -98,6 +98,7 @@ protected:
 	* @brief 攻撃時のあたり判定生成
 	*/
 	void createAttackCollision();
+	void rotateLerp(GSquaternion* _out, float _time);
 protected:
 	static const float IEnemy::PLAYER_DISTANCE_NEAR;
 	static const float IEnemy::PLAYER_DISTANCE_MID;

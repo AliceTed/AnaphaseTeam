@@ -12,6 +12,7 @@ void Goblin::ESlideState::start()
 {
 	Math::Random rnd;
 	m_timer.setEndTime(rnd(1, 5));
+	if (!m_actor->m_isBlock)m_timer.setEndTime(4);
 	m_actor->m_animatorOne.changeAnimation(ENEMY_ANIMATION::WALKLEFT, true, true);
 }
 

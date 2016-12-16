@@ -34,6 +34,9 @@ private:
 	//スティックの操作
 	const GSvector2 velocity(void);
 
+	//ボタンを押したときにカメラの位置をプレイヤーの後ろに動かす処理
+	void resetCamera(void);
+
 private:
 	GSvector2* m_rotate;							//回転
 

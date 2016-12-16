@@ -81,6 +81,8 @@ void Load::loadTextrue()
 	tex(TEXTURE_ID::PAD_A, "pad");
 	tex(TEXTURE_ID::PAD_B, "pad");
 	tex(TEXTURE_ID::ROGO, "rogo");
+	tex(TEXTURE_ID::PLAYER_HP, "GameUI_HPGauge1");
+	tex(TEXTURE_ID::PLAYER_HP_GAUGE, "GameUI_HPGauge2");
 
 	tex(TEXTURE_ID::SPECIAL_MAIN, "special_main");
 	tex(TEXTURE_ID::SPECIAL_ATTACK, "special_attack");
@@ -94,9 +96,14 @@ void Load::loadTextrue()
 void Load::loadSound()
 {
 	SoundLoader sound;
-	sound(BGM_ID::TITLE, "Tulip");
+	sound(BGM_ID::TITLE, "titleBGM", true);
+	sound(BGM_ID::GAMEPLAY, "gameplayBGM", true);
 	sound(SE_ID::ENTER, "enter");
 	sound(SE_ID::SELECT, "select");
+	sound(SE_ID::PLAYER_ATTACK, "player_attack");
+	sound(SE_ID::PLAYER_STEP, "player_step");
+	sound(SE_ID::OPEN_SPECIALUI, "open_specialUI");
+	sound(SE_ID::ENEMY_ATTACK, "enemy_attack");
 }
 
 void Load::loadModel()

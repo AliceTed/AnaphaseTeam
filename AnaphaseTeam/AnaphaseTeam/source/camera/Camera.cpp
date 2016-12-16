@@ -18,7 +18,8 @@ Camera::Camera() :
 	m_lookAt(std::make_unique<SLookAt>(GSvector3(0.0f, 0.0f, 0.0f), GSvector3(0.0f, 0.0f, 0.0f), GSvector3(0.0f, 1.0f, 0.0f))),
 	m_rotate_dolly(0.0f, 0.0f),
 	m_cameraTarget_player(std::make_shared<CameraTarget>()),
-	m_cameraTarget_enemy(std::make_shared<CameraTarget>())
+	m_cameraTarget_enemy(std::make_shared<CameraTarget>()),
+	m_direction_player(0.0f)
 {
 	//投影変換行列の初期化
 	gsMatrix4Identity(&m_mat_projection);
@@ -101,7 +102,7 @@ void Camera::cameraWork_dolly(
 	return;
 }
 
-void Camera::lookAt_cameraTarget_player(const GSvector3& _target)
+void Camera::set_cameraTarget_player(const GSvector3& _target)
 {
 	//プレイヤーの位置を保持
 	m_cameraTarget_player->lookAt(_target);
@@ -109,12 +110,18 @@ void Camera::lookAt_cameraTarget_player(const GSvector3& _target)
 	return;
 }
 
-void Camera::lookAt_cameraTarget_enemy(const GSvector3& _target)
+void Camera::set_cameraTarget_enemy(const GSvector3& _target)
 {
 	//エネミーの位置を保持
 	m_cameraTarget_enemy->lookAt(_target);
 
 	return;
+}
+
+void Camera::set_direction_player(float _direction)
+{
+	//プレイヤーの方位角を保持
+	m_direction_player = _direction;
 }
 
 void Camera::tracking_position(const GSvector3& _target, float _speed)
@@ -202,16 +209,21 @@ void Camera::zoom_out(const float _speed)
 	update_zoom(_speed);
 }
 
-const GSvector3& Camera::cameraTarget_player() const
+const GSvector3& Camera::get_cameraTarget_player() const
 {
 	//保持したプレイヤーの位置を返す
 	return m_cameraTarget_player->_target();
 }
 
-const GSvector3& Camera::cameraTarget_enemy() const
+const GSvector3& Camera::get_cameraTarget_enemy() const
 {
 	//保持したエネミーの位置を返す
 	return m_cameraTarget_enemy->_target();
+}
+
+const float Camera::get_direction_player(void) const
+{
+	return m_direction_player;
 }
 
 const bool Camera::isFrustumCulling(const GSvector3 & center, float radius) const
