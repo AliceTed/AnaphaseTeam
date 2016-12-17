@@ -900,6 +900,9 @@
     <ClInclude Include="header\stage\Stage.h">
       <Filter>ヘッダー ファイル\stage</Filter>
     </ClInclude>
+    <ClInclude Include="header\actor\Enemy\SlahHand.h">
+      <Filter>ヘッダー ファイル\actor\Enemy</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="source\main.cpp">
@@ -1363,6 +1366,9 @@
     </ClCompile>
     <ClCompile Include="source\stage\Stage.cpp">
       <Filter>ソース ファイル\stage</Filter>
+    </ClCompile>
+    <ClCompile Include="source\actor\Enemy\SlahHand.cpp">
+      <Filter>ソース ファイル\actor\Enemy</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
