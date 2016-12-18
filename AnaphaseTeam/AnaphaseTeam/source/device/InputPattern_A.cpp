@@ -42,7 +42,7 @@ const bool InputPattern_A::slowAttackTrigger()
 
 const bool InputPattern_A::quickAttackTrigger()
 {
-	return m_input->isJoyTriggerX()||true;
+	return m_input->isJoyTriggerX();
 }
 
 const bool InputPattern_A::avoid()
