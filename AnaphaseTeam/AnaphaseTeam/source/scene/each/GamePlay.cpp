@@ -2,6 +2,8 @@
 #include "../../../header/renderer/IRenderer.h"
 #include "../../../header/device/GameDevice.h"
 #include "../../../header/stage/Stage.h"
+#include "../../../header/stage/StageData.h"
+#include "../../../header/data/stream/StageReader.h"
 GamePlay::GamePlay()
 	:m_change(),
 	m_pause(m_change),//ポーズ
@@ -21,8 +23,11 @@ void GamePlay::initialize()
 	m_change.begin(2);
 	//ポーズ
 	m_pause.initialize();
-	m_stage = std::make_unique<Stage>(Transform({ 0,0,0 }, { 115.0f,1.2f,-7 }));
-	m_stage->initialize();
+
+	StageData data;
+	StageReader reader;
+	reader(&data, "stage");
+	m_stage = std::make_unique<Stage>(data);
 }
 
 void GamePlay::update(float deltaTime)
@@ -48,7 +53,6 @@ void GamePlay::draw(IRenderer * _renderer)
 
 void GamePlay::finish()
 {
-	m_stage->finish();
 	m_stage.reset();
 	m_stage = nullptr;
 }

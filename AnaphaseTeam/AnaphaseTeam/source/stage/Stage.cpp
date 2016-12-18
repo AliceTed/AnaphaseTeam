@@ -4,40 +4,33 @@
 #include "../../header/renderer/define/SkyBoxRenderDesc.h"
 #include "../../header/ui/UIManager.h"
 #include "../../header/device/GameDevice.h"
-Stage::Stage(const Transform & _init)
+#include "../../header/stage/StageData.h"
+#include "../../header/data/stream/PhaseReader.h"
+Stage::Stage(const StageData& _stage)
 	:m_Map(OCTREE_ID::VISUAL),
 	m_cameracontroller(),
-	m_actors(_init, m_cameracontroller.get_camera()),
-	m_pahsemanager()
-{
-}
-
-void Stage::initialize()
+	m_actors(_stage.init, m_cameracontroller.get_camera()),
+	m_phaseManage()
 {
 	m_actors.initialize();
 
-	PhaseData data;
-	data.octreeID = OCTREE_ID::PHASE1;
-	data.spawn = "spawn";
-
-	m_pahsemanager.add(new Phase(data));
-	PhaseData data2;
-	data2.octreeID = OCTREE_ID::PHASE2;
-	data2.spawn = "spawn2";
-
-	m_pahsemanager.add(new Phase(data2));
-
-	PhaseData data3;
-	data3.octreeID = OCTREE_ID::PHASE3;
-	data3.spawn = "spawn3";
-	m_pahsemanager.add(new Phase(data3));
-	m_pahsemanager.changeFirst();
+	PhaseReader reader;
+	for (auto& i:_stage.pahseData)
+	{
+		PhaseData data;
+		reader(&data,i);
+		m_phaseManage.add(new Phase(data));
+	}
+	m_phaseManage.changeFirst();
 }
-
+Stage::~Stage()
+{
+	finish();
+}
 void Stage::update(float deltaTime)
 {
 	m_actors.update(deltaTime);
-	m_pahsemanager.update(deltaTime, m_actors, m_cameracontroller);
+	m_phaseManage.update(deltaTime, m_actors, m_cameracontroller);
 	m_cameracontroller.update(deltaTime);
 	UIManager::getInstance().update(deltaTime);
 }
@@ -53,7 +46,7 @@ void Stage::draw(IRenderer * _renderer)
 	_renderer->lookAt({ 0,0,0 }, { 0,0,0 }, { 0,0,0 });
 	m_Map.draw(_renderer);
 	m_actors.draw(_renderer);
-	m_pahsemanager.draw(_renderer);
+	m_phaseManage.draw(_renderer);
 	UIManager::getInstance().draw(_renderer);
 }
 
@@ -65,7 +58,7 @@ void Stage::finish()
 
 const bool Stage::isClear() const
 {
-	return m_pahsemanager.isEnd();
+	return m_phaseManage.isEnd();
 }
 
 const bool Stage::isDead() const

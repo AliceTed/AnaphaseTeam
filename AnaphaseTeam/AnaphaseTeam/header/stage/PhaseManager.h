@@ -1,5 +1,5 @@
 #pragma once
-#include <vector>
+#include <list>
 #include <memory>
 class Phase;
 class ActorManager;
@@ -17,7 +17,7 @@ public:
 	const bool isEnd()const;
 private:
 	using PhasePtr = std::shared_ptr<Phase>;
-	using Container = std::vector<PhasePtr>;
+	using Container = std::list<PhasePtr>;
 
 	Container m_container;
 	PhasePtr m_current;

@@ -223,6 +223,15 @@
     <Filter Include="ソース ファイル\spawn">
       <UniqueIdentifier>{2fe8f75c-1654-4e11-8f13-b52c256cf6d9}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ヘッダー ファイル\data\json">
+      <UniqueIdentifier>{0aa459f6-2444-4006-a24b-ba364376ce0d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\data\stream\converter">
+      <UniqueIdentifier>{0350a71d-d3c6-47d1-8925-2927271ea664}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\data\stream\converter">
+      <UniqueIdentifier>{69c6784f-ddd5-4754-817f-f5f75f8bc527}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="header\math\Calculate.h">
@@ -492,9 +501,6 @@
     <ClInclude Include="header\data\stream\AttackReader.h">
       <Filter>ヘッダー ファイル\data\stream</Filter>
     </ClInclude>
-    <ClInclude Include="header\data\stream\AttackConverter.h">
-      <Filter>ヘッダー ファイル\data\stream</Filter>
-    </ClInclude>
     <ClInclude Include="header\attack\LoadAttack.h">
       <Filter>ヘッダー ファイル\attack</Filter>
     </ClInclude>
@@ -720,9 +726,6 @@
     <ClInclude Include="header\data\stream\LoadMyAnimation.h">
       <Filter>ヘッダー ファイル\data\stream</Filter>
     </ClInclude>
-    <ClInclude Include="header\data\stream\TimeKeyFrameConvert.h">
-      <Filter>ヘッダー ファイル\data\stream</Filter>
-    </ClInclude>
     <ClInclude Include="header\ui\SpecialSkillUI.h">
       <Filter>ヘッダー ファイル\ui</Filter>
     </ClInclude>
@@ -873,12 +876,6 @@
     <ClInclude Include="header\attack\SHAPE_TYPE.h">
       <Filter>ヘッダー ファイル\attack</Filter>
     </ClInclude>
-    <ClInclude Include="header\data\stream\SpawnReader.h">
-      <Filter>ヘッダー ファイル\data\stream</Filter>
-    </ClInclude>
-    <ClInclude Include="header\data\stream\SpawnConverter.h">
-      <Filter>ヘッダー ファイル\data\stream</Filter>
-    </ClInclude>
     <ClInclude Include="header\attack\AttackParameter.h">
       <Filter>ヘッダー ファイル\attack</Filter>
     </ClInclude>
@@ -902,6 +899,36 @@
     </ClInclude>
     <ClInclude Include="header\actor\Enemy\SlahHand.h">
       <Filter>ヘッダー ファイル\actor\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="header\data\json\Picojson.h">
+      <Filter>ヘッダー ファイル\data\json</Filter>
+    </ClInclude>
+    <ClInclude Include="header\data\stream\SpawnReader.h">
+      <Filter>ヘッダー ファイル\data\stream</Filter>
+    </ClInclude>
+    <ClInclude Include="header\data\stream\PhaseReader.h">
+      <Filter>ヘッダー ファイル\data\stream</Filter>
+    </ClInclude>
+    <ClInclude Include="header\stage\StageData.h">
+      <Filter>ヘッダー ファイル\stage</Filter>
+    </ClInclude>
+    <ClInclude Include="header\data\stream\AttackConverter.h">
+      <Filter>ヘッダー ファイル\data\stream\converter</Filter>
+    </ClInclude>
+    <ClInclude Include="header\data\stream\PhaseConverter.h">
+      <Filter>ヘッダー ファイル\data\stream\converter</Filter>
+    </ClInclude>
+    <ClInclude Include="header\data\stream\SpawnConverter.h">
+      <Filter>ヘッダー ファイル\data\stream\converter</Filter>
+    </ClInclude>
+    <ClInclude Include="header\data\stream\TimeKeyFrameConvert.h">
+      <Filter>ヘッダー ファイル\data\stream\converter</Filter>
+    </ClInclude>
+    <ClInclude Include="header\data\stream\StageConverter.h">
+      <Filter>ヘッダー ファイル\data\stream\converter</Filter>
+    </ClInclude>
+    <ClInclude Include="header\data\stream\StageReader.h">
+      <Filter>ヘッダー ファイル\data\stream</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -1112,9 +1139,6 @@
     <ClCompile Include="source\data\stream\DataWriter.cpp">
       <Filter>ソース ファイル\data\stream</Filter>
     </ClCompile>
-    <ClCompile Include="source\data\stream\AttackConverter.cpp">
-      <Filter>ソース ファイル\data\stream</Filter>
-    </ClCompile>
     <ClCompile Include="source\data\stream\AttackReader.cpp">
       <Filter>ソース ファイル\data\stream</Filter>
     </ClCompile>
@@ -1235,9 +1259,6 @@
     <ClCompile Include="source\data\loader\MyAnimationLoader.cpp">
       <Filter>ソース ファイル\data\loader</Filter>
     </ClCompile>
-    <ClCompile Include="source\data\stream\TimeKeyFrameConvert.cpp">
-      <Filter>ソース ファイル\data\stream</Filter>
-    </ClCompile>
     <ClCompile Include="source\data\stream\LoadMyAnimation.cpp">
       <Filter>ソース ファイル\data\stream</Filter>
     </ClCompile>
@@ -1343,9 +1364,6 @@
     <ClCompile Include="source\data\stream\SpawnReader.cpp">
       <Filter>ソース ファイル\data\stream</Filter>
     </ClCompile>
-    <ClCompile Include="source\data\stream\SpawnConverter.cpp">
-      <Filter>ソース ファイル\data\stream</Filter>
-    </ClCompile>
     <ClCompile Include="source\math\ASplineVec3.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
@@ -1369,6 +1387,27 @@
     </ClCompile>
     <ClCompile Include="source\actor\Enemy\SlahHand.cpp">
       <Filter>ソース ファイル\actor\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="source\data\stream\PhaseReader.cpp">
+      <Filter>ソース ファイル\data\stream</Filter>
+    </ClCompile>
+    <ClCompile Include="source\data\stream\AttackConverter.cpp">
+      <Filter>ソース ファイル\data\stream\converter</Filter>
+    </ClCompile>
+    <ClCompile Include="source\data\stream\TimeKeyFrameConvert.cpp">
+      <Filter>ソース ファイル\data\stream\converter</Filter>
+    </ClCompile>
+    <ClCompile Include="source\data\stream\SpawnConverter.cpp">
+      <Filter>ソース ファイル\data\stream\converter</Filter>
+    </ClCompile>
+    <ClCompile Include="source\data\stream\PhaseConverter.cpp">
+      <Filter>ソース ファイル\data\stream\converter</Filter>
+    </ClCompile>
+    <ClCompile Include="source\data\stream\StageConverter.cpp">
+      <Filter>ソース ファイル\data\stream\converter</Filter>
+    </ClCompile>
+    <ClCompile Include="source\data\stream\StageReader.cpp">
+      <Filter>ソース ファイル\data\stream</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

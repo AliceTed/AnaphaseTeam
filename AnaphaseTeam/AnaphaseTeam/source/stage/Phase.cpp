@@ -3,7 +3,7 @@
 #include "../../header/actor/ActorManager.h"
 #include "../../header/camera/CameraController.h"
 Phase::Phase(const PhaseData & _data)
-	:m_dataname(_data.spawn),
+	:m_dataname(_data.spawnfile),
 	m_collisionMap(_data.octreeID),
 	m_spawns()
 {
@@ -33,5 +33,5 @@ void Phase::draw(IRenderer * _renderer)
 
 const bool Phase::isEnd() const
 {
-	return m_spawns.isCurrentEnd();
+	return m_spawns.isEnd();
 }

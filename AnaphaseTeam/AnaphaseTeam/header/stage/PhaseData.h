@@ -4,6 +4,6 @@
 #include "../data/id/OCTREE_ID.h"
 struct PhaseData
 {
-	std::string spawn;
+	std::string spawnfile;
 	OCTREE_ID octreeID;
 };
