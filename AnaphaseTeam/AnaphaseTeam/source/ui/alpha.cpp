@@ -84,6 +84,10 @@ void alpha::flashing(float _time)
 	}
 }
 
+void alpha::decision()
+{
+}
+
 bool alpha::scrollUp(float _position)
 {
 	m_position.y -= 2;

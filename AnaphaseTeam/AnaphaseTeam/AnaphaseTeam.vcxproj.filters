@@ -894,6 +894,9 @@
     <ClInclude Include="header\actor\Enemy\Goblin.h">
       <Filter>ヘッダー ファイル\actor\Enemy</Filter>
     </ClInclude>
+    <ClInclude Include="header\math\TargetSinPowerLerp.h">
+      <Filter>ヘッダー ファイル\math</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="source\main.cpp">

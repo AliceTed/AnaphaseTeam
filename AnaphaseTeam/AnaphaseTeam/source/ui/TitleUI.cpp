@@ -59,6 +59,7 @@ void TitleUI::operation(Menu& _menu)
 	{
 		_menu.decision(m_select.currentSelect());
 		m_select.startMove();
+		//m_select.slowMove();
 		m_fade.start(GScolor(1.0f, 1.0f, 1.0f, 1.0f), GScolor(1.0f, 1.0f, 1.0f, 0.0f), 1.3f);
 	}
 }
