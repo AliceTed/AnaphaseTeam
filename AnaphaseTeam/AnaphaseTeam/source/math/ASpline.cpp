@@ -7,7 +7,8 @@ ASpline::ASpline(void) :
 	m_a(MaxSplineSize + 1),
 	m_b(MaxSplineSize + 1),
 	m_c(MaxSplineSize + 1),
-	m_d(MaxSplineSize + 1)
+	m_d(MaxSplineSize + 1),
+	m_isEnd(false)
 {
 	
 }
@@ -62,10 +63,15 @@ void ASpline::init(const std::vector<float>& _sp)
 	}
 }
 
-float ASpline::culc(float _t)
+float ASpline::culc(float _t, int _num)
 {
 	int j;
 	float dt;
+
+	m_isEnd = false;
+
+	m_num = _num - 1;
+
 	j = static_cast<int>(floor(_t));	//¬”“_ˆÈ‰ºØ‚èÌ‚Ä
 	if (j < 0)
 	{
@@ -75,9 +81,17 @@ float ASpline::culc(float _t)
 	else if (j >= m_num)
 	{
 		j = m_num - 1;	//ŠÛ‚ßŒë·‚ğl—¶
+
 		_t = static_cast<float>(m_num);
+
+		m_isEnd = true;
 	}
 
 	dt = _t - (float)j;
 	return m_a[j] + (m_b[j] + (m_c[j] + m_d[j] * dt) * dt) * dt;
+}
+
+bool ASpline::isEnd(void)
+{
+	return m_isEnd;
 }

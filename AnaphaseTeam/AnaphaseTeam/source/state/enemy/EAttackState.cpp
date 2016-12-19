@@ -14,12 +14,14 @@ void Goblin::EAttackState::start()
 	m_secoundAttack = rnd(0, 2) == 0 ? true : false;
 	m_actor->m_animatorOne.changeAnimationLerp(ENEMY_ANIMATION::ATTACK1);
 	m_actor->createAttackCollision();
+	GameDevice::getInstacnce().sound().playSE(SE_ID::ENEMY_ATTACK);
 }
 
 void Goblin::EAttackState::action(float deltaTime)
 {
 	if (m_actor->m_animatorOne.isEndCurrentAnimation())
 	{
+		GameDevice::getInstacnce().sound().stopSE(SE_ID::ENEMY_ATTACK);
 		if (m_secoundAttack)
 		{
 			m_actor->changeState(ACTOR_STATE::ESECOUNDATTACK);

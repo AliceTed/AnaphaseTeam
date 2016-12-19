@@ -80,14 +80,20 @@ public:
 	@brief プレイヤーの位置を保持
 	@param[_target] プレイヤーの位置を入れてね
 	*/
-	void lookAt_cameraTarget_player(const GSvector3& _target);
+	void set_cameraTarget_player(const GSvector3& _target);
 
 
 	/**
 	@brief エネミーの位置を保持
 	@param[_target] エネミーの位置を入れてくれ
 	*/
-	void lookAt_cameraTarget_enemy(const GSvector3& _target);
+	void set_cameraTarget_enemy(const GSvector3& _target);
+
+	/**
+	@brief プレイヤーの方位角を保持
+	@param[_direction] 方位角
+	*/
+	void set_direction_player(float _direction);
 
 	/**
 	@brief カメラがターゲットに追尾
@@ -152,12 +158,17 @@ public:
 	/**
 	@return カメラターゲット（プレイヤー）
 	*/
-	const GSvector3& cameraTarget_player(void) const;
+	const GSvector3& get_cameraTarget_player(void) const;
 
 	/**
 	@return カメラターゲット（エネミー）
 	*/
-	const GSvector3& cameraTarget_enemy(void) const;
+	const GSvector3& get_cameraTarget_enemy(void) const;
+
+	/**
+	@return プレイヤーの方位角
+	*/
+	const float get_direction_player(void) const;
 
 	/**
 	@author Matuo
@@ -226,4 +237,6 @@ private:
 
 	std::shared_ptr<CameraTarget>	m_cameraTarget_player;	//プレイヤーの位置
 	std::shared_ptr<CameraTarget>	m_cameraTarget_enemy;	//エネミーの位置
+
+	float							m_direction_player;		//エネミープレイヤー
 };

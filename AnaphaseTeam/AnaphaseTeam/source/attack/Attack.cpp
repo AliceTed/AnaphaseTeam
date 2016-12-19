@@ -12,7 +12,7 @@ Attack::~Attack()
 }
 void Attack::initialize(Player* _player)
 {
-	GameDevice::getInstacnce().sound().playSE(SE_ID::ENTER);
+	GameDevice::getInstacnce().sound().playSE(SE_ID::PLAYER_ATTACK);
 	motion(_player);
 	_player->homing();
 	m_spawnTimer.initialize();
@@ -21,7 +21,8 @@ void Attack::initialize(Player* _player)
 void Attack::update(float deltaTime, Player * _player)
 {
 	if (isSpawn)return;
-	m_spawnTimer.update(deltaTime);
+	float attackSpeed = _player->getAttackSpeed();
+	m_spawnTimer.update(deltaTime * attackSpeed);
 	if (m_spawnTimer.isEnd())
 	{
 		isSpawn = true;

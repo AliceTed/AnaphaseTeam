@@ -29,6 +29,12 @@ enum class TEXTURE_ID :unsigned int
 	PAUSE_TITLEBACK,
 	UI_STAFF,
 
+	PLAYER_HP,
+	PLAYER_HP_GAUGE,
+	SPGAUGE,
+
+	TITLE_MASK,
+
 	SIZE
 	
 };

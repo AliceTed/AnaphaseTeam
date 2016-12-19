@@ -61,6 +61,10 @@ Player::Player(const Transform& _t,Camera * _camera, LockOn* _lockon)
 
 Player::~Player()
 {}
+const float Player::getAttackSpeed() const
+{
+	return m_status.attackSpeed();
+}
 void Player::initialize()
 {
 	Actor::initialize();
@@ -147,6 +151,32 @@ const bool Player::aerialTracking() const
 	return isTargetAerial(*target.lock().get());
 }
 
+void Player::specialSkill()
+{
+	if (GameDevice::getInstacnce().input()->specialSkillMode())
+	{
+		m_specialUI->open();
+		m_specialskill.canSelectCheck(m_specialUI.get());
+		if (GameDevice::getInstacnce().input()->gaugeAttack1())
+		{
+			m_specialskill.start(SPECIALSKILL_TYPE::RECOVERY);
+			m_specialUI->select(SPECIALSKILL_TYPE::RECOVERY);
+		}
+		if (GameDevice::getInstacnce().input()->gaugeAttack2())
+		{
+			m_specialskill.start(SPECIALSKILL_TYPE::SUPERARMOR);
+			m_specialUI->select(SPECIALSKILL_TYPE::SUPERARMOR);
+		}
+		if (GameDevice::getInstacnce().input()->gaugeAttack3())
+		{
+			m_specialskill.start(SPECIALSKILL_TYPE::SPECIALLATTACK);
+			m_specialUI->select(SPECIALSKILL_TYPE::SPECIALLATTACK);
+		}
+		return;
+	}
+	m_specialUI->close();
+}
+
 void Player::damage(const AttackStatus & _attackStatus)
 {
 	m_status.down(_attackStatus.m_power);
@@ -164,11 +194,11 @@ void Player::jumping(float _velocity)
 void Player::subActionStart()
 {
 	if (GameDevice::getInstacnce().input()->specialSkillMode())return;
-	if (GameDevice::getInstacnce().input()->jump())
+	/*if (GameDevice::getInstacnce().input()->jump())
 	{
 		changeState(ACTOR_STATE::SINGLEJUMP);
 		return;
-	}
+	}*/
 
 	if (GameDevice::getInstacnce().input()->avoid())
 	{
@@ -199,28 +229,7 @@ void Player::attackmotion(Attack & _attack)
 }
 void Player::control()
 {
-	if (GameDevice::getInstacnce().input()->specialSkillMode())
-	{
-		m_specialUI->open();
-		m_specialskill.canSelectCheck(m_specialUI.get());
-		if (GameDevice::getInstacnce().input()->gaugeAttack1())
-		{
-			m_specialskill.start(SPECIALSKILL_TYPE::RECOVERY);
-			m_specialUI->select(SPECIALSKILL_TYPE::RECOVERY);
-		}
-		if (GameDevice::getInstacnce().input()->gaugeAttack2())
-		{
-			m_specialskill.start(SPECIALSKILL_TYPE::SUPERARMOR);
-			m_specialUI->select(SPECIALSKILL_TYPE::SUPERARMOR);
-		}
-		if (GameDevice::getInstacnce().input()->gaugeAttack3())
-		{
-			m_specialskill.start(SPECIALSKILL_TYPE::SPECIALLATTACK);
-			m_specialUI->select(SPECIALSKILL_TYPE::SPECIALLATTACK);
-		}
-		return;
-	}
-	m_specialUI->close();
+	specialSkill();
 	/*ボタン押したらAttackStateに切り替わる*/
 	if (GameDevice::getInstacnce().input()->quickAttackTrigger())
 	{
@@ -244,8 +253,13 @@ void Player::look_at(CameraController * _camera, GSvector3 * _target)
 	}
 	GSvector3 position = m_transform.m_translate;
 
-	m_camera->lookAt_cameraTarget_player(position);
-	m_camera->lookAt_cameraTarget_enemy(*_target);
+	m_camera->set_cameraTarget_player(position);
+	m_camera->set_cameraTarget_enemy(*_target);
+
+	//プレイヤーの向いている向きを取得（もっといい方法がある気がする）by有冨
+	GSvector2 playerRotate;
+	gsVector3ToEleDir(&playerRotate.x, &playerRotate.y, &m_transform.front());
+	m_camera->set_direction_player(playerRotate.y);
 
 	//_camera->change_cameraWork(E_CameraWorkID::TEST);
 
@@ -260,7 +274,9 @@ void Player::look_at(CameraController * _camera, GSvector3 * _target)
 }
 void Player::look_at(CameraController * _camera)
 {
-	m_camera->lookAt_cameraTarget_player(m_transform.m_translate);
+	GSvector3 position = m_transform.m_translate;
+	m_isLockOn = false;
+	m_camera->set_cameraTarget_player(position);
 	_camera->change_cameraWork(E_CameraWorkID::NORMAL);
 
 }

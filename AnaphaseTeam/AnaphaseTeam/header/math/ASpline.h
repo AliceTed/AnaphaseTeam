@@ -6,6 +6,7 @@
 */
 
 #include <vector>
+#include <gslib.h>
 
 class ASpline
 {
@@ -27,7 +28,12 @@ public:
 	@param[_t] 0 <= _t < = 要素数
 	@return 結果
 	*/
-	float culc(float _t);
+	float culc(float _t, int _num);
+
+	/**
+	@return アニメーションが終了したか？
+	*/
+	bool isEnd(void);
 
 private:
 	static const int MaxSplineSize;			//配列の最大要素数を先に決めておく
@@ -35,4 +41,6 @@ private:
 	int m_num;								//要素数を保持するための変数
 
 	std::vector<float> m_a, m_b, m_c, m_d;	//ごめんよくわからない
+
+	bool m_isEnd;							//アニメーションが終了したか？
 };

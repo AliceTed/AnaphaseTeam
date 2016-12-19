@@ -60,7 +60,7 @@ void IEnemy::specialDamage()
 void IEnemy::start_lockOn()
 {
 	UIManager::getInstance().release(EUI::ENEMYHP);
-	std::shared_ptr<HPGaugeUI> hp = std::make_shared<HPGaugeUI>(GSvector2(800, 600), m_status, 3.0f);
+	std::shared_ptr<HPGaugeUI> hp = std::make_shared<HPGaugeUI>(GSvector2(800, 600), m_status);
 	UIManager::getInstance().add(EUI::ENEMYHP, hp);
 
 }
@@ -80,9 +80,10 @@ float IEnemy::distaceToOtherEnemy()
 }
 void IEnemy::directionToPlayer()
 {
-	if (50.0f<fabsf(m_transform.m_rotate.getYaw() - m_mediator.requestDirectionPlayer(this).getYaw()))
+	m_transform.m_rotate.dot(m_mediator.requestDirectionPlayer(this));
+	if (50.0f < fabsf(m_transform.m_rotate.getYaw() - m_mediator.requestDirectionPlayer(this).getYaw()))
 	{
-		lookAtToPlayer();
+			lookAtToPlayer();
 	}
 }
 void IEnemy::lookAtToPlayer()
@@ -119,11 +120,6 @@ const bool IEnemy::isThink()const
 	return getState() == ACTOR_STATE::ETHINK;
 }
 
-void IEnemy::directionLerpBegin()
-{
-	m_timer.begin();
-}
-
 const EAI IEnemy::isNear(float _distance)const
 {
 	EAI ai = EAI::ATTACKRANGE;
@@ -151,4 +147,14 @@ void IEnemy::createAttackCollision()
 	float end = m_animatorOne.getCurrentAnimationEndTime() / 60.0f;
 	Collision_Ptr actor = std::make_shared<EnemyAttackCollision>(m_transform.m_translate + m_transform.front(), end);
 	m_collision.add(actor);
+}
+
+void IEnemy::rotateLerp(GSquaternion* _out, float _time)
+{
+	if (0.0f < gsQuaternionDot(_out, &m_targetDirection))
+	{
+		gsQuaternionLerp(_out, _out, &m_targetDirection, _time);
+		return;
+	}
+	gsQuaternionLerp(_out, &m_targetDirection, _out, _time);
 }

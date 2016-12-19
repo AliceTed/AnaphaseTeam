@@ -2,6 +2,7 @@
 #include "../../../header/camera/Camera.h"
 #include "../../../header/camera/CameraWork/CWParameterReader.h"
 #include "../../../header/math/Calculate.h"
+#include "../../../header/math/AMath.h"
 
 CameraWorkNormal::CameraWorkNormal(Camera* _camera, GSvector2* _rotate) :
 	CameraWorkEmpty(_camera),
@@ -34,7 +35,10 @@ void CameraWorkNormal::run(float _deltaTime)
 {
 	Math::Clamp clamp;
 	//いちいちめんどくさいので宣言
-	const GSvector3& player = m_camera->cameraTarget_player();
+	const GSvector3& player = m_camera->get_cameraTarget_player();
+
+	//ボタンが押されたときカメラを後ろに回す処理
+	resetCamera();
 
 	//回転軸を更新
 	m_rotate->x -= velocity().y * m_speed_input;	//逆に動かしたいので引いとく
@@ -62,4 +66,15 @@ const GSvector2 CameraWorkNormal::velocity(void)
 	gsXBoxPadGetRightAxis(0, &velocity);
 
 	return velocity;
+}
+
+void CameraWorkNormal::resetCamera(void)
+{
+	//右スティックが押し込まれたら
+	if (gsXBoxPadButtonTrigger(0, GS_XBOX_PAD_RIGHT_THUMB))
+	{
+		//カメラをプレイヤーの後ろに移動
+		m_rotate->x = 20;
+		m_rotate->y = AMath::normalizeAngle(m_camera->get_direction_player() + 180);
+	}
 }

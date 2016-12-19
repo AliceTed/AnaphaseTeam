@@ -19,7 +19,7 @@ void Homing::start(Player * _player, IEnemy * _enemy, Transform& _transform, Gau
 {
 	IEnemy* target = _enemy;
 	if (target == nullptr) return;
-	if (_player->distanceActor(*target) >= 3.0f)
+	if (_player->distanceActor(*target) >= 5.0f)
 	{
 		m_isStart = false;
 		return;

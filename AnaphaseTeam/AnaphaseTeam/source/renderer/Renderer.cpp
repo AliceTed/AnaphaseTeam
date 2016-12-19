@@ -91,6 +91,10 @@ const Matrix4 & Renderer::getViewMatrix() const
 {
 	return mViewMatrix;
 }
+const LightDesc & Renderer::getLight() const
+{
+	return mLight;
+}
 //ÉâÉCÉgê›íË
 void Renderer::light(const LightDesc & desc)
 {
@@ -397,7 +401,6 @@ void Renderer::render(const OctreeRenderDesc & desc)
 	glLightfv(GL_LIGHT0, GL_POSITION, lightPosition);
 	glEnable(GL_LIGHT0);
 
-	glMultMatrixf((GLfloat*)&desc.matrix);
 	gsDrawOctree(desc.octreeID);	
 }
 

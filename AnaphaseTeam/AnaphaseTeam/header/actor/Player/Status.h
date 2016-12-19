@@ -14,7 +14,7 @@ public:
 	~Status();
 	void initialize();
 	void change(Gauge& _gauge); 
-	float attackSpeed();
+	float attackSpeed() const;
 	float getHp();
 	const float getMaxHp()const;
 	void down(float _damage);

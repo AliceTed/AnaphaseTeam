@@ -36,6 +36,8 @@ private:
 	void createStates()override;
 	void think(Player* _palyer)override;
 private:
+
+	GSquaternion m_debug;
 private://state
 	class EAttackState;
 	class EDamageState;

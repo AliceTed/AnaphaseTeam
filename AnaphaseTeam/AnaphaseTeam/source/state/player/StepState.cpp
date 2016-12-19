@@ -11,7 +11,8 @@ Player::StepState::StepState(Player* _player)
 
 void Player::StepState::start()
 {
-	m_actor->m_animatorOne.changeAnimation(static_cast<GSuint>(ANIMATION_ID::STAND), true);
+	m_actor->m_animatorOne.changeAnimation(ANIMATION_ID::STEP);
+	GameDevice::getInstacnce().sound().playSE(SE_ID::PLAYER_STEP);
 	m_velocity = 4.5f;
 	tracking();
 	if (m_velocity <= 1.0f)
@@ -21,6 +22,7 @@ void Player::StepState::start()
 	}
 	if (!m_actor->m_Gauge->down(5))
 	{
+		changeState(ACTOR_STATE::STAND);
 		return;
 	}
 	if (m_actor->aerialTracking())
@@ -36,6 +38,7 @@ void Player::StepState::action(float deltaTime)
 	m_step.update(deltaTime);
 	if (m_step.isEnd())
 	{
+		GameDevice::getInstacnce().sound().stopSE(SE_ID::PLAYER_STEP);
 		changeState(ACTOR_STATE::STAND);
 	}
 }

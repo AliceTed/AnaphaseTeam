@@ -14,7 +14,7 @@ using Enemy_Ptr = std::shared_ptr<IEnemy>;
 class EnemyManager :public EnemyMediator
 {
 public:
-	EnemyManager(Player* _palyer);
+	EnemyManager(Player* _player);
 	~EnemyManager() = default;
 	void initialize();
 	void add(IEnemy* _enemy);

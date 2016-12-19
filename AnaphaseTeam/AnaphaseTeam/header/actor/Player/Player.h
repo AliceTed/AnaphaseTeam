@@ -41,6 +41,9 @@ public:
 	void targetFind(EnemyManager * _enemys);
 	void recovery();
 
+	//マスター前の仮実装
+	//要リファクタ
+	const float getAttackSpeed() const;
 public://Actor継承
 	void initialize() override;
 	void update(float deltatime) override;
@@ -55,6 +58,7 @@ private:
 	const float stepDistance() const ;
 	void lookTarget();
 	const bool aerialTracking() const;
+	void specialSkill();
 private:
 	ComboAttack m_combo;
 	Status m_status;

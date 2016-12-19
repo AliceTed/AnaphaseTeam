@@ -15,7 +15,7 @@ class IRenderer;
 class Map
 {
 public:
-	Map(OCTREE_ID _id );
+	Map(OCTREE_ID _id);
 	~Map();
 
 	const bool isCollisionRay(const GSvector3 &_position, const GSvector3 &_direction,GSvector3* _intersect)const;

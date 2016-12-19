@@ -52,18 +52,21 @@ void Pause::draw(IRenderer* _renderer)
 }
 void Pause::finish()
 {
-
+	GameDevice::getInstacnce().sound().stopSE(SE_ID::ENTER);
+	GameDevice::getInstacnce().sound().stopSE(SE_ID::SELECT);
 }
 void Pause::select()
 {
 	bool isselect = false;
 	if (GameDevice::getInstacnce().input()->up())
 	{
+		GameDevice::getInstacnce().sound().playSE(SE_ID::SELECT);
 		m_currentSelect += 1;
 		isselect = true;
 	}
 	if (GameDevice::getInstacnce().input()->down())
 	{
+		GameDevice::getInstacnce().sound().playSE(SE_ID::SELECT);
 		m_currentSelect -= 1;
 		isselect = true;
 	}
@@ -73,6 +76,7 @@ void Pause::select()
 void Pause::decision()
 {
 	if (!GameDevice::getInstacnce().input()->decision())return;
+	GameDevice::getInstacnce().sound().playSE(SE_ID::ENTER);
 	if (m_currentSelect == 0) { initialize(); }
 	if (m_currentSelect == 1) { m_change.end(SceneMode::TITLE); }
 	m_isPause = false;
