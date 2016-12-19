@@ -1,5 +1,5 @@
 #include "../../header/function/Shake.h"
-#include "../../header/animation/AnimationSpline.h"
+#include "../../header/spline/AnimationSpline.h"
 #include "../../header/math/AMath.h"
 #include <random>
 

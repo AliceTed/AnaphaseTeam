@@ -10,7 +10,7 @@
 #include <memory>
 #include "CameraWorkEmpty.h"
 
-class AnimationSplineData;
+class SplineAnimManager;
 
 class CameraWorkTest : public CameraWorkEmpty
 {
@@ -31,5 +31,5 @@ public:
 	void run(float _deltaTime) override;
 
 private:
-	std::unique_ptr<AnimationSplineData> shake;
+	std::unique_ptr<SplineAnimManager> shake;
 };

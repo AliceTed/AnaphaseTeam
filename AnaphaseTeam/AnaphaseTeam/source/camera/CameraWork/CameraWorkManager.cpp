@@ -7,10 +7,12 @@
 #include "../../../header/camera/CameraWork/CameraWorkDead.h"
 #include "../../../header/camera/CameraWork/CameraWorkData.h"
 #include "../../../header/camera/CameraWork/I_CameraWork.h"
+#include "../../../header/spline/SplineAnimManager.h"
 
 CameraWorkManager::CameraWorkManager(Camera* _camera) :
 	m_camera(_camera),
 	m_cameraData(std::make_unique<CameraWorkData>()),
+	m_splineAnimManager(std::make_shared<SplineAnimManager>()),
 	m_rotate(0.0f, 0.0f),
 	m_current_cameraWork(E_CameraWorkID::NONE)
 {
@@ -24,6 +26,9 @@ CameraWorkManager::~CameraWorkManager()
 
 void CameraWorkManager::load(void)
 {
+	//スプライン曲線アニメーション
+	m_splineAnimManager->load();
+
 	//各カメラの追加
 	m_cameraData->add(								//何もしない
 		E_CameraWorkID::NONE,

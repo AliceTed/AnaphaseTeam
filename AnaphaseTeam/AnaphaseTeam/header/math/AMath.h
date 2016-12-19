@@ -9,8 +9,6 @@
 #include <gslib.h>
 #include <list>
 #include <vector>
-#include "Spline.h"
-#include "SplineVec3.h"
 
 class AMath
 {

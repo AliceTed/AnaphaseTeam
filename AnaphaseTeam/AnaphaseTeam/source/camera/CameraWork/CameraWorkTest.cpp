@@ -2,21 +2,15 @@
 #include <random>
 #include "../../../header/camera/CameraWork/CameraWorkTest.h"
 #include "../../../header/camera/Camera.h"
-#include "../../../header/animation//AnimationSpline.h"
-#include "../../../header/data/AnimationSplineData.h"
+#include "../../../header/spline/SplineAnimManager.h"
+#include "../../../header/spline/SPLINE_ANIMATION_ID.h"
 
 CameraWorkTest::CameraWorkTest(Camera * _camera) :
 	CameraWorkEmpty(_camera),
-	shake(std::make_unique<AnimationSplineData>())
+	shake(std::make_unique<SplineAnimManager>())
 {
-	std::vector<GSvector3> v =
-	{
-		{ 0.0f, 1.3f, 5.0f },
-		{ 5.0f, 1.3f, 0.0f },
-		{ 0.0f, 1.3f, -5.0f },
-		{ -5.0f, 1.3f, 0.0f }
-	};
-	shake->Load(1, "test.sp");
+	shake->load();
+	shake->changeID(SPLINE_ANIMATION_ID::TEST);
 }
 
 CameraWorkTest::~CameraWorkTest()
@@ -31,7 +25,7 @@ static float t = 0;
 void CameraWorkTest::run(float _deltaTime)
 {
 	m_camera->tracking_lookAt(m_camera->get_cameraTarget_player());
-	m_camera->tracking_position(shake->get(1)->run(0.01f, m_camera->get_cameraTarget_player()));
+	m_camera->tracking_position(shake->run(0.01f));
 
 	return;
 }

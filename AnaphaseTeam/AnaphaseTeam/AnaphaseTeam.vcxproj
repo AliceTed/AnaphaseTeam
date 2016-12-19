@@ -146,8 +146,9 @@
   <ItemGroup>
     <ClCompile Include="source\actor\ActorManager.cpp" />
     <ClCompile Include="source\actor\Enemy\IEnemy.cpp" />
-    <ClCompile Include="source\animation\AnimationSpline.cpp" />
-    <ClCompile Include="source\data\AnimationSplineData.cpp" />
+    <ClCompile Include="source\spline\AnimationSpline.cpp" />
+    <ClCompile Include="source\camera\CameraWork\CameraWorkEvent.cpp" />
+    <ClCompile Include="source\spline\AnimationSplineData.cpp" />
     <ClCompile Include="source\camera\CameraWork\CameraWorkTest.cpp" />
     <ClCompile Include="source\camera\LookAt.cpp" />
     <ClCompile Include="source\attack\Homing.cpp" />
@@ -207,8 +208,9 @@
     <ClCompile Include="source\device\GameDevice.cpp" />
     <ClCompile Include="source\device\InputPattern_A.cpp" />
     <ClCompile Include="source\device\InputPattern_B.cpp" />
-    <ClCompile Include="source\math\Spline.cpp" />
-    <ClCompile Include="source\math\SplineVec3.cpp" />
+    <ClCompile Include="source\spline\Spline.cpp" />
+    <ClCompile Include="source\spline\SplineAnimManager.cpp" />
+    <ClCompile Include="source\spline\SplineVec3.cpp" />
     <ClCompile Include="source\math\Random.cpp" />
     <ClCompile Include="source\myanimation\MyAnimation.cpp" />
     <ClCompile Include="source\myanimation\MyAnimationContainer.cpp" />
@@ -303,12 +305,14 @@
   <ItemGroup>
     <ClInclude Include="header\actor\Enemy\IEnemy.h" />
     <ClInclude Include="header\actor\ActorManager.h" />
-    <ClInclude Include="header\animation\AnimationSpline.h" />
+    <ClInclude Include="header\spline\AnimationSpline.h" />
     <ClInclude Include="header\attack\AttackParameter.h" />
     <ClInclude Include="header\attack\ShapeData.h" />
     <ClInclude Include="header\attack\SHAPE_TYPE.h" />
-    <ClInclude Include="header\data\AnimationSplineData.h" />
+    <ClInclude Include="header\spline\AnimationSplineData.h" />
     <ClInclude Include="header\camera\CameraWork\CameraWorkTest.h" />
+    <ClInclude Include="header\spline\SplineAnimManager.h" />
+    <ClInclude Include="header\spline\SPLINE_ANIMATION_ID.h" />
     <ClInclude Include="header\data\stream\SpawnConverter.h" />
     <ClInclude Include="header\data\stream\SpawnReader.h" />
     <ClInclude Include="header\actor\Enemy\EnemyMediator.h" />
@@ -381,8 +385,8 @@
     <ClInclude Include="header\device\IInputPattern.h" />
     <ClInclude Include="header\device\InputPattern_A.h" />
     <ClInclude Include="header\device\InputPattern_B.h" />
-    <ClInclude Include="header\math\Spline.h" />
-    <ClInclude Include="header\math\SplineVec3.h" />
+    <ClInclude Include="header\spline\Spline.h" />
+    <ClInclude Include="header\spline\SplineVec3.h" />
     <ClInclude Include="header\math\TargetLerp.h" />
     <ClInclude Include="header\myanimation\MyAnimation.h" />
     <ClInclude Include="header\myanimation\MyAnimationContainer.h" />
@@ -527,6 +531,7 @@
     <ClInclude Include="header\ui\UIManager.h" />
     <ClInclude Include="header\camera\LookAt.h" />
     <ClInclude Include="header\ui\VolumeSelectUI.h" />
+    <ClInclude Include="header\camera\CameraWork\CameraWorkEvent.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

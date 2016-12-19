@@ -1,5 +1,5 @@
-#include "../../header/animation/AnimationSpline.h"
-#include "../../header/math/SplineVec3.h"
+#include "../../header/spline/AnimationSpline.h"
+#include "../../header/spline/SplineVec3.h"
 
 AnimationSpline::AnimationSpline(void) :
 	m_sVec3(std::make_unique<SplineVec3>()),

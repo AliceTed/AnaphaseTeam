@@ -12,6 +12,8 @@
 #include <GSvector3.h>
 #include <string>
 
+#include "SPLINE_ANIMATION_ID.h"
+
 class SplineVec3;
 class AnimationSpline;
 
@@ -29,13 +31,17 @@ public:
 	@param[_id]		ＩＤ
 	@param[_points] 各点
 	*/
-	void Load(int _id, const std::vector<GSvector3>& _points);
+	void add(SPLINE_ANIMATION_ID _id, const std::vector<GSvector3>& _points);
 	/**
 	@brief 読み込み処理
 	@param[_id]			ＩＤ
 	@param[_fileName]	ファイル名だけでOK
 	*/
-	void Load(int _id, const std::string _fileName);
+	void add(SPLINE_ANIMATION_ID _id, const std::string _fileName);
+
+	/**
+	*/
+	void resetTime(void);
 
 	/**
 	@brief 指定したＩＤのスプラインアニメーションを実行
@@ -44,8 +50,8 @@ public:
 	@param[_center] 原点
 	@return 求めた位置　＋　原点
 	*/
-	AnimationSpline* get(int _id);
+	AnimationSpline* get(SPLINE_ANIMATION_ID _id);
 
 private:
-	std::map<int, std::unique_ptr<AnimationSpline>> m_datas;
+	std::map<SPLINE_ANIMATION_ID, std::unique_ptr<AnimationSpline>> m_datas;
 };

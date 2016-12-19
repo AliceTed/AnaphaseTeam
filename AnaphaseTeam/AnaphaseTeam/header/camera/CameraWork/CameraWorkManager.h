@@ -13,6 +13,7 @@
 
 class Camera;				//カメラ
 class CameraWorkData;		//カメラデータ
+class SplineAnimManager;	//スプライン曲線アニメーション
 
 class CameraWorkManager
 {
@@ -46,6 +47,8 @@ private:
 	Camera*							m_camera;				//カメラ
 
 	std::unique_ptr<CameraWorkData> m_cameraData;			//カメラデータ
+
+	std::shared_ptr<SplineAnimManager> m_splineAnimManager;		//3z
 
 	GSvector2						m_rotate;				//回転
 

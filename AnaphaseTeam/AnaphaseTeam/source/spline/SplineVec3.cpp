@@ -1,5 +1,5 @@
-#include "../../header/math\SplineVec3.h"
-#include "../../header/math/Spline.h"
+#include "../../header/spline/SplineVec3.h"
+#include "../../header/spline/Spline.h"
 
 const int SplineVec3::MaxSplineSize = 100;
 

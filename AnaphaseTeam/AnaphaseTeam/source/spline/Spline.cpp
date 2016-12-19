@@ -1,4 +1,4 @@
-#include "../../header/math/Spline.h"
+#include "../../header/spline/Spline.h"
 
 const int Spline::MaxSplineSize = 100;
 
