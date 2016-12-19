@@ -59,7 +59,7 @@ void AnimatorOne::lerpBegin(unsigned int _anim, bool _init, bool _loop, float _l
 	m_lerpData.m_endTime = 0;
 	m_lerpData.m_nextInit = _init;
 	m_lerpData.m_lerpTime = _lerpTime;
-	m_nextAnimation = std::make_shared<Animation>(m_modelID, static_cast<unsigned int>(_anim), AnimationTimer(gsGetEndAnimationTime(static_cast<unsigned int>(m_modelID), static_cast<unsigned int>(_anim)), _animSpeed), _loop);
+	m_nextAnimation = std::make_shared<Animation>(m_modelID,_anim, AnimationTimer(gsGetEndAnimationTime(static_cast<unsigned int>(m_modelID), static_cast<unsigned int>(_anim)), _animSpeed), _loop);
 	//m_currentAnimation = m_nextAnimation;
 }
 

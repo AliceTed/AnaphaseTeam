@@ -6,9 +6,10 @@
 */
 #pragma once
 #include <string>
+#include "../json/Picojson.h"
 struct SpawnData;
 class SpawnConverter
 {
 public:
-	const bool operator()(SpawnData* _out, const std::string& _data)const;
+	const bool operator()(SpawnData* _out,picojson::object& _data)const;
 };
