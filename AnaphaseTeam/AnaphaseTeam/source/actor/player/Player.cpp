@@ -5,6 +5,7 @@
 #include "../../../header/state/player/MoveState.h"
 #include "../../../header/state/player/StandState.h"
 #include "../../../header/state/player/StepState.h"
+#include "../../../header/state/player/HomingState.h"
 #include "../../../header/state/player/SpecialAttackState.h"
 
 #include "../../../header/state/player/SingleJumpState.h"
@@ -37,6 +38,8 @@
 #include "../../../header/ui/SPGaugeUI.h"
 #include "../../../header/ui/HPGaugeUI.h"
 #include "../../../header/ui/UIManager.h"
+
+#include "../../../header/attack/AttackStatus.h"
 const float Player::ROTATESPEED = -2.0f;
 Player::Player(const Transform& _t,Camera * _camera, LockOn* _lockon)
 	:Actor(
@@ -193,6 +196,7 @@ void Player::jumping(float _velocity)
 
 void Player::subActionStart()
 {
+
 	if (GameDevice::getInstacnce().input()->specialSkillMode())return;
 	/*if (GameDevice::getInstacnce().input()->jump())
 	{
@@ -202,7 +206,16 @@ void Player::subActionStart()
 
 	if (GameDevice::getInstacnce().input()->avoid())
 	{
-		changeState(ACTOR_STATE::STEP);
+		AttackStatus attackStatus = m_combo.getStatus();
+		if (!m_isLockOn)
+		{
+			changeState(ACTOR_STATE::STEP);
+			return;
+		}
+		if (attackStatus.m_blowOff.length() >= 0.1f)
+		{
+			changeState(ACTOR_STATE::HOMING);
+		}
 	}
 }
 void Player::revision()
@@ -287,6 +300,7 @@ void Player::createStates()
 	registerState(ACTOR_STATE::RUN, new MoveState(this));
 	registerState(ACTOR_STATE::STAND, new StandState(this));
 	registerState(ACTOR_STATE::STEP, new StepState(this));
+	registerState(ACTOR_STATE::HOMING, new HomingState(this));
 	registerState(ACTOR_STATE::SPECIALATTACK, new SpecialAttackState(this));
 
 	registerState(ACTOR_STATE::SINGLEJUMP, new SingleJumpState(this));

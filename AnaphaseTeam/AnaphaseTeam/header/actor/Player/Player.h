@@ -44,6 +44,7 @@ public:
 	//マスター前の仮実装
 	//要リファクタ
 	const float getAttackSpeed() const;
+
 public://Actor継承
 	void initialize() override;
 	void update(float deltatime) override;
@@ -80,6 +81,7 @@ private://state宣言
 	class StandState;
 	class StepState;
 	class SpecialAttackState;
+	class HomingState;
 	/*
 	空中状態で別で作るのではなく
 	プレイヤーの状態として各種追加する
@@ -96,6 +98,7 @@ private://state宣言
 	friend SpecialAttackState;
 	
 	friend StepState;
+	friend HomingState;
 	friend SingleJumpState;
 	friend DoubleJumpState;
 	friend LimitFallState;

@@ -14,6 +14,8 @@
 #include "../collision/CollisionGroup.h"
 #include "../state/ACTOR_STATE.h"
 
+#include "../../header/attack/KnockBack.h"
+
 struct AttackStatus;
 class IRenderer;
 class Map;
@@ -44,9 +46,9 @@ public:
 	const bool isSameTag(Actor_Tag _tag)const;
 	void changeState(ACTOR_STATE _state);
 
-	void changeGravity(float _velocity)
+	void changeGravity(float _gravity)
 	{
-		m_velocity = _velocity;
+		m_gravity = _gravity;
 	}
 
 protected:	
@@ -92,5 +94,5 @@ private:
 	//èdóÕ
 	static const float GRAVITY;
 
-	float m_velocity;
+	float m_gravity;
 };

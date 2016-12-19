@@ -17,7 +17,7 @@ Actor::Actor(const Transform & _transform, MODEL_ID _modelID,Actor_Tag _tag)
 	m_currentState(nullptr),
 	m_currentStateKey(ACTOR_STATE::STAND),
 	m_previousIntersect(m_transform.m_translate),
-	m_velocity(-0.05f)
+	m_gravity(-0.05f)
 {
 }
 
@@ -54,7 +54,7 @@ void Actor::collisionGround(const Map& _map)
 		if (m_currentStateKey != ACTOR_STATE::ATTACK)
 		{
 			//m_transform.translate_up(GRAVITY);
-			m_transform.translate_up(m_velocity);
+			m_transform.translate_up(m_gravity);
 		}
 		return;
 	}

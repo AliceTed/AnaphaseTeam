@@ -251,6 +251,7 @@
     <ClCompile Include="source\state\player\AttackState.cpp" />
     <ClCompile Include="source\state\player\DamageState.cpp" />
     <ClCompile Include="source\state\player\DoubleJumpState.cpp" />
+    <ClCompile Include="source\state\player\HomingState.cpp" />
     <ClCompile Include="source\state\player\LandingRigidityState.cpp" />
     <ClCompile Include="source\state\player\LimitFallState.cpp" />
     <ClCompile Include="source\state\player\MoveState.cpp" />
@@ -467,6 +468,7 @@
     <ClInclude Include="header\state\player\AttackState.h" />
     <ClInclude Include="header\state\player\DamageState.h" />
     <ClInclude Include="header\state\player\DoubleJumpState.h" />
+    <ClInclude Include="header\state\player\HomingState.h" />
     <ClInclude Include="header\state\player\LandingRigidityState.h" />
     <ClInclude Include="header\state\player\LimitFallState.h" />
     <ClInclude Include="header\state\player\MoveState.h" />
