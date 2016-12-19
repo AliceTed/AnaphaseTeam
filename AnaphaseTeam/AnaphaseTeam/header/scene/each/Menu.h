@@ -3,6 +3,7 @@
 #include "../../renderer/Renderer.h"
 #include "../../ui/TitleUI.h"
 #include "../SceneChange.h"
+#include "../../ui/Score.h"
 class Menu :public IScene
 {
 public:
@@ -21,4 +22,5 @@ private:
 	bool m_IsExit;
 	SceneChange m_change;
 	TitleUI m_menu;
+	Score m_score;
 };

@@ -7,7 +7,8 @@
 Menu::Menu()
 	:m_IsExit(false),
 	m_menu(),
-	m_change()
+	m_change(),
+	m_score()
 {
 }
 
@@ -30,12 +31,19 @@ void Menu::update(float deltaTime)
 	m_menu.update(deltaTime);
 	if (m_change.update(deltaTime))return;
 	m_menu.operation(*this);
+	
+	if (GameDevice::getInstacnce().input()->decision())
+	{
+		m_score.add(1);
+	}
+	m_score.update(deltaTime);
 }
 
 void Menu::draw(IRenderer * _renderer)
 {
 	m_menu.draw(_renderer);
 	m_change.draw(_renderer);
+	m_score.draw(_renderer);
 }
 
 void Menu::finish()

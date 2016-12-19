@@ -897,6 +897,12 @@
     <ClInclude Include="header\math\TargetSinPowerLerp.h">
       <Filter>ヘッダー ファイル\math</Filter>
     </ClInclude>
+    <ClInclude Include="header\ui\Number.h">
+      <Filter>ヘッダー ファイル\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="header\ui\Score.h">
+      <Filter>ヘッダー ファイル\ui</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="source\main.cpp">
@@ -1359,6 +1365,12 @@
       <Filter>ソース ファイル\ui</Filter>
     </ClCompile>
     <ClCompile Include="source\ui\OptionUI.cpp">
+      <Filter>ソース ファイル\ui</Filter>
+    </ClCompile>
+    <ClCompile Include="source\ui\Score.cpp">
+      <Filter>ソース ファイル\ui</Filter>
+    </ClCompile>
+    <ClCompile Include="source\ui\Number.cpp">
       <Filter>ソース ファイル\ui</Filter>
     </ClCompile>
   </ItemGroup>

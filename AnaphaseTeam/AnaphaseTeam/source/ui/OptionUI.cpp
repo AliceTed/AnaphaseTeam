@@ -94,7 +94,7 @@ void OptionUI::operation(Option& _opution)
 	{
 		m_select.next();
 	}
-	if (GameDevice::getInstacnce().input()->decision())
+	if (GameDevice::getInstacnce().input()->jump())
 	{
 		if (m_select.current() == OPTION::CONFIG || m_select.current() == OPTION::TITLE)
 		{

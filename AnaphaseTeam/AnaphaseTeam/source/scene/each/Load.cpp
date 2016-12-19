@@ -90,6 +90,7 @@ void Load::loadTextrue()
 	tex(TEXTURE_ID::PAUSE_GAMEBACK, "gameBack");
 	tex(TEXTURE_ID::PAUSE_TITLEBACK, "titleBack");
 	tex(TEXTURE_ID::STAFFROLL, "TitleUI_STAFF");
+	tex(TEXTURE_ID::NUMBER, "number");
 }
 void Load::loadSound()
 {

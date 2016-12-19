@@ -25,14 +25,13 @@ void Title::initialize()
 }
 void Title::update(float _deltaTime)
 {
-	m_pressKey.flashing(0.1f);
 	if (m_change.update(_deltaTime))return;
-	if (GameDevice::getInstacnce().input()->decision())
+	if (GameDevice::getInstacnce().input()->jump())
 	{
 		m_change.end(SceneMode::MENU);
 		GameDevice::getInstacnce().sound().playSE(SE_ID::ENTER);
 	}
-	//m_pressKey.flashing(0.7f);
+	m_pressKey.flashing(0.7f);
 }
 
 void Title::draw(IRenderer * _renderer)
