@@ -4,13 +4,14 @@
 
 Player::AttackState::AttackState(Player* _player)
 	:ActorState(_player),
-	m_inputTimer(0.3f)
+	m_inputTimer(0.3f), m_isCombo(COMBOSTEP::NON)
 {
 }
 
 void Player::AttackState::start()
 {
 	m_inputTimer.initialize();
+	m_isCombo = COMBOSTEP::NON;
 }
 void Player::AttackState::action(float deltaTime)
 {
@@ -18,6 +19,7 @@ void Player::AttackState::action(float deltaTime)
 	input(deltaTime);
 	m_actor->m_homing.update(deltaTime, &m_actor->m_transform.m_translate);
 	m_actor->specialSkill();
+
 	if (m_actor->m_isGround)
 	{
 		m_actor->subActionStart();
@@ -27,7 +29,6 @@ void Player::AttackState::action(float deltaTime)
 	{
 		changeState(ACTOR_STATE::LIMITFALL);
 	}
-	
 }
 Player::AttackState* Player::AttackState::clone() const
 {
@@ -36,19 +37,45 @@ Player::AttackState* Player::AttackState::clone() const
 
 void Player::AttackState::input(float deltaTime)
 {
-	if (!m_actor->m_animatorOne.isEndCurrentAnimation())return;
-	m_inputTimer.update(deltaTime);
-
-	if (m_inputTimer.isEnd())
+	switch (m_isCombo)
 	{
+	case	COMBOSTEP::END:
+		//二段目以降がラープ終わったらリセット的な
+		if (m_actor->m_combo.isAttack(m_actor->m_animatorOne))
+		{
+			m_isCombo = COMBOSTEP::NON;
+		}
+		break;
+	case COMBOSTEP::NON:
+		//アニメーション終わったら受付開始
+		if (m_actor->m_animatorOne.isEndCurrentAnimation())
+		{
+			m_isCombo = COMBOSTEP::START;
+		}
+		break;
+	case COMBOSTEP::START:
+		///////////攻撃からスタンドへ遷移開始///////////
+		m_actor->m_combo.finish(m_actor->m_animatorOne);
+
+		//////////ラープが終わったら///////////////////
+		if (!m_actor->m_animatorOne.getNext())
+		{
+			changeState(ACTOR_STATE::STAND);
+			m_isCombo = COMBOSTEP::END;
+			return;
+		}
+		Input_Ptr& input = GameDevice::getInstacnce().input();
+		bool isSlow = input->slowAttackTrigger();
+		//攻撃ボタンが押されたら
+		if (!input->quickAttackTrigger() && !isSlow)return;
+		//次の攻撃を判定
+		//次につながる攻撃が無いとfalse返る
+		if (m_actor->m_combo.next(isSlow))
+		{
+			m_isCombo = COMBOSTEP::END;
+			return;
+		}
 		changeState(ACTOR_STATE::STAND);
-		return;
+		break;
 	}
-	Input_Ptr& input = GameDevice::getInstacnce().input();
-	bool isSlow = input->slowAttackTrigger();
-	if (!input->quickAttackTrigger() && !isSlow)return;
-	m_inputTimer.initialize();
-	//
-	if (m_actor->m_combo.next(isSlow))return;
-	changeState(ACTOR_STATE::STAND);
 }

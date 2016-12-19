@@ -9,6 +9,13 @@
 #include "../ActorState.h"
 #include "../../convenient/Timer.h"
 
+enum class COMBOSTEP
+{
+	NON,
+	START,
+	END
+};
+
 class Player::AttackState:public ActorState<Player>
 {
 public:
@@ -21,4 +28,5 @@ private:
 	void input(float deltaTime);
 private:
 	Timer m_inputTimer;
+	COMBOSTEP m_isCombo;
 };
