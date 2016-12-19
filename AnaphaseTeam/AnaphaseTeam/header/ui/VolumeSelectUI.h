@@ -1,5 +1,4 @@
 #pragma once
-#pragma once
 #include "ScaleImage.h"
 #include <unordered_map>
 

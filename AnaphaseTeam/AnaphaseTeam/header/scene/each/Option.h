@@ -23,11 +23,11 @@ public:
 
 	void optionDecision(OPTION _option);
 	void padDecision(PAD _pad);
+	void bgmDecision(VOLUME _bgm);
 	bool isChnage();
 
 private:
 	SceneChange m_change;
-	//std::vector<SlideImage> m_image;
 	OptionUI m_option;
 	bool m_optionChange;
 	bool m_padChange;
