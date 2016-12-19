@@ -5,13 +5,13 @@
 
 Shake::Shake(const GSvector3& _scale, float _time) :
 	points(_time),
-	vecs(std::make_shared<SplineVec3>()),
-	animSpline(std::make_unique<AnimationSpline>(vecs.get()))
+	animSpline(std::make_unique<AnimationSpline>())
 {
 	std::random_device rnd;		//ランダム本体
 	std::mt19937 mt(rnd());		//ランダムに関連した何か
 	int i;						//要素数の最後が欲しいので
 
+	//タイマーの数だけスプライトを用意
 	for (i = 0; i < _time - 1; i++)
 	{
 		//(-_scale ~ _scale)の範囲で３次元ベクトルの成分をランダム生成
@@ -26,7 +26,7 @@ Shake::Shake(const GSvector3& _scale, float _time) :
 	points[i] = GSvector3(0.0f, 0.0f, 0.0f);
 
 	//スプライン曲線の情報の初期化
-	vecs->init(points);
+	animSpline->init(points);
 }
 
 Shake::~Shake()
@@ -34,10 +34,10 @@ Shake::~Shake()
 
 }
 
-GSvector3 Shake::run(float _speed)
+GSvector3 Shake::run(float _speed, const GSvector3& _center)
 {
 	//アニメーション実行
-	return animSpline->run(_speed);
+	return animSpline->run(_speed, _center);
 }
 
 void Shake::resetTime(void)

@@ -19,11 +19,20 @@ SplineVec3::~SplineVec3(void)
 {
 }
 
-void SplineVec3::init(const std::vector<GSvector3>& _sp)
+void SplineVec3::init(std::vector<GSvector3> _sp)
 {
+	int i;
+
+	for (i = 0; i < m_num; i++)
+	{
+		m_x[i] = 0;
+		m_y[i] = 0;
+		m_z[i] = 0;
+	}
+
 	m_num = _sp.size();
 
-	for (int i = 0; i < m_num; i++)
+	for (i = 0; i < m_num; i++)
 	{
 		m_x[i] = _sp[i].x;
 		m_y[i] = _sp[i].y;

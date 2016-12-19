@@ -147,6 +147,7 @@
     <ClCompile Include="source\actor\ActorManager.cpp" />
     <ClCompile Include="source\actor\Enemy\IEnemy.cpp" />
     <ClCompile Include="source\animation\AnimationSpline.cpp" />
+    <ClCompile Include="source\data\AnimationSplineData.cpp" />
     <ClCompile Include="source\camera\CameraWork\CameraWorkTest.cpp" />
     <ClCompile Include="source\camera\LookAt.cpp" />
     <ClCompile Include="source\attack\Homing.cpp" />
@@ -306,6 +307,7 @@
     <ClInclude Include="header\attack\AttackParameter.h" />
     <ClInclude Include="header\attack\ShapeData.h" />
     <ClInclude Include="header\attack\SHAPE_TYPE.h" />
+    <ClInclude Include="header\data\AnimationSplineData.h" />
     <ClInclude Include="header\camera\CameraWork\CameraWorkTest.h" />
     <ClInclude Include="header\data\stream\SpawnConverter.h" />
     <ClInclude Include="header\data\stream\SpawnReader.h" />

@@ -7,19 +7,28 @@
 #pragma once
 
 #include <gslib.h>
+#include <memory>
+#include <vector>
+
 class SplineVec3;
 
 class AnimationSpline
 {
 public:
+
 	/**
 	@brief コンストラクタ
-	@param[_sVec3]
 	*/
-	AnimationSpline(SplineVec3* _sVec3);
+	AnimationSpline(void);
 
 	//デストラクタ
 	~AnimationSpline();
+
+	/**
+	@brief 初期化
+	@param[_points] 各点
+	*/
+	void init(const std::vector<GSvector3>& _points);
 
 	/**
 	@brief 経過時間のリセット
@@ -29,11 +38,13 @@ public:
 	/**
 	@brief 実行
 	@param[_speed]実行速度
-	@return 速度*/
-	GSvector3 run(float _speed);
+	@param[_center]原点
+	@return 求めた位置　＋　原点
+	*/
+	GSvector3 run(float _speed, const GSvector3& _center = { 0.0f, 0.0f, 0.0f });
 
 private:
-	SplineVec3* m_sVec3;
+	std::unique_ptr<SplineVec3> m_sVec3;
 
 	float m_timer;
 };

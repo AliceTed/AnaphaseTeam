@@ -19,7 +19,7 @@ public:
 	@brief 初期化
 	@param[_sp]
 	*/
-	void init(const std::vector<GSvector3>& _sp);
+	void init(std::vector<GSvector3> _sp);
 
 	/**
 	@brief スプライン曲線の計算

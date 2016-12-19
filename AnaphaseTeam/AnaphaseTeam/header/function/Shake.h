@@ -29,9 +29,10 @@ public:
 	/**
 	@brief 実行
 	@param[_speed] 実行速度
-	@return 結果
+	@param[_center]原点
+	@return 求めた位置　＋　原点
 	*/
-	GSvector3 run(float _speed);
+	GSvector3 run(float _speed, const GSvector3& _center = { 0.0f, 0.0f, 0.0f });
 
 	/**
 	@brief 時間を初期化
@@ -40,8 +41,6 @@ public:
 
 private:
 	std::vector<GSvector3> points;					//各点
-
-	std::shared_ptr<SplineVec3> vecs;				//３次スプライン曲線
 
 	std::unique_ptr<AnimationSpline> animSpline;	//スプラインアニメーション
 };
