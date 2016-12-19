@@ -69,8 +69,8 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
-    <IncludePath>C:\gslib_2015\gslib_2015\inc;C:\boost\Include\boost_1_57_0;D:\GSLibrary_2015\gslib_2015\gslib_2015\inc;C:\boost\include\boost-1_57;C:\boost\boost\include\boost-1_57;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\gslib_2015\gslib_2015\lib;C:\boost\lib;D:\GSLibrary_2015\gslib_2015\gslib_2015\lib;D:\GSLibrary_2015\boost\lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>C:\gslib_2015\gslib_2015\inc;C:\boost\Include\boost_1_57_0;D:\GSLibrary_2015\gslib_2015\gslib_2015\inc;C:\boost\include\boost-1_57;C:\boost\boost\include\boost-1_57;C:\gslib_2015\gslibEXT_2015\inc;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\gslib_2015\gslib_2015\lib;C:\boost\lib;D:\GSLibrary_2015\gslib_2015\gslib_2015\lib;D:\GSLibrary_2015\boost\lib;C:\gslib_2015\gslibEXT_2015\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
@@ -146,16 +146,18 @@
   <ItemGroup>
     <ClCompile Include="source\actor\ActorManager.cpp" />
     <ClCompile Include="source\actor\Enemy\IEnemy.cpp" />
-    <ClCompile Include="source\spline\AnimationSpline.cpp" />
+    <ClCompile Include="source\actor\Enemy\SlahHand.cpp" />
+    <ClCompile Include="source\attack\Revision.cpp" />
     <ClCompile Include="source\camera\CameraWork\CameraWorkEvent.cpp" />
-    <ClCompile Include="source\spline\AnimationSplineData.cpp" />
     <ClCompile Include="source\camera\CameraWork\CameraWorkTest.cpp" />
     <ClCompile Include="source\camera\LookAt.cpp" />
-    <ClCompile Include="source\attack\Homing.cpp" />
     <ClCompile Include="source\attack\KnockBack.cpp" />
+    <ClCompile Include="source\data\stream\PhaseConverter.cpp" />
+    <ClCompile Include="source\data\stream\PhaseReader.cpp" />
     <ClCompile Include="source\data\stream\SpawnConverter.cpp" />
     <ClCompile Include="source\data\stream\SpawnReader.cpp" />
-    <ClCompile Include="source\function\Shake.cpp" />
+    <ClCompile Include="source\data\stream\StageConverter.cpp" />
+    <ClCompile Include="source\data\stream\StageReader.cpp" />
     <ClCompile Include="source\math\AMath.cpp" />
     <ClCompile Include="source\collision\PlayerCollision.cpp" />
     <ClCompile Include="source\actor\Actor.cpp" />
@@ -208,9 +210,6 @@
     <ClCompile Include="source\device\GameDevice.cpp" />
     <ClCompile Include="source\device\InputPattern_A.cpp" />
     <ClCompile Include="source\device\InputPattern_B.cpp" />
-    <ClCompile Include="source\spline\Spline.cpp" />
-    <ClCompile Include="source\spline\SplineAnimManager.cpp" />
-    <ClCompile Include="source\spline\SplineVec3.cpp" />
     <ClCompile Include="source\math\Random.cpp" />
     <ClCompile Include="source\myanimation\MyAnimation.cpp" />
     <ClCompile Include="source\myanimation\MyAnimationContainer.cpp" />
@@ -229,8 +228,14 @@
     <ClCompile Include="source\specialskill\SpecialAttack.cpp" />
     <ClCompile Include="source\specialskill\SpecialSkillManager.cpp" />
     <ClCompile Include="source\specialskill\SuperArmor.cpp" />
+    <ClCompile Include="source\spline\AnimationSpline.cpp" />
+    <ClCompile Include="source\spline\AnimationSplineData.cpp" />
+    <ClCompile Include="source\spline\Spline.cpp" />
+    <ClCompile Include="source\spline\SplineAnimManager.cpp" />
+    <ClCompile Include="source\spline\SplineVec3.cpp" />
     <ClCompile Include="source\stage\Phase.cpp" />
     <ClCompile Include="source\stage\PhaseManager.cpp" />
+    <ClCompile Include="source\stage\Stage.cpp" />
     <ClCompile Include="source\state\enemy\EAttackState.cpp" />
     <ClCompile Include="source\state\enemy\EDashFrontState.cpp" />
     <ClCompile Include="source\state\enemy\EDeadState.cpp" />
@@ -305,18 +310,22 @@
   <ItemGroup>
     <ClInclude Include="header\actor\Enemy\IEnemy.h" />
     <ClInclude Include="header\actor\ActorManager.h" />
-    <ClInclude Include="header\spline\AnimationSpline.h" />
+    <ClInclude Include="header\actor\Enemy\SlahHand.h" />
     <ClInclude Include="header\attack\AttackParameter.h" />
+    <ClInclude Include="header\attack\Revision.h" />
     <ClInclude Include="header\attack\ShapeData.h" />
     <ClInclude Include="header\attack\SHAPE_TYPE.h" />
-    <ClInclude Include="header\spline\AnimationSplineData.h" />
+    <ClInclude Include="header\camera\CameraWork\CameraWorkEvent.h" />
     <ClInclude Include="header\camera\CameraWork\CameraWorkTest.h" />
-    <ClInclude Include="header\spline\SplineAnimManager.h" />
-    <ClInclude Include="header\spline\SPLINE_ANIMATION_ID.h" />
+    <ClInclude Include="header\camera\LookAt.h" />
+    <ClInclude Include="header\data\json\Picojson.h" />
+    <ClInclude Include="header\data\stream\PhaseConverter.h" />
+    <ClInclude Include="header\data\stream\PhaseReader.h" />
     <ClInclude Include="header\data\stream\SpawnConverter.h" />
     <ClInclude Include="header\data\stream\SpawnReader.h" />
     <ClInclude Include="header\actor\Enemy\EnemyMediator.h" />
-    <ClInclude Include="header\function\Shake.h" />
+    <ClInclude Include="header\data\stream\StageConverter.h" />
+    <ClInclude Include="header\data\stream\StageReader.h" />
     <ClInclude Include="header\math\AMath.h" />
     <ClInclude Include="header\actor\Actor.h" />
     <ClInclude Include="header\actor\Actor_Tag.h" />
@@ -330,7 +339,6 @@
     <ClInclude Include="header\attack\ComboAttack.h" />
     <ClInclude Include="header\attack\Attack.h" />
     <ClInclude Include="header\attack\KnockBack.h" />
-    <ClInclude Include="header\attack\Homing.h" />
     <ClInclude Include="header\attack\LoadAttack.h" />
     <ClInclude Include="header\attack\Scythe.h" />
     <ClInclude Include="header\actor\Player\Player.h" />
@@ -385,8 +393,6 @@
     <ClInclude Include="header\device\IInputPattern.h" />
     <ClInclude Include="header\device\InputPattern_A.h" />
     <ClInclude Include="header\device\InputPattern_B.h" />
-    <ClInclude Include="header\spline\Spline.h" />
-    <ClInclude Include="header\spline\SplineVec3.h" />
     <ClInclude Include="header\math\TargetLerp.h" />
     <ClInclude Include="header\myanimation\MyAnimation.h" />
     <ClInclude Include="header\myanimation\MyAnimationContainer.h" />
@@ -436,9 +442,17 @@
     <ClInclude Include="header\specialskill\SpecialSkillManager.h" />
     <ClInclude Include="header\specialskill\SPECIALSKILL_TYPE.h" />
     <ClInclude Include="header\specialskill\SuperArmor.h" />
+    <ClInclude Include="header\spline\AnimationSpline.h" />
+    <ClInclude Include="header\spline\AnimationSplineData.h" />
+    <ClInclude Include="header\spline\Spline.h" />
+    <ClInclude Include="header\spline\SplineAnimManager.h" />
+    <ClInclude Include="header\spline\SplineVec3.h" />
+    <ClInclude Include="header\spline\SPLINE_ANIMATION_ID.h" />
     <ClInclude Include="header\stage\Phase.h" />
     <ClInclude Include="header\stage\PhaseData.h" />
     <ClInclude Include="header\stage\PhaseManager.h" />
+    <ClInclude Include="header\stage\Stage.h" />
+    <ClInclude Include="header\stage\StageData.h" />
     <ClInclude Include="header\state\ActorState.h" />
     <ClInclude Include="header\state\ACTOR_STATE.h" />
     <ClInclude Include="header\state\enemy\EAI.h" />
@@ -529,9 +543,7 @@
     <ClInclude Include="header\ui\SPGaugeUI.h" />
     <ClInclude Include="header\ui\TitleUI.h" />
     <ClInclude Include="header\ui\UIManager.h" />
-    <ClInclude Include="header\camera\LookAt.h" />
     <ClInclude Include="header\ui\VolumeSelectUI.h" />
-    <ClInclude Include="header\camera\CameraWork\CameraWorkEvent.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

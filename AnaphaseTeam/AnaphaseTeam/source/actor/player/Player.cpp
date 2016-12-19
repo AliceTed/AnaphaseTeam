@@ -53,7 +53,7 @@ Player::Player(const Transform& _t,Camera * _camera, LockOn* _lockon)
 	m_specialskill(m_Gauge.get()),
 	m_target(0, 0, 0),
 	m_specialUI(std::make_shared<SpecialSkillUI>(GSvector2(1100, 80))),
-	m_homing(),
+	m_Revision(),
 	m_timer(1.5f),
 	m_isLockOn(false)
 {
@@ -61,6 +61,10 @@ Player::Player(const Transform& _t,Camera * _camera, LockOn* _lockon)
 
 Player::~Player()
 {}
+const float Player::getAttackSpeed() const
+{
+	return m_status.attackSpeed();
+}
 void Player::initialize()
 {
 	Actor::initialize();
@@ -147,57 +151,7 @@ const bool Player::aerialTracking() const
 	return isTargetAerial(*target.lock().get());
 }
 
-void Player::damage(const AttackStatus & _attackStatus)
-{
-	m_status.down(_attackStatus.m_power);
-}
-
-AttackStatus Player::status()
-{
-	return m_combo.getStatus();
-}
-void Player::jumping(float _velocity)
-{
-	m_transform.translate_up(_velocity);
-}
-
-void Player::subActionStart()
-{
-	if (GameDevice::getInstacnce().input()->specialSkillMode())return;
-	if (GameDevice::getInstacnce().input()->jump())
-	{
-		changeState(ACTOR_STATE::SINGLEJUMP);
-		return;
-	}
-
-	if (GameDevice::getInstacnce().input()->avoid())
-	{
-		changeState(ACTOR_STATE::STEP);
-	}
-}
-void Player::homing()
-{
-	std::weak_ptr<IEnemy> target = m_lockon->getTarget();
-	if (target.expired())return;
-	m_homing.start(this, target.lock().get(), m_transform, *m_Gauge, m_target, m_isLockOn);
-}
-
-void Player::createAttackCollision(const ShapeData& _data)
-{
-	Collision_Ptr act = std::make_shared<PlayerAttackCollision>(this, _data);
-	m_collision.add(act);
-}
-
-void Player::avoidAction(const GSvector3 & _velocity)
-{
-	m_transform.translate(_velocity);
-}
-
-void Player::attackmotion(Attack & _attack)
-{
-	_attack.changeMotion(m_animatorOne, m_status.attackSpeed());
-}
-void Player::control()
+void Player::specialSkill()
 {
 	if (GameDevice::getInstacnce().input()->specialSkillMode())
 	{
@@ -221,6 +175,61 @@ void Player::control()
 		return;
 	}
 	m_specialUI->close();
+}
+
+void Player::damage(const AttackStatus & _attackStatus)
+{
+	m_status.down(_attackStatus.m_power);
+}
+
+AttackStatus Player::status()
+{
+	return m_combo.getStatus();
+}
+void Player::jumping(float _velocity)
+{
+	m_transform.translate_up(_velocity);
+}
+
+void Player::subActionStart()
+{
+	if (GameDevice::getInstacnce().input()->specialSkillMode())return;
+	/*if (GameDevice::getInstacnce().input()->jump())
+	{
+		changeState(ACTOR_STATE::SINGLEJUMP);
+		return;
+	}*/
+
+	if (GameDevice::getInstacnce().input()->avoid())
+	{
+		changeState(ACTOR_STATE::STEP);
+	}
+}
+void Player::revision()
+{
+	std::weak_ptr<IEnemy> target = m_lockon->getTarget();
+	if (target.expired())return;
+	m_Revision.start(this, target.lock().get(), m_transform, *m_Gauge, m_target, m_isLockOn);
+}
+
+void Player::createAttackCollision(const ShapeData& _data)
+{
+	Collision_Ptr act = std::make_shared<PlayerAttackCollision>(this, _data);
+	m_collision.add(act);
+}
+
+void Player::avoidAction(const GSvector3 & _velocity)
+{
+	m_transform.translate(_velocity);
+}
+
+void Player::attackmotion(Attack & _attack)
+{
+	_attack.changeMotion(m_animatorOne, m_status.attackSpeed());
+}
+void Player::control()
+{
+	specialSkill();
 	/*ƒ{ƒ^ƒ“‰Ÿ‚µ‚½‚çAttackState‚ÉØ‚è‘Ö‚í‚é*/
 	if (GameDevice::getInstacnce().input()->quickAttackTrigger())
 	{
@@ -252,20 +261,22 @@ void Player::look_at(CameraController * _camera, GSvector3 * _target)
 	gsVector3ToEleDir(&playerRotate.x, &playerRotate.y, &m_transform.front());
 	m_camera->set_direction_player(playerRotate.y);
 
-	_camera->change_cameraWork(E_CameraWorkID::TEST);
+	//_camera->change_cameraWork(E_CameraWorkID::TEST);
 
-	/*if (m_isLockOn)
+	if (m_isLockOn)
 	{
 		_camera->change_cameraWork(E_CameraWorkID::LOCK_ON);
 	}
 	else
 	{
 		_camera->change_cameraWork(E_CameraWorkID::NORMAL);
-	}*/
+	}
 }
 void Player::look_at(CameraController * _camera)
 {
-	m_camera->set_cameraTarget_player(m_transform.m_translate);
+	GSvector3 position = m_transform.m_translate;
+	m_isLockOn = false;
+	m_camera->set_cameraTarget_player(position);
 	_camera->change_cameraWork(E_CameraWorkID::NORMAL);
 
 }

@@ -6,7 +6,7 @@ class Status;
 class HPGaugeUI :public IPlayUI
 {
 public:
-	HPGaugeUI(const GSvector2& _posistion,Status& _status,float _scale=10.0f);
+	HPGaugeUI(const GSvector2& _posistion,Status& _status,float _scale=3.41f);
 	// IPlayUI ‚ğ‰î‚µ‚ÄŒp³‚³‚ê‚Ü‚µ‚½
 	void update(float deltaTime);
 	void draw(IRenderer * _renderer);

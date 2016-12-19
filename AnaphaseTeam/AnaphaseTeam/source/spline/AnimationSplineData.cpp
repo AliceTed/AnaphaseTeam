@@ -3,7 +3,7 @@
 #include <sstream>
 #include <list>
 #include "../../header/spline/AnimationSplineData.h"
-#include "../../header/spline/SplineVec3.h";
+#include "../../header/spline/SplineVec3.h"
 #include "../../header/spline//AnimationSpline.h"
 #include "../../header/spline/SPLINE_ANIMATION_ID.h"
 #include "../../header/data/Message.h"

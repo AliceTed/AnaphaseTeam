@@ -1,6 +1,7 @@
 #include "../../../header/scene/each/Option.h"
 #include "../../../header/renderer/IRenderer.h"
 #include "../../../header/device/GameDevice.h"
+#include "../../../header/data/id/BGM_ID.h"
 #include "../../../header/renderer/define/SpriteRenderDesc.h"
 #include "../../../header/data/id/TEXTURE_ID.h"
 
@@ -86,13 +87,23 @@ void Option::padDecision(PAD _pad)
 	}
 }
 
+void Option::bgmDecision(VOLUME _bgm)
+{
+	switch (_bgm)
+	{
+	case VOLUME::LOW:
+		GameDevice::getInstacnce().sound().bgmVolume(BGM_ID::TITLE, 0);
+		break;
+	case VOLUME::NORMAL:
+		GameDevice::getInstacnce().sound().bgmVolume(BGM_ID::TITLE, 0.7f);
+		break;
+	case VOLUME::HIGH:
+		GameDevice::getInstacnce().sound().bgmVolume(BGM_ID::TITLE, 1.0f);
+		break;
+	}
+}
+
 bool Option::isChnage()
 {
 	return m_optionChange;
 }
-
-
-
-
-
-

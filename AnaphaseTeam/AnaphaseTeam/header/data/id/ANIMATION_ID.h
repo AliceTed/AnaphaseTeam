@@ -4,23 +4,17 @@
 
 enum class ANIMATION_ID :unsigned int
 {
-	CHARGE,
-	DAMAGE,
-	SPECIALATTACK,
 	STAND,
-	ATTACK,
 	RUN,
+	STEP,
+	DAMAGE,
+	DEAD,
+	ATTACK1,
 	ATTACK2,
 	ATTACK3,
 	ATTACK4,
-	DEAD,
-
-	/*LANDING = 3,
-	JUMPUP = 3,
-	ATTACK5 = 2,
-	ATTACK6 = 2,
-	FATTACK = 2,
-	AVOID = 9,*/
+	ATTACK5,
+	SPECIALATTACK,	
 };
 
 #endif

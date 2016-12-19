@@ -5,11 +5,11 @@ class Player;
 class IEnemy;
 class Gauge;
 
-class Homing
+class Revision
 {
 public:
-	Homing();
-	~Homing();
+	Revision();
+	~Revision();
 	void start(Player* _player, IEnemy* _enemy, Transform& _transform, Gauge& _gauge, GSvector3 _target, bool _islockon);
 	void update(float deltatime, GSvector3* _position);
 

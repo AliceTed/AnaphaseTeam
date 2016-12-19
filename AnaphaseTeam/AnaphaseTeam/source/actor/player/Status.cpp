@@ -25,7 +25,7 @@ void Status::change(Gauge & _gauge)
 	m_AttackSpeed = _gauge.scale(def);
 }
 
-float Status::attackSpeed()
+float Status::attackSpeed() const
 {
 	return m_AttackSpeed;
 }

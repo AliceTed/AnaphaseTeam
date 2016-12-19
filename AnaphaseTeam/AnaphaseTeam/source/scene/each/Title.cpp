@@ -4,6 +4,7 @@
 #include "../../../header/renderer/define/SpriteRenderDesc.h"
 #include "../../../header/device/GameDevice.h"
 #include "../../../header/data/id/BGM_ID.h"
+#include "../../../header/data/id/SHADER_ID.h"
 Title::Title()
 	:m_IsExit(false),
 	m_change(),
