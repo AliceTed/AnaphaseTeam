@@ -6,15 +6,17 @@
 #include "../../../header/camera/CameraWork/CameraWorkLockOn.h"
 #include "../../../header/camera/CameraWork/CameraWorkDead.h"
 #include "../../../header/camera/CameraWork/CameraWorkData.h"
+#include "../../../header/camera/CameraWork/CameraWorkNormalBattle.h"
 #include "../../../header/camera/CameraWork/I_CameraWork.h"
 #include "../../../header/spline/SplineAnimManager.h"
 
-CameraWorkManager::CameraWorkManager(Camera* _camera) :
+CameraWorkManager::CameraWorkManager(Camera* _camera, bool* _isLockOn) :
 	m_camera(_camera),
 	m_cameraData(std::make_unique<CameraWorkData>()),
 	m_splineAnimManager(std::make_shared<SplineAnimManager>()),
 	m_rotate(0.0f, 0.0f),
-	m_current_cameraWork(E_CameraWorkID::NONE)
+	m_current_cameraWork(E_CameraWorkID::NONE),
+	m_isLockOn(_isLockOn)
 {
 
 }
@@ -45,6 +47,10 @@ void CameraWorkManager::load(void)
 	m_cameraData->add(								//ロックオンカメラ
 		E_CameraWorkID::LOCK_ON,
 		new CameraWorkLockOn(m_camera, &m_rotate)
+	);
+	m_cameraData->add(
+		E_CameraWorkID::NORMAL_BATTLE,
+		new CameraWorkNormalBattle(m_camera, m_isLockOn)
 	);
 	m_cameraData->add(								//死亡カメラ
 		E_CameraWorkID::DEAD,

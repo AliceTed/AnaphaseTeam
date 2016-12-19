@@ -20,9 +20,10 @@ class CameraWorkManager
 public:
 	/**
 	@brief コンストラクタ
-	@param[_camera] カメラ
+	@param[_camera]		カメラ
+	@param[_isLockOn]	めんどくせぇ
 	*/
-	CameraWorkManager(Camera* _camera);
+	CameraWorkManager(Camera* _camera, bool* _isLockOn);
 
 	//デストラクタ
 	~CameraWorkManager();
@@ -53,4 +54,6 @@ private:
 	GSvector2						m_rotate;				//回転
 
 	E_CameraWorkID					m_current_cameraWork;	//現在のカメラワーク
+
+	bool*							m_isLockOn;				//めんどくせぇ
 };

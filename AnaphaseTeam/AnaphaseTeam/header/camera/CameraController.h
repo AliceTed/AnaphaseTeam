@@ -60,10 +60,18 @@ public:
 	*/
 	Camera* get_camera(void);
 
+	/**
+	@brief 本当にめんどくせぇ（俺のせいだけど）
+	@param[_isLockOn] 
+	*/
+	void set_isLockOn(bool _isLockOn);
+
 private:
 	std::shared_ptr<Camera> m_camera;						//カメラ
 
 	std::shared_ptr<CameraWorkManager> m_cameraWorkManager;	//カメラワーク・マネージャー
 
 	float m_deltaTime;										//１フレーム毎の秒数
+
+	bool m_isLockOn;										//めんどくせぇ
 };

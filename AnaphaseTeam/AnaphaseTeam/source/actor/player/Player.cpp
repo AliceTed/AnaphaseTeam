@@ -261,7 +261,9 @@ void Player::look_at(CameraController * _camera, GSvector3 * _target)
 	gsVector3ToEleDir(&playerRotate.x, &playerRotate.y, &m_transform.front());
 	m_camera->set_direction_player(playerRotate.y);
 
-	_camera->change_cameraWork(E_CameraWorkID::TEST);
+	//_camera->change_cameraWork(E_CameraWorkID::TEST);
+
+	_camera->set_isLockOn(m_isLockOn);
 
 	/*if (m_isLockOn)
 	{
@@ -277,7 +279,8 @@ void Player::look_at(CameraController * _camera)
 	GSvector3 position = m_transform.m_translate;
 	m_isLockOn = false;
 	m_camera->set_cameraTarget_player(position);
-	_camera->change_cameraWork(E_CameraWorkID::NORMAL);
+	//_camera->change_cameraWork(E_CameraWorkID::NORMAL);
+	_camera->set_isLockOn(m_isLockOn);
 
 }
 void Player::createStates()

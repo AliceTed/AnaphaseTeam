@@ -951,6 +951,9 @@
     <ClInclude Include="header\camera\LookAt.h">
       <Filter>ヘッダー ファイル\camera</Filter>
     </ClInclude>
+    <ClInclude Include="header\camera\CameraWork\CameraWorkNormalBattle.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="source\main.cpp">
@@ -1441,6 +1444,9 @@
     </ClCompile>
     <ClCompile Include="source\animation\convenient\Timer.cpp">
       <Filter>ソース ファイル\convenient</Filter>
+    </ClCompile>
+    <ClCompile Include="source\camera\CameraWork\CameraWorkNormalBattle.cpp">
+      <Filter>ソース ファイル</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

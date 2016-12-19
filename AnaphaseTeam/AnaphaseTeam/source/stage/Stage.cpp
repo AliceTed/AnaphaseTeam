@@ -6,6 +6,7 @@
 #include "../../header/device/GameDevice.h"
 #include "../../header/stage/StageData.h"
 #include "../../header/data/stream/PhaseReader.h"
+#include "../../header/camera/CameraWork/E_CameraWorkID.h"
 Stage::Stage(const StageData& _stage)
 	:m_Map(OCTREE_ID::VISUAL),
 	m_cameracontroller(),
@@ -22,6 +23,8 @@ Stage::Stage(const StageData& _stage)
 		m_phaseManage.add(new Phase(data));
 	}
 	m_phaseManage.changeFirst();
+
+	m_cameracontroller.change_cameraWork(E_CameraWorkID::NORMAL_BATTLE);
 }
 Stage::~Stage()
 {

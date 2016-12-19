@@ -1,4 +1,4 @@
-#include "../../header/convenient/Point.h"
+#include "../../../header/convenient/Point.h"
 
 Point::Point()
 	:x(0),y(0)
