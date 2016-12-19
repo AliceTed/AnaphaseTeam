@@ -16,11 +16,11 @@
 #include "../../header/transform/Transform.h"
 typedef std::shared_ptr<Animation> Animation_Ptr;
 class IRenderer;
-class LerpData
+struct LerpData
 {
 public:
 	LerpData()
-		:m_time(0.0f),m_lerpTime(10.0f)
+		:m_time(0.0f), m_lerpTime(10.0f)
 	{
 	}
 	void timerUpdate()
@@ -36,6 +36,8 @@ public:
 	}
 
 public:
+	unsigned int m_currentID;
+	unsigned int m_nextID;
 	float m_lerpTime;
 	float m_time;
 	float m_startTime;
@@ -57,11 +59,11 @@ public:
 		changeAnimation(static_cast<GSuint>(_animation), true, false, false, 10.0f, 1.0f);
 	}
 	template<class T>
-	void changeAnimationLerp(T _animation,float _animSpeed)
+	void changeAnimationLerp(T _animation, float _animSpeed)
 	{
 		changeAnimation(static_cast<GSuint>(_animation), true, false, false, 10.0f, _animSpeed);
 	}
-	void changeAnimation(unsigned int _animation, bool _isLerp = true, bool _isLoop = false, bool _isNotInit = false,float _lerpTime=10.0f, float _animationSpeed = 1.0f);
+	void changeAnimation(unsigned int _animation, bool _isLerp = true, bool _isLoop = false, bool _isNotInit = false, float _lerpTime = 10.0f, float _animationSpeed = 1.0f);
 	template<class T>
 	void changeAnimation(T _animation, bool _isLerp = true, bool _isLoop = false, bool _isNotInit = false, float _lerpTime = 10.0f, float _animationSpeed = 1.0f)
 	{
@@ -73,7 +75,8 @@ public:
 	* @breif 今動いているアニメーションが終わっているか
 	*/
 	const bool isEndCurrentAnimation() const;
-	void lerpBegin(unsigned int _anim, bool _init=false, bool _loop=false,float _lerpTime=10.0f, float _animSpeed=1.0f);
+	void lerpBegin(unsigned int _anim, bool _init = false, bool _loop = false, float _lerpTime = 10.0f, float _animSpeed = 1.0f);
+	void begin(unsigned int _anim1, unsigned int _anim2, bool _init, bool _loop, float _lerpTime, float _animSpeed);
 	/*
 	@fn アニメーション行列の計算
 	*/
@@ -86,6 +89,8 @@ public:
 
 	const float getNextAnimationTime()const;
 	const float getNextAnimationEndTime()const;
+	const bool getNext() const;
+	const unsigned int getCurrent() const;
 private:
 	void matrixCalculate();
 	void skeltonCalculateTransform(GSmatrix4* _mat);
@@ -95,7 +100,7 @@ private:
 	const MODEL_ID m_modelID;
 	Animation_Ptr m_currentAnimation;
 	Animation_Ptr m_nextAnimation;
-	static const unsigned int BONELENGTH=256;
+	static const unsigned int BONELENGTH = 256;
 	LerpData m_lerpData;
 	//std::shared_ptr<GSmatrix4> m_matPtr;
 	std::shared_ptr<GSmatrix4>  m_orientedMat;

@@ -22,11 +22,15 @@ public:
 
 	void motion(Player* _player);
 	void changeMotion(AnimatorOne& _animator, float _speed);
+	bool finish(AnimatorOne & _animator);
 	const std::string& next(bool _isSlow) const;
-	const AttackStatus &getStatus() const; 
+	const AttackStatus &getStatus() const;
+	const unsigned int getID() const;
 private:
 	//!çUåÇópParameter
 	AttackParameter m_parameter;
 	Timer m_spawnTimer;
 	bool isSpawn;
+	bool isFinished;
+	bool isStart;
 };
