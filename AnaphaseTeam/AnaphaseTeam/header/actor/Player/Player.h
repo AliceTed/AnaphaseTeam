@@ -13,7 +13,7 @@
 #include "Gauge.h"
 #include "../../specialskill/SpecialSkillManager.h"
 #include "../../ui/SpecialSkillUI.h"
-#include "../../attack/Homing.h"
+#include "../../attack/Revision.h"
 #include "../../convenient/Timer.h"
 
 class CameraController;
@@ -33,7 +33,7 @@ public:
 	void attackmotion(Attack& _attack);
 	void look_at(CameraController* _camera, GSvector3* _target);
 	void look_at(CameraController* _camera);
-	void homing();
+	void revision();
 	void createAttackCollision(const ShapeData& _data);
 	void damage(const AttackStatus & _attackStatus) override;
 	void finish() override;
@@ -69,7 +69,7 @@ private:
 	Scythe m_scythe;
 	SpecialSkillManager m_specialskill;
 	GSvector3 m_target;
-	Homing m_homing;
+	Revision m_Revision;
 	Timer m_timer;
 	bool m_isLockOn;
 	

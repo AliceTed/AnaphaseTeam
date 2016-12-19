@@ -1,21 +1,21 @@
-#include "..\..\header\attack\Homing.h"
+#include "..\..\header\attack\Revision.h"
 #include "../../header/actor/Enemy/IEnemy.h"
 #include "../../header/math/Calculate.h"
 #include "../../header/actor/Player/Gauge.h"
 #include "../../header/actor/Player/Player.h"
 
-Homing::Homing()
+Revision::Revision()
 	:m_isStart(false),
 	m_position(0,0,0),
 	m_target(0,0,0)
 {
 }
 
-Homing::~Homing()
+Revision::~Revision()
 {
 }
 
-void Homing::start(Player * _player, IEnemy * _enemy, Transform& _transform, Gauge& _gauge,GSvector3 _distance, bool _islockon)
+void Revision::start(Player * _player, IEnemy * _enemy, Transform& _transform, Gauge& _gauge,GSvector3 _distance, bool _islockon)
 {
 	IEnemy* target = _enemy;
 	if (target == nullptr) return;
@@ -33,7 +33,7 @@ void Homing::start(Player * _player, IEnemy * _enemy, Transform& _transform, Gau
 	m_target = _distance;
 }
 
-void Homing::update(float deltatime,GSvector3* _position)
+void Revision::update(float deltatime,GSvector3* _position)
 {
 	if (m_isStart)
 		gsVector3Lerp(_position,

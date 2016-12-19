@@ -53,7 +53,7 @@ Player::Player(const Transform& _t,Camera * _camera, LockOn* _lockon)
 	m_specialskill(m_Gauge.get()),
 	m_target(0, 0, 0),
 	m_specialUI(std::make_shared<SpecialSkillUI>(GSvector2(1100, 80))),
-	m_homing(),
+	m_Revision(),
 	m_timer(1.5f),
 	m_isLockOn(false)
 {
@@ -205,11 +205,11 @@ void Player::subActionStart()
 		changeState(ACTOR_STATE::STEP);
 	}
 }
-void Player::homing()
+void Player::revision()
 {
 	std::weak_ptr<IEnemy> target = m_lockon->getTarget();
 	if (target.expired())return;
-	m_homing.start(this, target.lock().get(), m_transform, *m_Gauge, m_target, m_isLockOn);
+	m_Revision.start(this, target.lock().get(), m_transform, *m_Gauge, m_target, m_isLockOn);
 }
 
 void Player::createAttackCollision(const ShapeData& _data)

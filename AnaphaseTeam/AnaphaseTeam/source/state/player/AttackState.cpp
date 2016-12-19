@@ -16,7 +16,7 @@ void Player::AttackState::action(float deltaTime)
 {
 	m_actor->m_combo.update(deltaTime);
 	input(deltaTime);
-	m_actor->m_homing.update(deltaTime, &m_actor->m_transform.m_translate);
+	m_actor->m_Revision.update(deltaTime, &m_actor->m_transform.m_translate);
 	m_actor->specialSkill();
 	if (m_actor->m_isGround)
 	{

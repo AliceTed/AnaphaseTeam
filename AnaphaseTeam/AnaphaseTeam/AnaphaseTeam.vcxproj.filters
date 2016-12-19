@@ -774,9 +774,6 @@
     <ClInclude Include="header\math\AMath.h">
       <Filter>ヘッダー ファイル\math</Filter>
     </ClInclude>
-    <ClInclude Include="header\attack\Homing.h">
-      <Filter>ヘッダー ファイル\attack</Filter>
-    </ClInclude>
     <ClInclude Include="header\attack\KnockBack.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
@@ -929,6 +926,9 @@
     </ClInclude>
     <ClInclude Include="header\data\stream\StageReader.h">
       <Filter>ヘッダー ファイル\data\stream</Filter>
+    </ClInclude>
+    <ClInclude Include="header\attack\Revision.h">
+      <Filter>ヘッダー ファイル\attack</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -1295,9 +1295,6 @@
     <ClCompile Include="source\math\AMath.cpp">
       <Filter>ソース ファイル\math</Filter>
     </ClCompile>
-    <ClCompile Include="source\attack\Homing.cpp">
-      <Filter>ソース ファイル\Attack</Filter>
-    </ClCompile>
     <ClCompile Include="source\attack\KnockBack.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
@@ -1408,6 +1405,9 @@
     </ClCompile>
     <ClCompile Include="source\data\stream\StageReader.cpp">
       <Filter>ソース ファイル\data\stream</Filter>
+    </ClCompile>
+    <ClCompile Include="source\attack\Revision.cpp">
+      <Filter>ソース ファイル\Attack</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
