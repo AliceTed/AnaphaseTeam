@@ -27,7 +27,7 @@ void CameraWorkEvent::run(float _deltaTime)
 
 	m_camera->tracking_lookAt(position);
 
-	m_camera->tracking_position(m_splineAnimManager->run(0.01f, position));
+	m_camera->tracking_position(m_splineAnimManager->run(1.0f / (60.0f * 30.0f), position));
 
 	if (m_splineAnimManager->isEnd())
 	{
