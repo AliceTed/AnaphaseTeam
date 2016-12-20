@@ -19,6 +19,7 @@ CWParameterReader::~CWParameterReader()
 float CWParameterReader::get(const int _index)
 {
 	//イテレーターで回して指定した要素数にたどり着けばその要素の数値を返す
+	//find_ifでよくね？
 	Parameter_Itr itr = m_parameters.begin();
 	for (int i = 0; itr != m_parameters.end(); i++)
 	{
