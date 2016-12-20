@@ -49,7 +49,7 @@ void Load::finish()
 const SceneMode Load::next() const
 {
 #ifdef _DEBUG
-	return SceneMode::OPTION;
+	return SceneMode::GAMEPLAY;
 #endif // DEBUG
 
 	return SceneMode::OPENING;
