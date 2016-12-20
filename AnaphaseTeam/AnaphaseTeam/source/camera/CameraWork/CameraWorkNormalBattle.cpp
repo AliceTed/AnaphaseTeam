@@ -5,7 +5,7 @@
 
 CameraWorkNormalBattle::CameraWorkNormalBattle(Camera * _camera, bool * _isLockOn) :
 CameraWorkEmpty(_camera),
-m_rotate(0.0f, 0.0f),
+m_rotate(0.0f, 270.0f),
 m_normal(std::make_unique<CameraWorkNormal>(_camera, &m_rotate)),
 m_lockon(std::make_unique<CameraWorkLockOn>(_camera, &m_rotate)),
 m_isLockOn(_isLockOn)
@@ -21,6 +21,9 @@ void CameraWorkNormalBattle::start(void)
 {
 	m_normal->start();
 	m_lockon->start();
+
+	m_nextCameraWork = E_CameraWorkID::DEAD;
+	m_isEnd = false;
 }
 
 void CameraWorkNormalBattle::run(float _deltaTime)
@@ -35,4 +38,14 @@ void CameraWorkNormalBattle::run(float _deltaTime)
 	}
 
 	return;
+}
+
+E_CameraWorkID CameraWorkNormalBattle::nextCameraWork(void)
+{
+	return m_nextCameraWork;
+}
+
+bool CameraWorkNormalBattle::isEnd(void)
+{
+	return m_isEnd;
 }

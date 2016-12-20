@@ -29,6 +29,9 @@ CameraWorkNormal::~CameraWorkNormal()
 void CameraWorkNormal::start(void)
 {
 	m_camera->initialize_zoom();
+	
+	m_nextCameraWork = E_CameraWorkID::NONE;
+	m_isEnd = false;
 }
 
 void CameraWorkNormal::run(float _deltaTime)
@@ -56,6 +59,16 @@ void CameraWorkNormal::run(float _deltaTime)
 	);
 
 	return;
+}
+
+E_CameraWorkID CameraWorkNormal::nextCameraWork(void)
+{
+	return m_nextCameraWork;
+}
+
+bool CameraWorkNormal::isEnd(void)
+{
+	return m_isEnd;
 }
 
 const GSvector2 CameraWorkNormal::velocity(void)

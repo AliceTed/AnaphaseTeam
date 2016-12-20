@@ -28,3 +28,8 @@ GSvector3 SplineAnimManager::run(float _speed, const GSvector3 & _center)
 {
 	return m_datas->get(m_currentID)->run(_speed, _center);
 }
+
+bool SplineAnimManager::isEnd(void)
+{
+	return m_datas->get(m_currentID)->isEnd();
+}

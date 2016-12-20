@@ -14,4 +14,5 @@ enum class E_CameraWorkID : int
 	NORMAL,			//**@brief ’Êí
 	NORMAL_BATTLE,	//**@brief ’Êíí“¬
 	DEAD,			//**@brief €–S
+	EVENT,			//**@brief ƒCƒxƒ“ƒg
 };

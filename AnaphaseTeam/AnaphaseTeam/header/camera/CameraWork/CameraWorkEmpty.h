@@ -9,6 +9,7 @@
 #include <gslib.h>
 #include <memory>
 #include "I_CameraWork.h"
+#include "E_CameraWorkID.h"
 
 class Camera;				//カメラ
 class CWParameterReader;	//カメラワーク・パラメータ読み込み機
@@ -31,10 +32,20 @@ public:
 	//実行処理
 	virtual void run(float _deltaTime) override;
 
+	//次のカメラワークは
+	virtual E_CameraWorkID nextCameraWork(void) override;
+
+	//終了したか？
+	virtual bool isEnd(void) override;
+
 protected:
 	Camera*								m_camera;			//カメラ
 
 	std::unique_ptr<CWParameterReader>	m_paramater_def;	//カメラの定数パラメータ
 
 	GSvector3							m_offset_target;	//ターゲットオフセット
+
+	E_CameraWorkID						m_nextCameraWork;	//次のカメラワーク
+
+	bool								m_isEnd;			//終了したか？
 };

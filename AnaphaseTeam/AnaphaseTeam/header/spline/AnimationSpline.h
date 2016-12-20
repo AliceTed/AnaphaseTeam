@@ -43,6 +43,11 @@ public:
 	*/
 	GSvector3 run(float _speed, const GSvector3& _center = { 0.0f, 0.0f, 0.0f });
 
+	/**
+	@return èIóπÇµÇΩÇ©ÅH
+	*/
+	bool isEnd(void);
+
 private:
 	std::unique_ptr<SplineVec3> m_sVec3;
 

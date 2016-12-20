@@ -7,6 +7,7 @@
 #include "../../../header/camera/CameraWork/CameraWorkDead.h"
 #include "../../../header/camera/CameraWork/CameraWorkData.h"
 #include "../../../header/camera/CameraWork/CameraWorkNormalBattle.h"
+#include "../../../header/camera/CameraWork/CameraWorkEvent.h"
 #include "../../../header/camera/CameraWork/I_CameraWork.h"
 #include "../../../header/spline/SplineAnimManager.h"
 
@@ -56,6 +57,10 @@ void CameraWorkManager::load(void)
 		E_CameraWorkID::DEAD,
 		new CameraWorkDead(m_camera)
 	);
+	m_cameraData->add(
+		E_CameraWorkID::EVENT,
+		new CameraWorkEvent(m_camera, m_splineAnimManager.get())
+	);
 }
 
 void CameraWorkManager::change_cameraWork(const E_CameraWorkID _id)
@@ -69,6 +74,11 @@ void CameraWorkManager::change_cameraWork(const E_CameraWorkID _id)
 
 void CameraWorkManager::run(float _deltaTime)
 {
+	if (m_cameraData->get(m_current_cameraWork)->isEnd())
+	{
+		change_cameraWork(m_cameraData->get(m_current_cameraWork)->nextCameraWork());
+	}
+
 	//現在のカメラワークの実行
 	m_cameraData->get(m_current_cameraWork)->run(_deltaTime);
 

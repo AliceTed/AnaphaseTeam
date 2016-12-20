@@ -34,3 +34,8 @@ GSvector3 AnimationSpline::run(float _speed, const GSvector3& _center)
 
 	return result;
 }
+
+bool AnimationSpline::isEnd(void)
+{
+	return m_sVec3->isEnd();
+}
