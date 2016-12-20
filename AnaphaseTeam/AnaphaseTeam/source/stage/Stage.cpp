@@ -41,7 +41,7 @@ void Stage::draw(IRenderer * _renderer)
 	desc.meshID = static_cast<unsigned int>(MESH_ID::SKY);
 	_renderer->render(desc);
 	m_actors.lockAt(&m_cameracontroller);
-	m_cameracontroller.draw();
+	m_cameracontroller.draw(_renderer);
 
 	_renderer->lookAt({ 0,0,0 }, { 0,0,0 }, { 0,0,0 });
 	m_Map.draw(_renderer);

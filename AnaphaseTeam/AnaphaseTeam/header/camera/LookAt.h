@@ -8,7 +8,7 @@
 
 #include <gslib.h>
 
-class SLookAt
+class LookAt
 {
 public:
 	GSvector3 position;			//**@brief カメラの位置
@@ -25,8 +25,8 @@ public:
 	@param[_target]		ターゲット
 	@param[_up]			カメラの上方向
 	*/
-	SLookAt(GSvector3 _position, GSvector3 _target, GSvector3 _up);
+	LookAt(GSvector3 _position, GSvector3 _target, GSvector3 _up);
 
 	//デストラクタ
-	~SLookAt();
+	~LookAt();
 };

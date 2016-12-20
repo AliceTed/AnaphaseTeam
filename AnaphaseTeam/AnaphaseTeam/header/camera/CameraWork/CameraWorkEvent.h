@@ -1,28 +1,28 @@
 /**
-@file CameraWorkTest.h
-@brief カメラワークテスト
+@file CameraWorkEvent.h
+@brief カメラワーク・イベント
 @author Yuuho Aritomi
-@date 2016/12/12
+@date 2016/12/19
 */
 #pragma once
 
-#include <vector>
 #include <memory>
 #include "CameraWorkEmpty.h"
+#include"../../spline/SPLINE_ANIMATION_ID.h"
 
 class SplineAnimManager;
 
-class CameraWorkTest : public CameraWorkEmpty
+class CameraWorkEvent : public CameraWorkEmpty
 {
 public:
 	/**
 	@brief コンストラクタ
 	@param[_camera] カメラ
 	*/
-	CameraWorkTest(Camera* _camera);
+	CameraWorkEvent(Camera* _camera, SplineAnimManager* _splineAnimManager);
 
 	//デストラクタ
-	~CameraWorkTest() override;
+	~CameraWorkEvent();
 
 	//開始処理
 	void start(void) override;
@@ -31,5 +31,5 @@ public:
 	void run(float _deltaTime) override;
 
 private:
-	std::unique_ptr<SplineAnimManager> shake;
+	SplineAnimManager* m_splineAnimManager;
 };

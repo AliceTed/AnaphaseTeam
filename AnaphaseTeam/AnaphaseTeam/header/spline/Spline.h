@@ -8,14 +8,14 @@
 #include <vector>
 #include <gslib.h>
 
-class ASpline
+class Spline
 {
 public:
 	//コンストラクタ
-	ASpline(void);
+	Spline(void);
 
 	//デストラクタ
-	~ASpline();
+	~Spline();
 
 	/**
 	@brief 初期化

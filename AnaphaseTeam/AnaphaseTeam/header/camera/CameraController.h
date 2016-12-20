@@ -14,6 +14,7 @@
 class	Map;
 class	Camera;
 class	CameraWorkManager;
+class	IRenderer;
 enum	CameraWorkID;
 
 class CameraController
@@ -38,7 +39,7 @@ public:
 	/**
 	@brief •`‰æˆ—
 	*/
-	void draw(void);
+	void draw(IRenderer* _renderer);
 
 
 

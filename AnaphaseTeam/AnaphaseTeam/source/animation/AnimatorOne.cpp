@@ -55,12 +55,25 @@ void AnimatorOne::change(Animation_Ptr _next)
 }
 void AnimatorOne::lerpBegin(unsigned int _anim, bool _init, bool _loop, float _lerpTime, float _animSpeed)
 {
+	m_lerpData.m_currentID = m_currentAnimation->getAnimationNo();
+	m_lerpData.m_nextID = _anim;
 	m_lerpData.m_startTime = m_currentAnimation->getCurrentTime();
 	m_lerpData.m_endTime = 0;
 	m_lerpData.m_nextInit = _init;
 	m_lerpData.m_lerpTime = _lerpTime;
-	m_nextAnimation = std::make_shared<Animation>(m_modelID, static_cast<unsigned int>(_anim), AnimationTimer(gsGetEndAnimationTime(static_cast<unsigned int>(m_modelID), static_cast<unsigned int>(_anim)), _animSpeed), _loop);
+	m_nextAnimation = std::make_shared<Animation>(m_modelID, m_lerpData.m_nextID, AnimationTimer(gsGetEndAnimationTime(static_cast<unsigned int>(m_modelID), static_cast<unsigned int>(_anim)), _animSpeed), _loop);
 	//m_currentAnimation = m_nextAnimation;
+}
+
+void AnimatorOne::begin(unsigned int _anim1, unsigned int _anim2, bool _init, bool _loop, float _lerpTime, float _animSpeed)
+{
+	m_lerpData.m_currentID = _anim1;
+	m_lerpData.m_nextID = _anim2;
+	m_lerpData.m_startTime = gsGetEndAnimationTime(static_cast<unsigned int>(m_modelID), static_cast<unsigned int>(_anim1));
+	m_lerpData.m_endTime = 0;
+	m_lerpData.m_nextInit = _init;
+	m_lerpData.m_lerpTime = _lerpTime;
+	m_nextAnimation = std::make_shared<Animation>(m_modelID, m_lerpData.m_nextID, AnimationTimer(gsGetEndAnimationTime(static_cast<unsigned int>(m_modelID), static_cast<unsigned int>(_anim2)), _animSpeed), _loop);
 }
 
 void AnimatorOne::animationCaluculate(GSmatrix4* _animMat)
@@ -97,8 +110,8 @@ void AnimatorOne::animationCaluculateLerp(GSmatrix4* _animMat)
 {
 	Data::CastID cast;
 
-	gsCalculateAnimationLerp(cast(m_modelID), m_currentAnimation->getAnimationNo(), m_lerpData.m_startTime,
-		cast(m_modelID), m_nextAnimation->getAnimationNo(), m_lerpData.m_endTime,
+	gsCalculateAnimationLerp(cast(m_modelID), m_lerpData.m_currentID, m_lerpData.m_startTime,
+		cast(m_modelID), m_lerpData.m_nextID, m_lerpData.m_endTime,
 		m_lerpData.m_time / m_lerpData.m_lerpTime, _animMat);
 	m_lerpData.timerUpdate();
 	if (m_lerpData.lerpEnd())
@@ -122,7 +135,6 @@ void AnimatorOne::matrixCalculate()
 
 void AnimatorOne::skeltonCalculateTransform(GSmatrix4* _mat)
 {
-
 	/*スケルトンの位置情報を計算
 	姿勢から座標へ
 	*/
@@ -169,4 +181,13 @@ const float AnimatorOne::getNextAnimationEndTime() const
 {
 	if (!m_nextAnimation)return 0.0f;
 	return m_nextAnimation->getEndTime();
+}
+
+const bool AnimatorOne::getNext()const
+{
+	return m_nextAnimation.operator bool();
+}
+const unsigned int AnimatorOne::getCurrent()const
+{
+	return m_currentAnimation->getAnimationNo();
 }

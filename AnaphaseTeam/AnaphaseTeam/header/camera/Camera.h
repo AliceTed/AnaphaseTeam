@@ -11,9 +11,10 @@
 
 #include "../../header/transform/Transform.h"
 
-class SLookAt;		//カメラの位置情報（先頭のＳはきにすんな）
+class LookAt;		//カメラの位置情報（先頭のＳはきにすんな）
 class CameraTarget;	//カメラのターゲット
 class Map;			//マップ（std::mapじゃないよ）
+class IRenderer;
 
 class Camera
 {
@@ -40,7 +41,7 @@ public:
 	/**
 	@brief 更新処理
 	*/
-	void update(void);
+	void run(IRenderer* _renderer);
 
 	/**
 	@brief	ティルト・パンカメラワーク
@@ -106,6 +107,16 @@ public:
 	void tracking_position(const GSvector3& _target, float _speed = 1.0f);
 
 	/**
+	@brief カメラオフセットがターゲットに追尾
+	@param[_target] ターゲット
+	@param[_speed]	速度
+	[0]			追尾無し
+	[0 < x < 1] ディレイありの追尾
+	[1]			完全追尾
+	*/
+	void tracking_positionOffset(const GSvector3& _target, float _speed = 1.0f);
+
+	/**
 	@brief 注視点がターゲットに追尾
 	@param[_target] ターゲット
 	@param[_speed]	速度
@@ -114,6 +125,16 @@ public:
 					[1]			完全追尾
 	*/
 	void tracking_lookAt(const GSvector3& _target, float _speed = 1.0f);
+
+	/**
+	@brief 注視点オフセットがターゲットに追尾
+	@param[_target] ターゲット
+	@param[_speed]	速度
+	[0]			追尾無し
+	[0 < x < 1] ディレイありの追尾
+	[1]			完全追尾
+	*/
+	void tracking_lookAtOffset(const GSvector3& _target, float _speed = 1.0f);
 
 	/**
 	@brief 地面とのあたり判定
@@ -231,7 +252,7 @@ private:
 	GSvector2						m_fov_clamp;			//視野角の範囲
 	GSmatrix4						m_mat_projection;		//シェーダー用投射変換行列
 
-	std::unique_ptr<SLookAt>		m_lookAt;				//カメラの位置情報の集合体
+	std::unique_ptr<LookAt>		m_lookAt;				//カメラの位置情報の集合体
 
 	GSvector2						m_rotate_dolly;			//ドリー処理時のディレイ用変数
 

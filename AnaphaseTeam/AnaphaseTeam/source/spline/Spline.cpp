@@ -1,8 +1,8 @@
-#include "../../header/math/ASpline.h"
+#include "../../header/spline/Spline.h"
 
-const int ASpline::MaxSplineSize = 100;
+const int Spline::MaxSplineSize = 100;
 
-ASpline::ASpline(void) :
+Spline::Spline(void) :
 	m_num(0),
 	m_a(MaxSplineSize + 1),
 	m_b(MaxSplineSize + 1),
@@ -13,12 +13,12 @@ ASpline::ASpline(void) :
 	
 }
 
-ASpline::~ASpline()
+Spline::~Spline()
 {
 
 }
 
-void ASpline::init(const std::vector<float>& _sp)
+void Spline::init(const std::vector<float>& _sp)
 {
 	float tmp;
 	std::vector<float> w(MaxSplineSize + 1);
@@ -63,7 +63,7 @@ void ASpline::init(const std::vector<float>& _sp)
 	}
 }
 
-float ASpline::culc(float _t, int _num)
+float Spline::culc(float _t, int _num)
 {
 	int j;
 	float dt;
@@ -91,7 +91,7 @@ float ASpline::culc(float _t, int _num)
 	return m_a[j] + (m_b[j] + (m_c[j] + m_d[j] * dt) * dt) * dt;
 }
 
-bool ASpline::isEnd(void)
+bool Spline::isEnd(void)
 {
 	return m_isEnd;
 }
