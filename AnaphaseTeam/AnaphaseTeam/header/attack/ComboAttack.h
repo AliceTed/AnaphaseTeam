@@ -18,13 +18,16 @@ public:
 	void initialize();
 	void start(bool _isSlow);
 	void update(float deltaTime);
+	bool finish(AnimatorOne & _animator);
 	//“ü—Í‚ª‚ ‚Á‚½‚Æ‚«‚É‚æ‚Î‚ê‚é
 	const bool next(bool _isSlow);
+	bool isAttack(AnimatorOne & _animator);
 	const bool isEnd()const;
 	const AttackStatus &getStatus() const;
 private:
 	Player* m_player;
 	Attack m_current;
+	Attack m_prev;
 	std::unordered_map<std::string, Attack> m_container;
 	bool m_isEnd;
 };

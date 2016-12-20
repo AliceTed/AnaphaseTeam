@@ -5,6 +5,7 @@ ComboAttack::ComboAttack(Player* _player)
 	:m_player(_player),
 	m_container(),
 	m_current(AttackParameter()),
+	m_prev(AttackParameter()),
 	m_isEnd(false)
 {
 }
@@ -34,18 +35,31 @@ void ComboAttack::update(float deltaTime)
 	m_current.update(deltaTime, m_player);
 }
 
+
+bool ComboAttack::finish(AnimatorOne& _animator)
+{
+	return m_current.finish(_animator);
+}
+
 const bool ComboAttack::next(bool _isSlow)
 {
 	std::string next = m_current.next(_isSlow);
-	if (next =="END")
+	if (next == "END")
 	{
 		m_isEnd = true;
 		return false;
 	}
+	m_prev = m_current;
 	m_current = m_container.at(next);
+
 	m_current.initialize(m_player);
 	return true;
 }
+bool ComboAttack::isAttack(AnimatorOne& _animator)
+{
+	return	m_current.getID() == _animator.getCurrent();
+}
+
 const bool ComboAttack::isEnd() const
 {
 	return m_isEnd;
