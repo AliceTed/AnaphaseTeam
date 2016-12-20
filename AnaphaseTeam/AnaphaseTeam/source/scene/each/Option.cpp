@@ -40,6 +40,7 @@ void Option::draw(IRenderer * _renderer)
 	m_option.draw(_renderer);
 	m_change.draw(_renderer);
 	static NumberSpriteRenderDesc desc;
+
 	//0‚É‚·‚ê‚Î­”•\¦‚µ‚È‚¢
 	desc.decimal = 1;
 	desc.number += 0.1f;
