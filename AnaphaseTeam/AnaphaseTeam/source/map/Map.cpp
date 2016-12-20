@@ -31,6 +31,18 @@ void Map::draw(IRenderer * _renderer)
 	desc.octreeID =static_cast<unsigned int>(m_ID);
 	_renderer->render(desc);
 
+	/*
+	clipÇ™Ç†ÇÈÇÃÇ≈Ç∆ÇËÇ†Ç¶Ç∏Ç±Ç±Ç…èëÇ¢ÇΩ
+	*/
+	GScolor color = { 0.3f,0.0f,0.0f,0.5f };
+	GSvector2 clip = { 10, 50 };
+	//glClearColor(color.r, color.g, color.b, color.a);
+	glEnable(GL_FOG);
+	glFogi(GL_FOG_MODE, GL_LINEAR);
+	glFogf(GL_FOG_START, clip.x);
+	glFogf(GL_FOG_END, clip.y);
+	glFogfv(GL_FOG_COLOR, color);
+
 	/*gsBeginShader(static_cast<GSuint>(SHADER_ID::OCTREE));
 	LightDesc light = _renderer->getLight();
 	GSvector3 light_position_eye =light.position*_renderer->getViewMatrix();

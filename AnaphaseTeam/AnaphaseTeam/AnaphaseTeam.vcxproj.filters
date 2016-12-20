@@ -930,6 +930,9 @@
     <ClInclude Include="header\attack\Revision.h">
       <Filter>ヘッダー ファイル\attack</Filter>
     </ClInclude>
+    <ClInclude Include="header\renderer\define\NumberSpriteRenderDesc.h">
+      <Filter>ヘッダー ファイル\renderer\define</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="source\main.cpp">

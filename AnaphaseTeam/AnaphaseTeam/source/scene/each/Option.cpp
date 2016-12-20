@@ -5,6 +5,7 @@
 #include "../../../header/renderer/define/SpriteRenderDesc.h"
 #include "../../../header/data/id/TEXTURE_ID.h"
 
+#include "../../../header/renderer/define/NumberSpriteRenderDesc.h"
 
 Option::Option()
 	:m_change(),
@@ -38,6 +39,12 @@ void Option::draw(IRenderer * _renderer)
 {
 	m_option.draw(_renderer);
 	m_change.draw(_renderer);
+	static NumberSpriteRenderDesc desc;
+	//0Ç…Ç∑ÇÍÇŒè≠êîï\é¶ÇµÇ»Ç¢
+	desc.decimal = 1;
+	desc.number += 0.1f;
+	desc.textureID = static_cast<GSuint>(TEXTURE_ID::NUMBER);
+	_renderer->render(desc);
 }
 
 void Option::finish()

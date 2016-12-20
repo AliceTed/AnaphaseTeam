@@ -49,7 +49,7 @@ void Load::finish()
 const SceneMode Load::next() const
 {
 #ifdef _DEBUG
-	return SceneMode::GAMEPLAY;
+	return SceneMode::OPTION;
 #endif // DEBUG
 
 	return SceneMode::OPENING;
@@ -95,6 +95,7 @@ void Load::loadTextrue()
 	tex(TEXTURE_ID::PAUSE_TITLEBACK, "titleBack");
 	tex(TEXTURE_ID::STAFFROLL, "TitleUI_STAFF");
 	tex(TEXTURE_ID::TITLE_MASK, "TitleRogo_Mask");
+	tex(TEXTURE_ID::NUMBER, "number");
 }
 void Load::loadSound()
 {
@@ -125,10 +126,11 @@ void Load::loadModel()
 	mesh(MESH_ID::WEAPON, "weapon/weapon");
 
 	OctreeLoader oct;
-	oct(OCTREE_ID::VISUAL, "map/map1");
-	oct(OCTREE_ID::PHASE1, "map/MAP_colider1");
-	oct(OCTREE_ID::PHASE2, "map/MAP_colider2");
-	oct(OCTREE_ID::PHASE3, "map/MAP_colider3");
+	oct(OCTREE_ID::VISUAL, "map/map_limit");
+	oct(OCTREE_ID::PHASE1, "map/map_collider1");
+	oct(OCTREE_ID::PHASE2, "map/map_collider2");
+	oct(OCTREE_ID::PHASE3, "map/map_collider3");
+	oct(OCTREE_ID::PHASE4, "map/map_collider4");
 }
 
 void Load::loadMyAnimation()

@@ -404,6 +404,7 @@
     <ClInclude Include="header\renderer\define\Matrix4.h" />
     <ClInclude Include="header\renderer\define\MeshDesc.h" />
     <ClInclude Include="header\renderer\define\MeshRenderDesc.h" />
+    <ClInclude Include="header\renderer\define\NumberSpriteRenderDesc.h" />
     <ClInclude Include="header\renderer\define\OctreeExRenderDesc.h" />
     <ClInclude Include="header\renderer\define\OctreeRenderDesc.h" />
     <ClInclude Include="header\renderer\define\Ray.h" />
