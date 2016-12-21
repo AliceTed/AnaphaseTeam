@@ -5,7 +5,6 @@
 #include "../../header/spline/AnimationSplineData.h"
 #include "../../header/spline/SplineVec3.h"
 #include "../../header/spline//AnimationSpline.h"
-#include "../../header/spline/SPLINE_ANIMATION_ID.h"
 #include "../../header/data/Message.h"
 
 AnimationSplineData::AnimationSplineData(void) :
@@ -19,7 +18,7 @@ AnimationSplineData::~AnimationSplineData()
 
 }
 
-void AnimationSplineData::add(SPLINE_ANIMATION_ID _id, const std::vector<GSvector3>& _points)
+void AnimationSplineData::add(std::string _id, const std::vector<GSvector3>& _points)
 {
 	//ÉfÅ[É^ê∂ê¨
 	m_datas.insert(std::make_pair(_id, std::make_unique<AnimationSpline>()));
@@ -30,7 +29,7 @@ void AnimationSplineData::add(SPLINE_ANIMATION_ID _id, const std::vector<GSvecto
 	return;
 }
 
-void AnimationSplineData::add(SPLINE_ANIMATION_ID _id, const std::string _fileName)
+void AnimationSplineData::add(std::string _id, const std::string _fileName)
 {
 	std::ifstream reading_file;
 	std::string reading_line_buffer;
@@ -87,17 +86,7 @@ void AnimationSplineData::add(SPLINE_ANIMATION_ID _id, const std::string _fileNa
 	reading_file.close();
 }
 
-void AnimationSplineData::resetTime(void)
-{
-	std::map<SPLINE_ANIMATION_ID, std::unique_ptr<AnimationSpline>>::iterator itr = m_datas.begin();
-
-	while (itr != m_datas.end())
-	{
-		itr->second->resetTime();
-	}
-}
-
-AnimationSpline* AnimationSplineData::get(SPLINE_ANIMATION_ID _id)
+AnimationSpline* AnimationSplineData::get(std::string _id)
 {
 	return m_datas[_id].get();
 }

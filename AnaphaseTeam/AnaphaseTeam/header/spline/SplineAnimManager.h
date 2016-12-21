@@ -8,7 +8,7 @@
 
 #include <gslib.h>
 #include <memory>
-#include "SPLINE_ANIMATION_ID.h"
+#include <string>
 
 class AnimationSplineData;
 
@@ -29,7 +29,7 @@ public:
 	/**
 	@brief アニメーションＩＤを切り替える
 	@param[_id] アニメーションＩＤ*/
-	void changeID(SPLINE_ANIMATION_ID _id);
+	void changeID(std::string _id);
 
 	/**
 	@brief 実行
@@ -44,7 +44,7 @@ public:
 	bool isEnd(void);
 
 private:
-	SPLINE_ANIMATION_ID m_currentID;
+	std::string m_currentID;
 
 	std::unique_ptr<AnimationSplineData> m_datas;
 };

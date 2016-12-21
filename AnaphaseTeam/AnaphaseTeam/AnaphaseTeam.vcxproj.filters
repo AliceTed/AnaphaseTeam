@@ -939,9 +939,6 @@
     <ClInclude Include="header\spline\Spline.h">
       <Filter>ヘッダー ファイル\spline</Filter>
     </ClInclude>
-    <ClInclude Include="header\spline\SPLINE_ANIMATION_ID.h">
-      <Filter>ヘッダー ファイル\spline</Filter>
-    </ClInclude>
     <ClInclude Include="header\spline\SplineAnimManager.h">
       <Filter>ヘッダー ファイル\spline</Filter>
     </ClInclude>
@@ -952,7 +949,7 @@
       <Filter>ヘッダー ファイル\camera</Filter>
     </ClInclude>
     <ClInclude Include="header\camera\CameraWork\CameraWorkNormalBattle.h">
-      <Filter>ヘッダー ファイル</Filter>
+      <Filter>ヘッダー ファイル\camera\CameraWork</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

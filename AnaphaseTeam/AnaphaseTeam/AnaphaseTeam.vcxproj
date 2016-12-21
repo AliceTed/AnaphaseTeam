@@ -449,7 +449,6 @@
     <ClInclude Include="header\spline\Spline.h" />
     <ClInclude Include="header\spline\SplineAnimManager.h" />
     <ClInclude Include="header\spline\SplineVec3.h" />
-    <ClInclude Include="header\spline\SPLINE_ANIMATION_ID.h" />
     <ClInclude Include="header\stage\Phase.h" />
     <ClInclude Include="header\stage\PhaseData.h" />
     <ClInclude Include="header\stage\PhaseManager.h" />

@@ -8,7 +8,6 @@
 
 #include <memory>
 #include "CameraWorkEmpty.h"
-#include"../../spline/SPLINE_ANIMATION_ID.h"
 
 class SplineAnimManager;
 

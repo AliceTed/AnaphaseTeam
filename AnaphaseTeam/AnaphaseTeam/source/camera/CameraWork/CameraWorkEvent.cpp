@@ -15,7 +15,7 @@ CameraWorkEvent::~CameraWorkEvent()
 
 void CameraWorkEvent::start(void)
 {
-	m_splineAnimManager->changeID(SPLINE_ANIMATION_ID::TEST);
+	m_splineAnimManager->changeID("test");
 
 	m_isEnd = false;
 	m_nextCameraWork = E_CameraWorkID::NORMAL_BATTLE;

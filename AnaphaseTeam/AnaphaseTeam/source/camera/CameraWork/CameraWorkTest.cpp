@@ -3,14 +3,13 @@
 #include "../../../header/camera/CameraWork/CameraWorkTest.h"
 #include "../../../header/camera/Camera.h"
 #include "../../../header/spline/SplineAnimManager.h"
-#include "../../../header/spline/SPLINE_ANIMATION_ID.h"
 
 CameraWorkTest::CameraWorkTest(Camera * _camera) :
 	CameraWorkEmpty(_camera),
 	shake(std::make_unique<SplineAnimManager>())
 {
 	shake->load();
-	shake->changeID(SPLINE_ANIMATION_ID::TEST);
+	shake->changeID("test");
 }
 
 CameraWorkTest::~CameraWorkTest()
