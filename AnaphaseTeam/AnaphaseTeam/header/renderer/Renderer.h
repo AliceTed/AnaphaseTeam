@@ -43,6 +43,8 @@ public:
 
 	virtual void render(const SpriteRectRenderDesc& desc)override;
 
+	virtual void render(const NumberSpriteRenderDesc& desc)override;
+
 	virtual void render(const StringRenderDesc & desc) override;
 
 	virtual void render(const RectangleRenderDesc & desc) override;

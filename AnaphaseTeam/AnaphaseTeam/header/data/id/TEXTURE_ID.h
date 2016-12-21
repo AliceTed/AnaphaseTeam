@@ -34,7 +34,7 @@ enum class TEXTURE_ID :unsigned int
 	SPGAUGE,
 
 	TITLE_MASK,
-
+	NUMBER,
 	SIZE
 	
 };

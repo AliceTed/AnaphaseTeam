@@ -75,6 +75,7 @@ const GSvector2 CameraWorkNormal::velocity(void)
 {
 	GSvector2 velocity;
 
+	//inputはゲームデバイスから
 	//右スティックの倒れた方向を取得する
 	gsXBoxPadGetRightAxis(0, &velocity);
 
