@@ -149,6 +149,7 @@
     <ClCompile Include="source\actor\Enemy\SlahHand.cpp" />
     <ClCompile Include="source\attack\Revision.cpp" />
     <ClCompile Include="source\camera\CameraWork\CameraWorkEvent.cpp" />
+    <ClCompile Include="source\camera\CameraWork\CameraWorkNormalBattle.cpp" />
     <ClCompile Include="source\camera\CameraWork\CameraWorkTest.cpp" />
     <ClCompile Include="source\camera\LookAt.cpp" />
     <ClCompile Include="source\attack\KnockBack.cpp" />
@@ -264,12 +265,12 @@
     <ClCompile Include="source\state\player\StepState.cpp" />
     <ClCompile Include="source\subAction\Jumping.cpp" />
     <ClCompile Include="source\animation\AnimatorOne.cpp" />
-    <ClCompile Include="source\convenient\Point.cpp" />
+    <ClCompile Include="source\animation\convenient\Point.cpp" />
     <ClCompile Include="source\scene\SceneChange.cpp" />
     <ClCompile Include="source\subAction\Step.cpp" />
     <ClCompile Include="source\animation\Animation.cpp" />
     <ClCompile Include="source\animation\AnimationTimer.cpp" />
-    <ClCompile Include="source\convenient\Timer.cpp" />
+    <ClCompile Include="source\animation\convenient\Timer.cpp" />
     <ClCompile Include="source\device\Input.cpp" />
     <ClCompile Include="source\light\DirectionalLight.cpp" />
     <ClCompile Include="source\light\PointLight.cpp" />
@@ -316,6 +317,7 @@
     <ClInclude Include="header\attack\ShapeData.h" />
     <ClInclude Include="header\attack\SHAPE_TYPE.h" />
     <ClInclude Include="header\camera\CameraWork\CameraWorkEvent.h" />
+    <ClInclude Include="header\camera\CameraWork\CameraWorkNormalBattle.h" />
     <ClInclude Include="header\camera\CameraWork\CameraWorkTest.h" />
     <ClInclude Include="header\camera\LookAt.h" />
     <ClInclude Include="header\data\json\Picojson.h" />
@@ -448,7 +450,6 @@
     <ClInclude Include="header\spline\Spline.h" />
     <ClInclude Include="header\spline\SplineAnimManager.h" />
     <ClInclude Include="header\spline\SplineVec3.h" />
-    <ClInclude Include="header\spline\SPLINE_ANIMATION_ID.h" />
     <ClInclude Include="header\stage\Phase.h" />
     <ClInclude Include="header\stage\PhaseData.h" />
     <ClInclude Include="header\stage\PhaseManager.h" />

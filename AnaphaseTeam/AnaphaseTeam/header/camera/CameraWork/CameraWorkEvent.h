@@ -8,7 +8,6 @@
 
 #include <memory>
 #include "CameraWorkEmpty.h"
-#include"../../spline/SPLINE_ANIMATION_ID.h"
 
 class SplineAnimManager;
 
@@ -29,6 +28,12 @@ public:
 
 	//実行処理
 	void run(float _deltaTime) override;
+
+	//次のカメラワーク
+	std::string nextCameraWork(void);
+
+	//終了したか？
+	bool isEnd(void);
 
 private:
 	SplineAnimManager* m_splineAnimManager;

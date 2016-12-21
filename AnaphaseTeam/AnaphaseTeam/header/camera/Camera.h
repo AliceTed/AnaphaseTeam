@@ -239,11 +239,14 @@ private:
 		const GSvector2& _trackingSpeed);
 
 	//地面と当たっているか？
-	bool isHitGround(const Map& _map,GSvector3 * _intersectPos, GSvector3* _position);
+	bool isHitGround(const Map& _map, GSvector3* _position);
+
+	//右の壁と当たっているか？
 
 
 private:
-	static const GSvector3			RAY_DONW;				//レイを下に飛ばす
+	const GSvector3					RAY_DONW;				//レイを下に飛ばす
+	const float						R;						//半径
 
 	static const float				DEF_FOV;				//視野角のデフォルト値
 	static const GSvector2			DEF_FOV_CLAMP;			//視野角の範囲のデフォルト値
@@ -252,7 +255,7 @@ private:
 	GSvector2						m_fov_clamp;			//視野角の範囲
 	GSmatrix4						m_mat_projection;		//シェーダー用投射変換行列
 
-	std::unique_ptr<LookAt>		m_lookAt;				//カメラの位置情報の集合体
+	std::unique_ptr<LookAt>			m_lookAt;				//カメラの位置情報の集合体
 
 	GSvector2						m_rotate_dolly;			//ドリー処理時のディレイ用変数
 
@@ -260,4 +263,6 @@ private:
 	std::shared_ptr<CameraTarget>	m_cameraTarget_enemy;	//エネミーの位置
 
 	float							m_direction_player;		//エネミープレイヤー
+
+	GSvector3						m_intersectPos;			//保持用
 };
