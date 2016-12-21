@@ -24,7 +24,7 @@ Stage::Stage(const StageData& _stage)
 	}
 	m_phaseManage.changeFirst();
 
-	m_cameracontroller.change_cameraWork(E_CameraWorkID::EVENT);
+	m_cameracontroller.change_cameraWork("event");
 }
 Stage::~Stage()
 {

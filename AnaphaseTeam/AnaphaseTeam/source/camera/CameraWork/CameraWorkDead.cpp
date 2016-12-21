@@ -19,7 +19,7 @@ void CameraWorkDead::start(void)
 	m_camera->zoom_clamp(10, 180);
 
 	m_isEnd = false;
-	m_nextCameraWork = E_CameraWorkID::NORMAL_BATTLE;
+	m_nextCameraWork = "normal_battle";
 }
 
 static int i = 0;
@@ -41,7 +41,7 @@ void CameraWorkDead::run(float _deltaTime)
 	return;
 }
 
-E_CameraWorkID CameraWorkDead::nextCameraWork(void)
+std::string CameraWorkDead::nextCameraWork(void)
 {
 	return m_nextCameraWork;
 }

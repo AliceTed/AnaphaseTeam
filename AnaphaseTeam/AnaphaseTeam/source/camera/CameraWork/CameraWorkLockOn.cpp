@@ -37,7 +37,7 @@ void CameraWorkLockOn::start(void)
 {
 	m_camera->initialize_zoom();
 
-	m_nextCameraWork = E_CameraWorkID::NONE;
+	m_nextCameraWork = "none";
 	m_isEnd = false;
 }
 
@@ -74,7 +74,7 @@ void CameraWorkLockOn::run(float _deltaTime)
 	return;
 }
 
-E_CameraWorkID CameraWorkLockOn::nextCameraWork(void)
+std::string CameraWorkLockOn::nextCameraWork(void)
 {
 	return m_nextCameraWork;
 }

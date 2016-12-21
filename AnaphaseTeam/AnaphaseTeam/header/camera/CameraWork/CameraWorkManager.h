@@ -9,7 +9,7 @@
 #include <unordered_map>
 #include <memory>
 #include <gslib.h>
-#include "E_CameraWorkID.h"
+#include <string>
 
 class Camera;				//カメラ
 class CameraWorkData;		//カメラデータ
@@ -36,7 +36,7 @@ public:
 	/**
 	@brief カメラワークの切り替え
 	*/
-	void change_cameraWork(const E_CameraWorkID _id);
+	void change_cameraWork(std::string _id);
 
 	/** 
 	@brief 実行
@@ -45,15 +45,15 @@ public:
 	void run(float _deltaTime);
 
 private:
-	Camera*							m_camera;				//カメラ
+	Camera*								m_camera;				//カメラ
 
-	std::unique_ptr<CameraWorkData> m_cameraData;			//カメラデータ
+	std::unique_ptr<CameraWorkData>		m_cameraData;			//カメラデータ
 
-	std::shared_ptr<SplineAnimManager> m_splineAnimManager;		//3z
+	std::shared_ptr<SplineAnimManager>	m_splineAnimManager;	//3z
 
-	GSvector2						m_rotate;				//回転
+	GSvector2							m_rotate;				//回転
 
-	E_CameraWorkID					m_current_cameraWork;	//現在のカメラワーク
+	std::string							m_current_cameraWork;	//現在のカメラワーク
 
-	bool*							m_isLockOn;				//めんどくせぇ
+	bool*								m_isLockOn;				//めんどくせぇ
 };

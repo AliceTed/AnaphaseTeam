@@ -30,7 +30,7 @@ void CameraWorkNormal::start(void)
 {
 	m_camera->initialize_zoom();
 	
-	m_nextCameraWork = E_CameraWorkID::NONE;
+	m_nextCameraWork = "none";
 	m_isEnd = false;
 }
 
@@ -61,7 +61,7 @@ void CameraWorkNormal::run(float _deltaTime)
 	return;
 }
 
-E_CameraWorkID CameraWorkNormal::nextCameraWork(void)
+std::string CameraWorkNormal::nextCameraWork(void)
 {
 	return m_nextCameraWork;
 }

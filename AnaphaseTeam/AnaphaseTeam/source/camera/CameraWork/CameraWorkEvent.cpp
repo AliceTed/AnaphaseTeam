@@ -18,7 +18,7 @@ void CameraWorkEvent::start(void)
 	m_splineAnimManager->changeID("test");
 
 	m_isEnd = false;
-	m_nextCameraWork = E_CameraWorkID::NORMAL_BATTLE;
+	m_nextCameraWork = "normal_battle";
 }
 
 void CameraWorkEvent::run(float _deltaTime)
@@ -35,7 +35,7 @@ void CameraWorkEvent::run(float _deltaTime)
 	}
 }
 
-E_CameraWorkID CameraWorkEvent::nextCameraWork(void)
+std::string CameraWorkEvent::nextCameraWork(void)
 {
 	return m_nextCameraWork;
 }

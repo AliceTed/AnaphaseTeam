@@ -28,7 +28,7 @@ public:
 	void run(float _deltaTime) override;
 
 	//次のカメラワーク
-	E_CameraWorkID nextCameraWork(void) override;
+	std::string nextCameraWork(void) override;
 
 	//終了したか？
 	bool isEnd(void) override;

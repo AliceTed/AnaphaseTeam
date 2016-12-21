@@ -33,7 +33,7 @@ public:
 	virtual void run(float _deltaTime) override;
 
 	//次のカメラワークは
-	virtual E_CameraWorkID nextCameraWork(void) override;
+	virtual std::string nextCameraWork(void) override;
 
 	//終了したか？
 	virtual bool isEnd(void) override;
@@ -45,7 +45,7 @@ protected:
 
 	GSvector3							m_offset_target;	//ターゲットオフセット
 
-	E_CameraWorkID						m_nextCameraWork;	//次のカメラワーク
+	std::string							m_nextCameraWork;	//次のカメラワーク
 
 	bool								m_isEnd;			//終了したか？
 };

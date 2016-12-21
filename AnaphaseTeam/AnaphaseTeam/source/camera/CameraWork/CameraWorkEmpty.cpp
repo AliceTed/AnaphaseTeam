@@ -6,7 +6,7 @@ CameraWorkEmpty::CameraWorkEmpty(Camera* _camera) :
 	m_camera(_camera),
 	m_paramater_def(std::make_unique<CWParameterReader>("./res/data/CameraWorkDef.cw")),
 	m_offset_target(0.0f, 0.0f, 0.0f),
-	m_nextCameraWork(E_CameraWorkID::NONE),
+	m_nextCameraWork("none"),
 	m_isEnd(false)
 {
 	//カメラのターゲットのオフセットを設定
@@ -36,7 +36,7 @@ void CameraWorkEmpty::run(float _deltaTime)
 	return;
 }
 
-E_CameraWorkID CameraWorkEmpty::nextCameraWork(void)
+std::string CameraWorkEmpty::nextCameraWork(void)
 {
 	return m_nextCameraWork;
 }

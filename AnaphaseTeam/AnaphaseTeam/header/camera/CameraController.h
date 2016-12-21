@@ -8,8 +8,7 @@
 
 #include <gslib.h>
 #include <memory>
-
-#include "CameraWork\E_CameraWorkID.h"
+#include <string>
 
 class	Map;
 class	Camera;
@@ -53,7 +52,7 @@ public:
 	@brief カメラワークの状態を切り替える
 	@param[_id] カメラワークＩＤ
 	*/
-	void change_cameraWork(const E_CameraWorkID _id);
+	void change_cameraWork(std::string _id);
 
 	/**
 	@return カメラ

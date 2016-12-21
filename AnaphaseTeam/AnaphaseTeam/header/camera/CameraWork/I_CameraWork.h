@@ -7,7 +7,7 @@
 #pragma once
 
 #include <gslib.h>
-#include "E_CameraWorkID.h"
+#include <string>
 
 class I_CameraWork
 {
@@ -32,7 +32,7 @@ public:
 	/**
 	@return 次のカメラワーク
 	*/
-	virtual E_CameraWorkID nextCameraWork(void) = 0;
+	virtual std::string nextCameraWork(void) = 0;
 
 	/**
 	@return 終了しているか？

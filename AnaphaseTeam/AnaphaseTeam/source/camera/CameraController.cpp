@@ -48,7 +48,7 @@ void CameraController::collisionGround(const Map & _map)
 	m_camera->collisionGround(_map);
 }
 
-void CameraController::change_cameraWork(const E_CameraWorkID _id)
+void CameraController::change_cameraWork(const std::string _id)
 {
 	//カメラワークを指定ＩＤのものに変更
 	m_cameraWorkManager->change_cameraWork(_id);

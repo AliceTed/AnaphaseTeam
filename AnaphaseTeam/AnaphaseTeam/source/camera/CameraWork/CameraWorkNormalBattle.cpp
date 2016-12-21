@@ -22,7 +22,7 @@ void CameraWorkNormalBattle::start(void)
 	m_normal->start();
 	m_lockon->start();
 
-	m_nextCameraWork = E_CameraWorkID::DEAD;
+	m_nextCameraWork = "dead";
 	m_isEnd = false;
 }
 
@@ -40,7 +40,7 @@ void CameraWorkNormalBattle::run(float _deltaTime)
 	return;
 }
 
-E_CameraWorkID CameraWorkNormalBattle::nextCameraWork(void)
+std::string CameraWorkNormalBattle::nextCameraWork(void)
 {
 	return m_nextCameraWork;
 }
