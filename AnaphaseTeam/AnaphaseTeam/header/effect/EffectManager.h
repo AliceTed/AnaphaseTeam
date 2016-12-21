@@ -20,7 +20,7 @@ public:
 	// デストラクタ
 	~EffectManager();
 	// エフェクト読み込み
-	void loadEffect(EFFECT_ID _id, const wchar_t& _name);
+	void loadEffect(EFFECT_ID _id, const wchar_t* _name);
 	// 初期化
 	void initialize();
 	// 更新

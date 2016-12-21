@@ -130,5 +130,5 @@ void Load::loadMyAnimation()
 /* エフェクトロード */
 void Load::loadEffect()
 {
-	EffectManager::getInstance().loadEffect(EFFECT_ID::ATTACK1, (const wchar_t&)L"./Effect/Attack_2effect.efk");
+	EffectManager::getInstance().loadEffect(EFFECT_ID::ATTACK1, (const wchar_t*)L"./res/Effect/Attack_2effect.efk");
 }

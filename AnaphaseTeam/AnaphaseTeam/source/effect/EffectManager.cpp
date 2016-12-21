@@ -13,7 +13,9 @@ const int MAX_SPRITE = 100;		// 最大スプライト描画数
 const int MAX_MANAGER = 100;	// 最大マネージャーインスタンス数
 
 EffectManager::EffectManager()
+	:m_effectContainer()
 {
+	initialize();
 }
 
 EffectManager & EffectManager::getInstance()
@@ -27,9 +29,9 @@ EffectManager::~EffectManager()
 	end();
 }
 /* 読み込み処理 */
-void EffectManager::loadEffect(EFFECT_ID _id, const wchar_t& _name)
+void EffectManager::loadEffect(EFFECT_ID _id, const wchar_t* _name)
 {
-	m_effectContainer[_id] = Effekseer::Effect::Create(manager,  (const EFK_CHAR*)_name/*L"./Effect/Attack.efk"*/, 3.0f);
+	m_effectContainer.insert(std::make_pair(_id, Effekseer::Effect::Create(manager, (const EFK_CHAR*)_name/*L"./Effect/Attack.efk"*/, 3.0f)));
 }
 /* 初期化処理 */
 void EffectManager::initialize()
@@ -61,6 +63,7 @@ void EffectManager::update()
 /* 描画処理 */
 void EffectManager::draw()
 {
+
 	renderer->BeginRendering();
 	manager->Draw();
 	renderer->EndRendering();

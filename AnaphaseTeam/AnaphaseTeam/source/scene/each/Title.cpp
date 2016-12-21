@@ -4,6 +4,7 @@
 #include "../../../header/renderer/define/SpriteRenderDesc.h"
 #include "../../../header/device/GameDevice.h"
 #include "../../../header/data/id/BGM_ID.h"
+#include "../../../header/effect/EffectManager.h"
 Title::Title()
 	:m_IsExit(false),
 	m_change(),
@@ -25,6 +26,8 @@ void Title::initialize()
 }
 void Title::update(float _deltaTime)
 {
+	EffectManager::getInstance().update();
+	EffectManager::getInstance().effectPlay(EFFECT_ID::ATTACK1, GSvector3(0,0,0));
 	if (m_change.update(_deltaTime))return;
 	if (GameDevice::getInstacnce().input()->decision())
 	{
@@ -42,6 +45,7 @@ void Title::draw(IRenderer * _renderer)
 
 	m_pressKey.draw(_renderer);
 	m_change.draw(_renderer);
+	EffectManager::getInstance().draw();
 }
 
 void Title::finish()

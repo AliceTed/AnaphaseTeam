@@ -53,7 +53,7 @@ const bool Capsule::isCollision(const Shape * _shape, GSvector3* _out) const
 }
 void Capsule::draw(IRenderer * renderer, const GScolor& color)
 {
-	GSvector3 v = m_Segment.vector();
+	/*GSvector3 v = m_Segment.vector();
 	float ele = v.getPitch();
 
 	Math::ATan aTan;
@@ -82,7 +82,7 @@ void Capsule::draw(IRenderer * renderer, const GScolor& color)
 	glMaterialfv(GL_FRONT, GL_DIFFUSE, color);
 	glutSolidSphere(m_Radius, 20, 20);
 
-	glPopMatrix();
+	glPopMatrix();*/
 }
 
 const bool Capsule::isCollisionSphere(const GSvector3 & _center, float _radius, GSvector3* _out) const
