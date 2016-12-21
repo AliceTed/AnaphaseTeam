@@ -951,6 +951,9 @@
     <ClInclude Include="header\camera\LookAt.h">
       <Filter>ヘッダー ファイル\camera</Filter>
     </ClInclude>
+    <ClInclude Include="header\renderer\define\NumberSpriteRenderDesc.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="source\main.cpp">

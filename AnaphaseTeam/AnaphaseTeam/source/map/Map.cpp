@@ -34,7 +34,7 @@ void Map::draw(IRenderer * _renderer)
 	/*
 	clipÇ™Ç†ÇÈÇÃÇ≈Ç∆ÇËÇ†Ç¶Ç∏Ç±Ç±Ç…èëÇ¢ÇΩ
 	*/
-	GScolor color = { 0.3f,0.0f,0.0f,0.5f };
+	GScolor color = { 0.0f,0.0f,0.2f,0.5f };
 	GSvector2 clip = { 10, 50 };
 	//glClearColor(color.r, color.g, color.b, color.a);
 	glEnable(GL_FOG);
