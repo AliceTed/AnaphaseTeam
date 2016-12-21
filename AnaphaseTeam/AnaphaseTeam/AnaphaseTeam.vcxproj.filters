@@ -939,9 +939,6 @@
     <ClInclude Include="header\spline\Spline.h">
       <Filter>ヘッダー ファイル\spline</Filter>
     </ClInclude>
-    <ClInclude Include="header\spline\SPLINE_ANIMATION_ID.h">
-      <Filter>ヘッダー ファイル\spline</Filter>
-    </ClInclude>
     <ClInclude Include="header\spline\SplineAnimManager.h">
       <Filter>ヘッダー ファイル\spline</Filter>
     </ClInclude>
@@ -953,6 +950,9 @@
     </ClInclude>
     <ClInclude Include="header\renderer\define\NumberSpriteRenderDesc.h">
       <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="header\camera\CameraWork\CameraWorkNormalBattle.h">
+      <Filter>ヘッダー ファイル\camera\CameraWork</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -998,9 +998,6 @@
     <ClCompile Include="source\shape\Ray.cpp">
       <Filter>ソース ファイル\shape</Filter>
     </ClCompile>
-    <ClCompile Include="source\convenient\Timer.cpp">
-      <Filter>ソース ファイル\convenient</Filter>
-    </ClCompile>
     <ClCompile Include="source\actor\player\Player.cpp">
       <Filter>ソース ファイル\actor\Player</Filter>
     </ClCompile>
@@ -1012,9 +1009,6 @@
     </ClCompile>
     <ClCompile Include="source\animation\AnimatorOne.cpp">
       <Filter>ソース ファイル\animation</Filter>
-    </ClCompile>
-    <ClCompile Include="source\convenient\Point.cpp">
-      <Filter>ソース ファイル\convenient</Filter>
     </ClCompile>
     <ClCompile Include="source\actor\Actor.cpp">
       <Filter>ソース ファイル\actor</Filter>
@@ -1444,6 +1438,15 @@
     </ClCompile>
     <ClCompile Include="source\spline\SplineVec3.cpp">
       <Filter>ソース ファイル\spline</Filter>
+    </ClCompile>
+    <ClCompile Include="source\animation\convenient\Point.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="source\animation\convenient\Timer.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="source\camera\CameraWork\CameraWorkNormalBattle.cpp">
+      <Filter>ソース ファイル\camera\CameraWork</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
