@@ -9,12 +9,12 @@
 #include <random>
 #include <vector>
 
-const GSvector3 Camera::RAY_DONW = GSvector3(0, -1, 0);		//レイは下に飛ばしたいのでｙ成分に-1する
-
 const float Camera::DEF_FOV				= 45.0f;			//視野角のデフォルト値は45度で固定
 const GSvector2 Camera::DEF_FOV_CLAMP	= { 2.0f, 180.0f };	//視野角の範囲は2.0~180.0の範囲
 
 Camera::Camera() :
+	RAY_DONW(GSvector3(0, -1, 0)),
+	R(0.5f),
 	m_perspective(GSvector4(DEF_FOV, 1280.0f / 720.0f, 0.3f, 1000.0f)),
 	m_fov_clamp(DEF_FOV_CLAMP.x, DEF_FOV_CLAMP.y),
 	m_lookAt(std::make_unique<LookAt>(GSvector3(0.0f, 0.0f, 0.0f), GSvector3(0.0f, 0.0f, 0.0f), GSvector3(0.0f, 1.0f, 0.0f))),
@@ -179,9 +179,9 @@ void Camera::collisionGround(const Map & _map)
 
 	//カメラが地面に当たっていたら
 	//カメラの位置を修正
-	if (isHitGround(_map, &intersectPos, &m_lookAt->position))
+	if (isHitGround(_map, &m_lookAt->position))
 	{
-		m_lookAt->position.y = intersectPos.y;
+		m_lookAt->position.y = m_intersectPos.y;
 	}
 }
 
@@ -386,9 +386,19 @@ void Camera::update_tracking(
 	tracking_lookAt(_lookAt, _trackingSpeed.y);
 }
 
-bool Camera::isHitGround(const Map& _map, GSvector3 * _intersectPos, GSvector3 * _position)
+bool Camera::isHitGround(const Map& _map, GSvector3 * _position)
 {
-	//カメラが地面に当たっているかを調べる
-	return _map.isCollisionRay((*_position), RAY_DONW, _intersectPos) &&
-		_position->y < _intersectPos->y;
+	GSvector3 intersectPos;
+
+	if (_map.isCollisionRay((*_position), RAY_DONW, &intersectPos))
+	{
+		m_intersectPos = intersectPos + GSvector3(0, R, 0);
+	}
+	
+	if (m_intersectPos.y > m_lookAt->position.y)
+	{
+		return true;
+	}
+
+	return false;
 }
