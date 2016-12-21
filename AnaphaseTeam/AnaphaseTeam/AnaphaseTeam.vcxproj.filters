@@ -837,9 +837,6 @@
     <ClInclude Include="header\data\id\EFFECT_ID.h">
       <Filter>ヘッダー ファイル\data\id</Filter>
     </ClInclude>
-    <ClInclude Include="header\data\loader\EffectLoader.h">
-      <Filter>ヘッダー ファイル\data\loader</Filter>
-    </ClInclude>
     <ClInclude Include="header\effect\EffectManager.h">
       <Filter>ヘッダー ファイル\effect</Filter>
     </ClInclude>
@@ -1258,9 +1255,6 @@
     </ClCompile>
     <ClCompile Include="source\state\enemy\ESecoundAttackState.cpp">
       <Filter>ソース ファイル\state\enemy</Filter>
-    </ClCompile>
-    <ClCompile Include="source\data\loader\EffectLoader.cpp">
-      <Filter>ソース ファイル\data\loader</Filter>
     </ClCompile>
     <ClCompile Include="source\effect\EffectManager.cpp">
       <Filter>ソース ファイル\effect</Filter>

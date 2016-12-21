@@ -7,7 +7,6 @@
 #include "../../../header/data/loader/TextureLoader.h"
 #include "../../../header/data/loader/SoundLoader.h"
 #include "../../../header/data/loader/MyAnimationLoader.h"
-#include "../../../header/data/loader/EffectLoader.h"
 #include "../../../header/effect/EffectManager.h"
 
 #include "../../../header/data/id/TEXTURE_ID.h"

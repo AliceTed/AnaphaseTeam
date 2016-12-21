@@ -144,7 +144,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="source\data\loader\EffectLoader.cpp" />
     <ClCompile Include="source\actor\Enemy\EnemyMediator.cpp" />
     <ClCompile Include="source\camera\SLookAt.cpp" />
     <ClCompile Include="source\attack\Homing.cpp" />
@@ -286,7 +285,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="header\effect\EffectManager.h" />
-    <ClInclude Include="header\data\loader\EffectLoader.h" />
     <ClInclude Include="header\data\id\EFFECT_ID.h" />
     <ClInclude Include="header\attack\AttackParameter.h" />
     <ClInclude Include="header\attack\ShapeData.h" />
