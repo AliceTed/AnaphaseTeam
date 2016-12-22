@@ -42,7 +42,7 @@ void Option::draw(IRenderer * _renderer)
 	static NumberSpriteRenderDesc desc;
 
 	//0‚É‚·‚ê‚Î­”•\¦‚µ‚È‚¢
-	desc.decimal = 1;
+	desc.decimal = 0;
 	desc.number += 0.1f;
 	desc.textureID = static_cast<GSuint>(TEXTURE_ID::NUMBER);
 	_renderer->render(desc);

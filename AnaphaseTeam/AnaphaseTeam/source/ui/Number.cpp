@@ -11,10 +11,11 @@
 #include <iostream>
 #include <typeinfo>
 
-Number::Number(TEXTURE_ID _id, const GSvector2 & _position)
+Number::Number(TEXTURE_ID _id, const GSvector2& _position)
 	:m_id(_id),
 	m_position(_position),
-	m_alpha(0.0f)
+	m_alpha(0.0f),
+	m_alphaChange(true)
 {
 }
 
@@ -24,77 +25,67 @@ Number::~Number()
 
 void Number::initilize()
 {
-	m_alpha = 0.0f;
+	reset();
 }
 
-void Number::start()
+void Number::scroll()
 {
-	m_alpha = 1.0f;
+	if (m_position.x < 200)
+	{
+		m_position.x += 30;
+		return;
+	}
 }
 
 void Number::update(float deltaTime)
 {
-	if (m_alpha <= 0.0f)
+	if (m_alpha < 0.0f)
 	{
-		alphaReset();
+		reset();
 	}
 }
 
-void Number::decrease(float _time)
+void Number::flashing(float _addTime, float _decTime)
 {
-	m_alpha -= 1 / (60 * _time);
-}
+	if (m_alphaChange)
+	{
+		if (m_alpha <= 1)
+		{
+			m_alpha += 1 / (60 * _addTime);
+		}
 
-std::string Number::intToString(int _number)
-{
-	std::stringstream ss;
-	ss << _number;
-	return ss.str();
-}
+		if (m_alpha >= 1)
+		{
+			m_alphaChange = false;
+		}
 
+	}
+
+	if (!m_alphaChange)
+	{
+		if (m_alpha > 0)
+		{
+			m_alpha -= 1 / (60 * _decTime);
+		}
+	}
+}
 
 void Number::draw(IRenderer * _renderer, int _nunber)
 {
-	SpriteRectRenderDesc desc;
-	GSvector2 pos;
-	pos = m_position;
-	for each(auto n in intToString(_nunber))
-	{
-		desc.srcRect = Rect(static_cast<int>(n) * 32, 0, (static_cast<int>(n) * 32) + 32, 64);
-		//desc.srcRect = GSrect(static_cast<int>(n - '0') * 32, 0, (static_cast<int>(n) * 32) + 32, 64);
-		desc.color.a = m_alpha;
-		desc.matrix.translate(pos);
-		desc.textureID = static_cast<GSuint>(m_id);
-		_renderer->render(desc);
-		//pos.x -= 268;
-		//pos.y -= 300;
-	}
+	NumberSpriteRenderDesc desc;
+	//0Ç…Ç∑ÇÍÇŒè≠êîï\é¶ÇµÇ»Ç¢
+	desc.decimal = 0;
+	desc.number = _nunber;
+	desc.color.a = m_alpha;
+	desc.matrix.translate(m_position);
+	desc.textureID = static_cast<GSuint>(TEXTURE_ID::NUMBER);
+	_renderer->render(desc);
 
 }
 
-void Number::drawNum(IRenderer * _renderer, int _nunber, int x, int y)
-{
-	static GSvector2 m_pos;
-	static GSrect rect = { 0,0,64,64 };
-	SpriteRectRenderDesc desc;
-
-	for each(auto n in intToString(_nunber))
-	{
-		m_pos.x = x;
-		m_pos.y = y;
-		rect.left = static_cast<int>(n) * 32;
-		rect.right = rect.left + 32;
-		rect.top = 0;
-		rect.bottom = 64;
-		desc.srcRect = GSrect(rect);
-		desc.color.a = m_alpha;
-		desc.matrix.translate(m_pos);
-		desc.textureID = static_cast<GSuint>(m_id);
-		_renderer->render(desc);
-	}
-}
-
-void Number::alphaReset()
+void Number::reset()
 {
 	m_alpha = 0.0f;
+	m_position = GSvector2(0, 0);
+	m_alphaChange = true;
 }

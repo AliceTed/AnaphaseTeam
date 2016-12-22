@@ -18,7 +18,6 @@ enum class TEXTURE_ID :unsigned int
 	PAD_B,
 	ROGO,
 	STAFFROLL,
-	NUMBER,
 
 	SPECIAL_MAIN,
 	SPECIAL_ATTACK,
