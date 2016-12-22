@@ -23,6 +23,8 @@ void Menu::initialize()
 	m_change.begin();
 	m_menu.initialize();
 	GameDevice::getInstacnce().sound().playBGM(BGM_ID::TITLE);
+	//
+	m_score.initialize();
 }
 
 void Menu::update(float deltaTime)
@@ -31,10 +33,14 @@ void Menu::update(float deltaTime)
 	m_menu.update(deltaTime);
 	if (m_change.update(deltaTime))return;
 	m_menu.operation(*this);
-	
+	//
 	if (GameDevice::getInstacnce().input()->decision())
 	{
 		m_score.add(1);
+	}
+	if (GameDevice::getInstacnce().input()->avoid())
+	{
+		m_score.add(5);
 	}
 	m_score.update(deltaTime);
 }
