@@ -1,6 +1,7 @@
 #include <iostream>
 #include <fstream>
 #include <sstream>
+#include <vector>
 #include "../../../header/camera/CameraWork/CWParameterReader.h"
 #include "../../../header/data/Message.h"
 
@@ -50,6 +51,7 @@ void CWParameterReader::read(const std::string _fileName)
 {
 	std::ifstream reading_file;
 	std::string reading_line_buffer;
+	std::vector<std::string> vec(2);
 
 	//ファイルを開く
 	reading_file.open(_fileName, std::ios::in);
@@ -71,11 +73,10 @@ void CWParameterReader::read(const std::string _fileName)
 		for (int i = 0; std::getline(line_separater, separated_string_buffer, '='); i++)
 		{
 			//'='後の値を取得する
-			if (i == 1)
-			{
-				m_parameters.emplace_back(std::stof(separated_string_buffer));
-			}
+			vec[i] = separated_string_buffer;
 		}
+
+		m_parameters.emplace_back(std::stof(separated_string_buffer));
 	}
 
 	//読み込んだファイルを閉じる
