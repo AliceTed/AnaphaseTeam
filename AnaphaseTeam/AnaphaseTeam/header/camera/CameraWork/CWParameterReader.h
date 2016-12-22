@@ -7,7 +7,7 @@
 #pragma once
 
 #include <string>
-#include <list>
+#include <vector>
 
 class CWParameterReader
 {
@@ -41,8 +41,7 @@ private:
 	void read(const std::string _fileName);
 
 private:
-	using Parameter = std::list<float>;
-	using Parameter_Itr = Parameter::iterator;
+	using Parameter = std::vector<float>;
 
 	Parameter m_parameters;
 };
