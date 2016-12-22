@@ -115,3 +115,6 @@ const bool Actor::isDead() const
 {
 	return m_isDead;
 }
+
+
+

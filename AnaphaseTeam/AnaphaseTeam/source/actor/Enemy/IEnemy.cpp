@@ -26,6 +26,7 @@
 #include "../../../header/state/enemy/OverFarAI.h"
 #include "../../../header/state/enemy/EAI.h"
 #include "../../../header/actor/Enemy/EnemyMediator.h"
+#include "../../../header/ui/TargetMarkerUI.h"
 
 
 const float IEnemy::PLAYER_DISTANCE_NEAR = 2.0f;
@@ -48,6 +49,9 @@ void IEnemy::look_at(CameraController* _camera, Player* _player)
 
 	GSvector3 target = m_transform.m_translate;
 	_player->look_at(_camera, &target);
+	UIManager::getInstance().release(EUI::TARGETMARKER);
+	std::shared_ptr<TargetMarkerUI> targetUI = std::make_shared<TargetMarkerUI>(target, _player);
+	UIManager::getInstance().add(EUI::TARGETMARKER, targetUI);
 }
 
 void IEnemy::specialDamage()
@@ -62,6 +66,7 @@ void IEnemy::start_lockOn()
 	UIManager::getInstance().release(EUI::ENEMYHP);
 	std::shared_ptr<HPGaugeUI> hp = std::make_shared<HPGaugeUI>(GSvector2(800, 600), m_status);
 	UIManager::getInstance().add(EUI::ENEMYHP, hp);
+
 
 }
 

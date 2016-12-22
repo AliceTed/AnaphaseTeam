@@ -300,6 +300,7 @@
     <ClCompile Include="source\ui\SoundSelectUI.cpp" />
     <ClCompile Include="source\ui\SpecialSkillUI.cpp" />
     <ClCompile Include="source\ui\SPGaugeUI.cpp" />
+    <ClCompile Include="source\ui\TargetMarkerUI.cpp" />
     <ClCompile Include="source\ui\TitleUI.cpp" />
     <ClCompile Include="source\ui\UIManager.cpp" />
     <ClCompile Include="source\ui\VolumeSelectUI.cpp" />
@@ -398,7 +399,6 @@
     <ClInclude Include="header\myanimation\TimeKeyFrame.h" />
     <ClInclude Include="header\renderer\define\AnimationRenderDesc.h" />
     <ClInclude Include="header\renderer\define\BillBoardRenderDesc.h" />
-    <ClInclude Include="header\renderer\define\BillborardRenderDesc.h" />
     <ClInclude Include="header\renderer\define\BlendFunc.h" />
     <ClInclude Include="header\renderer\define\Color4.h" />
     <ClInclude Include="header\renderer\define\LightDesc.h" />
@@ -533,6 +533,7 @@
     <ClInclude Include="header\ui\SoundSelectUI.h" />
     <ClInclude Include="header\ui\SpecialSkillUI.h" />
     <ClInclude Include="header\ui\SPGaugeUI.h" />
+    <ClInclude Include="header\ui\TargetMarkerUI.h" />
     <ClInclude Include="header\ui\TitleUI.h" />
     <ClInclude Include="header\ui\UIManager.h" />
     <ClInclude Include="header\camera\SLookAt.h" />

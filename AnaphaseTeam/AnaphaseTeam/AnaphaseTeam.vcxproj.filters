@@ -561,9 +561,6 @@
     <ClInclude Include="header\renderer\define\BillBoardRenderDesc.h">
       <Filter>ヘッダー ファイル\renderer\define</Filter>
     </ClInclude>
-    <ClInclude Include="header\renderer\define\BillborardRenderDesc.h">
-      <Filter>ヘッダー ファイル\renderer\define</Filter>
-    </ClInclude>
     <ClInclude Include="header\renderer\define\BlendFunc.h">
       <Filter>ヘッダー ファイル\renderer\define</Filter>
     </ClInclude>
@@ -932,6 +929,9 @@
     </ClInclude>
     <ClInclude Include="header\state\player\HomingState.h">
       <Filter>ヘッダー ファイル\state\player</Filter>
+    </ClInclude>
+    <ClInclude Include="header\ui\TargetMarkerUI.h">
+      <Filter>ヘッダー ファイル\ui</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -1414,6 +1414,9 @@
     </ClCompile>
     <ClCompile Include="source\state\player\HomingState.cpp">
       <Filter>ソース ファイル\state\player</Filter>
+    </ClCompile>
+    <ClCompile Include="source\ui\TargetMarkerUI.cpp">
+      <Filter>ソース ファイル\ui</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
