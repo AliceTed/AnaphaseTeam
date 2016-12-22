@@ -27,7 +27,7 @@ void Title::initialize()
 void Title::update(float _deltaTime)
 {
 	if (m_change.update(_deltaTime))return;
-	if (GameDevice::getInstacnce().input()->decision())
+	if (GameDevice::getInstacnce().input()->jump())
 	{
 		m_change.end(SceneMode::MENU);
 		GameDevice::getInstacnce().sound().playSE(SE_ID::ENTER);

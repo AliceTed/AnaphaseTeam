@@ -954,6 +954,15 @@
     <ClInclude Include="header\camera\CameraWork\CameraWorkNormalBattle.h">
       <Filter>ヘッダー ファイル\camera\CameraWork</Filter>
     </ClInclude>
+    <ClInclude Include="header\math\TargetSinPowerLerp.h">
+      <Filter>ヘッダー ファイル\math</Filter>
+    </ClInclude>
+    <ClInclude Include="header\ui\Number.h">
+      <Filter>ヘッダー ファイル\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="header\ui\Score.h">
+      <Filter>ヘッダー ファイル\ui</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="source\main.cpp">
@@ -1447,6 +1456,12 @@
     </ClCompile>
     <ClCompile Include="source\camera\CameraWork\CameraWorkNormalBattle.cpp">
       <Filter>ソース ファイル\camera\CameraWork</Filter>
+    </ClCompile>
+    <ClCompile Include="source\ui\Score.cpp">
+      <Filter>ソース ファイル\ui</Filter>
+    </ClCompile>
+    <ClCompile Include="source\ui\Number.cpp">
+      <Filter>ソース ファイル\ui</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
