@@ -37,6 +37,7 @@ void AnimationSplineData::add(std::string _id, const std::string _fileName)
 	std::stringstream fileName;
 	std::list<GSvector3> vecs;
 	std::vector<std::string> sv;
+	GSvector3 center;
 	float speed;
 	int i;
 
@@ -71,9 +72,14 @@ void AnimationSplineData::add(std::string _id, const std::string _fileName)
 	}
 
 	i = 0;
-	while (i < sv.size() - 1)
+	std::vector<float> vec(3);
+	for (; i < 3; i++)
 	{
-		std::vector<float> vec(3);
+		vec[i] = std::stof(sv[i]);
+	}
+	center = GSvector3(vec[0], vec[1], vec[2]);
+	while (static_cast<unsigned int>(i) < sv.size() - 1)
+	{
 
 		for (int j = 0; j < 3; j++)
 		{
@@ -98,7 +104,7 @@ void AnimationSplineData::add(std::string _id, const std::string _fileName)
 	speed = 1.0f / (60.0f * speed);
 
 	//スプライン曲線の初期化
-	m_datas[_id]->init(points, speed);
+	m_datas[_id]->init(points, speed, center);
 
 	//読み込んだファイルを閉じる
 	reading_file.close();

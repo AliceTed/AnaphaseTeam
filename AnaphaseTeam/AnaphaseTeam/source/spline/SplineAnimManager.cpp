@@ -32,9 +32,9 @@ AnimationSpline* SplineAnimManager::get(std::string _id)
 	return m_datas->get(_id);
 }
 
-GSvector3 SplineAnimManager::run(const GSvector3 & _center)
+GSvector3 SplineAnimManager::run()
 {
-	return m_datas->get(m_currentID)->run(_center);
+	return m_datas->get(m_currentID)->run();
 }
 
 bool SplineAnimManager::isEnd(void)

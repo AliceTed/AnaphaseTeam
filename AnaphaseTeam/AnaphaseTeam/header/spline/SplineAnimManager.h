@@ -40,7 +40,7 @@ public:
 	@param[_speed]	速度
 	@param[_center]	原点
 	*/
-	GSvector3 run(const GSvector3& _center = { 0.0f, 0.0f, 0.0f });
+	GSvector3 run();
 
 	/**
 	@return 終了したか？
