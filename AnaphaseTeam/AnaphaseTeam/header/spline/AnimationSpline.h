@@ -27,8 +27,9 @@ public:
 	/**
 	@brief 初期化
 	@param[_points] 各点
+	@param[_speed] スピード
 	*/
-	void init(const std::vector<GSvector3>& _points);
+	void init(const std::vector<GSvector3>& _points, float _speed);
 
 	/**
 	@brief 経過時間のリセット
@@ -41,7 +42,7 @@ public:
 	@param[_center]原点
 	@return 求めた位置　＋　原点
 	*/
-	GSvector3 run(float _speed, const GSvector3& _center = { 0.0f, 0.0f, 0.0f });
+	GSvector3 run(const GSvector3& _center = { 0.0f, 0.0f, 0.0f });
 
 	/**
 	@return 終了したか？
@@ -52,4 +53,5 @@ private:
 	std::unique_ptr<SplineVec3> m_sVec3;
 
 	float m_timer;
+	float m_speed;
 };

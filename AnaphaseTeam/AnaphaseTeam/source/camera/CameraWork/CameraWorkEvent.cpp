@@ -1,3 +1,5 @@
+#include <sstream> //å„Ç≈è¡Ç∑
+#include <string>  //å„Ç≈è¡Ç∑
 #include "../../../header/camera/CameraWork/CameraWorkEvent.h"
 #include "../../../header/camera/Camera.h"
 #include "../../../header/spline/SplineAnimManager.h"
@@ -26,9 +28,9 @@ void CameraWorkEvent::start(void)
 
 void CameraWorkEvent::run(float _deltaTime)
 {
-	m_camera->tracking_lookAt(m_splineAnimManager->get("test_lookAt")->run(1.0f / (60.0f * 30.0f)));
+	m_camera->tracking_lookAt(m_splineAnimManager->get("test_lookAt")->run());
 
-	m_camera->tracking_position(m_splineAnimManager->get("test_position")->run(1.0f / (60.0f * 30.0f)));
+	m_camera->tracking_position(m_splineAnimManager->get("test_position")->run());
 
 	if (m_splineAnimManager->isEnd())
 	{

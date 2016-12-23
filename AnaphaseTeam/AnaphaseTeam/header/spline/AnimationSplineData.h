@@ -29,7 +29,7 @@ public:
 	@param[_id]		‚h‚c
 	@param[_points] Še“_
 	*/
-	void add(std::string _id, const std::vector<GSvector3>& _points);
+	void add(std::string _id, const std::vector<GSvector3>& _points, float speed);
 	/**
 	@brief “Ç‚İ‚İˆ—
 	@param[_id]			‚h‚c
