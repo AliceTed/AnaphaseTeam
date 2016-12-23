@@ -1,6 +1,7 @@
 #include "../../../header/camera/CameraWork/CameraWorkEvent.h"
 #include "../../../header/camera/Camera.h"
 #include "../../../header/spline/SplineAnimManager.h"
+#include "../../../header/spline/AnimationSpline.h"
 
 CameraWorkEvent::CameraWorkEvent(Camera * _camera, SplineAnimManager * _splineAnimManager) :
 	CameraWorkEmpty(_camera),
@@ -15,7 +16,9 @@ CameraWorkEvent::~CameraWorkEvent()
 
 void CameraWorkEvent::start(void)
 {
-	m_splineAnimManager->changeID("test");
+	//m_splineAnimManager->changeID("test_position");
+	m_splineAnimManager->get("test_position")->resetTime();
+	m_splineAnimManager->get("test_lookAt")->resetTime();
 
 	m_isEnd = false;
 	m_nextCameraWork = "normal_battle";
@@ -23,11 +26,9 @@ void CameraWorkEvent::start(void)
 
 void CameraWorkEvent::run(float _deltaTime)
 {
-	GSvector3 position = m_camera->get_cameraTarget_player() + m_offset_target + GSvector3(0.0f, 0.5f, 0.0f);
+	m_camera->tracking_lookAt(m_splineAnimManager->get("test_lookAt")->run(1.0f / (60.0f * 30.0f)));
 
-	m_camera->tracking_lookAt(position);
-
-	m_camera->tracking_position(m_splineAnimManager->run(1.0f / (60.0f * 30.0f), position));
+	m_camera->tracking_position(m_splineAnimManager->get("test_position")->run(1.0f / (60.0f * 30.0f)));
 
 	if (m_splineAnimManager->isEnd())
 	{

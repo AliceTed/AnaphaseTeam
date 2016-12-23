@@ -11,6 +11,7 @@
 #include <string>
 
 class AnimationSplineData;
+class AnimationSpline;
 
 class SplineAnimManager
 {
@@ -30,6 +31,9 @@ public:
 	@brief アニメーションＩＤを切り替える
 	@param[_id] アニメーションＩＤ*/
 	void changeID(std::string _id);
+
+
+	AnimationSpline* get(std::string _id);
 
 	/**
 	@brief 実行
