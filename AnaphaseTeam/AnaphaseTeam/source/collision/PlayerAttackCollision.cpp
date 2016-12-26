@@ -2,11 +2,12 @@
 #include "../../header/shape/Sphere.h"
 #include "../../header/collision/HitInformation.h"
 #include  "../../header/attack/ShapeData.h"
-Player::PlayerAttackCollision::PlayerAttackCollision(Player* _player, const ShapeData& _data)
+Player::PlayerAttackCollision::PlayerAttackCollision(Player* _player, const ShapeData& _data,float _speed)
 	:CollisionActor(_data.shape,Collision_Tag::PLAYER_WEAPON),
 	m_player(_player),
 	m_destroy(_data.destroyTime),
-	m_offset(_data.offset)
+	m_offset(_data.offset),
+	m_speed(_speed)
 {
 }
 
@@ -15,7 +16,8 @@ void Player::PlayerAttackCollision::doUpdate(float deltaTime)
 	Transform t = Transform({ 0,0,0 }, m_offset);
 	t=t.parent_synthesis(m_player->m_transform);
 	m_shape->transfer(t.m_translate);
-	m_destroy.update(deltaTime*m_player->m_status.attackSpeed());
+	float speed = m_player->m_status.attackSpeed() * m_speed;
+	m_destroy.update(deltaTime*speed);
 	if (m_destroy.isEnd() || m_player->getState() == ACTOR_STATE::STEP)
 	{
 		destroy();

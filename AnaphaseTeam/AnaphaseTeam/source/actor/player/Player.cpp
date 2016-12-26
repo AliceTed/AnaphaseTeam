@@ -212,9 +212,9 @@ void Player::revision()
 	m_Revision.start(this, target.lock().get(), m_transform, *m_Gauge, m_target, m_isLockOn);
 }
 
-void Player::createAttackCollision(const ShapeData& _data)
+void Player::createAttackCollision(const ShapeData& _data, float _speed)
 {
-	Collision_Ptr act = std::make_shared<PlayerAttackCollision>(this, _data);
+	Collision_Ptr act = std::make_shared<PlayerAttackCollision>(this, _data,_speed);
 	m_collision.add(act);
 }
 

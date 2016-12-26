@@ -38,9 +38,6 @@ Player::AttackState* Player::AttackState::clone() const
 
 void Player::AttackState::input(float deltaTime)
 {
-
-
-
 	//アニメーション終わったら受付開始
 	if (m_isCombo == COMBOSTEP::END)
 	{
