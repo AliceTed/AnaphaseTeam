@@ -265,12 +265,12 @@
     <ClCompile Include="source\state\player\StepState.cpp" />
     <ClCompile Include="source\subAction\Jumping.cpp" />
     <ClCompile Include="source\animation\AnimatorOne.cpp" />
-    <ClCompile Include="source\animation\convenient\Point.cpp" />
+    <ClCompile Include="source\convenient\Point.cpp" />
     <ClCompile Include="source\scene\SceneChange.cpp" />
     <ClCompile Include="source\subAction\Step.cpp" />
     <ClCompile Include="source\animation\Animation.cpp" />
     <ClCompile Include="source\animation\AnimationTimer.cpp" />
-    <ClCompile Include="source\animation\convenient\Timer.cpp" />
+    <ClCompile Include="source\convenient\Timer.cpp" />
     <ClCompile Include="source\device\Input.cpp" />
     <ClCompile Include="source\light\DirectionalLight.cpp" />
     <ClCompile Include="source\light\PointLight.cpp" />
