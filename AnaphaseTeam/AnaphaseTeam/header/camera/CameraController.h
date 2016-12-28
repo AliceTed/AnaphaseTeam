@@ -8,8 +8,7 @@
 
 #include <gslib.h>
 #include <memory>
-
-#include "CameraWork\E_CameraWorkID.h"
+#include <string>
 
 class	Map;
 class	Camera;
@@ -53,12 +52,18 @@ public:
 	@brief カメラワークの状態を切り替える
 	@param[_id] カメラワークＩＤ
 	*/
-	void change_cameraWork(const E_CameraWorkID _id);
+	void change_cameraWork(std::string _id);
 
 	/**
 	@return カメラ
 	*/
 	Camera* get_camera(void);
+
+	/**
+	@brief 本当にめんどくせぇ（俺のせいだけど）
+	@param[_isLockOn] 
+	*/
+	void set_isLockOn(bool _isLockOn);
 
 private:
 	std::shared_ptr<Camera> m_camera;						//カメラ
@@ -66,4 +71,6 @@ private:
 	std::shared_ptr<CameraWorkManager> m_cameraWorkManager;	//カメラワーク・マネージャー
 
 	float m_deltaTime;										//１フレーム毎の秒数
+
+	bool m_isLockOn;										//めんどくせぇ
 };

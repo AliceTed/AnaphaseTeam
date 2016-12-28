@@ -8,7 +8,7 @@
 
 #include <gslib.h>
 
-class LookAt
+struct LookAt
 {
 public:
 	GSvector3 position;			//**@brief ƒJƒƒ‰‚ÌˆÊ’u

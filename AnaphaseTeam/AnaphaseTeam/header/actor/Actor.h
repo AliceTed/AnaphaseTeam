@@ -47,7 +47,6 @@ public:
 	void changeGravity(float _gravity);
 
 protected:	
-	//•Ï”‚ğprotected‚Ég—p‚©”Y‚ñ‚Å‚¢‚é
 	void action(float deltaTime);
 	void registerState(ACTOR_STATE _name, IActorState* _state);
 public:

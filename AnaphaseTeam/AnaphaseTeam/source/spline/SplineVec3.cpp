@@ -17,6 +17,7 @@ SplineVec3::SplineVec3(void) :
 
 SplineVec3::~SplineVec3(void)
 {
+
 }
 
 void SplineVec3::init(std::vector<GSvector3> _sp)

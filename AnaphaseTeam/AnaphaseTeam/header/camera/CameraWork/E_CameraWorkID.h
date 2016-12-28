@@ -12,5 +12,7 @@ enum class E_CameraWorkID : int
 	TEST,			//**@brief テスト
 	LOCK_ON,		//**@brief ロックオン
 	NORMAL,			//**@brief 通常
+	NORMAL_BATTLE,	//**@brief 通常戦闘
 	DEAD,			//**@brief 死亡
+	EVENT,			//**@brief イベント
 };

@@ -27,6 +27,12 @@ public:
 	//実行処理
 	void run(float _deltaTime) override;
 
+	//次のカメラワーク
+	std::string nextCameraWork(void) override;
+
+	//終了したか？
+	bool isEnd(void) override;
+
 private:
 	//カメラの位置をプレイヤーと中点の対角線上になるように更新
 	void update_toEleDir(const GSvector3& _vec, float _distance);

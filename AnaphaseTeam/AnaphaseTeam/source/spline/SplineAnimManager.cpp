@@ -4,27 +4,40 @@
 
 SplineAnimManager::SplineAnimManager(void) :
 	m_datas(std::make_unique<AnimationSplineData>()),
-	m_currentID(SPLINE_ANIMATION_ID::TEST)
+	m_currentID("test_position")
 {
 
 }
 
 SplineAnimManager::~SplineAnimManager()
 {
+
 }
 
 void SplineAnimManager::load(void)
 {
-	m_datas->add(SPLINE_ANIMATION_ID::TEST, "test.sp");
+	m_datas->add("test_position", "testPosition.sp");
+
+	m_datas->add("test_lookAt", "testLookAt.sp");
 }
 
-void SplineAnimManager::changeID(SPLINE_ANIMATION_ID _id)
+void SplineAnimManager::changeID(std::string _id)
 {
 	m_currentID = _id;
-	m_datas->get(m_currentID)->resetTime();
+	//m_datas->get(m_currentID)->resetTime();
 }
 
-GSvector3 SplineAnimManager::run(float _speed, const GSvector3 & _center)
+AnimationSpline* SplineAnimManager::get(std::string _id)
 {
-	return m_datas->get(m_currentID)->run(_speed, _center);
+	return m_datas->get(_id);
+}
+
+GSvector3 SplineAnimManager::run()
+{
+	return m_datas->get(m_currentID)->run();
+}
+
+bool SplineAnimManager::isEnd(void)
+{
+	return m_datas->get(m_currentID)->isEnd();
 }

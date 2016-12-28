@@ -29,6 +29,9 @@ CameraWorkNormal::~CameraWorkNormal()
 void CameraWorkNormal::start(void)
 {
 	m_camera->initialize_zoom();
+	
+	m_nextCameraWork = "none";
+	m_isEnd = false;
 }
 
 void CameraWorkNormal::run(float _deltaTime)
@@ -58,10 +61,21 @@ void CameraWorkNormal::run(float _deltaTime)
 	return;
 }
 
+std::string CameraWorkNormal::nextCameraWork(void)
+{
+	return m_nextCameraWork;
+}
+
+bool CameraWorkNormal::isEnd(void)
+{
+	return m_isEnd;
+}
+
 const GSvector2 CameraWorkNormal::velocity(void)
 {
 	GSvector2 velocity;
 
+	//inputはゲームデバイスから
 	//右スティックの倒れた方向を取得する
 	gsXBoxPadGetRightAxis(0, &velocity);
 

@@ -13,7 +13,7 @@ CameraWorkData::~CameraWorkData()
 }
 
 void CameraWorkData::add(
-	E_CameraWorkID _id,
+	std::string _id,
 	I_CameraWork* _data)
 {
 	//カメラワーク追加
@@ -22,7 +22,7 @@ void CameraWorkData::add(
 	return;
 }
 
-I_CameraWork* CameraWorkData::get(const E_CameraWorkID _id)
+I_CameraWork* CameraWorkData::get(std::string _id)
 {
 	//指定したＩＤのカメラワークを返す
 	return m_cameraWorks[_id].get();

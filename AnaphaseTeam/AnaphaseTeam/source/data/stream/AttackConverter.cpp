@@ -22,6 +22,11 @@ const bool AttackConverter::operator()(LoadAttack * _out, const std::string & _d
 	unsigned int animationID;
 	data >> animationID;
 
+	float speed;
+	data >> speed;
+	float nextInput;
+	data >> nextInput;
+
 	std::string slowID;
 	data >> slowID;
 	std::string quickID;
@@ -69,6 +74,8 @@ const bool AttackConverter::operator()(LoadAttack * _out, const std::string & _d
 	}
 	_out->selfID = self;
 	_out->parameter.animationID = animationID;
+	_out->parameter.speed = speed;
+	_out->parameter.nextInput = nextInput;
 	_out->parameter.quickID = quickID;
 	_out->parameter.slowID = slowID;
 	_out->parameter.status.m_blowOff = blowoff;

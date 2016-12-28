@@ -34,7 +34,7 @@ public:
 	void look_at(CameraController* _camera, GSvector3* _target);
 	void look_at(CameraController* _camera);
 	void revision();
-	void createAttackCollision(const ShapeData& _data);
+	void createAttackCollision(const ShapeData& _data,float _speed);
 	void damage(const AttackStatus & _attackStatus) override;
 	void finish() override;
 	

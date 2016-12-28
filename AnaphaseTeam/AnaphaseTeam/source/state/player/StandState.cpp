@@ -14,7 +14,7 @@ void Player::StandState::start()
 void Player::StandState::action(float deltaTime)
 {
 	//lerp中にアニメーションが切り替わらないので
-	m_actor->m_animatorOne.changeAnimation(static_cast<GSuint>(ANIMATION_ID::STAND), true, true, true);
+	//m_actor->m_animatorOne.changeAnimation(static_cast<GSuint>(ANIMATION_ID::STAND), true, true, true);
 	m_actor->control();
 	if (!m_actor->m_isGround)
 	{

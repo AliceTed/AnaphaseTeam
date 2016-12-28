@@ -7,6 +7,7 @@
 #pragma once
 
 #include <gslib.h>
+#include <string>
 
 class I_CameraWork
 {
@@ -27,4 +28,14 @@ public:
 	@parma[_deltaTime] １フレーム毎の秒数
 	*/
 	virtual void run(float _deltaTime) = 0;
+
+	/**
+	@return 次のカメラワーク
+	*/
+	virtual std::string nextCameraWork(void) = 0;
+
+	/**
+	@return 終了しているか？
+	*/
+	virtual bool isEnd(void) = 0;
 };

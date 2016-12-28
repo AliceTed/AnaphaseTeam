@@ -9,6 +9,7 @@ enum class OCTREE_ID :unsigned int
 	PHASE1,
 	PHASE2,
 	PHASE3,
+	PHASE4,
 	SIZE
 };
 #endif
