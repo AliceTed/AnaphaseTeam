@@ -23,7 +23,7 @@ void Player::AttackState::action(float deltaTime)
 
 	if (m_actor->m_isGround)
 	{
-		m_actor->subActionStart();
+		//m_actor->subActionStart();
 		return;
 	}
 	if (m_inputTimer.isEnd())

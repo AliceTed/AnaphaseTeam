@@ -24,6 +24,7 @@
 #include "../../../header/state/enemy/OverFarAI.h"
 #include "../../../header/state/enemy/EAI.h"
 #include "../../../header/actor/Enemy/EnemyMediator.h"
+
 SlahHand::SlahHand(const Transform& _transform, EnemyMediator& _mediator)
 :IEnemy(_transform,MODEL_ID::ENEMY,_mediator)
 {

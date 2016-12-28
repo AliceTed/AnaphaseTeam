@@ -58,6 +58,6 @@ void LockOn::thinksEnemy(EnemyManager * _enemys)
 }
 
 std::weak_ptr<IEnemy> LockOn::getTarget() const
-	{
+{
 	return m_target;
 }

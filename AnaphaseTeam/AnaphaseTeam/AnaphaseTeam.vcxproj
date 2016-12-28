@@ -258,6 +258,7 @@
     <ClCompile Include="source\state\player\AttackState.cpp" />
     <ClCompile Include="source\state\player\DamageState.cpp" />
     <ClCompile Include="source\state\player\DoubleJumpState.cpp" />
+    <ClCompile Include="source\state\player\HomingState.cpp" />
     <ClCompile Include="source\state\player\LandingRigidityState.cpp" />
     <ClCompile Include="source\state\player\LimitFallState.cpp" />
     <ClCompile Include="source\state\player\MoveState.cpp" />
@@ -306,6 +307,7 @@
     <ClCompile Include="source\ui\SoundSelectUI.cpp" />
     <ClCompile Include="source\ui\SpecialSkillUI.cpp" />
     <ClCompile Include="source\ui\SPGaugeUI.cpp" />
+    <ClCompile Include="source\ui\TargetMarkerUI.cpp" />
     <ClCompile Include="source\ui\TitleUI.cpp" />
     <ClCompile Include="source\ui\UIManager.cpp" />
     <ClCompile Include="source\ui\VolumeSelectUI.cpp" />
@@ -407,7 +409,6 @@
     <ClInclude Include="header\myanimation\TimeKeyFrame.h" />
     <ClInclude Include="header\renderer\define\AnimationRenderDesc.h" />
     <ClInclude Include="header\renderer\define\BillBoardRenderDesc.h" />
-    <ClInclude Include="header\renderer\define\BillborardRenderDesc.h" />
     <ClInclude Include="header\renderer\define\BlendFunc.h" />
     <ClInclude Include="header\renderer\define\Color4.h" />
     <ClInclude Include="header\renderer\define\LightDesc.h" />
@@ -483,6 +484,7 @@
     <ClInclude Include="header\state\player\AttackState.h" />
     <ClInclude Include="header\state\player\DamageState.h" />
     <ClInclude Include="header\state\player\DoubleJumpState.h" />
+    <ClInclude Include="header\state\player\HomingState.h" />
     <ClInclude Include="header\state\player\LandingRigidityState.h" />
     <ClInclude Include="header\state\player\LimitFallState.h" />
     <ClInclude Include="header\state\player\MoveState.h" />
@@ -547,6 +549,7 @@
     <ClInclude Include="header\ui\SoundSelectUI.h" />
     <ClInclude Include="header\ui\SpecialSkillUI.h" />
     <ClInclude Include="header\ui\SPGaugeUI.h" />
+    <ClInclude Include="header\ui\TargetMarkerUI.h" />
     <ClInclude Include="header\ui\TitleUI.h" />
     <ClInclude Include="header\ui\UIManager.h" />
     <ClInclude Include="header\ui\VolumeSelectUI.h" />

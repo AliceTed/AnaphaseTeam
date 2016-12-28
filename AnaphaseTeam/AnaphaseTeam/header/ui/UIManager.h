@@ -12,6 +12,7 @@ enum class EUI
 	GAUGE,
 	SPICON,
 	ENEMYHP,
+	TARGETMARKER,
 	SIZE
 };
 
