@@ -44,10 +44,7 @@ public:
 	const bool isSameTag(Actor_Tag _tag)const;
 	void changeState(ACTOR_STATE _state);
 
-	void changeGravity(float _velocity)
-	{
-		m_velocity = _velocity;
-	}
+	void changeGravity(float _gravity);
 
 protected:	
 	//•Ï”‚ğprotected‚Ég—p‚©”Y‚ñ‚Å‚¢‚é
@@ -92,5 +89,5 @@ private:
 	//d—Í
 	static const float GRAVITY;
 
-	float m_velocity;
+	float m_gravity;
 };

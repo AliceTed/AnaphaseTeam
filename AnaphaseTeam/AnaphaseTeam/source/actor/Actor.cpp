@@ -6,8 +6,8 @@
 
 const float Actor::GRAVITY = -0.05f;
 
-Actor::Actor(const Transform & _transform, MODEL_ID _modelID,Actor_Tag _tag)
-	:m_transform(_transform), 
+Actor::Actor(const Transform & _transform, MODEL_ID _modelID, Actor_Tag _tag)
+	:m_transform(_transform),
 	m_isDead(false),
 	m_isGround(false),
 	m_animatorOne(_modelID),
@@ -17,7 +17,7 @@ Actor::Actor(const Transform & _transform, MODEL_ID _modelID,Actor_Tag _tag)
 	m_currentState(nullptr),
 	m_currentStateKey(ACTOR_STATE::STAND),
 	m_previousIntersect(m_transform.m_translate),
-	m_velocity(-0.05f)
+	m_gravity(-0.05f)
 {
 }
 
@@ -41,7 +41,7 @@ void Actor::collisionGround(const Map& _map)
 	//Œ»Ý‚ÌˆÊ’u‚©‚ç‰º•ûŒü‚ÌRay‚ðì‚é
 	GSvector3 position = m_transform.m_translate;
 	Ray ray(position);
-	if (m_isBlock=!ray.isCollitionMap(_map, &intersect))
+	if (m_isBlock = !ray.isCollitionMap(_map, &intersect))
 	{
 		m_transform.m_translate.x = m_previousIntersect.x;
 		m_transform.m_translate.z = m_previousIntersect.z;
@@ -54,7 +54,7 @@ void Actor::collisionGround(const Map& _map)
 		if (m_currentStateKey != ACTOR_STATE::ATTACK)
 		{
 			//m_transform.translate_up(GRAVITY);
-			m_transform.translate_up(m_velocity);
+			m_transform.translate_up(m_gravity);
 		}
 		return;
 	}
@@ -95,13 +95,18 @@ void Actor::changeState(ACTOR_STATE _state)
 	m_currentState->start();
 }
 
+void Actor::changeGravity(float _gravity)
+{
+	m_gravity = _gravity;
+}
+
 const bool Actor::isSameActor(const Actor * _other) const
 {
-	return this==_other;
+	return this == _other;
 }
 const bool Actor::isSameTag(Actor_Tag _tag) const
 {
-	return m_Tag==_tag;
+	return m_Tag == _tag;
 }
 void Actor::action(float deltaTime)
 {
@@ -109,7 +114,7 @@ void Actor::action(float deltaTime)
 }
 void Actor::registerState(ACTOR_STATE _name, IActorState * _state)
 {
-	m_states.insert(std::make_pair(_name,StatePtr(_state)));
+	m_states.insert(std::make_pair(_name, StatePtr(_state)));
 }
 const bool Actor::isDead() const
 {
