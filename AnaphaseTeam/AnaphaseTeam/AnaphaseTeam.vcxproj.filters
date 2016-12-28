@@ -232,6 +232,12 @@
     <Filter Include="ヘッダー ファイル\data\stream\converter">
       <UniqueIdentifier>{69c6784f-ddd5-4754-817f-f5f75f8bc527}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\spline">
+      <UniqueIdentifier>{b43f3699-344b-4ff8-830e-09980be344c0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\spline">
+      <UniqueIdentifier>{ae25f4dc-81d2-4456-af2a-97f8a7cd858f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="header\math\Calculate.h">
@@ -807,9 +813,6 @@
     <ClInclude Include="header\camera\CameraWork\CameraWorkEmpty.h">
       <Filter>ヘッダー ファイル\camera\CameraWork</Filter>
     </ClInclude>
-    <ClInclude Include="header\camera\SLookAt.h">
-      <Filter>ヘッダー ファイル\camera</Filter>
-    </ClInclude>
     <ClInclude Include="header\actor\Enemy\EnemyMediator.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
@@ -829,15 +832,6 @@
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="header\actor\Enemy\Goblin.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="header\camera\CameraWork\CameraWorkTest.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="header\math\ASpline.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="header\math\ASplineVec3.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="header\actor\ActorManager.h">
@@ -927,11 +921,35 @@
     <ClInclude Include="header\attack\Revision.h">
       <Filter>ヘッダー ファイル\attack</Filter>
     </ClInclude>
-    <ClInclude Include="header\state\player\HomingState.h">
-      <Filter>ヘッダー ファイル\state\player</Filter>
+    <ClInclude Include="header\spline\AnimationSpline.h">
+      <Filter>ヘッダー ファイル\spline</Filter>
     </ClInclude>
-    <ClInclude Include="header\ui\TargetMarkerUI.h">
-      <Filter>ヘッダー ファイル\ui</Filter>
+    <ClInclude Include="header\spline\AnimationSplineData.h">
+      <Filter>ヘッダー ファイル\spline</Filter>
+    </ClInclude>
+    <ClInclude Include="header\camera\CameraWork\CameraWorkEvent.h">
+      <Filter>ヘッダー ファイル\camera\CameraWork</Filter>
+    </ClInclude>
+    <ClInclude Include="header\camera\CameraWork\CameraWorkTest.h">
+      <Filter>ヘッダー ファイル\camera\CameraWork</Filter>
+    </ClInclude>
+    <ClInclude Include="header\spline\Spline.h">
+      <Filter>ヘッダー ファイル\spline</Filter>
+    </ClInclude>
+    <ClInclude Include="header\spline\SplineAnimManager.h">
+      <Filter>ヘッダー ファイル\spline</Filter>
+    </ClInclude>
+    <ClInclude Include="header\spline\SplineVec3.h">
+      <Filter>ヘッダー ファイル\spline</Filter>
+    </ClInclude>
+    <ClInclude Include="header\camera\LookAt.h">
+      <Filter>ヘッダー ファイル\camera</Filter>
+    </ClInclude>
+    <ClInclude Include="header\renderer\define\NumberSpriteRenderDesc.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="header\camera\CameraWork\CameraWorkNormalBattle.h">
+      <Filter>ヘッダー ファイル\camera\CameraWork</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -977,9 +995,6 @@
     <ClCompile Include="source\shape\Ray.cpp">
       <Filter>ソース ファイル\shape</Filter>
     </ClCompile>
-    <ClCompile Include="source\convenient\Timer.cpp">
-      <Filter>ソース ファイル\convenient</Filter>
-    </ClCompile>
     <ClCompile Include="source\actor\player\Player.cpp">
       <Filter>ソース ファイル\actor\Player</Filter>
     </ClCompile>
@@ -991,9 +1006,6 @@
     </ClCompile>
     <ClCompile Include="source\animation\AnimatorOne.cpp">
       <Filter>ソース ファイル\animation</Filter>
-    </ClCompile>
-    <ClCompile Include="source\convenient\Point.cpp">
-      <Filter>ソース ファイル\convenient</Filter>
     </ClCompile>
     <ClCompile Include="source\actor\Actor.cpp">
       <Filter>ソース ファイル\actor</Filter>
@@ -1319,9 +1331,6 @@
     <ClCompile Include="source\camera\CameraWork\CameraWorkEmpty.cpp">
       <Filter>ソース ファイル\camera\CameraWork</Filter>
     </ClCompile>
-    <ClCompile Include="source\camera\SLookAt.cpp">
-      <Filter>ソース ファイル\camera</Filter>
-    </ClCompile>
     <ClCompile Include="source\state\enemy\EnemyAIController.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
@@ -1338,12 +1347,6 @@
       <Filter>ソース ファイル</Filter>
     </ClCompile>
     <ClCompile Include="source\actor\Enemy\Goblin.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="source\math\ASpline.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="source\camera\CameraWork\CameraWorkTest.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
     <ClCompile Include="source\actor\ActorManager.cpp">
@@ -1363,9 +1366,6 @@
     </ClCompile>
     <ClCompile Include="source\data\stream\SpawnReader.cpp">
       <Filter>ソース ファイル\data\stream</Filter>
-    </ClCompile>
-    <ClCompile Include="source\math\ASplineVec3.cpp">
-      <Filter>ソース ファイル</Filter>
     </ClCompile>
     <ClCompile Include="source\ui\OptionSelectUI.cpp">
       <Filter>ソース ファイル</Filter>
@@ -1417,6 +1417,42 @@
     </ClCompile>
     <ClCompile Include="source\ui\TargetMarkerUI.cpp">
       <Filter>ソース ファイル\ui</Filter>
+    </ClCompile>
+    <ClCompile Include="source\attack\Revision.cpp">
+      <Filter>ソース ファイル\Attack</Filter>
+    </ClCompile>
+    <ClCompile Include="source\camera\LookAt.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="source\spline\AnimationSpline.cpp">
+      <Filter>ソース ファイル\spline</Filter>
+    </ClCompile>
+    <ClCompile Include="source\spline\AnimationSplineData.cpp">
+      <Filter>ソース ファイル\spline</Filter>
+    </ClCompile>
+    <ClCompile Include="source\camera\CameraWork\CameraWorkEvent.cpp">
+      <Filter>ソース ファイル\camera\CameraWork</Filter>
+    </ClCompile>
+    <ClCompile Include="source\camera\CameraWork\CameraWorkTest.cpp">
+      <Filter>ソース ファイル\camera\CameraWork</Filter>
+    </ClCompile>
+    <ClCompile Include="source\spline\Spline.cpp">
+      <Filter>ソース ファイル\spline</Filter>
+    </ClCompile>
+    <ClCompile Include="source\spline\SplineAnimManager.cpp">
+      <Filter>ソース ファイル\spline</Filter>
+    </ClCompile>
+    <ClCompile Include="source\spline\SplineVec3.cpp">
+      <Filter>ソース ファイル\spline</Filter>
+    </ClCompile>
+    <ClCompile Include="source\camera\CameraWork\CameraWorkNormalBattle.cpp">
+      <Filter>ソース ファイル\camera\CameraWork</Filter>
+    </ClCompile>
+    <ClCompile Include="source\convenient\Point.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="source\convenient\Timer.cpp">
+      <Filter>ソース ファイル</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -1,6 +1,6 @@
-#include "../../header/camera/SLookAt.h"
+#include "../../header/camera/LookAt.h"
 
-SLookAt::SLookAt(GSvector3 _position, GSvector3 _target, GSvector3 _up) :
+LookAt::LookAt(GSvector3 _position, GSvector3 _target, GSvector3 _up) :
 	position(_position),
 	position_offset(0.0f, 0.0f, 0.0f),
 	target(_target),
@@ -12,6 +12,6 @@ SLookAt::SLookAt(GSvector3 _position, GSvector3 _target, GSvector3 _up) :
 	gsMatrix4Identity(&mat_view);
 }
 
-SLookAt::~SLookAt()
+LookAt::~LookAt()
 {
 }

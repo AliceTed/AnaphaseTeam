@@ -6,9 +6,9 @@
 */
 #pragma once
 
+#include <string>
 #include <unordered_map>
 #include <memory>
-#include "E_CameraWorkID.h"
 
 class Camera;
 class I_CameraWork;
@@ -28,7 +28,7 @@ public:
 	@param[_data]	データ
 	*/
 	void add(
-		E_CameraWorkID	_id,
+		std::string	_id,
 		I_CameraWork*	_data
 	);
 
@@ -36,11 +36,11 @@ public:
 	@brief 実行
 	@param[_id] アクションID
 	*/
-	I_CameraWork* get(const E_CameraWorkID _id);
+	I_CameraWork* get(std::string _id);
 
 private:
 	using CameraWork_Ptr = std::shared_ptr<I_CameraWork>;						//いちいち書くのがめんどくさいので
-	using CameraWork_Map = std::unordered_map<E_CameraWorkID, CameraWork_Ptr>;	//いちいち書くのがめんどくさいので
+	using CameraWork_Map = std::unordered_map<std::string, CameraWork_Ptr>;	//いちいち書くのがめんどくさいので
 
 	CameraWork_Map m_cameraWorks;												//カメラワーク
 };

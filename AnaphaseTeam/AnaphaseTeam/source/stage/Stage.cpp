@@ -6,6 +6,7 @@
 #include "../../header/device/GameDevice.h"
 #include "../../header/stage/StageData.h"
 #include "../../header/data/stream/PhaseReader.h"
+#include "../../header/camera/CameraWork/E_CameraWorkID.h"
 Stage::Stage(const StageData& _stage)
 	:m_Map(OCTREE_ID::VISUAL),
 	m_cameracontroller(),
@@ -22,6 +23,8 @@ Stage::Stage(const StageData& _stage)
 		m_phaseManage.add(new Phase(data));
 	}
 	m_phaseManage.changeFirst();
+
+	m_cameracontroller.change_cameraWork("event");
 }
 Stage::~Stage()
 {
@@ -41,7 +44,7 @@ void Stage::draw(IRenderer * _renderer)
 	desc.meshID = static_cast<unsigned int>(MESH_ID::SKY);
 	_renderer->render(desc);
 	m_actors.lockAt(&m_cameracontroller);
-	m_cameracontroller.draw();
+	m_cameracontroller.draw(_renderer);
 
 	_renderer->lookAt({ 0,0,0 }, { 0,0,0 }, { 0,0,0 });
 	m_Map.draw(_renderer);

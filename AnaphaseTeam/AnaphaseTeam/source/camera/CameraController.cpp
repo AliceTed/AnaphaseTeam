@@ -3,11 +3,10 @@
 @brief カメラを操作する
 @author Yuuho Aritomi*/
 #include "../../header/camera\CameraController.h"
+#include <string>
 #include "../../header/camera/Camera.h"
 #include "../../header/math/AMath.h"
 #include "../../header/math/Calculate.h"
-#include <string>
-
 #include "../../header/camera/CameraWork/CameraWorkManager.h"
 
 /*
@@ -17,8 +16,9 @@ by 松尾
 */
 CameraController::CameraController() :
 	m_camera(std::make_shared<Camera>()),
-	m_cameraWorkManager(std::make_shared<CameraWorkManager>(m_camera.get())),
-	m_deltaTime(0.0f)
+	m_cameraWorkManager(std::make_shared<CameraWorkManager>(m_camera.get(), &m_isLockOn)),
+	m_deltaTime(0.0f),
+	m_isLockOn(false)
 {
 	//カメラワークの読み込み
 	m_cameraWorkManager->load();
@@ -35,8 +35,9 @@ void CameraController::update(float _deltaTime)
 }
 
 
-void CameraController::draw(void)
+void CameraController::draw(IRenderer* _renderer)
 {
+	m_camera->run(_renderer);
 	//カメラワーク・マネージャー実行
 	m_cameraWorkManager->run(m_deltaTime);
 }
@@ -47,7 +48,7 @@ void CameraController::collisionGround(const Map & _map)
 	m_camera->collisionGround(_map);
 }
 
-void CameraController::change_cameraWork(const E_CameraWorkID _id)
+void CameraController::change_cameraWork(const std::string _id)
 {
 	//カメラワークを指定ＩＤのものに変更
 	m_cameraWorkManager->change_cameraWork(_id);
@@ -56,4 +57,11 @@ void CameraController::change_cameraWork(const E_CameraWorkID _id)
 Camera * CameraController::get_camera(void)
 {
 	return m_camera.get();
+}
+
+void CameraController::set_isLockOn(bool _isLockOn)
+{
+	m_isLockOn = _isLockOn;
+
+	return;
 }

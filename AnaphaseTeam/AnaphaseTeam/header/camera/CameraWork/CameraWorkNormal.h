@@ -30,6 +30,12 @@ public:
 	//実行処理
 	void run(float _deltaTime) override;
 
+	//次のカメラワーク
+	std::string nextCameraWork(void);
+
+	//終了したか？
+	bool isEnd(void);
+
 private:
 	//スティックの操作
 	const GSvector2 velocity(void);

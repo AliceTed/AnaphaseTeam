@@ -1,4 +1,4 @@
-#include "..\..\header\convenient\Timer.h"
+#include "../../header/convenient/Timer.h"
 #include "../../header/math/Calculate.h"
 
 const float Timer::FLAMETIME = 60.0f;

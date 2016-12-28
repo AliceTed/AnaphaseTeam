@@ -40,6 +40,9 @@
 #include "../../../header/ui/UIManager.h"
 
 #include "../../../header/attack/AttackStatus.h"
+
+#include "../../../header/ui/TargetMarkerUI.h"
+#include "../../../header/ui/UIManager.h"
 const float Player::ROTATESPEED = -2.0f;
 Player::Player(const Transform& _t,Camera * _camera, LockOn* _lockon)
 	:Actor(
@@ -67,6 +70,15 @@ Player::~Player()
 const float Player::getAttackSpeed() const
 {
 	return m_status.attackSpeed();
+}
+void Player::targetMaker(GSvector3 _enemyPosition)
+{
+	UIManager::getInstance().release(EUI::TARGETMARKER);
+	if (m_isLockOn)
+	{
+		std::shared_ptr<TargetMarkerUI> targetUI = std::make_shared<TargetMarkerUI>(_enemyPosition, this);
+		UIManager::getInstance().add(EUI::TARGETMARKER, targetUI);
+	}
 }
 void Player::initialize()
 {
@@ -225,9 +237,9 @@ void Player::revision()
 	m_Revision.start(this, target.lock().get(), m_transform, *m_Gauge, m_target, m_isLockOn);
 }
 
-void Player::createAttackCollision(const ShapeData& _data)
+void Player::createAttackCollision(const ShapeData& _data, float _speed)
 {
-	Collision_Ptr act = std::make_shared<PlayerAttackCollision>(this, _data);
+	Collision_Ptr act = std::make_shared<PlayerAttackCollision>(this, _data,_speed);
 	m_collision.add(act);
 }
 
@@ -276,21 +288,24 @@ void Player::look_at(CameraController * _camera, GSvector3 * _target)
 
 	//_camera->change_cameraWork(E_CameraWorkID::TEST);
 
-	if (m_isLockOn)
+	_camera->set_isLockOn(m_isLockOn);
+
+	/*if (m_isLockOn)
 	{
 		_camera->change_cameraWork(E_CameraWorkID::LOCK_ON);
 	}
 	else
 	{
 		_camera->change_cameraWork(E_CameraWorkID::NORMAL);
-	}
+	}*/
 }
 void Player::look_at(CameraController * _camera)
 {
 	GSvector3 position = m_transform.m_translate;
 	m_isLockOn = false;
 	m_camera->set_cameraTarget_player(position);
-	_camera->change_cameraWork(E_CameraWorkID::NORMAL);
+	//_camera->change_cameraWork(E_CameraWorkID::NORMAL);
+	_camera->set_isLockOn(m_isLockOn);
 
 }
 void Player::createStates()

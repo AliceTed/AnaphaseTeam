@@ -112,5 +112,5 @@ void Goblin::think(Player * _player)
 	m_debug = targetDirection(*_player);
 	if (!isThink())return;
 	m_AI.change(isNear(distance));
-	m_AI.think(_player);
+	//m_AI.think(_player);
 }

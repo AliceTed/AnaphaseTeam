@@ -6,7 +6,11 @@
 */
 #pragma once
 
+#include <vector>
+#include <memory>
 #include "CameraWorkEmpty.h"
+
+class SplineAnimManager;
 
 class CameraWorkTest : public CameraWorkEmpty
 {
@@ -25,4 +29,7 @@ public:
 
 	//Àsˆ—
 	void run(float _deltaTime) override;
+
+private:
+	std::unique_ptr<SplineAnimManager> shake;
 };

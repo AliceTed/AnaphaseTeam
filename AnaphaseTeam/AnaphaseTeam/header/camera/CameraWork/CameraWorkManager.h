@@ -9,19 +9,21 @@
 #include <unordered_map>
 #include <memory>
 #include <gslib.h>
-#include "E_CameraWorkID.h"
+#include <string>
 
 class Camera;				//カメラ
 class CameraWorkData;		//カメラデータ
+class SplineAnimManager;	//スプライン曲線アニメーション
 
 class CameraWorkManager
 {
 public:
 	/**
 	@brief コンストラクタ
-	@param[_camera] カメラ
+	@param[_camera]		カメラ
+	@param[_isLockOn]	めんどくせぇ
 	*/
-	CameraWorkManager(Camera* _camera);
+	CameraWorkManager(Camera* _camera, bool* _isLockOn);
 
 	//デストラクタ
 	~CameraWorkManager();
@@ -34,7 +36,7 @@ public:
 	/**
 	@brief カメラワークの切り替え
 	*/
-	void change_cameraWork(const E_CameraWorkID _id);
+	void change_cameraWork(std::string _id);
 
 	/** 
 	@brief 実行
@@ -43,11 +45,15 @@ public:
 	void run(float _deltaTime);
 
 private:
-	Camera*							m_camera;				//カメラ
+	Camera*								m_camera;				//カメラ
 
-	std::unique_ptr<CameraWorkData> m_cameraData;			//カメラデータ
+	std::unique_ptr<CameraWorkData>		m_cameraData;			//カメラデータ
 
-	GSvector2						m_rotate;				//回転
+	std::shared_ptr<SplineAnimManager>	m_splineAnimManager;	//3z
 
-	E_CameraWorkID					m_current_cameraWork;	//現在のカメラワーク
+	GSvector2							m_rotate;				//回転
+
+	std::string							m_current_cameraWork;	//現在のカメラワーク
+
+	bool*								m_isLockOn;				//めんどくせぇ
 };

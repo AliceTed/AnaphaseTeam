@@ -24,11 +24,11 @@ void TargetMarkerUI::draw(IRenderer * _renderer)
 	GStexture* tex = gsGetTexture(desc.textureID);
 	desc.center = GSvector2(tex->dwWidth, tex->dwHeight) * 0.5f;
 	GSvector3 target = transform(_renderer);
-
+	target.y = target.y - 70;
 	float size = target.z / 1.0f;
 	m_scale = (1 - size) * 20;
 
-	target.y = size + 350.0f;
+	
 	//m_scale = CLAMP(1/target.z, 0.5f, 1.0f);
 	desc.matrix.scale(m_scale, m_scale, m_scale);
 	desc.matrix.translate(target);

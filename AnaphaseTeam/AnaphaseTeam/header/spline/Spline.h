@@ -4,18 +4,17 @@
 @author Yuuho Aritomi
 @date 2016/12/15
 */
-
 #include <vector>
 #include <gslib.h>
 
-class ASpline
+class Spline
 {
 public:
 	//コンストラクタ
-	ASpline(void);
+	Spline(void);
 
 	//デストラクタ
-	~ASpline();
+	~Spline();
 
 	/**
 	@brief 初期化
@@ -25,7 +24,7 @@ public:
 
 	/**
 	@brief スプライン曲線の計算
-	@param[_t] 0 <= _t < = 要素数
+	@param[_t] 0 <= _t <= 1
 	@return 結果
 	*/
 	float culc(float _t, int _num);

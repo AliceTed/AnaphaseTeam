@@ -25,4 +25,10 @@ public:
 
 	//実行処理
 	void run(float _deltaTime) override;
+
+	//次のカメラワーク
+	std::string nextCameraWork(void) override;
+
+	//終了したか？
+	bool isEnd(void) override;
 };

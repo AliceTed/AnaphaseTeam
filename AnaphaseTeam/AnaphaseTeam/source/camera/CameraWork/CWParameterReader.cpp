@@ -1,6 +1,7 @@
 #include <iostream>
 #include <fstream>
 #include <sstream>
+#include <algorithm>
 #include "../../../header/camera/CameraWork/CWParameterReader.h"
 #include "../../../header/data/Message.h"
 
@@ -18,25 +19,17 @@ CWParameterReader::~CWParameterReader()
 
 float CWParameterReader::get(const int _index)
 {
-	//イテレーターで回して指定した要素数にたどり着けばその要素の数値を返す
-	Parameter_Itr itr = m_parameters.begin();
-	for (int i = 0; itr != m_parameters.end(); i++)
+	if (_index < 0 || static_cast<unsigned int>(_index) >= m_parameters.size())
 	{
-		//指定した要素数があれば
-		if (i == _index)
-		{
-			return *itr;
-		}
-
-		itr++;
+		//指定した要素数がなければエラー０を返す
+		Message error;
+		std::stringstream ss;
+		ss << _index << "番目の要素がありません";
+		error(ss.str(), ss.str());
+		return 0;
 	}
 
-	//指定した要素数がなければエラー０を返す
-	Message error;
-	std::stringstream ss;
-	ss << _index << "番目の要素がありません";
-	error(ss.str(), ss.str());
-	return 0;
+	return m_parameters[_index];
 }
 
 float CWParameterReader::operator[](int _index)
@@ -49,6 +42,7 @@ void CWParameterReader::read(const std::string _fileName)
 {
 	std::ifstream reading_file;
 	std::string reading_line_buffer;
+	std::vector<std::string> vec(2);
 
 	//ファイルを開く
 	reading_file.open(_fileName, std::ios::in);
@@ -70,11 +64,10 @@ void CWParameterReader::read(const std::string _fileName)
 		for (int i = 0; std::getline(line_separater, separated_string_buffer, '='); i++)
 		{
 			//'='後の値を取得する
-			if (i == 1)
-			{
-				m_parameters.emplace_back(std::stof(separated_string_buffer));
-			}
+			vec[i] = separated_string_buffer;
 		}
+
+		m_parameters.emplace_back(std::stof(separated_string_buffer));
 	}
 
 	//読み込んだファイルを閉じる

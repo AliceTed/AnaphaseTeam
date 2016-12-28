@@ -13,6 +13,7 @@ struct BillBoardRenderDesc;
 struct SpriteRenderDesc;
 struct SpriteRectRenderDesc;
 struct StringRenderDesc;
+struct NumberSpriteRenderDesc;
 struct RectangleRenderDesc;
 struct OctreeRenderDesc;
 struct SkyBoxRenderDesc;
@@ -58,6 +59,8 @@ public:
 	virtual void render(const SpriteRenderDesc& desc) = 0;
 	//切り取り用スプライト描画
 	virtual void render(const SpriteRectRenderDesc& desc) = 0;
+	//スプライトでの数字描画
+	virtual void render(const NumberSpriteRenderDesc& desc) = 0;
 	//文字列の描画
 	virtual void render(const StringRenderDesc& desc) = 0;
 	//矩形の描画

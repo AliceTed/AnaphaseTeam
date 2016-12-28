@@ -1,8 +1,8 @@
-#include "../../header/math/ASpline.h"
+#include "../../header/spline/Spline.h"
 
-const int ASpline::MaxSplineSize = 100;
+const int Spline::MaxSplineSize = 100;
 
-ASpline::ASpline(void) :
+Spline::Spline(void) :
 	m_num(0),
 	m_a(MaxSplineSize + 1),
 	m_b(MaxSplineSize + 1),
@@ -13,12 +13,12 @@ ASpline::ASpline(void) :
 	
 }
 
-ASpline::~ASpline()
+Spline::~Spline()
 {
 
 }
 
-void ASpline::init(const std::vector<float>& _sp)
+void Spline::init(const std::vector<float>& _sp)
 {
 	float tmp;
 	std::vector<float> w(MaxSplineSize + 1);
@@ -63,7 +63,7 @@ void ASpline::init(const std::vector<float>& _sp)
 	}
 }
 
-float ASpline::culc(float _t, int _num)
+float Spline::culc(float _t, int _num)
 {
 	int j;
 	float dt;
@@ -72,7 +72,8 @@ float ASpline::culc(float _t, int _num)
 
 	m_num = _num - 1;
 
-	j = static_cast<int>(floor(_t));	//小数点以下切り捨て
+	//j = static_cast<int>(floor(_t));			//小数点以下切り捨て 普段ならこっちを使う
+	j = static_cast<int>(floor(m_num * _t));	//0 <= x <= 1の範囲で動くようにするためにこっちを使う
 	if (j < 0)
 	{
 		j = 0;
@@ -82,16 +83,19 @@ float ASpline::culc(float _t, int _num)
 	{
 		j = m_num - 1;	//丸め誤差を考慮
 
-		_t = static_cast<float>(m_num);
+		//_t = static_cast<float>(m_num);		//普段ならこっち
+		_t = 1;									//1の範囲を超えないように
 
+		//終わったことを伝える
 		m_isEnd = true;
 	}
 
-	dt = _t - (float)j;
+	//dt = _t - (float)j;						//普段ならこっちを使う
+	dt = (m_num * _t) - (float)j;				//こっちも変えないと変な動きするから
 	return m_a[j] + (m_b[j] + (m_c[j] + m_d[j] * dt) * dt) * dt;
 }
 
-bool ASpline::isEnd(void)
+bool Spline::isEnd(void)
 {
 	return m_isEnd;
 }

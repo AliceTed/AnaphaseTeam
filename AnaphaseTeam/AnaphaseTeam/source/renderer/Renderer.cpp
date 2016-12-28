@@ -11,11 +11,13 @@
 #include "../../header/renderer/define/RectangleRenderDesc.h"
 #include "../../header/renderer/define/SpriteRenderDesc.h"
 #include "../../header/renderer/define/SpriteRectRenderDesc.h"
+#include "../../header/renderer/define/NumberSpriteRenderDesc.h"
 #include "../../header/renderer/define/StringRenderDesc.h"
 #include "../../header/renderer/define/Type.h"
 #include "../../header/renderer/define/ViewportDesc.h"
 #include <gslib.h>
-
+#include <sstream>
+#include <iomanip>
 //#include "../../header/renderer/define/Ray.h"
 #include "../../header/shape/Ray.h"
 
@@ -326,6 +328,39 @@ void Renderer::render(const SpriteRectRenderDesc & desc)
 
 	// レンダリングモードの復帰
 	glPopAttrib();
+}
+
+void Renderer::render(const NumberSpriteRenderDesc & desc)
+{
+	std::ostringstream stream;
+	stream << std::fixed << std::setprecision(desc.decimal);
+	//小数点を表示する場合は点の数も追加
+	GSuint digit=desc.digit;
+	digit += desc.decimal == 0 ? 0 : 1;
+	//0で埋める              　　　　　　　　　右寄せ
+	stream << std::setfill('0') << std::setw(digit) << std::right << desc.number;
+	std::string number=stream.str();
+
+	GSmatrix4 mat = desc.matrix;
+	for(auto& c:number)
+	{
+		bool istoken = istoken = (c == '.');
+
+		float x = x = istoken ? 10 : (c - '0');
+		x *= desc.size.x;
+		SpriteRectRenderDesc sprite;
+		sprite.blendFunc = desc.blendFunc;
+		sprite.center = desc.center;
+		sprite.color = desc.color;
+		sprite.matrix = mat;
+		sprite.srcRect = GSrect(x, 0, x + desc.size.x, desc.size.y);
+		sprite.textureID = desc.textureID;
+		render(sprite);
+		//位置をずらす .なら半分
+		x = desc.size.x;
+		x *= istoken ? 0.5f : 1.0f;
+		mat.translate(x, 0, 0);
+	}
 }
 
 void Renderer::render(const StringRenderDesc & desc)

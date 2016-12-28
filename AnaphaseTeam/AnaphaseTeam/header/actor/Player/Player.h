@@ -34,7 +34,7 @@ public:
 	void look_at(CameraController* _camera, GSvector3* _target);
 	void look_at(CameraController* _camera);
 	void revision();
-	void createAttackCollision(const ShapeData& _data);
+	void createAttackCollision(const ShapeData& _data,float _speed);
 	void damage(const AttackStatus & _attackStatus) override;
 	void finish() override;
 	
@@ -44,6 +44,7 @@ public:
 	//マスター前の仮実装
 	//要リファクタ
 	const float getAttackSpeed() const;
+	void targetMaker(GSvector3 _enemyPosition);
 
 public://Actor継承
 	void initialize() override;
