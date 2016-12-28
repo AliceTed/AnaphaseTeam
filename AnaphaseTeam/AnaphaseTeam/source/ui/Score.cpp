@@ -1,8 +1,7 @@
 #include "..\..\header\ui\Score.h"
 
 Score::Score()
-	:m_position(300,300),
-	m_number(TEXTURE_ID::NUMBER, m_position),
+	:m_number(TEXTURE_ID::NUMBER),
 	m_score(0), m_timer(0), m_hit(false)
 {
 }
@@ -14,7 +13,6 @@ Score::~Score()
 void Score::initialize()
 {
 	m_number.initilize();
-	m_position = GSvector2(300, 300);
 	reset();
 	m_hit = false;
 }
@@ -32,9 +30,9 @@ void Score::add(int _score)
 	feverTime(50, _score, 3);
 }
 
-void Score::update(float _deltaTime)
+void Score::update(float deltaTime)
 {
-	m_number.update(_deltaTime);
+	m_number.update(deltaTime);
 	hit();
 	if (m_timer <= 0)
 	{
@@ -81,3 +79,4 @@ void Score::draw(IRenderer * _renderer)
 {
 	m_number.draw(_renderer, m_score);
 }
+

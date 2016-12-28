@@ -11,9 +11,9 @@
 #include <iostream>
 #include <typeinfo>
 
-Number::Number(TEXTURE_ID _id, const GSvector2& _position)
+Number::Number(TEXTURE_ID _id)
 	:m_id(_id),
-	m_position(_position),
+	m_position(0,0),
 	m_alpha(0.0f),
 	m_alphaChange(true)
 {
@@ -86,6 +86,6 @@ void Number::draw(IRenderer * _renderer, int _nunber)
 void Number::reset()
 {
 	m_alpha = 0.0f;
-	m_position = GSvector2(0, 0);
+	m_position = GSvector2(0, 150);
 	m_alphaChange = true;
 }

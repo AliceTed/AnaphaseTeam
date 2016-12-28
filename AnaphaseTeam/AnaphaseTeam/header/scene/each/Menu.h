@@ -22,5 +22,4 @@ private:
 	bool m_IsExit;
 	SceneChange m_change;
 	TitleUI m_menu;
-	Score m_score;
 };

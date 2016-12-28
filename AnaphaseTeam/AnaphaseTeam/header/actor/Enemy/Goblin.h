@@ -6,6 +6,7 @@
 #include "../../actor/Player/Status.h"
 #include "../../attack/KnockBack.h"
 #include "../../state/enemy/EnemyAIController.h"
+#include "../../ui/Score.h"
 #include "IEnemy.h"
 class EnemyMediator;
 class IEnemyAI;
@@ -36,7 +37,7 @@ private:
 	void createStates()override;
 	void think(Player* _palyer)override;
 private:
-
+	std::shared_ptr<Score> m_score;
 	GSquaternion m_debug;
 private://state
 	class EAttackState;

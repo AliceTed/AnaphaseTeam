@@ -15,6 +15,7 @@
 #include "../../ui/SpecialSkillUI.h"
 #include "../../attack/Revision.h"
 #include "../../convenient/Timer.h"
+#include "../../ui/Score.h"
 
 class CameraController;
 class LockOn;
@@ -40,6 +41,7 @@ public:
 	
 	void targetFind(EnemyManager * _enemys);
 	void recovery();
+	void score(int _score);
 
 	//マスター前の仮実装
 	//要リファクタ
@@ -64,6 +66,7 @@ private:
 	Status m_status;
 	std::shared_ptr<Gauge> m_Gauge;
 	std::shared_ptr<SpecialSkillUI> m_specialUI;
+	//std::shared_ptr<Score> m_score;
 	Camera * m_camera;
 	LockOn* m_lockon;
 	Scythe m_scythe;

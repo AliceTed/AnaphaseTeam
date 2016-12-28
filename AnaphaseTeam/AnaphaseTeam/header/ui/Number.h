@@ -7,7 +7,7 @@ class IRenderer;
 class Number
 {
 public:
-	Number(TEXTURE_ID _id, const GSvector2& _position);
+	Number(TEXTURE_ID _id);
 	~Number();
 	void initilize();
 	void scroll();
