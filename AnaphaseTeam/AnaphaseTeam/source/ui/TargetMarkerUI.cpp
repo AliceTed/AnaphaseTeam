@@ -28,6 +28,7 @@ void TargetMarkerUI::draw(IRenderer * _renderer)
 	float size = target.z / 1.0f;
 	m_scale = (1 - size) * 20;
 
+	target.y = size + 350.0f;
 	//m_scale = CLAMP(1/target.z, 0.5f, 1.0f);
 	desc.matrix.scale(m_scale, m_scale, m_scale);
 	desc.matrix.translate(target);

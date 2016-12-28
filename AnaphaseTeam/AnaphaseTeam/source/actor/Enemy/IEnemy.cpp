@@ -46,7 +46,6 @@ IEnemy::IEnemy(const Transform& _transform, MODEL_ID _modelID, EnemyMediator& _m
 
 void IEnemy::look_at(CameraController* _camera, Player* _player)
 {
-
 	GSvector3 target = m_transform.m_translate;
 	_player->look_at(_camera, &target);
 	UIManager::getInstance().release(EUI::TARGETMARKER);
