@@ -1,4 +1,4 @@
-#pragma once
+pragma once
 
 #include "ResourceID.h"
 #include "Rect.h"

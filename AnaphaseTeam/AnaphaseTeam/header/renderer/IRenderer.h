@@ -9,7 +9,7 @@ struct LightDesc;
 struct MeshRenderDesc;
 struct AnimationRenderDesc;
 struct SkinnedMeshRenderDesc;
-struct BillboardRenderDesc;
+struct BillBoardRenderDesc;
 struct SpriteRenderDesc;
 struct SpriteRectRenderDesc;
 struct StringRenderDesc;
@@ -54,7 +54,7 @@ public:
 	//シェーダを使用したアニメーションの描画
 	virtual void render(const SkinnedMeshRenderDesc& desc) = 0;
 	//ビルボードの描画
-	virtual void render(const BillboardRenderDesc& desc) = 0;
+	virtual void render(const BillBoardRenderDesc& desc) = 0;
 	//スプライト描画
 	virtual void render(const SpriteRenderDesc& desc) = 0;
 	//切り取り用スプライト描画

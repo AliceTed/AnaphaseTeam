@@ -567,9 +567,6 @@
     <ClInclude Include="header\renderer\define\BillBoardRenderDesc.h">
       <Filter>ヘッダー ファイル\renderer\define</Filter>
     </ClInclude>
-    <ClInclude Include="header\renderer\define\BillborardRenderDesc.h">
-      <Filter>ヘッダー ファイル\renderer\define</Filter>
-    </ClInclude>
     <ClInclude Include="header\renderer\define\BlendFunc.h">
       <Filter>ヘッダー ファイル\renderer\define</Filter>
     </ClInclude>
@@ -1376,6 +1373,15 @@
     <ClCompile Include="source\ui\OptionUI.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
+    <ClCompile Include="source\ui\PadSelectUI.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="source\ui\SoundSelectUI.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="source\ui\VolumeSelectUI.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
     <ClCompile Include="source\stage\Stage.cpp">
       <Filter>ソース ファイル\stage</Filter>
     </ClCompile>
@@ -1403,13 +1409,13 @@
     <ClCompile Include="source\data\stream\StageReader.cpp">
       <Filter>ソース ファイル\data\stream</Filter>
     </ClCompile>
-    <ClCompile Include="source\ui\PadSelectUI.cpp">
-      <Filter>ソース ファイル\ui</Filter>
+    <ClCompile Include="source\attack\Revision.cpp">
+      <Filter>ソース ファイル\Attack</Filter>
     </ClCompile>
-    <ClCompile Include="source\ui\SoundSelectUI.cpp">
-      <Filter>ソース ファイル\ui</Filter>
+    <ClCompile Include="source\state\player\HomingState.cpp">
+      <Filter>ソース ファイル\state\player</Filter>
     </ClCompile>
-    <ClCompile Include="source\ui\VolumeSelectUI.cpp">
+    <ClCompile Include="source\ui\TargetMarkerUI.cpp">
       <Filter>ソース ファイル\ui</Filter>
     </ClCompile>
     <ClCompile Include="source\attack\Revision.cpp">

@@ -27,7 +27,7 @@ public:
 
 	const bool isPlayerDead()const;
 private:
-	using PlayerPtr = std::unique_ptr<Player>;
+	using PlayerPtr = std::shared_ptr<Player>;
 	PlayerPtr m_player;
 	EnemyManager m_enemys;
 	

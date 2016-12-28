@@ -29,7 +29,7 @@ void EnemyManager::add(Enemy_Ptr _enemy)
 
 void EnemyManager::update(float deltaTime)
 {
-	for (auto& i : m_enemys) { i->update(deltaTime); }
+	for (auto& i : m_enemys) { i->update(deltaTime);}
 	remove();
 }
 

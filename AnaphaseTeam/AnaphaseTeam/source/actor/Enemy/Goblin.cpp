@@ -23,6 +23,9 @@
 #include "../../../header/state/enemy/OverFarAI.h"
 #include "../../../header/state/enemy/EAI.h"
 #include "../../../header/actor/Enemy/EnemyMediator.h"
+
+#include "../../../header/renderer/define/SpriteRenderDesc.h"
+#include "../../../header/renderer/define/ViewportDesc.h"
 #include <math.h>
 Goblin::Goblin(const Transform & _transform, EnemyMediator& _mediator)
 	:IEnemy(_transform, MODEL_ID::ENEMY, _mediator)
@@ -68,9 +71,6 @@ void Goblin::update(float deltatime)
 	rotateLerp(&m_transform.m_rotate, m_timer.time / m_timer.maxTime);
 }
 
-
-
-
 void Goblin::draw(IRenderer * _renderer)
 {
 	m_collision.draw(_renderer);
@@ -89,7 +89,7 @@ void Goblin::damage(const AttackStatus & _attackStatus)
 	}
 	m_animatorOne.changeAnimationLerp(ENEMY_ANIMATION::DAMAGE1, 1.5f);
 	m_knockBack.start(_attackStatus.m_blowOff);
-	
+
 }
 void Goblin::createStates()
 {

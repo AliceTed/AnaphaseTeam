@@ -14,6 +14,8 @@
 #include "../collision/CollisionGroup.h"
 #include "../state/ACTOR_STATE.h"
 
+#include "../../header/attack/KnockBack.h"
+
 struct AttackStatus;
 class IRenderer;
 class Map;

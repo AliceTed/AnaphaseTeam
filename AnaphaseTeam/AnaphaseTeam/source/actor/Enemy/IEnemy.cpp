@@ -28,6 +28,7 @@
 #include "../../../header/actor/Enemy/EnemyMediator.h"
 
 
+
 const float IEnemy::PLAYER_DISTANCE_NEAR = 2.0f;
 const float IEnemy::PLAYER_DISTANCE_MID = 3.0f;
 const float IEnemy::PLAYER_DISTANCE_FAR = 7.5f;
@@ -45,9 +46,10 @@ IEnemy::IEnemy(const Transform& _transform, MODEL_ID _modelID, EnemyMediator& _m
 
 void IEnemy::look_at(CameraController* _camera, Player* _player)
 {
-
 	GSvector3 target = m_transform.m_translate;
 	_player->look_at(_camera, &target);
+	_player->targetMaker(target);
+	
 }
 
 void IEnemy::specialDamage()
@@ -62,6 +64,7 @@ void IEnemy::start_lockOn()
 	UIManager::getInstance().release(EUI::ENEMYHP);
 	std::shared_ptr<HPGaugeUI> hp = std::make_shared<HPGaugeUI>(GSvector2(800, 600), m_status);
 	UIManager::getInstance().add(EUI::ENEMYHP, hp);
+
 
 }
 
