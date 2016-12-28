@@ -26,7 +26,8 @@ void ComboAttack::start(bool _isSlow)
 		m_current.initialize(m_player);
 		return;
 	}
-	m_current = m_container.at("QucikFirst");
+	
+	m_current = m_container.at("QuickFirst");
 	m_current.initialize(m_player);
 }
 

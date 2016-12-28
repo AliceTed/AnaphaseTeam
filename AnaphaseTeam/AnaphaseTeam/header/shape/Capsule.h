@@ -8,6 +8,7 @@ class Capsule :public Shape
 {
 public:
 	Capsule(const Segment& _segment, float radius);
+	Capsule(const GSvector3& _pos, const GSvector3& _dir, float _hight, float _radius);
 	~Capsule();
 	void translate(const GSvector3& _position);
 	void transfer(const GSvector3& _position);

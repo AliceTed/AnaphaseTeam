@@ -238,6 +238,9 @@
     <Filter Include="ヘッダー ファイル\spline">
       <UniqueIdentifier>{ae25f4dc-81d2-4456-af2a-97f8a7cd858f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\data\json">
+      <UniqueIdentifier>{9a9e6c22-7f81-41ef-90af-81c12a296f94}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="header\math\Calculate.h">
@@ -954,6 +957,12 @@
     <ClInclude Include="header\camera\CameraWork\CameraWorkNormalBattle.h">
       <Filter>ヘッダー ファイル\camera\CameraWork</Filter>
     </ClInclude>
+    <ClInclude Include="header\data\json\JObject.h">
+      <Filter>ヘッダー ファイル\data\json</Filter>
+    </ClInclude>
+    <ClInclude Include="header\data\json\JArray.h">
+      <Filter>ヘッダー ファイル\data\json</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="source\main.cpp">
@@ -1447,6 +1456,12 @@
     </ClCompile>
     <ClCompile Include="source\convenient\Timer.cpp">
       <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="source\data\json\JObject.cpp">
+      <Filter>ソース ファイル\data\json</Filter>
+    </ClCompile>
+    <ClCompile Include="source\data\json\JArray.cpp">
+      <Filter>ソース ファイル\data\json</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

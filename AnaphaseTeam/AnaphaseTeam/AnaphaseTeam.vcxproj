@@ -153,6 +153,8 @@
     <ClCompile Include="source\camera\CameraWork\CameraWorkTest.cpp" />
     <ClCompile Include="source\camera\LookAt.cpp" />
     <ClCompile Include="source\attack\KnockBack.cpp" />
+    <ClCompile Include="source\data\json\JArray.cpp" />
+    <ClCompile Include="source\data\json\JObject.cpp" />
     <ClCompile Include="source\data\stream\PhaseConverter.cpp" />
     <ClCompile Include="source\data\stream\PhaseReader.cpp" />
     <ClCompile Include="source\data\stream\SpawnConverter.cpp" />
@@ -320,6 +322,8 @@
     <ClInclude Include="header\camera\CameraWork\CameraWorkNormalBattle.h" />
     <ClInclude Include="header\camera\CameraWork\CameraWorkTest.h" />
     <ClInclude Include="header\camera\LookAt.h" />
+    <ClInclude Include="header\data\json\JArray.h" />
+    <ClInclude Include="header\data\json\JObject.h" />
     <ClInclude Include="header\data\json\Picojson.h" />
     <ClInclude Include="header\data\stream\PhaseConverter.h" />
     <ClInclude Include="header\data\stream\PhaseReader.h" />
