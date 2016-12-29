@@ -220,7 +220,7 @@ void Player::subActionStart()
 	if (GameDevice::getInstacnce().input()->avoid())
 	{
 		AttackStatus attackStatus = m_combo.getStatus();
-		if (!m_isLockOn)
+		/*if (!m_isLockOn)
 		{
 			changeState(ACTOR_STATE::STEP);
 			return;
@@ -228,7 +228,8 @@ void Player::subActionStart()
 		if (attackStatus.m_blowOff.length() >= 0.1f)
 		{
 			changeState(ACTOR_STATE::HOMINGSTART);
-		}
+		}*/
+		changeState(ACTOR_STATE::HOMINGSTART);
 	}
 }
 void Player::revision()
@@ -317,6 +318,7 @@ void Player::createStates()
 	registerState(ACTOR_STATE::STAND, new StandState(this));
 	registerState(ACTOR_STATE::STEP, new StepState(this));
 	registerState(ACTOR_STATE::HOMING, new HomingState(this));
+	registerState(ACTOR_STATE::HOMINGSTART, new HomingStartState(this));
 	registerState(ACTOR_STATE::SPECIALATTACK, new SpecialAttackState(this));
 
 	registerState(ACTOR_STATE::SINGLEJUMP, new SingleJumpState(this));
