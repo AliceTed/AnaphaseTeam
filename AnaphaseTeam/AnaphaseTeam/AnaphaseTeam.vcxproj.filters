@@ -960,6 +960,15 @@
     <ClInclude Include="header\data\json\JArray.h">
       <Filter>ヘッダー ファイル\data\json</Filter>
     </ClInclude>
+    <ClInclude Include="header\ui\TargetMarkerUI.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="header\state\player\HomingState.h">
+      <Filter>ヘッダー ファイル\state\player</Filter>
+    </ClInclude>
+    <ClInclude Include="header\state\player\HomingStartState.h">
+      <Filter>ヘッダー ファイル\state\player</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="source\main.cpp">
@@ -1468,6 +1477,9 @@
     </ClCompile>
     <ClCompile Include="source\data\json\JArray.cpp">
       <Filter>ソース ファイル\data\json</Filter>
+    </ClCompile>
+    <ClCompile Include="source\state\player\HomingStartState.cpp">
+      <Filter>ソース ファイル\state\player</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

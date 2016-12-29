@@ -83,6 +83,7 @@ private://state宣言
 	class StepState;
 	class SpecialAttackState;
 	class HomingState;
+	class HomingStartState;
 	/*
 	空中状態で別で作るのではなく
 	プレイヤーの状態として各種追加する
@@ -100,6 +101,7 @@ private://state宣言
 	
 	friend StepState;
 	friend HomingState;
+	friend HomingStartState;
 	friend SingleJumpState;
 	friend DoubleJumpState;
 	friend LimitFallState;

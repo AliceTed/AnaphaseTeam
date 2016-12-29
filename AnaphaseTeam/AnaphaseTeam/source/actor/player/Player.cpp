@@ -6,6 +6,7 @@
 #include "../../../header/state/player/StandState.h"
 #include "../../../header/state/player/StepState.h"
 #include "../../../header/state/player/HomingState.h"
+#include "../../../header/state/player/HomingStartState.h"
 #include "../../../header/state/player/SpecialAttackState.h"
 
 #include "../../../header/state/player/SingleJumpState.h"
@@ -226,7 +227,7 @@ void Player::subActionStart()
 		}
 		if (attackStatus.m_blowOff.length() >= 0.1f)
 		{
-			changeState(ACTOR_STATE::HOMING);
+			changeState(ACTOR_STATE::HOMINGSTART);
 		}
 	}
 }
