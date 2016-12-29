@@ -220,7 +220,7 @@ void Player::subActionStart()
 	if (GameDevice::getInstacnce().input()->avoid())
 	{
 		AttackStatus attackStatus = m_combo.getStatus();
-		/*if (!m_isLockOn)
+		if (!m_isLockOn)
 		{
 			changeState(ACTOR_STATE::STEP);
 			return;
@@ -228,8 +228,7 @@ void Player::subActionStart()
 		if (attackStatus.m_blowOff.length() >= 0.1f)
 		{
 			changeState(ACTOR_STATE::HOMINGSTART);
-		}*/
-		changeState(ACTOR_STATE::HOMINGSTART);
+		}
 	}
 }
 void Player::revision()
