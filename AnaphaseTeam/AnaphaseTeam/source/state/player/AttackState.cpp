@@ -23,7 +23,7 @@ void Player::AttackState::action(float deltaTime)
 
 	if (m_actor->m_isGround)
 	{
-		m_actor->subActionStart();
+		//m_actor->subActionStart();
 		return;
 	}
 	if (m_inputTimer.isEnd())
@@ -38,9 +38,6 @@ Player::AttackState* Player::AttackState::clone() const
 
 void Player::AttackState::input(float deltaTime)
 {
-
-
-
 	//アニメーション終わったら受付開始
 	if (m_isCombo == COMBOSTEP::END)
 	{

@@ -14,21 +14,9 @@ void Player::StepState::start()
 	m_actor->m_animatorOne.changeAnimation(ANIMATION_ID::STEP);
 	GameDevice::getInstacnce().sound().playSE(SE_ID::PLAYER_STEP);
 	m_velocity = 4.5f;
-	tracking();
-	if (m_velocity <= 1.0f)
-	{
-		changeState(ACTOR_STATE::STAND);
-		return;
-	}
 	if (!m_actor->m_Gauge->down(5))
 	{
 		changeState(ACTOR_STATE::STAND);
-		return;
-	}
-	if (m_actor->aerialTracking())
-	{
-		m_velocity += 2;
-		m_step.start(m_actor->m_transform.up(), m_velocity);
 		return;
 	}
 	m_step.start(m_actor->m_transform.front(), m_velocity);
@@ -45,13 +33,4 @@ void Player::StepState::action(float deltaTime)
 Player::StepState* Player::StepState::clone() const
 {
 	return new StepState(*this);
-}
-
-void Player::StepState::tracking()
-{
-	if (m_actor->m_isLockOn)
-	{
-		m_actor->lookTarget();
-		m_velocity = m_actor->stepDistance();
-	}
 }

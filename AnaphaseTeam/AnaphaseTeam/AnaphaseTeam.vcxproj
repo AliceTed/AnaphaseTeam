@@ -153,6 +153,8 @@
     <ClCompile Include="source\camera\CameraWork\CameraWorkTest.cpp" />
     <ClCompile Include="source\camera\LookAt.cpp" />
     <ClCompile Include="source\attack\KnockBack.cpp" />
+    <ClCompile Include="source\data\json\JArray.cpp" />
+    <ClCompile Include="source\data\json\JObject.cpp" />
     <ClCompile Include="source\data\stream\PhaseConverter.cpp" />
     <ClCompile Include="source\data\stream\PhaseReader.cpp" />
     <ClCompile Include="source\data\stream\SpawnConverter.cpp" />
@@ -256,6 +258,8 @@
     <ClCompile Include="source\state\player\AttackState.cpp" />
     <ClCompile Include="source\state\player\DamageState.cpp" />
     <ClCompile Include="source\state\player\DoubleJumpState.cpp" />
+    <ClCompile Include="source\state\player\HomingStartState.cpp" />
+    <ClCompile Include="source\state\player\HomingState.cpp" />
     <ClCompile Include="source\state\player\LandingRigidityState.cpp" />
     <ClCompile Include="source\state\player\LimitFallState.cpp" />
     <ClCompile Include="source\state\player\MoveState.cpp" />
@@ -265,12 +269,12 @@
     <ClCompile Include="source\state\player\StepState.cpp" />
     <ClCompile Include="source\subAction\Jumping.cpp" />
     <ClCompile Include="source\animation\AnimatorOne.cpp" />
-    <ClCompile Include="source\animation\convenient\Point.cpp" />
+    <ClCompile Include="source\convenient\Point.cpp" />
     <ClCompile Include="source\scene\SceneChange.cpp" />
     <ClCompile Include="source\subAction\Step.cpp" />
     <ClCompile Include="source\animation\Animation.cpp" />
     <ClCompile Include="source\animation\AnimationTimer.cpp" />
-    <ClCompile Include="source\animation\convenient\Timer.cpp" />
+    <ClCompile Include="source\convenient\Timer.cpp" />
     <ClCompile Include="source\device\Input.cpp" />
     <ClCompile Include="source\light\DirectionalLight.cpp" />
     <ClCompile Include="source\light\PointLight.cpp" />
@@ -304,6 +308,7 @@
     <ClCompile Include="source\ui\SoundSelectUI.cpp" />
     <ClCompile Include="source\ui\SpecialSkillUI.cpp" />
     <ClCompile Include="source\ui\SPGaugeUI.cpp" />
+    <ClCompile Include="source\ui\TargetMarkerUI.cpp" />
     <ClCompile Include="source\ui\TitleUI.cpp" />
     <ClCompile Include="source\ui\UIManager.cpp" />
     <ClCompile Include="source\ui\VolumeSelectUI.cpp" />
@@ -320,6 +325,8 @@
     <ClInclude Include="header\camera\CameraWork\CameraWorkNormalBattle.h" />
     <ClInclude Include="header\camera\CameraWork\CameraWorkTest.h" />
     <ClInclude Include="header\camera\LookAt.h" />
+    <ClInclude Include="header\data\json\JArray.h" />
+    <ClInclude Include="header\data\json\JObject.h" />
     <ClInclude Include="header\data\json\Picojson.h" />
     <ClInclude Include="header\data\stream\PhaseConverter.h" />
     <ClInclude Include="header\data\stream\PhaseReader.h" />
@@ -403,7 +410,6 @@
     <ClInclude Include="header\myanimation\TimeKeyFrame.h" />
     <ClInclude Include="header\renderer\define\AnimationRenderDesc.h" />
     <ClInclude Include="header\renderer\define\BillBoardRenderDesc.h" />
-    <ClInclude Include="header\renderer\define\BillborardRenderDesc.h" />
     <ClInclude Include="header\renderer\define\BlendFunc.h" />
     <ClInclude Include="header\renderer\define\Color4.h" />
     <ClInclude Include="header\renderer\define\LightDesc.h" />
@@ -479,6 +485,8 @@
     <ClInclude Include="header\state\player\AttackState.h" />
     <ClInclude Include="header\state\player\DamageState.h" />
     <ClInclude Include="header\state\player\DoubleJumpState.h" />
+    <ClInclude Include="header\state\player\HomingStartState.h" />
+    <ClInclude Include="header\state\player\HomingState.h" />
     <ClInclude Include="header\state\player\LandingRigidityState.h" />
     <ClInclude Include="header\state\player\LimitFallState.h" />
     <ClInclude Include="header\state\player\MoveState.h" />
@@ -543,6 +551,7 @@
     <ClInclude Include="header\ui\SoundSelectUI.h" />
     <ClInclude Include="header\ui\SpecialSkillUI.h" />
     <ClInclude Include="header\ui\SPGaugeUI.h" />
+    <ClInclude Include="header\ui\TargetMarkerUI.h" />
     <ClInclude Include="header\ui\TitleUI.h" />
     <ClInclude Include="header\ui\UIManager.h" />
     <ClInclude Include="header\ui\VolumeSelectUI.h" />

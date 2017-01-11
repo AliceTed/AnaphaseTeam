@@ -77,6 +77,7 @@ public:
 	* @brief l‚¦‚é‚©”Û‚©
 	*/
 	const bool isThink()const;
+
 public:
 	/**
 	* @fn

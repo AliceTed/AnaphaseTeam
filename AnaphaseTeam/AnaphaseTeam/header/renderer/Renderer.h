@@ -37,7 +37,7 @@ public:
 
 	virtual void render(const SkinnedMeshRenderDesc& desc)override;
 
-	virtual void render(const BillboardRenderDesc & desc) override;
+	virtual void render(const BillBoardRenderDesc & desc) override;
 
 	virtual void render(const SpriteRenderDesc & desc) override;
 

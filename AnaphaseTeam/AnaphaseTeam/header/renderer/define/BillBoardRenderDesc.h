@@ -5,9 +5,9 @@
 #include "BlendFunc.h"
 
 
-struct BillboardRenderDesc
+struct BillBoardRenderDesc
 {
-	BillboardRenderDesc():
+	BillBoardRenderDesc():
 		textureID(0),
 		rect(0,0,0,0),
 		srcRect(0,0,0,0),

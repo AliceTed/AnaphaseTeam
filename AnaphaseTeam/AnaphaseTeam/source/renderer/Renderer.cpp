@@ -216,7 +216,7 @@ void Renderer::render(const SkinnedMeshRenderDesc & desc)
 	gsEndShader();
 }
 
-void Renderer::render(const BillboardRenderDesc & desc)
+void Renderer::render(const BillBoardRenderDesc & desc)
 {
 	//各種レンダリングモード退避
 	glPushAttrib(GL_ENABLE_BIT | GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);

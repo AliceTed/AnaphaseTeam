@@ -8,6 +8,11 @@ Capsule::Capsule(const Segment & _segment, float _radius)
 {
 }
 
+Capsule::Capsule(const GSvector3 & _pos, const GSvector3 & _dir, float _hight, float _radius)
+	:m_Segment(_pos,_dir*_hight),m_Radius(_radius)
+{
+}
+
 Capsule::~Capsule()
 {
 }
