@@ -27,15 +27,13 @@
 #include "../../../header/state/enemy/EAI.h"
 #include "../../../header/actor/Enemy/EnemyMediator.h"
 
-
-
 const float IEnemy::PLAYER_DISTANCE_NEAR = 2.0f;
 const float IEnemy::PLAYER_DISTANCE_MID = 3.0f;
 const float IEnemy::PLAYER_DISTANCE_FAR = 7.5f;
 IEnemy::IEnemy(const Transform& _transform, MODEL_ID _modelID, EnemyMediator& _mediator)
 	:
 	Actor(_transform, _modelID, Actor_Tag::ENEMY),
-	m_status(),
+	m_status(StatusParameter()),
 	m_alpha(1),
 	m_knockBack(m_transform),
 	m_AI(), m_mediator(_mediator),

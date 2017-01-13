@@ -6,11 +6,15 @@
 */
 
 #pragma once
+
+#include "StatusParameter.h"
+
 class Gauge;
+
 class Status
 {
 public:
-	Status(float _hp = 100);
+	Status(const StatusParameter& _parameter);
 	~Status();
 	void initialize();
 	void change(Gauge& _gauge); 
@@ -19,9 +23,10 @@ public:
 	const float getMaxHp()const;
 	void down(float _damage);
 	void add(float _amount);
-private:
+public:
+	StatusParameter m_parameter;
 	float m_hp;
-	const float m_maxHp;
+	float m_maxHp;
 	float m_AttackSpeed;
-	const float def ;
+	const float def;
 };
