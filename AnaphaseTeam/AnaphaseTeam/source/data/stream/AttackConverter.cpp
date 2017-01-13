@@ -43,10 +43,10 @@ const bool AttackConverter::operator()(LoadAttack * _out, picojson::value& _valu
 	_out->parameter.shapeData.type = type;
 	if (!obj.isPossess("ShapeData"))return false;
 	JUtil::JObject shapeObj(obj.get<picojson::object>("ShapeData"));
-	return selectConvert(_out->parameter.shapeData.shape, shapeObj, type);
+	return selectConvert(&_out->parameter.shapeData, shapeObj, type);
 }
 
-const bool AttackConverter::selectConvert(std::shared_ptr<Shape>& _out, JUtil::JObject & _obj, SHAPE_TYPE _type) const
+const bool AttackConverter::selectConvert(ShapeData* _out, JUtil::JObject & _obj, SHAPE_TYPE _type) const
 {
 	if (SHAPE_TYPE::SPHERE == _type)
 	{
@@ -55,7 +55,7 @@ const bool AttackConverter::selectConvert(std::shared_ptr<Shape>& _out, JUtil::J
 	return capsuleConvert(_out, _obj);
 }
 
-const bool AttackConverter::capsuleConvert(std::shared_ptr<Shape>& _out, JUtil::JObject & _obj) const
+const bool AttackConverter::capsuleConvert(ShapeData* _out, JUtil::JObject & _obj) const
 {
 	if (!_obj.isPossess("ShapePosition"))return false;
 	JUtil::JArray p_array(_obj.get<picojson::array>("ShapePosition"));
@@ -70,17 +70,19 @@ const bool AttackConverter::capsuleConvert(std::shared_ptr<Shape>& _out, JUtil::
 	if (!_obj.isPossess("CapsuleHight"))return false;
 	float hight=_obj.getNumber<float>("CapsuleHight");
 	
-	_out = std::shared_ptr<Shape>(new Capsule(pos,dir, hight, radius));
+	_out->shape = std::shared_ptr<Shape>(new Capsule(GSvector3(0,0,0),dir, hight, radius));
+	_out->offset = pos;
 	return true;
 }
 
-const bool AttackConverter::sphereConvert(std::shared_ptr<Shape>& _out, JUtil::JObject & _obj) const
+const bool AttackConverter::sphereConvert(ShapeData* _out, JUtil::JObject & _obj) const
 {
 	if (!_obj.isPossess("ShapePosition"))return false;
 	JUtil::JArray p_array(_obj.get<picojson::array>("ShapePosition"));
 	GSvector3 pos = p_array.toVec3();
 	if (!_obj.isPossess("ShapeRadius"))return false;
 	float radius=_obj.getNumber<float>("ShapeRadius");
-	_out = std::make_shared<Sphere>(pos,radius);
+	_out->shape= std::make_shared<Sphere>(GSvector3(0, 0, 0),radius);
+	_out->offset = pos;
 	return true;
 }
