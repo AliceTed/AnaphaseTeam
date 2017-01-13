@@ -10,5 +10,6 @@ enum class SE_ID : unsigned int
 	PLAYER_STEP,
 	OPEN_SPECIALUI,
 	ENEMY_ATTACK,
+	ENEMY_DAMAGE,
 	SIZE
 };

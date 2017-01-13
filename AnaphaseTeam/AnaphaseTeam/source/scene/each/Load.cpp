@@ -108,6 +108,7 @@ void Load::loadSound()
 	sound(SE_ID::PLAYER_STEP, "player_step");
 	sound(SE_ID::OPEN_SPECIALUI, "open_specialUI");
 	sound(SE_ID::ENEMY_ATTACK, "enemy_attack");
+	sound(SE_ID::ENEMY_DAMAGE, "ENEMY_Damage_1");
 }
 
 void Load::loadModel()
