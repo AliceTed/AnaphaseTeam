@@ -12,6 +12,7 @@ public:
 	void decrease(float _time);
 	void increase(float _time);
 	void flashing(float _time);
+	void decision();
 	bool scrollUp(float _position);
 	bool scrollDown(float _position);
 

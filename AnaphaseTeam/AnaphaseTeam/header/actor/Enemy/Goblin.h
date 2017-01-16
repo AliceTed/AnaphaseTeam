@@ -6,6 +6,7 @@
 #include "../../actor/Player/Status.h"
 #include "../../attack/KnockBack.h"
 #include "../../state/enemy/EnemyAIController.h"
+//#include "../../ui/Score.h"
 #include "IEnemy.h"
 class EnemyMediator;
 class IEnemyAI;

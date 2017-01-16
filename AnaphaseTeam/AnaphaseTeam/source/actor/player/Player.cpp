@@ -63,6 +63,7 @@ Player::Player(const Transform& _t,Camera * _camera, LockOn* _lockon)
 	m_Revision(),
 	m_timer(1.5f),
 	m_isLockOn(false)
+	//m_score(std::make_shared<Score>())
 {
 }
 
@@ -100,9 +101,11 @@ void Player::initialize()
 	m_specialskill.add(SPECIALSKILL_TYPE::SUPERARMOR, new SuperArmor());
 	m_specialUI->initialize();
 	m_Gauge->initialize();
+	//m_score->initialize();
 	UIManager::getInstance().add(EUI::HP, std::shared_ptr<HPGaugeUI>(new HPGaugeUI(GSvector2(0, 10), m_status)));
 	UIManager::getInstance().add(EUI::GAUGE, m_Gauge);
 	UIManager::getInstance().add(EUI::SPICON, m_specialUI);
+	//UIManager::getInstance().add(EUI::SCORE, m_score);
 	m_timer.initialize();
 	m_isLockOn = false;
 }
@@ -120,6 +123,11 @@ void Player::update(float deltatime)
 	if (m_isDead = m_status.getHp() <= 0)
 	{
 		m_collision.clear();
+	}
+
+	if (GameDevice::getInstacnce().input()->jump())
+	{
+		//m_score->add(1);
 	}
 }
 
@@ -144,6 +152,11 @@ void Player::targetFind(EnemyManager * _enemys)
 void Player::recovery()
 {
 	m_status.add(30.0f);
+}
+
+void Player::score(int _score)
+{
+	//m_score->add(_score);
 }
 
 const float Player::stepDistance() const

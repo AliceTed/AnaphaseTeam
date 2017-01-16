@@ -7,19 +7,24 @@
 #include "../../header/stage/StageData.h"
 #include "../../header/data/stream/PhaseReader.h"
 #include "../../header/camera/CameraWork/E_CameraWorkID.h"
+#include "../../header/ui/UIManager.h"
+
 Stage::Stage(const StageData& _stage)
 	:m_Map(OCTREE_ID::VISUAL),
+	m_score(std::make_shared<Score>()),
 	m_cameracontroller(),
-	m_actors(_stage.init, m_cameracontroller.get_camera()),
+	m_actors(_stage.init, m_cameracontroller.get_camera(),*m_score),
 	m_phaseManage()
+	
 {
 	m_actors.initialize();
+	UIManager::getInstance().add(EUI::SCORE, m_score);
 
 	PhaseReader reader;
-	for (auto& i:_stage.pahseData)
+	for (auto& i : _stage.pahseData)
 	{
 		PhaseData data;
-		reader(&data,i);
+		reader(&data, i);
 		m_phaseManage.add(new Phase(data));
 	}
 	m_phaseManage.changeFirst();
@@ -36,6 +41,7 @@ void Stage::update(float deltaTime)
 	m_phaseManage.update(deltaTime, m_actors, m_cameracontroller);
 	m_cameracontroller.update(deltaTime);
 	UIManager::getInstance().update(deltaTime);
+
 }
 
 void Stage::draw(IRenderer * _renderer)
@@ -51,6 +57,11 @@ void Stage::draw(IRenderer * _renderer)
 	m_actors.draw(_renderer);
 	m_phaseManage.draw(_renderer);
 	UIManager::getInstance().draw(_renderer);
+}
+
+void Stage::add(int _score)
+{
+	m_score->add(_score);
 }
 
 void Stage::finish()

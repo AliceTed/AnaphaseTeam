@@ -66,13 +66,25 @@ void OptionUI::operation(Option& _opution)
 	cancel(_opution);
 	if (GameDevice::getInstacnce().input()->right())
 	{
-		m_pad.previous();
-		m_volume.next();
+		if (m_select.current() == OPTION::CONFIG)
+		{
+			m_pad.previous();
+		}
+		if (m_select.current() == OPTION::SOUND)
+		{
+			m_volume.next();
+		}
 	}
 	if (GameDevice::getInstacnce().input()->left())
 	{
-		m_pad.next();
-		m_volume.previous();
+		if (m_select.current() == OPTION::CONFIG)
+		{
+			m_pad.next();
+		}
+		if (m_select.current() == OPTION::SOUND)
+		{
+			m_volume.previous();
+		}
 	}
 	if (GameDevice::getInstacnce().input()->up())
 	{
@@ -82,7 +94,7 @@ void OptionUI::operation(Option& _opution)
 	{
 		m_select.next();
 	}
-	if (GameDevice::getInstacnce().input()->decision())
+	if (GameDevice::getInstacnce().input()->jump())
 	{
 		if (m_select.current() == OPTION::CONFIG || m_select.current() == OPTION::TITLE)
 		{

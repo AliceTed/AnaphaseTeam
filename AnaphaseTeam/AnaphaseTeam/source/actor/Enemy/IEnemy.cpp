@@ -95,6 +95,16 @@ void IEnemy::lookAtToPlayer()
 	m_targetDirection = m_mediator.requestDirectionPlayer(this);
 }
 
+void IEnemy::scoreDamage()
+{
+	m_mediator.addScore(1);
+}
+
+void IEnemy::scoreDead()
+{
+	m_mediator.addScore(5);
+}
+
 EAI IEnemy::currentDistance()
 {
 	return m_AI.currentDistanceJudg();
@@ -113,6 +123,7 @@ const bool IEnemy::isNotDamageState()const
 {
 	//スポーンと死亡中は食らわない
 	return getState() == ACTOR_STATE::ESPAWN || getState() == ACTOR_STATE::EDEAD;
+	
 }
 const bool IEnemy::isDeadState() const
 {

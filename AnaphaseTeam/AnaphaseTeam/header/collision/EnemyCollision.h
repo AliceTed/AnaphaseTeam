@@ -1,6 +1,7 @@
 #pragma once
 #include "CollisionActor.h"
 #include "../actor/Enemy/IEnemy.h"
+#include "../ui/Score.h"
 class IEnemy::EnemyCollision:public CollisionActor
 {
 public:
@@ -12,4 +13,5 @@ private:
 private:
 	IEnemy* m_enemy;
 	GSvector3 m_position;
+	std::shared_ptr<Score> m_score;
 };

@@ -37,8 +37,8 @@ void PauseUI::scale_Game(const GSvector2 _def, const GSvector2 _max, const GSvec
 {
 	m_images[0]->start(_def, _max, 0);
 	m_images[1]->start(_max, _def, 0);
-	m_images[0]->moveStart(_posi0[0], 0);
-	m_images[1]->moveStart(_posi1[1], 0);
+	m_images[0]->moveStart(_posi0[0], 1);
+	m_images[1]->moveStart(_posi1[1], 1);
 }
 
 void PauseUI::draw(IRenderer* _renderer)

@@ -4,17 +4,19 @@
 #include "IEnemy.h"
 #include "EnemyMediator.h"
 #include <memory>
+#include "../../ui/Score.h"
 class Enemy;
 class IRenderer;
 class Actor;
 class Player;
 class Map;
+class Score;
 //ユニークポインタをシェアードポインタに変更
 using Enemy_Ptr = std::shared_ptr<IEnemy>;
 class EnemyManager :public EnemyMediator
 {
 public:
-	EnemyManager(Player* _player);
+	EnemyManager(Player* _player, Score & _score);
 	~EnemyManager() = default;
 	void initialize();
 	void add(IEnemy* _enemy);
@@ -35,10 +37,11 @@ public:
 	virtual bool requestDistanceOtherEnemy(IEnemy * _enemy)override;
 	virtual bool reqestGoToNear()override;
 	virtual bool reqestGoToMid()override;
+	virtual void addScore(int _score) override;
 private:
 	void remove();
 private:
 	std::vector<Enemy_Ptr>m_enemys;
 	Player* m_player;
-	// EnemyMediator を介して継承されました
+	Score & m_score;
 };

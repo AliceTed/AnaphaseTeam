@@ -89,7 +89,6 @@ void Goblin::damage(const AttackStatus & _attackStatus)
 	}
 	m_animatorOne.changeAnimationLerp(ENEMY_ANIMATION::DAMAGE1, 1.5f);
 	m_knockBack.start(_attackStatus.m_blowOff);
-
 }
 void Goblin::createStates()
 {

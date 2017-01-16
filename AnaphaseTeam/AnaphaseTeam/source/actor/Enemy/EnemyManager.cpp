@@ -4,9 +4,12 @@
 #include "../../../header/camera/LockOn.h"
 #include "../../../header/actor/Enemy/IEnemy.h"
 #include "../../../header/map/Map.h"
-EnemyManager::EnemyManager(Player* _player)
+#include "../../../header/ui/UIManager.h"
+#include "../../../header/stage/Stage.h"
+EnemyManager::EnemyManager(Player* _player, Score & _score)
 	:m_enemys(),
-	m_player(_player)
+	m_player(_player),
+	m_score(_score)
 {
 }
 
@@ -72,6 +75,11 @@ void EnemyManager::remove()
 {
 	auto itr = std::remove_if(m_enemys.begin(), m_enemys.end(), [](Enemy_Ptr& _e) {return _e->isDead(); });
 	m_enemys.erase(itr, m_enemys.end());
+}
+
+void EnemyManager::addScore(int _score)
+{
+	m_score.add(_score);
 }
 
 float EnemyManager::requestDistancePlayer(IEnemy * _enemy)

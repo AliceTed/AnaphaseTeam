@@ -21,18 +21,18 @@ public:
 	}
 	void update(float deltatime)
 	{
-		time += time<maxTime? deltatime * 1:0;
+		time += time < maxTime ? deltatime * 1 : 0;
 	}
 public:
-	float time=0;
-	float maxTime=10.0f;
+	float time = 0;
+	float maxTime = 10.0f;
 };
 
-class IEnemy:public Actor
+class IEnemy :public Actor
 {
 public:
-	IEnemy(const Transform& _transform, MODEL_ID _modelID,EnemyMediator& _mediator);
-	virtual ~IEnemy(){}
+	IEnemy(const Transform& _transform, MODEL_ID _modelID, EnemyMediator& _mediator);
+	virtual ~IEnemy() {}
 	/**
 	* @fn
 	* @brief カメラのロックオンのために自身のポジションを渡す
@@ -45,7 +45,7 @@ public:
 	* @brief SP技を食らったときの反応（HP分全部減らして確殺）
 	*/
 	void specialDamage();
-	
+
 	/**
 	* @fn
 	* @brief ロックオン時のHPUIの初期化登録
@@ -57,6 +57,10 @@ public:
 	float distaceToOtherEnemy();
 	void directionToPlayer();
 	void lookAtToPlayer();
+
+	void scoreDamage();
+	void scoreDead();
+
 	EAI currentDistance();
 	bool requestDistance(EAI _distance);
 	/**
@@ -84,13 +88,13 @@ public:
 	* @brief 乱数およびプレイヤーとの距離によって行動を決める
 	* @param (&_player)　プレイヤー
 	*/
-	virtual void think(Player* _palyer)=0;
+	virtual void think(Player* _palyer) = 0;
 protected:
-		/**
-		* @fn
-		* @brief stateを初期化代入
-		*/
-	virtual void createStates()=0;
+	/**
+	* @fn
+	* @brief stateを初期化代入
+	*/
+	virtual void createStates() = 0;
 	const EAI isNear(float _distance)const;
 	const bool blowDead()const;
 
