@@ -30,6 +30,4 @@ private:
 	float m_timer;
 	bool m_hit;
 	std::vector<int> m_current;
-	
-	
 };
