@@ -8,7 +8,8 @@
 Title::Title()
 	:m_IsExit(false),
 	m_change(),
-	m_pressKey(TEXTURE_ID::PRESSKEY, GSvector2(40, 600), 1.0f)
+	m_pressKey(TEXTURE_ID::PRESSKEY, GSvector2(40, 600), 1.0f),
+	m_time(0.0f)
 {
 }
 
@@ -23,10 +24,12 @@ void Title::initialize()
 	m_change.begin();
 	GameDevice::getInstacnce().sound().playBGM(BGM_ID::TITLE);
 	m_pressKey.initilize();
+	m_time = 0.0f;
 }
 void Title::update(float _deltaTime)
 {
 	if (m_change.update(_deltaTime))return;
+	m_time += _deltaTime;
 	if (GameDevice::getInstacnce().input()->jump())
 	{
 		m_change.end(SceneMode::MENU);
@@ -65,4 +68,4 @@ const bool Title::isExit() const
 {
 	return false;
 }
-	
+

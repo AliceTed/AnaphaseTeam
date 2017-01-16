@@ -21,5 +21,7 @@ private:
 	bool m_IsExit;
 	SceneChange m_change;
 	alpha m_pressKey;
+	//
+	float m_time;
 };
 #endif
