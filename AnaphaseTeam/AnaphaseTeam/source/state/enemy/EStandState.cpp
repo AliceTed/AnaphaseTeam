@@ -1,5 +1,5 @@
-#include "../../../header/state/enemy/EStandState.h"
-#include "../../../header/data/id/ENEMY_ANIMATION.h"
+#include "state/enemy/EStandState.h"
+#include "data/id/ENEMY_ANIMATION.h"
 Goblin::EStandState::EStandState(Goblin* _enemy)
 	:ActorState(_enemy), m_tiemr(1.5f)
 {

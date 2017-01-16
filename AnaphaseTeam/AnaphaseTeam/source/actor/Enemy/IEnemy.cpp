@@ -1,31 +1,38 @@
-#include "../../../header/actor/Enemy/IEnemy.h"
-#include "../../../header/actor/Enemy/Goblin.h"
-#include "../../../header/renderer/IRenderer.h"
-#include "../../../header/collision/EnemyCollision.h"
-#include "../../../header/math/Random.h"
-#include "../../../header/math/Calculate.h"
-#include "../../../header/actor/Player/Player.h"
-#include "../../../header/data/id/ENEMY_ANIMATION.h"
-#include "../../../header/collision/EnemyAttackCollision.h"
-#include "../../../header/state/enemy/EAttackState.h"
-#include "../../../header/state/enemy/EDamageState.h"
-#include "../../../header/state/enemy/EDeadState.h"
-#include "../../../header/state/enemy/EMoveState.h"
-#include "../../../header/state/enemy/ESlideState.h"
-#include "../../../header/state/enemy/ESpawnState.h"
-#include "../../../header/state/enemy/EStandState.h"
-#include "../../../header/state/enemy/EDashFrontState.h"
-#include "../../../header/state/enemy/EMoveBackState.h"
-#include "../../../header/state/enemy/EThinkState.h"
-#include "../../../header/state/enemy/ESecoundAttackState.h"
-#include "../../../header/ui/HPGaugeUI.h"
-#include "../../../header/ui/UIManager.h"
-#include "../../../header/state/enemy/NearAI.h"
-#include "../../../header/state/enemy/OverNearAI.h"
-#include "../../../header/state/enemy/MiddleRangeAI.h"
-#include "../../../header/state/enemy/OverFarAI.h"
-#include "../../../header/state/enemy/EAI.h"
-#include "../../../header/actor/Enemy/EnemyMediator.h"
+/**
+* @file IEnemy.cpp
+* @brief 敵の仮想クラス
+* @author 久秋
+* @date 2016/12/15
+*/
+#include "actor/Enemy/IEnemy.h"
+#include "actor/Enemy/Goblin.h"
+#include "renderer/IRenderer.h"
+#include "collision/EnemyCollision.h"
+#include "math/Random.h"
+#include "math/Calculate.h"
+#include "actor/Player/Player.h"
+#include "data/id/ENEMY_ANIMATION.h"
+#include "collision/EnemyAttackCollision.h"
+#include "state/enemy/EAttackState.h"
+#include "state/enemy/EDamageState.h"
+#include "state/enemy/EDeadState.h"
+#include "state/enemy/EMoveState.h"
+#include "state/enemy/ESlideState.h"
+#include "state/enemy/ESpawnState.h"
+#include "state/enemy/EStandState.h"
+#include "state/enemy/EDashFrontState.h"
+#include "state/enemy/EMoveBackState.h"
+#include "state/enemy/EThinkState.h"
+#include "state/enemy/ESecoundAttackState.h"
+#include "ui/HPGaugeUI.h"
+#include "ui/UIManager.h"
+#include "state/enemy/NearAI.h"
+#include "state/enemy/OverNearAI.h"
+#include "state/enemy/MiddleRangeAI.h"
+#include "state/enemy/OverFarAI.h"
+#include "state/enemy/EAI.h"
+#include "actor/Enemy/EnemyMediator.h"
+#include "math\Calculate.h"
 
 
 
@@ -83,16 +90,18 @@ float IEnemy::distaceToOtherEnemy()
 }
 void IEnemy::directionToPlayer()
 {
-	m_transform.m_rotate.dot(m_mediator.requestDirectionPlayer(this));
-	if (50.0f < fabsf(m_transform.m_rotate.getYaw() - m_mediator.requestDirectionPlayer(this).getYaw()))
+	//m_transform.m_rotate.dot(m_mediator.requestPlayerDirection(this));
+	if (50.0f < fabsf(m_transform.m_rotate.getYaw() - m_mediator.requestPlayerDirection(this).getYaw()))
 	{
 			lookAtToPlayer();
 	}
 }
 void IEnemy::lookAtToPlayer()
 {
+	/*ラープタイマー開始*/
 	m_timer.begin();
-	m_targetDirection = m_mediator.requestDirectionPlayer(this);
+	/*targetをプレイヤーがいる方向へ入れ替え*/
+	m_targetDirection = m_mediator.requestPlayerDirection(this);
 }
 
 void IEnemy::scoreDamage()
@@ -105,9 +114,9 @@ void IEnemy::scoreDead()
 	m_mediator.addScore(5);
 }
 
-EAI IEnemy::currentDistance()
+EAI IEnemy::currentAIRange()
 {
-	return m_AI.currentDistanceJudg();
+	return m_AI.currentRange();
 }
 bool IEnemy::requestDistance(EAI _distance)
 {
@@ -134,19 +143,21 @@ const bool IEnemy::isThink()const
 	return getState() == ACTOR_STATE::ETHINK;
 }
 
-const EAI IEnemy::isNear(float _distance)const
+const EAI IEnemy::dicisionOfAI(float _distance)const
 {
+	Math::Range range;
 	EAI ai = EAI::ATTACKRANGE;
 	//近すぎ
-	if (_distance <= PLAYER_DISTANCE_NEAR)ai = EAI::OVERNEAR;
+	if (_distance < PLAYER_DISTANCE_NEAR)
+		ai = EAI::OVERNEAR;
 	//攻撃範囲
-	if (_distance > PLAYER_DISTANCE_NEAR&&_distance <= PLAYER_DISTANCE_MID)
+	if (range(_distance , PLAYER_DISTANCE_NEAR, PLAYER_DISTANCE_MID))
 		ai = EAI::ATTACKRANGE;
 	//中間
-	if (_distance > PLAYER_DISTANCE_MID&&_distance <= PLAYER_DISTANCE_FAR)
+	if (range(_distance, PLAYER_DISTANCE_MID, PLAYER_DISTANCE_FAR))
 		ai = EAI::MIDDRANGE;
 	//遠すぎ
-	if (_distance > PLAYER_DISTANCE_FAR)
+	if (PLAYER_DISTANCE_FAR < _distance)
 		ai = EAI::OVERFAR;
 
 	return ai;
@@ -165,6 +176,10 @@ void IEnemy::createAttackCollision()
 
 void IEnemy::rotateLerp(GSquaternion* _out, float _time)
 {
+	/*
+	プレイヤーが左右どちらにいるか確認して
+	回転方向を決める
+	*/
 	if (0.0f < gsQuaternionDot(_out, &m_targetDirection))
 	{
 		gsQuaternionLerp(_out, _out, &m_targetDirection, _time);

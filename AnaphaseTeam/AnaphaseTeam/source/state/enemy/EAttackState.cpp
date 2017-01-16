@@ -1,6 +1,6 @@
-#include "../../../header/state/enemy/EAttackState.h"
-#include "../../../header/data/id/ENEMY_ANIMATION.h"
-#include "../../../header/math/Random.h"
+#include "state/enemy/EAttackState.h"
+#include "data/id/ENEMY_ANIMATION.h"
+#include "math/Random.h"
 Goblin::EAttackState::EAttackState(Goblin* _enemy)
 	:ActorState(_enemy),m_secoundAttack()
 {

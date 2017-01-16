@@ -1,8 +1,8 @@
-#include "../../../header/camera/CameraWork/CameraWorkNormal.h"
-#include "../../../header/camera/Camera.h"
-#include "../../../header/camera/CameraWork/CWParameterReader.h"
-#include "../../../header/math/Calculate.h"
-#include "../../../header/math/AMath.h"
+#include "camera/CameraWork/CameraWorkNormal.h"
+#include "camera/Camera.h"
+#include "camera/CameraWork/CWParameterReader.h"
+#include "math/Calculate.h"
+#include "math/AMath.h"
 
 CameraWorkNormal::CameraWorkNormal(Camera* _camera, GSvector2* _rotate) :
 	CameraWorkEmpty(_camera),

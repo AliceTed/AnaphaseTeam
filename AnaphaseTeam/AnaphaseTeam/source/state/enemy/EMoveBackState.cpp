@@ -1,5 +1,5 @@
-#include "../../../header/state/enemy/EMoveBackState.h"
-#include "../../../header/data/id/ENEMY_ANIMATION.h"
+#include "state/enemy/EMoveBackState.h"
+#include "data/id/ENEMY_ANIMATION.h"
 Goblin::EMoveBackState::EMoveBackState(Goblin* _enemy)
 	:ActorState(_enemy)
 {

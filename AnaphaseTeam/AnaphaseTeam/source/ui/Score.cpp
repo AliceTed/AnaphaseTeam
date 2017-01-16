@@ -24,6 +24,7 @@ void Score::add(int _score)
 	timerSet();
 	m_hit = true;
 	m_score += _score;
+
 	if (m_score < 50)
 	{
 		feverTime(20, _score, 2);
@@ -59,6 +60,7 @@ void Score::timerSet()
 void Score::timerStart()
 {
 	m_timer--;
+
 }
 
 void Score::feverTime(int _limit, int _score, int _double)
@@ -88,6 +90,7 @@ void Score::record(int _score)
 	m_current.emplace_back(_score);
 }
 
+//‘‡‚ÌScore
 int Score::total()
 {
 	for (auto& i : m_current)

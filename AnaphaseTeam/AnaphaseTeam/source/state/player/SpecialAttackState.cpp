@@ -1,5 +1,5 @@
 #include "..\..\..\header\state\player\SpecialAttackState.h"
-#include "../../../header/collision/SpecialAttackCollision.h"
+#include "collision/SpecialAttackCollision.h"
 Player::SpecialAttackState::SpecialAttackState(Player* _player)
 	:ActorState(_player)
 {

@@ -1,6 +1,6 @@
 #include "..\..\..\header\data\loader\MyAnimationLoader.h"
-#include "../../../header/data/Message.h"
-#include "../../../header/data/stream/LoadMyAnimation.h"
+#include "data/Message.h"
+#include "data/stream/LoadMyAnimation.h"
 
 void MyAnimationLoader::operator()(unsigned int _id, const std::string & _name, const std::string & _path, const std::string & _extension)
 {

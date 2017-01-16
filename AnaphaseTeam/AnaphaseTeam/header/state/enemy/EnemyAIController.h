@@ -15,7 +15,7 @@ public:
 	void think(Player* _player);
 	void add(EAI _key,AI_Ptr _ai);
 	void change(EAI _key);
-	EAI currentDistanceJudg();
+	EAI currentRange();
 private:
 	std::unordered_map<EAI, AI_Ptr> m_aicontainer;
 	EAI m_currentKey;

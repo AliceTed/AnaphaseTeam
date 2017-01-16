@@ -1,5 +1,5 @@
-#include "../../../header/state/enemy/MiddleRangeAI.h"
-#include "../../../header/math/Random.h"
+#include "state/enemy/MiddleRangeAI.h"
+#include "math/Random.h"
 MiddleRangeAI::MiddleRangeAI(Goblin* _actor) :
 	m_actor(_actor)
 {

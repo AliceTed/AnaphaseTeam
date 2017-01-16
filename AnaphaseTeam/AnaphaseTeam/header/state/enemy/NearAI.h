@@ -1,6 +1,6 @@
 #pragma once
 #include"IEnemyAI.h"
-#include "../../../header/actor/Enemy/Goblin.h"
+#include "actor/Enemy/Goblin.h"
 class NearAI:public IEnemyAI
 {
 public:

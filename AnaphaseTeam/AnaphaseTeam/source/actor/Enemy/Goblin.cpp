@@ -1,32 +1,35 @@
-#include "../../../header/actor/Enemy/Goblin.h"
-#include "../../../header/renderer/IRenderer.h"
-#include "../../../header/collision/EnemyCollision.h"
-#include "../../../header/math/Random.h"
-#include "../../../header/math/Calculate.h"
-#include "../../../header/actor/Player/Player.h"
-#include "../../../header/data/id/ENEMY_ANIMATION.h"
-#include "../../../header/collision/EnemyAttackCollision.h"
-#include "../../../header/state/enemy/EAttackState.h"
-#include "../../../header/state/enemy/EDamageState.h"
-#include "../../../header/state/enemy/EDeadState.h"
-#include "../../../header/state/enemy/EMoveState.h"
-#include "../../../header/state/enemy/ESlideState.h"
-#include "../../../header/state/enemy/ESpawnState.h"
-#include "../../../header/state/enemy/EStandState.h"
-#include "../../../header/state/enemy/EDashFrontState.h"
-#include "../../../header/state/enemy/EMoveBackState.h"
-#include "../../../header/state/enemy/EThinkState.h"
-#include "../../../header/state/enemy/ESecoundAttackState.h"
-#include "../../../header/state/enemy/NearAI.h"
-#include "../../../header/state/enemy/OverNearAI.h"
-#include "../../../header/state/enemy/MiddleRangeAI.h"
-#include "../../../header/state/enemy/OverFarAI.h"
-#include "../../../header/state/enemy/EAI.h"
-#include "../../../header/actor/Enemy/EnemyMediator.h"
+#include "actor/Enemy/Goblin.h"
+#include "renderer/IRenderer.h"
+#include "collision/EnemyCollision.h"
+#include "math/Random.h"
+#include "math/Calculate.h"
+#include "actor/Player/Player.h"
+#include "data/id/ENEMY_ANIMATION.h"
+#include "collision/EnemyAttackCollision.h"
+#include "state/enemy/EAttackState.h"
+#include "state/enemy/EDamageState.h"
+#include "state/enemy/EDeadState.h"
+#include "state/enemy/EMoveState.h"
+#include "state/enemy/ESlideState.h"
+#include "state/enemy/ESpawnState.h"
+#include "state/enemy/EStandState.h"
+#include "state/enemy/EDashFrontState.h"
+#include "state/enemy/EMoveBackState.h"
+#include "state/enemy/EThinkState.h"
+#include "state/enemy/ESecoundAttackState.h"
+#include "state/enemy/NearAI.h"
+#include "state/enemy/OverNearAI.h"
+#include "state/enemy/MiddleRangeAI.h"
+#include "state/enemy/OverFarAI.h"
+#include "state/enemy/EAI.h"
+#include "actor/Enemy/EnemyMediator.h"
 
-#include "../../../header/renderer/define/SpriteRenderDesc.h"
-#include "../../../header/renderer/define/ViewportDesc.h"
+#include "renderer/define/SpriteRenderDesc.h"
+#include "renderer/define/ViewportDesc.h"
 #include <math.h>
+
+static const float BLOW_DAMAGE_POWER = 0.4f;
+
 Goblin::Goblin(const Transform & _transform, EnemyMediator& _mediator)
 	:IEnemy(_transform, MODEL_ID::ENEMY, _mediator)
 {
@@ -81,15 +84,26 @@ void Goblin::damage(const AttackStatus & _attackStatus)
 {
 	if (isNotDamageState())return;
 	changeState(ACTOR_STATE::EDAMAGE);
-	m_status.down(_attackStatus.m_power);
-	if (!m_isGround)
+	m_status.down(_attackStatus.m_power);//‘Ì—ÍŒ¸­
+	if (!m_isGround)//•‚‚¢‚Ä‚éŠÔ‚Í‚Á”ò‚Ñ‚É‚­‚¢
 	{
+		blowDamageDecision(_attackStatus.m_blowOff);
 		m_knockBack.start(GSvector3(0, 0.3f, 0));
 		return;
 	}
-	m_animatorOne.changeAnimationLerp(ENEMY_ANIMATION::DAMAGE1, 1.5f);
+	blowDamageDecision(_attackStatus.m_blowOff);
 	m_knockBack.start(_attackStatus.m_blowOff);
 }
+void Goblin::blowDamageDecision(const GSvector3& _blowPower)
+{
+	if (_blowPower.length() > BLOW_DAMAGE_POWER)
+	{
+		m_animatorOne.changeAnimationLerp(ENEMY_ANIMATION::DIE2, 1.5f);
+		return;
+	}
+	m_animatorOne.changeAnimationLerp(ENEMY_ANIMATION::DAMAGE1, 1.5f);
+}
+
 void Goblin::createStates()
 {
 	registerState(ACTOR_STATE::EATTACK, new EAttackState(this));
@@ -107,9 +121,8 @@ void Goblin::createStates()
 
 void Goblin::think(Player * _player)
 {
-	float distance = distanceActor(*_player);
-	m_debug = targetDirection(*_player);
+	//m_debug = targetDirection(*_player);
 	if (!isThink())return;
-	m_AI.change(isNear(distance));
-	//m_AI.think(_player);
+	m_AI.change(dicisionOfAI(distanceActor(*_player)));
+	m_AI.think(_player);
 }

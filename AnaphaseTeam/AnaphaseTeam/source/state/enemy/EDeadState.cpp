@@ -1,5 +1,5 @@
-#include "../../../header/state/enemy/EDeadState.h"
-#include "../../../header/data/id/ENEMY_ANIMATION.h"
+#include "state/enemy/EDeadState.h"
+#include "data/id/ENEMY_ANIMATION.h"
 
 Goblin::EDeadState::EDeadState(Goblin* _enemy)
 	:ActorState(_enemy)
@@ -10,6 +10,7 @@ Goblin::EDeadState::EDeadState(Goblin* _enemy)
 void Goblin::EDeadState::start()
 {
 	m_actor->scoreDead();
+
 	if (m_actor->blowDead())
 	{
 		m_actor->m_animatorOne.changeAnimationLerp(ENEMY_ANIMATION::DIE2);

@@ -1,4 +1,4 @@
-#include "../../../header/data/stream/DataWriter.h"
+#include "data/stream/DataWriter.h"
 #include <fstream>
 const bool DataWriter::operator()(const std::vector<std::string>& _in, const std::string & _name, const std::string & _extension) const
 {

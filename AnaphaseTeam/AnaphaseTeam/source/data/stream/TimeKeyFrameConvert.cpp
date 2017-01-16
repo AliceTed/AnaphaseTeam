@@ -1,7 +1,7 @@
 #include "..\..\..\header\data\stream\TimeKeyFrameConvert.h"
 #include <algorithm>
 #include <sstream>
-#include "../../../header/myanimation/TimeKeyFrame.h"
+#include "myanimation/TimeKeyFrame.h"
 const bool TimeKeyFrameConvert::operator()(TimeKeyFrame * _out, const std::string & _data) const
 {
 	std::string text = _data;

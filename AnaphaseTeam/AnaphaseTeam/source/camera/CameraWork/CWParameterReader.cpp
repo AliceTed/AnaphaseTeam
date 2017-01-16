@@ -2,8 +2,8 @@
 #include <fstream>
 #include <sstream>
 #include <algorithm>
-#include "../../../header/camera/CameraWork/CWParameterReader.h"
-#include "../../../header/data/Message.h"
+#include "camera/CameraWork/CWParameterReader.h"
+#include "data/Message.h"
 
 CWParameterReader::CWParameterReader(const std::string _fileName) :
 	m_parameters()

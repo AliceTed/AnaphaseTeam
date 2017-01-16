@@ -1,5 +1,5 @@
-#include "../../../header/state/enemy/ESpawnState.h"
-#include "../../../header/data/id/ENEMY_ANIMATION.h"
+#include "state/enemy/ESpawnState.h"
+#include "data/id/ENEMY_ANIMATION.h"
 Goblin::ESpawnState::ESpawnState(Goblin* _enemy)
 	:ActorState(_enemy)
 {

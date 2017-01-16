@@ -1,6 +1,6 @@
 #include "..\..\..\header\data\loader\ShaderLoader.h"
 #include <gslib.h>
-#include "../../../header/data/Message.h"
+#include "data/Message.h"
 void ShaderLoader::operator()(unsigned int _id, const std::string & _name, const std::string & _path, const std::string & _vertex, const std::string & _flagment)
 {
 	std::string full_vertex = _path + _name + _vertex;

@@ -86,6 +86,7 @@
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <AdditionalIncludeDirectories>$(ProjectDir)Header;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -117,6 +118,7 @@
       <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <AdditionalIncludeDirectories>$(ProjectDir)Header;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -317,6 +319,7 @@
     <ClCompile Include="source\ui\VolumeSelectUI.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="header\actor\Enemy\EnemyRotateTimer.h" />
     <ClInclude Include="header\actor\Enemy\IEnemy.h" />
     <ClInclude Include="header\actor\ActorManager.h" />
     <ClInclude Include="header\actor\Enemy\SlahHand.h" />

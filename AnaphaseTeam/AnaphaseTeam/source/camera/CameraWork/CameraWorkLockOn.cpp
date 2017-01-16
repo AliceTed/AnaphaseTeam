@@ -1,8 +1,8 @@
-#include "../../../header/camera/CameraWork/CameraWorkLockOn.h"
-#include "../../../header/camera/Camera.h"
-#include "../../../header/math/Calculate.h"
-#include "../../../header/math/AMath.h"
-#include "../../../header/camera/CameraWork/CWParameterReader.h"
+#include "camera/CameraWork/CameraWorkLockOn.h"
+#include "camera/Camera.h"
+#include "math/Calculate.h"
+#include "math/AMath.h"
+#include "camera/CameraWork/CWParameterReader.h"
 
 CameraWorkLockOn::CameraWorkLockOn(Camera* _camera, GSvector2* _rotate) :
 	CameraWorkEmpty(_camera),
