@@ -142,9 +142,11 @@ protected://‰¼‘zŠÖ”protected
 	*/
 	void rotateLerp(GSquaternion* _out, float _time);
 protected:
-	//! 
+	//!‹ß‹——£
 	static const float IEnemy::PLAYER_DISTANCE_NEAR;
+	//!’†‹——£
 	static const float IEnemy::PLAYER_DISTANCE_MID;
+	//!‰“‹——£
 	static const float IEnemy::PLAYER_DISTANCE_FAR;
 
 	float m_alpha;

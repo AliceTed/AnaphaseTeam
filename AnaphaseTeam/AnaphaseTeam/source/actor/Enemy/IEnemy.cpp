@@ -1,3 +1,9 @@
+/**
+* @file IEnemy.cpp
+* @brief “G‚Ì‰¼‘zƒNƒ‰ƒX
+* @author ‹vH
+* @date 2016/12/15
+*/
 #include "actor/Enemy/IEnemy.h"
 #include "actor/Enemy/Goblin.h"
 #include "renderer/IRenderer.h"
