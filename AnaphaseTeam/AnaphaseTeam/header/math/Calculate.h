@@ -351,5 +351,29 @@ namespace Math
 			return result;
 		}
 	};
+
+
+	class Range
+	{
+	public:
+		/**
+		* @breif 距離が指定範囲内か判定
+		* @param[_value]判定する値
+		* @param[_upper]上限値
+		* @param[_lower]下限値
+		* @author Hisaaki
+		* @data 2017/01/16
+		*/
+		template<class T>
+		const bool operator ()(T _value, T _lower, T _upper)
+		{
+			return _lower < _value&&_value <= _upper;
+		}
+		template<class T>
+		const bool InRange(T _value, T _lower, T _upper)
+		{
+			return _lower < _value&&_value <= _upper;
+		}
+	};
 }
 #endif

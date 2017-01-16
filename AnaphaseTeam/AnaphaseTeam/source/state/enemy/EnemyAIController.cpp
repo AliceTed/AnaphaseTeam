@@ -28,7 +28,7 @@ void EnemyAIController::change(EAI _key)
 	m_aicontainer.at(m_currentKey)->initialize();
 }
 
-EAI EnemyAIController::currentDistanceJudg()
+EAI EnemyAIController::currentRange()
 {
 	return m_currentKey;
 }

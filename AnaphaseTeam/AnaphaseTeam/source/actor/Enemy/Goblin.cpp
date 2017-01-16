@@ -27,6 +27,9 @@
 #include "../../../header/renderer/define/SpriteRenderDesc.h"
 #include "../../../header/renderer/define/ViewportDesc.h"
 #include <math.h>
+
+static const float BLOW_DAMAGE_POWER = 0.4f;
+
 Goblin::Goblin(const Transform & _transform, EnemyMediator& _mediator)
 	:IEnemy(_transform, MODEL_ID::ENEMY, _mediator)
 {
@@ -81,16 +84,26 @@ void Goblin::damage(const AttackStatus & _attackStatus)
 {
 	if (isNotDamageState())return;
 	changeState(ACTOR_STATE::EDAMAGE);
-	m_status.down(_attackStatus.m_power);
-	if (!m_isGround)
+	m_status.down(_attackStatus.m_power);//‘Ì—ÍŒ¸­
+	if (!m_isGround)//•‚‚¢‚Ä‚éŠÔ‚Í‚Á”ò‚Ñ‚É‚­‚¢
 	{
+		blowDamageDecision(_attackStatus.m_blowOff);
 		m_knockBack.start(GSvector3(0, 0.3f, 0));
 		return;
 	}
-	m_animatorOne.changeAnimationLerp(ENEMY_ANIMATION::DAMAGE1, 1.5f);
+	blowDamageDecision(_attackStatus.m_blowOff);
 	m_knockBack.start(_attackStatus.m_blowOff);
-
 }
+void Goblin::blowDamageDecision(const GSvector3& _blowPower)
+{
+	if (_blowPower.length() > BLOW_DAMAGE_POWER)
+	{
+		m_animatorOne.changeAnimationLerp(ENEMY_ANIMATION::DAMAGE2, 1.5f);
+		return;
+	}
+	m_animatorOne.changeAnimationLerp(ENEMY_ANIMATION::DAMAGE1, 1.5f);
+}
+
 void Goblin::createStates()
 {
 	registerState(ACTOR_STATE::EATTACK, new EAttackState(this));
@@ -108,9 +121,8 @@ void Goblin::createStates()
 
 void Goblin::think(Player * _player)
 {
-	float distance = distanceActor(*_player);
-	m_debug = targetDirection(*_player);
+	//m_debug = targetDirection(*_player);
 	if (!isThink())return;
-	m_AI.change(isNear(distance));
-	//m_AI.think(_player);
+	m_AI.change(dicisionOfAI(distanceActor(*_player)));
+	m_AI.think(_player);
 }

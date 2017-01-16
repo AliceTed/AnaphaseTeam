@@ -31,7 +31,7 @@ public:
 
 	const unsigned int size()const;
 	virtual float requestDistancePlayer(IEnemy * _enemy) override;
-	virtual GSquaternion requestDirectionPlayer(IEnemy * _enemy)override;
+	virtual GSquaternion requestPlayerDirection(IEnemy * _enemy)override;
 	virtual bool requestDistanceOtherEnemy(IEnemy * _enemy)override;
 	virtual bool reqestGoToNear()override;
 	virtual bool reqestGoToMid()override;
