@@ -30,9 +30,9 @@ void Number::initilize()
 
 void Number::scroll()
 {
-	if (m_position.x <= 990)
+	if (m_position.x <= 1030)
 	{
-		m_position.x += 100;
+		m_position.x += 60;
 		return;
 	}
 }
@@ -86,6 +86,6 @@ void Number::draw(IRenderer * _renderer, int _nunber)
 void Number::reset()
 {
 	m_alpha = 0.0f;
-	m_position = GSvector2(0, 250);
+	m_position = GSvector2(550, 250);
 	m_alphaChange = true;
 }
