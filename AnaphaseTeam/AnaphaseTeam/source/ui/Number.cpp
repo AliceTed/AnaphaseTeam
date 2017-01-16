@@ -30,9 +30,9 @@ void Number::initilize()
 
 void Number::scroll()
 {
-	if (m_position.x <= 1040)
+	if (m_position.x <= 990)
 	{
-		m_position.x += 50;
+		m_position.x += 100;
 		return;
 	}
 }
