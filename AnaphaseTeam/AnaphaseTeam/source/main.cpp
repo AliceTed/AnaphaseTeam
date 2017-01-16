@@ -24,6 +24,7 @@ public:
 		:Game(1280, 720, false, 60.0f),
 		m_SceneManager(),
 		m_renderer(std::make_unique<Renderer>())
+		//m_score(std::make_unique<Score>())
 	{
 	}
 
@@ -41,6 +42,8 @@ private:
 		light.specular = Color4(1.0f, 1.0f, 1.0f, 1.0f);
 		light.position = Vector3(100.0f, 100.f, 100.0f);
 		m_renderer->light(light);
+
+		//m_score->initialize();
 
 		/*
 		シェアードポインタは変数に作ってから追加する
@@ -70,7 +73,6 @@ private:
 	virtual void update(float deltaTime) override
 	{
 		m_SceneManager.update(deltaTime);
-		
 	}
 	// 描画
 	virtual void draw() override
@@ -87,7 +89,8 @@ private:
 	bool isRunning() { return !GameDevice::getInstacnce().input()->exit() && !m_SceneManager.isExit(); }
 private:
 	SceneManager m_SceneManager;
-	std::unique_ptr<IRenderer>m_renderer;
+	std::unique_ptr<IRenderer> m_renderer;
+	//std::unique_ptr<Score> m_score;
 };
 
 int main()

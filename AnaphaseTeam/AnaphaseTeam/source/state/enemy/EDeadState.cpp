@@ -9,7 +9,7 @@ Goblin::EDeadState::EDeadState(Goblin* _enemy)
 
 void Goblin::EDeadState::start()
 {
-	
+	m_actor->scoreDead();
 	if (m_actor->blowDead())
 	{
 		m_actor->m_animatorOne.changeAnimationLerp(ENEMY_ANIMATION::DIE2);

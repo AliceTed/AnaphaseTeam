@@ -23,10 +23,9 @@
 #include "../../../header/state/enemy/OverFarAI.h"
 #include "../../../header/state/enemy/EAI.h"
 #include "../../../header/actor/Enemy/EnemyMediator.h"
-#include "../../../header/ui/UIManager.h"
 #include <math.h>
 Goblin::Goblin(const Transform & _transform, EnemyMediator& _mediator)
-	:IEnemy(_transform, MODEL_ID::ENEMY, _mediator), m_score(std::make_shared<Score>())
+	:IEnemy(_transform, MODEL_ID::ENEMY, _mediator)
 {
 }
 Goblin::~Goblin()
@@ -50,9 +49,6 @@ void Goblin::initialize()
 	m_alpha = 1;
 
 	m_gravity = 0.0f;
-
-	m_score->initialize();
-	UIManager::getInstance().add(EUI::SCORE, m_score);
 }
 void Goblin::update(float deltatime)
 {
@@ -70,16 +66,7 @@ void Goblin::update(float deltatime)
 	m_timer.update(deltatime);
 
 	rotateLerp(&m_transform.m_rotate, m_timer.time / m_timer.maxTime);
-
-	if (GameDevice::getInstacnce().input()->jump())
-	{
-		m_score->add(1);
-	}
-
 }
-
-
-
 
 void Goblin::draw(IRenderer * _renderer)
 {
@@ -99,11 +86,6 @@ void Goblin::damage(const AttackStatus & _attackStatus)
 	}
 	m_animatorOne.changeAnimationLerp(ENEMY_ANIMATION::DAMAGE1, 1.5f);
 	m_knockBack.start(_attackStatus.m_blowOff);
-	m_score->add(1);
-	if (m_status.getHp() <= 0)
-	{
-		m_score->add(5);
-	}
 }
 void Goblin::createStates()
 {

@@ -2,7 +2,7 @@
 
 Score::Score()
 	:m_number(TEXTURE_ID::NUMBER),
-	m_score(0), m_timer(0), m_hit(false)
+	m_score(0), m_timer(0), m_hit(false), m_total(0)
 {
 }
 
@@ -12,6 +12,7 @@ Score::~Score()
 
 void Score::initialize()
 {
+	m_total = 0;
 	m_number.initilize();
 	reset();
 	m_hit = false;
@@ -60,6 +61,7 @@ void Score::timerStart()
 	m_timer--;
 }
 
+
 void Score::feverTime(int _limit, int _score, int _double)
 {
 	if (m_score > _limit)
@@ -70,13 +72,29 @@ void Score::feverTime(int _limit, int _score, int _double)
 
 void Score::reset()
 {
-	m_timer = 60 * 3;
+	timerSet();
+	record(m_score);
 	m_score = 0;
 	m_hit = false;
 }
 
 void Score::draw(IRenderer * _renderer)
 {
-	m_number.draw(_renderer, m_score);
+ 	m_number.draw(_renderer, m_score);
+}
+
+//Score‚Ì‹L˜^
+void Score::record(int _score)
+{
+	m_add.emplace_back(_score);
+}
+
+int Score::total()
+{
+	for (auto& i : m_add)
+	{
+		m_total += i;
+	}
+	return m_total;
 }
 

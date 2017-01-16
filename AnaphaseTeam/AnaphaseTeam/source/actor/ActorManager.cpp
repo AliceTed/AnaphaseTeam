@@ -1,10 +1,11 @@
 #include "..\..\header\actor\ActorManager.h"
 #include "../../header/spawn/SpawnManager.h"
 #include "../../header/actor/Player/Player.h"
-ActorManager::ActorManager(const Transform& _player, Camera* _camera)
+#include "../../header/ui/Score.h"
+ActorManager::ActorManager(const Transform& _player, Camera* _camera,Score & _score)
 	:m_lockon(),
 	m_player(std::make_unique<Player>(_player,_camera, &m_lockon)),
-	m_enemys(m_player.get())
+	m_enemys(m_player.get(),_score)
 {
 
 }
