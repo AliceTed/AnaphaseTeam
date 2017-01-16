@@ -8,11 +8,11 @@ Player::HomingStartState::HomingStartState(Player* _player)
 
 void Player::HomingStartState::start()
 {
-	m_actor->m_animatorOne.changeAnimation(ANIMATION_ID::ATTACK5);
+	m_actor->m_animatorOne.changeAnimation(ANIMATION_ID::DELAY);
 }
 void Player::HomingStartState::action(float deltaTime)
 {
-	Sleep(10);
+	Sleep(20);
 	if (m_actor->m_animatorOne.isEndCurrentAnimation())
 	{
 		changeState(ACTOR_STATE::HOMING);

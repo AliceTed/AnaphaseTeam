@@ -19,13 +19,16 @@ void Revision::start(Player * _player, IEnemy * _enemy, Transform& _transform, G
 {
 	IEnemy* target = _enemy;
 	if (target == nullptr) return;
-	if (_player->distanceActor(*target) >= 5.0f)
+	//“G‚Æ‚Ì‹——£‚ª”ŽšˆÈã—£‚ê‚Ä‚½‚ç’Ç‚¢‚©‚¯‚È‚¢
+	if (_player->distanceActor(*target) >=15.0f)
 	{
 		m_isStart = false;
 		return;
 	}
 	_transform.m_rotate = _player->targetDirection(*target);
-	float velocity = _player->distanceActor(*target) / 5.0f;
+	//float velocity = _player->distanceActor(*target) / 5.0f;
+	//Žw”ŠÖ”‚É‚¢‚ê‚é’l
+	float velocity = 10.0f;
 	Math::Clamp clamp;
 	velocity = clamp(_gauge.scale(velocity), 0.0f, _player->distanceActor(*target) - 1.0f);
 	_distance = _transform.m_translate + (_transform.front() * velocity);

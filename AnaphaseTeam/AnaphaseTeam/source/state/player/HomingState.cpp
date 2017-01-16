@@ -11,7 +11,7 @@ Player::HomingState::HomingState(Player* _player)
 
 void Player::HomingState::start()
 {
-	m_actor->m_animatorOne.changeAnimation(ANIMATION_ID::ATTACK1);
+	m_actor->m_animatorOne.changeAnimation(ANIMATION_ID::STEP);
 	GameDevice::getInstacnce().sound().playSE(SE_ID::PLAYER_STEP);
 	tracking();
 	if (m_velocity <= 1.0f)
