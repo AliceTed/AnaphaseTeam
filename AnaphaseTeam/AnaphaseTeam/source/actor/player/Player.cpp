@@ -49,7 +49,8 @@ Player::Player(const Transform& _t,Camera * _camera, LockOn* _lockon)
 	:Actor(
 		_t,
 		MODEL_ID::PLAYER,
-		Actor_Tag::PLAYER
+		Actor_Tag::PLAYER,
+		-0.3f
 	),
 	m_combo(this),
 	m_camera(_camera),

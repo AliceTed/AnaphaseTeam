@@ -23,7 +23,7 @@ class IActorState;
 class Actor
 {
 public:
-	Actor(const Transform &_transform,const MODEL_ID _model_ID, Actor_Tag _tag);
+	Actor(const Transform &_transform,const MODEL_ID _model_ID, Actor_Tag _tag,float _offset=0.0f);
 	virtual ~Actor();
 	virtual void initialize();
 	virtual void update(float deltatime) = 0;
@@ -87,6 +87,9 @@ private:
 
 	GSvector3 m_previousIntersect;
 	Actor_Tag m_Tag;
+
+	//ínñ Ç∆ÇÃ
+	float m_offset;
 	//èdóÕ
 	static const float GRAVITY;
 

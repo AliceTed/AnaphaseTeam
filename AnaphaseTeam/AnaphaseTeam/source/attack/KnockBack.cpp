@@ -19,7 +19,6 @@ void KnockBack::start(const GSvector3 & _blowOff)
 	m_timer.initialize();
 	m_easing = 1.0f;
 	m_lerp.start(&m_current,_blowOff,GSvector3(0,0,0),_blowOff.length());
-	
 }
 
 void KnockBack::update(float deltaTime)
