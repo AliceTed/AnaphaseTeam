@@ -26,6 +26,7 @@
 #include "../../../header/state/enemy/OverFarAI.h"
 #include "../../../header/state/enemy/EAI.h"
 #include "../../../header/actor/Enemy/EnemyMediator.h"
+#include "math\Calculate.h"
 
 
 
@@ -83,16 +84,18 @@ float IEnemy::distaceToOtherEnemy()
 }
 void IEnemy::directionToPlayer()
 {
-	m_transform.m_rotate.dot(m_mediator.requestDirectionPlayer(this));
-	if (50.0f < fabsf(m_transform.m_rotate.getYaw() - m_mediator.requestDirectionPlayer(this).getYaw()))
+	//m_transform.m_rotate.dot(m_mediator.requestPlayerDirection(this));
+	if (50.0f < fabsf(m_transform.m_rotate.getYaw() - m_mediator.requestPlayerDirection(this).getYaw()))
 	{
 			lookAtToPlayer();
 	}
 }
 void IEnemy::lookAtToPlayer()
 {
+	/*ラープタイマー開始*/
 	m_timer.begin();
-	m_targetDirection = m_mediator.requestDirectionPlayer(this);
+	/*targetをプレイヤーがいる方向へ入れ替え*/
+	m_targetDirection = m_mediator.requestPlayerDirection(this);
 }
 
 void IEnemy::scoreDamage()
@@ -105,9 +108,9 @@ void IEnemy::scoreDead()
 	m_mediator.addScore(5);
 }
 
-EAI IEnemy::currentDistance()
+EAI IEnemy::currentAIRange()
 {
-	return m_AI.currentDistanceJudg();
+	return m_AI.currentRange();
 }
 bool IEnemy::requestDistance(EAI _distance)
 {
@@ -134,19 +137,21 @@ const bool IEnemy::isThink()const
 	return getState() == ACTOR_STATE::ETHINK;
 }
 
-const EAI IEnemy::isNear(float _distance)const
+const EAI IEnemy::dicisionOfAI(float _distance)const
 {
+	Math::Range range;
 	EAI ai = EAI::ATTACKRANGE;
 	//近すぎ
-	if (_distance <= PLAYER_DISTANCE_NEAR)ai = EAI::OVERNEAR;
+	if (_distance < PLAYER_DISTANCE_NEAR)
+		ai = EAI::OVERNEAR;
 	//攻撃範囲
-	if (_distance > PLAYER_DISTANCE_NEAR&&_distance <= PLAYER_DISTANCE_MID)
+	if (range(_distance , PLAYER_DISTANCE_NEAR, PLAYER_DISTANCE_MID))
 		ai = EAI::ATTACKRANGE;
 	//中間
-	if (_distance > PLAYER_DISTANCE_MID&&_distance <= PLAYER_DISTANCE_FAR)
+	if (range(_distance, PLAYER_DISTANCE_MID, PLAYER_DISTANCE_FAR))
 		ai = EAI::MIDDRANGE;
 	//遠すぎ
-	if (_distance > PLAYER_DISTANCE_FAR)
+	if (PLAYER_DISTANCE_FAR < _distance)
 		ai = EAI::OVERFAR;
 
 	return ai;
@@ -165,6 +170,10 @@ void IEnemy::createAttackCollision()
 
 void IEnemy::rotateLerp(GSquaternion* _out, float _time)
 {
+	/*
+	プレイヤーが左右どちらにいるか確認して
+	回転方向を決める
+	*/
 	if (0.0f < gsQuaternionDot(_out, &m_targetDirection))
 	{
 		gsQuaternionLerp(_out, _out, &m_targetDirection, _time);

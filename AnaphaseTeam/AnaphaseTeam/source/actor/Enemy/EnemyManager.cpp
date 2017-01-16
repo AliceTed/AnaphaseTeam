@@ -86,7 +86,7 @@ float EnemyManager::requestDistancePlayer(IEnemy * _enemy)
 {
 	return _enemy->distanceActor(*m_player);
 }
-GSquaternion EnemyManager::requestDirectionPlayer(IEnemy * _enemy)
+GSquaternion EnemyManager::requestPlayerDirection(IEnemy * _enemy)
 {
 	return _enemy->targetDirection(*m_player);
 }
@@ -98,14 +98,14 @@ bool EnemyManager::requestDistanceOtherEnemy(IEnemy * _enemy)
 bool EnemyManager::reqestGoToNear()
 {
 	//NEAR‚Ì‚â‚Â‚ª‚¢‚é‚©ŒŸõ
-	auto itr = std::find_if(m_enemys.begin(), m_enemys.end(), [](Enemy_Ptr& _e) {return _e->currentDistance() == EAI::ATTACKRANGE; });
+	auto itr = std::find_if(m_enemys.begin(), m_enemys.end(), [](Enemy_Ptr& _e) {return _e->currentAIRange() == EAI::ATTACKRANGE; });
 	//‹‚½‚çtrue
 	return itr == m_enemys.end() ? false : true;
 }
 bool EnemyManager::reqestGoToMid()
 {
 	//MID‚Ì‚â‚Â‚ª‚¢‚é‚©ŒŸõ
-	auto itr = std::find_if(m_enemys.begin(), m_enemys.end(), [](Enemy_Ptr& _e) {return _e->currentDistance() == EAI::MIDDRANGE; });
+	auto itr = std::find_if(m_enemys.begin(), m_enemys.end(), [](Enemy_Ptr& _e) {return _e->currentAIRange() == EAI::MIDDRANGE; });
 	//‹‚½‚çtrue
 	return itr == m_enemys.end() ? false : true;
 }

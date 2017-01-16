@@ -1,45 +1,29 @@
-//#pragma once
-//
-//#include <vector>
-//#include <memory>
-//#include "../Actor.h"
-//#include <math.h>
-//
-//using namespace std;
-//
-//class Player;
-//class AttackStatus;
-//class CameraController;
-//
-//
-//enum class State
-//{
-//	STAND,
-//	ATTACK
-//};
-//
-//class Boss : public Actor
-//{
-//public:
-//	Boss();
-//	~Boss();
-//	void initialize();
-//	void update(float deltatime);
-//	void draw(const Renderer& _renderer, const Camera& _camera);
-//	void look_at(CameraController* _camera, Player* _player);
-//public:
-//	const GSvector3 getPosition() const;
-//
-//private:
-//	vector<GSvector3> getAnimEachPos();
-//
-//	void enemyAttack();
-//	void dirCalc(Player* _player);
-//
-//private:
-//	GScolor m_corecolor;
-//	vector<GSvector3> pos;
-//	GScolor m_color;
-//	int m_value;
-//	State m_state;
-//};
+#pragma once
+
+#include <vector>
+#include <memory>
+#include "../Actor.h"
+#include <math.h>
+#include "../../state/enemy/EnemyAIController.h"
+#include  "../Enemy/IEnemy.h"
+class EnemyMediator;
+class IEnemyAI;
+class EnemyCollision;
+class Player;
+class Boss : public IEnemy
+{
+public:
+	Boss(const Transform& _transform, EnemyMediator& _mediator);
+	~Boss();
+	void initialize();
+	void update(float deltatime);
+	void draw(const IRenderer& _renderer);
+	void damage(const AttackStatus& _attackStatus)override;//actor
+public:
+	void think(Player* _palyer)override;
+private:
+	void createStates()override;
+
+private:
+
+};

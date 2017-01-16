@@ -408,9 +408,6 @@
     <ClInclude Include="header\ui\SlideImage.h">
       <Filter>ヘッダー ファイル\ui</Filter>
     </ClInclude>
-    <ClInclude Include="header\actor\Boss\Boss.h">
-      <Filter>ヘッダー ファイル\actor\Boss</Filter>
-    </ClInclude>
     <ClInclude Include="header\actor\Player\Gauge.h">
       <Filter>ヘッダー ファイル\actor\Player</Filter>
     </ClInclude>
@@ -831,12 +828,6 @@
     <ClInclude Include="header\state\enemy\ESecoundAttackState.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="header\actor\Enemy\IEnemy.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="header\actor\Enemy\Goblin.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
     <ClInclude Include="header\actor\ActorManager.h">
       <Filter>ヘッダー ファイル\actor</Filter>
     </ClInclude>
@@ -968,6 +959,18 @@
     </ClInclude>
     <ClInclude Include="header\state\player\HomingStartState.h">
       <Filter>ヘッダー ファイル\state\player</Filter>
+    </ClInclude>
+    <ClInclude Include="header\actor\Boss\Boss.h">
+      <Filter>ヘッダー ファイル\actor\Boss</Filter>
+    </ClInclude>
+    <ClInclude Include="header\actor\Enemy\IEnemy.h">
+      <Filter>ヘッダー ファイル\actor\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="header\actor\Enemy\Goblin.h">
+      <Filter>ヘッダー ファイル\actor\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="header\actor\Enemy\EnemyRotateTimer.h">
+      <Filter>ヘッダー ファイル\actor\Enemy</Filter>
     </ClInclude>
     <ClInclude Include="header\math\TargetSinPowerLerp.h">
       <Filter>ヘッダー ファイル\math</Filter>
