@@ -16,12 +16,13 @@ public:
 	void hit();
 	void timerSet();
 	void timerStart();
-	//void timer(bool _change);
+	void timer(bool _start);
 	void feverTime(int _limit, int _score, int _double);
 	void reset();
 	void draw(IRenderer* _renderer);
 	void record(int _score);
 	int total();
+
 private:
 	Number m_number;
 	GSvector2 m_position;
@@ -29,7 +30,7 @@ private:
 	int m_total;
 	float m_timer;
 	bool m_hit;
-	std::vector<int> m_add;
+	std::vector<int> m_current;
 	
 	
 };

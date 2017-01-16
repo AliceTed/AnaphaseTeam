@@ -30,9 +30,9 @@ void Number::initilize()
 
 void Number::scroll()
 {
-	if (m_position.x < 200)
+	if (m_position.x <= 1040)
 	{
-		m_position.x += 30;
+		m_position.x += 50;
 		return;
 	}
 }
@@ -73,8 +73,8 @@ void Number::flashing(float _addTime, float _decTime)
 void Number::draw(IRenderer * _renderer, int _nunber)
 {
 	NumberSpriteRenderDesc desc;
-	//0‚É‚·‚ê‚Î­”•\Ž¦‚µ‚È‚¢
 	desc.decimal = 0;
+	desc.digit = 1;
 	desc.number = _nunber;
 	desc.color.a = m_alpha;
 	desc.matrix.translate(m_position);
@@ -86,6 +86,6 @@ void Number::draw(IRenderer * _renderer, int _nunber)
 void Number::reset()
 {
 	m_alpha = 0.0f;
-	m_position = GSvector2(0, 150);
+	m_position = GSvector2(0, 250);
 	m_alphaChange = true;
 }
