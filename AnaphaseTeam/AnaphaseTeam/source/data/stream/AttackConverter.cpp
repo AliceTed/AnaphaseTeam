@@ -1,11 +1,11 @@
 #include "..\..\..\header\data\stream\AttackConverter.h"
 #include <algorithm>
 #include <sstream>
-#include "../../../header/attack/LoadAttack.h"
-#include "../../../header/shape/Sphere.h"
-#include "../../../header/shape/Capsule.h"
-#include "../../../header/data/json/JObject.h"
-#include "../../../header/data/json/JArray.h"
+#include "attack/LoadAttack.h"
+#include "shape/Sphere.h"
+#include "shape/Capsule.h"
+#include "data/json/JObject.h"
+#include "data/json/JArray.h"
 const bool AttackConverter::operator()(LoadAttack * _out, picojson::value& _value) const
 {
 	JUtil::JObject obj(_value.get<picojson::object>());

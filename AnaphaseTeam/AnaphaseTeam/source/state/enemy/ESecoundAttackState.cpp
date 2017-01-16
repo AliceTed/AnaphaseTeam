@@ -1,5 +1,5 @@
-#include "../../../header/state/enemy/ESecoundAttackState.h"
-#include "../../../header/data/id/ENEMY_ANIMATION.h"
+#include "state/enemy/ESecoundAttackState.h"
+#include "data/id/ENEMY_ANIMATION.h"
 Goblin::ESecoundAttackState::ESecoundAttackState(Goblin* _enemy)
 	:ActorState(_enemy), m_start(false), m_timer(0)
 {

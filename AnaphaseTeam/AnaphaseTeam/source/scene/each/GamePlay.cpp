@@ -1,9 +1,9 @@
-#include "../../../header/scene/each/GamePlay.h"
-#include "../../../header/renderer/IRenderer.h"
-#include "../../../header/device/GameDevice.h"
-#include "../../../header/stage/Stage.h"
-#include "../../../header/stage/StageData.h"
-#include "../../../header/data/stream/StageReader.h"
+#include "scene/each/GamePlay.h"
+#include "renderer/IRenderer.h"
+#include "device/GameDevice.h"
+#include "stage/Stage.h"
+#include "stage/StageData.h"
+#include "data/stream/StageReader.h"
 GamePlay::GamePlay()
 	:m_change(),
 	m_pause(m_change),//É|Å[ÉY

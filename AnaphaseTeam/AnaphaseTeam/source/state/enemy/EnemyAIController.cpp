@@ -1,4 +1,4 @@
-#include "../../../header/state/enemy/EnemyAIController.h"
+#include "state/enemy/EnemyAIController.h"
 EnemyAIController::EnemyAIController():
 m_aicontainer(),m_currentKey(EAI::ATTACKRANGE)
 {

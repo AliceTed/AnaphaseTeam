@@ -1,5 +1,5 @@
-#include "../../../header/state/enemy/EDeadState.h"
-#include "../../../header/data/id/ENEMY_ANIMATION.h"
+#include "state/enemy/EDeadState.h"
+#include "data/id/ENEMY_ANIMATION.h"
 
 Goblin::EDeadState::EDeadState(Goblin* _enemy)
 	:ActorState(_enemy)

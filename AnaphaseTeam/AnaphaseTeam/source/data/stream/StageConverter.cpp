@@ -1,5 +1,5 @@
 #include "..\..\..\header\data\stream\StageConverter.h"
-#include "../../../header/stage/StageData.h"
+#include "stage/StageData.h"
 #include <iterator>
 const bool StageConverter::operator()(StageData * _out, picojson::value & _value) const
 {

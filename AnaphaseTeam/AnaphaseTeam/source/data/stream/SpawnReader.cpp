@@ -1,9 +1,9 @@
 #include "..\..\..\header\data\stream\SpawnReader.h"
-#include "../../../header/data/stream/SpawnConverter.h"
-#include "../../../header/data/stream/DataReader.h"
-#include "../../../header/spawn/SpawnData.h"
-#include "../../../header/data/Message.h"
-#include "../../../header/spawn/SpawnManager.h"
+#include "data/stream/SpawnConverter.h"
+#include "data/stream/DataReader.h"
+#include "spawn/SpawnData.h"
+#include "data/Message.h"
+#include "spawn/SpawnManager.h"
 void SpawnReader::operator()(SpawnManager * _out, const std::string & _name, const std::string & _path) const
 {
 	if (load(_out, _path + _name))

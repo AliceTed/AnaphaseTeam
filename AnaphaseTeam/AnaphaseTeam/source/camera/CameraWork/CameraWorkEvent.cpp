@@ -1,9 +1,9 @@
 #include <sstream> //å„Ç≈è¡Ç∑
 #include <string>  //å„Ç≈è¡Ç∑
-#include "../../../header/camera/CameraWork/CameraWorkEvent.h"
-#include "../../../header/camera/Camera.h"
-#include "../../../header/spline/SplineAnimManager.h"
-#include "../../../header/spline/AnimationSpline.h"
+#include "camera/CameraWork/CameraWorkEvent.h"
+#include "camera/Camera.h"
+#include "spline/SplineAnimManager.h"
+#include "spline/AnimationSpline.h"
 
 CameraWorkEvent::CameraWorkEvent(Camera * _camera, SplineAnimManager * _splineAnimManager) :
 	CameraWorkEmpty(_camera),

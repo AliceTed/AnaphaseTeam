@@ -1,11 +1,11 @@
-#include "../../../header/actor/Enemy/EnemyManager.h"
-#include "../../../header/actor/Player/Player.h"
+#include "actor/Enemy/EnemyManager.h"
+#include "actor/Player/Player.h"
 #include <algorithm>
-#include "../../../header/camera/LockOn.h"
-#include "../../../header/actor/Enemy/IEnemy.h"
-#include "../../../header/map/Map.h"
-#include "../../../header/ui/UIManager.h"
-#include "../../../header/stage/Stage.h"
+#include "camera/LockOn.h"
+#include "actor/Enemy/IEnemy.h"
+#include "map/Map.h"
+#include "ui/UIManager.h"
+#include "stage/Stage.h"
 EnemyManager::EnemyManager(Player* _player, Score & _score)
 	:m_enemys(),
 	m_player(_player),

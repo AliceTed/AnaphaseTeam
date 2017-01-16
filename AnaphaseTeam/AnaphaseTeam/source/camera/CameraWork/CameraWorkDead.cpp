@@ -1,5 +1,5 @@
-#include "../../../header/camera/CameraWork/CameraWorkDead.h"
-#include "../../../header/camera/Camera.h"
+#include "camera/CameraWork/CameraWorkDead.h"
+#include "camera/Camera.h"
 
 CameraWorkDead::CameraWorkDead(Camera* _camera) :
 	CameraWorkEmpty(_camera)

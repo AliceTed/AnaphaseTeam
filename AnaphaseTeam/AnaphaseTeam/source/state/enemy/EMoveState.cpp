@@ -1,7 +1,7 @@
-#include "../../../header/state/enemy/EMoveState.h"
-#include "../../../header/data/id/ENEMY_ANIMATION.h"
-#include "../../../header/actor/Player/Player.h"
-#include "../../../header/math/Random.h"
+#include "state/enemy/EMoveState.h"
+#include "data/id/ENEMY_ANIMATION.h"
+#include "actor/Player/Player.h"
+#include "math/Random.h"
 Goblin::EMoveState::EMoveState(Goblin* _enemy)
 	:ActorState(_enemy)
 {

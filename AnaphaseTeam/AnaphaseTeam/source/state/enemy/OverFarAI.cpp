@@ -1,5 +1,5 @@
 #include "..\..\..\header\state\enemy\OverFarAI.h"
-#include "../../../header/math/Random.h"
+#include "math/Random.h"
 OverFarAI::OverFarAI(Goblin * _actor)
 	:m_actor(_actor)
 {

@@ -1,8 +1,8 @@
-#include "../../../header/scene/each/Opening.h"
-#include "../../../header/device/GameDevice.h"
-#include "../../../header/renderer/IRenderer.h"
-#include "../../../header/renderer/define/SpriteRenderDesc.h"
-#include "../../../header/data/id/TEXTURE_ID.h"
+#include "scene/each/Opening.h"
+#include "device/GameDevice.h"
+#include "renderer/IRenderer.h"
+#include "renderer/define/SpriteRenderDesc.h"
+#include "data/id/TEXTURE_ID.h"
 Opening::Opening()
 	:m_change(),
 	m_lerp(GScolor(1,1,1,0))

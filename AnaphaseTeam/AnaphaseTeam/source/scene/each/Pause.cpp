@@ -4,12 +4,12 @@
 * @author Hisaaki
 * @date 2016/12/05
 */
-#include "../../../header/scene/each/Pause.h"
-#include "../../../header/renderer/IRenderer.h"
-#include "../../../header/scene/SceneChange.h"
-#include "../../../header/device/GameDevice.h"
-#include "../../../header/renderer/define/StringRenderDesc.h" 
-#include "../../../header/renderer/define/SpriteRenderDesc.h" 
+#include "scene/each/Pause.h"
+#include "renderer/IRenderer.h"
+#include "scene/SceneChange.h"
+#include "device/GameDevice.h"
+#include "renderer/define/StringRenderDesc.h" 
+#include "renderer/define/SpriteRenderDesc.h" 
 //!アイコンの位置
 static const GSvector2 ICONPOSITION[2] = { GSvector2(450,350),GSvector2(450,550) };
 

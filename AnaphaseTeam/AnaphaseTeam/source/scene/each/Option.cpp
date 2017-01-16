@@ -1,9 +1,9 @@
-#include "../../../header/scene/each/Option.h"
-#include "../../../header/renderer/IRenderer.h"
-#include "../../../header/device/GameDevice.h"
-#include "../../../header/data/id/BGM_ID.h"
-#include "../../../header/renderer/define/SpriteRenderDesc.h"
-#include "../../../header/data/id/TEXTURE_ID.h"
+#include "scene/each/Option.h"
+#include "renderer/IRenderer.h"
+#include "device/GameDevice.h"
+#include "data/id/BGM_ID.h"
+#include "renderer/define/SpriteRenderDesc.h"
+#include "data/id/TEXTURE_ID.h"
 
 Option::Option()
 	:m_change(),

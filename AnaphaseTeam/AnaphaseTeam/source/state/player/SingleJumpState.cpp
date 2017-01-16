@@ -1,6 +1,6 @@
-#include"../../../header/state/player/SingleJumpState.h"
-#include "../../../header/data/id/ANIMATION_ID.h"
-#include "../../../header/device/GameDevice.h"
+#include"state/player/SingleJumpState.h"
+#include "data/id/ANIMATION_ID.h"
+#include "device/GameDevice.h"
 Player::SingleJumpState::SingleJumpState(Player* _player)
 	:ActorState(_player),
 	m_jumping(_player)

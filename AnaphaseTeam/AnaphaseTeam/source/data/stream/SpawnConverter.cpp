@@ -1,5 +1,5 @@
 #include "..\..\..\header\data\stream\SpawnConverter.h"
-#include "../../../header/spawn/SpawnData.h"
+#include "spawn/SpawnData.h"
 #include <algorithm>
 #include <sstream>
 const bool SpawnConverter::operator()(SpawnData * _out, const std::string & _data) const

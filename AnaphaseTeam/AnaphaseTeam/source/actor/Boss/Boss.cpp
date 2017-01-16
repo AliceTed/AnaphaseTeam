@@ -1,4 +1,4 @@
-#include "../../../header/actor/Boss/Boss.h"
+#include "actor/Boss/Boss.h"
 
 Boss::Boss(const Transform & _transform, EnemyMediator & _mediator)
 	:IEnemy(_transform, MODEL_ID::ENEMY, _mediator)

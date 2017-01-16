@@ -1,4 +1,4 @@
-#include "../../../header/data/stream/DataReader.h"
+#include "data/stream/DataReader.h"
 #include <fstream>
 const bool DataReader::operator()(std::vector<std::string>* _out, const std::string & _name, const std::string& _extension, const std::string & _ignore)
 {
