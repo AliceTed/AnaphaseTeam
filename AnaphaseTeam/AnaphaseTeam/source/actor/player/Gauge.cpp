@@ -5,7 +5,7 @@
 #include <math.h>
 
 Gauge::Gauge()
-	:m_gauge(150),
+	:m_gauge(200),
 	m_lerpmax(m_gauge)
 {
 }
