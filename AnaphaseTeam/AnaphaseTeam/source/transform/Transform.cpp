@@ -140,7 +140,7 @@ const GSvector3 Transform::rotate_vector(const GSvector3 & _vec) const
 {
 	Quaternion_Utility util;
 	GSvector3 r = util.rotation(m_rotate,_vec);
-	return r.normalize();
+	return r;
 }
 
 const GSmatrix4 Transform::matrix() const
