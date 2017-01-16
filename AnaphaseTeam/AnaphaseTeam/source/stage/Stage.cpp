@@ -41,7 +41,6 @@ void Stage::update(float deltaTime)
 	m_phaseManage.update(deltaTime, m_actors, m_cameracontroller);
 	m_cameracontroller.update(deltaTime);
 	UIManager::getInstance().update(deltaTime);
-
 }
 
 void Stage::draw(IRenderer * _renderer)

@@ -61,7 +61,6 @@ void Score::timerStart()
 	m_timer--;
 }
 
-
 void Score::feverTime(int _limit, int _score, int _double)
 {
 	if (m_score > _limit)
@@ -86,12 +85,12 @@ void Score::draw(IRenderer * _renderer)
 //Score‚Ì‹L˜^
 void Score::record(int _score)
 {
-	m_add.emplace_back(_score);
+	m_current.emplace_back(_score);
 }
 
 int Score::total()
 {
-	for (auto& i : m_add)
+	for (auto& i : m_current)
 	{
 		m_total += i;
 	}
