@@ -16,7 +16,6 @@ public:
 	void hit();
 	void timerSet();
 	void timerStart();
-	void timer(bool _start);
 	void feverTime(int _limit, int _score, int _double);
 	void reset();
 	void draw(IRenderer* _renderer);
