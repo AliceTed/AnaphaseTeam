@@ -32,7 +32,7 @@ void TargetMarkerUI::draw(IRenderer * _renderer)
 	//m_scale = CLAMP(1/target.z, 0.5f, 1.0f);
 	desc.matrix.scale(m_scale, m_scale, m_scale);
 	desc.matrix.translate(target);
-	_renderer->render(desc);
+	//_renderer->render(desc);
 }
 
 GSvector3 TargetMarkerUI::transform(IRenderer* _renderer)
