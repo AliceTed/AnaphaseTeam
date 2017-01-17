@@ -70,7 +70,6 @@ private:
 	virtual void update(float deltaTime) override
 	{
 		m_SceneManager.update(deltaTime);
-		
 	}
 	// •`‰æ
 	virtual void draw() override
@@ -87,7 +86,7 @@ private:
 	bool isRunning() { return !GameDevice::getInstacnce().input()->exit() && !m_SceneManager.isExit(); }
 private:
 	SceneManager m_SceneManager;
-	std::unique_ptr<IRenderer>m_renderer;
+	std::unique_ptr<IRenderer> m_renderer;
 };
 
 int main()

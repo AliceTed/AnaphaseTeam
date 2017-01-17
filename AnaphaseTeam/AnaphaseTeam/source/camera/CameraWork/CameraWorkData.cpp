@@ -1,5 +1,5 @@
-#include "../../../header/camera/CameraWork/CameraWorkData.h"
-#include "../../../header/camera/CameraWork/I_CameraWork.h"
+#include "camera/CameraWork/CameraWorkData.h"
+#include "camera/CameraWork/I_CameraWork.h"
 
 CameraWorkData::CameraWorkData(void) :
 	m_cameraWorks()

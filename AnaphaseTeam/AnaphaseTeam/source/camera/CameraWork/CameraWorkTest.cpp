@@ -1,8 +1,8 @@
 #include <vector>
 #include <random>
-#include "../../../header/camera/CameraWork/CameraWorkTest.h"
-#include "../../../header/camera/Camera.h"
-#include "../../../header/spline/SplineAnimManager.h"
+#include "camera/CameraWork/CameraWorkTest.h"
+#include "camera/Camera.h"
+#include "spline/SplineAnimManager.h"
 
 CameraWorkTest::CameraWorkTest(Camera * _camera) :
 	CameraWorkEmpty(_camera),

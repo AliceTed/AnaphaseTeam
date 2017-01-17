@@ -1,7 +1,7 @@
 #pragma once
 
 #include "../Actor.h"
-#include "../../../header/camera/CameraController.h"
+#include "camera/CameraController.h"
 #include "../../convenient/Timer.h"
 #include "../../attack/AttackStatus.h"
 #include "../../actor/Player/Status.h"

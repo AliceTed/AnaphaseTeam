@@ -1,14 +1,15 @@
-#include "../../../header/scene/each/Title.h"
-#include "../../../header/device/GameDevice.h"
-#include "../../../header/renderer/IRenderer.h"
-#include "../../../header/renderer/define/SpriteRenderDesc.h"
-#include "../../../header/device/GameDevice.h"
-#include "../../../header/data/id/BGM_ID.h"
-#include "../../../header/data/id/SHADER_ID.h"
+#include "scene/each/Title.h"
+#include "device/GameDevice.h"
+#include "renderer/IRenderer.h"
+#include "renderer/define/SpriteRenderDesc.h"
+#include "device/GameDevice.h"
+#include "data/id/BGM_ID.h"
+#include "data/id/SHADER_ID.h"
 Title::Title()
 	:m_IsExit(false),
 	m_change(),
-	m_pressKey(TEXTURE_ID::PRESSKEY, GSvector2(40, 600), 1.0f)
+	m_pressKey(TEXTURE_ID::PRESSKEY, GSvector2(40, 600), 1.0f),
+	m_time(0.0f)
 {
 }
 
@@ -23,11 +24,13 @@ void Title::initialize()
 	m_change.begin();
 	GameDevice::getInstacnce().sound().playBGM(BGM_ID::TITLE);
 	m_pressKey.initilize();
+	m_time = 0.0f;
 }
 void Title::update(float _deltaTime)
 {
 	if (m_change.update(_deltaTime))return;
-	if (GameDevice::getInstacnce().input()->decision())
+	m_time += _deltaTime;
+	if (GameDevice::getInstacnce().input()->jump())
 	{
 		m_change.end(SceneMode::MENU);
 		GameDevice::getInstacnce().sound().playSE(SE_ID::ENTER);
@@ -65,4 +68,4 @@ const bool Title::isExit() const
 {
 	return false;
 }
-	
+

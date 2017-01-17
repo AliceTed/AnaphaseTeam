@@ -4,10 +4,10 @@
 #include "../../header/renderer/IRenderer.h"
 #include "../../header/renderer/define/MeshRenderDesc.h"
 Scythe::Scythe()
-	:m_bone(14),//14は右手の配列番号
+	:m_bone(33),//14は右手の配列番号
 	m_local(
-		140.8678508f, GSvector3(0.642011f, -0.639324f, -0.42319f),//初期位置(調整)
-		GSvector3(0.092351f, 0.009981f, -0.177121f)),
+		97.794f, GSvector3(0.82791f, -0.386064f, -0.406827f),//初期位置(調整)
+		GSvector3(0.0f, 0.0f, 0.8f)),
 	m_world()
 {}
 Scythe::~Scythe()

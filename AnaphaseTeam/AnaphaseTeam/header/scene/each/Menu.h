@@ -3,6 +3,7 @@
 #include "../../renderer/Renderer.h"
 #include "../../ui/TitleUI.h"
 #include "../SceneChange.h"
+#include "../../ui/Score.h"
 class Menu :public IScene
 {
 public:

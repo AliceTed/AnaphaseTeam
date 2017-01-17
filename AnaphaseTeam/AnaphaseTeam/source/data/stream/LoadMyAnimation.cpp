@@ -1,7 +1,7 @@
-#include "../../../header/data/stream/LoadMyAnimation.h"
-#include "../../../header/data/stream/DataReader.h"
-#include "../../../header/myanimation/MyAnimationContainer.h"
-#include "../../../header/data/stream/TimeKeyFrameConvert.h"
+#include "data/stream/LoadMyAnimation.h"
+#include "data/stream/DataReader.h"
+#include "myanimation/MyAnimationContainer.h"
+#include "data/stream/TimeKeyFrameConvert.h"
 const bool LoadMyAnimation::operator()(unsigned int _id, const std::string& _file, const std::string& _extension)const
 {
 	std::vector<std::string> data;

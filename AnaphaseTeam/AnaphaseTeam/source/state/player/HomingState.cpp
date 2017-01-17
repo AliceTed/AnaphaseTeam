@@ -1,7 +1,7 @@
-#include "../../../header/state/player/HomingState.h"
-#include "../../../header/data/id/ANIMATION_ID.h"
-#include "../../../header/device/GameDevice.h"
-#include "../../../header/math/Calculate.h"
+#include "state/player/HomingState.h"
+#include "data/id/ANIMATION_ID.h"
+#include "device/GameDevice.h"
+#include "math/Calculate.h"
 Player::HomingState::HomingState(Player* _player)
 	:ActorState(_player),
 	m_step(_player),

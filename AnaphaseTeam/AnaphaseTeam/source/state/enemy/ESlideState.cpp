@@ -1,7 +1,7 @@
-#include "../../../header/state/enemy/ESlideState.h"
-#include "../../../header/data/id/ENEMY_ANIMATION.h"
-#include "../../../header/actor/Player/Player.h"
-#include "../../../header/math/Random.h"
+#include "state/enemy/ESlideState.h"
+#include "data/id/ENEMY_ANIMATION.h"
+#include "actor/Player/Player.h"
+#include "math/Random.h"
 Goblin::ESlideState::ESlideState(Goblin* _enemy)
 	:ActorState(_enemy),m_timer(0.0f)
 {

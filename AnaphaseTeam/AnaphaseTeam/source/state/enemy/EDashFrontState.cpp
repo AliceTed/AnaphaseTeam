@@ -1,6 +1,6 @@
-#include "../../../header/state/enemy/EDashFrontState.h"
-#include "../../../header/data/id/ENEMY_ANIMATION.h"
-#include "../../../header/math/Random.h"
+#include "state/enemy/EDashFrontState.h"
+#include "data/id/ENEMY_ANIMATION.h"
+#include "math/Random.h"
 Goblin::EDashFrontState::EDashFrontState(Goblin* _enemy)
 	:ActorState(_enemy)
 {

@@ -1,5 +1,5 @@
-#include"../../../header/state/player/LandingRigidityState.h"
-#include "../../../header/data/id/ANIMATION_ID.h"
+#include"state/player/LandingRigidityState.h"
+#include "data/id/ANIMATION_ID.h"
 Player::LandingRigidityState::LandingRigidityState(Player* _player)
 	:ActorState(_player)
 {

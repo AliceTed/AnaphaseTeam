@@ -27,9 +27,9 @@ const bool Map::isCollisionSphere(const GSvector3 & _center, float _radius, GSve
 
 void Map::draw(IRenderer * _renderer)
 {
-	OctreeRenderDesc desc;
-	desc.octreeID =static_cast<unsigned int>(m_ID);
-	_renderer->render(desc);
+	//OctreeRenderDesc desc;
+	//desc.octreeID =static_cast<unsigned int>(m_ID);
+	//_renderer->render(desc);
 
 	/*
 	clipÇ™Ç†ÇÈÇÃÇ≈Ç∆ÇËÇ†Ç¶Ç∏Ç±Ç±Ç…èëÇ¢ÇΩ
@@ -43,7 +43,7 @@ void Map::draw(IRenderer * _renderer)
 	glFogf(GL_FOG_END, clip.y);
 	glFogfv(GL_FOG_COLOR, color);
 
-	/*gsBeginShader(static_cast<GSuint>(SHADER_ID::OCTREE));
+	gsBeginShader(static_cast<GSuint>(SHADER_ID::OCTREE));
 	LightDesc light = _renderer->getLight();
 	GSvector3 light_position_eye =light.position*_renderer->getViewMatrix();
 	gsSetShaderParam3f("u_lightPositionEye", &light_position_eye);
@@ -51,15 +51,11 @@ void Map::draw(IRenderer * _renderer)
 	gsSetShaderParam4f("u_lightDiffuse", &light.diffuse);
 	gsSetShaderParam4f("u_lightSpecular", &light.specular);
 
-	GSmatrix4 mat;
-	mat.identity();
-	mat.translate(m_translate);
-	gsSetShaderParamMatrix4("u_matWorld", &mat);
 	gsSetShaderParamMatrix4("u_matView", &_renderer->getViewMatrix());
 	gsSetShaderParamMatrix4("u_matProjection", &_renderer->getProjectionMatrix());
+	gsTextureBind(gsGetOctree(static_cast<GSuint>(m_ID))->pMesh->pMaterials->pTexture);
 	gsSetShaderParamTexture("u_baseMap", 0);
-	gsSetShaderParamTexture("u_normalMap", 1);
 	
 	gsDrawOctreeEx(static_cast<unsigned int>(m_ID), &_renderer->getProjectionMatrix(), &_renderer->getViewMatrix());
-	gsEndShader();*/
+	gsEndShader();
 }

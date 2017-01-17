@@ -1,7 +1,7 @@
-#include "../../../header/actor/Player/Gauge.h"
-#include "../../../header/math/Calculate.h"
-#include "../../../header/data/id/TEXTURE_ID.h"
-#include "../../../header/renderer/define/SpriteRectRenderDesc.h"
+#include "actor/Player/Gauge.h"
+#include "math/Calculate.h"
+#include "data/id/TEXTURE_ID.h"
+#include "renderer/define/SpriteRectRenderDesc.h"
 #include <math.h>
 
 Gauge::Gauge()

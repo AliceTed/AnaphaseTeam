@@ -47,7 +47,7 @@ const bool InputPattern_A::quickAttackTrigger()
 
 const bool InputPattern_A::avoid()
 {
-	return m_input->isJoyRightTrigger();
+	return m_input->isJoyTriggerA();
 }
 
 const bool InputPattern_A::gaugeAttack1()

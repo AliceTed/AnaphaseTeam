@@ -1,5 +1,5 @@
 #include "..\..\..\header\scene\each\GameClear.h"
-#include "../../../header/device/GameDevice.h"
+#include "device/GameDevice.h"
 GameClear::GameClear()
 	:m_IsEnd(false)
 {

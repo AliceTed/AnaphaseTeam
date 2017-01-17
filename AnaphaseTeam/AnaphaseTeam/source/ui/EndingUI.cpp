@@ -31,7 +31,7 @@ void EndingUI::update()
 	if (!m_credit.scrollUp(0.0f))
 	{
 		m_still.flashing(1.0f);
-		if (GameDevice::getInstacnce().input()->decision())
+		if (GameDevice::getInstacnce().input()->jump())
 		{
 			m_change = false;
 		}
@@ -48,7 +48,7 @@ void EndingUI::draw(IRenderer* _renderer)
 
 void EndingUI::creditSkip()
 {
-	if (GameDevice::getInstacnce().input()->decision())
+	if (GameDevice::getInstacnce().input()->jump() )
 	{
 		m_count += 1;
 	}

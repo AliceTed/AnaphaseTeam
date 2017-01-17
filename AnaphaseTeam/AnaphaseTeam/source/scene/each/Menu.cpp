@@ -1,8 +1,8 @@
 #include "..\..\..\header\scene\each\Menu.h"
-#include "../../../header/renderer/IRenderer.h"
-#include "../../../header/device/GameDevice.h"
-#include "../../../header/data/id/BGM_ID.h"
-#include "../../../header/renderer/define/SpriteRenderDesc.h"
+#include "renderer/IRenderer.h"
+#include "device/GameDevice.h"
+#include "data/id/BGM_ID.h"
+#include "renderer/define/SpriteRenderDesc.h"
 
 Menu::Menu()
 	:m_IsExit(false),
@@ -74,7 +74,6 @@ void Menu::decision(Select _select)
 		break;
 	case Select::EXIT:
 		m_change.end(SceneMode::TITLE);
-		//m_IsExit = true;
 		break;
 	}
 }

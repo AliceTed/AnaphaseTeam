@@ -1,8 +1,8 @@
 #include "..\..\..\header\data\stream\PhaseReader.h"
 #include <fstream>
-#include "../../../header/data/json/Picojson.h"
-#include "../../../header/data/stream/PhaseConverter.h"
-#include "../../../header/data/Message.h"
+#include "data/json/Picojson.h"
+#include "data/stream/PhaseConverter.h"
+#include "data/Message.h"
 void PhaseReader::operator()(PhaseData * _out, const std::string & _name, const std::string & _path, const std::string & _extension) const
 {
 	std::string file = _path + _name + _extension;

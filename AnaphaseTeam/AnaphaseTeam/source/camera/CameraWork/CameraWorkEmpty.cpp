@@ -1,6 +1,6 @@
-#include "../../../header/camera/CameraWork/CameraWorkEmpty.h"
-#include "../../../header/camera/Camera.h"
-#include "../../../header/camera/CameraWork/CWParameterReader.h"
+#include "camera/CameraWork/CameraWorkEmpty.h"
+#include "camera/Camera.h"
+#include "camera/CameraWork/CWParameterReader.h"
 
 CameraWorkEmpty::CameraWorkEmpty(Camera* _camera) :
 	m_camera(_camera),

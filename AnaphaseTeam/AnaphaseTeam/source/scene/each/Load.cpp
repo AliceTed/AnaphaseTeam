@@ -1,22 +1,22 @@
-#include "../../../header/scene/each/Load.h"
-#include "../../../header/renderer/IRenderer.h"
-#include "../../../header/data/loader/MeshLoader.h"
-#include "../../../header/data/loader/ModelLoader.h"
-#include "../../../header/data/loader/OctreeLoader.h"
-#include "../../../header/data/loader/ShaderLoader.h"
-#include "../../../header/data/loader/TextureLoader.h"
-#include "../../../header/data/loader/SoundLoader.h"
-#include "../../../header/data/loader/MyAnimationLoader.h"
+#include "scene/each/Load.h"
+#include "renderer/IRenderer.h"
+#include "data/loader/MeshLoader.h"
+#include "data/loader/ModelLoader.h"
+#include "data/loader/OctreeLoader.h"
+#include "data/loader/ShaderLoader.h"
+#include "data/loader/TextureLoader.h"
+#include "data/loader/SoundLoader.h"
+#include "data/loader/MyAnimationLoader.h"
 
-#include "../../../header/data/id/TEXTURE_ID.h"
-#include "../../../header/data/id/ANIMATION_ID.h"
-#include "../../../header/data/id/MESH_ID.h"
-#include "../../../header/data/id/Model_ID.h" 
-#include "../../../header/data/id/OCTREE_ID.h"
-#include "../../../header/data/id/SHADER_ID.h"
-#include "../../../header/data/id/BGM_ID.h"
-#include "../../../header/data/id/SE_ID.h"
-#include "../../../header/data/id/MYANIMATION_ID.h"
+#include "data/id/TEXTURE_ID.h"
+#include "data/id/ANIMATION_ID.h"
+#include "data/id/MESH_ID.h"
+#include "data/id/Model_ID.h" 
+#include "data/id/OCTREE_ID.h"
+#include "data/id/SHADER_ID.h"
+#include "data/id/BGM_ID.h"
+#include "data/id/SE_ID.h"
+#include "data/id/MYANIMATION_ID.h"
 Load::Load()
 	:m_IsEnd(false)
 {
@@ -85,7 +85,6 @@ void Load::loadTextrue()
 	tex(TEXTURE_ID::PLAYER_HP_GAUGE, "GameUI_HPGauge2");
 	tex(TEXTURE_ID::SPGAUGE, "GameUI_SPGauge2");
 
-
 	tex(TEXTURE_ID::SPECIAL_MAIN, "special_main");
 	tex(TEXTURE_ID::SPECIAL_ATTACK, "special_attack");
 	tex(TEXTURE_ID::SPECIAL_RECOVERY, "special_recovery");
@@ -94,6 +93,7 @@ void Load::loadTextrue()
 	tex(TEXTURE_ID::PAUSE_GAMEBACK, "gameBack");
 	tex(TEXTURE_ID::PAUSE_TITLEBACK, "titleBack");
 	tex(TEXTURE_ID::STAFFROLL, "TitleUI_STAFF");
+	tex(TEXTURE_ID::NUMBER, "number");
 	tex(TEXTURE_ID::TITLE_MASK, "TitleRogo_Mask");
 	tex(TEXTURE_ID::NUMBER, "number");
 }
@@ -116,7 +116,7 @@ void Load::loadModel()
 	ShaderLoader shader;
 	shader(SHADER_ID::SKINNEDMESH, "skinned_mesh_bump");
 	shader(SHADER_ID::OCTREE, "octree");
-//	shader(SHADER_ID::TEX_SONAR, "texture_soanr");
+	//shader(SHADER_ID::TEX_SONAR, "texture_soanr");
 	ModelLoader model;
 	MeshLoader mesh;
 	model(MODEL_ID::PLAYER, "player/player");
@@ -127,7 +127,7 @@ void Load::loadModel()
 	mesh(MESH_ID::WEAPON, "weapon/weapon");
 
 	OctreeLoader oct;
-	oct(OCTREE_ID::VISUAL, "map/map_limit");
+	oct(OCTREE_ID::VISUAL, "map/map_limit",true);
 	oct(OCTREE_ID::PHASE1, "map/map_collider1");
 	oct(OCTREE_ID::PHASE2, "map/map_collider2");
 	oct(OCTREE_ID::PHASE3, "map/map_collider3");

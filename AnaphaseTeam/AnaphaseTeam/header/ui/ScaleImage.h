@@ -3,6 +3,8 @@
 #include "../data/id/TEXTURE_ID.h"
 #include "../math/TimeLerpVector.h"
 #include "../ui/alpha.h"
+#include "../convenient/Timer.h"
+#include "../math/TargetSinPowerLerp.h"
 class IRenderer;
 class ScaleImage
 {
@@ -23,11 +25,14 @@ private:
 private:
 	TEXTURE_ID m_id;
 	GSvector2 m_position;
-	Math::TimeLerpVector<GSvector2> m_scaleLerp;
-	Math::TimeLerpVector<GSvector2> m_moveLerp;
+	//Math::TimeLerpVector<GSvector2> m_scaleLerp;
+	//Math::TimeLerpVector<GSvector2> m_moveLerp;
 	bool m_changeScroll;
 	float m_alpha;
 	float m_value;
 	float m_speed;
 	float m_stopPos;
+	Vector2 m_scale;
+	Math::TargetSinPowerLerp<GSvector2> m_moveLerp;
+	Math::TargetSinPowerLerp<GSvector2> m_scaleLerp;
 };

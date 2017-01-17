@@ -1,4 +1,4 @@
-#include"../../../header/state/enemy/EThinkState.h"
+#include"state/enemy/EThinkState.h"
 
 Goblin::EThinkState::EThinkState(Goblin* _enemy)
 	:ActorState(_enemy)

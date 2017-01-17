@@ -1,12 +1,15 @@
-#include "../../../header/actor/Enemy/EnemyManager.h"
-#include "../../../header/actor/Player/Player.h"
+#include "actor/Enemy/EnemyManager.h"
+#include "actor/Player/Player.h"
 #include <algorithm>
-#include "../../../header/camera/LockOn.h"
-#include "../../../header/actor/Enemy/IEnemy.h"
-#include "../../../header/map/Map.h"
-EnemyManager::EnemyManager(Player* _player)
+#include "camera/LockOn.h"
+#include "actor/Enemy/IEnemy.h"
+#include "map/Map.h"
+#include "ui/UIManager.h"
+#include "stage/Stage.h"
+EnemyManager::EnemyManager(Player* _player, Score & _score)
 	:m_enemys(),
-	m_player(_player)
+	m_player(_player),
+	m_score(_score)
 {
 }
 
@@ -74,11 +77,16 @@ void EnemyManager::remove()
 	m_enemys.erase(itr, m_enemys.end());
 }
 
+void EnemyManager::addScore(int _score)
+{
+	m_score.add(_score);
+}
+
 float EnemyManager::requestDistancePlayer(IEnemy * _enemy)
 {
 	return _enemy->distanceActor(*m_player);
 }
-GSquaternion EnemyManager::requestDirectionPlayer(IEnemy * _enemy)
+GSquaternion EnemyManager::requestPlayerDirection(IEnemy * _enemy)
 {
 	return _enemy->targetDirection(*m_player);
 }
@@ -90,14 +98,14 @@ bool EnemyManager::requestDistanceOtherEnemy(IEnemy * _enemy)
 bool EnemyManager::reqestGoToNear()
 {
 	//NEAR‚Ì‚â‚Â‚ª‚¢‚é‚©ŒŸõ
-	auto itr = std::find_if(m_enemys.begin(), m_enemys.end(), [](Enemy_Ptr& _e) {return _e->currentDistance() == EAI::ATTACKRANGE; });
+	auto itr = std::find_if(m_enemys.begin(), m_enemys.end(), [](Enemy_Ptr& _e) {return _e->currentAIRange() == EAI::ATTACKRANGE; });
 	//‹‚½‚çtrue
 	return itr == m_enemys.end() ? false : true;
 }
 bool EnemyManager::reqestGoToMid()
 {
 	//MID‚Ì‚â‚Â‚ª‚¢‚é‚©ŒŸõ
-	auto itr = std::find_if(m_enemys.begin(), m_enemys.end(), [](Enemy_Ptr& _e) {return _e->currentDistance() == EAI::MIDDRANGE; });
+	auto itr = std::find_if(m_enemys.begin(), m_enemys.end(), [](Enemy_Ptr& _e) {return _e->currentAIRange() == EAI::MIDDRANGE; });
 	//‹‚½‚çtrue
 	return itr == m_enemys.end() ? false : true;
 }

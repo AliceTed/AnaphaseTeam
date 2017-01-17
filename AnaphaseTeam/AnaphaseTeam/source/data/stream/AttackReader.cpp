@@ -1,11 +1,11 @@
 #include "..\..\..\header\data\stream\AttackReader.h"
-#include "../../../header/data/stream/AttackConverter.h"
-#include "../../../header/attack/LoadAttack.h"
-#include "../../../header/data/Message.h"
+#include "data/stream/AttackConverter.h"
+#include "attack/LoadAttack.h"
+#include "data/Message.h"
 #include <fstream>
-#include "../../../header/data/json/Picojson.h"
-#include "../../../header/data/json/JObject.h"
-#include "../../../header/data/json/JArray.h"
+#include "data/json/Picojson.h"
+#include "data/json/JObject.h"
+#include "data/json/JArray.h"
 void AttackReader::operator()(std::unordered_map<std::string,Attack>* _out, const std::string & _name, const std::string & _path, const std::string& _extension)
 {
 	std::string fullname = _path + _name + _extension;

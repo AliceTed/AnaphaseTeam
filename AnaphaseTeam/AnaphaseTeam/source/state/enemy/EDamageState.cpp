@@ -1,4 +1,4 @@
-#include "../../../header/state/enemy/EDamageState.h"
+#include "state/enemy/EDamageState.h"
 
 Goblin::EDamageState::EDamageState(Goblin* _enemy)
 	:ActorState(_enemy)
@@ -7,6 +7,7 @@ Goblin::EDamageState::EDamageState(Goblin* _enemy)
 
 void Goblin::EDamageState::start()
 {
+	m_actor->scoreDamage();
 }
 
 void Goblin::EDamageState::action(float deltaTime)

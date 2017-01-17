@@ -1,5 +1,5 @@
-#include "../../../header/state/player/HomingStartState.h"
-#include "../../../header/device/GameDevice.h"
+#include "state/player/HomingStartState.h"
+#include "device/GameDevice.h"
 
 Player::HomingStartState::HomingStartState(Player* _player)
 	:ActorState(_player)

@@ -6,7 +6,7 @@
 
 const float Actor::GRAVITY = -0.05f;
 
-Actor::Actor(const Transform & _transform, MODEL_ID _modelID, Actor_Tag _tag)
+Actor::Actor(const Transform & _transform, MODEL_ID _modelID, Actor_Tag _tag,float _offset)
 	:m_transform(_transform),
 	m_isDead(false),
 	m_isGround(false),
@@ -17,7 +17,8 @@ Actor::Actor(const Transform & _transform, MODEL_ID _modelID, Actor_Tag _tag)
 	m_currentState(nullptr),
 	m_currentStateKey(ACTOR_STATE::STAND),
 	m_previousIntersect(m_transform.m_translate),
-	m_gravity(-0.05f)
+	m_gravity(-0.05f),
+	m_offset(_offset)
 {
 }
 
@@ -59,7 +60,7 @@ void Actor::collisionGround(const Map& _map)
 		return;
 	}
 	//map‚É–„‚ß‚Ü‚ê‚Ä‚¢‚½‚çyÀ•W‚ğŒğ“_‚ÉˆÚ“®
-	m_transform.m_translate.y = intersect.y;
+	m_transform.m_translate.y = intersect.y+m_offset;
 }
 const ACTOR_STATE Actor::getState() const
 {

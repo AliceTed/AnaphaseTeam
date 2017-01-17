@@ -1,5 +1,5 @@
 #include "..\..\..\header\state\enemy\NearAI.h"
-#include "../../../header/math/Random.h"
+#include "math/Random.h"
 NearAI::NearAI(Goblin* _enemy) :
 	m_actor(_enemy)
 {

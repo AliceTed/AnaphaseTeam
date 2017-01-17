@@ -1,10 +1,10 @@
-#include "../../../header/scene/each/Ending.h"
-#include "../../../header/renderer/IRenderer.h"
-#include "../../../header/device/GameDevice.h"
-#include "../../../header/renderer/define/SpriteRenderDesc.h"
-#include "../../../header/data/id/TEXTURE_ID.h"
-#include "../../../header/device/GameDevice.h"
-#include "../../../header/data/id/BGM_ID.h"
+#include "scene/each/Ending.h"
+#include "renderer/IRenderer.h"
+#include "device/GameDevice.h"
+#include "renderer/define/SpriteRenderDesc.h"
+#include "data/id/TEXTURE_ID.h"
+#include "device/GameDevice.h"
+#include "data/id/BGM_ID.h"
 
 Ending::Ending()
 	:m_IsEnd(false),

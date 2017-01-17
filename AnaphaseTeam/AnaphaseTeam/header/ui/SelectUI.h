@@ -25,7 +25,9 @@ public:
 	const Select currentSelect()const;
 	void startChange();
 	void startMove();
+	void slowMove();
 	bool isStart();
+	void isScale();
 private:
 	void change(Select _next);
 private:
@@ -33,6 +35,7 @@ private:
 	std::unordered_map<Select, ScaleImage> m_images;
 	float m_timer;
 	GSvector2 m_end;
+	float m_slowScale;
 
 	const static GSvector2 DEFAULTSCALE;
 	const static GSvector2 SELECTSCALE;

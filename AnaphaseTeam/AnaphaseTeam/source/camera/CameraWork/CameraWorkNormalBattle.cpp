@@ -1,7 +1,7 @@
-#include "../../../header/camera/CameraWork/CameraWorkNormalBattle.h"
-#include "../../../header/camera/Camera.h"
-#include "../../../header/camera/CameraWork/CameraWorkNormal.h"
-#include "../../../header/camera/CameraWork/CameraWorkLockOn.h"
+#include "camera/CameraWork/CameraWorkNormalBattle.h"
+#include "camera/Camera.h"
+#include "camera/CameraWork/CameraWorkNormal.h"
+#include "camera/CameraWork/CameraWorkLockOn.h"
 
 CameraWorkNormalBattle::CameraWorkNormalBattle(Camera * _camera, bool * _isLockOn) :
 CameraWorkEmpty(_camera),
