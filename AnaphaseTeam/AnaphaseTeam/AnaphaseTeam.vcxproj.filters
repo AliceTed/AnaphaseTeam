@@ -1499,8 +1499,5 @@
     <ClCompile Include="source\ui\Number.cpp">
       <Filter>ソース ファイル\ui</Filter>
     </ClCompile>
-    <ClCompile Include="header\actor\Enemy\EnemyMediator.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
   </ItemGroup>
 </Project>

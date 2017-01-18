@@ -70,7 +70,6 @@ void Goblin::update(float deltatime)
 	m_gravity = 0.0f;
 	changeGravity(-0.05f);
 	m_timer.update(deltatime);
-
 	rotateLerp(&m_transform.m_rotate, m_timer.time / m_timer.maxTime);
 }
 

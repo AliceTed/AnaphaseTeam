@@ -146,7 +146,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="header\actor\Enemy\EnemyMediator.cpp" />
     <ClCompile Include="source\actor\ActorManager.cpp" />
     <ClCompile Include="source\actor\Enemy\IEnemy.cpp" />
     <ClCompile Include="source\actor\Enemy\SlahHand.cpp" />
