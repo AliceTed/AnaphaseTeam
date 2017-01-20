@@ -5,8 +5,9 @@
 #include <math.h>
 
 Gauge::Gauge()
-	:m_gauge(200),
-	m_lerpmax(m_gauge)
+	:m_gauge(150),
+	m_lerpmax(m_gauge),
+	m_increaseGauge(0)
 {
 }
 
@@ -16,7 +17,7 @@ Gauge::~Gauge()
 
 void Gauge::initialize()
 {
-	m_gauge = 800;
+	//m_gauge = 150;
 	m_lerpmax = m_gauge;
 }
 
@@ -43,7 +44,7 @@ void Gauge::up(float _scale)
 	{
 		return;
 	}
-	add(_scale);
+	add(_scale * m_increaseGauge);
 	m_lerpmax = m_gauge;
 }
 
@@ -90,6 +91,13 @@ void Gauge::add(float _point)
 	Math::Clamp clamp;
 	m_gauge = clamp(m_gauge + _point, 0.0f, static_cast<float>(RankGauge::MAX));	
 }
+
+/*void Gauge::add(int _point = 1)
+{
+	Math::Clamp clamp;
+	m_gauge = clamp(m_gauge + DEFULT * _POINT, 0.0f, static_cast<float>(RankGauge::MAX));
+}*/
+
 
 float Gauge::getGauge()
 {

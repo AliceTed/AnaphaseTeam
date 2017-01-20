@@ -34,8 +34,6 @@
 #include "actor/Enemy/EnemyMediator.h"
 #include "math\Calculate.h"
 
-
-
 const float IEnemy::PLAYER_DISTANCE_NEAR = 2.0f;
 const float IEnemy::PLAYER_DISTANCE_MID = 3.0f;
 const float IEnemy::PLAYER_DISTANCE_FAR = 7.5f;

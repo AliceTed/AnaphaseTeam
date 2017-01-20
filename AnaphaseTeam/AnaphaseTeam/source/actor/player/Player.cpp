@@ -42,8 +42,11 @@
 
 #include "attack/AttackStatus.h"
 
-#include "ui/TargetMarkerUI.h"
-#include "ui/UIManager.h"
+#include "../../../header/ui/TargetMarkerUI.h"
+#include "../../../header/ui/UIManager.h"
+
+#include "../../../header/data/stream/StatusReader.h"
+
 const float Player::ROTATESPEED = -2.0f;
 Player::Player(const Transform& _t,Camera * _camera, LockOn* _lockon)
 	:Actor(
@@ -90,6 +93,9 @@ void Player::initialize()
 	changeState(ACTOR_STATE::STAND);
 	Collision_Ptr actor = std::make_shared<PlayerCollision>(this);
 	m_collision.add(actor);
+
+	StatusReader reader;
+	reader(&m_status, m_Gauge.get(), "status");
 
 	m_status.initialize();
 	m_scythe.initialize();

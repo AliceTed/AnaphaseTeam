@@ -52,6 +52,7 @@ void Goblin::initialize()
 	m_AI.change(EAI::ATTACKRANGE);
 	m_animatorOne.changeAnimationLerp(ENEMY_ANIMATION::STANDDYNIG);
 	m_status.initialize();
+	m_status.m_hp = 100;
 	m_alpha = 1;
 
 	m_gravity = 0.0f;
