@@ -5,6 +5,7 @@
 #include "EnemyMediator.h"
 #include <memory>
 #include "../../ui/Score.h"
+
 class Enemy;
 class IRenderer;
 class Actor;

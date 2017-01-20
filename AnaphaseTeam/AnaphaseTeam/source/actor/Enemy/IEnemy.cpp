@@ -81,8 +81,8 @@ float IEnemy::distaceToOtherEnemy()
 }
 void IEnemy::directionToPlayer()
 {
-	m_transform.m_rotate.dot(m_mediator.requestDirectionPlayer(this));
-	if (50.0f < fabsf(m_transform.m_rotate.getYaw() - m_mediator.requestDirectionPlayer(this).getYaw()))
+	m_transform.m_rotate.dot(m_mediator.requestPlayerDirection(this));
+	if (50.0f < fabsf(m_transform.m_rotate.getYaw() - m_mediator.requestPlayerDirection(this).getYaw()))
 	{
 			lookAtToPlayer();
 	}
@@ -90,7 +90,7 @@ void IEnemy::directionToPlayer()
 void IEnemy::lookAtToPlayer()
 {
 	m_timer.begin();
-	m_targetDirection = m_mediator.requestDirectionPlayer(this);
+	m_targetDirection = m_mediator.requestPlayerDirection(this);
 }
 
 EAI IEnemy::currentDistance()

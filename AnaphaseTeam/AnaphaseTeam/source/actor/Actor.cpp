@@ -6,7 +6,7 @@
 
 const float Actor::GRAVITY = -0.05f;
 
-Actor::Actor(const Transform & _transform, MODEL_ID _modelID, Actor_Tag _tag)
+Actor::Actor(const Transform & _transform, MODEL_ID _modelID, Actor_Tag _tag, float _offset)
 	:m_transform(_transform),
 	m_isDead(false),
 	m_isGround(false),
