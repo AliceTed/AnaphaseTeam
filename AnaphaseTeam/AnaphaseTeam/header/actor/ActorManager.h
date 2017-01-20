@@ -15,7 +15,7 @@ class SpawnManager;
 class ActorManager
 {
 public:
-	ActorManager(const Transform& _player,Camera* _camera );
+	ActorManager(const Transform& _player,Camera* _camera, Score & _score);
 	~ActorManager()=default;
 	void initialize();
 	void update(float deltaTime);

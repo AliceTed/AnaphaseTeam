@@ -1,6 +1,6 @@
 #pragma once
 #include "../Actor.h"
-#include "../../../header/camera/CameraController.h"
+#include "../../camera/CameraController.h"
 #include "../../convenient/Timer.h"
 #include "../../attack/AttackStatus.h"
 #include "../../actor/Player/Status.h"
@@ -14,31 +14,34 @@ class Player;
 
 class Goblin :public IEnemy
 {
-public://Actor継承、コンストラクタ
+public://Actor継承&コンストラクタ
 	Goblin(const Transform& _transform, EnemyMediator& _mediator);
 	~Goblin();
 	void initialize() override;//actor
 	void update(float deltatime)override;//actor
 	void draw(IRenderer* _renderer)override;//actor
 	/**
-	* @fn
 	* @brief ダメージステートに切り替えHPをマイナス
 	* @param (&_attackStatus) Playerのステータス
 	*/
-	void damage(const AttackStatus& _attackStatus)override;//actor
-
-
+	void damage(const AttackStatus& _attackStatus)override;
+	/**
+	*@breif 吹っ飛び値に応じてアニメーション変更
+	*@param[_blowPower]食らった攻撃の吹っ飛び値
+	*/
+	void blowDamageDecision(const GSvector3& _blowPower)override;
 private:
 	/**
-	* @fn
 	* @brief stateを初期化代入
 	*/
 	void createStates()override;
+	/**
+	* @breif 思考関数
+	* @param[_player] プレイヤーのポインタ
+	*/
 	void think(Player* _palyer)override;
 private:
 	GSquaternion m_debug;
-private:
-	GSvector3 draw2d(IRenderer* _renderer);
 private://state
 	class EAttackState;
 	class EDamageState;

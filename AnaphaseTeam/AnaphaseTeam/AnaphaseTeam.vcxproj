@@ -86,6 +86,7 @@
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <AdditionalIncludeDirectories>$(ProjectDir)Header;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -117,6 +118,7 @@
       <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <AdditionalIncludeDirectories>$(ProjectDir)Header;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -299,11 +301,13 @@
     <ClCompile Include="source\ui\EndingUI.cpp" />
     <ClCompile Include="source\ui\Fade.cpp" />
     <ClCompile Include="source\ui\HPGaugeUI.cpp" />
+    <ClCompile Include="source\ui\Number.cpp" />
     <ClCompile Include="source\ui\OptionSelectUI.cpp" />
     <ClCompile Include="source\ui\OptionUI.cpp" />
     <ClCompile Include="source\ui\PadSelectUI.cpp" />
     <ClCompile Include="source\ui\PauseUI.cpp" />
     <ClCompile Include="source\ui\ScaleImage.cpp" />
+    <ClCompile Include="source\ui\Score.cpp" />
     <ClCompile Include="source\ui\SelectUI.cpp" />
     <ClCompile Include="source\ui\SkillUI.cpp" />
     <ClCompile Include="source\ui\SlideImage.cpp" />
@@ -316,6 +320,7 @@
     <ClCompile Include="source\ui\VolumeSelectUI.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="header\actor\Enemy\EnemyRotateTimer.h" />
     <ClInclude Include="header\actor\Enemy\IEnemy.h" />
     <ClInclude Include="header\actor\ActorManager.h" />
     <ClInclude Include="header\actor\Enemy\SlahHand.h" />
@@ -410,6 +415,7 @@
     <ClInclude Include="header\device\InputPattern_A.h" />
     <ClInclude Include="header\device\InputPattern_B.h" />
     <ClInclude Include="header\math\TargetLerp.h" />
+    <ClInclude Include="header\math\TargetSinPowerLerp.h" />
     <ClInclude Include="header\myanimation\MyAnimation.h" />
     <ClInclude Include="header\myanimation\MyAnimationContainer.h" />
     <ClInclude Include="header\myanimation\MyAnimationFunc.h" />
@@ -549,9 +555,11 @@
     <ClInclude Include="header\ui\Fade.h" />
     <ClInclude Include="header\ui\HPGaugeUI.h" />
     <ClInclude Include="header\ui\IPlayUI.h" />
+    <ClInclude Include="header\ui\Number.h" />
     <ClInclude Include="header\ui\PadSelectUI.h" />
     <ClInclude Include="header\ui\PauseUI.h" />
     <ClInclude Include="header\ui\ScaleImage.h" />
+    <ClInclude Include="header\ui\Score.h" />
     <ClInclude Include="header\ui\SelectUI.h" />
     <ClInclude Include="header\ui\SkillUI.h" />
     <ClInclude Include="header\ui\SlideImage.h" />
