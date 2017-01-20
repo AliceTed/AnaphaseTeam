@@ -29,7 +29,7 @@ public:
 	@param[_modelID] モデルのID
 	@param[_mediator] エネミーの仲介者
 	*/
-	IEnemy(const Transform& _transform, MODEL_ID _modelID, EnemyMediator& _mediator);
+	IEnemy(const Transform& _transform, MODEL_ID _modelID, EnemyMediator& _mediator,Actor_Tag _tag=Actor_Tag::ENEMY);
 	/**
 	@breif 仮想デストラクタ
 	*/

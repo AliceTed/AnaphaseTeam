@@ -37,9 +37,9 @@
 const float IEnemy::PLAYER_DISTANCE_NEAR = 2.0f;
 const float IEnemy::PLAYER_DISTANCE_MID = 3.0f;
 const float IEnemy::PLAYER_DISTANCE_FAR = 7.5f;
-IEnemy::IEnemy(const Transform& _transform, MODEL_ID _modelID, EnemyMediator& _mediator)
+IEnemy::IEnemy(const Transform& _transform, MODEL_ID _modelID, EnemyMediator& _mediator,Actor_Tag _tag)
 	:
-	Actor(_transform, _modelID, Actor_Tag::ENEMY),
+	Actor(_transform, _modelID,_tag),
 	m_status(),
 	m_alpha(1),
 	m_knockBack(m_transform),
@@ -88,7 +88,6 @@ float IEnemy::distaceToOtherEnemy()
 }
 void IEnemy::directionToPlayer()
 {
-	//m_transform.m_rotate.dot(m_mediator.requestPlayerDirection(this));
 	if (50.0f < fabsf(m_transform.m_rotate.getYaw() - m_mediator.requestPlayerDirection(this).getYaw()))
 	{
 			lookAtToPlayer();
@@ -119,13 +118,6 @@ EAI IEnemy::currentAIRange()
 bool IEnemy::requestDistance(EAI _distance)
 {
 	return m_mediator.isExist(_distance);
-/*	if (_distance == EAI::ATTACKRANGE)
-		return m_mediator.reqestGoToNear();
-	if (_distance == EAI::MIDDRANGE)
-		return m_mediator.reqestGoToMid();
-
-	return false;
-	*/
 }
 
 const bool IEnemy::isNotDamageState()const
