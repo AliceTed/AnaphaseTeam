@@ -70,8 +70,8 @@ void Goblin::update(float deltatime)
 	}
 	m_gravity = 0.0f;
 	changeGravity(-0.05f);
-	m_timer.update(deltatime);
-	rotateLerp(&m_transform.m_rotate, m_timer.time / m_timer.maxTime);
+	m_rotateTimer.update(deltatime);
+	rotateLerp(&m_transform.m_rotate, m_rotateTimer.time / m_rotateTimer.maxTime);
 }
 
 void Goblin::draw(IRenderer * _renderer)
@@ -83,7 +83,7 @@ void Goblin::draw(IRenderer * _renderer)
 void Goblin::damage(const AttackStatus & _attackStatus)
 {
 	if (isNotDamageState())return;
-	changeState(ACTOR_STATE::EDAMAGE);
+	changeState(ACTOR_STATE::EDAMAGE);//ダメージステートに変更
 	m_status.down(_attackStatus.m_power);//体力減少
 	if (!m_isGround)//浮いてる間は吹っ飛びにくい
 	{
@@ -91,16 +91,19 @@ void Goblin::damage(const AttackStatus & _attackStatus)
 		m_knockBack.start(GSvector3(0, 0.3f, 0));
 		return;
 	}
-	blowDamageDecision(_attackStatus.m_blowOff);
-	m_knockBack.start(_attackStatus.m_blowOff);
+	blowDamageDecision(_attackStatus.m_blowOff);//アニメーション変更
+	m_knockBack.start(_attackStatus.m_blowOff);//ノックバック値設定
 }
 void Goblin::blowDamageDecision(const GSvector3& _blowPower)
 {
+	//被ダメージ時吹っ飛び力が一定以上だとアニメーションを変える
 	if (_blowPower.length() > BLOW_DAMAGE_POWER)
 	{
+		//吹っ飛ぶ方
 		m_animatorOne.changeAnimationLerp(ENEMY_ANIMATION::DIE2, 1.5f);
 		return;
 	}
+	//ただの怯み
 	m_animatorOne.changeAnimationLerp(ENEMY_ANIMATION::DAMAGE1, 1.5f);
 }
 
@@ -121,7 +124,6 @@ void Goblin::createStates()
 
 void Goblin::think(Player * _player)
 {
-	//m_debug = targetDirection(*_player);
 	if (!isThink())return;
 	m_AI.change(dicisionOfAI(distanceActor(*_player)));
 	m_AI.think(_player);
