@@ -65,9 +65,9 @@ void Sphere::draw(IRenderer * renderer, const GScolor& color)
 {
 	//renderer.getDraw3D().drawSphere(&center, radius, color);
 	glPushMatrix();
-	glTranslatef(center.x, center.y, center.z);
+	/*glTranslatef(center.x, center.y, center.z);
 	glMaterialfv(GL_FRONT, GL_DIFFUSE, color);
-	glutSolidSphere(radius, 20, 20);
+	glutSolidSphere(radius, 20, 20);*/
 	glPopMatrix();
 }
 

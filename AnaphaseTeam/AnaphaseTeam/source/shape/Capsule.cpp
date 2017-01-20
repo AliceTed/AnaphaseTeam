@@ -68,7 +68,7 @@ void Capsule::draw(IRenderer * renderer, const GScolor& color)
 	qobj = gluNewQuadric();
 
 	glPushMatrix();
-	GSvector3 pos = m_Segment.begin();
+	/*GSvector3 pos = m_Segment.begin();
 	glTranslatef(pos.x, pos.y, pos.z);
 
 	glRotatef(dir, 0.0f, 1.0f, 0.0f);
@@ -85,7 +85,7 @@ void Capsule::draw(IRenderer * renderer, const GScolor& color)
 
 	glTranslatef(0, 0, v.length());
 	glMaterialfv(GL_FRONT, GL_DIFFUSE, color);
-	glutSolidSphere(m_Radius, 20, 20);
+	glutSolidSphere(m_Radius, 20, 20);*/
 
 	glPopMatrix();
 }
