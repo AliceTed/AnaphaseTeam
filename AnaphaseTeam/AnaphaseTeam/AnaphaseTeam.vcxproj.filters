@@ -247,6 +247,12 @@
     <Filter Include="ヘッダー ファイル\actor\Enemy\AI">
       <UniqueIdentifier>{ee200da0-5031-4023-8e27-0efafe3c8cb6}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\effect">
+      <UniqueIdentifier>{6193c46d-e96b-404e-976b-274dac176c61}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\effect">
+      <UniqueIdentifier>{c76400c7-04f3-4b8d-adc5-d540dd130d6d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="header\math\Calculate.h">
@@ -1002,6 +1008,9 @@
     <ClInclude Include="header\renderer\define\NumberSpriteRenderDesc.h">
       <Filter>ヘッダー ファイル\renderer\define</Filter>
     </ClInclude>
+    <ClInclude Include="header\effect\EffectManager.h">
+      <Filter>ヘッダー ファイル\effect</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="source\main.cpp">
@@ -1525,6 +1534,9 @@
     </ClCompile>
     <ClCompile Include="source\actor\Enemy\IEnemy.cpp">
       <Filter>ソース ファイル\actor\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="source\effect\EffectManager.cpp">
+      <Filter>ソース ファイル\effect</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
