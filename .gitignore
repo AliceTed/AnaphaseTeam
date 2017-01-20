@@ -254,3 +254,4 @@ paket-files/
 *.sln.iml
 /AnaphaseTeam/AnaphaseTeam/res
 /AnaphaseTeam/AnaphaseTeam/team.smproj
+/AnaphaseTeam/AnaphaseTeam/header/actor/Enemy
