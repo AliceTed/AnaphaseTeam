@@ -241,6 +241,12 @@
     <Filter Include="ソース ファイル\data\json">
       <UniqueIdentifier>{9a9e6c22-7f81-41ef-90af-81c12a296f94}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\actor\Enemy\AI">
+      <UniqueIdentifier>{5af4216a-e1ab-4143-9c37-f3af91cc2c3c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\actor\Enemy\AI">
+      <UniqueIdentifier>{ee200da0-5031-4023-8e27-0efafe3c8cb6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="header\math\Calculate.h">
@@ -789,44 +795,8 @@
     <ClInclude Include="header\ui\EndingUI.h">
       <Filter>ヘッダー ファイル\ui</Filter>
     </ClInclude>
-    <ClInclude Include="header\state\enemy\EDashFrontState.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="header\state\enemy\EnemyAIController.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="header\state\enemy\EMoveBackState.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="header\state\enemy\EThinkState.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="header\state\enemy\IEnemyAI.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="header\state\enemy\NearAI.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="header\state\enemy\OverNearAI.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
     <ClInclude Include="header\camera\CameraWork\CameraWorkEmpty.h">
       <Filter>ヘッダー ファイル\camera\CameraWork</Filter>
-    </ClInclude>
-    <ClInclude Include="header\actor\Enemy\EnemyMediator.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="header\state\enemy\EAI.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="header\state\enemy\MiddleRangeAI.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="header\state\enemy\OverFarAI.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="header\state\enemy\ESecoundAttackState.h">
-      <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="header\actor\ActorManager.h">
       <Filter>ヘッダー ファイル\actor</Filter>
@@ -866,15 +836,6 @@
     </ClInclude>
     <ClInclude Include="header\renderer\define\OctreeExRenderDesc.h">
       <Filter>ヘッダー ファイル\renderer\define</Filter>
-    </ClInclude>
-    <ClInclude Include="header\ui\PadSelectUI.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="header\ui\SoundSelectUI.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="header\ui\VolumeSelectUI.h">
-      <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="header\stage\Stage.h">
       <Filter>ヘッダー ファイル\stage</Filter>
@@ -939,9 +900,6 @@
     <ClInclude Include="header\camera\LookAt.h">
       <Filter>ヘッダー ファイル\camera</Filter>
     </ClInclude>
-    <ClInclude Include="header\renderer\define\NumberSpriteRenderDesc.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
     <ClInclude Include="header\camera\CameraWork\CameraWorkNormalBattle.h">
       <Filter>ヘッダー ファイル\camera\CameraWork</Filter>
     </ClInclude>
@@ -950,9 +908,6 @@
     </ClInclude>
     <ClInclude Include="header\data\json\JArray.h">
       <Filter>ヘッダー ファイル\data\json</Filter>
-    </ClInclude>
-    <ClInclude Include="header\ui\TargetMarkerUI.h">
-      <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="header\state\player\HomingState.h">
       <Filter>ヘッダー ファイル\state\player</Filter>
@@ -995,6 +950,57 @@
     </ClInclude>
     <ClInclude Include="header\actor\Player\PlayerInfo.h">
       <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="header\state\enemy\EDashFrontState.h">
+      <Filter>ヘッダー ファイル\state\enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="header\state\enemy\EMoveBackState.h">
+      <Filter>ヘッダー ファイル\state\enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="header\state\enemy\ESecoundAttackState.h">
+      <Filter>ヘッダー ファイル\state\enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="header\state\enemy\EThinkState.h">
+      <Filter>ヘッダー ファイル\state\enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="header\state\enemy\IEnemyAI.h">
+      <Filter>ヘッダー ファイル\actor\Enemy\AI</Filter>
+    </ClInclude>
+    <ClInclude Include="header\state\enemy\EAI.h">
+      <Filter>ヘッダー ファイル\actor\Enemy\AI</Filter>
+    </ClInclude>
+    <ClInclude Include="header\state\enemy\EnemyAIController.h">
+      <Filter>ヘッダー ファイル\actor\Enemy\AI</Filter>
+    </ClInclude>
+    <ClInclude Include="header\state\enemy\NearAI.h">
+      <Filter>ヘッダー ファイル\actor\Enemy\AI</Filter>
+    </ClInclude>
+    <ClInclude Include="header\state\enemy\MiddleRangeAI.h">
+      <Filter>ヘッダー ファイル\actor\Enemy\AI</Filter>
+    </ClInclude>
+    <ClInclude Include="header\state\enemy\OverFarAI.h">
+      <Filter>ヘッダー ファイル\actor\Enemy\AI</Filter>
+    </ClInclude>
+    <ClInclude Include="header\state\enemy\OverNearAI.h">
+      <Filter>ヘッダー ファイル\actor\Enemy\AI</Filter>
+    </ClInclude>
+    <ClInclude Include="header\actor\Enemy\EnemyMediator.h">
+      <Filter>ヘッダー ファイル\actor\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="header\ui\SoundSelectUI.h">
+      <Filter>ヘッダー ファイル\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="header\ui\PadSelectUI.h">
+      <Filter>ヘッダー ファイル\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="header\ui\TargetMarkerUI.h">
+      <Filter>ヘッダー ファイル\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="header\ui\VolumeSelectUI.h">
+      <Filter>ヘッダー ファイル\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="header\renderer\define\NumberSpriteRenderDesc.h">
+      <Filter>ヘッダー ファイル\renderer\define</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -1358,41 +1364,8 @@
     <ClCompile Include="source\attack\KnockBack.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="source\state\enemy\EDashFrontState.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="source\state\enemy\EMoveBackState.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="source\state\enemy\EThinkState.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="source\state\enemy\OverNearAI.cpp">
-      <Filter>ソース ファイル\state\enemy</Filter>
-    </ClCompile>
-    <ClCompile Include="source\state\enemy\NearAI.cpp">
-      <Filter>ソース ファイル\state\enemy</Filter>
-    </ClCompile>
     <ClCompile Include="source\camera\CameraWork\CameraWorkEmpty.cpp">
       <Filter>ソース ファイル\camera\CameraWork</Filter>
-    </ClCompile>
-    <ClCompile Include="source\state\enemy\EnemyAIController.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="source\state\enemy\ESecoundAttackState.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="source\state\enemy\MiddleRangeAI.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="source\state\enemy\OverFarAI.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="source\actor\Enemy\IEnemy.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="source\actor\Enemy\Goblin.cpp">
-      <Filter>ソース ファイル</Filter>
     </ClCompile>
     <ClCompile Include="source\actor\ActorManager.cpp">
       <Filter>ソース ファイル\actor</Filter>
@@ -1411,21 +1384,6 @@
     </ClCompile>
     <ClCompile Include="source\data\stream\SpawnReader.cpp">
       <Filter>ソース ファイル\data\stream</Filter>
-    </ClCompile>
-    <ClCompile Include="source\ui\OptionSelectUI.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="source\ui\OptionUI.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="source\ui\PadSelectUI.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="source\ui\SoundSelectUI.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="source\ui\VolumeSelectUI.cpp">
-      <Filter>ソース ファイル</Filter>
     </ClCompile>
     <ClCompile Include="source\stage\Stage.cpp">
       <Filter>ソース ファイル\stage</Filter>
@@ -1514,14 +1472,59 @@
     <ClCompile Include="source\ui\Number.cpp">
       <Filter>ソース ファイル\ui</Filter>
     </ClCompile>
-    <ClCompile Include="header\actor\Enemy\EnemyMediator.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
     <ClCompile Include="source\data\stream\StatusConverter.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
     <ClCompile Include="source\data\stream\StatusReader.cpp">
       <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="source\ui\OptionUI.cpp">
+      <Filter>ソース ファイル\ui</Filter>
+    </ClCompile>
+    <ClCompile Include="source\ui\PadSelectUI.cpp">
+      <Filter>ソース ファイル\ui</Filter>
+    </ClCompile>
+    <ClCompile Include="source\ui\SoundSelectUI.cpp">
+      <Filter>ソース ファイル\ui</Filter>
+    </ClCompile>
+    <ClCompile Include="source\ui\VolumeSelectUI.cpp">
+      <Filter>ソース ファイル\ui</Filter>
+    </ClCompile>
+    <ClCompile Include="source\state\enemy\EDashFrontState.cpp">
+      <Filter>ソース ファイル\state\enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="source\state\enemy\EMoveBackState.cpp">
+      <Filter>ソース ファイル\state\enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="source\state\enemy\EThinkState.cpp">
+      <Filter>ソース ファイル\state\enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="source\state\enemy\EnemyAIController.cpp">
+      <Filter>ソース ファイル\actor\Enemy\AI</Filter>
+    </ClCompile>
+    <ClCompile Include="source\state\enemy\ESecoundAttackState.cpp">
+      <Filter>ソース ファイル\actor\Enemy\AI</Filter>
+    </ClCompile>
+    <ClCompile Include="source\state\enemy\MiddleRangeAI.cpp">
+      <Filter>ソース ファイル\actor\Enemy\AI</Filter>
+    </ClCompile>
+    <ClCompile Include="source\state\enemy\OverFarAI.cpp">
+      <Filter>ソース ファイル\actor\Enemy\AI</Filter>
+    </ClCompile>
+    <ClCompile Include="source\state\enemy\NearAI.cpp">
+      <Filter>ソース ファイル\actor\Enemy\AI</Filter>
+    </ClCompile>
+    <ClCompile Include="source\state\enemy\OverNearAI.cpp">
+      <Filter>ソース ファイル\actor\Enemy\AI</Filter>
+    </ClCompile>
+    <ClCompile Include="source\ui\OptionSelectUI.cpp">
+      <Filter>ソース ファイル\ui</Filter>
+    </ClCompile>
+    <ClCompile Include="source\actor\Enemy\Goblin.cpp">
+      <Filter>ソース ファイル\actor\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="source\actor\Enemy\IEnemy.cpp">
+      <Filter>ソース ファイル\actor\Enemy</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
