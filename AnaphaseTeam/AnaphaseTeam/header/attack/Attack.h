@@ -10,7 +10,7 @@
 #include "../convenient/Timer.h"
 class Player;
 class CollisionMediator;
-class AnimatorOne;
+class Animator;
 
 class Attack
 {
@@ -21,8 +21,8 @@ public:
 	void update(float deltaTime,Player* _player);
 
 	void motion(Player* _player);
-	void changeMotion(AnimatorOne& _animator, float _speed);
-	bool finish(AnimatorOne & _animator);
+	void changeMotion(Animator& _animator, float _speed);
+	bool finish(Animator & _animator);
 	const std::string& next(bool _isSlow) const;
 	const AttackStatus &getStatus() const;
 	const unsigned int getID() const;

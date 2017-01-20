@@ -76,7 +76,7 @@ protected:
 	bool m_isGround;
 	//s“®‰Â”\
 	bool m_isBlock;
-	AnimatorOne m_animatorOne;
+	Animator m_animatorOne;
 	CollisionGroup m_collision;
 private:
 	using StatePtr = std::shared_ptr<IActorState>;
