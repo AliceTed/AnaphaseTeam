@@ -23,7 +23,7 @@ void AnimatorOne::update(float deltatime)
 }
 const bool AnimatorOne::isEndCurrentAnimation() const
 {
-	return /*(!m_nextAnimation) &&*/m_currentAnimation->getIsEnd();
+	return (!m_nextAnimation) &&m_currentAnimation->getIsEnd();
 }
 
 void AnimatorOne::changeAnimation(unsigned int _animation, bool _isLerp, bool _isLoop, bool _isNotInit, float _lerpTime, float _animationSpeed)
