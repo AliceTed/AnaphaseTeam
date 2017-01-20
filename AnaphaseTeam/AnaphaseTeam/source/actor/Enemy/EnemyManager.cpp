@@ -95,6 +95,13 @@ bool EnemyManager::requestDistanceOtherEnemy(IEnemy * _enemy)
 	return false;
 }
 
+bool EnemyManager::isExist(EAI _range)
+{
+	//引数の距離に他のエネミーがいるか検索
+	auto itr = std::find_if(m_enemys.begin(), m_enemys.end(), [&](Enemy_Ptr& _e) {return _e->currentAIRange() == _range; });
+	//居たらtrue
+	return itr == m_enemys.end() ? false : true;
+}
 bool EnemyManager::reqestGoToNear()
 {
 	//NEARのやつがいるか検索

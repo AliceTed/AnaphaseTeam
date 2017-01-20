@@ -156,7 +156,7 @@ protected:
 	KnockBack m_knockBack;
 
 	GSquaternion m_targetDirection;
-	LerpTimer m_timer;
+	LerpTimer m_rotateTimer;
 	float m_gravity;
 
 protected:

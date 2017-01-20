@@ -118,12 +118,14 @@ EAI IEnemy::currentAIRange()
 }
 bool IEnemy::requestDistance(EAI _distance)
 {
-	if (_distance == EAI::ATTACKRANGE)
+	return m_mediator.isExist(_distance);
+/*	if (_distance == EAI::ATTACKRANGE)
 		return m_mediator.reqestGoToNear();
 	if (_distance == EAI::MIDDRANGE)
 		return m_mediator.reqestGoToMid();
 
 	return false;
+	*/
 }
 
 const bool IEnemy::isNotDamageState()const
