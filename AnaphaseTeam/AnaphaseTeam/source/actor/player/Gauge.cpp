@@ -6,7 +6,8 @@
 
 Gauge::Gauge()
 	:m_gauge(150),
-	m_lerpmax(m_gauge)
+	m_lerpmax(m_gauge),
+	m_increaseGauge(0)
 {
 }
 
@@ -16,7 +17,7 @@ Gauge::~Gauge()
 
 void Gauge::initialize()
 {
-	m_gauge = 150;
+	//m_gauge = 150;
 	m_lerpmax = m_gauge;
 }
 
@@ -43,7 +44,7 @@ void Gauge::up(float _scale)
 	{
 		return;
 	}
-	add(_scale);
+	add(_scale * m_increaseGauge);
 	m_lerpmax = m_gauge;
 }
 

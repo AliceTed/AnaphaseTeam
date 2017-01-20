@@ -5,16 +5,16 @@
 #include "../../../header/data/Message.h"
 #include "../../../header/data/json/Picojson.h"
 
-void StatusReader::operator()(Status* _out, const std::string & _name, const std::string & _path, const std::string & _extension)
+void StatusReader::operator()(Status* _status, Gauge* _gauge, const std::string & _name, const std::string & _path, const std::string & _extension)
 {
 	string fullname = _path + _name + _extension;
-	if (load(_out, fullname))return;
+	if (load(_status, _gauge, fullname))return;
 
 	Message error;
 	error("STATUSDATA", fullname);
 }
 
-const bool StatusReader::load(Status* _out, const string & _fullname) const
+const bool StatusReader::load(Status* _status, Gauge* _gauge,const string & _fullname) const
 {
 	ifstream fs(_fullname, ios::binary);
 	if (!fs)return false;
@@ -22,21 +22,18 @@ const bool StatusReader::load(Status* _out, const string & _fullname) const
 	fs >> value;
 	fs.close();
 
-	//JUtil::JObject obj(value.get<picojson::object>());
 	picojson::object obj = value.get<picojson::object>();
 	if (obj.count("Status") == 0)return false;
 	picojson::object data = obj["Status"].get<picojson::object>();
 
 	float hp = data["PlayerHP"].get<double>();
-	_out->m_maxHp = hp;
+	_status->m_maxHp = hp;
 
-	//StatusConverter convert;
-	/*for (auto& i : data)
-	{
-		LoadStatus load;
-		if (!convert(&load, i))return false;
-		_out->insert(make_pair(load.selfID, Status(0, load.parameter)));
-	}*/
+	float defaultGauge = data["DefaultGauge"].get<double>();
+	_gauge->m_gauge = defaultGauge;
+
+	float increaseGauge = data["IncreaseGauge"].get<double>();
+	_gauge->m_increaseGauge = increaseGauge;
 
 	return true;
 }

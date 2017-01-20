@@ -56,7 +56,7 @@ Player::Player(const Transform& _t,Camera * _camera, LockOn* _lockon)
 	),
 	m_combo(this),
 	m_camera(_camera),
-	m_status(StatusParameter()),
+	m_status(),
 	m_Gauge(std::make_shared<Gauge>()),
 	m_lockon(_lockon),
 	m_scythe(),
@@ -93,7 +93,7 @@ void Player::initialize()
 	m_collision.add(actor);
 
 	StatusReader reader;
-	reader(&m_status, "status");
+	reader(&m_status, m_Gauge.get(), "status");
 
 	m_status.initialize();
 	m_scythe.initialize();

@@ -7,11 +7,9 @@
 const bool StatusConverter::operator()(LoadStatus * _out, picojson::value & _value) const
 {
 	JUtil::JObject obj(_value.get<picojson::object>());
-	if (!obj.isPossess("SelfID"))return false;
-	_out->selfID = obj.get<std::string>("SelfID");
 	
-	if (!obj.isPossess("HP")) return false;
-	_out->parameter.m_hp = obj.getNumber<float>("HP");
+	if (!obj.isPossess("PlayerHP")) return false;
+	_out->parameter.m_hp = obj.getNumber<float>("PlayerHP");
 
 	//if (!obj.isPossess("ShapeData"))return false;
 	//JUtil::JObject shapeObj(obj.get<picojson::object>("ShapeData"));

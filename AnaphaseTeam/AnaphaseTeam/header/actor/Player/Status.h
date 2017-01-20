@@ -7,14 +7,12 @@
 
 #pragma once
 
-#include "StatusParameter.h"
-
 class Gauge;
 
 class Status
 {
 public:
-	Status(const StatusParameter& _parameter);
+	Status();
 	~Status();
 	void initialize();
 	void change(Gauge& _gauge); 
@@ -24,7 +22,6 @@ public:
 	void down(float _damage);
 	void add(float _amount);
 public:
-	StatusParameter m_parameter;
 	float m_hp;
 	float m_maxHp;
 	float m_AttackSpeed;

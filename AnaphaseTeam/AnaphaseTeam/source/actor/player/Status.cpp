@@ -2,12 +2,11 @@
 #include"../../../header/actor/Player/Gauge.h"
 #include "../../../header/math/Calculate.h"
 
-Status::Status(const StatusParameter& _parameter)
+Status::Status()
 	:
-	m_parameter(_parameter),
 	def(3.0f),
-	m_hp(_parameter.m_hp),
-	m_maxHp(_parameter.m_hp),
+	m_hp(0),
+	m_maxHp(0),
 	m_AttackSpeed(def)
 {
 }
