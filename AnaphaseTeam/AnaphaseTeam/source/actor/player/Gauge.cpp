@@ -91,6 +91,13 @@ void Gauge::add(float _point)
 	m_gauge = clamp(m_gauge + _point, 0.0f, static_cast<float>(RankGauge::MAX));	
 }
 
+/*void Gauge::add(int _point = 1)
+{
+	Math::Clamp clamp;
+	m_gauge = clamp(m_gauge + DEFULT * _POINT, 0.0f, static_cast<float>(RankGauge::MAX));
+}*/
+
+
 float Gauge::getGauge()
 {
 	return m_gauge;

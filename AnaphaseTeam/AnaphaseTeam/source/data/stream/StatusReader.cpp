@@ -25,7 +25,7 @@ const bool StatusReader::load(Status* _out, const string & _fullname) const
 	//JUtil::JObject obj(value.get<picojson::object>());
 	picojson::object obj = value.get<picojson::object>();
 	if (obj.count("Status") == 0)return false;
-	picojson::object data = obj["Status"].get<picojson::object>();// get<picojson::array>("Combo");
+	picojson::object data = obj["Status"].get<picojson::object>();
 
 	float hp = data["PlayerHP"].get<double>();
 	_out->m_maxHp = hp;

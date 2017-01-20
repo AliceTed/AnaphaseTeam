@@ -320,6 +320,7 @@
     <ClInclude Include="header\actor\ActorManager.h" />
     <ClInclude Include="header\actor\Enemy\SlahHand.h" />
     <ClInclude Include="header\actor\Player\LoadStatus.h" />
+    <ClInclude Include="header\actor\Player\PlayerInfo.h" />
     <ClInclude Include="header\actor\Player\StatusParameter.h" />
     <ClInclude Include="header\attack\AttackParameter.h" />
     <ClInclude Include="header\attack\Revision.h" />
