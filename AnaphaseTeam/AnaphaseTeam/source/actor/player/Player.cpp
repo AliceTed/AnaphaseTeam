@@ -95,7 +95,7 @@ void Player::initialize()
 	m_collision.add(actor);
 
 	StatusReader reader;
-	reader(&m_status, m_Gauge.get(), "status");
+	reader(&m_status, m_Gauge.get(), m_gravity, "status");
 
 	m_status.initialize();
 	m_scythe.initialize();

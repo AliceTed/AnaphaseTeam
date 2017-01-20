@@ -97,7 +97,7 @@ void IEnemy::directionToPlayer()
 void IEnemy::lookAtToPlayer()
 {
 	/*ラープタイマー開始*/
-	m_timer.begin();
+	m_rotateTimer.begin();
 	/*targetをプレイヤーがいる方向へ入れ替え*/
 	m_targetDirection = m_mediator.requestPlayerDirection(this);
 }
