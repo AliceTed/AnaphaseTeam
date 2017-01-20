@@ -1,6 +1,7 @@
-#include "actor/Player/Status.h"
-#include"actor/Player/Gauge.h"
-#include "math/Calculate.h"
+#include "../../../header/actor/Player/Status.h"
+#include "../../../header/actor/Player/Gauge.h"
+#include "../../../header/math/Calculate.h"
+
 
 Status::Status()
 	:
