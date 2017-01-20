@@ -107,5 +107,5 @@ const bool InputPattern_A::reset()
 
 const bool InputPattern_A::decision()
 {
-	return m_input->isJoyTriggerB();
+	return m_input->isJoyTriggerA();
 }
