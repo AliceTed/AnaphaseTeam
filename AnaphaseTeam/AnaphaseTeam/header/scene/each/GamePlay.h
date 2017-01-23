@@ -18,6 +18,9 @@ public:
 	const SceneMode next()const;
 	const bool isEnd()const;
 	const bool isExit()const;
+
+private:
+	void endingScene();
 private:
 	SceneChange m_change;
 	Pause m_pause;

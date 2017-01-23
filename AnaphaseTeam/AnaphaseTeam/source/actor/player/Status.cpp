@@ -49,7 +49,6 @@ void Status::down(float _damage)
 
 void Status::add(float _amount)
 {
-	Math::Clamp clamp;
 	m_hp += _amount;
-	m_hp = clamp(m_hp, 0.0f, 100.0f);
+	m_hp =Math::Calculate::clamp(m_hp, 0.0f, 100.0f);
 }

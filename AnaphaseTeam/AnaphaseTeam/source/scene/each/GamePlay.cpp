@@ -32,16 +32,14 @@ void GamePlay::initialize()
 
 void GamePlay::update(float deltaTime)
 {
-	m_pause.update(deltaTime);
 	//ƒ|[ƒY
-	if (m_pause.isPause())
-		return;
-	m_stage->update(deltaTime);
-	m_change.update(deltaTime);
-	if (m_stage->isClear()||m_stage->isDead())
+	if (!m_pause.isPause())
 	{
-		m_change.end(SceneMode::ENDING);
+		m_stage->update(deltaTime);
+		m_change.update(deltaTime);
+		endingScene();
 	}
+	m_pause.update(deltaTime);
 }
 
 void GamePlay::draw(IRenderer * _renderer)
@@ -70,4 +68,17 @@ const bool GamePlay::isEnd() const
 const bool GamePlay::isExit() const
 {
 	return false;
+}
+
+void GamePlay::endingScene()
+{
+	if (!m_stage->isClear())
+	{
+		return;
+	}
+	if (!m_stage->isDead())
+	{
+		return;
+	}
+	m_change.end(SceneMode::ENDING);
 }

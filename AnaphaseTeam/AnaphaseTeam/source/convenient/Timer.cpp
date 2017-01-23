@@ -20,8 +20,7 @@ void Timer::update(float _speed)
 {
 	if (isEnd())return;
 
-	Math::Clamp clamp;
-	m_Current = clamp(m_Current + _speed, 0.0f, m_End);
+	m_Current =Math::Calculate::clamp(m_Current + _speed, 0.0f, m_End);
 }
 
 const bool Timer::isEnd() const

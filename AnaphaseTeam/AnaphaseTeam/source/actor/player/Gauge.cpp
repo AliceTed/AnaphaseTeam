@@ -88,8 +88,7 @@ const bool Gauge::isDown(float _value) const
 
 void Gauge::add(float _point)
 {
-	Math::Clamp clamp;
-	m_gauge = clamp(m_gauge + _point, 0.0f, static_cast<float>(RankGauge::MAX));	
+	m_gauge =Math::Calculate::clamp(m_gauge + _point, 0.0f, static_cast<float>(RankGauge::MAX));	
 }
 
 /*void Gauge::add(int _point = 1)

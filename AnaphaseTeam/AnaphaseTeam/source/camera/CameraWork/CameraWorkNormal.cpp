@@ -36,7 +36,6 @@ void CameraWorkNormal::start(void)
 
 void CameraWorkNormal::run(float _deltaTime)
 {
-	Math::Clamp clamp;
 	//いちいちめんどくさいので宣言
 	const GSvector3& player = m_camera->get_cameraTarget_player();
 
@@ -48,7 +47,7 @@ void CameraWorkNormal::run(float _deltaTime)
 	m_rotate->y += velocity().x * m_speed_input;
 
 	//ｘ軸の回転を制限
-	m_rotate->x = clamp(m_rotate->x, -m_clamp_elevation, m_clamp_elevation);
+	m_rotate->x =Math::Calculate::clamp(m_rotate->x, -m_clamp_elevation, m_clamp_elevation);
 
 	//カメラワーク・ドリーの処理
 	m_camera->cameraWork_dolly(
