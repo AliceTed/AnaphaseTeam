@@ -57,7 +57,7 @@ void Goblin::initialize()
 	m_status.initialize();
 	//m_status.m_hp = 100;
 	m_alpha = 1;
-
+	
 	//m_gravity = 0.0f;
 }
 void Goblin::update(float deltatime)
