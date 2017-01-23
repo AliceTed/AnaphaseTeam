@@ -151,13 +151,14 @@ protected:
 
 	float m_alpha;
 	Status m_status;
+	AttackStatus m_attackStatus;
+
 	EnemyMediator& m_mediator;
 	EnemyAIController m_AI;
 	KnockBack m_knockBack;
 
 	GSquaternion m_targetDirection;
 	LerpTimer m_rotateTimer;
-	float m_gravity;
 
 protected:
 	class EnemyCollision;

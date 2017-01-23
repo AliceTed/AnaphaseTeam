@@ -1002,6 +1002,9 @@
     <ClInclude Include="header\renderer\define\NumberSpriteRenderDesc.h">
       <Filter>ヘッダー ファイル\renderer\define</Filter>
     </ClInclude>
+    <ClInclude Include="header\data\stream\EStatusReader.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="source\main.cpp">
@@ -1525,6 +1528,9 @@
     </ClCompile>
     <ClCompile Include="source\actor\Enemy\IEnemy.cpp">
       <Filter>ソース ファイル\actor\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="source\data\stream\EStatusReader.cpp">
+      <Filter>ソース ファイル</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

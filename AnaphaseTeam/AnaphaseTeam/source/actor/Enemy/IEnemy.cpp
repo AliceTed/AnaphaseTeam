@@ -43,8 +43,7 @@ IEnemy::IEnemy(const Transform& _transform, MODEL_ID _modelID, EnemyMediator& _m
 	m_status(),
 	m_alpha(1),
 	m_knockBack(m_transform),
-	m_AI(), m_mediator(_mediator),
-	m_gravity(0.0f)
+	m_AI(), m_mediator(_mediator)
 {
 
 }
@@ -162,7 +161,7 @@ const bool IEnemy::blowDead()const
 void IEnemy::createAttackCollision()
 {
 	float end = m_animatorOne.getCurrentAnimationEndTime() / 60.0f;
-	Collision_Ptr actor = std::make_shared<EnemyAttackCollision>(m_transform.m_translate + m_transform.front(), end);
+	Collision_Ptr actor = std::make_shared<EnemyAttackCollision>(this, m_transform.m_translate + m_transform.front(), end);
 	m_collision.add(actor);
 }
 

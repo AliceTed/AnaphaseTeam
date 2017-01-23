@@ -23,6 +23,7 @@
 #include "state/enemy/OverFarAI.h"
 #include "state/enemy/EAI.h"
 #include "actor/Enemy/EnemyMediator.h"
+#include "../../../header/data/stream/EStatusReader.h"
 
 #include "renderer/define/SpriteRenderDesc.h"
 #include "renderer/define/ViewportDesc.h"
@@ -44,6 +45,8 @@ void Goblin::initialize()
 	changeState(ACTOR_STATE::ESPAWN);
 	Collision_Ptr actor = std::make_shared<EnemyCollision>(this);
 	m_collision.add(actor);
+	EStatusReader reader;
+	reader(&m_status, &m_attackStatus, m_gravity, "estatus");
 	m_AI.initialize();
 	m_AI.add(EAI::ATTACKRANGE, std::shared_ptr<NearAI>(new NearAI(this)));
 	m_AI.add(EAI::OVERNEAR, std::shared_ptr<OverNearAI>(new OverNearAI(this)));
@@ -52,10 +55,10 @@ void Goblin::initialize()
 	m_AI.change(EAI::ATTACKRANGE);
 	m_animatorOne.changeAnimationLerp(ENEMY_ANIMATION::STANDDYNIG);
 	m_status.initialize();
-	m_status.m_hp = 100;
+	//m_status.m_hp = 100;
 	m_alpha = 1;
 
-	m_gravity = 0.0f;
+	//m_gravity = 0.0f;
 }
 void Goblin::update(float deltatime)
 {
@@ -68,7 +71,7 @@ void Goblin::update(float deltatime)
 		changeGravity(m_gravity);
 		return;
 	}
-	m_gravity = 0.0f;
+	//m_gravity = 0.0f;
 	changeGravity(-0.05f);
 	m_rotateTimer.update(deltatime);
 	rotateLerp(&m_transform.m_rotate, m_rotateTimer.time / m_rotateTimer.maxTime);
