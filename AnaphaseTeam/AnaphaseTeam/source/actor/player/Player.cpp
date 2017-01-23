@@ -109,7 +109,7 @@ void Player::initialize()
 	m_specialUI->initialize();
 	m_Gauge->initialize();
 	//m_score->initialize();
-	UIManager::getInstance().add(EUI::HP, std::shared_ptr<HPGaugeUI>(new HPGaugeUI(GSvector2(0, 10), m_status)));
+	UIManager::getInstance().add(EUI::HP, std::shared_ptr<HPGaugeUI>(new HPGaugeUI(GSvector2(0, 10), m_status,TEXTURE_ID::PLAYER_HP, TEXTURE_ID::PLAYER_HP_GAUGE)));
 	UIManager::getInstance().add(EUI::GAUGE, m_Gauge);
 	UIManager::getInstance().add(EUI::SPICON, m_specialUI);
 	//UIManager::getInstance().add(EUI::SCORE, m_score);

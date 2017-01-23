@@ -68,21 +68,20 @@ const bool Load::isExit() const
 void Load::loadTextrue()
 {
 	TextureLoader tex;
-	tex(TEXTURE_ID::WHITE, "white");
 	tex(TEXTURE_ID::BLACK, "black");
 	tex(TEXTURE_ID::EXIT, "TitleUI_EXIT");
 	tex(TEXTURE_ID::OPTION, "TitleUI_OPTION");
 	tex(TEXTURE_ID::GAMESTART, "TitleUI_START");
 	tex(TEXTURE_ID::PRESSKEY, "TitleUI_PressKey");
-	tex(TEXTURE_ID::CURSOR, "cursor");
 	tex(TEXTURE_ID::TITLE_ROGO, "TitleRogo_Black");
-	tex(TEXTURE_ID::CLEAR, "clear");
 	tex(TEXTURE_ID::OPTION_BACKGROUND, "option_background");
 	tex(TEXTURE_ID::PAD_A, "pad");
 	tex(TEXTURE_ID::PAD_B, "pad");
 	tex(TEXTURE_ID::ROGO, "rogo");
 	tex(TEXTURE_ID::PLAYER_HP, "GameUI_HPGauge1");
 	tex(TEXTURE_ID::PLAYER_HP_GAUGE, "GameUI_HPGauge2");
+	tex(TEXTURE_ID::ENEMY_HP, "enemy_hp");
+	tex(TEXTURE_ID::ENEMY_HP_GAUGE, "enemy_hp2");
 	tex(TEXTURE_ID::SPGAUGE, "GameUI_SPGauge2");
 
 	tex(TEXTURE_ID::SPECIAL_MAIN, "special_main");

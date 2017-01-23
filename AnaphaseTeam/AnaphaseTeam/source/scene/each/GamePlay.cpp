@@ -72,11 +72,7 @@ const bool GamePlay::isExit() const
 
 void GamePlay::endingScene()
 {
-	if (!m_stage->isClear())
-	{
-		return;
-	}
-	if (!m_stage->isDead())
+	if (!m_stage->isClear() && !m_stage->isDead())
 	{
 		return;
 	}
