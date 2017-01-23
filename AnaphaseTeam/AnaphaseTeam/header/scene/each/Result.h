@@ -2,6 +2,7 @@
 #include "../SceneChange.h"
 #include "../IScene.h"
 #include "../../ui/Number.h"
+#include "../../ui/ResultManager.h"
 
 class Result : public IScene
 {
@@ -18,7 +19,7 @@ public:
 private:
 	SceneChange m_change;
 	Number m_number;
-	int m_num;
-	int m_score;
+	ResultManager m_manager;
+
 
 };

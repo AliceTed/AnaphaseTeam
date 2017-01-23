@@ -308,6 +308,7 @@
     <ClCompile Include="source\ui\OptionUI.cpp" />
     <ClCompile Include="source\ui\PadSelectUI.cpp" />
     <ClCompile Include="source\ui\PauseUI.cpp" />
+    <ClCompile Include="source\ui\ResultManager.cpp" />
     <ClCompile Include="source\ui\ScaleImage.cpp" />
     <ClCompile Include="source\ui\Score.cpp" />
     <ClCompile Include="source\ui\SelectUI.cpp" />
@@ -562,6 +563,7 @@
     <ClInclude Include="header\ui\Number.h" />
     <ClInclude Include="header\ui\PadSelectUI.h" />
     <ClInclude Include="header\ui\PauseUI.h" />
+    <ClInclude Include="header\ui\ResultManager.h" />
     <ClInclude Include="header\ui\ScaleImage.h" />
     <ClInclude Include="header\ui\Score.h" />
     <ClInclude Include="header\ui\SelectUI.h" />

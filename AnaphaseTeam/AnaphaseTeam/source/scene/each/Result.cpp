@@ -6,8 +6,8 @@
 #include "data/id/TEXTURE_ID.h"
 
 Result::Result()
-	:m_change(), m_number(TEXTURE_ID::NUMBER)
-	, m_num(0), m_score(50)
+	:m_change(), m_number(TEXTURE_ID::NUMBER),m_manager()
+	
 
 {}
 
@@ -19,8 +19,8 @@ void Result::initialize()
 {
 	m_change.initialize();
 	m_change.begin();
-
-	m_number.initilize();
+	
+	m_manager.initilize();
 
 }
 
@@ -32,21 +32,13 @@ void Result::update(float _deltaTime)
 		m_change.end(SceneMode::TITLE);
 	}
 
-	if (m_score > m_num)
-	{
-		m_num++;
-	}
+	m_manager.update(_deltaTime);
+
 }
 
 void Result::draw(IRenderer * _renderer)
 {
-	NumberSpriteRenderDesc desc;
-	desc.decimal = 0;
-	desc.digit = 1;
-	desc.number = m_num;
-	desc.matrix.translate(GSvector3(500, 500, 0));
-	desc.textureID = static_cast<GSuint>(TEXTURE_ID::NUMBER);
-	_renderer->render(desc);
+	m_manager.draw(_renderer);
 }
 
 void Result::finish()

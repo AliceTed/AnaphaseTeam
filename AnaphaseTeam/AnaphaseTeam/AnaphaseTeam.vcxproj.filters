@@ -1008,6 +1008,9 @@
     <ClInclude Include="header\scene\each\Result.h">
       <Filter>ヘッダー ファイル\scene\each</Filter>
     </ClInclude>
+    <ClInclude Include="header\ui\ResultManager.h">
+      <Filter>ヘッダー ファイル\ui</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="source\main.cpp">
@@ -1537,6 +1540,9 @@
     </ClCompile>
     <ClCompile Include="source\scene\each\Result.cpp">
       <Filter>ソース ファイル\scene\each</Filter>
+    </ClCompile>
+    <ClCompile Include="source\ui\ResultManager.cpp">
+      <Filter>ソース ファイル\ui</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
