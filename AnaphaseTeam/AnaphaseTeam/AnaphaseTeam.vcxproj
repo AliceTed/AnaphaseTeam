@@ -229,6 +229,7 @@
     <ClCompile Include="source\scene\each\Option.cpp" />
     <ClCompile Include="source\scene\each\GameClear.cpp" />
     <ClCompile Include="source\scene\each\Pause.cpp" />
+    <ClCompile Include="source\scene\each\Result.cpp" />
     <ClCompile Include="source\sound\Sound.cpp" />
     <ClCompile Include="source\spawn\SpawnManager.cpp" />
     <ClCompile Include="source\spawn\SpawnPoint.cpp" />
@@ -454,6 +455,7 @@
     <ClInclude Include="header\scene\each\Option.h" />
     <ClInclude Include="header\scene\each\GameClear.h" />
     <ClInclude Include="header\scene\each\Pause.h" />
+    <ClInclude Include="header\scene\each\Result.h" />
     <ClInclude Include="header\sound\Sound.h" />
     <ClInclude Include="header\actor\Enemy\ENEMY_TYPE.h" />
     <ClInclude Include="header\spawn\SpawnArea.h" />

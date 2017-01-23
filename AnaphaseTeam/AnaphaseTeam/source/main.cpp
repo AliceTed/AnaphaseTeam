@@ -9,6 +9,7 @@
 #include "../header/scene/each/GamePlay.h"
 #include "../header/scene/each/Ending.h"
 #include "../header/scene/each/GameClear.h"
+#include "../header/scene/each/Result.h"
 
 #include "../header/renderer/IRenderer.h"
 #include "../header/renderer/Renderer.h"
@@ -55,6 +56,7 @@ private:
 		std::shared_ptr<IScene>gameplay = std::make_shared<GamePlay>();
 		std::shared_ptr<IScene>ending = std::make_shared<Ending>();
 		std::shared_ptr<IScene>gameclaer = std::make_shared<GameClear>();
+		std::shared_ptr<IScene>result = std::make_shared<Result>();
 		m_SceneManager.add(SceneMode::LOAD, load);
 		m_SceneManager.add(SceneMode::OPENING, opening);
 		m_SceneManager.add(SceneMode::TITLE, title);
@@ -63,6 +65,7 @@ private:
 		m_SceneManager.add(SceneMode::GAMEPLAY, gameplay);
 		m_SceneManager.add(SceneMode::ENDING, ending);
 		m_SceneManager.add(SceneMode::GAMECLEAR, gameclaer);
+		m_SceneManager.add(SceneMode::RESULT, result);
 
 		m_SceneManager.change(SceneMode::LOAD);
 	}
