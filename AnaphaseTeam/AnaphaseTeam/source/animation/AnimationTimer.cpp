@@ -24,8 +24,7 @@ void AnimationTimer::update(float deltaTime)
 		timer = defTimer;
 		return;
 	}
-	Math::Clamp clamp;
-	timer = clamp(timer+1.0f*speed*deltaTime, 0.0f, defTimer);
+	timer =Math::Calculate::clamp(timer+1.0f*speed*deltaTime, 0.0f, defTimer);
 //	timer += 1.0f*speed*deltaTime;
 }
 

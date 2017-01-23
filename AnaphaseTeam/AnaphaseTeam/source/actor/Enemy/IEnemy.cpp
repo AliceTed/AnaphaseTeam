@@ -136,16 +136,15 @@ const bool IEnemy::isThink()const
 
 const EAI IEnemy::dicisionOfAI(float _distance)const
 {
-	Math::Range range;
 	EAI ai = EAI::ATTACKRANGE;
 	//‹ß‚·‚¬
 	if (_distance < PLAYER_DISTANCE_NEAR)
 		ai = EAI::OVERNEAR;
 	//UŒ‚”ÍˆÍ
-	if (range(_distance , PLAYER_DISTANCE_NEAR, PLAYER_DISTANCE_MID))
+	if (Math::Calculate::range(_distance , PLAYER_DISTANCE_NEAR, PLAYER_DISTANCE_MID))
 		ai = EAI::ATTACKRANGE;
 	//’†ŠÔ
-	if (range(_distance, PLAYER_DISTANCE_MID, PLAYER_DISTANCE_FAR))
+	if (Math::Calculate::range(_distance, PLAYER_DISTANCE_MID, PLAYER_DISTANCE_FAR))
 		ai = EAI::MIDDRANGE;
 	//‰“‚·‚¬
 	if (PLAYER_DISTANCE_FAR < _distance)

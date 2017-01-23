@@ -358,14 +358,12 @@ void Camera::update_lookAt(void)
 }
 
 void Camera::update_zoom(const float _value)
-{
-	Math::Clamp clamp;
-	
+{	
 	//視野角に値を足す
 	m_perspective.x += _value;
 
 	//視野角の値が範囲外に出ないようにする
-	m_perspective.x = clamp(
+	m_perspective.x = Math::Calculate::clamp(
 		m_perspective.x,
 		m_fov_clamp.x,
 		m_fov_clamp.y

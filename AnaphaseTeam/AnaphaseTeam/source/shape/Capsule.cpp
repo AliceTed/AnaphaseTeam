@@ -61,8 +61,7 @@ void Capsule::draw(IRenderer * renderer, const GScolor& color)
 	GSvector3 v = m_Segment.vector();
 	float ele = v.getPitch();
 
-	Math::ATan aTan;
-	float dir = aTan(v.x, v.z);
+	float dir =Math::Calculate::atan(v.x, v.z);
 
 	GLUquadricObj *qobj;
 	qobj = gluNewQuadric();

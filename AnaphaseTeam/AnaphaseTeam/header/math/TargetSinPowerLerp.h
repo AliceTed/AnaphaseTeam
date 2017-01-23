@@ -64,8 +64,10 @@ void Math::TargetSinPowerLerp<Vector>::update(float deltaTime)
 
 	m_timer.update(deltaTime);
 
-	Math::SinPower sp;
-	m_timer.accept([&](float _time, float _endtime) { *m_target = GSvector2(sp(m_start, m_end, _time / _endtime, 0.5f).xy); });
+	m_timer.accept([&](float _time, float _endtime) 
+	{
+		*m_target = GSvector2(Math::Calculate::sinPower(m_start, m_end, _time / _endtime, 0.5f).xy);
+	});
 }
 template<class Vector>
 const bool Math::TargetSinPowerLerp<Vector>::isEnd() const

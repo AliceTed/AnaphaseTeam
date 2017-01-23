@@ -29,8 +29,7 @@ void Revision::start(Player * _player, IEnemy * _enemy, Transform& _transform, G
 	//float velocity = _player->distanceActor(*target) / 5.0f;
 	//Žw”ŠÖ”‚É‚¢‚ê‚é’l
 	float velocity = 15.0f;
-	Math::Clamp clamp;
-	velocity = clamp(_gauge.scale(velocity), 0.0f, _player->distanceActor(*target) - 1.0f);
+	velocity =Math::Calculate::clamp(_gauge.scale(velocity), 0.0f, _player->distanceActor(*target) - 1.0f);
 	_distance = _transform.m_translate + (_transform.front() * velocity);
 	m_isStart = true;
 	m_target = _distance;
@@ -39,6 +38,5 @@ void Revision::start(Player * _player, IEnemy * _enemy, Transform& _transform, G
 void Revision::update(float deltatime, GSvector3* _position)
 {
 	if (m_isStart)
-		gsVector3Lerp(_position,
-			_position, &m_target, deltatime * 0.1f);
+		gsVector3Lerp(_position,_position, &m_target, deltatime * 0.1f);
 }
