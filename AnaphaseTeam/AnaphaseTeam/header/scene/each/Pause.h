@@ -27,6 +27,7 @@ private:
 private:
 	int m_currentSelect;
 	bool m_isPause;
+
 	PauseUI m_image;
 	SceneChange& m_change;
 };

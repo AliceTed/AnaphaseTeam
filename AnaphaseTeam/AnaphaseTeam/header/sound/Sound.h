@@ -30,6 +30,7 @@ public:
 
 	void playSE(SE_ID _id);
 	void stopSE(SE_ID _id);
+
 private:
 	float m_volume;
 	float m_max;
