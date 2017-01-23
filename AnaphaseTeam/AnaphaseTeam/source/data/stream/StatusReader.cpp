@@ -37,5 +37,8 @@ const bool StatusReader::load(Status* _status, Gauge* _gauge, float _gravity, co
 
 	_gravity = data["Gravity"].get<double>();
 
+	float attackSpeed = data["AttackSpeed"].get<double>();
+	_status->def = attackSpeed;
+
 	return true;
 }

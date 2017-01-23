@@ -5,7 +5,7 @@
 
 Status::Status()
 	:
-	def(3.0f),
+	def(0.0f),
 	m_hp(0),
 	m_maxHp(0),
 	m_AttackSpeed(def)
