@@ -95,7 +95,12 @@ void Load::loadTextrue()
 	tex(TEXTURE_ID::STAFFROLL, "TitleUI_STAFF");
 	tex(TEXTURE_ID::NUMBER, "number");
 	tex(TEXTURE_ID::TITLE_MASK, "TitleRogo_Mask");
-	tex(TEXTURE_ID::NUMBER, "number");
+	tex(TEXTURE_ID::CONFIG_TEXT, "config");
+	tex(TEXTURE_ID::SOUND_TEXT, "sound");
+	tex(TEXTURE_ID::VOLUME_TEXT, "volume");
+	tex(TEXTURE_ID::VOLUME_SMALL, "small");
+	tex(TEXTURE_ID::VOLUME_MID, "midle");
+	tex(TEXTURE_ID::VOLUME_LERGE, "lerge");
 }
 void Load::loadSound()
 {
