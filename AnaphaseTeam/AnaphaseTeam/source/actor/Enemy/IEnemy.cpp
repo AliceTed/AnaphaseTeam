@@ -123,7 +123,6 @@ const bool IEnemy::isNotDamageState()const
 {
 	//スポーンと死亡中は食らわない
 	return getState() == ACTOR_STATE::ESPAWN || getState() == ACTOR_STATE::EDEAD;
-	
 }
 const bool IEnemy::isDeadState() const
 {
