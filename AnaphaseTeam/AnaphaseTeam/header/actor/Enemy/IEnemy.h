@@ -29,7 +29,7 @@ public:
 	@param[_modelID] モデルのID
 	@param[_mediator] エネミーの仲介者
 	*/
-	IEnemy(const Transform& _transform, MODEL_ID _modelID, EnemyMediator& _mediator);
+	IEnemy(const Transform& _transform, MODEL_ID _modelID, EnemyMediator& _mediator,Actor_Tag _tag=Actor_Tag::ENEMY);
 	/**
 	@breif 仮想デストラクタ
 	*/
@@ -151,13 +151,14 @@ protected:
 
 	float m_alpha;
 	Status m_status;
+	AttackStatus m_attackStatus;
+
 	EnemyMediator& m_mediator;
 	EnemyAIController m_AI;
 	KnockBack m_knockBack;
 
 	GSquaternion m_targetDirection;
-	LerpTimer m_timer;
-	float m_gravity;
+	LerpTimer m_rotateTimer;
 
 protected:
 	class EnemyCollision;

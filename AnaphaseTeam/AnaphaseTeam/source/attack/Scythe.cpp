@@ -16,7 +16,7 @@ Scythe::~Scythe()
 void Scythe::initialize()
 {
 }
-void Scythe::update(float deltaTime, const AnimatorOne & _animator, const Transform & _parent)
+void Scythe::update(float deltaTime, const Animator & _animator, const Transform & _parent)
 {
 	Transform right = _animator.getOrientedMat(m_bone);
 	Transform world_right = right.parent_synthesis(_parent);

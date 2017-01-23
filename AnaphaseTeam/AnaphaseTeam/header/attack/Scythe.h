@@ -7,7 +7,7 @@
 #pragma once
 #include "../transform/Transform.h"
 class IRenderer;
-class AnimatorOne;
+class Animator;
 class CollisionGroup;
 class Scythe
 {
@@ -16,7 +16,7 @@ public:
 	~Scythe();
 	void initialize();
 	//リファクタ
-	void update(float deltaTime, const AnimatorOne& _animator, const Transform& _parent);
+	void update(float deltaTime, const Animator& _animator, const Transform& _parent);
 	void draw(IRenderer * _renderer);
 private:
 	Transform m_local;

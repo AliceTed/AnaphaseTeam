@@ -86,7 +86,7 @@ const bool InputPattern_B::reset()
 
 const bool InputPattern_B::decision()
 {
-	return m_input->isJoyTriggerB();
+	return m_input->isJoyTriggerA();
 }
 
 const bool InputPattern_B::slowAttackTrigger()

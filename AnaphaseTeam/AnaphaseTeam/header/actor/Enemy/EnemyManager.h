@@ -35,6 +35,7 @@ public:
 	virtual float requestDistancePlayer(IEnemy * _enemy) override;
 	virtual GSquaternion requestPlayerDirection(IEnemy * _enemy)override;
 	virtual bool requestDistanceOtherEnemy(IEnemy * _enemy)override;
+	bool EnemyManager::isExist(EAI _range)override;
 	virtual bool reqestGoToNear()override;
 	virtual bool reqestGoToMid()override;
 	virtual void addScore(int _score) override;

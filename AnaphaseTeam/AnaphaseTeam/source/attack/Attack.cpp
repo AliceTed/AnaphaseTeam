@@ -35,12 +35,12 @@ void Attack::motion(Player * _player)
 {
 	_player->attackmotion(*this);
 }
-void Attack::changeMotion(AnimatorOne & _animator, float _speed)
+void Attack::changeMotion(Animator & _animator, float _speed)
 {
 	_animator.changeAnimation(m_parameter.animationID, true, false, false, 10.0f, _speed* m_parameter.speed);
 }
 
-bool Attack::finish(AnimatorOne & _animator)
+bool Attack::finish(Animator & _animator)
 {
 	if (isFinished)return true;
 	float millsecond = m_parameter.nextInput*60.0f;

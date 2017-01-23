@@ -34,19 +34,16 @@
 #include "actor/Enemy/EnemyMediator.h"
 #include "math\Calculate.h"
 
-
-
 const float IEnemy::PLAYER_DISTANCE_NEAR = 2.0f;
 const float IEnemy::PLAYER_DISTANCE_MID = 3.0f;
 const float IEnemy::PLAYER_DISTANCE_FAR = 7.5f;
-IEnemy::IEnemy(const Transform& _transform, MODEL_ID _modelID, EnemyMediator& _mediator)
+IEnemy::IEnemy(const Transform& _transform, MODEL_ID _modelID, EnemyMediator& _mediator,Actor_Tag _tag)
 	:
-	Actor(_transform, _modelID, Actor_Tag::ENEMY),
+	Actor(_transform, _modelID,_tag),
 	m_status(),
 	m_alpha(1),
 	m_knockBack(m_transform),
-	m_AI(), m_mediator(_mediator),
-	m_gravity(0.0f)
+	m_AI(), m_mediator(_mediator)
 {
 
 }
@@ -90,7 +87,6 @@ float IEnemy::distaceToOtherEnemy()
 }
 void IEnemy::directionToPlayer()
 {
-	//m_transform.m_rotate.dot(m_mediator.requestPlayerDirection(this));
 	if (50.0f < fabsf(m_transform.m_rotate.getYaw() - m_mediator.requestPlayerDirection(this).getYaw()))
 	{
 			lookAtToPlayer();
@@ -99,7 +95,7 @@ void IEnemy::directionToPlayer()
 void IEnemy::lookAtToPlayer()
 {
 	/*ラープタイマー開始*/
-	m_timer.begin();
+	m_rotateTimer.begin();
 	/*targetをプレイヤーがいる方向へ入れ替え*/
 	m_targetDirection = m_mediator.requestPlayerDirection(this);
 }
@@ -120,12 +116,7 @@ EAI IEnemy::currentAIRange()
 }
 bool IEnemy::requestDistance(EAI _distance)
 {
-	if (_distance == EAI::ATTACKRANGE)
-		return m_mediator.reqestGoToNear();
-	if (_distance == EAI::MIDDRANGE)
-		return m_mediator.reqestGoToMid();
-
-	return false;
+	return m_mediator.isExist(_distance);
 }
 
 const bool IEnemy::isNotDamageState()const
@@ -169,7 +160,7 @@ const bool IEnemy::blowDead()const
 void IEnemy::createAttackCollision()
 {
 	float end = m_animatorOne.getCurrentAnimationEndTime() / 60.0f;
-	Collision_Ptr actor = std::make_shared<EnemyAttackCollision>(m_transform.m_translate + m_transform.front(), end);
+	Collision_Ptr actor = std::make_shared<EnemyAttackCollision>(this, m_transform.m_translate + m_transform.front(), end);
 	m_collision.add(actor);
 }
 

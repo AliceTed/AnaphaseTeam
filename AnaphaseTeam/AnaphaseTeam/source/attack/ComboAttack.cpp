@@ -37,7 +37,7 @@ void ComboAttack::update(float deltaTime)
 }
 
 
-bool ComboAttack::finish(AnimatorOne& _animator)
+bool ComboAttack::finish(Animator& _animator)
 {
 	return m_current.finish(_animator);
 }
@@ -56,7 +56,7 @@ const bool ComboAttack::next(bool _isSlow)
 	m_current.initialize(m_player);
 	return true;
 }
-bool ComboAttack::isAttack(AnimatorOne& _animator)
+bool ComboAttack::isAttack(Animator& _animator)
 {
 	return	m_current.getID() == _animator.getCurrent();
 }

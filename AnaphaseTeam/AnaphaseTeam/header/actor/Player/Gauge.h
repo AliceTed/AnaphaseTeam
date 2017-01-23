@@ -29,7 +29,11 @@ public:
 	float getGauge();
 private:
 	void add(float _point);
-private:
+
+public:
 	float m_gauge;
+	float m_increaseGauge;
+
+private:
 	float m_lerpmax;
 };

@@ -45,12 +45,12 @@ public:
 	bool m_nextInit;
 };
 
-class AnimatorOne
+class Animator
 {
 public:
 	/*mesh,anim,sklã§í ÇÃÇhÇcÇ≈ä«óù*/
-	AnimatorOne(const MODEL_ID _modelID);
-	~AnimatorOne();
+	Animator(const MODEL_ID _modelID);
+	~Animator();
 	void initialize();
 	void update(float deltatime);
 	template<class T>

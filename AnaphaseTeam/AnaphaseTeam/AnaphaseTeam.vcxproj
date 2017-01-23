@@ -146,7 +146,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="header\actor\Enemy\EnemyMediator.cpp" />
     <ClCompile Include="source\actor\ActorManager.cpp" />
     <ClCompile Include="source\actor\Enemy\IEnemy.cpp" />
     <ClCompile Include="source\actor\Enemy\SlahHand.cpp" />
@@ -158,12 +157,15 @@
     <ClCompile Include="source\attack\KnockBack.cpp" />
     <ClCompile Include="source\data\json\JArray.cpp" />
     <ClCompile Include="source\data\json\JObject.cpp" />
+    <ClCompile Include="source\data\stream\EStatusReader.cpp" />
     <ClCompile Include="source\data\stream\PhaseConverter.cpp" />
     <ClCompile Include="source\data\stream\PhaseReader.cpp" />
     <ClCompile Include="source\data\stream\SpawnConverter.cpp" />
     <ClCompile Include="source\data\stream\SpawnReader.cpp" />
     <ClCompile Include="source\data\stream\StageConverter.cpp" />
     <ClCompile Include="source\data\stream\StageReader.cpp" />
+    <ClCompile Include="source\data\stream\StatusConverter.cpp" />
+    <ClCompile Include="source\data\stream\StatusReader.cpp" />
     <ClCompile Include="source\math\AMath.cpp" />
     <ClCompile Include="source\collision\PlayerCollision.cpp" />
     <ClCompile Include="source\actor\Actor.cpp" />
@@ -324,6 +326,9 @@
     <ClInclude Include="header\actor\Enemy\IEnemy.h" />
     <ClInclude Include="header\actor\ActorManager.h" />
     <ClInclude Include="header\actor\Enemy\SlahHand.h" />
+    <ClInclude Include="header\actor\Player\LoadStatus.h" />
+    <ClInclude Include="header\actor\Player\PlayerInfo.h" />
+    <ClInclude Include="header\actor\Player\StatusParameter.h" />
     <ClInclude Include="header\attack\AttackParameter.h" />
     <ClInclude Include="header\attack\Revision.h" />
     <ClInclude Include="header\attack\ShapeData.h" />
@@ -335,6 +340,7 @@
     <ClInclude Include="header\data\json\JArray.h" />
     <ClInclude Include="header\data\json\JObject.h" />
     <ClInclude Include="header\data\json\Picojson.h" />
+    <ClInclude Include="header\data\stream\EStatusReader.h" />
     <ClInclude Include="header\data\stream\PhaseConverter.h" />
     <ClInclude Include="header\data\stream\PhaseReader.h" />
     <ClInclude Include="header\data\stream\SpawnConverter.h" />
@@ -342,6 +348,8 @@
     <ClInclude Include="header\actor\Enemy\EnemyMediator.h" />
     <ClInclude Include="header\data\stream\StageConverter.h" />
     <ClInclude Include="header\data\stream\StageReader.h" />
+    <ClInclude Include="header\data\stream\StatusConverter.h" />
+    <ClInclude Include="header\data\stream\StatusReader.h" />
     <ClInclude Include="header\math\AMath.h" />
     <ClInclude Include="header\actor\Actor.h" />
     <ClInclude Include="header\actor\Actor_Tag.h" />

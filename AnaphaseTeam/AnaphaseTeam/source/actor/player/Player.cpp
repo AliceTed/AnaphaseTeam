@@ -1,49 +1,52 @@
-#include "actor/Player/Player.h"
+#include "../../../header/actor/Player/Player.h"
 
-#include "state/player/AttackState.h"
-#include "state/player/DamageState.h"
-#include "state/player/MoveState.h"
-#include "state/player/StandState.h"
-#include "state/player/StepState.h"
-#include "state/player/HomingState.h"
-#include "state/player/HomingStartState.h"
-#include "state/player/SpecialAttackState.h"
+#include "../../../header/state/player/AttackState.h"
+#include "../../../header/state/player/DamageState.h"
+#include "../../../header/state/player/MoveState.h"
+#include "../../../header/state/player/StandState.h"
+#include "../../../header/state/player/StepState.h"
+#include "../../../header/state/player/HomingState.h"
+#include "../../../header/state/player/HomingStartState.h"
+#include "../../../header/state/player/SpecialAttackState.h"
 
-#include "state/player/SingleJumpState.h"
-#include "state/player/DoubleJumpState.h"
-#include "state/player/LimitFallState.h"
-#include "state/player/LandingRigidityState.h"
+#include "../../../header/state/player/SingleJumpState.h"
+#include "../../../header/state/player/DoubleJumpState.h"
+#include "../../../header/state/player/LimitFallState.h"
+#include "../../../header/state/player/LandingRigidityState.h"
 
-#include "renderer/IRenderer.h"
-#include "device/GameDevice.h"
-#include "camera/Camera.h"
-#include "shape/Ray.h"
-#include "camera/CameraController.h"
-#include "camera/CameraWork/E_CameraWorkID.h"
-#include "math/Calculate.h"
+#include "../../../header/renderer/IRenderer.h"
+#include "../../../header/device/GameDevice.h"
+#include "../../../header/camera/Camera.h"
+#include "../../../header/shape/Ray.h"
+#include "../../../header/camera/CameraController.h"
+#include "../../../header/camera/CameraWork/E_CameraWorkID.h"
+#include "../../../header/math/Calculate.h"
 
-#include "camera/LockOn.h"
-#include "actor/Enemy/Goblin.h"
-#include "actor/Enemy/EnemyManager.h"
+#include "../../../header/camera/LockOn.h"
+#include "../../../header/actor/Enemy/Goblin.h"
+#include "../../../header/actor/Enemy/EnemyManager.h"
 
-#include "collision/PlayerAttackCollision.h"
-#include "collision/PlayerCollision.h"
-#include "collision/SpecialAttackCollision.h"
-#include "renderer/define/SpriteRectRenderDesc.h"
+#include "../../../header/collision/PlayerAttackCollision.h"
+#include "../../../header/collision/PlayerCollision.h"
+#include "../../../header/collision/SpecialAttackCollision.h"
+#include "../../../header/renderer/define/SpriteRectRenderDesc.h"
 
-#include "specialskill/Recovery.h"
-#include "specialskill/SpecialAttack.h"
-#include "specialskill/SuperArmor.h"
+#include "../../../header/specialskill/Recovery.h"
+#include "../../../header/specialskill/SpecialAttack.h"
+#include "../../../header/specialskill/SuperArmor.h"
 
-#include "data/id/TEXTURE_ID.h"
-#include "ui/SPGaugeUI.h"
-#include "ui/HPGaugeUI.h"
-#include "ui/UIManager.h"
+#include "../../../header/data/id/TEXTURE_ID.h"
+#include "../../../header/ui/SPGaugeUI.h"
+#include "../../../header/ui/HPGaugeUI.h"
+#include "../../../header/ui/UIManager.h"
 
-#include "attack/AttackStatus.h"
+#include "../../../header/attack/AttackStatus.h"
 
-#include "ui/TargetMarkerUI.h"
-#include "ui/UIManager.h"
+#include "../../../header/ui/TargetMarkerUI.h"
+#include "../../../header/ui/UIManager.h"
+
+#include "../../../header/data/stream/StatusReader.h"
+
 const float Player::ROTATESPEED = -2.0f;
 Player::Player(const Transform& _t,Camera * _camera, LockOn* _lockon)
 	:Actor(
@@ -90,6 +93,9 @@ void Player::initialize()
 	changeState(ACTOR_STATE::STAND);
 	Collision_Ptr actor = std::make_shared<PlayerCollision>(this);
 	m_collision.add(actor);
+
+	StatusReader reader;
+	reader(&m_status, m_Gauge.get(), m_gravity, "status");
 
 	m_status.initialize();
 	m_scythe.initialize();

@@ -76,8 +76,9 @@ protected:
 	bool m_isGround;
 	//s“®‰Â”\
 	bool m_isBlock;
-	AnimatorOne m_animatorOne;
+	Animator m_animatorOne;
 	CollisionGroup m_collision;
+	float m_gravity;
 private:
 	using StatePtr = std::shared_ptr<IActorState>;
 	using StateContainer = std::unordered_map< ACTOR_STATE, StatePtr>;
@@ -92,6 +93,4 @@ private:
 	float m_offset;
 	//d—Í
 	static const float GRAVITY;
-
-	float m_gravity;
 };

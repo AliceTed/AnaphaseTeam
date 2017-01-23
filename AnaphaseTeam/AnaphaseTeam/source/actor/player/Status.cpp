@@ -1,11 +1,13 @@
-#include "actor/Player/Status.h"
-#include"actor/Player/Gauge.h"
-#include "math/Calculate.h"
+#include "../../../header/actor/Player/Status.h"
+#include "../../../header/actor/Player/Gauge.h"
+#include "../../../header/math/Calculate.h"
 
-Status::Status(float _hp)
-	:def(3.0f),
-	m_hp(_hp),
-	m_maxHp(_hp),
+
+Status::Status()
+	:
+	def(3.0f),
+	m_hp(0),
+	m_maxHp(0),
 	m_AttackSpeed(def)
 {
 }

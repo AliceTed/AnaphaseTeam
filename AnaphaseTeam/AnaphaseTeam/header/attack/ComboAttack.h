@@ -18,10 +18,10 @@ public:
 	void initialize();
 	void start(bool _isSlow);
 	void update(float deltaTime);
-	bool finish(AnimatorOne & _animator);
+	bool finish(Animator & _animator);
 	//“ü—Í‚ª‚ ‚Á‚½‚Æ‚«‚É‚æ‚Î‚ê‚é
 	const bool next(bool _isSlow);
-	bool isAttack(AnimatorOne & _animator);
+	bool isAttack(Animator & _animator);
 	const bool isEnd()const;
 	const AttackStatus &getStatus() const;
 private:
