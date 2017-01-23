@@ -17,6 +17,5 @@ void Jumping::start(float _power)
 void Jumping::update(float deltaTime)
 {
 	m_player->jumping(m_power*deltaTime);
-	Math::Clamp clamp;
-	m_power = clamp(m_power - ACCELERATION, -MAX_POWER, MAX_POWER);
+	m_power =Math::Calculate::clamp(m_power - ACCELERATION, -MAX_POWER, MAX_POWER);
 }

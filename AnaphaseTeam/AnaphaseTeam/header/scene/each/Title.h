@@ -4,7 +4,6 @@
 #include "../SceneChange.h"
 #include "../../ui/alpha.h"
 
-
 class Title :public IScene
 {
 public:

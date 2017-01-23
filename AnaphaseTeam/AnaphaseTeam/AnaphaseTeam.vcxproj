@@ -216,6 +216,7 @@
     <ClCompile Include="source\device\GameDevice.cpp" />
     <ClCompile Include="source\device\InputPattern_A.cpp" />
     <ClCompile Include="source\device\InputPattern_B.cpp" />
+    <ClCompile Include="source\math\Calculate.cpp" />
     <ClCompile Include="source\math\Random.cpp" />
     <ClCompile Include="source\myanimation\MyAnimation.cpp" />
     <ClCompile Include="source\myanimation\MyAnimationContainer.cpp" />
