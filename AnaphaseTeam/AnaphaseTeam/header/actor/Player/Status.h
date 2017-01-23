@@ -25,5 +25,5 @@ public:
 	float m_hp;
 	float m_maxHp;
 	float m_AttackSpeed;
-	const float def;
+	float def;
 };
