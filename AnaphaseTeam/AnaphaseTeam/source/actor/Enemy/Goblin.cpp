@@ -64,14 +64,6 @@ void Goblin::update(float deltatime)
 	m_animatorOne.update(deltatime);
 	action(deltatime);
 	m_collision.update(deltatime);
-	if (!m_isGround)
-	{
-		m_gravityAcc -= 0.004f;
-		changeGravity(m_gravityAcc);
-		return;
-	}
-	//m_gravity = 0.0f;
-	changeGravity(-0.05f);
 	m_rotateTimer.update(deltatime);
 	rotateLerp(&m_transform.m_rotate, m_rotateTimer.time / m_rotateTimer.maxTime);
 }
@@ -149,4 +141,5 @@ void Goblin::readStatus()
 {
 	EStatusReader reader;
 	reader(&m_status, &m_attackStatus, m_gravityAcc, "estatus");
+
 }

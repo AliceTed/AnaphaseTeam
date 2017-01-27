@@ -46,12 +46,12 @@ public:
 	const bool isSameTag(Actor_Tag _tag)const;
 	void changeState(ACTOR_STATE _state);
 
-	void changeGravity(float _gravity);
-
 protected:	
 	void action(float deltaTime);
 	void registerState(ACTOR_STATE _name, IActorState* _state);
 	virtual void readStatus() = 0;
+private:
+	void gravity();
 public:
 	/**
 	* @fn

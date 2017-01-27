@@ -12,8 +12,6 @@ void Goblin::EDamageState::start()
 
 void Goblin::EDamageState::action(float deltaTime)
 {
-	m_actor->m_knockBack.update(deltaTime);
-
 	if (m_actor->m_animatorOne.isEndCurrentAnimation())
 	{
 		m_actor->changeState(ACTOR_STATE::ESTAND);
@@ -23,6 +21,13 @@ void Goblin::EDamageState::action(float deltaTime)
 		changeState(ACTOR_STATE::EDEAD);
 		m_actor->m_collision.clear();
 	}
+
+	if (m_actor->m_isBlock)
+	{
+		return;
+	}
+	m_actor->m_knockBack.update(deltaTime);
+
 }
 
 Goblin::EDamageState * Goblin::EDamageState::clone() const

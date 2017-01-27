@@ -30,7 +30,7 @@ void Actor::initialize()
 {
 	m_collision.initialize();
 	m_isDead = false;
-	m_gravity = 0;
+	m_gravity = -0.05f;
 }
 
 void Actor::finish()
@@ -52,15 +52,12 @@ void Actor::collisionGround(const Map& _map)
 	m_isGround = position.y <= intersect.y;
 	if (!m_isGround)
 	{
-		if (m_currentStateKey != ACTOR_STATE::ATTACK)
-		{
-			m_gravity += m_gravityAcc;
-			m_transform.translate_up(m_gravity);
-		}
+		gravity();
 		return;
 	}
 	//map‚É–„‚ßž‚Ü‚ê‚Ä‚¢‚½‚çyÀ•W‚ðŒð“_‚ÉˆÚ“®
-	m_transform.m_translate.y = intersect.y+m_offset;
+	m_gravity = -0.05f;
+	m_transform.m_translate.y = intersect.y + m_offset;
 }
 const ACTOR_STATE Actor::getState() const
 {
@@ -86,18 +83,14 @@ const GSquaternion Actor::targetDirection(const Actor & _target) const
 }
 const bool Actor::isTargetAerial(const Actor & _target) const
 {
-	return _target.m_transform.m_translate.y > m_transform.m_translate.y;
+	//return _target.m_transform.m_translate.y > m_transform.m_translate.y;
+	return _target.m_transform.m_translate.y > 0.5f;
 }
 void Actor::changeState(ACTOR_STATE _state)
 {
 	m_currentStateKey = _state;
 	m_currentState = m_states.at(m_currentStateKey);
 	m_currentState->start();
-}
-
-void Actor::changeGravity(float _gravity)
-{
-	m_gravityAcc = _gravity;
 }
 
 const bool Actor::isSameActor(const Actor * _other) const
@@ -115,6 +108,19 @@ void Actor::action(float deltaTime)
 void Actor::registerState(ACTOR_STATE _name, IActorState * _state)
 {
 	m_states.insert(std::make_pair(_name, StatePtr(_state)));
+}
+void Actor::gravity()
+{
+	if (m_currentStateKey == ACTOR_STATE::EDAMAGE || m_currentStateKey == ACTOR_STATE::HOMING)
+	{
+		m_transform.translate_up(m_gravity);
+		return;
+	}
+	if (m_currentStateKey != ACTOR_STATE::ATTACK)
+	{
+		m_gravity += m_gravityAcc;
+		m_transform.translate_up(m_gravity);
+	}
 }
 const bool Actor::isDead() const
 {

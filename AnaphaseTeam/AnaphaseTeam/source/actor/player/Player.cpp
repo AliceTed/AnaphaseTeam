@@ -151,6 +151,28 @@ void Player::draw(IRenderer *_renderer)
 	m_collision.draw(_renderer);
 	m_scythe.draw(_renderer);
 	m_specialskill.draw(_renderer);
+
+
+	GSvector3 direction = m_transform.rotate_vector(m_combo.getStatus().m_blowOff);
+	GSvector3 p_pos = m_transform.m_translate + GSvector3(0.0f,1.5f, 0.0f);
+	GSvector3 p_pos2 = p_pos + direction;
+	glPushMatrix();
+	//“§Ž‹•ÏŠ·s—ñ‚ÌÝ’è
+	glMatrixMode(GL_PROJECTION);
+	glLoadMatrixf((GLfloat*)&_renderer->getProjectionMatrix());
+	//Ž‹–ì•ÏŠ·s—ñ‚ÌÝ’è
+	glMatrixMode(GL_MODELVIEW);
+	glLoadMatrixf((GLfloat*)&_renderer->getViewMatrix());
+	glLineWidth(5.0f);
+	glMaterialfv(GL_FRONT, GL_DIFFUSE, GScolor(1.0f, 0.0f, 0.0f, 1.0f));
+	glBegin(GL_LINES);
+	glVertex3f(p_pos.x, p_pos.y, p_pos.z);
+	glVertex3f(p_pos2.x, p_pos2.y, p_pos2.z);
+	glEnd();
+
+	glPopMatrix();
+
+
 }
 void Player::finish()
 {
