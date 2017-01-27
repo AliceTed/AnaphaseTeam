@@ -3,6 +3,7 @@
 #include "camera/CameraWork/CWParameterReader.h"
 #include "math/Calculate.h"
 #include "math/AMath.h"
+#include "camera/Perspective.h"
 #include "camera/Zoom.h"
 
 CameraWorkNormal::CameraWorkNormal(Camera* _camera, GSvector2* _rotate) :
@@ -29,7 +30,7 @@ CameraWorkNormal::~CameraWorkNormal()
 
 void CameraWorkNormal::start(void)
 {
-	Zoom* cameraZoom = m_camera->zoom();
+	Zoom* cameraZoom = m_camera->perspective()->zoom();
 	cameraZoom->init(45.f);
 	
 	m_nextCameraWork = "none";

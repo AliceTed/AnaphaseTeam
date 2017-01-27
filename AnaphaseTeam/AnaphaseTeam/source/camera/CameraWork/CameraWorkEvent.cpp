@@ -28,9 +28,9 @@ void CameraWorkEvent::start(void)
 
 void CameraWorkEvent::run(float _deltaTime)
 {
-	m_camera->tracking_lookAt(m_splineAnimManager->get("test_lookAt")->run());
+	m_camera->lookAt(m_splineAnimManager->get("test_lookAt")->run());
 
-	m_camera->tracking_position(m_splineAnimManager->get("test_position")->run());
+	m_camera->move(m_splineAnimManager->get("test_position")->run());
 
 	if (m_splineAnimManager->isEnd())
 	{

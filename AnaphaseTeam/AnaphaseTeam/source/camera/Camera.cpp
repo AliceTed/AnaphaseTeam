@@ -6,7 +6,9 @@
 #include "map/Map.h"
 #include "camera/LookAt.h"
 #include "renderer/IRenderer.h"
+#include "camera/Perspective.h"
 #include "camera/Zoom.h"
+#include "function/Tracking.h"
 #include <random>
 #include <vector>
 
@@ -14,17 +16,14 @@
 Camera::Camera() :
 	RAY_DONW(GSvector3(0, -1, 0)),
 	R(0.5f),
-	m_perspective(GSvector4(45.0f, 1280.0f / 720.0f, 0.3f, 1000.0f)),
+	mPerspective(std::make_unique<Perspective>()),
 	m_lookAt(std::make_unique<LookAt>(GSvector3(0.0f, 0.0f, 0.0f), GSvector3(0.0f, 0.0f, 0.0f), GSvector3(0.0f, 1.0f, 0.0f))),
 	m_rotate_dolly(0.0f, 0.0f),
 	m_cameraTarget_player(std::make_shared<CameraTarget>()),
 	m_cameraTarget_enemy(std::make_shared<CameraTarget>()),
-	m_direction_player(0.0f),
-	mZoom(std::make_unique<Zoom>())
+	m_direction_player(0.0f)
 {
-	mZoom->init(m_perspective.x);
-	
-	gsMatrix4Identity(&m_mat_projection);
+	mPerspective->init(GSvector4(45.f, 1280.f / 720.f, 0.3f, 1000.f));
 }
 
 //デストラクタ
@@ -42,13 +41,10 @@ void Camera::initializeOffset(void)
 //実行
 void Camera::run(IRenderer* _renderer)
 {
-	update_perspective();
-	//_renderer->perspective(m_perspective.x, m_perspective.y, m_perspective.z, m_perspective.w);
+	mPerspective->update();
 
 	update_lookAt();
 	//_renderer->lookAt(m_lookAt->position, m_lookAt->target, m_lookAt->up);
-
-	mZoom->update(&m_perspective.x);
 
 	return;
 }
@@ -60,12 +56,9 @@ void Camera::tiltPan(
 	const GSvector2&	_trackingSpeed
 )
 {
-	//追尾処理更新
-	update_tracking(
-		_position_camera,
-		AMath::ballRotate(m_lookAt->position, _rotate, 10),	//球面座標を利用した回転
-		_trackingSpeed
-	);
+	move(_position_camera, _trackingSpeed.x);
+
+	lookAt(AMath::ballRotate(m_lookAt->position, _rotate, 10), _trackingSpeed.y);
 }
 
 //カメラワーク：ドリー
@@ -90,12 +83,9 @@ void Camera::dolly(
 		_distance
 	);
 
-	//追尾処理更新
-	update_tracking(
-		position,
-		_position_target,
-		_trackingSpeed
-	);
+	move(position, _trackingSpeed.x);
+
+	lookAt(_position_target, _trackingSpeed.y);
 
 	return;
 }
@@ -122,53 +112,22 @@ void Camera::set_direction_player(float _direction)
 }
 
 //追尾：カメラの位置
-void Camera::tracking_position(const GSvector3& _target, float _speed)
+void Camera::move(const GSvector3& _target, float _speed)
 {
-	//見やすくするために宣言
 	GSvector3* position = &m_lookAt->position;
-
-	//３次元ベクトルの線形補間
-	gsVector3Lerp(position, position, &_target, _speed);
-}
-
-//追尾：カメラの位置のオフセット
-void Camera::tracking_positionOffset(const GSvector3 & _target, float _speed)
-{
-	//見やすくするために宣言
-	GSvector3* position = &m_lookAt->position_offset; 
-
-	//３次元ベクトルの線形補間
-	gsVector3Lerp(position, position, &_target, _speed);
+	Tracking::tracking(position, _target, _speed);
 }
 
 //追尾：注視点
-void Camera::tracking_lookAt(const GSvector3& _target, float _speed)
+void Camera::lookAt(const GSvector3& _target, float _speed)
 {
-	//見やすくするために宣言
 	GSvector3* target = &m_lookAt->target;
-
-	//３次元ベクトルの線形補間
-	gsVector3Lerp(target, target, &_target, _speed);
-}
-
-//追尾：注視点のオフセット
-void Camera::tracking_lookAtOffset(const GSvector3 & _target, float _speed)
-{
-	//見やすくするために宣言
-	GSvector3* target = &m_lookAt->target_offset;
-
-	//３次元ベクトルの線形補間
-	gsVector3Lerp(target, target, &_target, _speed);
+	Tracking::tracking(target, _target, _speed);
 }
 
 //地面とのあたり判定
 void Camera::collisionGround(const Map & _map)
 {
-	//これにレイのヒットした位置が保持される
-	GSvector3 intersectPos;
-
-	//カメラが地面に当たっていたら
-	//カメラの位置を修正
 	if (isHitGround(_map, &m_lookAt->position))
 	{
 		m_lookAt->position.y = m_intersectPos.y;
@@ -178,14 +137,12 @@ void Camera::collisionGround(const Map & _map)
 //取得：プレイヤー位置
 const GSvector3& Camera::get_cameraTarget_player() const
 {
-	//保持したプレイヤーの位置を返す
 	return m_cameraTarget_player->_target();
 }
 
 //取得：敵の位置
 const GSvector3& Camera::get_cameraTarget_enemy() const
 {
-	//保持したエネミーの位置を返す
 	return m_cameraTarget_enemy->_target();
 }
 
@@ -200,7 +157,7 @@ const bool Camera::isFrustumCulling(const GSvector3 & center, float radius) cons
 {
 	//視錐台
 	GSfrustum frustum;
-	gsFrustumFromMatrices(&frustum, &m_lookAt->mat_view, &m_mat_projection);
+	gsFrustumFromMatrices(&frustum, &m_lookAt->mat_view, &mPerspective->matProjective());
 
 	return !!gsFrustumIsSphereInside(&frustum, &center, radius);
 }
@@ -211,7 +168,7 @@ const float Camera::nearDistance(const GSvector3 & ohter, float radius) const
 	//ohterとカメラの距離
 	float dis = ohter.distance(m_lookAt->position);
 	//距離とnearの差
-	return dis-(m_perspective.z + radius);
+	return dis-(mPerspective->near() + radius);
 }
 
 //カメラとの距離
@@ -232,54 +189,26 @@ const Transform Camera::transform() const
 //カメラの位置を返す
 const GSvector3 & Camera::position(void)
 {
-	//カメラの位置を返す
 	return m_lookAt->position;
 }
 
-Zoom * Camera::zoom()
+Perspective * Camera::perspective()
 {
-	return mZoom.get();
+	return mPerspective.get();
 }
 
 //追尾：カメラの位置のオフセット
-void Camera::tracking_position_offset(const GSvector3 & _target, float _speed)
+void Camera::moveOffset(const GSvector3 & _target, float _speed)
 {
-	//見やすくするために宣言
 	GSvector3* position = &m_lookAt->position_offset;
-	//３次元ベクトルの線形補間
-	gsVector3Lerp(position, position, &_target, _speed);
+	Tracking::tracking(position, _target, _speed);
 }
 
 //追尾：注視点のオフセット
-void Camera::tracking_target_offset(const GSvector3 & _target, float _speed)
+void Camera::lookAtOffset(const GSvector3 & _target, float _speed)
 {
-	//見やすくするために宣言
 	GSvector3* position = &m_lookAt->target_offset;
-	//３次元ベクトルの線形補間
-	gsVector3Lerp(position, position, &_target, _speed);
-}
-
-//パースペクティブの更新
-void Camera::update_perspective(void)
-{
-	//投射変換行列の設定
-	glMatrixMode(GL_PROJECTION);
-
-	//変換行列の初期化
-	glLoadIdentity();
-
-	//投射変換行列
-	gluPerspective(
-		m_perspective.x,
-		m_perspective.y,
-		m_perspective.z,
-		m_perspective.w
-	);
-
-	//シェーダー用投射変換行列に現在の投射変換行列を代入
-	glGetFloatv(GL_PROJECTION_MATRIX, (GLfloat*)&m_mat_projection);
-
-	return;
+	Tracking::tracking(position, _target, _speed);
 }
 
 //ルックアットの更新
@@ -305,19 +234,6 @@ void Camera::update_lookAt(void)
 
 	//シェーダー用モデルビュー変換行列に現在のモデルビュー行列を代入
 	glGetFloatv(GL_MODELVIEW_MATRIX, (GLfloat *)&m_lookAt->mat_view);
-}
-
-//追尾の更新
-void Camera::update_tracking(
-	const GSvector3 & _position,
-	const GSvector3 & _lookAt,
-	const GSvector2 & _trackingSpeed)
-{
-	//カメラ位置の追尾処理
-	tracking_position(_position, _trackingSpeed.x);
-
-	//注視点の追尾処理
-	tracking_lookAt(_lookAt, _trackingSpeed.y);
 }
 
 //地面と当たったか？

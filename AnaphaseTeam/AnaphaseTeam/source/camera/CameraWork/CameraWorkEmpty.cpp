@@ -30,8 +30,8 @@ void CameraWorkEmpty::start(void)
 void CameraWorkEmpty::run(float _deltaTime)
 {
 	//とりあえずカメラの位置とターゲットを適当に設定
-	m_camera->tracking_position(GSvector3(0.0f, 0.0f, 0.0f));
-	m_camera->tracking_lookAt(GSvector3(0.0f, 0.0f, -1.0f));;
+	m_camera->move(GSvector3(0.0f, 0.0f, 0.0f));
+	m_camera->lookAt(GSvector3(0.0f, 0.0f, -1.0f));;
 
 	return;
 }

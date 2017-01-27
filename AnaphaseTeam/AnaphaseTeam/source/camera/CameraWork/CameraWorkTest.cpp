@@ -21,8 +21,8 @@ void CameraWorkTest::start(void)
 static float t = 0;
 void CameraWorkTest::run(float _deltaTime)
 {
-	m_camera->tracking_lookAt(m_camera->get_cameraTarget_player());
-	m_camera->tracking_position(m_camera->get_cameraTarget_player());
+	m_camera->lookAt(m_camera->get_cameraTarget_player());
+	m_camera->move(m_camera->get_cameraTarget_player());
 
 	return;
 }

@@ -1,5 +1,6 @@
 #include "camera/CameraWork/CameraWorkDead.h"
 #include "camera/Camera.h"
+#include "camera/Perspective.h"
 #include "camera/Zoom.h"
 
 CameraWorkDead::CameraWorkDead(Camera* _camera) :
@@ -23,11 +24,11 @@ void CameraWorkDead::start(void)
 
 void CameraWorkDead::run(float _deltaTime)
 {
-	Zoom* cameraZoom = m_camera->zoom();
+	Zoom* cameraZoom = m_camera->perspective()->zoom();
 	const GSvector3& player = m_camera->get_cameraTarget_player();
 	mTime += _deltaTime;
 
-	m_camera->tracking_lookAt(player + m_offset_target, 0.5f);
+	m_camera->lookAt(player + m_offset_target, 0.5f);
 
 	if (mTime > 320)
 	{

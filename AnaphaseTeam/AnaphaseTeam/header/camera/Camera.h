@@ -16,6 +16,7 @@ class CameraTarget;	//カメラのターゲット
 class Map;			//マップ（std::mapじゃないよ）
 class IRenderer;
 class Zoom;
+class Perspective;
 
 class Camera
 {
@@ -102,17 +103,7 @@ public:
 					[0 < x < 1] ディレイありの追尾
 					[1]			完全追尾
 	*/
-	void tracking_position(const GSvector3& _target, float _speed = 1.0f);
-	/**
-	@fn
-	@brief カメラオフセットがターゲットに追尾
-	@param _target	ターゲット
-	@param _speed 	速度
-	[0]			追尾無し
-	[0 < x < 1] ディレイありの追尾
-	[1]			完全追尾
-	*/
-	void tracking_positionOffset(const GSvector3& _target, float _speed = 1.0f);
+	void move(const GSvector3& _target, float _speed = 1.0f);
 	/**
 	@fn
 	@brief 注視点がターゲットに追尾
@@ -122,17 +113,7 @@ public:
 					[0 < x < 1] ディレイありの追尾
 					[1]			完全追尾
 	*/
-	void tracking_lookAt(const GSvector3& _target, float _speed = 1.0f);
-	/**
-	@fn
-	@brief 注視点オフセットがターゲットに追尾
-	@param _target  ターゲット
-	@param _speed	速度
-	[0]			追尾無し
-	[0 < x < 1] ディレイありの追尾
-	[1]			完全追尾
-	*/
-	void tracking_lookAtOffset(const GSvector3& _target, float _speed = 1.0f);
+	void lookAt(const GSvector3& _target, float _speed = 1.0f);
 	/**
 	@fn
 	@brief 地面とのあたり判定
@@ -188,24 +169,17 @@ public:
 	const GSvector3& position(void);
 	/**
 	@fn
-	@brief ズーム処理を渡す
-	@return ズーム処理
+	@brief パースペクティブを渡す
+	@return パースペクティブ
 	*/
-	Zoom* zoom();
+	Perspective* perspective();
 private:
 	// カメラオフセットがターゲットに追尾
-	void tracking_position_offset(const GSvector3& _target, float _speed = 1.0f);
+	void moveOffset(const GSvector3& _target, float _speed = 1.0f);
 	// ターゲットオフセットがターゲットに追尾
-	void tracking_target_offset(const GSvector3& _target, float _speed = 1.0f);
-	//カメラの視野角と遠近情報を更新
-	void update_perspective(void);
+	void lookAtOffset(const GSvector3& _target, float _speed = 1.0f);
 	//カメラの位置情報を更新
 	void update_lookAt(void);
-	//追尾処理更新
-	void update_tracking(
-		const GSvector3& _position,
-		const GSvector3& _lookAt,
-		const GSvector2& _trackingSpeed);
 	//地面と当たっているか？
 	bool isHitGround(const Map& _map, GSvector3* _position);
 private:
@@ -214,9 +188,7 @@ private:
 	//半径
 	const float						R;						
 	//視野角と遠近情報
-	GSvector4						m_perspective;			
-	//シェーダー用投射変換行列
-	GSmatrix4						m_mat_projection;		
+	std::unique_ptr<Perspective>	mPerspective;			
 	//カメラの位置情報の集合体
 	std::unique_ptr<LookAt>			m_lookAt;				
 	//ドリー処理時のディレイ用変数
@@ -228,7 +200,5 @@ private:
 	//プレイヤーの方位角
 	float							m_direction_player;		
 	//保持用
-	GSvector3						m_intersectPos;			
-	//ズーム
-	std::unique_ptr<Zoom>			mZoom;
+	GSvector3						m_intersectPos;	
 };
