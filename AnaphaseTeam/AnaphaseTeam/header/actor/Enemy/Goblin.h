@@ -30,6 +30,7 @@ public://Actor継承&コンストラクタ
 	*@param[_blowPower]食らった攻撃の吹っ飛び値
 	*/
 	void blowDamageDecision(const GSvector3& _blowPower)override;
+	void blowDown(const GSvector3& _blowPower);
 private:
 	/**
 	* @brief stateを初期化代入
@@ -55,6 +56,8 @@ private://state
 	class EDashFrontState;
 	class EThinkState;
 	class ESecoundAttackState;
+	class EDownState;
+
 
 	friend EAttackState;
 	friend EDamageState;
@@ -67,4 +70,5 @@ private://state
 	friend EDashFrontState;
 	friend EThinkState;
 	friend ESecoundAttackState;
+	friend EDownState;
 };

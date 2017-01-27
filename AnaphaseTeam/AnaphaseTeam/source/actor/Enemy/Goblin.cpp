@@ -88,6 +88,11 @@ void Goblin::damage(const AttackStatus & _attackStatus)
 	if (isNotDamageState())return;
 	changeState(ACTOR_STATE::EDAMAGE);//ダメージステートに変更
 	m_status.down(_attackStatus.m_power);//体力減少
+	//ダウン中は一定以上の吹っ飛び値でないと怯まない
+	if (getState() == ACTOR_STATE::EDOWN)
+	{
+		blowDown(_attackStatus.m_blowOff);
+	}
 	if (!m_isGround)//浮いてる間は吹っ飛びにくい
 	{
 		blowDamageDecision(_attackStatus.m_blowOff);
@@ -96,6 +101,15 @@ void Goblin::damage(const AttackStatus & _attackStatus)
 	}
 	blowDamageDecision(_attackStatus.m_blowOff);//アニメーション変更
 	m_knockBack.start(_attackStatus.m_blowOff);//ノックバック値設定
+}
+
+void Goblin::blowDown(const GSvector3& _blowPower)
+{
+	if (_blowPower.length() > BLOW_DAMAGE_POWER)
+	{
+		blowDamageDecision(_blowPower);//アニメーション変更
+		m_knockBack.start(_blowPower);//ノックバック値設定
+	}
 }
 void Goblin::blowDamageDecision(const GSvector3& _blowPower)
 {
