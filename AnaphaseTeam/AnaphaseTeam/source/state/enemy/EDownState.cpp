@@ -18,7 +18,6 @@ void Goblin::EDownState::start()
 void Goblin::EDownState::action(float deltaTime)
 {
 	(this->*actionPtr)(deltaTime);
-
 }
 
 void Goblin::EDownState::stand(float deltaTime)
@@ -34,7 +33,7 @@ void Goblin::EDownState::down(float deltaTime)
 	m_timer.update(deltaTime);
 	if (m_timer.isEnd())
 	{
-		m_actor->m_animatorOne.changeAnimationLerp(ENEMY_ANIMATION::STAND, 40.f, 0.2f);
+		m_actor->m_animatorOne.changeAnimationLerp(ENEMY_ANIMATION::STAND, 30.f, 1.0f);
 		m_standStart = true;
 		actionPtr = &Goblin::EDownState::stand;
 	}

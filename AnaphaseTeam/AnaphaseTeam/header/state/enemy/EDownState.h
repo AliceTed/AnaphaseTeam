@@ -2,6 +2,7 @@
 #include "../../actor/Enemy/Goblin.h"
 #include "../ActorState.h"
 #include "convenient\Timer.h"
+#include<functional>
 class Goblin::EDownState : public ActorState<Goblin>
 {
 public:
@@ -16,5 +17,4 @@ private:
 	Timer m_timer;
 	bool m_standStart;
 	void (Goblin::EDownState::*actionPtr)(float);
-
 };
