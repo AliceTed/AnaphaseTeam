@@ -159,7 +159,7 @@ const bool IEnemy::blowDead()const
 void IEnemy::createAttackCollision()
 {
 	float end = m_animatorOne.getCurrentAnimationEndTime() / 60.0f;
-	Collision_Ptr actor = std::make_shared<EnemyAttackCollision>(this, m_transform.m_translate + m_transform.front(), end);
+	Collision_Ptr actor = std::make_shared<EnemyAttackCollision>(this, m_transform.m_translate +(m_transform.front()*1.5), end);
 	m_collision.add(actor);
 }
 
