@@ -10,7 +10,7 @@ void Goblin::EAttackState::start()
 {
 	m_attack = false;
 	m_timer.initialize();
-	m_timer.setEndTime(0.6f);
+	m_timer.setEndTime(0.8f);
 	m_actor->lookAtToPlayer();//ƒvƒŒƒCƒ„[‚Ì•ûŒü‚ðŒ©‚é
 	m_actor->m_transform.translate_front(0.5);
 	Math::Random rnd;
@@ -29,12 +29,10 @@ void Goblin::EAttackState::action(float deltaTime)
 	if (m_actor->m_animatorOne.isEndCurrentAnimation())
 	{
 		GameDevice::getInstacnce().sound().stopSE(SE_ID::ENEMY_ATTACK);
-		if (m_secoundAttack)
-		{
-			m_actor->changeState(ACTOR_STATE::ESECOUNDATTACK);
-			return;
-		}
-		m_actor->changeState(ACTOR_STATE::ETHINK);
+		ACTOR_STATE next;
+		next = m_secoundAttack ? ACTOR_STATE::ESECOUNDATTACK : ACTOR_STATE::ETHINK;
+
+		m_actor->changeState(next);
 	}
 }
 void Goblin::EAttackState::collisionStart()
