@@ -28,7 +28,7 @@ void Revision::start(Player * _player, IEnemy * _enemy, Transform& _transform, G
 	_transform.m_rotate = _player->targetDirection(*target);
 	//float velocity = _player->distanceActor(*target) / 5.0f;
 	//Žw”ŠÖ”‚É‚¢‚ê‚é’l
-	float velocity = 15.0f;
+	float velocity = 10.0f;
 	velocity =Math::Calculate::clamp(_gauge.scale(velocity), 0.0f, _player->distanceActor(*target) - 1.0f);
 	_distance = _transform.m_translate + (_transform.front() * velocity);
 	m_isStart = true;

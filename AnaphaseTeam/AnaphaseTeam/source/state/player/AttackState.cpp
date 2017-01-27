@@ -62,10 +62,10 @@ void Player::AttackState::input(float deltaTime)
 	{
 		changeState(ACTOR_STATE::STAND);
 		m_isCombo = COMBOSTEP::END;
-		return;
+		return;//入力受付終了
 	}
 	Input_Ptr& input = GameDevice::getInstacnce().input();
-	bool isSlow = input->slowAttackTrigger();
+	bool isSlow = input->slowAttackTrigger();//強攻撃か？
 	//攻撃ボタンが押されたら
 	if (!input->quickAttackTrigger() && !isSlow)return;
 	//次の攻撃を判定
@@ -75,5 +75,4 @@ void Player::AttackState::input(float deltaTime)
 		m_isCombo = COMBOSTEP::END;
 		return;
 	}
-	changeState(ACTOR_STATE::STAND);
 }

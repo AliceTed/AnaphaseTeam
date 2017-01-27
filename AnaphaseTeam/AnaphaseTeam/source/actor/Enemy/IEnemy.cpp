@@ -66,7 +66,7 @@ void IEnemy::specialDamage()
 void IEnemy::start_lockOn()
 {
 	UIManager::getInstance().release(EUI::ENEMYHP);
-	std::shared_ptr<HPGaugeUI> hp = std::make_shared<HPGaugeUI>(GSvector2(800, 600), m_status);
+	std::shared_ptr<HPGaugeUI> hp = std::make_shared<HPGaugeUI>(GSvector2(710, 600), m_status, TEXTURE_ID::ENEMY_HP, TEXTURE_ID::ENEMY_HP_GAUGE);
 	UIManager::getInstance().add(EUI::ENEMYHP, hp);
 
 
@@ -123,7 +123,6 @@ const bool IEnemy::isNotDamageState()const
 {
 	//スポーンと死亡中は食らわない
 	return getState() == ACTOR_STATE::ESPAWN || getState() == ACTOR_STATE::EDEAD;
-	
 }
 const bool IEnemy::isDeadState() const
 {

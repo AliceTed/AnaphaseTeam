@@ -133,9 +133,9 @@ void OptionUI::cancel(Option & _opution)
 void OptionUI::createSelect()
 {
 	m_select.initialize();
-	ScaleImage imageOption(TEXTURE_ID::PAUSE_GAMEBACK, GSvector2(50, 100), false, 50.0f, 1.0f);
+	ScaleImage imageOption(TEXTURE_ID::CONFIG_TEXT, GSvector2(50, 100), false, 50.0f, 1.0f);
 	m_select.add(OPTION::CONFIG, imageOption);
-	ScaleImage imageSE(TEXTURE_ID::PAUSE_GAMEBACK, GSvector2(50, 400), false, 50.0f, 1.0f);
+	ScaleImage imageSE(TEXTURE_ID::SOUND_TEXT, GSvector2(50, 400), false, 50.0f, 1.0f);
 	m_select.add(OPTION::SOUND, imageSE);
 	ScaleImage imageTitale(TEXTURE_ID::PAUSE_TITLEBACK, GSvector2(50, 600), false, 50.0f, 1.0f);
 	m_select.add(OPTION::TITLE, imageTitale);
@@ -149,18 +149,18 @@ void OptionUI::createSelect()
 	m_pad.startChange();
 
 	m_sound.initialize();
-	ScaleImage bgm(TEXTURE_ID::STAFFROLL, GSvector2(600, 300), false, 600.0f, 1.0f);
+	ScaleImage bgm(TEXTURE_ID::VOLUME_TEXT, GSvector2(600, 300), false, 600.0f, 1.0f);
 	m_sound.add(SOUND::BGM, bgm);
 	//ScaleImage se(TEXTURE_ID::EXIT, GSvector2(300, 500), false, 300.0f, 1.0f);
 	//m_sound.add(SOUND::SE, se);
 	m_sound.startChange();
 
 	m_volume.initialize();
-	ScaleImage low(TEXTURE_ID::SPECIAL_RECOVERY, GSvector2(600, 400), false, 600.0f, 1.0f);
+	ScaleImage low(TEXTURE_ID::VOLUME_SMALL, GSvector2(600, 400), false, 600.0f, 1.0f);
 	m_volume.add(VOLUME::LOW, low);
-	ScaleImage normal(TEXTURE_ID::SPECIAL_SUPERARMOR, GSvector2(700, 400), false, 700.0f, 1.0f);
+	ScaleImage normal(TEXTURE_ID::VOLUME_MID, GSvector2(700, 400), false, 700.0f, 1.0f);
 	m_volume.add(VOLUME::NORMAL, normal);
-	ScaleImage high(TEXTURE_ID::SPECIAL_ATTACK, GSvector2(800, 400), false, 800.0f, 1.0f);
+	ScaleImage high(TEXTURE_ID::VOLUME_LERGE, GSvector2(800, 400), false, 800.0f, 1.0f);
 	m_volume.add(VOLUME::HIGH, high);
 	m_volume.startChange();
 

@@ -21,15 +21,15 @@ void NearAI::think(Player * _player)
 	//*****************‚¨ŒÝ‚¢‚ÌUŒ‚‚ª“–‚½‚é”ÍˆÍ**********************
 	Math::Random rnd;
 	int act = rnd(0, 4);
-	if (act %3==0)
+	if (act ==0)
 	{
-		m_actor->changeState(ACTOR_STATE::ESTAND);
+		m_actor->changeState(ACTOR_STATE::ESLIDE);
 		return;
 	}
-	if (act %3== 1)
+	if (act== 1)
 	{
 		m_actor->changeState(ACTOR_STATE::EATTACK);
 		return;
 	}
-	m_actor->changeState(ACTOR_STATE::ESLIDE);
+	m_actor->changeState(ACTOR_STATE::ESTAND);
 }
