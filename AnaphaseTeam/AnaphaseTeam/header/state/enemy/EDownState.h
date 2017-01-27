@@ -16,5 +16,5 @@ public:
 private:
 	Timer m_timer;
 	bool m_standStart;
-	void (Goblin::EDownState::*actionPtr)(float);
+	std::function<void(float)>  ptr;//CŒ¾Œê‚Å‚¢‚¤ŠÖ”ƒ|ƒCƒ“ƒ^
 };

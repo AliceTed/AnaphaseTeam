@@ -1,14 +1,15 @@
 #include "state\enemy\EDownState.h"
 #include "data\id\ENEMY_ANIMATION.h"
 Goblin::EDownState::EDownState(Goblin* _enemy)
-	:ActorState(_enemy), m_timer(0.0f), m_standStart(false),actionPtr(nullptr)
+	:ActorState(_enemy), m_timer(0.0f), m_standStart(false),ptr(nullptr)
 {
 
 }
 
 void Goblin::EDownState::start()
 {
-	actionPtr = &Goblin::EDownState::down;
+	//bind(指定する関数,対象クラスのポインタ,引数分だけplaceholder)
+	ptr = std::bind(&Goblin::EDownState::down, this,std::placeholders::_1);
 	m_standStart = false;
 	m_actor->m_animatorOne.changeAnimationLerp(ENEMY_ANIMATION::STANDDYNIG);
 	m_timer.initialize();
@@ -17,7 +18,7 @@ void Goblin::EDownState::start()
 
 void Goblin::EDownState::action(float deltaTime)
 {
-	(this->*actionPtr)(deltaTime);
+	ptr(deltaTime);//std::function呼び出し
 }
 
 void Goblin::EDownState::stand(float deltaTime)
@@ -35,7 +36,7 @@ void Goblin::EDownState::down(float deltaTime)
 	{
 		m_actor->m_animatorOne.changeAnimationLerp(ENEMY_ANIMATION::STAND, 30.f, 1.0f);
 		m_standStart = true;
-		actionPtr = &Goblin::EDownState::stand;
+		ptr = std::bind(&Goblin::EDownState::stand, this, std::placeholders::_1);
 	}
 }
 Goblin::EDownState * Goblin::EDownState::clone() const
