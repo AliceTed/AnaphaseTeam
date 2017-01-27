@@ -79,7 +79,7 @@ public:
 						y : •ûˆÊŠp
 	@param[_distance]	’†S‚©‚ç‚Ì‹——£
 	*/
-	static GSvector3 rotate_sphericalCoordinates(
+	static GSvector3 ballRotate(
 		const GSvector3&	_center,
 		const GSvector2&	_rotate,
 		const float			_distance

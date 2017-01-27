@@ -3,13 +3,26 @@
 #include "../../header/math/AMath.h"
 #include <random>
 
-Shake::Shake(const GSvector3& _scale, float _time) :
-	points(_time),
+//デフォルトコンストラクタ
+Shake::Shake() :
 	animSpline(std::make_unique<AnimationSpline>())
 {
-	std::random_device rnd;		//ランダム本体
-	std::mt19937 mt(rnd());		//ランダムに関連した何か
-	int i;						//要素数の最後が欲しいので
+	init(GSvector3(0.f, 0.f, 0.f), 0, GSvector3(0.f, 0.f, 0.f));
+}
+
+//デストラクタ
+Shake::~Shake()
+{
+
+}
+
+//初期化
+void Shake::init(const GSvector3 & _scale, const int _time, const GSvector3 & _center)
+{
+	std::vector<GSvector3> points(_time);
+	std::random_device rnd;	
+	std::mt19937 mt(rnd());	
+	int i;
 
 	//タイマーの数だけスプライトを用意
 	for (i = 0; i < _time - 1; i++)
@@ -26,22 +39,17 @@ Shake::Shake(const GSvector3& _scale, float _time) :
 	points[i] = GSvector3(0.0f, 0.0f, 0.0f);
 
 	//スプライン曲線の情報の初期化
-	animSpline->init(points);
+	animSpline->init(points, 1.f, _center);
 }
 
-Shake::~Shake()
+//実行
+GSvector3 Shake::run()
 {
-
+	return animSpline->run();
 }
 
-GSvector3 Shake::run(float _speed, const GSvector3& _center)
-{
-	//アニメーション実行
-	return animSpline->run(_speed, _center);
-}
-
+//タイマーリセット
 void Shake::resetTime(void)
 {
-	//時間のリセット
 	animSpline->resetTime();
 }

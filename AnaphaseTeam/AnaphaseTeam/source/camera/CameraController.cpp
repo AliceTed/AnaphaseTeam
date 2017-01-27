@@ -28,12 +28,10 @@ CameraController::~CameraController()
 {
 }
 
-
 void CameraController::update(float _deltaTime)
 {
 	m_deltaTime = _deltaTime;
 }
-
 
 void CameraController::draw(IRenderer* _renderer)
 {
@@ -41,7 +39,6 @@ void CameraController::draw(IRenderer* _renderer)
 	//カメラワーク・マネージャー実行
 	m_cameraWorkManager->run(m_deltaTime);
 }
-
 
 void CameraController::collisionGround(const Map & _map)
 {

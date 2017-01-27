@@ -28,7 +28,7 @@ CameraWorkNormal::~CameraWorkNormal()
 
 void CameraWorkNormal::start(void)
 {
-	m_camera->initialize_zoom();
+	m_camera->initializeZoom();
 	
 	m_nextCameraWork = "none";
 	m_isEnd = false;
@@ -50,7 +50,7 @@ void CameraWorkNormal::run(float _deltaTime)
 	m_rotate->x =Math::Calculate::clamp(m_rotate->x, -m_clamp_elevation, m_clamp_elevation);
 
 	//カメラワーク・ドリーの処理
-	m_camera->cameraWork_dolly(
+	m_camera->dolly(
 		(player + m_offset_target),
 		(*m_rotate),
 		m_distance,

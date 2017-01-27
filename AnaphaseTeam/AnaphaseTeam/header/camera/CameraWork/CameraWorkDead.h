@@ -31,4 +31,6 @@ public:
 
 	//I—¹‚µ‚½‚©H
 	bool isEnd(void) override;
+private:
+	float mTime;
 };

@@ -155,6 +155,7 @@
     <ClCompile Include="source\camera\CameraWork\CameraWorkTest.cpp" />
     <ClCompile Include="source\camera\LookAt.cpp" />
     <ClCompile Include="source\attack\KnockBack.cpp" />
+    <ClCompile Include="source\camera\Zoom.cpp" />
     <ClCompile Include="source\data\json\JArray.cpp" />
     <ClCompile Include="source\data\json\JObject.cpp" />
     <ClCompile Include="source\data\stream\EStatusReader.cpp" />
@@ -166,6 +167,7 @@
     <ClCompile Include="source\data\stream\StageReader.cpp" />
     <ClCompile Include="source\data\stream\StatusConverter.cpp" />
     <ClCompile Include="source\data\stream\StatusReader.cpp" />
+    <ClCompile Include="source\function\Shake.cpp" />
     <ClCompile Include="source\math\AMath.cpp" />
     <ClCompile Include="source\collision\PlayerCollision.cpp" />
     <ClCompile Include="source\actor\Actor.cpp" />
@@ -337,6 +339,7 @@
     <ClInclude Include="header\camera\CameraWork\CameraWorkNormalBattle.h" />
     <ClInclude Include="header\camera\CameraWork\CameraWorkTest.h" />
     <ClInclude Include="header\camera\LookAt.h" />
+    <ClInclude Include="header\camera\Zoom.h" />
     <ClInclude Include="header\data\json\JArray.h" />
     <ClInclude Include="header\data\json\JObject.h" />
     <ClInclude Include="header\data\json\Picojson.h" />
@@ -350,6 +353,7 @@
     <ClInclude Include="header\data\stream\StageReader.h" />
     <ClInclude Include="header\data\stream\StatusConverter.h" />
     <ClInclude Include="header\data\stream\StatusReader.h" />
+    <ClInclude Include="header\function\Shake.h" />
     <ClInclude Include="header\math\AMath.h" />
     <ClInclude Include="header\actor\Actor.h" />
     <ClInclude Include="header\actor\Actor_Tag.h" />

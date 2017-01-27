@@ -247,6 +247,12 @@
     <Filter Include="ヘッダー ファイル\actor\Enemy\AI">
       <UniqueIdentifier>{ee200da0-5031-4023-8e27-0efafe3c8cb6}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\function">
+      <UniqueIdentifier>{8fd99d04-4858-4eef-8661-b2978bc28182}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\function">
+      <UniqueIdentifier>{f63d2ee5-c266-4838-89e3-8c9858496b5e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="header\math\Calculate.h">
@@ -1005,6 +1011,12 @@
     <ClInclude Include="header\data\stream\EStatusReader.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
+    <ClInclude Include="header\camera\Zoom.h">
+      <Filter>ヘッダー ファイル\camera</Filter>
+    </ClInclude>
+    <ClInclude Include="header\function\Shake.h">
+      <Filter>ヘッダー ファイル\function</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="source\main.cpp">
@@ -1534,6 +1546,12 @@
     </ClCompile>
     <ClCompile Include="source\math\Calculate.cpp">
       <Filter>ソース ファイル\math</Filter>
+    </ClCompile>
+    <ClCompile Include="source\camera\Zoom.cpp">
+      <Filter>ソース ファイル\camera</Filter>
+    </ClCompile>
+    <ClCompile Include="source\function\Shake.cpp">
+      <Filter>ソース ファイル\function</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

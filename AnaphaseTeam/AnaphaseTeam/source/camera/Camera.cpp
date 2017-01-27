@@ -6,60 +6,55 @@
 #include "../../header/map/Map.h"
 #include "../../header/camera/LookAt.h"
 #include "../../header/renderer/IRenderer.h"
+#include "../../header/camera/Zoom.h"
 #include <random>
 #include <vector>
 
-const float Camera::DEF_FOV				= 45.0f;			//視野角のデフォルト値は45度で固定
-const GSvector2 Camera::DEF_FOV_CLAMP	= { 2.0f, 180.0f };	//視野角の範囲は2.0~180.0の範囲
-
+//コンストラクタ
 Camera::Camera() :
 	RAY_DONW(GSvector3(0, -1, 0)),
 	R(0.5f),
-	m_perspective(GSvector4(DEF_FOV, 1280.0f / 720.0f, 0.3f, 1000.0f)),
-	m_fov_clamp(DEF_FOV_CLAMP.x, DEF_FOV_CLAMP.y),
+	m_perspective(GSvector4(45.0f, 1280.0f / 720.0f, 0.3f, 1000.0f)),
 	m_lookAt(std::make_unique<LookAt>(GSvector3(0.0f, 0.0f, 0.0f), GSvector3(0.0f, 0.0f, 0.0f), GSvector3(0.0f, 1.0f, 0.0f))),
 	m_rotate_dolly(0.0f, 0.0f),
 	m_cameraTarget_player(std::make_shared<CameraTarget>()),
 	m_cameraTarget_enemy(std::make_shared<CameraTarget>()),
-	m_direction_player(0.0f)
+	m_direction_player(0.0f),
+	mZoom(std::make_unique<Zoom>())
 {
-	//投影変換行列の初期化
+	mZoom->init(m_perspective.x);
+	
 	gsMatrix4Identity(&m_mat_projection);
 }
 
+//デストラクタ
 Camera::~Camera()
 {
 }
 
-void Camera::initialize_zoom(void)
-{
-	//視野角を初期化
-	m_perspective.x	= DEF_FOV;
-	//視野角の指定範囲を初期化
-	m_fov_clamp.x		= DEF_FOV_CLAMP.x;
-	m_fov_clamp.y		= DEF_FOV_CLAMP.y;
-}
-
-void Camera::reset_offset(void)
+//初期化：オフセット
+void Camera::initializeOffset(void)
 {
 	m_lookAt->position_offset = { 0.0f, 0.0f, 0.0f };
 	m_lookAt->target_offset = { 0.0f, 0.0f, 0.0f };
 }
 
+//実行
 void Camera::run(IRenderer* _renderer)
 {
-	//視野角・遠近情報を更新
 	update_perspective();
 	//_renderer->perspective(m_perspective.x, m_perspective.y, m_perspective.z, m_perspective.w);
 
-	//カメラ位置情報を更新
 	update_lookAt();
 	//_renderer->lookAt(m_lookAt->position, m_lookAt->target, m_lookAt->up);
+
+	mZoom->update(&m_perspective.x);
 
 	return;
 }
 
-void Camera::cameraWork_tilt_pan(
+//カメラワーク：ティルト・パン
+void Camera::tiltPan(
 	const GSvector3&	_position_camera,
 	const GSvector2&	_rotate,
 	const GSvector2&	_trackingSpeed
@@ -68,14 +63,13 @@ void Camera::cameraWork_tilt_pan(
 	//追尾処理更新
 	update_tracking(
 		_position_camera,
-		AMath::rotate_sphericalCoordinates(m_lookAt->position, _rotate, 10),	//球面座標を利用した回転
+		AMath::ballRotate(m_lookAt->position, _rotate, 10),	//球面座標を利用した回転
 		_trackingSpeed
 	);
-
-	return;
 }
 
-void Camera::cameraWork_dolly(
+//カメラワーク：ドリー
+void Camera::dolly(
 	const GSvector3&	_position_target,
 	const GSvector2&	_rotate,
 	const float			_distance,
@@ -90,7 +84,7 @@ void Camera::cameraWork_dolly(
 	);
 
 	//球面座標を使った回転
-	GSvector3 position = AMath::rotate_sphericalCoordinates(
+	GSvector3 position = AMath::ballRotate(
 		_position_target,
 		AMath::to_rad(m_rotate_dolly),
 		_distance
@@ -106,28 +100,28 @@ void Camera::cameraWork_dolly(
 	return;
 }
 
+//設定：カメラの位置
 void Camera::set_cameraTarget_player(const GSvector3& _target)
 {
 	//プレイヤーの位置を保持
 	m_cameraTarget_player->lookAt(_target);
-
-	return;
 }
 
+//設定：ターゲットの位置
 void Camera::set_cameraTarget_enemy(const GSvector3& _target)
 {
 	//エネミーの位置を保持
 	m_cameraTarget_enemy->lookAt(_target);
-
-	return;
 }
 
+//設定：プレイヤーの方位角
 void Camera::set_direction_player(float _direction)
 {
 	//プレイヤーの方位角を保持
 	m_direction_player = _direction;
 }
 
+//追尾：カメラの位置
 void Camera::tracking_position(const GSvector3& _target, float _speed)
 {
 	//見やすくするために宣言
@@ -135,10 +129,9 @@ void Camera::tracking_position(const GSvector3& _target, float _speed)
 
 	//３次元ベクトルの線形補間
 	gsVector3Lerp(position, position, &_target, _speed);
-
-	return;
 }
 
+//追尾：カメラの位置のオフセット
 void Camera::tracking_positionOffset(const GSvector3 & _target, float _speed)
 {
 	//見やすくするために宣言
@@ -146,10 +139,9 @@ void Camera::tracking_positionOffset(const GSvector3 & _target, float _speed)
 
 	//３次元ベクトルの線形補間
 	gsVector3Lerp(position, position, &_target, _speed);
-
-	return;
 }
 
+//追尾：注視点
 void Camera::tracking_lookAt(const GSvector3& _target, float _speed)
 {
 	//見やすくするために宣言
@@ -157,10 +149,9 @@ void Camera::tracking_lookAt(const GSvector3& _target, float _speed)
 
 	//３次元ベクトルの線形補間
 	gsVector3Lerp(target, target, &_target, _speed);
-
-	return;
 }
 
+//追尾：注視点のオフセット
 void Camera::tracking_lookAtOffset(const GSvector3 & _target, float _speed)
 {
 	//見やすくするために宣言
@@ -168,10 +159,9 @@ void Camera::tracking_lookAtOffset(const GSvector3 & _target, float _speed)
 
 	//３次元ベクトルの線形補間
 	gsVector3Lerp(target, target, &_target, _speed);
-
-	return;
 }
 
+//地面とのあたり判定
 void Camera::collisionGround(const Map & _map)
 {
 	//これにレイのヒットした位置が保持される
@@ -185,76 +175,27 @@ void Camera::collisionGround(const Map & _map)
 	}
 }
 
-void Camera::shake(GSvector2 _scale)
-{
-	GSvector3 position;
-	std::random_device rnd;
-	std::mt19937 mt(rnd());
-	int max_num = 30;
-	std::vector<GSvector3> points(max_num);
-
-	for (int i = 0; i < max_num; i++)
-	{
-		std::uniform_int_distribution<> randX(-_scale.x, _scale.x);
-		std::uniform_int_distribution<> randY(-_scale.y, _scale.y);
-
-		points[i] = GSvector3(randX(mt), randY(mt), 0.0f);
-	}
-
-
-	tracking_position_offset(position, 0.1f);
-	tracking_target_offset(position, 0.1f);
-
-	return;
-}
-
-void Camera::zoom_clamp(
-	const float _min,
-	const float _max
-)
-{
-	//視野角の範囲を再設定
-	m_fov_clamp.x = _min;
-	m_fov_clamp.y = _max;
-
-	return;
-}
-
-void Camera::zoom(const float _value)
-{
-	//視野角を再設定
-	m_perspective.x = _value;
-}
-
-void Camera::zoom_in(const float _speed)
-{
-	//ズーム処理更新
-	update_zoom(-_speed);
-}
-
-void Camera::zoom_out(const float _speed)
-{
-	//ズーム処理更新
-	update_zoom(_speed);
-}
-
+//取得：プレイヤー位置
 const GSvector3& Camera::get_cameraTarget_player() const
 {
 	//保持したプレイヤーの位置を返す
 	return m_cameraTarget_player->_target();
 }
 
+//取得：敵の位置
 const GSvector3& Camera::get_cameraTarget_enemy() const
 {
 	//保持したエネミーの位置を返す
 	return m_cameraTarget_enemy->_target();
 }
 
+//取得：プレイヤーの方位角
 const float Camera::get_direction_player(void) const
 {
 	return m_direction_player;
 }
 
+//見えてないオブジェクトは描画しない
 const bool Camera::isFrustumCulling(const GSvector3 & center, float radius) const
 {
 	//視錐台
@@ -264,6 +205,7 @@ const bool Camera::isFrustumCulling(const GSvector3 & center, float radius) cons
 	return !!gsFrustumIsSphereInside(&frustum, &center, radius);
 }
 
+//近クリップとの距離
 const float Camera::nearDistance(const GSvector3 & ohter, float radius) const
 {
 	//ohterとカメラの距離
@@ -272,11 +214,13 @@ const float Camera::nearDistance(const GSvector3 & ohter, float radius) const
 	return dis-(m_perspective.z + radius);
 }
 
+//カメラとの距離
 const float Camera::distance(const GSvector3 & ohter) const
 {
 	return m_lookAt->position.distance(ohter);
 }
 
+//カメラのトランスフォーム
 const Transform Camera::transform() const
 {
 	GSvector3 position = m_lookAt->position;
@@ -285,30 +229,37 @@ const Transform Camera::transform() const
 	return Transform(vec.getYaw(), GSvector3(0, 1, 0), position);
 }
 
+//カメラの位置を返す
 const GSvector3 & Camera::position(void)
 {
 	//カメラの位置を返す
 	return m_lookAt->position;
 }
 
+Zoom * Camera::zoom()
+{
+	return mZoom.get();
+}
+
+//追尾：カメラの位置のオフセット
 void Camera::tracking_position_offset(const GSvector3 & _target, float _speed)
 {
 	//見やすくするために宣言
 	GSvector3* position = &m_lookAt->position_offset;
-
 	//３次元ベクトルの線形補間
 	gsVector3Lerp(position, position, &_target, _speed);
 }
 
+//追尾：注視点のオフセット
 void Camera::tracking_target_offset(const GSvector3 & _target, float _speed)
 {
 	//見やすくするために宣言
 	GSvector3* position = &m_lookAt->target_offset;
-
 	//３次元ベクトルの線形補間
 	gsVector3Lerp(position, position, &_target, _speed);
 }
 
+//パースペクティブの更新
 void Camera::update_perspective(void)
 {
 	//投射変換行列の設定
@@ -331,6 +282,7 @@ void Camera::update_perspective(void)
 	return;
 }
 
+//ルックアットの更新
 void Camera::update_lookAt(void)
 {
 	//モデルビュー変換行列の設定
@@ -353,25 +305,9 @@ void Camera::update_lookAt(void)
 
 	//シェーダー用モデルビュー変換行列に現在のモデルビュー行列を代入
 	glGetFloatv(GL_MODELVIEW_MATRIX, (GLfloat *)&m_lookAt->mat_view);
-
-	return;
 }
 
-void Camera::update_zoom(const float _value)
-{	
-	//視野角に値を足す
-	m_perspective.x += _value;
-
-	//視野角の値が範囲外に出ないようにする
-	m_perspective.x = Math::Calculate::clamp(
-		m_perspective.x,
-		m_fov_clamp.x,
-		m_fov_clamp.y
-	);
-
-	return;
-}
-
+//追尾の更新
 void Camera::update_tracking(
 	const GSvector3 & _position,
 	const GSvector3 & _lookAt,
@@ -384,17 +320,16 @@ void Camera::update_tracking(
 	tracking_lookAt(_lookAt, _trackingSpeed.y);
 }
 
+//地面と当たったか？
 bool Camera::isHitGround(const Map& _map, GSvector3 * _position)
 {
 	GSvector3 intersectPos;
 
-	if (_map.isCollisionRay((*_position), RAY_DONW, &intersectPos))
-	{
+	if (_map.isCollisionRay((*_position), RAY_DONW, &intersectPos)) {
 		m_intersectPos = intersectPos + GSvector3(0, R, 0);
 	}
 	
-	if (m_intersectPos.y > m_lookAt->position.y)
-	{
+	if (m_intersectPos.y > m_lookAt->position.y) {
 		return true;
 	}
 

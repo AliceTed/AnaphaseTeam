@@ -29,7 +29,7 @@ Stage::Stage(const StageData& _stage)
 	}
 	m_phaseManage.changeFirst();
 
-	m_cameracontroller.change_cameraWork("event");
+	m_cameracontroller.change_cameraWork("normal");
 }
 Stage::~Stage()
 {

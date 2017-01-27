@@ -17,30 +17,33 @@ class Shake
 {
 public:
 	/**
+	@fn
 	@brief コンストラクタ
-	@param[_scale]	ふり幅
-	@param[_time]	振る時間（１秒＝６０フレーム）
 	*/
-	Shake(const GSvector3& _scale, float _time);
-
-	//デストラクタ
+	Shake();
+	/**
+	@fn
+	@brief デストラクタ
+	*/
 	~Shake();
-
 	/**
-	@brief 実行
-	@param[_speed] 実行速度
-	@param[_center]原点
-	@return 求めた位置　＋　原点
+	@fn
+	@brief 初期化
+	@param _scale	ふり幅
+	@param _time	振る時間（１秒＝６０フレーム）
+	@param _center	原点
 	*/
-	GSvector3 run(float _speed, const GSvector3& _center = { 0.0f, 0.0f, 0.0f });
-
+	void init(const GSvector3& _scale, const int _time, const GSvector3& _center);
 	/**
+	@fn
+	@brief 実行
+	*/
+	GSvector3 run();
+	/**
+	@fn
 	@brief 時間を初期化
 	*/
 	void resetTime(void);
-
 private:
-	std::vector<GSvector3> points;					//各点
-
 	std::unique_ptr<AnimationSpline> animSpline;	//スプラインアニメーション
 };

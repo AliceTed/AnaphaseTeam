@@ -35,7 +35,7 @@ CameraWorkLockOn::~CameraWorkLockOn()
 
 void CameraWorkLockOn::start(void)
 {
-	m_camera->initialize_zoom();
+	m_camera->initializeZoom();
 
 	m_nextCameraWork = "none";
 	m_isEnd = false;
@@ -64,7 +64,7 @@ void CameraWorkLockOn::run(float _deltaTime)
 	update_toEleDir(vector, distance_p_c);
 
 	//カメラワーク・ドリーの処理
-	m_camera->cameraWork_dolly(
+	m_camera->dolly(
 		(center + m_offset_target),
 		*m_rotate,
 		distance_p_c + m_distance,
