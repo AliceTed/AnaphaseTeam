@@ -63,6 +63,7 @@ private:
 	void lookTarget();
 	const bool aerialTracking() const;
 	void specialSkill();
+	void readStatus()override;
 private:
 	ComboAttack m_combo;
 	Status m_status;

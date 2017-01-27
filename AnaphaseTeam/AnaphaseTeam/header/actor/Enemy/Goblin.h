@@ -41,6 +41,8 @@ private:
 	* @param[_player] プレイヤーのポインタ
 	*/
 	void think(Player* _palyer)override;
+
+	void readStatus()override;
 private:
 	GSquaternion m_debug;
 
