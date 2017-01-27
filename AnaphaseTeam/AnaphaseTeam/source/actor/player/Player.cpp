@@ -94,8 +94,7 @@ void Player::initialize()
 	Collision_Ptr actor = std::make_shared<PlayerCollision>(this);
 	m_collision.add(actor);
 
-	StatusReader reader;
-	reader(&m_status, m_Gauge.get(), m_gravity, "status");
+	readStatus();
 
 	m_status.initialize();
 	m_scythe.initialize();
@@ -213,6 +212,12 @@ void Player::specialSkill()
 	m_specialUI->close();
 }
 
+void Player::readStatus()
+{
+	StatusReader reader;
+	reader(&m_status, m_Gauge.get(), m_gravityAcc, "status");
+}
+
 void Player::damage(const AttackStatus & _attackStatus)
 {
 	m_status.down(_attackStatus.m_power);
@@ -275,7 +280,6 @@ void Player::attackmotion(Attack & _attack)
 }
 void Player::control()
 {
-	specialSkill();
 	/*ƒ{ƒ^ƒ“‰Ÿ‚µ‚½‚çAttackState‚ÉØ‚è‘Ö‚í‚é*/
 	if (GameDevice::getInstacnce().input()->quickAttackTrigger())
 	{
@@ -288,6 +292,7 @@ void Player::control()
 		changeState(ACTOR_STATE::ATTACK);
 		m_combo.start(true);
 	}
+	specialSkill();
 }
 
 void Player::look_at(CameraController * _camera, GSvector3 * _target)

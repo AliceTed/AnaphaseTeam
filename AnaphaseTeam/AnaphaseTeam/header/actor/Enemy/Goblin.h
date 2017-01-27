@@ -30,6 +30,7 @@ public://Actor継承&コンストラクタ
 	*@param[_blowPower]食らった攻撃の吹っ飛び値
 	*/
 	void blowDamageDecision(const GSvector3& _blowPower)override;
+
 private:
 	/**
 	* @brief stateを初期化代入
@@ -40,6 +41,8 @@ private:
 	* @param[_player] プレイヤーのポインタ
 	*/
 	void think(Player* _palyer)override;
+
+	void readStatus()override;
 private:
 	GSquaternion m_debug;
 
