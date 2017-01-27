@@ -272,6 +272,7 @@ void Renderer::render(const SpriteRenderDesc & desc)
 	// ブレンド方法の設定
 	setBlendFunc(desc.blendFunc);
 
+	//gsDrawSprite2D(desc.textureID,);
 	// 透視変換行列の設定
 	glMatrixMode(GL_PROJECTION);
 	glLoadIdentity();
@@ -279,14 +280,26 @@ void Renderer::render(const SpriteRenderDesc & desc)
 
 	// モデルビュー変換行列の設定
 	glMatrixMode(GL_MODELVIEW);
-	glLoadMatrixf((GLfloat*)&desc.matrix);
 
+	glPushMatrix();
+	// 変換行列の初期化
+	glLoadIdentity();
+	//glLoadMatrixf();
+	//glLoadMatrixf((GLfloat*)&desc.matrix);
+
+	glMultMatrixf(desc.matrix);
 	// 中心位置の補正を行う
 	glTranslatef(-desc.center.x, -desc.center.y, 0);
 
 	// テクスチャのレンダリングを行う
 	renderTexture(desc.textureID, desc.color);
 
+	glPopMatrix();
+	// 透視変換行列を復帰
+	glMatrixMode(GL_PROJECTION);
+	glPopMatrix();
+	// モデルビュー変換行列に設定
+	glMatrixMode(GL_MODELVIEW);
 	// レンダリングモードの復帰
 	glPopAttrib();
 }

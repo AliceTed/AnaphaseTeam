@@ -46,7 +46,7 @@
 #include "../../../header/ui/UIManager.h"
 
 #include "../../../header/data/stream/StatusReader.h"
-
+#include  "../header/renderer/define/LightDesc.h"
 const float Player::ROTATESPEED = -2.0f;
 Player::Player(const Transform& _t,Camera * _camera, LockOn* _lockon)
 	:Actor(
@@ -140,6 +140,14 @@ void Player::update(float deltatime)
 
 void Player::draw(IRenderer *_renderer)
 {
+	LightDesc light;
+	light.ambient = Color4(1.0f, 1.0, 1.0f, 1.0f);
+	light.diffuse = Color4(1.0f, 1.0f, 1.0f, 1.0f);
+	light.specular = Color4(1.0f, 1.0f, 1.0f, 1.0f);
+	light.position =m_transform.m_translate;
+	light.position.y+=5;
+	_renderer->light(light);
+
 	m_animatorOne.draw(_renderer, m_transform);
 	m_collision.draw(_renderer);
 	m_scythe.draw(_renderer);
