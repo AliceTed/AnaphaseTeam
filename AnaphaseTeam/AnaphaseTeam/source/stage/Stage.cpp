@@ -8,7 +8,6 @@
 #include "../../header/data/stream/PhaseReader.h"
 #include "../../header/camera/CameraWork/E_CameraWorkID.h"
 #include "../../header/ui/UIManager.h"
-
 Stage::Stage(const StageData& _stage)
 	:m_Map(OCTREE_ID::VISUAL),
 	m_score(std::make_shared<Score>()),
@@ -48,15 +47,6 @@ void Stage::draw(IRenderer * _renderer)
 	SkyBoxRenderDesc desc;
 	desc.meshID = static_cast<unsigned int>(MESH_ID::SKY);
 	_renderer->render(desc);
-
-	GScolor color = { 1.0f,0.0f,0.0f,1.0f };
-	GSvector2 clip = { 10, 2000 };
-	glEnable(GL_FOG);
-	glFogi(GL_FOG_MODE, GL_LINEAR);
-	glFogi(GL_FOG_HINT, GL_FASTEST);
-	glFogf(GL_FOG_START, clip.x);
-	glFogf(GL_FOG_END, clip.y);
-	glFogfv(GL_FOG_COLOR, (GLfloat*)color);
 
 	m_actors.lockAt(&m_cameracontroller);
 	m_cameracontroller.draw(_renderer);

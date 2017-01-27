@@ -44,7 +44,7 @@ private:
 
 	void readStatus()override;
 private:
-	GSquaternion m_debug;
+	bool m_isDown;
 
 private://state
 	class EAttackState;

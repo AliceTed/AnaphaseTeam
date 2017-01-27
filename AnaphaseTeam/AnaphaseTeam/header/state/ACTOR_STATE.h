@@ -26,5 +26,7 @@ enum class ACTOR_STATE
 	EDASH,
 	EMOVEBACK,
 	EDOWN,
-	ETHINK
+	ETHINK,
+
+	BSTAND,
 };

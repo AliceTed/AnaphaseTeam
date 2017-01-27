@@ -22,6 +22,7 @@
 #include "state/enemy/MiddleRangeAI.h"
 #include "state/enemy/OverFarAI.h"
 #include "state/enemy/EAI.h"
+#include "state\enemy\EDownState.h"
 #include "actor/Enemy/EnemyMediator.h"
 #include "../../../header/data/stream/EStatusReader.h"
 
@@ -32,7 +33,7 @@
 static const float BLOW_DAMAGE_POWER = 0.4f;
 
 Goblin::Goblin(const Transform & _transform, EnemyMediator& _mediator)
-	:IEnemy(_transform, MODEL_ID::ENEMY, _mediator)
+	:IEnemy(_transform, MODEL_ID::ENEMY, _mediator), m_isDown(false)
 {
 }
 Goblin::~Goblin()
@@ -56,7 +57,7 @@ void Goblin::initialize()
 	m_status.initialize();
 	//m_status.m_hp = 100;
 	m_alpha = 1;
-	
+	m_isDown = false;
 	//m_gravity = 0.0f;
 }
 void Goblin::update(float deltatime)
@@ -77,13 +78,15 @@ void Goblin::draw(IRenderer * _renderer)
 void Goblin::damage(const AttackStatus & _attackStatus)
 {
 	if (isNotDamageState())return;
-	changeState(ACTOR_STATE::EDAMAGE);//ダメージステートに変更
+
 	m_status.down(_attackStatus.m_power);//体力減少
 	//ダウン中は一定以上の吹っ飛び値でないと怯まない
 	if (getState() == ACTOR_STATE::EDOWN)
 	{
 		blowDown(_attackStatus.m_blowOff);
+		return;
 	}
+	changeState(ACTOR_STATE::EDAMAGE);//ダメージステートに変更
 	if (!m_isGround)//浮いてる間は吹っ飛びにくい
 	{
 		blowDamageDecision(_attackStatus.m_blowOff);
@@ -100,6 +103,7 @@ void Goblin::blowDown(const GSvector3& _blowPower)
 	{
 		blowDamageDecision(_blowPower);//アニメーション変更
 		m_knockBack.start(_blowPower);//ノックバック値設定
+		m_isDown = true;
 	}
 }
 void Goblin::blowDamageDecision(const GSvector3& _blowPower)
@@ -109,6 +113,7 @@ void Goblin::blowDamageDecision(const GSvector3& _blowPower)
 	{
 		//吹っ飛ぶ方
 		m_animatorOne.changeAnimationLerp(ENEMY_ANIMATION::DIE2, 1.5f);
+		m_isDown = true;
 		return;
 	}
 	//ただの怯み
@@ -128,6 +133,7 @@ void Goblin::createStates()
 	registerState(ACTOR_STATE::EMOVEBACK, new EMoveBackState(this));
 	registerState(ACTOR_STATE::ETHINK, new EThinkState(this));
 	registerState(ACTOR_STATE::ESECOUNDATTACK, new ESecoundAttackState(this));
+	registerState(ACTOR_STATE::EDOWN, new EDownState(this));
 }
 
 void Goblin::think(Player * _player)

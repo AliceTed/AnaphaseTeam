@@ -247,6 +247,12 @@
     <Filter Include="ヘッダー ファイル\actor\Enemy\AI">
       <UniqueIdentifier>{ee200da0-5031-4023-8e27-0efafe3c8cb6}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ヘッダー ファイル\state\boss">
+      <UniqueIdentifier>{4c703c78-96f8-4850-afc7-898ddb821c6e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\state\boss">
+      <UniqueIdentifier>{cac1e4d0-ae6a-4aa8-b653-ac22b76bafbf}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="header\math\Calculate.h">
@@ -1008,6 +1014,12 @@
     <ClInclude Include="header\state\enemy\EDownState.h">
       <Filter>ヘッダー ファイル\state\enemy</Filter>
     </ClInclude>
+    <ClInclude Include="header\state\boss\BStandState.h">
+      <Filter>ヘッダー ファイル\state\boss</Filter>
+    </ClInclude>
+    <ClInclude Include="header\actor\Boss\BossAI.h">
+      <Filter>ヘッダー ファイル\actor\Boss</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="source\main.cpp">
@@ -1540,6 +1552,12 @@
     </ClCompile>
     <ClCompile Include="source\state\enemy\EDownState.cpp">
       <Filter>ソース ファイル\state\enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="source\state\boss\BStandState.cpp">
+      <Filter>ソース ファイル\state\boss</Filter>
+    </ClCompile>
+    <ClCompile Include="source\actor\Boss\BossAI.cpp">
+      <Filter>ソース ファイル\actor\Boss</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

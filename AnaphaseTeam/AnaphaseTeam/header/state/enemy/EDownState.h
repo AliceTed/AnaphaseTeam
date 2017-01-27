@@ -1,6 +1,8 @@
 #pragma once
 #include "../../actor/Enemy/Goblin.h"
 #include "../ActorState.h"
+#include "convenient\Timer.h"
+#include<functional>
 class Goblin::EDownState : public ActorState<Goblin>
 {
 public:
@@ -9,4 +11,10 @@ public:
 	void start() override;
 	void action(float deltaTime) override;
 	EDownState * clone() const override;
+	void stand(float deltaTime);
+	void down(float deltaTime);
+private:
+	Timer m_timer;
+	bool m_standStart;
+	std::function<void(float)>  ptr;//CŒ¾Œê‚Å‚¢‚¤ŠÖ”ƒ|ƒCƒ“ƒ^
 };
