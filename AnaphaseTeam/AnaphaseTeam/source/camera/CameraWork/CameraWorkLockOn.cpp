@@ -3,6 +3,7 @@
 #include "math/Calculate.h"
 #include "math/AMath.h"
 #include "camera/CameraWork/CWParameterReader.h"
+#include "camera/Zoom.h"
 
 CameraWorkLockOn::CameraWorkLockOn(Camera* _camera, GSvector2* _rotate) :
 	CameraWorkEmpty(_camera),
@@ -35,7 +36,8 @@ CameraWorkLockOn::~CameraWorkLockOn()
 
 void CameraWorkLockOn::start(void)
 {
-	m_camera->initializeZoom();
+	Zoom* cameraZoom = m_camera->zoom();
+	cameraZoom->init(45.f);
 
 	m_nextCameraWork = "none";
 	m_isEnd = false;

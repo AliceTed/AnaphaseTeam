@@ -1,6 +1,6 @@
-#include "../../header/function/Shake.h"
-#include "../../header/spline/AnimationSpline.h"
-#include "../../header/math/AMath.h"
+#include "function/Shake.h"
+#include "spline/AnimationSpline.h"
+#include "math/AMath.h"
 #include <random>
 
 //デフォルトコンストラクタ

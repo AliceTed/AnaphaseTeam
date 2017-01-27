@@ -1,12 +1,12 @@
-#include "../../header/camera/Camera.h"
-#include "../../header/camera/CameraTarget.h"
-#include "../../header/math/Calculate.h"
-#include "../../header/math/AMath.h"
-#include "../../header/data/id/OCTREE_ID.h"
-#include "../../header/map/Map.h"
-#include "../../header/camera/LookAt.h"
-#include "../../header/renderer/IRenderer.h"
-#include "../../header/camera/Zoom.h"
+#include "camera/Camera.h"
+#include "camera/CameraTarget.h"
+#include "math/Calculate.h"
+#include "math/AMath.h"
+#include "data/id/OCTREE_ID.h"
+#include "map/Map.h"
+#include "camera/LookAt.h"
+#include "renderer/IRenderer.h"
+#include "camera/Zoom.h"
 #include <random>
 #include <vector>
 

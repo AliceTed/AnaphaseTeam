@@ -1,9 +1,9 @@
-#include "../../header/camera/LockOn.h"
-#include "../../header/actor/Enemy/EnemyManager.h"
-#include "../../header/actor/Player/Player.h"
-#include "../../header/device/GameDevice.h"
-#include "../../header/actor/Enemy/IEnemy.h"
-#include "../../header/ui/UIManager.h"
+#include "camera/LockOn.h"
+#include "actor/Enemy/EnemyManager.h"
+#include "actor/Player/Player.h"
+#include "device/GameDevice.h"
+#include "actor/Enemy/IEnemy.h"
+#include "ui/UIManager.h"
 LockOn::LockOn()
 	:m_player(nullptr),
 	m_target()

@@ -1,5 +1,5 @@
-#include "../../header/math/AMath.h"
-#include "../../header/math/Calculate.h"
+#include "math/AMath.h"
+#include "math/Calculate.h"
 #include <cmath>
 #include <algorithm>
 
