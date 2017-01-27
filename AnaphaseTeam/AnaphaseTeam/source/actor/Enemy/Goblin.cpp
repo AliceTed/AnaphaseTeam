@@ -71,7 +71,6 @@ void Goblin::update(float deltatime)
 		changeGravity(m_gravityAcc);
 		return;
 	}
-	//m_gravity = 0.0f;
 	changeGravity(-0.05f);
 	m_rotateTimer.update(deltatime);
 	rotateLerp(&m_transform.m_rotate, m_rotateTimer.time / m_rotateTimer.maxTime);
@@ -112,7 +111,6 @@ void Goblin::blowDown(const GSvector3& _blowPower)
 		blowDamageDecision(_blowPower);//アニメーション変更
 		m_knockBack.start(_blowPower);//ノックバック値設定
 		m_isDown = true;
-	//	changeState(ACTOR_STATE::EDAMAGE);
 	}
 }
 void Goblin::blowDamageDecision(const GSvector3& _blowPower)
@@ -123,7 +121,6 @@ void Goblin::blowDamageDecision(const GSvector3& _blowPower)
 		//吹っ飛ぶ方
 		m_animatorOne.changeAnimationLerp(ENEMY_ANIMATION::DIE2, 1.5f);
 		m_isDown = true;
-		//changeState(ACTOR_STATE::EDOWN);
 		return;
 	}
 	//ただの怯み
