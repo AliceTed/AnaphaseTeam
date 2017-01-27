@@ -25,5 +25,6 @@ enum class ACTOR_STATE
 	ESPAWN,
 	EDASH,
 	EMOVEBACK,
+	EDOWN,
 	ETHINK
 };

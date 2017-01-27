@@ -249,6 +249,7 @@
     <ClCompile Include="source\state\enemy\EDashFrontState.cpp" />
     <ClCompile Include="source\state\enemy\EDeadState.cpp" />
     <ClCompile Include="source\state\enemy\EDamageState.cpp" />
+    <ClCompile Include="source\state\enemy\EDownState.cpp" />
     <ClCompile Include="source\state\enemy\EMoveBackState.cpp" />
     <ClCompile Include="source\state\enemy\EMoveState.cpp" />
     <ClCompile Include="source\state\enemy\EnemyAIController.cpp" />
@@ -484,6 +485,7 @@
     <ClInclude Include="header\state\enemy\EAttackState.h" />
     <ClInclude Include="header\state\enemy\EDamageState.h" />
     <ClInclude Include="header\state\enemy\EDeadState.h" />
+    <ClInclude Include="header\state\enemy\EDownState.h" />
     <ClInclude Include="header\state\enemy\EMoveState.h" />
     <ClInclude Include="header\state\enemy\EnemyAIController.h" />
     <ClInclude Include="header\state\enemy\ESlideState.h" />

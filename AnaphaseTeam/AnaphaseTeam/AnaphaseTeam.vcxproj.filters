@@ -1005,6 +1005,9 @@
     <ClInclude Include="header\data\stream\EStatusReader.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
+    <ClInclude Include="header\state\enemy\EDownState.h">
+      <Filter>ヘッダー ファイル\state\enemy</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="source\main.cpp">
@@ -1534,6 +1537,9 @@
     </ClCompile>
     <ClCompile Include="source\math\Calculate.cpp">
       <Filter>ソース ファイル\math</Filter>
+    </ClCompile>
+    <ClCompile Include="source\state\enemy\EDownState.cpp">
+      <Filter>ソース ファイル\state\enemy</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

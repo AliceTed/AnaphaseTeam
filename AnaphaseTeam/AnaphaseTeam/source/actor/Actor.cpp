@@ -4,8 +4,6 @@
 #include "../../header/math/Calculate.h"
 #include "../../header/state/IActorState.h"
 
-const float Actor::GRAVITY = -0.05f;
-
 Actor::Actor(const Transform & _transform, MODEL_ID _modelID, Actor_Tag _tag,float _offset)
 	:m_transform(_transform),
 	m_isDead(false),
@@ -17,8 +15,9 @@ Actor::Actor(const Transform & _transform, MODEL_ID _modelID, Actor_Tag _tag,flo
 	m_currentState(nullptr),
 	m_currentStateKey(ACTOR_STATE::STAND),
 	m_previousIntersect(m_transform.m_translate),
-	m_gravity(-0.05f),
-	m_offset(_offset)
+	m_gravityAcc(-0.05f),
+	m_offset(_offset),
+	m_gravity(0)
 {
 }
 
@@ -31,6 +30,7 @@ void Actor::initialize()
 {
 	m_collision.initialize();
 	m_isDead = false;
+	m_gravity = 0;
 }
 
 void Actor::finish()
@@ -54,7 +54,7 @@ void Actor::collisionGround(const Map& _map)
 	{
 		if (m_currentStateKey != ACTOR_STATE::ATTACK)
 		{
-			//m_transform.translate_up(GRAVITY);
+			m_gravity += m_gravityAcc;
 			m_transform.translate_up(m_gravity);
 		}
 		return;
@@ -97,7 +97,7 @@ void Actor::changeState(ACTOR_STATE _state)
 
 void Actor::changeGravity(float _gravity)
 {
-	m_gravity = _gravity;
+	m_gravityAcc = _gravity;
 }
 
 const bool Actor::isSameActor(const Actor * _other) const

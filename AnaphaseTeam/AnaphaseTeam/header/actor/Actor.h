@@ -51,6 +51,7 @@ public:
 protected:	
 	void action(float deltaTime);
 	void registerState(ACTOR_STATE _name, IActorState* _state);
+	virtual void readStatus() = 0;
 public:
 	/**
 	* @fn
@@ -78,6 +79,7 @@ protected:
 	bool m_isBlock;
 	Animator m_animatorOne;
 	CollisionGroup m_collision;
+	float m_gravityAcc;
 	float m_gravity;
 private:
 	using StatePtr = std::shared_ptr<IActorState>;
@@ -91,6 +93,4 @@ private:
 
 	//ínñ Ç∆ÇÃ
 	float m_offset;
-	//èdóÕ
-	static const float GRAVITY;
 };
