@@ -1,6 +1,7 @@
 #include "../../header/effect/EffectManager.h"
 #include "../../header/data/id/EFFECT_ID.h"
 #include <Effekseer.h>
+#include<algorithm>
 #ifdef _DEBUG
 #pragma comment(lib, "VS2015/Debug/Effekseer.lib" )
 #pragma comment(lib, "VS2015/Debug/EffekseerRendererGL.lib" )
@@ -9,11 +10,12 @@
 #pragma comment(lib, "VS2015/Release/EffekseerRendererGL.lib" )
 #endif
 
-const int MAX_SPRITE = 100;		// 最大スプライト描画数
-const int MAX_MANAGER = 100;	// 最大マネージャーインスタンス数
+const int MAX_SPRITE = 1000;		// 最大スプライト描画数
+const int MAX_MANAGER = 1000;	// 最大マネージャーインスタンス数
 
 EffectManager::EffectManager()
-	:m_effectContainer()
+	:m_effectContainer(),
+	m_handleContainer()
 {
 	initialize();
 }
@@ -29,9 +31,9 @@ EffectManager::~EffectManager()
 	end();
 }
 /* 読み込み処理 */
-void EffectManager::loadEffect(EFFECT_ID _id, const wchar_t* _name)
+void EffectManager::loadEffect(EFFECT_ID _id, const std::string* _name)
 {
-	m_effectContainer.insert(std::make_pair(_id, Effekseer::Effect::Create(manager, (const EFK_CHAR*)_name, 3.0f)));
+	m_effectContainer.insert(std::make_pair(_id, Effekseer::Effect::Create(manager, (const EFK_CHAR*)_name)));
 }
 /* 初期化処理 */
 void EffectManager::initialize()
@@ -52,21 +54,27 @@ void EffectManager::initialize()
 /* 更新処理 */
 void EffectManager::update()
 {
-	// 各種行列の設定
-	effectMatrixSetting();
 	// 全てのエフェクトの更新
 	manager->Update();
 	// 再生中のエフェクトの移動
 	//	manager->AddLocation(handle, ::Effekseer::Vector3D(0.0f, 0.0f, 0.0f));
+	erase_if(m_handleContainer,[&](auto& p){return !manager->Exists(p.second);});
 }
 /* 描画処理 */
 void EffectManager::draw()
 {
+	// 各種行列の設定
+	effectMatrixSetting();
 	glPushAttrib(GL_ENABLE_BIT | GL_POLYGON_BIT);
 	renderer->BeginRendering();
 	manager->Draw();
+
+	glPushAttrib(GL_ENABLE_BIT);
+
 	renderer->EndRendering();
 	glPopAttrib();
+
+	glEnable(GL_DEPTH_TEST);
 }
 /* 解放処理 */
 void EffectManager::end()
@@ -116,6 +124,5 @@ Effekseer::Matrix44 EffectManager::mat4Conversion(const GSmatrix4 &mat4)
 			mat.Values[y][x] = mat4.m[y][x];
 		}
 	}
-
 	return mat;
 }

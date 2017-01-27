@@ -21,7 +21,7 @@ public:
 	// デストラクタ
 	~EffectManager();
 	// エフェクト読み込み
-	void loadEffect(EFFECT_ID _id, const wchar_t* _name);
+	void loadEffect(EFFECT_ID _id, const std::string* _name);
 	// 更新
 	void update();
 	// 描画
@@ -29,7 +29,32 @@ public:
 	// エフェクト再生
 	void effectPlay(EFFECT_ID _id, GSvector3 _position);
 
+	int gethandlsize() 
+	{
+		return m_handleContainer.size();
+	}
+
+	void setpos(EFFECT_ID id, GSvector3 p)
+	{
+		if (m_handleContainer.count(id) == 0)return;
+		Effekseer::Vector3D v;
+		v.X = p.x;
+		v.Y = p.y;
+		v.Z = p.z;
+
+		manager->SetLocation(m_handleContainer[id], v);
+	}
 private:
+	template< typename ContainerT, typename PredicateT >
+	void erase_if(ContainerT& items, const PredicateT& predicate) 
+	{
+		for (auto it = items.begin(); it != items.end(); ) 
+		{
+			if (predicate(*it)) it = items.erase(it);
+			else ++it;
+		}
+	};
+
 	// コンストラクタ
 	EffectManager();
 	// コピー禁止
@@ -45,6 +70,7 @@ private:
 	void effectMatrixSetting();
 	// GSmatrix4からEffekseer::Matrix44へ変換
 	Effekseer::Matrix44 mat4Conversion(const GSmatrix4 &mat4);
+
 
 private:
 	// エフェクト描画用インスタンス

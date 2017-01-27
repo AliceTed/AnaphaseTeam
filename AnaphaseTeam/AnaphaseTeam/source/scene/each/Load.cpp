@@ -17,6 +17,9 @@
 #include "data/id/BGM_ID.h"
 #include "data/id/SE_ID.h"
 #include "data/id/MYANIMATION_ID.h"
+
+#include "../header/effect/EffectManager.h"
+
 Load::Load()
 	:m_IsEnd(false)
 {
@@ -36,6 +39,7 @@ void Load::update(float deltaTime)
 	loadSound();
 	loadModel();
 	loadMyAnimation();
+	loadEffect();
 	m_IsEnd = true;
 }
 void Load::draw(IRenderer * renderer)
@@ -143,4 +147,9 @@ void Load::loadMyAnimation()
 	loader(MYANIMATION_ID::SPECIAL_ATTACK_BACK, "SpecialAttack_back");
 	loader(MYANIMATION_ID::SPECIAL_SUPERARMOR_BACK, "SpecialsSuperArmor_back");
 	loader(MYANIMATION_ID::SPECIAL_RECOVERY_BACK, "SpecialRecovery_back");
+}
+
+void Load::loadEffect()
+{
+	EffectManager::getInstance().loadEffect(EFFECT_ID::ATTACK_1, reinterpret_cast<const std::string*>(L"././res/effect/Attack_2effect.efk"));
 }

@@ -1011,6 +1011,9 @@
     <ClInclude Include="header\effect\EffectManager.h">
       <Filter>ヘッダー ファイル\effect</Filter>
     </ClInclude>
+    <ClInclude Include="header\data\id\EFFECT_ID.h">
+      <Filter>ヘッダー ファイル\data\id</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="source\main.cpp">

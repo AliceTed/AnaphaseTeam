@@ -19,6 +19,7 @@ private:
 	void loadSound();
 	void loadModel();
 	void loadMyAnimation();
+	void loadEffect();
 private:
 	bool m_IsEnd;
 };

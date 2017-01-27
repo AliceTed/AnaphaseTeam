@@ -116,7 +116,6 @@ void Player::initialize()
 	m_timer.initialize();
 	m_isLockOn = false;
 }
-
 void Player::update(float deltatime)
 {
 	action(deltatime);

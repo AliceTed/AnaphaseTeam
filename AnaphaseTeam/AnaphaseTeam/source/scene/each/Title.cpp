@@ -5,6 +5,8 @@
 #include "device/GameDevice.h"
 #include "data/id/BGM_ID.h"
 #include "data/id/SHADER_ID.h"
+#include "effect\EffectManager.h"
+#include "data\id\EFFECT_ID.h"
 Title::Title()
 	:m_IsExit(false),
 	m_change(),
@@ -30,6 +32,8 @@ void Title::update(float _deltaTime)
 {
 	if (m_change.update(_deltaTime))return;
 	m_time += _deltaTime;
+	EffectManager::getInstance().update();
+	EffectManager::getInstance().effectPlay(EFFECT_ID::ATTACK_1, GSvector3(600, 300, 0));
 	if (GameDevice::getInstacnce().input()->jump())
 	{
 		m_change.end(SceneMode::MENU);
@@ -46,6 +50,7 @@ void Title::draw(IRenderer * _renderer)
 
 	m_pressKey.draw(_renderer);
 	m_change.draw(_renderer);
+	EffectManager::getInstance().draw();
 }
 
 void Title::finish()

@@ -321,6 +321,7 @@
     <ClCompile Include="source\ui\VolumeSelectUI.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="header\data\id\EFFECT_ID.h" />
     <ClInclude Include="header\actor\Enemy\EnemyRotateTimer.h" />
     <ClInclude Include="header\actor\Enemy\IEnemy.h" />
     <ClInclude Include="header\actor\ActorManager.h" />
