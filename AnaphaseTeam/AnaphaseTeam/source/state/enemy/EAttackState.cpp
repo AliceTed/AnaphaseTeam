@@ -12,7 +12,7 @@ void Goblin::EAttackState::start()
 	m_timer.initialize();
 	m_timer.setEndTime(0.8f);
 	m_actor->lookAtToPlayer();//プレイヤーの方向を見る
-	m_actor->m_transform.translate_front(0.5);
+	//m_actor->m_transform.translate_front(0.5);
 	Math::Random rnd;
 	m_secoundAttack = rnd(0, 10) == 0 ? true : false;//二段攻撃をするか
 	m_actor->m_animatorOne.changeAnimationLerp(ENEMY_ANIMATION::ATTACK1);
@@ -26,6 +26,7 @@ void Goblin::EAttackState::action(float deltaTime)
 	{
 		collisionStart();
 	}
+	else{ m_actor->m_transform.translate_front(0.007f); }
 	if (m_actor->m_animatorOne.isEndCurrentAnimation())
 	{
 		GameDevice::getInstacnce().sound().stopSE(SE_ID::ENEMY_ATTACK);
