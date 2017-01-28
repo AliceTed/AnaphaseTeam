@@ -28,7 +28,7 @@ void CameraWorkDead::run(float _deltaTime)
 	const GSvector3& player = m_camera->get_cameraTarget_player();
 	mTime += _deltaTime;
 
-	m_camera->lookAt(player + m_offset_target, 0.5f);
+	m_camera->lookAt()->lookAt(player + m_offset_target, 0.5f);
 
 	if (mTime > 320)
 	{

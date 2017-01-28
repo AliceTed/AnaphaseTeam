@@ -21,6 +21,7 @@ void Perspective::init(const GSvector4 & _perspective)
 {
 	mPerspective = _perspective;
 	mZoom->init(mPerspective.x);
+	gsMatrix4Identity(&mMatProjection);
 }
 
 //XV

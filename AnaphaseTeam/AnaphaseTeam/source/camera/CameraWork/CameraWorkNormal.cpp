@@ -53,7 +53,7 @@ void CameraWorkNormal::run(float _deltaTime)
 	m_rotate->x =Math::Calculate::clamp(m_rotate->x, -m_clamp_elevation, m_clamp_elevation);
 
 	//カメラワーク・ドリーの処理
-	m_camera->dolly(
+	m_camera->lookAt()->dolly(
 		(player + m_offset_target),
 		(*m_rotate),
 		m_distance,

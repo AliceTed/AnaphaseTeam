@@ -67,7 +67,7 @@ void CameraWorkLockOn::run(float _deltaTime)
 	update_toEleDir(vector, distance_p_c);
 
 	//カメラワーク・ドリーの処理
-	m_camera->dolly(
+	m_camera->lookAt()->dolly(
 		(center + m_offset_target),
 		*m_rotate,
 		distance_p_c + m_distance,
