@@ -3,6 +3,8 @@
 #include "camera/CameraWork/CWParameterReader.h"
 #include "math/Calculate.h"
 #include "math/AMath.h"
+#include "camera/Perspective.h"
+#include "camera/Zoom.h"
 
 CameraWorkNormal::CameraWorkNormal(Camera* _camera, GSvector2* _rotate) :
 	CameraWorkEmpty(_camera),
@@ -28,7 +30,8 @@ CameraWorkNormal::~CameraWorkNormal()
 
 void CameraWorkNormal::start(void)
 {
-	m_camera->initialize_zoom();
+	Zoom* cameraZoom = m_camera->perspective()->zoom();
+	cameraZoom->init(45.f);
 	
 	m_nextCameraWork = "none";
 	m_isEnd = false;
@@ -50,7 +53,7 @@ void CameraWorkNormal::run(float _deltaTime)
 	m_rotate->x =Math::Calculate::clamp(m_rotate->x, -m_clamp_elevation, m_clamp_elevation);
 
 	//カメラワーク・ドリーの処理
-	m_camera->cameraWork_dolly(
+	m_camera->lookAt()->dolly(
 		(player + m_offset_target),
 		(*m_rotate),
 		m_distance,

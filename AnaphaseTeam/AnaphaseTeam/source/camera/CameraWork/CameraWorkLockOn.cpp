@@ -3,6 +3,8 @@
 #include "math/Calculate.h"
 #include "math/AMath.h"
 #include "camera/CameraWork/CWParameterReader.h"
+#include "camera/Perspective.h"
+#include "camera/Zoom.h"
 
 CameraWorkLockOn::CameraWorkLockOn(Camera* _camera, GSvector2* _rotate) :
 	CameraWorkEmpty(_camera),
@@ -35,7 +37,8 @@ CameraWorkLockOn::~CameraWorkLockOn()
 
 void CameraWorkLockOn::start(void)
 {
-	m_camera->initialize_zoom();
+	Zoom* cameraZoom = m_camera->perspective()->zoom();
+	cameraZoom->init(45.f);
 
 	m_nextCameraWork = "none";
 	m_isEnd = false;
@@ -64,7 +67,7 @@ void CameraWorkLockOn::run(float _deltaTime)
 	update_toEleDir(vector, distance_p_c);
 
 	//カメラワーク・ドリーの処理
-	m_camera->cameraWork_dolly(
+	m_camera->lookAt()->dolly(
 		(center + m_offset_target),
 		*m_rotate,
 		distance_p_c + m_distance,

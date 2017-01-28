@@ -2,12 +2,12 @@
 @file CameraController
 @brief カメラを操作する
 @author Yuuho Aritomi*/
-#include "../../header/camera\CameraController.h"
+#include "camera\CameraController.h"
 #include <string>
-#include "../../header/camera/Camera.h"
-#include "../../header/math/AMath.h"
-#include "../../header/math/Calculate.h"
-#include "../../header/camera/CameraWork/CameraWorkManager.h"
+#include "camera/Camera.h"
+#include "math/AMath.h"
+#include "math/Calculate.h"
+#include "camera/CameraWork/CameraWorkManager.h"
 
 /*
 make_uniqueはunique_ptr作成用関数なので
@@ -28,12 +28,10 @@ CameraController::~CameraController()
 {
 }
 
-
 void CameraController::update(float _deltaTime)
 {
 	m_deltaTime = _deltaTime;
 }
-
 
 void CameraController::draw(IRenderer* _renderer)
 {
@@ -41,7 +39,6 @@ void CameraController::draw(IRenderer* _renderer)
 	//カメラワーク・マネージャー実行
 	m_cameraWorkManager->run(m_deltaTime);
 }
-
 
 void CameraController::collisionGround(const Map & _map)
 {
