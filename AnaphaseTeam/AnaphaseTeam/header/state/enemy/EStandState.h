@@ -13,5 +13,4 @@ public:
 
 private:
 	Timer m_tiemr;
-
 };

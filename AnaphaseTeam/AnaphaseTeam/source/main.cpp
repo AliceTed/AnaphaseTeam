@@ -31,6 +31,7 @@ private:
 	virtual void start() override
 	{
 		m_renderer->initialize();
+		//m_renderer->perspective(45,,);
 		ViewportDesc desc;
 		desc.height =720;
 		desc.width=1280;

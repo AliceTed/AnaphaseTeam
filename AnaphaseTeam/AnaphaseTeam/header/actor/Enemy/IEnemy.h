@@ -122,6 +122,8 @@ protected://仮想関数protected
 		* @brief stateを初期化代入
 		*/
 	virtual void createStates() = 0;
+
+	virtual void readStatus() = 0;
 	/**
 	*@breif 距離に応じてAIを決定
 	*@param[_distace] プレイヤーとの距離

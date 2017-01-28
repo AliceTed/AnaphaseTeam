@@ -125,7 +125,7 @@ void Load::loadModel()
 	MeshLoader mesh;
 	model(MODEL_ID::PLAYER, "player/player");
 	model(MODEL_ID::ENEMY, "enemy/ene1");
-
+	model(MODEL_ID::BOSS, "gobrin/gob");
 	mesh(MESH_ID::SKY, "sky/skydome");
 	//meshïêäÌÅ@äô
 	mesh(MESH_ID::WEAPON, "weapon/weapon");

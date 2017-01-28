@@ -4,6 +4,7 @@
 #include  "../../header/attack/ShapeData.h"
 #include "../../header/device/GameDevice.h"
 #include "../../header/data/id/SE_ID.h"
+#include "renderer\IRenderer.h"
 Player::PlayerAttackCollision::PlayerAttackCollision(Player* _player, const ShapeData& _data,float _speed)
 	:CollisionActor(_data.shape,Collision_Tag::PLAYER_WEAPON),
 	m_player(_player),
@@ -40,7 +41,7 @@ void Player::PlayerAttackCollision::collision_Enter(HitInformation & _hit)
 	Actor* act = _hit.m_parent;
 	AttackStatus attack = m_player->m_combo.getStatus();
 	GSvector3 direction = m_player->m_transform.rotate_vector(attack.m_blowOff);
-	attack.m_blowOff = direction * 0.5f;
+	attack.m_blowOff = direction;
 	act->damage(attack);
 	GameDevice::getInstacnce().sound().playSE(SE_ID::ENEMY_DAMAGE);
 }

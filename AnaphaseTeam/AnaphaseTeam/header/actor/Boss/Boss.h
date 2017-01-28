@@ -17,7 +17,7 @@ public:
 	~Boss();
 	void initialize();
 	void update(float deltatime);
-	void draw(const IRenderer& _renderer);
+	void draw(IRenderer* _renderer);
 	void damage(const AttackStatus& _attackStatus)override;//actor
 public:
 	void think(Player* _palyer)override;
@@ -25,5 +25,12 @@ private:
 	void createStates()override;
 
 private:
+	bool m_isDown;
+private:
+	class BStandState;
+	friend BStandState;
 
+	// IEnemy ‚ğ‰î‚µ‚ÄŒp³‚³‚ê‚Ü‚µ‚½
+	virtual void blowDamageDecision(const GSvector3 & _blowPower) override;
+	virtual void readStatus() override;
 };

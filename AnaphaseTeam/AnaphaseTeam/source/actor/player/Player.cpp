@@ -46,7 +46,7 @@
 #include "../../../header/ui/UIManager.h"
 
 #include "../../../header/data/stream/StatusReader.h"
-
+#include  "../header/renderer/define/LightDesc.h"
 const float Player::ROTATESPEED = -2.0f;
 Player::Player(const Transform& _t,Camera * _camera, LockOn* _lockon)
 	:Actor(
@@ -94,8 +94,7 @@ void Player::initialize()
 	Collision_Ptr actor = std::make_shared<PlayerCollision>(this);
 	m_collision.add(actor);
 
-	StatusReader reader;
-	reader(&m_status, m_Gauge.get(), m_gravity, "status");
+	readStatus();
 
 	m_status.initialize();
 	m_scythe.initialize();
@@ -140,10 +139,40 @@ void Player::update(float deltatime)
 
 void Player::draw(IRenderer *_renderer)
 {
+	LightDesc light;
+	light.ambient = Color4(1.0f, 1.0, 1.0f, 1.0f);
+	light.diffuse = Color4(1.0f, 1.0f, 1.0f, 1.0f);
+	light.specular = Color4(1.0f, 1.0f, 1.0f, 1.0f);
+	light.position =m_transform.m_translate;
+	light.position.y+=5;
+	_renderer->light(light);
+
 	m_animatorOne.draw(_renderer, m_transform);
 	m_collision.draw(_renderer);
 	m_scythe.draw(_renderer);
 	m_specialskill.draw(_renderer);
+
+
+	GSvector3 direction = m_transform.rotate_vector(m_combo.getStatus().m_blowOff);
+	GSvector3 p_pos = m_transform.m_translate + GSvector3(0.0f,1.5f, 0.0f);
+	GSvector3 p_pos2 = p_pos + direction;
+	glPushMatrix();
+	//透視変換行列の設定
+	glMatrixMode(GL_PROJECTION);
+	glLoadMatrixf((GLfloat*)&_renderer->getProjectionMatrix());
+	//視野変換行列の設定
+	glMatrixMode(GL_MODELVIEW);
+	glLoadMatrixf((GLfloat*)&_renderer->getViewMatrix());
+	glLineWidth(5.0f);
+	glMaterialfv(GL_FRONT, GL_DIFFUSE, GScolor(1.0f, 0.0f, 0.0f, 1.0f));
+	glBegin(GL_LINES);
+	glVertex3f(p_pos.x, p_pos.y, p_pos.z);
+	glVertex3f(p_pos2.x, p_pos2.y, p_pos2.z);
+	glEnd();
+
+	glPopMatrix();
+
+
 }
 void Player::finish()
 {
@@ -213,6 +242,12 @@ void Player::specialSkill()
 	m_specialUI->close();
 }
 
+void Player::readStatus()
+{
+	StatusReader reader;
+	reader(&m_status, m_Gauge.get(), m_gravityAcc, "status");
+}
+
 void Player::damage(const AttackStatus & _attackStatus)
 {
 	m_status.down(_attackStatus.m_power);
@@ -275,7 +310,6 @@ void Player::attackmotion(Attack & _attack)
 }
 void Player::control()
 {
-	specialSkill();
 	/*ボタン押したらAttackStateに切り替わる*/
 	if (GameDevice::getInstacnce().input()->quickAttackTrigger())
 	{
@@ -288,6 +322,7 @@ void Player::control()
 		changeState(ACTOR_STATE::ATTACK);
 		m_combo.start(true);
 	}
+	specialSkill();
 }
 
 void Player::look_at(CameraController * _camera, GSvector3 * _target)

@@ -8,7 +8,6 @@
 #include "../../header/data/stream/PhaseReader.h"
 #include "../../header/camera/CameraWork/E_CameraWorkID.h"
 #include "../../header/ui/UIManager.h"
-
 Stage::Stage(const StageData& _stage)
 	:m_Map(OCTREE_ID::VISUAL),
 	m_score(std::make_shared<Score>()),
@@ -48,6 +47,7 @@ void Stage::draw(IRenderer * _renderer)
 	SkyBoxRenderDesc desc;
 	desc.meshID = static_cast<unsigned int>(MESH_ID::SKY);
 	_renderer->render(desc);
+
 	m_actors.lockAt(&m_cameracontroller);
 	m_cameracontroller.draw(_renderer);
 

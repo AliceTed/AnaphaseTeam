@@ -1,6 +1,7 @@
 #pragma once
 #include <vector>
 #include "Goblin.h"
+#include "actor\Boss\Boss.h"
 #include "IEnemy.h"
 #include "EnemyMediator.h"
 #include <memory>

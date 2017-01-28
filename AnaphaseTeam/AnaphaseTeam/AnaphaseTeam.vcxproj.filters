@@ -247,11 +247,11 @@
     <Filter Include="ヘッダー ファイル\actor\Enemy\AI">
       <UniqueIdentifier>{ee200da0-5031-4023-8e27-0efafe3c8cb6}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ソース ファイル\function">
-      <UniqueIdentifier>{8fd99d04-4858-4eef-8661-b2978bc28182}</UniqueIdentifier>
+    <Filter Include="ヘッダー ファイル\state\boss">
+      <UniqueIdentifier>{4c703c78-96f8-4850-afc7-898ddb821c6e}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ヘッダー ファイル\function">
-      <UniqueIdentifier>{f63d2ee5-c266-4838-89e3-8c9858496b5e}</UniqueIdentifier>
+    <Filter Include="ソース ファイル\state\boss">
+      <UniqueIdentifier>{cac1e4d0-ae6a-4aa8-b653-ac22b76bafbf}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -1011,17 +1011,14 @@
     <ClInclude Include="header\data\stream\EStatusReader.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="header\camera\Zoom.h">
-      <Filter>ヘッダー ファイル\camera</Filter>
+    <ClInclude Include="header\state\enemy\EDownState.h">
+      <Filter>ヘッダー ファイル\state\enemy</Filter>
     </ClInclude>
-    <ClInclude Include="header\function\Shake.h">
-      <Filter>ヘッダー ファイル\function</Filter>
+    <ClInclude Include="header\state\boss\BStandState.h">
+      <Filter>ヘッダー ファイル\state\boss</Filter>
     </ClInclude>
-    <ClInclude Include="header\function\Tracking.h">
-      <Filter>ヘッダー ファイル\function</Filter>
-    </ClInclude>
-    <ClInclude Include="header\camera\Perspective.h">
-      <Filter>ヘッダー ファイル</Filter>
+    <ClInclude Include="header\actor\Boss\BossAI.h">
+      <Filter>ヘッダー ファイル\actor\Boss</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -1553,17 +1550,14 @@
     <ClCompile Include="source\math\Calculate.cpp">
       <Filter>ソース ファイル\math</Filter>
     </ClCompile>
-    <ClCompile Include="source\camera\Zoom.cpp">
-      <Filter>ソース ファイル\camera</Filter>
+    <ClCompile Include="source\state\enemy\EDownState.cpp">
+      <Filter>ソース ファイル\state\enemy</Filter>
     </ClCompile>
-    <ClCompile Include="source\function\Shake.cpp">
-      <Filter>ソース ファイル\function</Filter>
+    <ClCompile Include="source\state\boss\BStandState.cpp">
+      <Filter>ソース ファイル\state\boss</Filter>
     </ClCompile>
-    <ClCompile Include="source\function\Tracking.cpp">
-      <Filter>ソース ファイル\function</Filter>
-    </ClCompile>
-    <ClCompile Include="source\camera\Perspective.cpp">
-      <Filter>ソース ファイル</Filter>
+    <ClCompile Include="source\actor\Boss\BossAI.cpp">
+      <Filter>ソース ファイル\actor\Boss</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

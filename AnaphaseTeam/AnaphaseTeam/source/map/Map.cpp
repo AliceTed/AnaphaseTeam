@@ -27,32 +27,14 @@ const bool Map::isCollisionSphere(const GSvector3 & _center, float _radius, GSve
 
 void Map::draw(IRenderer * _renderer)
 {
-	//OctreeRenderDesc desc;
-	//desc.octreeID =static_cast<unsigned int>(m_ID);
-	//_renderer->render(desc);
-
-	/*
-	clipÇ™Ç†ÇÈÇÃÇ≈Ç∆ÇËÇ†Ç¶Ç∏Ç±Ç±Ç…èëÇ¢ÇΩ
-	*/
-	GScolor color = { 0.0f,0.0f,0.2f,0.5f };
-	GSvector2 clip = { 10, 50 };
-	//glClearColor(color.r, color.g, color.b, color.a);
-	glEnable(GL_FOG);
-	glFogi(GL_FOG_MODE, GL_LINEAR);
-	glFogf(GL_FOG_START, clip.x);
-	glFogf(GL_FOG_END, clip.y);
-	glFogfv(GL_FOG_COLOR, color);
 
 	gsBeginShader(static_cast<GSuint>(SHADER_ID::OCTREE));
-	LightDesc light = _renderer->getLight();
-	GSvector3 light_position_eye =light.position*_renderer->getViewMatrix();
-	gsSetShaderParam3f("u_lightPositionEye", &light_position_eye);
-	gsSetShaderParam4f("u_lightAmbient", &light.ambient);
-	gsSetShaderParam4f("u_lightDiffuse", &light.diffuse);
-	gsSetShaderParam4f("u_lightSpecular", &light.specular);
-
 	gsSetShaderParamMatrix4("u_matView", &_renderer->getViewMatrix());
 	gsSetShaderParamMatrix4("u_matProjection", &_renderer->getProjectionMatrix());
+	//gsSetShaderParam1f("u_fogStart", 0.5f);
+	//gsSetShaderParam1f("u_fogEnd", 1);
+	//gsSetShaderParam4f("u_fogColor", &GScolor(1, 0, 0, 1));
+
 	gsTextureBind(gsGetOctree(static_cast<GSuint>(m_ID))->pMesh->pMaterials->pTexture);
 	gsSetShaderParamTexture("u_baseMap", 0);
 	
