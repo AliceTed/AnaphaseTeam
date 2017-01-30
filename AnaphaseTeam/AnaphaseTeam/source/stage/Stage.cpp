@@ -9,13 +9,15 @@
 #include "../../header/camera/CameraWork/E_CameraWorkID.h"
 #include "../../header/ui/UIManager.h"
 
+#include "../../header/device/GameDevice.h"
+
 Stage::Stage(const StageData& _stage)
 	:m_Map(OCTREE_ID::VISUAL),
 	m_score(std::make_shared<Score>()),
 	m_cameracontroller(),
-	m_actors(_stage.init, m_cameracontroller.get_camera(),*m_score),
+	m_actors(_stage.init, m_cameracontroller.get_camera(), *m_score),
 	m_phaseManage()
-	
+
 {
 	m_actors.initialize();
 	UIManager::getInstance().add(EUI::SCORE, m_score);
@@ -65,6 +67,7 @@ void Stage::add(int _score)
 
 void Stage::finish()
 {
+	m_score->scoreSave();
 	GameDevice::getInstacnce().sound().stopBGM(BGM_ID::GAMEPLAY);
 	m_actors.finish();
 }
@@ -78,3 +81,5 @@ const bool Stage::isDead() const
 {
 	return m_actors.isPlayerDead();
 }
+
+

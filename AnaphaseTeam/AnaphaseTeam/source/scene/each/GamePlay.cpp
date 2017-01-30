@@ -40,7 +40,7 @@ void GamePlay::update(float deltaTime)
 	m_change.update(deltaTime);
 	if (m_stage->isClear()||m_stage->isDead())
 	{
-		m_change.end(SceneMode::ENDING);
+		m_change.end(SceneMode::RESULT);
 	}
 }
 

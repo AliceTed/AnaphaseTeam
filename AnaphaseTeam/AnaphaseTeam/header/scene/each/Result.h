@@ -3,6 +3,7 @@
 #include "../IScene.h"
 #include "../../ui/Number.h"
 #include "../../ui/ResultManager.h"
+#include "../../scene/each/GamePlay.h"
 
 class Result : public IScene
 {
@@ -20,6 +21,6 @@ private:
 	SceneChange m_change;
 	Number m_number;
 	ResultManager m_manager;
-
+	GamePlay m;
 
 };

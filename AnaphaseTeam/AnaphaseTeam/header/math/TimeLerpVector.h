@@ -13,6 +13,7 @@ namespace Math
 		void update(float deltaTime);
 		const bool isEnd()const;
 		const Vector& current()const;
+		float getRate()const;
 	private:
 		Timer m_timer;
 
@@ -72,4 +73,10 @@ template<class Vector>
 const Vector & Math::TimeLerpVector<Vector>::current() const
 {
 	return m_current;
+}
+
+template<class Vector>
+inline float Math::TimeLerpVector<Vector>::getRate() const
+{
+	return m_timer.rate();
 }

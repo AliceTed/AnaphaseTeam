@@ -5,6 +5,7 @@
 #include "renderer/define/NumberSpriteRenderDesc.h"
 #include "data/id/TEXTURE_ID.h"
 
+
 Result::Result()
 	:m_change(), m_number(TEXTURE_ID::NUMBER),m_manager()
 	
@@ -19,7 +20,6 @@ void Result::initialize()
 {
 	m_change.initialize();
 	m_change.begin();
-	
 	m_manager.initilize();
 
 }
@@ -29,7 +29,7 @@ void Result::update(float _deltaTime)
 	if (m_change.update(_deltaTime)) return;
 	if (GameDevice::getInstacnce().input()->jump())
 	{
-		m_change.end(SceneMode::TITLE);
+		m_change.end(SceneMode::ENDING);
 	}
 
 	m_manager.update(_deltaTime);

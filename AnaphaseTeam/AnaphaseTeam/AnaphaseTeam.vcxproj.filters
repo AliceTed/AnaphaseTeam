@@ -1011,6 +1011,18 @@
     <ClInclude Include="header\ui\ResultManager.h">
       <Filter>ヘッダー ファイル\ui</Filter>
     </ClInclude>
+    <ClInclude Include="header\ui\Point.h">
+      <Filter>ヘッダー ファイル\scene\each</Filter>
+    </ClInclude>
+    <ClInclude Include="header\ui\Soul.h">
+      <Filter>ヘッダー ファイル\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="header\ui\SoulManager.h">
+      <Filter>ヘッダー ファイル\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="header\ui\Rank.h">
+      <Filter>ヘッダー ファイル\ui</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="source\main.cpp">
@@ -1542,6 +1554,15 @@
       <Filter>ソース ファイル\scene\each</Filter>
     </ClCompile>
     <ClCompile Include="source\ui\ResultManager.cpp">
+      <Filter>ソース ファイル\ui</Filter>
+    </ClCompile>
+    <ClCompile Include="source\ui\Soul.cpp">
+      <Filter>ソース ファイル\ui</Filter>
+    </ClCompile>
+    <ClCompile Include="source\ui\SoulManager.cpp">
+      <Filter>ソース ファイル\ui</Filter>
+    </ClCompile>
+    <ClCompile Include="source\ui\Rank.cpp">
       <Filter>ソース ファイル\ui</Filter>
     </ClCompile>
   </ItemGroup>

@@ -70,8 +70,8 @@ void Menu::decision(Select _select)
 		m_change.end(SceneMode::OPTION);
 		break;
 	case Select::STAFFROLL:
-		//m_change.end(SceneMode::ENDING);
-		m_change.end(SceneMode::RESULT);
+		m_change.end(SceneMode::ENDING);
+		//m_change.end(SceneMode::RESULT);
 		break;
 	case Select::EXIT:
 		m_change.end(SceneMode::TITLE);

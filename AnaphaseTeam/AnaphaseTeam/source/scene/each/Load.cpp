@@ -96,6 +96,7 @@ void Load::loadTextrue()
 	tex(TEXTURE_ID::NUMBER, "number");
 	tex(TEXTURE_ID::TITLE_MASK, "TitleRogo_Mask");
 	tex(TEXTURE_ID::NUMBER, "number");
+	tex(TEXTURE_ID::RANK, "UI_Rank");
 }
 void Load::loadSound()
 {
