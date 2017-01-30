@@ -46,7 +46,7 @@ void Goblin::EAttackState::finshAction(float deltaTime)
 	GameDevice::getInstacnce().sound().stopSE(SE_ID::ENEMY_ATTACK);
 	ACTOR_STATE next;
 	next = m_secoundAttack ? ACTOR_STATE::ESECOUNDATTACK : ACTOR_STATE::ETHINK;
-
+	next = ACTOR_STATE::ESECOUNDATTACK;
 	m_actor->changeState(next);
 }
 Goblin::EAttackState * Goblin::EAttackState::clone() const
