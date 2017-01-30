@@ -12,9 +12,11 @@ public:
 	void start() override;
 	void action(float deltaTime) override;
 	EAttackState * clone() const override;
-	void collisionStart();
+	void moveFront(float deltaTime);
+	void collisionStart(float deltaTime);
+	void finshAction(float deltaTime);
 private:
 	bool m_secoundAttack;
-	bool m_attack;
 	Timer m_timer;
+	std::function<void(float)> funcPtr;
 };
