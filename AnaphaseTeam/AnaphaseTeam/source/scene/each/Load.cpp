@@ -49,8 +49,8 @@ void Load::finish()
 const SceneMode Load::next() const
 {
 #ifdef _DEBUG
-	//return SceneMode::GAMEPLAY;
-	return SceneMode::RESULT;
+	return SceneMode::GAMEPLAY;
+	//return SceneMode::RESULT;
 #endif // DEBUG
 
 	return SceneMode::OPENING;
@@ -107,6 +107,7 @@ void Load::loadTextrue()
 	tex(TEXTURE_ID::SMALL_NUMBER, "UI_small_number");
 	tex(TEXTURE_ID::RANK, "UI_Rank");
 	tex(TEXTURE_ID::AURA, "aura");
+	tex(TEXTURE_ID::TARGETMARKER, "targetmarker");
 }
 void Load::loadSound()
 {
