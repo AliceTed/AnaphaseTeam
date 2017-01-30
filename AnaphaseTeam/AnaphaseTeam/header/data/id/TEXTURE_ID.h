@@ -44,6 +44,7 @@ enum class TEXTURE_ID :unsigned int
 
 	TITLE_MASK,
 	NUMBER,
+	RANK,
 	SIZE
 	
 };

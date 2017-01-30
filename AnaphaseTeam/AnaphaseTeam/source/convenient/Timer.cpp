@@ -28,6 +28,11 @@ const bool Timer::isEnd() const
 	return m_Current >= m_End;
 }
 
+float Timer::rate() const
+{
+	return  m_Current / m_End;
+}
+
 void Timer::setEndTime(float _end)
 {
 	m_End = _end*FLAMETIME;

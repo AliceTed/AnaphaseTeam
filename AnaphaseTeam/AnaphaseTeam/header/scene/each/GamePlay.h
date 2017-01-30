@@ -5,7 +5,7 @@
 #include "../SceneChange.h"
 #include "Pause.h" 
 class Stage;
-class GamePlay :public IScene
+class GamePlay : public IScene
 {
 public:
 	GamePlay();
