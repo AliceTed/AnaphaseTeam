@@ -22,12 +22,12 @@ public:
 	void initialize();
 	void update(float deltaTime);
 	void draw(IRenderer* _renderer);
-	void createEnemy(EnemyManager & _manager/*const EnemyFactory& _factory*/);
+	void createEnemy(EnemyManager & _manager,const EnemyFactory& _factory);
 	
 	const unsigned int getActiveNumber()const;
  	const bool isEnd()const;
 private:
-	void cloneEnemy(EnemyManager& _manager/*,const EnemyFactory& _factory*/);
+	void cloneEnemy(EnemyManager& _manager,const EnemyFactory& _factory);
 	void remove();
 private:
 	SpawnData m_data;	
