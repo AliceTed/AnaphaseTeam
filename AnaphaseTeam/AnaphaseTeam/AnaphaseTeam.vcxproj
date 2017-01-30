@@ -146,6 +146,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Debug\AnaphaseTeam.tlog\ResultUI.cpp" />
     <ClCompile Include="source\actor\ActorManager.cpp" />
     <ClCompile Include="source\actor\Boss\BossAI.cpp" />
     <ClCompile Include="source\actor\Enemy\IEnemy.cpp" />
@@ -583,6 +584,7 @@
     <ClInclude Include="header\ui\Point.h" />
     <ClInclude Include="header\ui\Rank.h" />
     <ClInclude Include="header\ui\ResultManager.h" />
+    <ClInclude Include="header\ui\ResultUI.h" />
     <ClInclude Include="header\ui\ScaleImage.h" />
     <ClInclude Include="header\ui\Score.h" />
     <ClInclude Include="header\ui\SelectUI.h" />
