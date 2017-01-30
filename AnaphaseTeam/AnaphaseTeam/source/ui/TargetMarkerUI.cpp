@@ -24,7 +24,7 @@ void TargetMarkerUI::draw(IRenderer * _renderer)
 	GStexture* tex = gsGetTexture(desc.textureID);
 	desc.center = GSvector2(tex->dwWidth, tex->dwHeight) * 0.5f;
 	GSvector3 target = transform(_renderer);
-	target.y = target.y - 70;
+	target.y = target.y - 120;
 	float size = target.z / 1.0f;
 	m_scale = (1 - size) * 20;
 
