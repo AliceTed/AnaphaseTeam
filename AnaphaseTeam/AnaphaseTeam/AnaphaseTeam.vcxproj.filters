@@ -1050,6 +1050,9 @@
     <ClInclude Include="header\ui\Rank.h">
       <Filter>ヘッダー ファイル\ui</Filter>
     </ClInclude>
+    <ClInclude Include="header\spawn\EnemyFactory.h">
+      <Filter>ヘッダー ファイル\spawn</Filter>
+    </ClInclude>
     <ClInclude Include="header\ui\ResultUI.h">
       <Filter>ヘッダー ファイル\ui</Filter>
     </ClInclude>
@@ -1621,6 +1624,9 @@
     </ClCompile>
     <ClCompile Include="source\state\enemy\ESecoundAttackState.cpp">
       <Filter>ソース ファイル\state\enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="source\spawn\EnemyFactory.cpp">
+      <Filter>ソース ファイル\spawn</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
