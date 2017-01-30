@@ -37,14 +37,15 @@ public:
 	std::string nextCameraWork(void);
 	//終了したか？
 	bool isEnd(void);
-
 private:
-	//スティックの操作
-	const GSvector2 velocity(void);
-
+	//自動で動く処理
+	void autoMove(float _deltaTime);
 	//ボタンを押したときにカメラの位置をプレイヤーの後ろに動かす処理
 	void resetCamera(void);
-
+	//カメラを動かす処理
+	void move();
+	//スティックの操作
+	const GSvector2 velocity(void);
 private:
 	//回転
 	GSvector2* m_rotate;							
