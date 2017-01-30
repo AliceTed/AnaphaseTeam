@@ -13,7 +13,7 @@ void Goblin::EDownState::start()
 	m_standStart = false;
 	m_actor->m_animatorOne.changeAnimationLerp(ENEMY_ANIMATION::STANDDYNIG);
 	m_timer.initialize();
-	m_timer.setEndTime(0.5f);
+	m_timer.setEndTime(2.0f);
 }
 
 void Goblin::EDownState::action(float deltaTime)
@@ -23,14 +23,17 @@ void Goblin::EDownState::action(float deltaTime)
 
 void Goblin::EDownState::stand(float deltaTime)
 {
-	m_actor->m_isDown = false;
-	changeState(ACTOR_STATE::ESTAND);
-}
+	if (m_actor->m_animatorOne.isEndCurrentAnimation())
+	{
+		m_actor->m_isDown = false;
+		changeState(ACTOR_STATE::ESTAND);
+	}
 void Goblin::EDownState::down(float deltaTime)
 {
 	m_timer.update(deltaTime);
 	if (m_timer.isEnd())
 	{
+		m_actor->m_animatorOne.changeAnimationLerp(ENEMY_ANIMATION::STAND, 30.f, 1.0f);
 		m_standStart = true;
 		m_timer.initialize();
 		ptr = std::bind(&Goblin::EDownState::stand, this, std::placeholders::_1);
