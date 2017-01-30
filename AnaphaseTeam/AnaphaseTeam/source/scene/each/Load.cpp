@@ -103,6 +103,7 @@ void Load::loadTextrue()
 	tex(TEXTURE_ID::VOLUME_LERGE, "lerge");
 	tex(TEXTURE_ID::NUMBER, "number");
 	tex(TEXTURE_ID::RANK, "UI_Rank");
+	tex(TEXTURE_ID::TARGETMARKER, "targetmarker");
 }
 void Load::loadSound()
 {

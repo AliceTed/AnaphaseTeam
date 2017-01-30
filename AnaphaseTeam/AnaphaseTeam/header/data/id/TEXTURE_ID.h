@@ -41,6 +41,7 @@ enum class TEXTURE_ID :unsigned int
 	ENEMY_HP,
 	ENEMY_HP_GAUGE,
 	SPGAUGE,
+	TARGETMARKER,
 
 	TITLE_MASK,
 	NUMBER,

@@ -20,7 +20,7 @@ void TargetMarkerUI::update(float deltaTime)
 void TargetMarkerUI::draw(IRenderer * _renderer)
 {
 	SpriteRenderDesc desc;
-	desc.textureID = static_cast<GSuint>(TEXTURE_ID::SPECIAL_MAIN);
+	desc.textureID = static_cast<GSuint>(TEXTURE_ID::TARGETMARKER);
 	GStexture* tex = gsGetTexture(desc.textureID);
 	desc.center = GSvector2(tex->dwWidth, tex->dwHeight) * 0.5f;
 	GSvector3 target = transform(_renderer);
@@ -32,7 +32,7 @@ void TargetMarkerUI::draw(IRenderer * _renderer)
 	//m_scale = CLAMP(1/target.z, 0.5f, 1.0f);
 	desc.matrix.scale(m_scale, m_scale, m_scale);
 	desc.matrix.translate(target);
-	//_renderer->render(desc);
+	_renderer->render(desc);
 }
 
 GSvector3 TargetMarkerUI::transform(IRenderer* _renderer)
