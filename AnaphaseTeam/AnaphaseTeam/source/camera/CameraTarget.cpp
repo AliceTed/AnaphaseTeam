@@ -1,4 +1,4 @@
-#include "../../header/camera/CameraTarget.h"
+#include "camera/CameraTarget.h"
 
 CameraTarget::CameraTarget(void) :
 	m_target(0.0f, 0.0f, 0.0f)

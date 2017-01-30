@@ -1,8 +1,11 @@
 #include "camera/CameraWork/CameraWorkDead.h"
 #include "camera/Camera.h"
+#include "camera/Perspective.h"
+#include "camera/Zoom.h"
 
 CameraWorkDead::CameraWorkDead(Camera* _camera) :
-	CameraWorkEmpty(_camera)
+	CameraWorkEmpty(_camera),
+	mTime(0.f)
 {
 }
 
@@ -15,27 +18,23 @@ CameraWorkDead::~CameraWorkDead()
 
 void CameraWorkDead::start(void)
 {
-	//カメラのズーム範囲を設定
-	m_camera->zoom_clamp(10, 180);
-
 	m_isEnd = false;
 	m_nextCameraWork = "normal_battle";
 }
 
-static int i = 0;
 void CameraWorkDead::run(float _deltaTime)
 {
-	//変数の名前が長いので短い名前に変更
+	Zoom* cameraZoom = m_camera->perspective()->zoom();
 	const GSvector3& player = m_camera->get_cameraTarget_player();
-	i += _deltaTime;
+	mTime += _deltaTime;
 
-	//注視点をプレイヤーに固定
-	m_camera->tracking_lookAt(player + m_offset_target, 0.5f);
+	m_camera->lookAt()->lookAt(player + m_offset_target, 0.5f);
 
-	if (i > 60)
+	if (mTime > 320)
 	{
-		//カメラをズームアップする
-		m_camera->zoom_in(1.0f);
+		cameraZoom->zoomIN(0.1f);
+
+		cameraZoom->clamp(10, 180);
 	}
 
 	return;
