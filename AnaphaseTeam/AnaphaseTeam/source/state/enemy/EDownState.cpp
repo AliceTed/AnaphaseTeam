@@ -28,6 +28,7 @@ void Goblin::EDownState::stand(float deltaTime)
 		m_actor->m_isDown = false;
 		changeState(ACTOR_STATE::ESTAND);
 	}
+}
 void Goblin::EDownState::down(float deltaTime)
 {
 	m_timer.update(deltaTime);
