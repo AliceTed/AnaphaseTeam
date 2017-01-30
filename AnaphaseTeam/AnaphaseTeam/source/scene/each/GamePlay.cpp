@@ -27,7 +27,10 @@ void GamePlay::initialize()
 	StageData data;
 	StageReader reader;
 	reader(&data, "stage");
+	m_stage.reset();
+	m_stage = nullptr;
 	m_stage = std::make_unique<Stage>(data);
+
 }
 
 void GamePlay::update(float deltaTime)
@@ -40,6 +43,11 @@ void GamePlay::update(float deltaTime)
 		endingScene();
 	}
 	m_pause.update(deltaTime);
+	//チートコマンド（ゲームプレイ初期化）
+	if (gsGetKeyTrigger(GKEY_2))
+	{
+		initialize();
+	}
 }
 
 void GamePlay::draw(IRenderer * _renderer)

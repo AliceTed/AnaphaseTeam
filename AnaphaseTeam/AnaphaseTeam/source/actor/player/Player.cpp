@@ -63,7 +63,7 @@ Player::Player(const Transform& _t,Camera * _camera, LockOn* _lockon)
 	m_scythe(),
 	m_specialskill(m_Gauge.get()),
 	m_target(0, 0, 0),
-	m_specialUI(std::make_shared<SpecialSkillUI>(GSvector2(1100, 80))),
+	m_specialUI(std::make_shared<SpecialSkillUI>(GSvector2(1170, 80))),
 	m_Revision(),
 	m_timer(1.5f),
 	m_isLockOn(false)
@@ -130,10 +130,10 @@ void Player::update(float deltatime)
 	{
 		m_collision.clear();
 	}
-
-	if (GameDevice::getInstacnce().input()->jump())
+	//チートコマンド（ゲージMAX）
+	if (gsGetKeyTrigger(GKEY_1))
 	{
-		//m_score->add(1);
+		m_Gauge->up(1000);
 	}
 }
 
