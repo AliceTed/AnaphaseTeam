@@ -5,6 +5,7 @@
 #include "math/AMath.h"
 #include "camera/Perspective.h"
 #include "camera/Zoom.h"
+#include "convenient\Timer.h"
 
 CameraWorkNormal::CameraWorkNormal(Camera* _camera, GSvector2* _rotate) :
 	CameraWorkEmpty(_camera),
@@ -13,7 +14,7 @@ CameraWorkNormal::CameraWorkNormal(Camera* _camera, GSvector2* _rotate) :
 	m_speed_input(0.0f),
 	m_distance(0.0f),
 	m_trackingSpeed(0.0f, 0.0f),
-	m_clamp_elevation(70.0f)
+	m_timer(std::make_unique<Timer>(5))
 {
 	//読み込んだパラメータを各変数に代入
 	m_speed_input			= (*m_parameter)[0];
@@ -39,18 +40,33 @@ void CameraWorkNormal::start(void)
 
 void CameraWorkNormal::run(float _deltaTime)
 {
+	const float CLAMP_ELEVATION = 70.f;
+
 	//いちいちめんどくさいので宣言
 	const GSvector3& player = m_camera->get_cameraTarget_player();
 
 	//ボタンが押されたときカメラを後ろに回す処理
 	resetCamera();
 
+	/*if (velocity().length() <= 0)
+		m_timer->update(_deltaTime);
+	else {
+		m_timer->initialize();
+		m_trackingSpeed.x = (*m_parameter)[2];
+	}
+
+	if (m_timer->isEnd() == true) {
+		float direction = m_camera->get_direction_player();
+		m_rotate->y = direction + 180;
+		m_trackingSpeed.x = 0.01f;
+	}*/
+
 	//回転軸を更新
 	m_rotate->x -= velocity().y * m_speed_input;	//逆に動かしたいので引いとく
 	m_rotate->y += velocity().x * m_speed_input;
 
 	//ｘ軸の回転を制限
-	m_rotate->x =Math::Calculate::clamp(m_rotate->x, -m_clamp_elevation, m_clamp_elevation);
+	m_rotate->x =Math::Calculate::clamp(m_rotate->x, -CLAMP_ELEVATION, CLAMP_ELEVATION);
 
 	//カメラワーク・ドリーの処理
 	m_camera->lookAt()->dolly(

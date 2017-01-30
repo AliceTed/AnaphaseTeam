@@ -10,6 +10,7 @@
 #include "CameraWorkEmpty.h"
 
 class CWParameterReader;	//カメラワークのパラメータの読み込み機
+class Timer;
 
 class CameraWorkNormal : public CameraWorkEmpty
 {
@@ -44,15 +45,16 @@ private:
 	void resetCamera(void);
 
 private:
-	GSvector2* m_rotate;							//回転
-
-	std::unique_ptr<CWParameterReader> m_parameter;	//パラメータ
-
-	float m_speed_input;							//入力速度
-
-	float m_distance;								//距離
-
-	GSvector2 m_trackingSpeed;						//カメラとターゲットの追尾速度
-
-	float m_clamp_elevation;						//ｘ軸回転の範囲
+	//回転
+	GSvector2* m_rotate;							
+	//パラメータ
+	std::unique_ptr<CWParameterReader> m_parameter;	
+	//入力速度
+	float m_speed_input;							
+	//距離
+	float m_distance;								
+	//カメラとターゲットの追尾速度
+	GSvector2 m_trackingSpeed;			
+	//タイマー
+	std::unique_ptr<Timer> m_timer;
 };
