@@ -21,7 +21,7 @@ public:
 public:
 	/**
 	@fn
-	@brief ラジアンに変換
+	@brief ラジアンに変換(GSvector2用)
 	@param[_rotate]		回転軸
 	@return				回転軸（ラジアン変換済み）
 	*/

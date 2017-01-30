@@ -46,9 +46,18 @@ void CameraWorkNormal::run(float _deltaTime)
 	//’·‚¢•Ï”‚ğ‚¢‚¿‚¢‚¿‘‚­‚Ì‚ª‚ß‚ñ‚Ç‚­‚³‚¢‚Ì‚Å
 	const GSvector3& player = m_camera->get_cameraTarget_player();
 
-	/*if (velocity().length() <= 0) {
-		float direction = m_camera->get_direction_player();
-	}*/
+	if (velocity().length() <= 0) {
+		m_timer->update(_deltaTime);
+	}
+	else {
+		m_timer->initialize();
+	}
+
+	if (m_timer->isEnd())
+	{
+		float direction = m_camera->get_direction_player() + 180;
+		AMath::lerp_angle(&m_rotate->y, direction, 0.01f);
+	}
 
 	//ƒ{ƒ^ƒ“‚ª‰Ÿ‚³‚ê‚½‚Æ‚«ƒJƒƒ‰‚ğŒã‚ë‚É‰ñ‚·ˆ—
 	resetCamera();
