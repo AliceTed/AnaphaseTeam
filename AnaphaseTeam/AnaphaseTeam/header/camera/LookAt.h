@@ -129,4 +129,9 @@ private:
 	GSvector2 mRotateDolly;
 	//
 	GSvector3 mIntersectPos;
+	//
+	float m_front;
+	float m_back;
+	float m_left;
+	float m_right;
 };

@@ -13,7 +13,12 @@ LookAt::LookAt() :
 	mLookPosOffset(0.f, 0.f, 0.f),
 	mUp(0.f, 1.f, 0.f),
 	mMatView(),
-	mRotateDolly(0.f, 0.f)
+	mRotateDolly(0.f, 0.f),
+	mIntersectPos(0.f, 0.f, 0.f),
+	m_front(0.f),
+	m_back(0.f),
+	m_left(0.f),
+	m_right(0.f)
 {
 	gsMatrix4Identity(&mMatView);
 }
@@ -33,6 +38,7 @@ void LookAt::init(const GSvector3 & _pos, const GSvector3 & _lookPos, const GSve
 	mUp = _up;
 	mRotateDolly = GSvector2(0.f, 0.f);
 	gsMatrix4Identity(&mMatView);
+	mIntersectPos = _pos;
 }
 
 //XV
@@ -64,15 +70,7 @@ void LookAt::update(IRenderer * _renderer)
 	GSvector3 pos = mPos + mPosOffset;
 	GSvector3 lookPos = mLookPos + mLookPosOffset;
 
-	gluLookAt(
-		pos.x, pos.y, pos.z,
-		lookPos.x, lookPos.y, lookPos.z,
-		mUp.x, mUp.y, mUp.z
-	);
-
 	_renderer->lookAt(pos, lookPos, mPos);
-
-	glGetFloatv(GL_MODELVIEW_MATRIX, (GLfloat *)&mMatView);
 }
 
 //ƒJƒƒ‰‚ÌˆÚ“®
@@ -150,11 +148,57 @@ const Transform LookAt::transform() const
 void LookAt::isHitGround(const Map & _map)
 {
 	GSvector3 intersectPos;
+	GSvector3 velocity = mLookPos - mPos;
+
 	if (_map.isCollisionRay(mPos, GSvector3(0.f, -1.f, 0.f), &intersectPos)) {
 		mIntersectPos = intersectPos + GSvector3(0.f, 0.5f, 0.f);
 	}
 
-	if (mIntersectPos.y > mPos.y) {
+	float time = 0.f;
+	while (true) {
+		if (!_map.isCollisionRay(mPos, GSvector3(0.f, -1.f, time), &intersectPos)) break;
+		m_front = intersectPos.z;
+		time -= 0.1f;
+	}
+	time = 0.f;
+	while (true) {
+		if (!_map.isCollisionRay(mPos, GSvector3(0.f, -1.f, time), &intersectPos)) break;
+		m_back = intersectPos.z;
+		time += 0.1f;
+	}
+	time = 0.f;
+	while (true) {
+		if (!_map.isCollisionRay(mPos, GSvector3(time, -1.f, 0.f), &intersectPos)) break;
+		m_left = intersectPos.x;
+		time -= 0.1f;
+	}
+	time = 0.f;
+	while (true) {
+		if (!_map.isCollisionRay(mPos, GSvector3(time, -1.f, 0.f), &intersectPos)) break;
+		m_right = intersectPos.x;
+		time += 0.1f;
+	}
+
+	bool bottom2 = mIntersectPos.y > mPos.y;
+	bool left2 = m_left > mPos.x;
+	bool right2 = m_right < mPos.x;
+	bool front2 = m_front > mPos.z;
+	bool back2 = m_back < mPos.z;
+
+	if (bottom2) {
 		mPos.y = mIntersectPos.y;
+	}
+
+	if (left2) {
+		mPos.x = m_left;
+	}
+	if (right2) {
+		mPos.x = m_right;
+	}
+	if (front2) {
+		mPos.z = m_front;
+	}
+	if (back2) {
+		mPos.z = m_back;
 	}
 }
