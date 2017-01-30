@@ -71,7 +71,7 @@ void Renderer::perspective(float fov, float aspect, float near, float far)
 //‹–ì•ÏŠ·s—ñ‚ğİ’è
 void Renderer::lookAt(const Vector3 & eye, const Vector3 & at, const Vector3 & up)
 {
-	//mViewMatrix.setLookAtRH(eye, at, up);
+	mViewMatrix.setLookAtRH(eye, at, up);
 	glGetFloatv(GL_PROJECTION_MATRIX, (GLfloat*)&mProjectionMatrix);
 	//‹–ì•ÏŠ·s—ñ
 	glGetFloatv(GL_MODELVIEW_MATRIX, (GLfloat*)&mViewMatrix);

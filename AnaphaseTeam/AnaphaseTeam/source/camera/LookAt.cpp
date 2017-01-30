@@ -57,8 +57,18 @@ void LookAt::update()
 //更新（レンダラー）
 void LookAt::update(IRenderer * _renderer)
 {
+	glMatrixMode(GL_MODELVIEW);
+
+	glLoadIdentity();
+
 	GSvector3 pos = mPos + mPosOffset;
-	GSvector3 lookPos = mLookPos + mLookPosOffset;;
+	GSvector3 lookPos = mLookPos + mLookPosOffset;
+
+	gluLookAt(
+		pos.x, pos.y, pos.z,
+		lookPos.x, lookPos.y, lookPos.z,
+		mUp.x, mUp.y, mUp.z
+	);
 
 	_renderer->lookAt(pos, lookPos, mPos);
 

@@ -46,6 +46,17 @@ void Perspective::update()
 //更新（レンダラー）
 void Perspective::update(IRenderer * _renderer)
 {
+	glMatrixMode(GL_PROJECTION);
+
+	glLoadIdentity();
+
+	gluPerspective(
+		mPerspective.x,
+		mPerspective.y,
+		mPerspective.z,
+		mPerspective.w
+	);
+
 	_renderer->perspective(
 		mPerspective.x,
 		mPerspective.y,
