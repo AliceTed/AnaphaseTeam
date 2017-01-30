@@ -43,14 +43,10 @@ void Boss::initialize()
 
 void Boss::update(float deltatime)
 {
+	lookAtToPlayer();
 	m_animatorOne.update(deltatime);
-	//action(deltatime);
-	m_collision.update(deltatime); 
-	if (!m_isGround)
-	{
-		m_gravityAcc -= 0.004f;
-		return;
-	}
+	action(deltatime);
+	m_collision.update(deltatime);
 	m_rotateTimer.update(deltatime);
 	rotateLerp(&m_transform.m_rotate, m_rotateTimer.time / m_rotateTimer.maxTime);
 
@@ -64,6 +60,7 @@ void Boss::draw(IRenderer * _renderer)
 
 void Boss::damage(const AttackStatus & _attackStatus)
 {
+	m_status.down(_attackStatus.m_power);
 }
 
 void Boss::think(Player * _player)

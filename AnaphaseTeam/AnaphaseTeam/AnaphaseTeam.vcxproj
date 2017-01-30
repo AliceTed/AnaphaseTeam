@@ -236,6 +236,7 @@
     <ClCompile Include="source\scene\each\Pause.cpp" />
     <ClCompile Include="source\scene\each\Result.cpp" />
     <ClCompile Include="source\sound\Sound.cpp" />
+    <ClCompile Include="source\spawn\EnemyFactory.cpp" />
     <ClCompile Include="source\spawn\SpawnManager.cpp" />
     <ClCompile Include="source\spawn\SpawnPoint.cpp" />
     <ClCompile Include="source\specialskill\Recovery.cpp" />
@@ -474,6 +475,7 @@
     <ClInclude Include="header\scene\each\Result.h" />
     <ClInclude Include="header\sound\Sound.h" />
     <ClInclude Include="header\actor\Enemy\ENEMY_TYPE.h" />
+    <ClInclude Include="header\spawn\EnemyFactory.h" />
     <ClInclude Include="header\spawn\SpawnArea.h" />
     <ClInclude Include="header\spawn\SpawnData.h" />
     <ClInclude Include="header\spawn\SpawnManager.h" />
