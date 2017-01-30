@@ -16,7 +16,8 @@ ResultManager::ResultManager()
 	m_soul(),
 	m_rank(),
 	m_scoreValue(0),
-	m_createInterval(0)
+	m_createInterval(0),
+	m_resultUi(GSvector2(200, 200), GSvector2(600, 200), 1)
 {
 }
 
@@ -38,6 +39,11 @@ void ResultManager::initilize()
 
 void ResultManager::update(float _deltaTime)
 {
+	if (!m_resultUi.isDead())
+	{
+		m_resultUi.update(_deltaTime);
+		return;
+	}
 	if (!m_score.isEnd())
 	{
 		m_score.update(1);
@@ -57,25 +63,30 @@ void ResultManager::update(float _deltaTime)
 		m_soul.add(soul);
 		return;
 	}
-	
+
 
 }
 
 void ResultManager::draw(IRenderer * _renderer)
 {
-	m_score.accept([&](float _time, float _endtime)
+	m_resultUi.draw(_renderer);
+	if (m_resultUi.isDead())
 	{
-		NumberSpriteRenderDesc desc;
-		desc.decimal = 0;
-		desc.digit = 1;
+		m_score.accept([&](float _time, float _endtime)
+		{
+			NumberSpriteRenderDesc desc;
+			desc.decimal = 0;
+			desc.digit = 1;
 
-		desc.number = _time;
-		desc.matrix.translate(GSvector3(915, 360, 0));
-		desc.textureID = static_cast<GSuint>(TEXTURE_ID::NUMBER);
-		_renderer->render(desc);
-	});
+			desc.number = _time;
+			desc.matrix.translate(GSvector3(915, 360, 0));
+			desc.textureID = static_cast<GSuint>(TEXTURE_ID::NUMBER);
+			_renderer->render(desc);
+		});
+	}
 
 	m_soul.draw(_renderer);
+
 	if (m_soul.isEmpty())
 	{
 		m_rank.draw(_renderer);

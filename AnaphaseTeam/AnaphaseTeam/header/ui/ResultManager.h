@@ -25,6 +25,7 @@ private:
 	Timer m_score;
 	Timer m_createInterval;
 	std::vector<GSvector2> m_soulPos;
+	ResultUI m_resultUi;
 
 
 };

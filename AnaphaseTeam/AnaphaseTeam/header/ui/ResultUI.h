@@ -12,6 +12,7 @@ public:
 	void Initilize();
 	void update(float _deltaTime);
 	void draw(IRenderer * _renderer);
+	bool isDead() const;
 private:
 	Math::TimeLerpVector<GSvector2> m_lerp;
 
