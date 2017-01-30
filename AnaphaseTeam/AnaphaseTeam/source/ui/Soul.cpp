@@ -15,8 +15,10 @@ void Soul::update(float _deltaTime)
 void Soul::draw(IRenderer * _renderer)
 {
 	SpriteRenderDesc desc;
+	desc.matrix.scale(LERP(m_lerp.getRate(), 1, 0), LERP(m_lerp.getRate(), 1, 0), 1);
 	desc.matrix.translate(m_lerp.current());
-	desc.textureID = static_cast<GSuint>(TEXTURE_ID::EXIT);
+	desc.blendFunc = BlendFunc::ADD;
+	desc.textureID = static_cast<GSuint>(TEXTURE_ID::AURA);
 	desc.color.a = LERP(m_lerp.getRate(), 0, 1);
 	_renderer->render(desc);
 }

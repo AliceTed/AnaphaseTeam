@@ -15,5 +15,8 @@ public:
 	bool isDead() const;
 private:
 	Math::TimeLerpVector<GSvector2> m_lerp;
+	GSvector2 m_position;
+	GSvector2 m_target;
+	int m_lerpTime;
 
 };

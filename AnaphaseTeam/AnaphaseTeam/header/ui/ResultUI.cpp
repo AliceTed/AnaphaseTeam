@@ -2,9 +2,13 @@
 #include "../header/renderer/define/SpriteRenderDesc.h"
 
 ResultUI::ResultUI(const GSvector2 & _position, const GSvector2 & _target, int _lerpTime)
-	:m_lerp(_position)
+	:m_lerp(_position),
+	m_position(_position),
+	m_target(_target),
+	m_lerpTime(_lerpTime)
+
 {
-	m_lerp.start(_position, _target, _lerpTime);
+	
 }
 
 ResultUI::~ResultUI()
@@ -13,7 +17,7 @@ ResultUI::~ResultUI()
 
 void ResultUI::Initilize()
 {
-
+	m_lerp.start(m_position, m_target, m_lerpTime);
 }
 
 void ResultUI::update(float _deltaTime)

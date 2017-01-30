@@ -27,13 +27,12 @@ void Result::initialize()
 void Result::update(float _deltaTime)
 {
 	if (m_change.update(_deltaTime)) return;
+	m_manager.update(_deltaTime);
+	if (!m_manager.isNex())return;
 	if (GameDevice::getInstacnce().input()->jump())
 	{
 		m_change.end(SceneMode::ENDING);
 	}
-
-	m_manager.update(_deltaTime);
-
 }
 
 void Result::draw(IRenderer * _renderer)

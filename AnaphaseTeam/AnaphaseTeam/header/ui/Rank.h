@@ -22,6 +22,7 @@ public:
 	void update(float _deltaTime);
 	void draw(IRenderer * _renderer);
 	void calc_Rank(int _score);
+	bool isDead();
 private:
 	RANK calc(int _score)const;
 	GSrect getCut()const;
