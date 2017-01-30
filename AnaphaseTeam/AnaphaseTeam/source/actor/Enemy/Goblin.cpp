@@ -79,13 +79,13 @@ void Goblin::damage(const AttackStatus & _attackStatus)
 {
 	if (isNotDamageState())return;
 
-	m_status.down(_attackStatus.m_power);//体力減少
 	//ダウン中は一定以上の吹っ飛び値でないと怯まない
 	if (getState() == ACTOR_STATE::EDOWN)
 	{
 		blowDown(_attackStatus.m_blowOff);
 		return;
 	}
+	m_status.down(_attackStatus.m_power);//体力減少
 	changeState(ACTOR_STATE::EDAMAGE);//ダメージステートに変更
 	if (!m_isGround)//浮いてる間は吹っ飛びにくい
 	{
