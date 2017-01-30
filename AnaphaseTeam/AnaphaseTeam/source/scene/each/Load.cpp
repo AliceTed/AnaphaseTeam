@@ -88,6 +88,7 @@ void Load::loadTextrue()
 	tex(TEXTURE_ID::SPECIAL_ATTACK, "special_attack");
 	tex(TEXTURE_ID::SPECIAL_RECOVERY, "special_recovery");
 	tex(TEXTURE_ID::SPECIAL_SUPERARMOR, "special_superarmor");
+	tex(TEXTURE_ID::SPECIAL_GAUGE, "gauge");
 	tex(TEXTURE_ID::GAMEOVER, "gameover");
 	tex(TEXTURE_ID::PAUSE_GAMEBACK, "gameBack");
 	tex(TEXTURE_ID::PAUSE_TITLEBACK, "titleBack");
