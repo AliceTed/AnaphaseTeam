@@ -47,7 +47,7 @@ void CameraWorkNormal::start(void)
 //é¿çs
 void CameraWorkNormal::run(float _deltaTime)
 {
-	//autoMove(_deltaTime);
+	autoMove(_deltaTime);
 
 	resetCamera();
 
