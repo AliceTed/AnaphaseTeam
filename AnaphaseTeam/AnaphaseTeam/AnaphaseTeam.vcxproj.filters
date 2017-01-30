@@ -1619,14 +1619,14 @@
     <ClCompile Include="source\ui\Rank.cpp">
       <Filter>ソース ファイル\ui</Filter>
     </ClCompile>
-    <ClCompile Include="Debug\AnaphaseTeam.tlog\ResultUI.cpp">
-      <Filter>ソース ファイル\ui</Filter>
-    </ClCompile>
     <ClCompile Include="source\state\enemy\ESecoundAttackState.cpp">
       <Filter>ソース ファイル\state\enemy</Filter>
     </ClCompile>
     <ClCompile Include="source\spawn\EnemyFactory.cpp">
       <Filter>ソース ファイル\spawn</Filter>
+    </ClCompile>
+    <ClCompile Include="header\ui\ResultUI.cpp">
+      <Filter>ソース ファイル\ui</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
