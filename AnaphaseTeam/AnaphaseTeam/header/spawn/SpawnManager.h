@@ -6,6 +6,7 @@
 */
 #pragma once
 #include "SpawnPoint.h"
+#include "spawn\EnemyFactory.h"
 class EnemyManager;
 class SpawnManager
 {
@@ -26,4 +27,5 @@ private:
 	using Container = std::vector<SpawnPoint>;
 	Container m_container;
 	Container m_current;
+	EnemyFactory m_factory;
 };
