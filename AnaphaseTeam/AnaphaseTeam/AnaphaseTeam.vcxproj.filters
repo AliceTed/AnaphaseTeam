@@ -1020,6 +1020,18 @@
     <ClInclude Include="header\actor\Boss\BossAI.h">
       <Filter>ヘッダー ファイル\actor\Boss</Filter>
     </ClInclude>
+    <ClInclude Include="header\camera\Perspective.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="header\camera\Zoom.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="header\function\Shake.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="header\function\Tracking.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="source\main.cpp">
@@ -1558,6 +1570,18 @@
     </ClCompile>
     <ClCompile Include="source\actor\Boss\BossAI.cpp">
       <Filter>ソース ファイル\actor\Boss</Filter>
+    </ClCompile>
+    <ClCompile Include="source\camera\Perspective.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="source\camera\Zoom.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="source\function\Shake.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="source\function\Tracking.cpp">
+      <Filter>ソース ファイル</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

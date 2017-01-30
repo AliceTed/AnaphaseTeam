@@ -150,33 +150,21 @@ void LookAt::isHitGround(const Map & _map)
 	GSvector3 intersectPos;
 	GSvector3 velocity = mLookPos - mPos;
 
-	if (_map.isCollisionRay(mPos, GSvector3(0.f, -1.f, 0.f), &intersectPos)) {
-		mIntersectPos = intersectPos + GSvector3(0.f, 0.5f, 0.f);
+	if (_map.isCollisionRay(mLookPos, GSvector3(0.f, -1.f, -15.f), &intersectPos)) {
+		m_front = intersectPos.z;
+	}
+	if (_map.isCollisionRay(mLookPos, GSvector3(0.f, -1.f, 15.f), &intersectPos)) {
+		m_back = intersectPos.z;
+	}
+	if (_map.isCollisionRay(mLookPos, GSvector3(-15.f, -1.f, 0.f), &intersectPos)) {
+		m_left = intersectPos.x;
+	}
+	if (_map.isCollisionRay(mLookPos, GSvector3(15.f, -1.f, 0.f), &intersectPos)) {
+		m_right = intersectPos.x;
 	}
 
-	float time = 0.f;
-	while (true) {
-		if (!_map.isCollisionRay(mPos, GSvector3(0.f, -1.f, time), &intersectPos)) break;
-		m_front = intersectPos.z;
-		time -= 0.1f;
-	}
-	time = 0.f;
-	while (true) {
-		if (!_map.isCollisionRay(mPos, GSvector3(0.f, -1.f, time), &intersectPos)) break;
-		m_back = intersectPos.z;
-		time += 0.1f;
-	}
-	time = 0.f;
-	while (true) {
-		if (!_map.isCollisionRay(mPos, GSvector3(time, -1.f, 0.f), &intersectPos)) break;
-		m_left = intersectPos.x;
-		time -= 0.1f;
-	}
-	time = 0.f;
-	while (true) {
-		if (!_map.isCollisionRay(mPos, GSvector3(time, -1.f, 0.f), &intersectPos)) break;
-		m_right = intersectPos.x;
-		time += 0.1f;
+	if (_map.isCollisionRay(mPos, GSvector3(0.f, -1.f, 0.f), &intersectPos)) {
+		mIntersectPos = intersectPos + GSvector3(0.f, 0.5f, 0.f);
 	}
 
 	bool bottom2 = mIntersectPos.y > mPos.y;
@@ -185,9 +173,7 @@ void LookAt::isHitGround(const Map & _map)
 	bool front2 = m_front > mPos.z;
 	bool back2 = m_back < mPos.z;
 
-	if (bottom2) {
-		mPos.y = mIntersectPos.y;
-	}
+	
 
 	if (left2) {
 		mPos.x = m_left;
@@ -200,5 +186,8 @@ void LookAt::isHitGround(const Map & _map)
 	}
 	if (back2) {
 		mPos.z = m_back;
+	}
+	if (bottom2) {
+		mPos.y = mIntersectPos.y;
 	}
 }
