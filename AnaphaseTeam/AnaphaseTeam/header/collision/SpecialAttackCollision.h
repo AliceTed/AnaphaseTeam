@@ -1,6 +1,7 @@
 #pragma once
 #include "CollisionActor.h"
 #include "../actor/Player/Player.h"
+#include "convenient\Timer.h"
 class Player::SpecialAttackCollision :public CollisionActor
 {
 public:
@@ -12,4 +13,5 @@ private:
 	void doDraw(IRenderer * _renderer)override;
 private:
 	Player* m_player;
+	Timer m_destroyTime;
 };
