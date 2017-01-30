@@ -1,6 +1,7 @@
 #include "../header/ui/ResultManager.h"
 #include "renderer/IRenderer.h"
 #include "renderer/define/NumberSpriteRenderDesc.h"
+#include "renderer/define/SpriteRenderDesc.h"
 #include "data/id/TEXTURE_ID.h"
 #include "ui/Soul.h"
 #include "math/Random.h"
@@ -120,7 +121,3 @@ void ResultManager::create()
 		}
 	}
 }
-
-
-
-

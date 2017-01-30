@@ -1023,6 +1023,9 @@
     <ClInclude Include="header\ui\Rank.h">
       <Filter>ヘッダー ファイル\ui</Filter>
     </ClInclude>
+    <ClInclude Include="header\ui\ResultUI.h">
+      <Filter>ヘッダー ファイル\ui</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="source\main.cpp">
@@ -1563,6 +1566,9 @@
       <Filter>ソース ファイル\ui</Filter>
     </ClCompile>
     <ClCompile Include="source\ui\Rank.cpp">
+      <Filter>ソース ファイル\ui</Filter>
+    </ClCompile>
+    <ClCompile Include="Debug\AnaphaseTeam.tlog\ResultUI.cpp">
       <Filter>ソース ファイル\ui</Filter>
     </ClCompile>
   </ItemGroup>
