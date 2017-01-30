@@ -8,9 +8,8 @@
 
 #include <gslib.h>
 #include <memory>
-
 #include "transform/Transform.h"
-#include "camera/LookAt.h";
+#include "camera/LookAt.h"
 #include "camera/Perspective.h"
 
 class CameraTarget;	//カメラのターゲット

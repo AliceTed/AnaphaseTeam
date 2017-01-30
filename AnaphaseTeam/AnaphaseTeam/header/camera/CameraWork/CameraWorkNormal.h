@@ -16,34 +16,36 @@ class CameraWorkNormal : public CameraWorkEmpty
 {
 public:
 	/**
+	@fn
 	@brief コンストラクタ
 	@param[_camera] カメラ
 	@param[_rotate] 回転
 	*/
 	CameraWorkNormal(Camera* _camera, GSvector2* _rotate);
-
 	//デストラクタ
 	~CameraWorkNormal() override;
-
+	/**
+	@fn
+	@brief 初期化
+	*/
+	void init();
 	//開始処理
 	void start(void) override;
-
 	//実行処理
 	void run(float _deltaTime) override;
-
 	//次のカメラワーク
 	std::string nextCameraWork(void);
-
 	//終了したか？
 	bool isEnd(void);
-
 private:
-	//スティックの操作
-	const GSvector2 velocity(void);
-
+	//自動で動く処理
+	void autoMove(float _deltaTime);
 	//ボタンを押したときにカメラの位置をプレイヤーの後ろに動かす処理
 	void resetCamera(void);
-
+	//カメラを動かす処理
+	void move();
+	//スティックの操作
+	const GSvector2 velocity(void);
 private:
 	//回転
 	GSvector2* m_rotate;							
