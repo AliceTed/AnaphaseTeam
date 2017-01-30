@@ -15,7 +15,7 @@ CameraWorkNormal::CameraWorkNormal(Camera* _camera, GSvector2* _rotate) :
 	m_speed_input(0.0f),
 	m_distance(0.0f),
 	m_trackingSpeed(0.0f, 0.0f),
-	m_timer(std::make_unique<Timer>(5))
+	m_timer(std::make_unique<Timer>(5.f))
 {
 	init();
 }
@@ -47,7 +47,7 @@ void CameraWorkNormal::start(void)
 //é¿çs
 void CameraWorkNormal::run(float _deltaTime)
 {
-	autoMove(_deltaTime);
+	//autoMove(_deltaTime);
 
 	resetCamera();
 
