@@ -111,7 +111,7 @@ public:
 	const Transform transform() const;
 private:
 	//地面と当たったか？
-	bool isHitGround(const Map& _map, GSvector3* _pos);
+	void isHitGround(const Map& _map);
 private:
 	//カメラの位置
 	GSvector3 mPos;

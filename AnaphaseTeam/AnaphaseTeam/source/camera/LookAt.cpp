@@ -116,9 +116,7 @@ void LookAt::dolly(const GSvector3 & _center, const GSvector2 _rotate, const flo
 //’n–Ê‚Æ‚Ì‚ ‚½‚è”»’è
 void LookAt::collisionGround(const Map & _map)
 {
-	if (isHitGround(_map, &mPos)) {
-		mPos.y = mIntersectPos.y;
-	}
+	isHitGround(_map);
 }
 
 GSmatrix4 LookAt::matView()
@@ -149,15 +147,14 @@ const Transform LookAt::transform() const
 }
 
 //’n–Ê‚Æ“–‚½‚Á‚½‚©
-bool LookAt::isHitGround(const Map & _map, GSvector3 * _pos)
+void LookAt::isHitGround(const Map & _map)
 {
 	GSvector3 intersectPos;
-	if (_map.isCollisionRay((*_pos), GSvector3(0.f, -1.f, 0.f), &intersectPos)) {
+	if (_map.isCollisionRay(mPos, GSvector3(0.f, -1.f, 0.f), &intersectPos)) {
 		mIntersectPos = intersectPos + GSvector3(0.f, 0.5f, 0.f);
 	}
 
 	if (mIntersectPos.y > mPos.y) {
-		return true;
+		mPos.y = mIntersectPos.y;
 	}
-	return false;
 }
