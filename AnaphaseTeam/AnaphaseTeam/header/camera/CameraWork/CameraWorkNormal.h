@@ -16,24 +16,25 @@ class CameraWorkNormal : public CameraWorkEmpty
 {
 public:
 	/**
+	@fn
 	@brief コンストラクタ
 	@param[_camera] カメラ
 	@param[_rotate] 回転
 	*/
 	CameraWorkNormal(Camera* _camera, GSvector2* _rotate);
-
 	//デストラクタ
 	~CameraWorkNormal() override;
-
+	/**
+	@fn
+	@brief 初期化
+	*/
+	void init();
 	//開始処理
 	void start(void) override;
-
 	//実行処理
 	void run(float _deltaTime) override;
-
 	//次のカメラワーク
 	std::string nextCameraWork(void);
-
 	//終了したか？
 	bool isEnd(void);
 

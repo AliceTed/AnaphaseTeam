@@ -16,17 +16,19 @@ CameraWorkNormal::CameraWorkNormal(Camera* _camera, GSvector2* _rotate) :
 	m_trackingSpeed(0.0f, 0.0f),
 	m_timer(std::make_unique<Timer>(5))
 {
-	//読み込んだパラメータを各変数に代入
-	m_speed_input			= (*m_parameter)[0];
-	m_distance				= (*m_parameter)[1];
-	m_trackingSpeed = {
-		(*m_parameter)[2],
-		(*m_parameter)[3]
-	};
+	init();
 }
 
 CameraWorkNormal::~CameraWorkNormal()
 {
+}
+
+void CameraWorkNormal::init()
+{
+	//読み込んだパラメータを各変数に代入
+	m_speed_input = (*m_parameter)[0];
+	m_distance = (*m_parameter)[1];
+	m_trackingSpeed = { (*m_parameter)[2], (*m_parameter)[3] };
 }
 
 void CameraWorkNormal::start(void)
@@ -41,25 +43,15 @@ void CameraWorkNormal::start(void)
 void CameraWorkNormal::run(float _deltaTime)
 {
 	const float CLAMP_ELEVATION = 70.f;
-
-	//いちいちめんどくさいので宣言
+	//長い変数をいちいち書くのがめんどくさいので
 	const GSvector3& player = m_camera->get_cameraTarget_player();
+
+	/*if (velocity().length() <= 0) {
+		float direction = m_camera->get_direction_player();
+	}*/
 
 	//ボタンが押されたときカメラを後ろに回す処理
 	resetCamera();
-
-	/*if (velocity().length() <= 0)
-		m_timer->update(_deltaTime);
-	else {
-		m_timer->initialize();
-		m_trackingSpeed.x = (*m_parameter)[2];
-	}
-
-	if (m_timer->isEnd() == true) {
-		float direction = m_camera->get_direction_player();
-		m_rotate->y = direction + 180;
-		m_trackingSpeed.x = 0.01f;
-	}*/
 
 	//回転軸を更新
 	m_rotate->x -= velocity().y * m_speed_input;	//逆に動かしたいので引いとく

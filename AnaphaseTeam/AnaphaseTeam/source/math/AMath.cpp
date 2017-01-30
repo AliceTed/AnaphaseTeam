@@ -5,32 +5,12 @@
 
 const float AMath::PI = 3.14159265359f;
 
-float AMath::to_rad(float _degree)
-{
-	float result = _degree;
-
-	result *= PI / 180.0f;
-
-	return result;
-}
-
 GSvector2 AMath::to_rad(const GSvector2& _rotate)
 {
 	GSvector2 result = {
-		to_rad(_rotate.x),
-		to_rad(_rotate.y)
+		Math::Calculate::degTorad(_rotate.x),
+		Math::Calculate::degTorad(_rotate.y),
 	};
-
-	return result;
-}
-
-
-float AMath::to_deg(float _radian)
-{
-	float result = _radian;
-
-	result *= 180.0f / PI;
-
 	return result;
 }
 
@@ -45,7 +25,7 @@ float AMath::subtractAngle(float _deg1, float _deg2)
 {
 	float d = normalizeAngle(_deg2 - _deg1);
 
-	if (d > 180.0f) 
+	if (d > 180.0f)
 	{
 		d -= 360.0f;
 	}
@@ -58,7 +38,7 @@ float AMath::subtractAngle(float _deg1, float _deg2)
 }
 
 GSvector3 AMath::vec3_vector(const GSvector3 _p1, const GSvector3 _p2)
-{ 
+{
 	return _p2 - _p1;
 }
 
@@ -68,10 +48,7 @@ GSvector3 AMath::vec3_center(const GSvector3 _p1, const GSvector3 _p2)
 }
 
 
-GSvector3 AMath::ballRotate(
-	const GSvector3& _center, 
-	const GSvector2& _rotate, 
-	const float _distance)
+GSvector3 AMath::ballRotate(const GSvector3& _center, const GSvector2& _rotate, const float _distance)
 {
 	GSvector3 result;
 
@@ -82,20 +59,16 @@ GSvector3 AMath::ballRotate(
 	return result;
 }
 
-void AMath::lerp_eleDir(
-	GSvector2*			_my,
-	const GSvector2&	_target,
-	float				_speed
-)
+void AMath::lerp_angle(float * _my, const float _target, const float _speed)
 {
-	GSvector2 rotate = GSvector2(
-		AMath::subtractAngle(_my->x, _target.x),
-		AMath::subtractAngle(_my->y, _target.y)
-	);
+	float subAng = AMath::subtractAngle((*_my), _target);
+	(*_my) += subAng * _speed;
+}
 
-	(*_my) += rotate * _speed;
-
-	return;
+void AMath::lerp_eleDir(GSvector2* _my, const GSvector2& _target, const float _speed)
+{
+	lerp_angle(&_my->x, _target.x, _speed);
+	lerp_angle(&_my->y, _target.y, _speed);
 }
 
 int AMath::side(const GSvector2 & _p, const GSvector2 & _start, const GSvector2 & _end)
