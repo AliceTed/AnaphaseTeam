@@ -106,8 +106,8 @@ void Load::loadTextrue()
 	tex(TEXTURE_ID::NUMBER, "UI_number");
 	tex(TEXTURE_ID::SMALL_NUMBER, "UI_small_number");
 	tex(TEXTURE_ID::RANK, "UI_Rank");
-	tex(TEXTURE_ID::AURA, "aura");
 	tex(TEXTURE_ID::TARGETMARKER, "targetmarker");
+	tex(TEXTURE_ID::AURA, "aura");
 }
 void Load::loadSound()
 {
