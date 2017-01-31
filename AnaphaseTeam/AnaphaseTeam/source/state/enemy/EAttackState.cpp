@@ -2,17 +2,17 @@
 #include "data/id/ENEMY_ANIMATION.h"
 #include "math/Random.h"
 Goblin::EAttackState::EAttackState(Goblin* _enemy)
-	:ActorState(_enemy), m_secoundAttack(), m_timer(0.0f), m_attack(false)
+	:ActorState(_enemy), m_secoundAttack(), m_timer(0.0f), funcPtr(nullptr)
 {
 }
 
 void Goblin::EAttackState::start()
 {
-	m_attack = false;
+	//関数ポインタ変数。初期は前進
+	funcPtr = std::bind(&Goblin::EAttackState::moveFront, this, std::placeholders::_1);
 	m_timer.initialize();
 	m_timer.setEndTime(0.8f);
 	m_actor->lookAtToPlayer();//プレイヤーの方向を見る
-	//m_actor->m_transform.translate_front(0.5);
 	Math::Random rnd;
 	m_secoundAttack = rnd(0, 10) == 0 ? true : false;//二段攻撃をするか
 	m_actor->m_animatorOne.changeAnimationLerp(ENEMY_ANIMATION::ATTACK1);
@@ -21,26 +21,33 @@ void Goblin::EAttackState::start()
 
 void Goblin::EAttackState::action(float deltaTime)
 {
+	funcPtr(deltaTime);
+}
+void  Goblin::EAttackState::moveFront(float deltaTime)
+{
 	m_timer.update(deltaTime);
+	m_actor->m_transform.translate_front(0.007f);
 	if (m_timer.isEnd())
 	{
-		collisionStart();
-	}
-	else{ m_actor->m_transform.translate_front(0.007f); }
-	if (m_actor->m_animatorOne.isEndCurrentAnimation())
-	{
-		GameDevice::getInstacnce().sound().stopSE(SE_ID::ENEMY_ATTACK);
-		ACTOR_STATE next;
-		next = m_secoundAttack ? ACTOR_STATE::ESECOUNDATTACK : ACTOR_STATE::ETHINK;
-
-		m_actor->changeState(next);
+		//タイマーが終わったらあたり判定を発生させる
+		funcPtr = std::bind(&Goblin::EAttackState::collisionStart, this, std::placeholders::_1);
 	}
 }
-void Goblin::EAttackState::collisionStart()
+void Goblin::EAttackState::collisionStart(float deltaTime)
 {
-	if (m_attack)return;
 	m_actor->createAttackCollision();
-	m_attack = true;
+	//すぐに終了判定処理に切り替え
+	funcPtr = std::bind(&Goblin::EAttackState::finshAction, this, std::placeholders::_1);
+}
+void Goblin::EAttackState::finshAction(float deltaTime)
+{
+	if (!m_actor->m_animatorOne.isEndCurrentAnimation())
+		return;
+	GameDevice::getInstacnce().sound().stopSE(SE_ID::ENEMY_ATTACK);
+	ACTOR_STATE next;
+	next = m_secoundAttack ? ACTOR_STATE::ESECOUNDATTACK : ACTOR_STATE::ETHINK;
+	next = ACTOR_STATE::ESECOUNDATTACK;
+	m_actor->changeState(next);
 }
 Goblin::EAttackState * Goblin::EAttackState::clone() const
 {

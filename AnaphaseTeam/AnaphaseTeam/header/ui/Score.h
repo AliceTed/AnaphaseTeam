@@ -20,8 +20,9 @@ public:
 	void reset();
 	void draw(IRenderer* _renderer);
 	void record(int _score);
-	int total();
-
+	void scoreSave();
+private:
+	void calc_Total();
 private:
 	Number m_number;
 	GSvector2 m_position;

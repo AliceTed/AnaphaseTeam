@@ -3,7 +3,8 @@
 #include <iterator>
 SpawnManager::SpawnManager()
 	:m_container(),
-	m_current()
+	m_current(),
+	m_factory()
 {
 }
 
@@ -41,7 +42,7 @@ void SpawnManager::createEnemy(EnemyManager & _enemyManager)
 	for (auto& i : m_current)
 	{
 		i.initialize();
-		i.createEnemy(_enemyManager);//.createEnemy(*this/*,EnemyFactory()*/);
+		i.createEnemy(_enemyManager,m_factory);//.createEnemy(*this/*,EnemyFactory()*/);
 	}
 }
 

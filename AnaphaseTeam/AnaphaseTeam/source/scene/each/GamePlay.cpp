@@ -38,8 +38,8 @@ void GamePlay::update(float deltaTime)
 	//ƒ|[ƒY
 	if (!m_pause.isPause())
 	{
-		m_stage->update(deltaTime);
-		m_change.update(deltaTime);
+	m_stage->update(deltaTime);
+	m_change.update(deltaTime);
 		endingScene();
 	}
 	m_pause.update(deltaTime);
@@ -84,5 +84,5 @@ void GamePlay::endingScene()
 	{
 		return;
 	}
-	m_change.end(SceneMode::ENDING);
+	m_change.end(SceneMode::RESULT);
 }

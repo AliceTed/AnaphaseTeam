@@ -1032,6 +1032,30 @@
     <ClInclude Include="header\function\Tracking.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
+    <ClInclude Include="header\scene\each\Result.h">
+      <Filter>ヘッダー ファイル\scene\each</Filter>
+    </ClInclude>
+    <ClInclude Include="header\ui\ResultManager.h">
+      <Filter>ヘッダー ファイル\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="header\ui\Point.h">
+      <Filter>ヘッダー ファイル\scene\each</Filter>
+    </ClInclude>
+    <ClInclude Include="header\ui\Soul.h">
+      <Filter>ヘッダー ファイル\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="header\ui\SoulManager.h">
+      <Filter>ヘッダー ファイル\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="header\ui\Rank.h">
+      <Filter>ヘッダー ファイル\ui</Filter>
+    </ClInclude>
+    <ClInclude Include="header\spawn\EnemyFactory.h">
+      <Filter>ヘッダー ファイル\spawn</Filter>
+    </ClInclude>
+    <ClInclude Include="header\ui\ResultUI.h">
+      <Filter>ヘッダー ファイル\ui</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="source\main.cpp">
@@ -1532,9 +1556,6 @@
     <ClCompile Include="source\state\enemy\EnemyAIController.cpp">
       <Filter>ソース ファイル\actor\Enemy\AI</Filter>
     </ClCompile>
-    <ClCompile Include="source\state\enemy\ESecoundAttackState.cpp">
-      <Filter>ソース ファイル\actor\Enemy\AI</Filter>
-    </ClCompile>
     <ClCompile Include="source\state\enemy\MiddleRangeAI.cpp">
       <Filter>ソース ファイル\actor\Enemy\AI</Filter>
     </ClCompile>
@@ -1582,6 +1603,30 @@
     </ClCompile>
     <ClCompile Include="source\function\Tracking.cpp">
       <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="source\scene\each\Result.cpp">
+      <Filter>ソース ファイル\scene\each</Filter>
+    </ClCompile>
+    <ClCompile Include="source\ui\ResultManager.cpp">
+      <Filter>ソース ファイル\ui</Filter>
+    </ClCompile>
+    <ClCompile Include="source\ui\Soul.cpp">
+      <Filter>ソース ファイル\ui</Filter>
+    </ClCompile>
+    <ClCompile Include="source\ui\SoulManager.cpp">
+      <Filter>ソース ファイル\ui</Filter>
+    </ClCompile>
+    <ClCompile Include="source\ui\Rank.cpp">
+      <Filter>ソース ファイル\ui</Filter>
+    </ClCompile>
+    <ClCompile Include="source\state\enemy\ESecoundAttackState.cpp">
+      <Filter>ソース ファイル\state\enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="source\spawn\EnemyFactory.cpp">
+      <Filter>ソース ファイル\spawn</Filter>
+    </ClCompile>
+    <ClCompile Include="header\ui\ResultUI.cpp">
+      <Filter>ソース ファイル\ui</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

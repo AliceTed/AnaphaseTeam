@@ -1,4 +1,6 @@
 #include "..\..\header\ui\Score.h"
+#include "../header/data/stream/DataWriter.h"
+#include "data\Message.h"
 
 Score::Score()
 	:m_number(TEXTURE_ID::NUMBER),
@@ -90,13 +92,25 @@ void Score::record(int _score)
 	m_current.emplace_back(_score);
 }
 
-//ëççáÇÃScore
-int Score::total()
+void Score::scoreSave()
 {
-	for (auto& i : m_current)
+	calc_Total();
+	DataWriter writer;
+	std::vector<std::string> save;
+	save.emplace_back(std::to_string(m_total));
+
+	if (writer(save, "./res/data/score", ".msk"))return;
+	Message error;
+	error("Score", "./res/data/scoreÇ™Ç»Ç¢");
+
+}
+
+void Score::calc_Total()
+{
+	m_total = 0;
+	for (auto i:m_current)
 	{
 		m_total += i;
 	}
-	return m_total;
 }
 

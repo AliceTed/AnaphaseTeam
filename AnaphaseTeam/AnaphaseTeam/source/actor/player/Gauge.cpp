@@ -23,18 +23,15 @@ void Gauge::initialize()
 
 void Gauge::draw(IRenderer * _renderer)
 {
-	SpriteRectRenderDesc back;
-	back.textureID = static_cast<GSuint>(TEXTURE_ID::SPGAUGE);
-	back.matrix.translate(102, 100, 0);
-	back.srcRect = GSrect(0,0, (int)RankGauge::MAX * 0.341f, 125);
-	back.color = GScolor(0.0f, 0.0f, 1.0f, 1.0f);
-	_renderer->render(back);
-	
+	const int width = 123;
+	const int height = 119;
+	int max = static_cast<int>(RankGauge::MAX);
 	SpriteRectRenderDesc front;
-	front.textureID = static_cast<GSuint>(TEXTURE_ID::SPGAUGE);
-	front.matrix.translate(102, 100, 0);
-	front.srcRect = GSrect(0,0, m_gauge * 0.341f, 125);
-	//front.color = GScolor(1.0f, 1.0f, 0.0f, 1.0f);
+	front.textureID = static_cast<GSuint>(TEXTURE_ID::SPECIAL_GAUGE);
+	float percent = (max - m_gauge) / max * height;
+	front.srcRect = GSrect(0, percent, width, height);
+	front.matrix.translate(1113, 15 + percent, 0);
+
 	_renderer->render(front);
 }
 
