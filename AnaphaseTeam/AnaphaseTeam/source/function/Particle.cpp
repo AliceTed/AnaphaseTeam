@@ -3,8 +3,9 @@
 #include "renderer\define\SpriteRenderDesc.h"
 
 
-Particle::Particle(TEXTURE_ID _id) :
-	m_texID(_id)
+Particle::Particle(const GSvector3 _pos, TEXTURE_ID _id) :
+	m_texID(_id),
+	m_pos(_pos)
 {
 }
 
@@ -24,5 +25,6 @@ void Particle::draw(IRenderer * _renderer)
 {
 	SpriteRenderDesc desc;
 	desc.textureID = static_cast<GSuint>(m_texID);
+	desc.matrix.setTranslation(m_pos);
 	_renderer->render(desc);
 }

@@ -22,7 +22,7 @@ public:
 	@fn
 	@brief コンストラクタ
 	*/
-	Particle(TEXTURE_ID _id = TEXTURE_ID::PARTICLE);
+	Particle(const GSvector3 _pos, TEXTURE_ID _id = TEXTURE_ID::PARTICLE);
 	/**
 	@fn
 	@brief デストラクタ
@@ -47,4 +47,5 @@ public:
 	void draw(IRenderer* _renderer);
 private:
 	TEXTURE_ID m_texID;
+	GSvector3 m_pos;
 };
