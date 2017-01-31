@@ -39,6 +39,8 @@ void StaffRollUI::draw(IRenderer * _renderer)
 
 void StaffRollUI::read()
 {
+	m_words.clear();
+	m_texts.clear();
 	m_words.emplace_back("ê“¡@•à");
 	m_words.emplace_back("¼”ö@—T–ç");
 	m_words.emplace_back("‹vH@‰ë");

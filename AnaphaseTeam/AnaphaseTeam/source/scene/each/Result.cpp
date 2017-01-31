@@ -8,8 +8,6 @@
 
 Result::Result()
 	:m_change(), m_number(TEXTURE_ID::NUMBER),m_manager()
-	
-
 {}
 
 Result::~Result()
@@ -21,7 +19,6 @@ void Result::initialize()
 	m_change.initialize();
 	m_change.begin();
 	m_manager.initilize();
-
 }
 
 void Result::update(float _deltaTime)
