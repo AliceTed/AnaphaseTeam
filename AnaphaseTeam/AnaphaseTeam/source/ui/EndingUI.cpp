@@ -30,6 +30,7 @@ void EndingUI::initilize()
 
 void EndingUI::update(float _deltaTime)
 {
+	m_staffRoll.update(_deltaTime);
 	if (!m_credit.scrollUp(0.0f))
 	{
 		m_still.flashing(1.0f);
@@ -40,7 +41,6 @@ void EndingUI::update(float _deltaTime)
 	}
 	creditSkip();
 	isNext();
-	m_staffRoll.update(_deltaTime);
 }
 
 void EndingUI::draw(IRenderer* _renderer)
