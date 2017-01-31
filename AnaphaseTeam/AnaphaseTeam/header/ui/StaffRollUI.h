@@ -13,6 +13,7 @@ public:
 	void initilize();
 	void update(float _deltaTime);
 	void draw(IRenderer * _renderer);
+	bool isEnd()const;
 private:
 	void read();
 	void createText();

@@ -16,7 +16,6 @@ private:
 	GSvector3 m_position;
 	bool m_change;
 	int m_count;
-	alpha m_credit;
 	alpha m_still;
 	StaffRollUI m_staffRoll;
 };

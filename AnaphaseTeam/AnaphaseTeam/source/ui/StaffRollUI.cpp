@@ -44,6 +44,11 @@ void StaffRollUI::draw(IRenderer * _renderer)
 	}
 }
 
+bool StaffRollUI::isEnd() const
+{
+	return m_words.empty() && m_texts.empty();
+}
+
 void StaffRollUI::read()
 {
 	m_words.emplace_back("STAFFROLL");

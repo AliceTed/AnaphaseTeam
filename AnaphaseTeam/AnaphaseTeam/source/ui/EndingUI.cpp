@@ -8,7 +8,6 @@ EndingUI::EndingUI()
 	:m_position(0, 0, 0),
 	m_change(true),
 	m_count(0),
-	m_credit(TEXTURE_ID::STAFFROLL, GSvector2(450, 720), 1.0f),
 	m_still(TEXTURE_ID::PRESSKEY, GSvector2(40, 600), 0.0f),
 	m_staffRoll()
 {
@@ -23,7 +22,6 @@ void EndingUI::initilize()
 	m_position = GSvector3(450, 720, 0);
 	m_change = true;
 	m_count = 0;
-	m_credit.initilize();
 	m_still.initilize();
 	m_staffRoll.initilize();
 }
@@ -31,22 +29,22 @@ void EndingUI::initilize()
 void EndingUI::update(float _deltaTime)
 {
 	m_staffRoll.update(_deltaTime);
-	if (!m_credit.scrollUp(0.0f))
-	{
 		m_still.flashing(1.0f);
 		if (GameDevice::getInstacnce().input()->jump())
 		{
 			m_change = false;
 		}
-	}
+	
 	creditSkip();
 	isNext();
 }
 
 void EndingUI::draw(IRenderer* _renderer)
 {
-	m_credit.draw(_renderer);
-	m_still.draw(_renderer);
+	if(m_staffRoll.isEnd())
+	{
+		m_still.draw(_renderer);
+	}
 	m_staffRoll.draw(_renderer);
 }
 
@@ -58,7 +56,6 @@ void EndingUI::creditSkip()
 	}
 	if (m_count >= 2)
 	{
-		m_credit.decrease(0.5f);
 		m_still.flashing(1.0f);
 
 	}
