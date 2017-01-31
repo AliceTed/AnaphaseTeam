@@ -115,7 +115,7 @@ void ResultManager::read()
 	std::stringstream ss(data[0]);
 
 	ss >> m_scoreValue;
-	m_scoreValue = 150;
+	//m_scoreValue = 150;
 
 	float end = m_scoreValue / 60.0f;
 	m_score.setEndTime(end);

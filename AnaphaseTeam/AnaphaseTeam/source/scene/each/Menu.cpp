@@ -71,7 +71,7 @@ void Menu::decision(Select _select)
 		break;
 	case Select::STAFFROLL:
 		//m_change.end(SceneMode::ENDING);
-		m_change.end(SceneMode::RESULT);
+		m_change.end(SceneMode::ENDING);
 		break;
 	case Select::EXIT:
 		m_change.end(SceneMode::TITLE);
