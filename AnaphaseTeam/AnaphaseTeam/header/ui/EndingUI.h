@@ -1,7 +1,7 @@
 #pragma once
 #include "../renderer/Renderer.h"
 #include "../ui/Flash.h"
-
+#include "../ui/StaffRollUI.h"
 class EndingUI
 {
 public:
@@ -14,4 +14,5 @@ private:
 	GSvector3 m_position;
 	Flash m_credit;
 	Flash m_still;
+	StaffRollUI m_staffRoll;
 };

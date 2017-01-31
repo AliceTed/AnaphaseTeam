@@ -69,6 +69,7 @@ void Load::loadTextrue()
 {
 	TextureLoader tex;
 	tex(TEXTURE_ID::BLACK, "black");
+	tex(TEXTURE_ID::WHITE, "white");
 	tex(TEXTURE_ID::EXIT, "TitleUI_EXIT");
 	tex(TEXTURE_ID::OPTION, "TitleUI_OPTION");
 	tex(TEXTURE_ID::GAMESTART, "TitleUI_START");
@@ -101,9 +102,11 @@ void Load::loadTextrue()
 	tex(TEXTURE_ID::VOLUME_SMALL, "small");
 	tex(TEXTURE_ID::VOLUME_MID, "midle");
 	tex(TEXTURE_ID::VOLUME_LERGE, "lerge");
-	tex(TEXTURE_ID::NUMBER, "number");
+	tex(TEXTURE_ID::NUMBER, "UI_number");
+	tex(TEXTURE_ID::SMALL_NUMBER, "UI_small_number");
 	tex(TEXTURE_ID::RANK, "UI_Rank");
 	tex(TEXTURE_ID::TARGETMARKER, "targetmarker");
+	tex(TEXTURE_ID::AURA, "aura");
 }
 void Load::loadSound()
 {

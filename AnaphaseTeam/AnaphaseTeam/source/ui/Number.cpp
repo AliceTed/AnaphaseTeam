@@ -74,10 +74,11 @@ void Number::draw(IRenderer * _renderer, int _nunber)
 	NumberSpriteRenderDesc desc;
 	desc.decimal = 0;
 	desc.digit = 1;
+	desc.size = GSvector2(40*1.5, 62*1.5);
 	desc.number = _nunber;
 	desc.color.a = m_alpha;
 	desc.matrix.translate(m_position);
-	desc.textureID = static_cast<GSuint>(TEXTURE_ID::NUMBER);
+	desc.textureID = static_cast<GSuint>(TEXTURE_ID::SMALL_NUMBER);
 	_renderer->render(desc);
 
 }

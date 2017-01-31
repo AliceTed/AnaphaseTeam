@@ -12,4 +12,5 @@ public:
 	bool isDead() const;
 private:
 	Math::TimeLerpVector<GSvector2> m_lerp;
+	float m_alpha;
 };

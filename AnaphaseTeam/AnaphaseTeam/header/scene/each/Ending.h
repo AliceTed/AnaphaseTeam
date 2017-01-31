@@ -4,7 +4,7 @@
 #include "../SceneChange.h"
 #include "../../ui/EndingUI.h"
 
-class Ending :public IScene
+class Ending : public IScene
 {
 public:
 	Ending();

@@ -59,6 +59,11 @@ void Rank::calc_Rank(int _score)
 	m_rank = calc(_score);
 }
 
+bool Rank::isDead()
+{
+	return m_isDraw;
+}
+
 Rank::RANK Rank::calc(int _score) const
 {
 	const RANK rank[] = { RANK::S,RANK::A,RANK::B,RANK::C,RANK::D };

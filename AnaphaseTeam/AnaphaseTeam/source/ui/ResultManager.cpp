@@ -35,6 +35,7 @@ void ResultManager::initilize()
 	m_rank.calc_Rank(m_scoreValue);
 	m_score.initialize();
 	m_createInterval.initialize();
+	m_resultUi.Initilize();
 }
 
 void ResultManager::update(float _deltaTime)
@@ -59,7 +60,7 @@ void ResultManager::update(float _deltaTime)
 	{
 		m_createInterval.update(1);
 		Math::Random rand;
-		SoulPtr soul = std::make_shared<Soul>(m_soulPos[rand(0, 24)], GSvector2(305, 360), 2);
+		SoulPtr soul = std::make_shared<Soul>(m_soulPos[rand(0, 24)], GSvector2(310, 300), 2);
 		m_soul.add(soul);
 		return;
 	}
@@ -77,9 +78,9 @@ void ResultManager::draw(IRenderer * _renderer)
 			NumberSpriteRenderDesc desc;
 			desc.decimal = 0;
 			desc.digit = 1;
-
+			desc.size = GSvector2(80, 124);
 			desc.number = _time;
-			desc.matrix.translate(GSvector3(915, 360, 0));
+			desc.matrix.translate(GSvector3(715, 360, 0));
 			desc.textureID = static_cast<GSuint>(TEXTURE_ID::NUMBER);
 			_renderer->render(desc);
 		});
@@ -92,6 +93,11 @@ void ResultManager::draw(IRenderer * _renderer)
 		m_rank.draw(_renderer);
 	}
 
+}
+
+bool ResultManager::isNex()
+{
+	return m_rank.isDead();
 }
 
 void ResultManager::read()

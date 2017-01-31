@@ -15,6 +15,7 @@ public:
 	void initilize();
 	void update(float _deltaTime);
 	void draw(IRenderer * _renderer);
+	bool isNex();
 private:
 	void read();
 	void create();
