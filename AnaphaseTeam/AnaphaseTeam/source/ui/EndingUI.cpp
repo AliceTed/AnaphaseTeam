@@ -9,7 +9,8 @@ EndingUI::EndingUI()
 	m_change(true),
 	m_count(0),
 	m_credit(TEXTURE_ID::STAFFROLL, GSvector2(450, 720), 1.0f),
-	m_still(TEXTURE_ID::PRESSKEY, GSvector2(40, 600), 0.0f)
+	m_still(TEXTURE_ID::PRESSKEY, GSvector2(40, 600), 0.0f),
+	m_staffRoll()
 {
 }
 
@@ -24,9 +25,10 @@ void EndingUI::initilize()
 	m_count = 0;
 	m_credit.initilize();
 	m_still.initilize();
+	m_staffRoll.initilize();
 }
 
-void EndingUI::update()
+void EndingUI::update(float _deltaTime)
 {
 	if (!m_credit.scrollUp(0.0f))
 	{
@@ -38,12 +40,14 @@ void EndingUI::update()
 	}
 	creditSkip();
 	isNext();
+	m_staffRoll.update(_deltaTime);
 }
 
 void EndingUI::draw(IRenderer* _renderer)
 {
 	m_credit.draw(_renderer);
 	m_still.draw(_renderer);
+	m_staffRoll.draw(_renderer);
 }
 
 void EndingUI::creditSkip()

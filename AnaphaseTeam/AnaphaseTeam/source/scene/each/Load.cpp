@@ -50,7 +50,8 @@ const SceneMode Load::next() const
 {
 #ifdef _DEBUG
 	//return SceneMode::GAMEPLAY;
-	return SceneMode::RESULT;
+	//return SceneMode::RESULT;
+	return SceneMode::ENDING;
 #endif // DEBUG
 
 	return SceneMode::OPENING;

@@ -146,6 +146,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="header\ui\MoveText.cpp" />
     <ClCompile Include="header\ui\ResultUI.cpp" />
     <ClCompile Include="source\actor\ActorManager.cpp" />
     <ClCompile Include="source\actor\Boss\BossAI.cpp" />
@@ -329,6 +330,7 @@
     <ClCompile Include="source\ui\SoundSelectUI.cpp" />
     <ClCompile Include="source\ui\SpecialSkillUI.cpp" />
     <ClCompile Include="source\ui\SPGaugeUI.cpp" />
+    <ClCompile Include="source\ui\StaffRollUI.cpp" />
     <ClCompile Include="source\ui\TargetMarkerUI.cpp" />
     <ClCompile Include="source\ui\TitleUI.cpp" />
     <ClCompile Include="source\ui\UIManager.cpp" />
@@ -580,6 +582,7 @@
     <ClInclude Include="header\ui\Fade.h" />
     <ClInclude Include="header\ui\HPGaugeUI.h" />
     <ClInclude Include="header\ui\IPlayUI.h" />
+    <ClInclude Include="header\ui\MoveText.h" />
     <ClInclude Include="header\ui\Number.h" />
     <ClInclude Include="header\ui\PadSelectUI.h" />
     <ClInclude Include="header\ui\PauseUI.h" />
@@ -597,6 +600,7 @@
     <ClInclude Include="header\ui\SoundSelectUI.h" />
     <ClInclude Include="header\ui\SpecialSkillUI.h" />
     <ClInclude Include="header\ui\SPGaugeUI.h" />
+    <ClInclude Include="header\ui\StaffRollUI.h" />
     <ClInclude Include="header\ui\TargetMarkerUI.h" />
     <ClInclude Include="header\ui\TitleUI.h" />
     <ClInclude Include="header\ui\UIManager.h" />
