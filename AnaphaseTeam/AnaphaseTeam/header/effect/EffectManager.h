@@ -31,6 +31,9 @@ public:
 
 	void stop(EFFECT_ID _id);
 	void stopAll();
+	// GSmatrix4からEffekseer::Matrix44へ変換
+	static Effekseer::Matrix44 mat4Conversion(const GSmatrix4 &mat4);
+	static Effekseer::Vector3D vec3Convert(const GSvector3& _v);
 private:
 	//template< typename ContainerT, typename PredicateT >
 	//void erase_if(ContainerT& items, const PredicateT& predicate) 
@@ -56,9 +59,7 @@ private:
 
 	// 各種行列の設定
 	void effectMatrixSetting();
-	// GSmatrix4からEffekseer::Matrix44へ変換
-	static Effekseer::Matrix44 mat4Conversion(const GSmatrix4 &mat4);
-	static Effekseer::Vector3D vec3Convert(const GSvector3& _v);
+	
 
 private:
 	// エフェクト描画用インスタンス

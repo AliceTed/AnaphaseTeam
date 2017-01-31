@@ -47,8 +47,9 @@
 
 #include "../../../header/data/stream/StatusReader.h"
 #include  "../header/renderer/define/LightDesc.h"
+#include "effect\effectmanager.h"
 const float Player::ROTATESPEED = -2.0f;
-Player::Player(const Transform& _t,Camera * _camera, LockOn* _lockon)
+Player::Player(const Transform& _t, Camera * _camera, LockOn* _lockon)
 	:Actor(
 		_t,
 		MODEL_ID::PLAYER,
@@ -108,7 +109,7 @@ void Player::initialize()
 	m_specialUI->initialize();
 	m_Gauge->initialize();
 	//m_score->initialize();
-	UIManager::getInstance().add(EUI::HP, std::shared_ptr<HPGaugeUI>(new HPGaugeUI(GSvector2(0, 10), m_status,TEXTURE_ID::PLAYER_HP, TEXTURE_ID::PLAYER_HP_GAUGE)));
+	UIManager::getInstance().add(EUI::HP, std::shared_ptr<HPGaugeUI>(new HPGaugeUI(GSvector2(0, 10), m_status, TEXTURE_ID::PLAYER_HP, TEXTURE_ID::PLAYER_HP_GAUGE)));
 	UIManager::getInstance().add(EUI::SPICON, m_specialUI);
 	UIManager::getInstance().add(EUI::GAUGE, m_Gauge);
 	//UIManager::getInstance().add(EUI::SCORE, m_score);
@@ -143,8 +144,8 @@ void Player::draw(IRenderer *_renderer)
 	light.ambient = Color4(1.0f, 1.0, 1.0f, 1.0f);
 	light.diffuse = Color4(1.0f, 1.0f, 1.0f, 1.0f);
 	light.specular = Color4(1.0f, 1.0f, 1.0f, 1.0f);
-	light.position =m_transform.m_translate;
-	light.position.y+=5;
+	light.position = m_transform.m_translate;
+	light.position.y += 5;
 	_renderer->light(light);
 
 	m_animatorOne.draw(_renderer, m_transform);
@@ -200,15 +201,28 @@ void Player::specialSkill()
 	{
 		m_specialUI->open();
 		m_specialskill.canSelectCheck(m_specialUI.get());
+		GSvector3 pos = m_transform.m_translate;
+		pos.y += 1.0f;
+		EffectManager& effect = EffectManager::getInstance();
 		if (GameDevice::getInstacnce().input()->gaugeAttack1())
 		{
-			m_specialskill.start(SPECIALSKILL_TYPE::RECOVERY);
 			m_specialUI->select(SPECIALSKILL_TYPE::RECOVERY);
+			if (m_specialskill.start(SPECIALSKILL_TYPE::RECOVERY))
+			{
+				effect.stop(EFFECT_ID::HEAL);
+				effect.effectPlay(EFFECT_ID::HEAL, pos);
+			}
+
 		}
 		if (GameDevice::getInstacnce().input()->gaugeAttack2())
 		{
-			m_specialskill.start(SPECIALSKILL_TYPE::SUPERARMOR);
+
 			m_specialUI->select(SPECIALSKILL_TYPE::SUPERARMOR);
+			if (m_specialskill.start(SPECIALSKILL_TYPE::SUPERARMOR))
+			{
+				effect.stop(EFFECT_ID::ARMOR);
+				effect.effectPlay(EFFECT_ID::ARMOR, pos);
+			}
 		}
 		if (GameDevice::getInstacnce().input()->gaugeAttack3())
 		{
@@ -273,7 +287,7 @@ void Player::revision()
 
 void Player::createAttackCollision(const ShapeData& _data, float _speed)
 {
-	Collision_Ptr act = std::make_shared<PlayerAttackCollision>(this, _data,_speed);
+	Collision_Ptr act = std::make_shared<PlayerAttackCollision>(this, _data, _speed);
 	m_collision.add(act);
 }
 

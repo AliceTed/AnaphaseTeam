@@ -17,5 +17,5 @@ private:
 	Timer m_destroy;
 	GSvector3 m_offset;
 	float m_speed;
-	
+	GSvector3 p;
 };

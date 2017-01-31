@@ -12,13 +12,15 @@ void SpecialSkillManager::add(SPECIALSKILL_TYPE _type, ISpecialSkill* _skill)
 {
 	m_container.insert(std::make_pair(_type, Special_Ptr(_skill)));
 }
-void SpecialSkillManager::start(SPECIALSKILL_TYPE _type)
+bool SpecialSkillManager::start(SPECIALSKILL_TYPE _type)
 {
 	Special_Ptr next=m_container.at(_type);
-	if (!m_gauge->down(next->consumption()))return;
+	if (!m_gauge->down(next->consumption()))return false;
+
 	GameDevice::getInstacnce().sound().playSE(SE_ID::ENTER);
 	m_current.insert(std::make_pair(_type, next));
 	next->start();
+	return true;
 }
 void SpecialSkillManager::update(float deltaTime)
 {

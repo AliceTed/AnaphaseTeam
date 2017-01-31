@@ -8,6 +8,7 @@
 #include "../../header/data/stream/PhaseReader.h"
 #include "../../header/camera/CameraWork/E_CameraWorkID.h"
 #include "../../header/ui/UIManager.h"
+#include "effect\effectmanager.h"
 Stage::Stage(const StageData& _stage)
 	:m_Map(OCTREE_ID::VISUAL),
 	m_score(std::make_shared<Score>()),
@@ -36,6 +37,7 @@ Stage::~Stage()
 }
 void Stage::update(float deltaTime)
 {
+	EffectManager::getInstance().update();
 	m_actors.update(deltaTime);
 	m_phaseManage.update(deltaTime, m_actors, m_cameracontroller);
 	m_cameracontroller.update(deltaTime);
@@ -55,6 +57,7 @@ void Stage::draw(IRenderer * _renderer)
 	m_Map.draw(_renderer);
 	m_actors.draw(_renderer);
 	m_phaseManage.draw(_renderer);
+	EffectManager::getInstance().draw();
 	UIManager::getInstance().draw(_renderer);
 }
 

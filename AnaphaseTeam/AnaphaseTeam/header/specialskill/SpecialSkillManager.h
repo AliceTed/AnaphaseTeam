@@ -13,7 +13,7 @@ public:
 	SpecialSkillManager(Gauge* _gauge);
 	~SpecialSkillManager()=default;
 	void add(SPECIALSKILL_TYPE _type, ISpecialSkill* _skill);
-	void start(SPECIALSKILL_TYPE _type);
+	bool start(SPECIALSKILL_TYPE _type);
 	void update(float deltaTime);
 	void draw(IRenderer* _renderer);
 	const bool isStart(SPECIALSKILL_TYPE _type)const;
