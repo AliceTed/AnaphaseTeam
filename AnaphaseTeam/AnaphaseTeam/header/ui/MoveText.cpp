@@ -6,7 +6,7 @@ MoveText::MoveText(const std::string & _text,const GSvector2 & _start,const GSve
 	,m_text(_text),
 	m_size(_size)
 {
-	m_lerp.start(_start, _end, 1);
+	m_lerp.start(_start, _end, 5);
 }
 
 void MoveText::update(float _deltTime)
