@@ -11,7 +11,7 @@
 #include "data/id/TEXTURE_ID.h"
 
 class IRenderer;
-class Particle;
+class ParticleData;
 
 /**
 @class
@@ -50,5 +50,5 @@ public:
 	*/
 	void finish();
 private:
-	std::unique_ptr<Particle> m_particle;
+	std::unique_ptr<ParticleData> m_particle;
 };

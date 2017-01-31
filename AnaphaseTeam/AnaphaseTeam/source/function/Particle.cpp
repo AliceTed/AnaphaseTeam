@@ -4,10 +4,10 @@
 #include "math\Calculate.h"
 
 //コンストラクタ
-Particle::Particle(const GSvector3 _pos, TEXTURE_ID _id) :
+Particle::Particle(const GSvector2 _pos, TEXTURE_ID _id) :
 	m_texID(_id),
 	m_pos(_pos),
-	m_pos_offset(0.f, 0.f, 0.f),
+	m_pos_offset(0.f, 0.f),
 	m_time(0.f),
 	m_isDead(false)
 {
@@ -33,7 +33,7 @@ void Particle::update(float _deltaTime)
 
 	//上に落ちる処理
 	float speed = 1.f;
-	GSvector3 gravity = GSvector3(0.f, -1.f, 0.f);
+	GSvector2 gravity = GSvector2(0.f, -1.f);
 	m_pos += gravity * speed;
 
 	//上まで行ったら死亡
@@ -45,9 +45,10 @@ void Particle::update(float _deltaTime)
 //描画
 void Particle::draw(IRenderer * _renderer)
 {
+	GSvector2 pos = m_pos + m_pos_offset;
 	SpriteRenderDesc desc;
 	desc.textureID = static_cast<GSuint>(m_texID);
-	desc.matrix.setTranslation(m_pos + m_pos_offset);
+	desc.matrix.setTranslation(GSvector3(pos.x, pos.y, 0.f));
 	_renderer->render(desc);
 }
 

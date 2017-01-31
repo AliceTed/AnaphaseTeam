@@ -22,7 +22,7 @@ public:
 	@fn
 	@brief コンストラクタ
 	*/
-	Particle(const GSvector3 _pos, TEXTURE_ID _id = TEXTURE_ID::PARTICLE);
+	Particle(const GSvector2 _pos, TEXTURE_ID _id = TEXTURE_ID::PARTICLE);
 	/**
 	@fn
 	@brief デストラクタ
@@ -53,8 +53,8 @@ public:
 	bool isDead();
 private:
 	TEXTURE_ID m_texID;
-	GSvector3 m_pos;
-	GSvector3 m_pos_offset;
+	GSvector2 m_pos;
+	GSvector2 m_pos_offset;
 	float m_time;
 	bool m_isDead;
 };

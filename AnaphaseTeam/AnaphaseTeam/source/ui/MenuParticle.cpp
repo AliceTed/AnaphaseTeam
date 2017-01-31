@@ -2,10 +2,13 @@
 #include "renderer\IRenderer.h"
 #include "renderer\define\SpriteRenderDesc.h"
 #include "function\Particle.h"
+#include "function\ParticleData.h"
+#include <gslib.h>
 
 MenuParticle::MenuParticle() :
-	m_particle(std::make_unique<Particle>(GSvector3(640.f, 720.f, 0.f)))
+	m_particle(std::make_unique<ParticleData>())
 {
+	m_particle->add(Particle(GSvector2(640.f, 720.f)));
 }
 
 MenuParticle::~MenuParticle()

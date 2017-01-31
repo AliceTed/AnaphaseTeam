@@ -172,6 +172,7 @@
     <ClCompile Include="source\data\stream\StatusConverter.cpp" />
     <ClCompile Include="source\data\stream\StatusReader.cpp" />
     <ClCompile Include="source\function\Particle.cpp" />
+    <ClCompile Include="source\function\ParticleData.cpp" />
     <ClCompile Include="source\function\Shake.cpp" />
     <ClCompile Include="source\math\AMath.cpp" />
     <ClCompile Include="source\collision\PlayerCollision.cpp" />
@@ -371,6 +372,7 @@
     <ClInclude Include="header\data\stream\StatusConverter.h" />
     <ClInclude Include="header\data\stream\StatusReader.h" />
     <ClInclude Include="header\function\Particle.h" />
+    <ClInclude Include="header\function\ParticleData.h" />
     <ClInclude Include="header\function\ParticleManager.h" />
     <ClInclude Include="header\function\Shake.h" />
     <ClInclude Include="header\math\AMath.h" />
