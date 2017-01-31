@@ -22,5 +22,7 @@ public:
 	void draw(IRenderer* _renderer);
 private:
 	std::shared_ptr<ParticleData> m_particleData;
-	std::shared_ptr<Timer> m_timer;
+	std::shared_ptr<Timer> m_timer1;
+	std::shared_ptr<Timer> m_timer2;
+	std::shared_ptr<Timer> m_timer3;
 };

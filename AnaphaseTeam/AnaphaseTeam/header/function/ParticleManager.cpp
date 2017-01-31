@@ -8,7 +8,9 @@
 
 ParticleManager::ParticleManager() :
 	m_particleData(std::make_shared<ParticleData>()),
-	m_timer(std::make_shared<Timer>(2.f))
+	m_timer1(std::make_shared<Timer>(2.f)),
+	m_timer2(std::make_shared<Timer>(1.f)),
+	m_timer3(std::make_shared<Timer>(3.f))
 {
 
 }
@@ -23,14 +25,24 @@ void ParticleManager::initialize()
 
 void ParticleManager::update(float _deltaTime)
 {
-	m_timer->update(_deltaTime);
+	m_timer1->update(_deltaTime);
+	m_timer2->update(_deltaTime);
+	m_timer3->update(_deltaTime);
 
 	//タイマーがなくなったらパーティクルを生成
-	if (m_timer->isEnd()) {
-		m_timer->initialize();
-		std::random_device rnd;
-		std::mt19937 mt(rnd());
-		std::uniform_real_distribution<> rand(0, 1230);
+	std::random_device rnd;
+	std::mt19937 mt(rnd());
+	std::uniform_real_distribution<> rand(0, 1230);
+	if (m_timer1->isEnd()) {
+		m_timer1->initialize();
+		m_particleData->add(Particle(GSvector2(rand(mt), 720)));
+	}
+	if (m_timer2->isEnd()) {
+		m_timer2->initialize();
+		m_particleData->add(Particle(GSvector2(rand(mt), 720)));
+	}
+	if (m_timer3->isEnd()) {
+		m_timer3->initialize();
 		m_particleData->add(Particle(GSvector2(rand(mt), 720)));
 	}
 
