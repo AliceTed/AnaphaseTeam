@@ -16,7 +16,7 @@ public:
 	const SceneMode next()const;
 	const bool isEnd()const;
 	const bool isExit()const;
-	void count();
+	void endScene();
 private:
 	bool m_IsEnd;
 	SceneChange m_change;

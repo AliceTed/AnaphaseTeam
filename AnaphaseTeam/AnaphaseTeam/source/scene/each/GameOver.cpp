@@ -57,10 +57,6 @@ const bool GameOver::isExit() const
 	return false;
 }
 
-void GameOver::count()
-{
-}
-
 void GameOver::change()
 {
 	if (GameDevice::getInstacnce().input()->jump())

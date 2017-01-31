@@ -1,18 +1,20 @@
 #include "../../header/ui/StaffRollUI.h"
 #include "../../header/data/stream/DataReader.h"
 #include "../../header/data/Message.h"
+#include "../../header/device/GameDevice.h"
 
 #include <vector>
 #include <sstream>
 #include <algorithm>
 
-static const GSvector2 m_strat = GSvector2(500, 730);
-static const GSvector2 m_end = GSvector2(500, -10);
+static const GSvector2 m_strat = GSvector2(100, 720);
+static const GSvector2 m_end = GSvector2(100, -50);
 
 StaffRollUI::StaffRollUI()
 	:m_texts(),
 	m_words(),
-	m_timer(1)
+	m_timer(1),
+	m_count(0)
 {
 }
 
@@ -22,6 +24,7 @@ StaffRollUI::~StaffRollUI()
 
 void StaffRollUI::initilize()
 {
+	m_count = 0;
 	read();
 }
 
@@ -34,6 +37,7 @@ void StaffRollUI::update(float _deltaTime)
 	}
 	createText();
 	remove();
+	push();
 }
 
 void StaffRollUI::draw(IRenderer * _renderer)
@@ -44,6 +48,20 @@ void StaffRollUI::draw(IRenderer * _renderer)
 	}
 }
 
+void StaffRollUI::push()
+{
+	if (GameDevice::getInstacnce().input()->jump())
+	{
+		m_count++;
+	}
+
+	if (m_count >= 2)
+	{
+		m_words.clear();
+		m_texts.clear();
+	}
+}
+
 bool StaffRollUI::isEnd() const
 {
 	return m_words.empty() && m_texts.empty();
@@ -51,8 +69,6 @@ bool StaffRollUI::isEnd() const
 
 void StaffRollUI::read()
 {
-	/*m_words.clear();
-	m_texts.clear();*/
 	m_words.emplace_back("STAFFROLL");
 	m_words.emplace_back("Íéì°Å@ï‡");
 	m_words.emplace_back("èºîˆÅ@óTñÁ");
@@ -68,7 +84,8 @@ void StaffRollUI::read()
 
 	m_words.emplace_back("ëfçﬁíÒãü");
 
-	m_words.emplace_back("http://www.flickr.com/photos/karen_roe/7881746364/ by Karen Roe (modified by Ç†Ç‚Ç¶Ç‡å§ãÜèä)");
+	m_words.emplace_back("http://www.flickr.com/photos/karen_roe/7881746364/");
+	m_words.emplace_back("by Karen Roe (modified by Ç†Ç‚Ç¶Ç‡å§ãÜèä)");
 	m_words.emplace_back("is licensed under a Creative Commons license:");
 	m_words.emplace_back("http://creativecommons.org/licenses/by/2.0/deed.en");
 }
@@ -85,7 +102,7 @@ void StaffRollUI::createText()
 }
 
 void StaffRollUI::remove()
-	{
+{
 	auto itr = std::remove_if(m_texts.begin(), m_texts.end(), [](MoveText& _text) {return _text.isEnd(); });
 	m_texts.erase(itr, m_texts.end());
 }

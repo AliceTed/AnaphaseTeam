@@ -13,6 +13,7 @@ public:
 	void initilize();
 	void update(float _deltaTime);
 	void draw(IRenderer * _renderer);
+	void push();
 	bool isEnd()const;
 private:
 	void read();
@@ -25,4 +26,5 @@ private:
 	TextConteiner m_texts;
 
 	Timer m_timer;
+	int m_count;
 };
