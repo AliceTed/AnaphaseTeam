@@ -19,4 +19,5 @@ const std::shared_ptr<IEnemy> EnemyFactory::createEnemy(Transform& _transform, E
 		return std::make_shared<Boss>(_transform, _mediator);
 		break;
 	}
+	return nullptr;
 }

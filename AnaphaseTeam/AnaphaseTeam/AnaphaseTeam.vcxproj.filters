@@ -259,6 +259,12 @@
     <Filter Include="ヘッダー ファイル\function">
       <UniqueIdentifier>{d0dd161c-034b-4a20-8ed6-44f589379dc6}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ヘッダー ファイル\effect">
+      <UniqueIdentifier>{a09937b2-7c38-4548-961f-da8e3b73f583}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\effect">
+      <UniqueIdentifier>{db260b12-5026-471f-8657-06ffbdb9f95c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="header\math\Calculate.h">
@@ -1083,6 +1089,9 @@
     <ClInclude Include="header\ui\Flash.h">
       <Filter>ヘッダー ファイル\ui</Filter>
     </ClInclude>
+    <ClInclude Include="header\effect\EffectManager.h">
+      <Filter>ヘッダー ファイル\effect</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="source\main.cpp">
@@ -1622,9 +1631,6 @@
     <ClCompile Include="source\scene\each\Result.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="source\spawn\EnemyFactory.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
     <ClCompile Include="source\ui\Rank.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
@@ -1675,6 +1681,12 @@
     </ClCompile>
     <ClCompile Include="source\ui\Flash.cpp">
       <Filter>ソース ファイル\ui</Filter>
+    </ClCompile>
+    <ClCompile Include="source\effect\EffectManager.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="source\spawn\EnemyFactory.cpp">
+      <Filter>ソース ファイル\effect</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

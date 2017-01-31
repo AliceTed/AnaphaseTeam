@@ -59,8 +59,8 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>C:\gslib_2015\gslib_2015\inc;C:\boost\Include\boost_1_57_0;C:\boost\include\boost-1_57;C:\boost\boost\include\boost-1_57;C:\gslib_2015\gslibEXT_2015\inc;D:\gslib_2015\gslib_2015\inc;D:\gslib_2015\gslibEXT_2015\inc;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\gslib_2015\gslib_2015\lib;C:\boost\lib;C:\gslib_2015\gslibEXT_2015\lib;D:\gslib_2015\gslib_2015\lib;D:\gslib_2015\gslibEXT_2015\lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>C:\gslib_2015\gslib_2015\inc;C:\boost\Include\boost_1_57_0;C:\boost\include\boost-1_57;C:\boost\boost\include\boost-1_57;C:\gslib_2015\gslibEXT_2015\inc;D:\gslib_2015\gslib_2015\inc;D:\gslib_2015\gslibEXT_2015\inc;C:\Effekseer\EffekseerRuntime122\Compiled\include;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\gslib_2015\gslib_2015\lib;C:\boost\lib;C:\gslib_2015\gslibEXT_2015\lib;D:\gslib_2015\gslib_2015\lib;D:\gslib_2015\gslibEXT_2015\lib;C:\Effekseer\EffekseerRuntime122\Compiled\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
@@ -69,8 +69,8 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
-    <IncludePath>C:\gslib_2015\gslib_2015\inc;C:\boost\Include\boost_1_57_0;D:\GSLibrary_2015\gslib_2015\gslib_2015\inc;C:\boost\include\boost-1_57;C:\boost\boost\include\boost-1_57;C:\gslib_2015\gslibEXT_2015\inc;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\gslib_2015\gslib_2015\lib;C:\boost\lib;D:\GSLibrary_2015\gslib_2015\gslib_2015\lib;D:\GSLibrary_2015\boost\lib;C:\gslib_2015\gslibEXT_2015\lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>C:\gslib_2015\gslib_2015\inc;C:\boost\Include\boost_1_57_0;D:\GSLibrary_2015\gslib_2015\gslib_2015\inc;C:\boost\include\boost-1_57;C:\boost\boost\include\boost-1_57;C:\gslib_2015\gslibEXT_2015\inc;C:\Effekseer\EffekseerRuntime122\Compiled\include;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\gslib_2015\gslib_2015\lib;C:\boost\lib;D:\GSLibrary_2015\gslib_2015\gslib_2015\lib;D:\GSLibrary_2015\boost\lib;C:\gslib_2015\gslibEXT_2015\lib;C:\Effekseer\EffekseerRuntime122\Compiled\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
@@ -85,7 +85,7 @@
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
       <AdditionalIncludeDirectories>$(ProjectDir)Header;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
@@ -171,6 +171,7 @@
     <ClCompile Include="source\data\stream\StageReader.cpp" />
     <ClCompile Include="source\data\stream\StatusConverter.cpp" />
     <ClCompile Include="source\data\stream\StatusReader.cpp" />
+    <ClCompile Include="source\effect\EffectManager.cpp" />
     <ClCompile Include="source\function\Particle.cpp" />
     <ClCompile Include="source\function\ParticleData.cpp" />
     <ClCompile Include="source\function\ParticleManager.cpp" />
@@ -374,6 +375,7 @@
     <ClInclude Include="header\data\stream\StageReader.h" />
     <ClInclude Include="header\data\stream\StatusConverter.h" />
     <ClInclude Include="header\data\stream\StatusReader.h" />
+    <ClInclude Include="header\effect\EffectManager.h" />
     <ClInclude Include="header\function\Particle.h" />
     <ClInclude Include="header\function\ParticleData.h" />
     <ClInclude Include="header\function\ParticleManager.h" />
