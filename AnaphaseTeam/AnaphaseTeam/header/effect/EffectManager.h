@@ -27,10 +27,10 @@ public:
 	// 描画
 	void draw();
 	// エフェクト再生
-	void effectPlay(EFFECT_ID _id, GSvector3 _position);
+	void effectPlay(EFFECT_ID _id,const GSvector3& _position);
 
-	void clear();
-	void release(EFFECT_ID _id);
+	void stop(EFFECT_ID _id);
+	void stopAll();
 private:
 	template< typename ContainerT, typename PredicateT >
 	void erase_if(ContainerT& items, const PredicateT& predicate) 
@@ -42,6 +42,7 @@ private:
 		}
 	};
 
+	void clear();
 	// コンストラクタ
 	EffectManager();
 	// コピー禁止
@@ -56,8 +57,8 @@ private:
 	// 各種行列の設定
 	void effectMatrixSetting();
 	// GSmatrix4からEffekseer::Matrix44へ変換
-	Effekseer::Matrix44 mat4Conversion(const GSmatrix4 &mat4);
-
+	static Effekseer::Matrix44 mat4Conversion(const GSmatrix4 &mat4);
+	static Effekseer::Vector3D vec3Convert(const GSvector3& _v);
 
 private:
 	// エフェクト描画用インスタンス

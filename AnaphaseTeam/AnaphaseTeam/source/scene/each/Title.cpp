@@ -64,7 +64,7 @@ void Title::draw(IRenderer * _renderer)
 
 void Title::finish()
 {
-	EffectManager::getInstance().clear();
+	EffectManager::getInstance().stopAll();
 	GameDevice::getInstacnce().sound().stopBGM(BGM_ID::TITLE);
 	GameDevice::getInstacnce().sound().stopSE(SE_ID::ENTER);
 }

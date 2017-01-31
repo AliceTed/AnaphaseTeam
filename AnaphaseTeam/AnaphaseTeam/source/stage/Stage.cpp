@@ -47,17 +47,17 @@ void Stage::update(float deltaTime)
 
 void Stage::draw(IRenderer * _renderer)
 {
-	//SkyBoxRenderDesc desc;
-	//desc.meshID = static_cast<unsigned int>(MESH_ID::SKY);
-	//_renderer->render(desc);
-	//m_actors.lockAt(&m_cameracontroller);
-	//m_cameracontroller.draw(_renderer);
+	SkyBoxRenderDesc desc;
+	desc.meshID = static_cast<unsigned int>(MESH_ID::SKY);
+	_renderer->render(desc);
+	m_actors.lockAt(&m_cameracontroller);
+	m_cameracontroller.draw(_renderer);
 
-	//_renderer->lookAt({ 0,0,0 }, { 0,0,0 }, { 0,0,0 });
-	//m_Map.draw(_renderer);
-	//m_actors.draw(_renderer);
-	//m_phaseManage.draw(_renderer);
-	//UIManager::getInstance().draw(_renderer);
+	_renderer->lookAt({ 0,0,0 }, { 0,0,0 }, { 0,0,0 });
+	m_Map.draw(_renderer);
+	m_actors.draw(_renderer);
+	m_phaseManage.draw(_renderer);
+	UIManager::getInstance().draw(_renderer);
 	EffectManager::getInstance().draw();
 }
 

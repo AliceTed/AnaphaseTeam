@@ -151,6 +151,5 @@ void Load::loadMyAnimation()
 
 void Load::loadEffect()
 {	
-	EffectManager::getInstance().loadEffect(EFFECT_ID::TITLE_BACK, reinterpret_cast<const std::string*>(L"././res/effect/Effect_TitleBack.efk"));
-	EffectManager::getInstance().loadEffect(EFFECT_ID::PLAYER_ATTACK, reinterpret_cast<const std::string*>(L"././res/effect/Player_Attack.efk"));
+	EffectManager::getInstance().loadEffect(EFFECT_ID::TITLE_BACK, reinterpret_cast<const std::string*>(L"././res/effect/Effect_TitleBcak.efk"));
 }
