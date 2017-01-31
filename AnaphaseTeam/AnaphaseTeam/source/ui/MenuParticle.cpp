@@ -4,7 +4,7 @@
 #include "function\Particle.h"
 
 MenuParticle::MenuParticle() :
-	m_particle(std::make_unique<Particle>(GSvector3(10.f, 0.f, 0.f)))
+	m_particle(std::make_unique<Particle>(GSvector3(10.f, 50.f, 0.f)))
 {
 }
 
