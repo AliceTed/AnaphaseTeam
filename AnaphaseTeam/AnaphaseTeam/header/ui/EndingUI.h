@@ -1,13 +1,14 @@
 #pragma once
 #include "../renderer/Renderer.h"
 #include "../ui/alpha.h"
+#include "../ui/StaffRollUI.h"
 class EndingUI
 {
 public:
 	EndingUI();
 	~EndingUI();
 	void initilize();
-	void update();
+	void update(float _deltaTime);
 	void draw(IRenderer* _renderer);
 	void creditSkip();
 	bool isNext();
@@ -17,4 +18,5 @@ private:
 	int m_count;
 	alpha m_credit;
 	alpha m_still;
+	StaffRollUI m_staffRoll;
 };
