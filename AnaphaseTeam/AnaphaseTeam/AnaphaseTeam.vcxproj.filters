@@ -253,6 +253,12 @@
     <Filter Include="ソース ファイル\state\boss">
       <UniqueIdentifier>{cac1e4d0-ae6a-4aa8-b653-ac22b76bafbf}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\function">
+      <UniqueIdentifier>{b5396048-efdb-47d8-9bff-8a5f898d20ab}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\function">
+      <UniqueIdentifier>{d0dd161c-034b-4a20-8ed6-44f589379dc6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="header\math\Calculate.h">
@@ -1017,46 +1023,58 @@
     <ClInclude Include="header\actor\Boss\BossAI.h">
       <Filter>ヘッダー ファイル\actor\Boss</Filter>
     </ClInclude>
-    <ClInclude Include="header\camera\Perspective.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="header\camera\Zoom.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="header\function\Shake.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="header\function\Tracking.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
     <ClInclude Include="header\scene\each\Result.h">
-      <Filter>ヘッダー ファイル\scene\each</Filter>
-    </ClInclude>
-    <ClInclude Include="header\ui\ResultManager.h">
-      <Filter>ヘッダー ファイル\ui</Filter>
-    </ClInclude>
-    <ClInclude Include="header\ui\Point.h">
-      <Filter>ヘッダー ファイル\scene\each</Filter>
-    </ClInclude>
-    <ClInclude Include="header\ui\Soul.h">
-      <Filter>ヘッダー ファイル\ui</Filter>
-    </ClInclude>
-    <ClInclude Include="header\ui\SoulManager.h">
-      <Filter>ヘッダー ファイル\ui</Filter>
-    </ClInclude>
-    <ClInclude Include="header\ui\Rank.h">
-      <Filter>ヘッダー ファイル\ui</Filter>
+      <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="header\spawn\EnemyFactory.h">
-      <Filter>ヘッダー ファイル\spawn</Filter>
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="header\ui\Point.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="header\ui\Rank.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="header\ui\ResultManager.h">
+      <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="header\ui\ResultUI.h">
-      <Filter>ヘッダー ファイル\ui</Filter>
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="header\ui\Soul.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="header\ui\SoulManager.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="header\camera\Perspective.h">
+      <Filter>ヘッダー ファイル\camera</Filter>
+    </ClInclude>
+    <ClInclude Include="header\function\Shake.h">
+      <Filter>ヘッダー ファイル\function</Filter>
+    </ClInclude>
+    <ClInclude Include="header\camera\Zoom.h">
+      <Filter>ヘッダー ファイル\camera</Filter>
+    </ClInclude>
+    <ClInclude Include="header\function\Tracking.h">
+      <Filter>ヘッダー ファイル\function</Filter>
     </ClInclude>
     <ClInclude Include="header\ui\StaffRollUI.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="header\ui\MoveText.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="header\function\Particle.h">
+      <Filter>ヘッダー ファイル\function</Filter>
+    </ClInclude>
+    <ClInclude Include="header\function\ParticleData.h">
+      <Filter>ヘッダー ファイル\function</Filter>
+    </ClInclude>
+    <ClInclude Include="header\function\ParticleManager.h">
+      <Filter>ヘッダー ファイル\function</Filter>
+    </ClInclude>
+    <ClInclude Include="header\ui\MenuParticle.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="header\scene\each\GameOver.h">
@@ -1484,9 +1502,6 @@
     <ClCompile Include="source\attack\Revision.cpp">
       <Filter>ソース ファイル\Attack</Filter>
     </ClCompile>
-    <ClCompile Include="source\camera\LookAt.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
     <ClCompile Include="source\spline\AnimationSpline.cpp">
       <Filter>ソース ファイル\spline</Filter>
     </ClCompile>
@@ -1562,6 +1577,9 @@
     <ClCompile Include="source\state\enemy\EnemyAIController.cpp">
       <Filter>ソース ファイル\actor\Enemy\AI</Filter>
     </ClCompile>
+    <ClCompile Include="source\state\enemy\ESecoundAttackState.cpp">
+      <Filter>ソース ファイル\actor\Enemy\AI</Filter>
+    </ClCompile>
     <ClCompile Include="source\state\enemy\MiddleRangeAI.cpp">
       <Filter>ソース ファイル\actor\Enemy\AI</Filter>
     </ClCompile>
@@ -1598,46 +1616,58 @@
     <ClCompile Include="source\actor\Boss\BossAI.cpp">
       <Filter>ソース ファイル\actor\Boss</Filter>
     </ClCompile>
-    <ClCompile Include="source\camera\Perspective.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="source\camera\Zoom.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="source\function\Shake.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="source\function\Tracking.cpp">
+    <ClCompile Include="header\ui\ResultUI.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
     <ClCompile Include="source\scene\each\Result.cpp">
-      <Filter>ソース ファイル\scene\each</Filter>
-    </ClCompile>
-    <ClCompile Include="source\ui\ResultManager.cpp">
-      <Filter>ソース ファイル\ui</Filter>
-    </ClCompile>
-    <ClCompile Include="source\ui\Soul.cpp">
-      <Filter>ソース ファイル\ui</Filter>
-    </ClCompile>
-    <ClCompile Include="source\ui\SoulManager.cpp">
-      <Filter>ソース ファイル\ui</Filter>
-    </ClCompile>
-    <ClCompile Include="source\ui\Rank.cpp">
-      <Filter>ソース ファイル\ui</Filter>
-    </ClCompile>
-    <ClCompile Include="source\state\enemy\ESecoundAttackState.cpp">
-      <Filter>ソース ファイル\state\enemy</Filter>
+      <Filter>ソース ファイル</Filter>
     </ClCompile>
     <ClCompile Include="source\spawn\EnemyFactory.cpp">
-      <Filter>ソース ファイル\spawn</Filter>
+      <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="header\ui\ResultUI.cpp">
-      <Filter>ソース ファイル\ui</Filter>
+    <ClCompile Include="source\ui\Rank.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="source\ui\ResultManager.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="source\ui\Soul.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="source\ui\SoulManager.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="source\camera\LookAt.cpp">
+      <Filter>ソース ファイル\camera</Filter>
+    </ClCompile>
+    <ClCompile Include="source\camera\Perspective.cpp">
+      <Filter>ソース ファイル\camera</Filter>
+    </ClCompile>
+    <ClCompile Include="source\camera\Zoom.cpp">
+      <Filter>ソース ファイル\camera</Filter>
+    </ClCompile>
+    <ClCompile Include="source\function\Tracking.cpp">
+      <Filter>ソース ファイル\function</Filter>
+    </ClCompile>
+    <ClCompile Include="source\function\Shake.cpp">
+      <Filter>ソース ファイル\function</Filter>
     </ClCompile>
     <ClCompile Include="source\ui\StaffRollUI.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
     <ClCompile Include="header\ui\MoveText.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="source\function\Particle.cpp">
+      <Filter>ソース ファイル\function</Filter>
+    </ClCompile>
+    <ClCompile Include="source\function\ParticleData.cpp">
+      <Filter>ソース ファイル\function</Filter>
+    </ClCompile>
+    <ClCompile Include="source\function\ParticleManager.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="source\ui\MenuParticle.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
     <ClCompile Include="source\scene\each\GameOver.cpp">

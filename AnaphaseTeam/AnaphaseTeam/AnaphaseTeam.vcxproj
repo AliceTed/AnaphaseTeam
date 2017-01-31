@@ -171,6 +171,9 @@
     <ClCompile Include="source\data\stream\StageReader.cpp" />
     <ClCompile Include="source\data\stream\StatusConverter.cpp" />
     <ClCompile Include="source\data\stream\StatusReader.cpp" />
+    <ClCompile Include="source\function\Particle.cpp" />
+    <ClCompile Include="source\function\ParticleData.cpp" />
+    <ClCompile Include="source\function\ParticleManager.cpp" />
     <ClCompile Include="source\function\Shake.cpp" />
     <ClCompile Include="source\math\AMath.cpp" />
     <ClCompile Include="source\collision\PlayerCollision.cpp" />
@@ -314,6 +317,7 @@
     <ClCompile Include="source\ui\EndingUI.cpp" />
     <ClCompile Include="source\ui\Fade.cpp" />
     <ClCompile Include="source\ui\HPGaugeUI.cpp" />
+    <ClCompile Include="source\ui\MenuParticle.cpp" />
     <ClCompile Include="source\ui\Number.cpp" />
     <ClCompile Include="source\ui\OptionSelectUI.cpp" />
     <ClCompile Include="source\ui\OptionUI.cpp" />
@@ -370,6 +374,9 @@
     <ClInclude Include="header\data\stream\StageReader.h" />
     <ClInclude Include="header\data\stream\StatusConverter.h" />
     <ClInclude Include="header\data\stream\StatusReader.h" />
+    <ClInclude Include="header\function\Particle.h" />
+    <ClInclude Include="header\function\ParticleData.h" />
+    <ClInclude Include="header\function\ParticleManager.h" />
     <ClInclude Include="header\function\Shake.h" />
     <ClInclude Include="header\math\AMath.h" />
     <ClInclude Include="header\actor\Actor.h" />
@@ -584,6 +591,7 @@
     <ClInclude Include="header\ui\Fade.h" />
     <ClInclude Include="header\ui\HPGaugeUI.h" />
     <ClInclude Include="header\ui\IPlayUI.h" />
+    <ClInclude Include="header\ui\MenuParticle.h" />
     <ClInclude Include="header\ui\MoveText.h" />
     <ClInclude Include="header\ui\Number.h" />
     <ClInclude Include="header\ui\PadSelectUI.h" />

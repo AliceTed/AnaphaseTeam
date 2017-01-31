@@ -26,12 +26,15 @@ void EndingUI::update(float deltatime)
 {
 	m_credit.update(deltatime);
 	m_still.update(deltatime);
+	m_staffRoll.update(deltatime);
 }
 
 void EndingUI::draw(IRenderer* _renderer)
 {
-	m_credit.draw(_renderer);
+	if(m_staffRoll.isEnd())
+	{
 	m_still.draw(_renderer);
+	}
 	m_staffRoll.draw(_renderer);
 }
 

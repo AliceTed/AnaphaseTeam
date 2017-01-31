@@ -1,6 +1,7 @@
 #pragma once
 #include "SelectUI.h"
 #include "Fade.h"
+#include "MenuParticle.h"
 //class Title;
 class Menu;
 
@@ -19,5 +20,6 @@ private:
 private:
 	SelectUI m_select;
 	Fade m_fade;
+	MenuParticle m_menuParticle;
 };
 

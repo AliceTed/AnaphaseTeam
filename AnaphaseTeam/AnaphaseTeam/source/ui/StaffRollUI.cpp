@@ -4,11 +4,15 @@
 
 #include <vector>
 #include <sstream>
+#include <algorithm>
 
-static const GSvector2 m_strat = GSvector2(0,80);
-static const GSvector2 m_end = GSvector2(200, 0);
+static const GSvector2 m_strat = GSvector2(500, 730);
+static const GSvector2 m_end = GSvector2(500, -10);
 
 StaffRollUI::StaffRollUI()
+	:m_texts(),
+	m_words(),
+	m_timer(1)
 {
 }
 
@@ -23,24 +27,33 @@ void StaffRollUI::initilize()
 
 void StaffRollUI::update(float _deltaTime)
 {
-	/*for (auto i : m_texts)
+	m_timer.update(_deltaTime);
+	for (auto& i : m_texts)
 	{
 		i.update(_deltaTime);
-	}*/
+	}
+	createText();
+	remove();
 }
 
 void StaffRollUI::draw(IRenderer * _renderer)
 {
-	for (auto i : m_texts)
+	for (auto& i : m_texts)
 	{
 		i.draw(_renderer);
 	}
 }
 
+bool StaffRollUI::isEnd() const
+{
+	return m_words.empty() && m_texts.empty();
+}
+
 void StaffRollUI::read()
 {
-	m_words.clear();
-	m_texts.clear();
+	/*m_words.clear();
+	m_texts.clear();*/
+	m_words.emplace_back("STAFFROLL");
 	m_words.emplace_back("Íéì°Å@ï‡");
 	m_words.emplace_back("èºîˆÅ@óTñÁ");
 	m_words.emplace_back("ãvèHÅ@âÎ");
@@ -58,13 +71,21 @@ void StaffRollUI::read()
 	m_words.emplace_back("http://www.flickr.com/photos/karen_roe/7881746364/ by Karen Roe (modified by Ç†Ç‚Ç¶Ç‡å§ãÜèä)");
 	m_words.emplace_back("is licensed under a Creative Commons license:");
 	m_words.emplace_back("http://creativecommons.org/licenses/by/2.0/deed.en");
+}
 
-	//m_texts.emplace_back(MoveText(m_words[0], m_strat, m_end, 10));
-	//m_texts.emplace_back(MoveText(m_words[1], m_strat, m_end, 64));
-	//m_texts.emplace_back(MoveText(m_words[2], m_strat, m_end, 64));
+void StaffRollUI::createText()
+{
+	if (!m_timer.isEnd())return;
+	if (m_words.empty())return;
+	m_timer.initialize();
+	auto first = m_words.begin();
+	m_texts.emplace_back(MoveText(*first, m_strat, m_end, 35));
+	m_words.erase(first);
 
-	for (int i = 0; i < m_words.size(); i++)
+}
+
+void StaffRollUI::remove()
 	{
-		m_texts.emplace_back(MoveText(m_words[i], GSvector2(30,10+(i*25)), m_end, 20));
-	}
+	auto itr = std::remove_if(m_texts.begin(), m_texts.end(), [](MoveText& _text) {return _text.isEnd(); });
+	m_texts.erase(itr, m_texts.end());
 }

@@ -33,6 +33,10 @@ void Menu::update(float deltaTime)
 
 void Menu::draw(IRenderer * _renderer)
 {
+	SpriteRenderDesc desc;
+	desc.textureID = static_cast<GSuint>(TEXTURE_ID::MENU_BACKGROUND);
+	_renderer->render(desc);
+
 	m_menu.draw(_renderer);
 	m_change.draw(_renderer);
 }

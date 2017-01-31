@@ -75,6 +75,7 @@ void Load::loadTextrue()
 	tex(TEXTURE_ID::GAMESTART, "TitleUI_START");
 	tex(TEXTURE_ID::PRESSKEY, "TitleUI_PressKey");
 	tex(TEXTURE_ID::TITLE_ROGO, "TitleRogo_Black");
+	tex(TEXTURE_ID::MENU_BACKGROUND, "menu_background");
 	tex(TEXTURE_ID::OPTION_BACKGROUND, "option_background");
 	tex(TEXTURE_ID::PAD_A, "pad");
 	tex(TEXTURE_ID::PAD_B, "pad");
@@ -107,6 +108,8 @@ void Load::loadTextrue()
 	tex(TEXTURE_ID::RANK, "UI_Rank");
 	tex(TEXTURE_ID::TARGETMARKER, "targetmarker");
 	tex(TEXTURE_ID::AURA, "aura");
+
+	tex(TEXTURE_ID::PARTICLE, "particle");
 }
 void Load::loadSound()
 {
