@@ -2,7 +2,6 @@
 #include "../../header/renderer/IRenderer.h"
 #include "../../header/renderer/define/SpriteRenderDesc.h"
 #include "../../header/renderer/define/SpriteRectRenderDesc.h"
-#include "../../header/ui/alpha.h"
 
 #include <sstream>
 #include <string>

@@ -8,10 +8,10 @@ class Rank
 {
 	enum class RANK : int
 	{
-		S = 100,
-		A = 80,
-		B = 50,
-		C = 30,
+		S = 30,
+		A = 20,
+		B = 10,
+		C = 5,
 		D = 0,
 	};
 

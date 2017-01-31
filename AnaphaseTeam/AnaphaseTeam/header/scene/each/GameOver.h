@@ -1,14 +1,13 @@
-#ifndef _TITLE_H_
-#define _TITLE_H_
-#include "../IScene.h"
+#pragma once
+#include "scene\IScene.h"
 #include "../SceneChange.h"
-#include "../../ui/Flash.h"
+#include "../header/ui/Flash.h"
 
-class Title :public IScene
+class GameOver : public IScene
 {
 public:
-	Title();
-	~Title();
+	GameOver();
+	~GameOver();
 	void initialize();
 	void update(float _deltaTime);
 	void draw(IRenderer * _renderer);
@@ -16,11 +15,10 @@ public:
 	const SceneMode next()const;
 	const bool isEnd()const;
 	const bool isExit()const;
+	void count();
 private:
-	bool m_IsExit;
+	void change();
+private:
 	SceneChange m_change;
 	Flash m_pressKey;
-	//
-	float m_time;
 };
-#endif

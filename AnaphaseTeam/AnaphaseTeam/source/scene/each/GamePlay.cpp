@@ -38,8 +38,8 @@ void GamePlay::update(float deltaTime)
 	//ƒ|[ƒY
 	if (!m_pause.isPause())
 	{
-	m_stage->update(deltaTime);
-	m_change.update(deltaTime);
+		m_stage->update(deltaTime);
+		m_change.update(deltaTime);
 		endingScene();
 	}
 	m_pause.update(deltaTime);
@@ -80,7 +80,12 @@ const bool GamePlay::isExit() const
 
 void GamePlay::endingScene()
 {
-	if (!m_stage->isClear() && !m_stage->isDead())
+	if (m_stage->isDead())
+	{
+		m_change.end(SceneMode::GAMEOVER);
+		return;
+	}
+	if (!m_stage->isClear())
 	{
 		return;
 	}

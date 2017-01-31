@@ -8,7 +8,7 @@
 Title::Title()
 	:m_IsExit(false),
 	m_change(),
-	m_pressKey(TEXTURE_ID::PRESSKEY, GSvector2(40, 600), 1.0f),
+	m_pressKey(TEXTURE_ID::PRESSKEY, GSvector2(40, 600), Flash::Param(0.05f)),
 	m_time(0.0f)
 {
 }
@@ -35,7 +35,7 @@ void Title::update(float _deltaTime)
 		m_change.end(SceneMode::MENU);
 		GameDevice::getInstacnce().sound().playSE(SE_ID::ENTER);
 	}
-	m_pressKey.flashing(0.7f);
+	m_pressKey.update(_deltaTime);
 }
 
 void Title::draw(IRenderer * _renderer)

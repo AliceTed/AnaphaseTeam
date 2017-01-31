@@ -25,15 +25,15 @@ void Ending::initialize()
 	m_change.initialize();
 	m_change.begin();
 	m_endUI.initilize();
+	m_count = 0;
 }
 
 void Ending::update(float _deltaTime)
 {
 	if (m_change.update(_deltaTime))return;
 	m_endUI.update(_deltaTime);
-	if (!m_endUI.isNext()) {
-		m_change.end(SceneMode::TITLE);
-	}
+	
+	endScene();
 
 }
 
@@ -68,14 +68,23 @@ const bool Ending::isExit() const
 	return false;
 }
 
-void Ending::count()
+void Ending::endScene()
 {
-	if (GameDevice::getInstacnce().input()->jump())
+	if (m_endUI.isEnd())
 	{
-		m_count += 1;
+		if (GameDevice::getInstacnce().input()->jump())
+		{
+			m_change.end(SceneMode::TITLE);
+		}
 	}
 
-	if (m_count >= 3)
+	if (!m_endUI.isEnd())return;
+	if (GameDevice::getInstacnce().input()->jump())
+	{
+		m_count++;
+	}
+
+	if (m_count >= 2)
 	{
 		m_change.end(SceneMode::TITLE);
 	}

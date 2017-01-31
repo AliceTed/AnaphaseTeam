@@ -35,16 +35,16 @@ void ResultManager::initilize()
 	m_rank.calc_Rank(m_scoreValue);
 	m_score.initialize();
 	m_createInterval.initialize();
-	m_resultUi.Initilize();
+	//m_resultUi.Initilize();
 }
 
 void ResultManager::update(float _deltaTime)
 {
-	if (!m_resultUi.isDead())
-	{
-		m_resultUi.update(_deltaTime);
-		return;
-	}
+	//if (!m_resultUi.isDead())
+	//{
+	//	m_resultUi.update(_deltaTime);
+	//	return;
+	//}
 	if (!m_score.isEnd())
 	{
 		m_score.update(1);
@@ -60,7 +60,7 @@ void ResultManager::update(float _deltaTime)
 	{
 		m_createInterval.update(1);
 		Math::Random rand;
-		SoulPtr soul = std::make_shared<Soul>(m_soulPos[rand(0, 24)], GSvector2(310, 300), 2);
+		SoulPtr soul = std::make_shared<Soul>(m_soulPos[rand(0, 24)], GSvector2(400, 400), 2);
 		m_soul.add(soul);
 		return;
 	}
@@ -70,9 +70,9 @@ void ResultManager::update(float _deltaTime)
 
 void ResultManager::draw(IRenderer * _renderer)
 {
-	m_resultUi.draw(_renderer);
-	if (m_resultUi.isDead())
-	{
+	//m_resultUi.draw(_renderer);
+	//if (m_resultUi.isDead())
+	//{
 		m_score.accept([&](float _time, float _endtime)
 		{
 			NumberSpriteRenderDesc desc;
@@ -84,7 +84,7 @@ void ResultManager::draw(IRenderer * _renderer)
 			desc.textureID = static_cast<GSuint>(TEXTURE_ID::NUMBER);
 			_renderer->render(desc);
 		});
-	}
+	//}
 
 	m_soul.draw(_renderer);
 
@@ -121,7 +121,7 @@ void ResultManager::read()
 	std::stringstream ss(data[0]);
 
 	ss >> m_scoreValue;
-	m_scoreValue = 150;
+	//m_scoreValue = 150;
 
 	float end = m_scoreValue / 60.0f;
 	m_score.setEndTime(end);

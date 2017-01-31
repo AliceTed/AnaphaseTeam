@@ -2,7 +2,6 @@
 #define _ENDING_H_
 #include "../IScene.h"
 #include "../SceneChange.h"
-#include "../../ui/alpha.h"
 #include "../../ui/EndingUI.h"
 
 class Ending : public IScene
@@ -17,7 +16,7 @@ public:
 	const SceneMode next()const;
 	const bool isEnd()const;
 	const bool isExit()const;
-	void count();
+	void endScene();
 private:
 	bool m_IsEnd;
 	SceneChange m_change;

@@ -19,6 +19,11 @@ void Goblin::EDownState::start()
 void Goblin::EDownState::action(float deltaTime)
 {
 	ptr(deltaTime);//std::functionŒÄ‚Ño‚µ
+	if (m_actor->m_status.getHp() <= 0)
+	{
+		changeState(ACTOR_STATE::EDEAD);
+		m_actor->m_collision.clear();
+	}
 }
 
 void Goblin::EDownState::stand(float deltaTime)

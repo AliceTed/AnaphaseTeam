@@ -801,9 +801,6 @@
     <ClInclude Include="header\scene\each\Menu.h">
       <Filter>ヘッダー ファイル\scene\each</Filter>
     </ClInclude>
-    <ClInclude Include="header\ui\alpha.h">
-      <Filter>ヘッダー ファイル\ui</Filter>
-    </ClInclude>
     <ClInclude Include="header\ui\EndingUI.h">
       <Filter>ヘッダー ファイル\ui</Filter>
     </ClInclude>
@@ -1080,6 +1077,12 @@
     <ClInclude Include="header\ui\MenuParticle.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
+    <ClInclude Include="header\scene\each\GameOver.h">
+      <Filter>ヘッダー ファイル\scene\each</Filter>
+    </ClInclude>
+    <ClInclude Include="header\ui\Flash.h">
+      <Filter>ヘッダー ファイル\ui</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="source\main.cpp">
@@ -1351,9 +1354,6 @@
     </ClCompile>
     <ClCompile Include="source\scene\each\Menu.cpp">
       <Filter>ソース ファイル\scene\each</Filter>
-    </ClCompile>
-    <ClCompile Include="source\ui\alpha.cpp">
-      <Filter>ソース ファイル\ui</Filter>
     </ClCompile>
     <ClCompile Include="source\ui\EndingUI.cpp">
       <Filter>ソース ファイル\ui</Filter>
@@ -1669,6 +1669,12 @@
     </ClCompile>
     <ClCompile Include="source\ui\MenuParticle.cpp">
       <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="source\scene\each\GameOver.cpp">
+      <Filter>ソース ファイル\scene\each</Filter>
+    </ClCompile>
+    <ClCompile Include="source\ui\Flash.cpp">
+      <Filter>ソース ファイル\ui</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

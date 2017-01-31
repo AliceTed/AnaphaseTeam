@@ -10,4 +10,5 @@ enum class SceneMode
 	ENDING,
 	GAMECLEAR,
 	RESULT,
+	GAMEOVER
 };
