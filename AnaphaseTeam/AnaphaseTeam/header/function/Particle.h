@@ -48,4 +48,6 @@ public:
 private:
 	TEXTURE_ID m_texID;
 	GSvector3 m_pos;
+	GSvector3 m_pos_offset;
+	float m_time;
 };
