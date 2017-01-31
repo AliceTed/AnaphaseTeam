@@ -45,9 +45,16 @@ public:
 	@param _renderer
 	*/
 	void draw(IRenderer* _renderer);
+	/**
+	@fn
+	@brief €‚ñ‚¾‚©H
+	@return €‚ñ‚¾‚©H
+	*/
+	bool isDead();
 private:
 	TEXTURE_ID m_texID;
 	GSvector3 m_pos;
 	GSvector3 m_pos_offset;
 	float m_time;
+	bool m_isDead;
 };
