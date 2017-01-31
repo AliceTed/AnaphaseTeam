@@ -14,11 +14,9 @@ private:
 public:
 	ParticleData();
 	~ParticleData();
-	void initialize();
 	void update(float _deltaTime);
 	void draw(IRenderer* _renderer);
 	void add(Particle _object);
-	void remove(ParticleContaner _itr);
 private:
 	ParticleContaner m_particles;
 };

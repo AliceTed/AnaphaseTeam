@@ -30,11 +30,6 @@ public:
 	~Particle();
 	/**
 	@fn
-	@brief ‰Šú‰»
-	*/
-	void initialize();
-	/**
-	@fn
 	@brief XV
 	@param _deltaTime
 	*/

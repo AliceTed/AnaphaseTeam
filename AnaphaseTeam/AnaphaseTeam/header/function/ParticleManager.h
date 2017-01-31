@@ -6,7 +6,11 @@
 */
 #pragma once
 
+#include <memory>
+
 class IRenderer;
+class ParticleData;
+class Timer;
 
 class ParticleManager
 {
@@ -16,4 +20,7 @@ public:
 	void initialize();
 	void update(float _deltaTime);
 	void draw(IRenderer* _renderer);
+private:
+	std::shared_ptr<ParticleData> m_particleData;
+	std::shared_ptr<Timer> m_timer;
 };

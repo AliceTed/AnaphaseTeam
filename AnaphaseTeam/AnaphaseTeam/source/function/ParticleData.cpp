@@ -12,16 +12,6 @@ ParticleData::~ParticleData()
 {
 }
 
-void ParticleData::initialize()
-{
-	ParticleContaner::iterator itr = m_particles.begin();
-	while (itr != m_particles.end())
-	{
-		(*itr)->initialize();
-		itr++;
-	}
-}
-
 void ParticleData::update(float _deltaTime)
 {
 	//XV

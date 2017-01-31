@@ -18,11 +18,6 @@ Particle::~Particle()
 {
 }
 
-//‰Šú‰»
-void Particle::initialize()
-{
-}
-
 //XV
 void Particle::update(float _deltaTime)
 {

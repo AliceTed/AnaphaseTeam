@@ -11,8 +11,7 @@
 #include "data/id/TEXTURE_ID.h"
 
 class IRenderer;
-class ParticleData;
-
+class ParticleManager;
 /**
 @class
 @brief メニュー用パーティクル
@@ -50,5 +49,5 @@ public:
 	*/
 	void finish();
 private:
-	std::unique_ptr<ParticleData> m_particle;
+	std::unique_ptr<ParticleManager> m_particle;
 };
