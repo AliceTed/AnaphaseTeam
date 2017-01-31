@@ -53,7 +53,7 @@ void Load::finish()
 const SceneMode Load::next() const
 {
 #ifdef _DEBUG
-	return SceneMode::GAMEPLAY;
+	return SceneMode::TITLE;
 #endif // DEBUG
 
 	return SceneMode::OPENING;
@@ -150,6 +150,7 @@ void Load::loadMyAnimation()
 }
 
 void Load::loadEffect()
-{
-	EffectManager::getInstance().loadEffect(EFFECT_ID::ATTACK_1, reinterpret_cast<const std::string*>(L"././res/effect/Attack_2effect.efk"));
+{	
+	EffectManager::getInstance().loadEffect(EFFECT_ID::TITLE_BACK, reinterpret_cast<const std::string*>(L"././res/effect/Effect_TitleBack.efk"));
+	EffectManager::getInstance().loadEffect(EFFECT_ID::PLAYER_ATTACK, reinterpret_cast<const std::string*>(L"././res/effect/Player_Attack.efk"));
 }

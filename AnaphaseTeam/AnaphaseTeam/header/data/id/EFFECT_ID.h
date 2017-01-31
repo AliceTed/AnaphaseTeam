@@ -2,7 +2,8 @@
 
 enum class EFFECT_ID :unsigned int
 {
-	ATTACK_1,
+	TITLE_BACK,
+	PLAYER_ATTACK,
 	SIZE
 
 };

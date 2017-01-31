@@ -46,7 +46,7 @@
 #include "../../../header/ui/UIManager.h"
 
 #include "../../../header/data/stream/StatusReader.h"
-
+#include "effect\EffectManager.h"
 const float Player::ROTATESPEED = -2.0f;
 Player::Player(const Transform& _t,Camera * _camera, LockOn* _lockon)
 	:Actor(
@@ -118,6 +118,8 @@ void Player::initialize()
 }
 void Player::update(float deltatime)
 {
+	GSvector3 p(-50,1,30);
+	EffectManager::getInstance().effectPlay(EFFECT_ID::PLAYER_ATTACK,p);
 	action(deltatime);
 	m_animatorOne.update(deltatime);
 	m_scythe.update(deltatime, m_animatorOne, m_transform);
@@ -214,7 +216,7 @@ void Player::specialSkill()
 
 void Player::damage(const AttackStatus & _attackStatus)
 {
-	m_status.down(_attackStatus.m_power);
+	m_status.down(_attackStatus.m_power);	
 }
 
 AttackStatus Player::status()

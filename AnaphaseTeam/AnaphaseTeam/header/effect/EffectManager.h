@@ -21,7 +21,7 @@ public:
 	// デストラクタ
 	~EffectManager();
 	// エフェクト読み込み
-	void loadEffect(EFFECT_ID _id, const std::string* _name);
+	void loadEffect(EFFECT_ID _id, const std::string* _name,float scale=1.0f);
 	// 更新
 	void update();
 	// 描画
@@ -29,21 +29,8 @@ public:
 	// エフェクト再生
 	void effectPlay(EFFECT_ID _id, GSvector3 _position);
 
-	int gethandlsize() 
-	{
-		return m_handleContainer.size();
-	}
-
-	void setpos(EFFECT_ID id, GSvector3 p)
-	{
-		if (m_handleContainer.count(id) == 0)return;
-		Effekseer::Vector3D v;
-		v.X = p.x;
-		v.Y = p.y;
-		v.Z = p.z;
-
-		manager->SetLocation(m_handleContainer[id], v);
-	}
+	void clear();
+	void release(EFFECT_ID _id);
 private:
 	template< typename ContainerT, typename PredicateT >
 	void erase_if(ContainerT& items, const PredicateT& predicate) 

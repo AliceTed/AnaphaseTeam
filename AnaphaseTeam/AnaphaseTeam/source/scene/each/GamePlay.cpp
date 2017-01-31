@@ -4,8 +4,7 @@
 #include "stage/Stage.h"
 #include "stage/StageData.h"
 #include "data/stream/StageReader.h"
-#include "effect\EffectManager.h"
-#include "data\id\EFFECT_ID.h"
+
 GamePlay::GamePlay()
 	:m_change(),
 	m_pause(m_change),//ƒ|[ƒY
@@ -30,7 +29,6 @@ void GamePlay::initialize()
 	StageReader reader;
 	reader(&data, "stage");
 	m_stage = std::make_unique<Stage>(data);
-	EffectManager::getInstance().effectPlay(EFFECT_ID::ATTACK_1, GSvector3(-50, 0, 30));
 
 }
 
@@ -43,7 +41,6 @@ void GamePlay::update(float deltaTime)
 	m_stage->update(deltaTime);
 	m_change.update(deltaTime);
 
-	EffectManager::getInstance().update();
 	
 	if (m_stage->isClear()||m_stage->isDead())
 	{
@@ -54,7 +51,6 @@ void GamePlay::draw(IRenderer * _renderer)
 {
 	m_stage->draw(_renderer);
 	m_change.draw(_renderer);
-	EffectManager::getInstance().draw();
 	m_pause.draw(_renderer);
 }
 

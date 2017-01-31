@@ -49,8 +49,7 @@ public:
 	virtual Ray caluclateRay(const Vector2&screenPosition) = 0;
 	//メッシュの描画
 	virtual void render(const MeshRenderDesc& desc) = 0;
-	//アニメーションするメッシュの描画
-	virtual void render(const AnimationRenderDesc& desc) = 0;
+
 	//シェーダを使用したアニメーションの描画
 	virtual void render(const SkinnedMeshRenderDesc& desc) = 0;
 	//ビルボードの描画

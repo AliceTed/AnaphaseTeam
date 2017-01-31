@@ -49,7 +49,7 @@ const bool Segment::isCollision(const Shape * _shape, GSvector3* _out) const
 void Segment::draw(IRenderer * renderer, const GScolor & color)
 {
 	//renderer.getDraw3D().drawLine(&m_begin, &end(), color, 2);
-	GSvector3 p1 = m_begin,p2=end();
+	/*GSvector3 p1 = m_begin,p2=end();
 	glPushMatrix();
 	glLineWidth(2);
 	glMaterialfv(GL_FRONT, GL_DIFFUSE, color);
@@ -58,7 +58,7 @@ void Segment::draw(IRenderer * renderer, const GScolor & color)
 	glVertex3f(p2.x, p2.y, p2.z);
 	glEnd();
 	glLineWidth(1.0f);
-	glPopMatrix();
+	glPopMatrix();*/
 }
 
 const bool Segment::isCollisionSphere(const GSvector3& _center, float _radius, GSvector3* _out) const

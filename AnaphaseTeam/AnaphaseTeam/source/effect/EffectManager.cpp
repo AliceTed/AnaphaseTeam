@@ -31,9 +31,9 @@ EffectManager::~EffectManager()
 	end();
 }
 /* 読み込み処理 */
-void EffectManager::loadEffect(EFFECT_ID _id, const std::string* _name)
+void EffectManager::loadEffect(EFFECT_ID _id, const std::string* _name, float _scale)
 {
-	m_effectContainer.insert(std::make_pair(_id, Effekseer::Effect::Create(manager, (const EFK_CHAR*)_name)));
+	m_effectContainer.insert(std::make_pair(_id, Effekseer::Effect::Create(manager, (const EFK_CHAR*)_name,_scale)));
 }
 /* 初期化処理 */
 void EffectManager::initialize()
@@ -83,18 +83,34 @@ void EffectManager::end()
 	manager->Destroy();
 	// 描画用インスタンスを破棄
 	renderer->Destory();
-	for (auto & i : m_effectContainer)
-	{
-		// エフェクト解放
-		// 再生中の場合は、再生が終了した後、自動的に解放されます。
-		ES_SAFE_RELEASE(i.second);
-	}
+	clear();
 }
 
 /* エフェクト再生 */
 void EffectManager::effectPlay(EFFECT_ID _id, GSvector3 _pos)
 {
 	m_handleContainer[_id] = manager->Play(m_effectContainer[_id], _pos.x, _pos.y, _pos.z);
+}
+
+void EffectManager::clear()
+{
+	for (auto & i : m_effectContainer)
+	{
+		// エフェクト解放
+		// 再生中の場合は、再生が終了した後、自動的に解放されます。
+		manager->StopEffect(m_handleContainer[i.first]);
+		ES_SAFE_RELEASE(i.second);
+	}
+	m_effectContainer.clear();
+	//	manager->AddLocation(handle, ::Effekseer::Vector3D(0.0f, 0.0f, 0.0f));
+	erase_if(m_handleContainer, [&](auto& p) {return !manager->Exists(p.second); });
+}
+
+void EffectManager::release(EFFECT_ID _id)
+{
+	ES_SAFE_RELEASE(m_effectContainer[_id]);
+	m_handleContainer.erase(_id);
+	m_effectContainer.erase(_id);
 }
 
 /* 各種行列の設定 */

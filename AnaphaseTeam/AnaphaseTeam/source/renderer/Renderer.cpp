@@ -156,11 +156,11 @@ void Renderer::render(const MeshRenderDesc & desc)
 	//透視変換行列の設定
 	glMatrixMode(GL_PROJECTION);
 	glPushMatrix();
-	glLoadMatrixf((GLfloat*)&mProjectionMatrix);
+	glLoadMatrixf((GLfloat*)&getProjectionMatrix());
 	//視野変換行列の設定
 	glMatrixMode(GL_MODELVIEW);
 	glPushMatrix();
-	glLoadMatrixf((GLfloat*)&mViewMatrix);
+	glLoadMatrixf((GLfloat*)&getViewMatrix());
 	//ライトの座標設定
 	GLfloat lightPosition[] = {
 		mLight.position.x,
@@ -178,45 +178,10 @@ void Renderer::render(const MeshRenderDesc & desc)
 	glMatrixMode(GL_PROJECTION);
 	glPopMatrix();
 	glMatrixMode(GL_MODELVIEW);
-
 	glPopMatrix();
 	//レンダリングモード復帰
 	glPopAttrib();
 }
-
-void Renderer::render(const AnimationRenderDesc & desc)
-{	
-	//各種レンダリングモード退避
-	glPushAttrib(GL_ENABLE_BIT | GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-	
-	//ブレンド方法の設定
-	setBlendFunc(desc.blendFunc);
-	//カラーの設定
-	glColor4fv((GLfloat*)&desc.color);
-	//透視変換行列の設定
-	glMatrixMode(GL_PROJECTION);
-	glLoadMatrixf((GLfloat*)&mProjectionMatrix);
-	//視野変換行列の設定
-	glMatrixMode(GL_MODELVIEW);
-	glLoadMatrixf((GLfloat*)&mViewMatrix);
-	//ライトの座標設定
-	GLfloat lightPosition[] = {
-		mLight.position.x,
-		mLight.position.y,
-		mLight.position.z,
-		0.0f
-	};
-	glEnable(GL_LIGHTING);
-	glLightfv(GL_LIGHT0, GL_POSITION, lightPosition);
-	glEnable(GL_LIGHT0);
-	//メッシュ描画
-	glMultMatrixf((GLfloat*)&desc.matrix);
-	gsMeshDrawSkin(gsGetMesh(desc.meshID), desc.animation);
-	
-	//レンダリングモード復帰
-	glPopAttrib();
-}
-
 void Renderer::render(const SkinnedMeshRenderDesc & desc)
 {
 	//nsight
@@ -229,8 +194,8 @@ void Renderer::render(const SkinnedMeshRenderDesc & desc)
 	gsSetShaderParam4f("u_lightSpecular", &mLight.specular);
 
 	gsSetShaderParamMatrix4("u_matWorld", &desc.matrix);
-	gsSetShaderParamMatrix4("u_matView", &mViewMatrix);
-	gsSetShaderParamMatrix4("u_matProjection", &mProjectionMatrix);
+	gsSetShaderParamMatrix4("u_matView", &getViewMatrix());
+	gsSetShaderParamMatrix4("u_matProjection", &getProjectionMatrix());
 	gsSetShaderParamTexture("u_baseMap", 0);
 	gsSetShaderParamTexture("u_normalMap", 1);
 	gsSetShaderParam4f("u_color",&desc.color);
@@ -270,14 +235,20 @@ void Renderer::render(const BillBoardRenderDesc & desc)
 
 	//透視変換行列の設定
 	glMatrixMode(GL_PROJECTION);
+	glPushMatrix();
 	glLoadMatrixf((GLfloat*)&mProjectionMatrix);
 	//視野変換行列の設定
 	glMatrixMode(GL_MODELVIEW);
+	glPushMatrix();
 	glLoadMatrixf((GLfloat*)&matModelView);
 
 	//テクスチャのレンダリングを行う
 	renderTexture(desc.textureID, desc.rect, desc.srcRect, desc.color);
 
+	glMatrixMode(GL_PROJECTION);
+	glPopMatrix();
+	glMatrixMode(GL_MODELVIEW);
+	glPopMatrix();
 	//レンダリングモード復帰
 	glPopAttrib();
 }
@@ -326,7 +297,6 @@ void Renderer::render(const SpriteRenderDesc & desc)
 
 void Renderer::render(const SpriteRectRenderDesc & desc)
 {
-	return;
 	// 各種レンダリングモードの退避
 	glPushAttrib(GL_ENABLE_BIT | GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
@@ -375,7 +345,6 @@ void Renderer::render(const SpriteRectRenderDesc & desc)
 
 void Renderer::render(const NumberSpriteRenderDesc & desc)
 {
-	return;
 	//各種レンダリングモード退避
 	glPushAttrib(GL_ENABLE_BIT | GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	
@@ -415,14 +384,13 @@ void Renderer::render(const NumberSpriteRenderDesc & desc)
 
 void Renderer::render(const StringRenderDesc & desc)
 {
-	return;
 	//各種レンダリングモード退避
 	glPushAttrib(GL_ENABLE_BIT | GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	
 	//文字色の設定
 	glColor4fv((GLfloat*)&desc.color);
 
-	//文字フォントの設定
+	//文字フォントの設E定
 	gsFontParameter(
 		desc.font.code,
 		desc.font.size,
@@ -455,6 +423,7 @@ void Renderer::render(const RectangleRenderDesc & desc)
 
 	//透視変換行列の設定
 	glMatrixMode(GL_PROJECTION);
+	glPushMatrix();
 	glLoadIdentity();
 	gluOrtho2D(0, mViewport.width, mViewport.height, 0);
 
@@ -466,6 +435,8 @@ void Renderer::render(const RectangleRenderDesc & desc)
 	glVertex2f(desc.rect.right, desc.rect.bottom);
 	glVertex2f(desc.rect.right, desc.rect.top);
 	glEnd();
+
+	glPopMatrix();
 
 	//レンダリングモード復帰
 	glPopAttrib();
@@ -481,9 +452,11 @@ void Renderer::render(const OctreeRenderDesc & desc)
 	glColor4fv((GLfloat*)&desc.color);
 	//透視変換行列の設定
 	glMatrixMode(GL_PROJECTION);
+	glPushMatrix();
 	glLoadMatrixf((GLfloat*)&mProjectionMatrix);
 	//視野変換行列の設定
 	glMatrixMode(GL_MODELVIEW);
+	glPushMatrix();
 	glLoadMatrixf((GLfloat*)&mViewMatrix);
 	//ライトの座標設定
 	GLfloat lightPosition[] = {
@@ -497,7 +470,11 @@ void Renderer::render(const OctreeRenderDesc & desc)
 	glEnable(GL_LIGHT0);
 
 	gsDrawOctree(desc.octreeID);	
-	
+	glMatrixMode(GL_PROJECTION);
+	glPopMatrix();
+	//視野変換行列の設定
+	glMatrixMode(GL_MODELVIEW);
+	glPopMatrix();
 	//レンダリングモード復帰
 	glPopAttrib();
 }
@@ -513,9 +490,11 @@ void Renderer::render(const SkyBoxRenderDesc & desc)
 	glColor4fv((GLfloat*)&desc.color);
 	//透視変換行列の設定
 	glMatrixMode(GL_PROJECTION);
+	glPushMatrix();
 	glLoadMatrixf((GLfloat*)&mProjectionMatrix);
 	//視野変換行列の設定
 	glMatrixMode(GL_MODELVIEW);
+	glPushMatrix();
 	glLoadMatrixf((GLfloat*)&mViewMatrix);
 	//ライトの座標設定
 	GLfloat lightPosition[] = {
@@ -531,6 +510,11 @@ void Renderer::render(const SkyBoxRenderDesc & desc)
 	glMultMatrixf((GLfloat*)&desc.matrix);
 	gsDrawSkyBox(desc.meshID);
 	
+	glMatrixMode(GL_PROJECTION);
+	glPopMatrix();
+	//視野変換行列の設定
+	glMatrixMode(GL_MODELVIEW);
+	glPopMatrix();
 	//レンダリングモード復帰
 	glPopAttrib();
 }
