@@ -64,11 +64,11 @@ const bool Sphere::isCollision(const Shape * _shape, GSvector3* _out) const
 void Sphere::draw(IRenderer * renderer, const GScolor& color)
 {
 	//renderer.getDraw3D().drawSphere(&center, radius, color);
-	glPushMatrix();
-	glTranslatef(center.x, center.y, center.z);
-	glMaterialfv(GL_FRONT, GL_DIFFUSE, color);
-	glutSolidSphere(radius, 20, 20);
-	glPopMatrix();
+	//glPushMatrix();
+	///*glTranslatef(center.x, center.y, center.z);
+	//glMaterialfv(GL_FRONT, GL_DIFFUSE, color);
+	//glutSolidSphere(radius, 20, 20);*/
+	//glPopMatrix();
 }
 
 const bool Sphere::isInsideCameraView(const Camera & _camera) const

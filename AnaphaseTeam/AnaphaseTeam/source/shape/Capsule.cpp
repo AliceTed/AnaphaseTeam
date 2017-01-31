@@ -58,35 +58,36 @@ const bool Capsule::isCollision(const Shape * _shape, GSvector3* _out) const
 }
 void Capsule::draw(IRenderer * renderer, const GScolor& color)
 {
-	GSvector3 v = m_Segment.vector();
-	float ele = v.getPitch();
+	//GSvector3 v = m_Segment.vector();
+	//float ele = v.getPitch();
 
-	float dir =Math::Calculate::atan(v.x, v.z);
+	//Math::ATan aTan;
+	//float dir = aTan(v.x, v.z);
 
-	GLUquadricObj *qobj;
-	qobj = gluNewQuadric();
+	//GLUquadricObj *qobj;
+	//qobj = gluNewQuadric();
 
-	glPushMatrix();
-	GSvector3 pos = m_Segment.begin();
-	glTranslatef(pos.x, pos.y, pos.z);
+	//glPushMatrix();
+	///*GSvector3 pos = m_Segment.begin();
+	//glTranslatef(pos.x, pos.y, pos.z);
 
-	glRotatef(dir, 0.0f, 1.0f, 0.0f);
-	glRotatef(ele, 1.0f, 0.0f, 0.0f);
-	glRotatef(ele, 0.0f, 0.0f, 1.0f);
+	//glRotatef(dir, 0.0f, 1.0f, 0.0f);
+	//glRotatef(ele, 1.0f, 0.0f, 0.0f);
+	//glRotatef(ele, 0.0f, 0.0f, 1.0f);
 
-	glMaterialfv(GL_FRONT, GL_DIFFUSE, color);
-	gluQuadricDrawStyle(qobj, GLU_FILL);
-	gluQuadricNormals(qobj, GLU_SMOOTH);
-	gluCylinder(qobj, m_Radius, m_Radius, v.length(), 20, 20);
+	//glMaterialfv(GL_FRONT, GL_DIFFUSE, color);
+	//gluQuadricDrawStyle(qobj, GLU_FILL);
+	//gluQuadricNormals(qobj, GLU_SMOOTH);
+	//gluCylinder(qobj, m_Radius, m_Radius, v.length(), 20, 20);
 
-	glMaterialfv(GL_FRONT, GL_DIFFUSE, color);
-	glutSolidSphere(m_Radius, 20, 20);
+	//glMaterialfv(GL_FRONT, GL_DIFFUSE, color);
+	//glutSolidSphere(m_Radius, 20, 20);
 
-	glTranslatef(0, 0, v.length());
-	glMaterialfv(GL_FRONT, GL_DIFFUSE, color);
-	glutSolidSphere(m_Radius, 20, 20);
+	//glTranslatef(0, 0, v.length());
+	//glMaterialfv(GL_FRONT, GL_DIFFUSE, color);
+	//glutSolidSphere(m_Radius, 20, 20);*/
 
-	glPopMatrix();
+	//glPopMatrix();
 }
 
 const bool Capsule::isCollisionSphere(const GSvector3 & _center, float _radius, GSvector3* _out) const

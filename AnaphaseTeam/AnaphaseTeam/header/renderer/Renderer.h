@@ -33,8 +33,6 @@ public:
 
 	virtual void render(const MeshRenderDesc & desc) override;
 
-	virtual void render(const AnimationRenderDesc& desc)override;
-
 	virtual void render(const SkinnedMeshRenderDesc& desc)override;
 
 	virtual void render(const BillBoardRenderDesc & desc) override;
