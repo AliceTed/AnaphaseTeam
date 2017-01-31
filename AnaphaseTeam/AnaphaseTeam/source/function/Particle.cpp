@@ -1,6 +1,7 @@
 #include "function\Particle.h"
 #include "renderer\IRenderer.h"
 #include "renderer\define\SpriteRenderDesc.h"
+#include "renderer\define\BlendFunc.h"
 #include "math\Calculate.h"
 #include <random>
 
@@ -29,9 +30,9 @@ Particle::~Particle()
 void Particle::update(float _deltaTime)
 {
 	//¶‰E‚É—h‚ê‚éˆ—
-	float scale = 50.f;
+	/*float scale = 50.f;
 	m_time += _deltaTime;
-	m_pos_offset.x = Math::Calculate::cos(m_time) * scale;
+	m_pos_offset.x = Math::Calculate::cos(m_time) * scale;*/
 
 	//ã‚É—‚¿‚éˆ—
 	GSvector2 gravity = GSvector2(0.f, -1.f);
@@ -49,6 +50,8 @@ void Particle::draw(IRenderer * _renderer)
 	GSvector2 pos = m_pos + m_pos_offset;
 	SpriteRenderDesc desc;
 	desc.textureID = static_cast<GSuint>(m_texID);
+	desc.blendFunc = BlendFunc::ADD;
+	desc.color = Color4(1.f, 1.f, 1.f, 0.5f);
 	desc.matrix.setTranslation(GSvector3(pos.x, pos.y, 0.f));
 	_renderer->render(desc);
 }
