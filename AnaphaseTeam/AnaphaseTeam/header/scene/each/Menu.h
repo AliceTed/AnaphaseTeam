@@ -20,6 +20,7 @@ public:
 	void decision(Select _select);
 private:
 	bool m_IsExit;
+	MenuParticle m_menuParticle;
 	SceneChange m_change;
 	TitleUI m_menu;
 };

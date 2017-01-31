@@ -13,6 +13,7 @@ enum class TEXTURE_ID :unsigned int
 	CURSOR,
 	TITLE_ROGO,
 	CLEAR,
+	MENU_BACKGROUND,
 	OPTION_BACKGROUND,
 	PAD_A,
 	PAD_B,
@@ -48,7 +49,8 @@ enum class TEXTURE_ID :unsigned int
 	SMALL_NUMBER,
 	RANK,
 	AURA,
-	SIZE
+	SIZE,
 	
+	PARTICLE,
 };
 #endif

@@ -4,7 +4,8 @@
 #include "../../header/device/GameDevice.h"
 TitleUI::TitleUI()
 	:m_select(),
-	m_fade(TEXTURE_ID::BLACK)
+	m_fade(TEXTURE_ID::BLACK),
+	m_menuParticle()
 {
 }
 
@@ -17,16 +18,19 @@ void TitleUI::initialize()
 	createSelect();
 	m_fade.initialize();
 	//m_fade.start(GScolor(1.0f, 1.0f, 1.0f, 1.0f), GScolor(1.0f, 1.0f, 1.0f, 1.0f), 0);
+	m_menuParticle.initialize();
 }
 
 void TitleUI::update(float deltaTime)
 {
 	m_select.update(deltaTime);
 	m_fade.update(deltaTime);
+	m_menuParticle.update(deltaTime);
 }
 
 void TitleUI::draw(IRenderer* _renderer)
 {
+	m_menuParticle.draw(_renderer);
 	m_fade.draw(_renderer);
 	m_select.draw(_renderer);
 }
