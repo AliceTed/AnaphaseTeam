@@ -1,20 +1,17 @@
 #pragma once
 #include "../renderer/Renderer.h"
-#include "../ui/alpha.h"
+#include "../ui/Flash.h"
+
 class EndingUI
 {
 public:
 	EndingUI();
 	~EndingUI();
 	void initilize();
-	void update();
+	void update(float deltatime);
 	void draw(IRenderer* _renderer);
-	void creditSkip();
-	bool isNext();
 private:
 	GSvector3 m_position;
-	bool m_change;
-	int m_count;
-	alpha m_credit;
-	alpha m_still;
+	Flash m_credit;
+	Flash m_still;
 };

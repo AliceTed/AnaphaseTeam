@@ -2,7 +2,7 @@
 #define _TITLE_H_
 #include "../IScene.h"
 #include "../SceneChange.h"
-#include "../../ui/alpha.h"
+#include "../../ui/Flash.h"
 
 class Title :public IScene
 {
@@ -19,7 +19,7 @@ public:
 private:
 	bool m_IsExit;
 	SceneChange m_change;
-	alpha m_pressKey;
+	Flash m_pressKey;
 	//
 	float m_time;
 };

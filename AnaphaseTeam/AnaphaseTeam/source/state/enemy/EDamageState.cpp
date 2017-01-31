@@ -15,8 +15,7 @@ void Goblin::EDamageState::action(float deltaTime)
 	if (m_actor->m_animatorOne.isEndCurrentAnimation())
 	{
 		ACTOR_STATE next = m_actor->m_isDown ? ACTOR_STATE::EDOWN : ACTOR_STATE::ESTAND;
-		m_actor->changeState(next);
-	/*	if (m_actor->m_isDown)
+		m_actor->changeState(next);/*	if (m_actor->m_isDown)
 		{
 			m_actor->changeState(ACTOR_STATE::EDOWN);
 		}

@@ -30,8 +30,9 @@ void Ending::initialize()
 void Ending::update(float _deltaTime)
 {
 	if (m_change.update(_deltaTime))return;
-	m_endUI.update();
-	if (!m_endUI.isNext()) {
+	m_endUI.update(_deltaTime);
+	if (GameDevice::getInstacnce().input()->jump())
+	{
 		m_change.end(SceneMode::TITLE);
 	}
 

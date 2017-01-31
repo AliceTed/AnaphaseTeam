@@ -1,14 +1,13 @@
-#ifndef _ENDING_H_
-#define _ENDING_H_
-#include "../IScene.h"
+#pragma once
+#include "scene\IScene.h"
 #include "../SceneChange.h"
-#include "../../ui/EndingUI.h"
+#include "../header/ui/Flash.h"
 
-class Ending :public IScene
+class GameOver : public IScene
 {
 public:
-	Ending();
-	~Ending();
+	GameOver();
+	~GameOver();
 	void initialize();
 	void update(float _deltaTime);
 	void draw(IRenderer * _renderer);
@@ -18,10 +17,8 @@ public:
 	const bool isExit()const;
 	void count();
 private:
-	bool m_IsEnd;
+	void change();
+private:
 	SceneChange m_change;
-	EndingUI m_endUI;
-	bool m_nex;
-	int m_count;
+	Flash m_pressKey;
 };
-#endif
