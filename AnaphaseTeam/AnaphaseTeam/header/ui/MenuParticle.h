@@ -7,9 +7,11 @@
 #pragma once
 
 #include <gslib.h>
+#include <memory>
 #include "data/id/TEXTURE_ID.h"
 
 class IRenderer;
+class Particle;
 
 /**
 @class
@@ -47,4 +49,6 @@ public:
 	@brief I—¹ˆ—
 	*/
 	void finish();
+private:
+	std::unique_ptr<Particle> m_particle;
 };
