@@ -52,4 +52,5 @@ private:
 	GSvector2 m_pos_offset;
 	float m_time;
 	bool m_isDead;
+	float m_speed;
 };

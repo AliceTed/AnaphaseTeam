@@ -2,6 +2,7 @@
 #include "renderer\IRenderer.h"
 #include "renderer\define\SpriteRenderDesc.h"
 #include "math\Calculate.h"
+#include <random>
 
 //コンストラクタ
 Particle::Particle(const GSvector2 _pos, TEXTURE_ID _id) :
@@ -9,8 +10,14 @@ Particle::Particle(const GSvector2 _pos, TEXTURE_ID _id) :
 	m_pos(_pos),
 	m_pos_offset(0.f, 0.f),
 	m_time(0.f),
-	m_isDead(false)
+	m_isDead(false),
+	m_speed(0.f)
 {
+	std::random_device rnd;
+	std::mt19937 mt(rnd());
+	std::uniform_real_distribution<> rand(1, 5);
+	m_speed = rand(mt);
+	m_time = rand(mt);
 }
 
 //デストラクタ
@@ -22,14 +29,13 @@ Particle::~Particle()
 void Particle::update(float _deltaTime)
 {
 	//左右に揺れる処理
-	float scale = 10.f;
+	float scale = 50.f;
 	m_time += _deltaTime;
 	m_pos_offset.x = Math::Calculate::cos(m_time) * scale;
 
 	//上に落ちる処理
-	float speed = 1.f;
 	GSvector2 gravity = GSvector2(0.f, -1.f);
-	m_pos += gravity * speed;
+	m_pos += gravity * m_speed;
 
 	//上まで行ったら死亡
 	if (m_pos.y < -50.f) {
