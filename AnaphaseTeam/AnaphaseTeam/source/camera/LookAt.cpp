@@ -13,7 +13,12 @@ LookAt::LookAt() :
 	mLookPosOffset(0.f, 0.f, 0.f),
 	mUp(0.f, 1.f, 0.f),
 	mMatView(),
-	mRotateDolly(0.f, 0.f)
+	mRotateDolly(0.f, 0.f),
+	mIntersectPos(0.f, 0.f, 0.f),
+	m_front(0.f),
+	m_back(0.f),
+	m_left(0.f),
+	m_right(0.f)
 {
 	gsMatrix4Identity(&mMatView);
 }
@@ -33,6 +38,7 @@ void LookAt::init(const GSvector3 & _pos, const GSvector3 & _lookPos, const GSve
 	mUp = _up;
 	mRotateDolly = GSvector2(0.f, 0.f);
 	gsMatrix4Identity(&mMatView);
+	mIntersectPos = _pos;
 }
 
 //更新
@@ -64,15 +70,7 @@ void LookAt::update(IRenderer * _renderer)
 	GSvector3 pos = mPos + mPosOffset;
 	GSvector3 lookPos = mLookPos + mLookPosOffset;
 
-	gluLookAt(
-		pos.x, pos.y, pos.z,
-		lookPos.x, lookPos.y, lookPos.z,
-		mUp.x, mUp.y, mUp.z
-	);
-
 	_renderer->lookAt(pos, lookPos, mPos);
-
-	glGetFloatv(GL_MODELVIEW_MATRIX, (GLfloat *)&mMatView);
 }
 
 //カメラの移動
@@ -116,9 +114,7 @@ void LookAt::dolly(const GSvector3 & _center, const GSvector2 _rotate, const flo
 //地面とのあたり判定
 void LookAt::collisionGround(const Map & _map)
 {
-	if (isHitGround(_map, &mPos)) {
-		mPos.y = mIntersectPos.y;
-	}
+	isHitGround(_map);
 }
 
 GSmatrix4 LookAt::matView()
@@ -149,15 +145,49 @@ const Transform LookAt::transform() const
 }
 
 //地面と当たったか
-bool LookAt::isHitGround(const Map & _map, GSvector3 * _pos)
+void LookAt::isHitGround(const Map & _map)
 {
 	GSvector3 intersectPos;
-	if (_map.isCollisionRay((*_pos), GSvector3(0.f, -1.f, 0.f), &intersectPos)) {
+	GSvector3 velocity = mLookPos - mPos;
+
+	if (_map.isCollisionRay(mLookPos, GSvector3(0.f, -1.f, -15.f), &intersectPos)) {
+		m_front = intersectPos.z;
+	}
+	if (_map.isCollisionRay(mLookPos, GSvector3(0.f, -1.f, 15.f), &intersectPos)) {
+		m_back = intersectPos.z;
+	}
+	if (_map.isCollisionRay(mLookPos, GSvector3(-15.f, -1.f, 0.f), &intersectPos)) {
+		m_left = intersectPos.x;
+	}
+	if (_map.isCollisionRay(mLookPos, GSvector3(15.f, -1.f, 0.f), &intersectPos)) {
+		m_right = intersectPos.x;
+	}
+
+	if (_map.isCollisionRay(mPos, GSvector3(0.f, -1.f, 0.f), &intersectPos)) {
 		mIntersectPos = intersectPos + GSvector3(0.f, 0.5f, 0.f);
 	}
 
-	if (mIntersectPos.y > mPos.y) {
-		return true;
+	bool bottom2 = mIntersectPos.y > mPos.y;
+	bool left2 = m_left > mPos.x;
+	bool right2 = m_right < mPos.x;
+	bool front2 = m_front > mPos.z;
+	bool back2 = m_back < mPos.z;
+
+	
+
+	if (left2) {
+		mPos.x = m_left;
 	}
-	return false;
+	if (right2) {
+		mPos.x = m_right;
+	}
+	if (front2) {
+		mPos.z = m_front;
+	}
+	if (back2) {
+		mPos.z = m_back;
+	}
+	if (bottom2) {
+		mPos.y = mIntersectPos.y;
+	}
 }

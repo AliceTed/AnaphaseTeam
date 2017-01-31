@@ -24,7 +24,7 @@ Camera::Camera() :
 	m_direction_player(0.0f)
 {
 	mPerspective->init(GSvector4(45.f, 1280.f / 720.f, 0.3f, 1000.f));
-	mLookAt->init(GSvector3(0.f, 0.f, 0.f), GSvector3(0.f, 0.f, 0.f));
+	mLookAt->init(GSvector3(-50.f, 0.f, 30.f), GSvector3(0.f, 0.f, 0.f));
 }
 
 //デストラクタ

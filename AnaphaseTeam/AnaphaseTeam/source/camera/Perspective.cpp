@@ -50,21 +50,12 @@ void Perspective::update(IRenderer * _renderer)
 
 	glLoadIdentity();
 
-	gluPerspective(
-		mPerspective.x,
-		mPerspective.y,
-		mPerspective.z,
-		mPerspective.w
-	);
-
 	_renderer->perspective(
 		mPerspective.x,
 		mPerspective.y,
 		mPerspective.z,
 		mPerspective.w
 	);
-
-	glGetFloatv(GL_PROJECTION_MATRIX, (GLfloat*)&mMatProjection);
 
 	mZoom->update(&mPerspective.x);
 }
