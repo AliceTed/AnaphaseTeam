@@ -21,7 +21,7 @@ Title::~Title()
 
 void Title::initialize()
 {
-	EffectManager::getInstance().effectPlay(EFFECT_ID::TITLE_BACK, GSvector3(0,0,0));
+	//EffectManager::getInstance().effectPlay(EFFECT_ID::TITLE_BACK, GSvector3(0,0,0));
 	m_IsExit = false;
 	m_change.initialize();
 	m_change.begin();
@@ -32,7 +32,7 @@ void Title::initialize()
 }
 void Title::update(float _deltaTime)
 {
-	EffectManager::getInstance().update();	
+	//EffectManager::getInstance().update();	
 	if (m_change.update(_deltaTime))return;
 	m_time += _deltaTime;	
 	
@@ -52,7 +52,7 @@ void Title::draw(IRenderer * _renderer)
 		5, 0, 0
 		, 0, 1, 0);
 
-	EffectManager::getInstance().draw();
+	//EffectManager::getInstance().draw();
 
 	SpriteRenderDesc tatle;
 	tatle.textureID = static_cast<GSuint>(TEXTURE_ID::TITLE_ROGO);
@@ -64,7 +64,7 @@ void Title::draw(IRenderer * _renderer)
 
 void Title::finish()
 {
-	EffectManager::getInstance().stopAll();
+	//EffectManager::getInstance().stopAll();
 	GameDevice::getInstacnce().sound().stopBGM(BGM_ID::TITLE);
 	GameDevice::getInstacnce().sound().stopSE(SE_ID::ENTER);
 }

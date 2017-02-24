@@ -167,7 +167,7 @@ void Load::loadEffect()
 {
 	EffectManager& effect = EffectManager::getInstance();EffectManager::getInstance();
 	
-	effect.loadEffect(EFFECT_ID::TITLE_BACK, reinterpret_cast<const std::string*>(L"././res/effect/Effect_TitleBcak.efk"));
+	effect.loadEffect(EFFECT_ID::TITLE_BACK, reinterpret_cast<const std::string*>(L"././res/effect/Effect_TitleBack.efk"));
 	effect.loadEffect(EFFECT_ID::PLAYER_DAMAGE, reinterpret_cast<const std::string*>(L"././res/effect/PlayerDamage.efk"));
 	effect.loadEffect(EFFECT_ID::PLAYER_ATTACK, reinterpret_cast<const std::string*>(L"././res/effect/Attack.efk"));
 	effect.loadEffect(EFFECT_ID::ARMOR, reinterpret_cast<const std::string*>(L"././res/effect/superarmor.efk"));

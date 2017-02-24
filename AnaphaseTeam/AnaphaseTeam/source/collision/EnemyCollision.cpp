@@ -28,11 +28,6 @@ void IEnemy::EnemyCollision::collision_Enter(HitInformation & _hit)
 		return;
 	}
 
-	if (_hit.m_tag == Collision_Tag::PLAYER_WEAPON)
-	{
-		//m_score->add(1);
-	}
-
 }
 
 void IEnemy::EnemyCollision::doDraw(IRenderer * _renderer)
