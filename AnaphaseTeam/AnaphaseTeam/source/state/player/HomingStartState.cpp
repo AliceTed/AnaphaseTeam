@@ -12,7 +12,7 @@ void Player::HomingStartState::start()
 }
 void Player::HomingStartState::action(float deltaTime)
 {
-	Sleep(10);
+	Sleep(5);
 	if (m_actor->m_animatorOne.isEndCurrentAnimation())
 	{
 		changeState(ACTOR_STATE::HOMING);
