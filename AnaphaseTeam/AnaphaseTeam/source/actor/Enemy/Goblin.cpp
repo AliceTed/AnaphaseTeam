@@ -30,7 +30,7 @@
 #include "renderer/define/ViewportDesc.h"
 #include <math.h>
 
-static const float BLOW_DAMAGE_POWER = 1.1f;
+static const float BLOW_DAMAGE_POWER = 0.5f;
 
 Goblin::Goblin(const Transform & _transform, EnemyMediator& _mediator)
 	:IEnemy(_transform, MODEL_ID::ENEMY, _mediator), m_isDown(false)
