@@ -49,6 +49,6 @@ void Player::PlayerAttackCollision::collision_Enter(HitInformation & _hit)
 	GameDevice::getInstacnce().sound().playSE(SE_ID::ENEMY_DAMAGE);
 	if (_hit.m_tag == Collision_Tag::ENEMY)
 	{
-		Sleep(150);
+		Sleep(100);
 	}
 }
