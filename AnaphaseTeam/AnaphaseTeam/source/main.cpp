@@ -27,7 +27,6 @@ public:
 		m_SceneManager(),
 		m_renderer(std::make_unique<Renderer>())
 	{
-		/*   */		
 	}
 
 private:
