@@ -38,6 +38,6 @@ void Map::draw(IRenderer * _renderer)
 	gsTextureBind(gsGetOctree(static_cast<GSuint>(m_ID))->pMesh->pMaterials->pTexture);
 	gsSetShaderParamTexture("u_baseMap", 0);
 	
-	gsDrawOctreeEx(static_cast<unsigned int>(m_ID), &_renderer->getProjectionMatrix(), &_renderer->getViewMatrix());
+	gsDrawOctreeEx(static_cast<unsigned int>(OCTREE_ID::PHASE1), &_renderer->getProjectionMatrix(), &_renderer->getViewMatrix());
 	gsEndShader();
 }

@@ -146,7 +146,7 @@ void Load::loadModel()
 
 	OctreeLoader oct;
 	oct(OCTREE_ID::VISUAL, "map/map_limit",true);
-	oct(OCTREE_ID::PHASE1, "map/map_collider1");
+	oct(OCTREE_ID::PHASE1, "map/map_collider1",true);
 	oct(OCTREE_ID::PHASE2, "map/map_collider2");
 	oct(OCTREE_ID::PHASE3, "map/map_collider3");
 	oct(OCTREE_ID::PHASE4, "map/map_collider4");
