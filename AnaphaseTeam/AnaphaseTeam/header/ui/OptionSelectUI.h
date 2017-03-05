@@ -21,8 +21,7 @@ public:
 	~OptionSelectUI();
 	void initialize();
 	void add(OPTION _name, const ScaleImage& _image);
-	void next
-		();
+	void next();
 	void update(float _deltaTime);
 	void draw(IRenderer * _renderer);
 

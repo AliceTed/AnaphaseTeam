@@ -11,12 +11,12 @@ InputPattern_B::~InputPattern_B()
 
 const GSvector2 InputPattern_B::velocity()
 {
-	return GSvector2(0,0);
+	return m_input->leftPadAxis();
 }
 
 const bool InputPattern_B::move()
 {
-	return false;
+	return velocity() != GSvector2(0, 0);
 }
 
 const bool InputPattern_B::walk()
@@ -26,52 +26,73 @@ const bool InputPattern_B::walk()
 
 const bool InputPattern_B::jump()
 {
-	return false;
+	return m_input->isJoyTriggerA();
 }
 
 const bool InputPattern_B::attack()
 {
-	return false;
+	return slowAttackTrigger() || quickAttackTrigger();
 }
 
-const bool InputPattern_B::scythe()
+
+const bool InputPattern_B::slowAttackTrigger()
 {
-	return false;
+	return  m_input->isJoyTriggerB();
 }
 
-const bool InputPattern_B::gun()
+const bool InputPattern_B::quickAttackTrigger()
 {
-	return false;
+	return m_input->isJoyTriggerY();
 }
 
 const bool InputPattern_B::avoid()
 {
-	return false;
+	return m_input->isJoyRightTrigger();
+}
+
+const bool InputPattern_B::gaugeAttack1()
+{
+	return m_input->isJoyTriggerA();
+}
+
+const bool InputPattern_B::gaugeAttack2()
+{
+	return m_input->isJoyTriggerX();
+}
+
+const bool InputPattern_B::gaugeAttack3()
+{
+	return m_input->isJoyTriggerY();
+}
+
+const bool InputPattern_B::lockOn()
+{
+	return m_input->isJoyTriggerLeftThrust();
 }
 
 const bool InputPattern_B::specialSkillMode()
 {
-	return false;
+	return m_input->spState();
 }
 
 const bool InputPattern_B::up()
 {
-	return false;
+	return m_input->isJoyTriggerUp();
 }
 
 const bool InputPattern_B::down()
 {
-	return false;
+	return m_input->isJoyTriggerDown();
 }
 
 const bool InputPattern_B::right()
 {
-	return false;
+	return m_input->isJoyTriggerRight();
 }
 
 const bool InputPattern_B::left()
 {
-	return false;
+	return m_input->isJoyTriggerLeft();
 }
 
 const bool InputPattern_B::exit()
@@ -81,40 +102,10 @@ const bool InputPattern_B::exit()
 
 const bool InputPattern_B::reset()
 {
-	return false;
+	return m_input->isJoyTriggerSTART();
 }
 
 const bool InputPattern_B::decision()
 {
 	return m_input->isJoyTriggerA();
-}
-
-const bool InputPattern_B::slowAttackTrigger()
-{
-	return false;
-}
-
-const bool InputPattern_B::quickAttackTrigger()
-{
-	return false;
-}
-
-const bool InputPattern_B::gaugeAttack1()
-{
-	return false;
-}
-
-const bool InputPattern_B::gaugeAttack2()
-{
-	return false;
-}
-
-const bool InputPattern_B::gaugeAttack3()
-{
-	return false;
-}
-
-const bool InputPattern_B::lockOn()
-{
-	return false;
 }

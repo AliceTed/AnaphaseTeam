@@ -94,13 +94,13 @@ void OptionUI::operation(Option& _opution)
 	{
 		m_select.next();
 	}
-	if (GameDevice::getInstacnce().input()->jump())
+	if (GameDevice::getInstacnce().input()->decision())
 	{
 		if (m_select.current() == OPTION::CONFIG || m_select.current() == OPTION::TITLE)
 		{
 			_opution.optionDecision(m_select.current());
 		}
-		if (m_pad.current() == PAD::PAD_A)
+		if (m_select.current() == OPTION::CONFIG)
 		{
 			_opution.padDecision(m_pad.current());
 		}
@@ -144,7 +144,7 @@ void OptionUI::createSelect()
 	m_pad.initialize();
 	ScaleImage padA(TEXTURE_ID::PAD_A, GSvector2(500, 100), false, 500.0f, 1.0f);
 	m_pad.add(PAD::PAD_A, padA);
-	ScaleImage padB(TEXTURE_ID::EXIT, GSvector2(1000, 100), false, 1000.0f, 1.0f);
+	ScaleImage padB(TEXTURE_ID::PAD_B, GSvector2(1000, 100), false, 1000.0f, 1.0f);
 	m_pad.add(PAD::PAD_B, padB);
 	m_pad.startChange();
 

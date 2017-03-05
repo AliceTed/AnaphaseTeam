@@ -81,8 +81,8 @@ void Load::loadTextrue()
 	tex(TEXTURE_ID::TITLE_ROGO, "TitleRogo_Black");
 	tex(TEXTURE_ID::MENU_BACKGROUND, "menu_background");
 	tex(TEXTURE_ID::OPTION_BACKGROUND, "option_background");
-	tex(TEXTURE_ID::PAD_A, "pad");
-	tex(TEXTURE_ID::PAD_B, "pad");
+	tex(TEXTURE_ID::PAD_A, "pad_a");
+	tex(TEXTURE_ID::PAD_B, "pad_b");
 	tex(TEXTURE_ID::ROGO, "rogo");
 	tex(TEXTURE_ID::PLAYER_HP, "GameUI_HPGauge1");
 	tex(TEXTURE_ID::PLAYER_HP_GAUGE, "GameUI_HPGauge2");
