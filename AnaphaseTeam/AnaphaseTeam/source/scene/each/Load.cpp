@@ -80,7 +80,7 @@ void Load::loadTextrue()
 	tex(TEXTURE_ID::PRESSKEY, "TitleUI_PressKey");
 	tex(TEXTURE_ID::TITLE_ROGO, "TitleRogo_Black");
 	tex(TEXTURE_ID::MENU_BACKGROUND, "menu_background");
-	tex(TEXTURE_ID::OPTION_BACKGROUND, "option_background");
+	tex(TEXTURE_ID::OPTION_BACKGROUND, "menu_background");
 	tex(TEXTURE_ID::PAD_A, "pad_a");
 	tex(TEXTURE_ID::PAD_B, "pad_b");
 	tex(TEXTURE_ID::ROGO, "rogo");

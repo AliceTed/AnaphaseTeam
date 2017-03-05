@@ -96,7 +96,7 @@ void OptionUI::operation(Option& _opution)
 	}
 	if (GameDevice::getInstacnce().input()->decision())
 	{
-		if (m_select.current() == OPTION::CONFIG || m_select.current() == OPTION::TITLE)
+		if ( m_select.current() == OPTION::TITLE)
 		{
 			_opution.optionDecision(m_select.current());
 		}
@@ -104,7 +104,10 @@ void OptionUI::operation(Option& _opution)
 		{
 			_opution.padDecision(m_pad.current());
 		}
-		_opution.bgmDecision(m_volume.current());
+		if (m_select.current() == OPTION::SOUND)
+		{
+			_opution.bgmDecision(m_volume.current());
+		}		
 	}
 
 }
