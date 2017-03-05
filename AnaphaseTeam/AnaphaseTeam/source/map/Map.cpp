@@ -24,7 +24,6 @@ const bool Map::isCollisionSphere(const GSvector3 & _center, float _radius, GSve
 	Data::CastID cast;
 	return gsOctreeCollisionSphere(gsGetOctree(cast(m_ID)), &(_center),_radius,_out_center) == GS_TRUE;
 }
-
 void Map::draw(IRenderer * _renderer)
 {
 	gsBeginShader(static_cast<GSuint>(SHADER_ID::OCTREE));
@@ -39,8 +38,6 @@ void Map::draw(IRenderer * _renderer)
 	gsSetShaderParam4f("u_lightAmbient", &light.ambient);
 	gsSetShaderParam4f("u_lightDiffuse", &light.diffuse);
 	gsSetShaderParam4f("u_lightSpecular", &light.specular);
-
-	gsTextureBind(gsGetOctree(static_cast<GSuint>(m_ID))->pMesh->pMaterials->pTexture);
 	gsSetShaderParamTexture("u_baseMap", 0);
 	
 	gsDrawOctreeEx(static_cast<unsigned int>(m_ID), &_renderer->getProjectionMatrix(), &_renderer->getViewMatrix());

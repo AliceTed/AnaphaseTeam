@@ -146,11 +146,15 @@ Ray Renderer::caluclateRay(const Vector2 & screenPosition)
 //メッシュ描画
 void Renderer::render(const MeshRenderDesc & desc)
 {
+	GScolor currentColor;
+	// カレントカラーを取得する
+	glGetFloatv(GL_CURRENT_COLOR, (float*)&currentColor);
 	//各種レンダリングモード退避
 	glPushAttrib(GL_ENABLE_BIT | GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	
 	//ブレンド方法の設定
 	setBlendFunc(desc.blendFunc);
+
 	//カラーの設定
 	glColor4fv((GLfloat*)&desc.color);
 	//透視変換行列の設定
@@ -181,6 +185,8 @@ void Renderer::render(const MeshRenderDesc & desc)
 	glPopMatrix();
 	//レンダリングモード復帰
 	glPopAttrib();
+	// カレントカラーを復帰する
+	glColor4fv((float*)&currentColor);
 }
 void Renderer::render(const SkinnedMeshRenderDesc & desc)
 {
@@ -386,7 +392,9 @@ void Renderer::render(const StringRenderDesc & desc)
 {
 	//各種レンダリングモード退避
 	glPushAttrib(GL_ENABLE_BIT | GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-	
+	GScolor currentColor;
+	// カレントカラーを取得する
+	glGetFloatv(GL_CURRENT_COLOR, (float*)&currentColor);
 	//文字色の設定
 	glColor4fv((GLfloat*)&desc.color);
 
@@ -404,6 +412,8 @@ void Renderer::render(const StringRenderDesc & desc)
 	
 	//レンダリングモード復帰
 	glPopAttrib();
+	// カレントカラーを復帰する
+	glColor4fv((float*)&currentColor);
 }
 
 void Renderer::render(const RectangleRenderDesc & desc)
@@ -552,7 +562,11 @@ void Renderer::setBlendFunc(BlendFunc blendFunc)
 }
 
 void Renderer::renderTexture(ResourceID id, const Color4 & color)
-{// テクスチャをバインドする
+{
+	GScolor currentColor;
+	// カレントカラーを取得する
+	glGetFloatv(GL_CURRENT_COLOR, (float*)&currentColor);
+	// テクスチャをバインドする
 	gsBindTexture(id);
 
 	// バインド中のテクスチャの幅と高さを取得
@@ -580,10 +594,15 @@ void Renderer::renderTexture(ResourceID id, const Color4 & color)
 
 	// テクスチャを無効にする
 	glBindTexture(GL_TEXTURE_2D, 0);
+	// カレントカラーを復帰する
+	glColor4fv((float*)&currentColor);
 }
 
 void Renderer::renderTexture(ResourceID id, const Rect & rect, const Rect & srcRect, const Color4 & color)
 {
+	GScolor currentColor;
+	// カレントカラーを取得する
+	glGetFloatv(GL_CURRENT_COLOR, (float*)&currentColor);
 	// テクスチャをバインドする
 	gsBindTexture(id);
 
@@ -615,4 +634,7 @@ void Renderer::renderTexture(ResourceID id, const Rect & rect, const Rect & srcR
 
 	// テクスチャを無効にする
 	glBindTexture(GL_TEXTURE_2D, 0);
+
+	// カレントカラーを復帰する
+	glColor4fv((float*)&currentColor);
 }

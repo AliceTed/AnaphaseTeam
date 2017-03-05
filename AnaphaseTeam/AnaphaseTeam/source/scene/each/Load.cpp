@@ -17,7 +17,7 @@
 #include "data/id/BGM_ID.h"
 #include "data/id/SE_ID.h"
 #include "data/id/MYANIMATION_ID.h"
-
+#include "data/id/RENDER_TARGET_ID.h"
 #include "../header/effect/EffectManager.h"
 
 Load::Load()
@@ -40,6 +40,8 @@ void Load::update(float deltaTime)
 	loadModel();
 	loadMyAnimation();
 	loadEffect();
+	loadShader();
+	createRanderTarget();
 	m_IsEnd = true;
 }
 void Load::draw(IRenderer * renderer)
@@ -131,9 +133,7 @@ void Load::loadSound()
 
 void Load::loadModel()
 {
-	ShaderLoader shader;
-	shader(SHADER_ID::SKINNEDMESH, "skinned_mesh_bump");
-	shader(SHADER_ID::OCTREE, "octree");
+	
 	//shader(SHADER_ID::TEX_SONAR, "texture_soanr");
 	ModelLoader model;
 	MeshLoader mesh;
@@ -146,10 +146,10 @@ void Load::loadModel()
 
 	OctreeLoader oct;
 	oct(OCTREE_ID::VISUAL, "map/map_limit",true);
-	oct(OCTREE_ID::PHASE1, "map/map_collider1");
-	oct(OCTREE_ID::PHASE2, "map/map_collider2");
-	oct(OCTREE_ID::PHASE3, "map/map_collider3");
-	oct(OCTREE_ID::PHASE4, "map/map_collider4");
+	oct(OCTREE_ID::PHASE1, "map/map_limit");
+	oct(OCTREE_ID::PHASE2, "map/map_limit");
+	oct(OCTREE_ID::PHASE3, "map/map_limit");
+	oct(OCTREE_ID::PHASE4, "map/map_limit");
 }
 
 void Load::loadMyAnimation()
@@ -174,4 +174,23 @@ void Load::loadEffect()
 	effect.loadEffect(EFFECT_ID::HEAL, reinterpret_cast<const std::string*>(L"././res/effect/heal.efk"));
 	effect.loadEffect(EFFECT_ID::SPATTACK, reinterpret_cast<const std::string*>(L"././res/effect/SPAttack.efk"));
 
+}
+
+void Load::loadShader()
+{
+	ShaderLoader shader;
+	//Œã‚Åv‚Æf‚Ì–¼‘O•ª‚¯
+	shader(SHADER_ID::SKINNEDMESH, "skinned_mesh_bump");
+	shader(SHADER_ID::OCTREE, "octree");
+	shader(SHADER_ID::BRIGHT, "bright");
+	shader(SHADER_ID::BLOOM_BLUR, "bloom_blur");
+	shader(SHADER_ID::BLOOM, "bloom");
+}
+
+void Load::createRanderTarget()
+{
+	gsCreateRenderTarget(static_cast<unsigned int>(RENDER_TARGET_ID::BASE), 800, 600, GS_TRUE, GS_TRUE, GS_FALSE);
+	gsCreateRenderTarget(static_cast<unsigned int>(RENDER_TARGET_ID::BRIGHT), 128, 128, GS_TRUE, GS_TRUE, GS_FALSE);
+	gsCreateRenderTarget(static_cast<unsigned int>(RENDER_TARGET_ID::BLOOM_BLUR), 128, 128, GS_TRUE, GS_TRUE, GS_FALSE);
+	gsCreateRenderTarget(static_cast<unsigned int>(RENDER_TARGET_ID::BLOOM), 800, 600, GS_TRUE, GS_TRUE, GS_FALSE);
 }

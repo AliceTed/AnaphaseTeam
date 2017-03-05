@@ -20,6 +20,8 @@ private:
 	void loadModel();
 	void loadMyAnimation();
 	void loadEffect();
+	void loadShader();
+	void createRanderTarget();
 private:
 	bool m_IsEnd;
 };

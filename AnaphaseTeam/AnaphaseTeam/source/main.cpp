@@ -16,7 +16,6 @@
 #include "../header/renderer/Renderer.h"
 #include "../header/device/GameDevice.h"
 
-#include"../header/data/release/DataAllRelease.h"
 #include "../header/renderer/define/ViewportDesc.h"
 
 class MyGame : public gslib::Game
@@ -86,8 +85,7 @@ private:
 	// I—¹
 	virtual void end() override
 	{
-		DataAllRelease release;
-		release();
+		gsFinishGraphics();
 	}
 private:
 	bool isRunning() { return !GameDevice::getInstacnce().input()->exit() && !m_SceneManager.isExit(); }

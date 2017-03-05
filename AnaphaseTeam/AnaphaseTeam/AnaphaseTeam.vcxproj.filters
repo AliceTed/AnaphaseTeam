@@ -172,17 +172,11 @@
     <Filter Include="ヘッダー ファイル\data\loader">
       <UniqueIdentifier>{82692b87-9f44-4733-88d5-c001f5a7c030}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ヘッダー ファイル\data\release">
-      <UniqueIdentifier>{1349821b-89f8-4079-8f0a-ca98973390e2}</UniqueIdentifier>
-    </Filter>
     <Filter Include="ヘッダー ファイル\renderer\define">
       <UniqueIdentifier>{5ed4ec42-4b90-43eb-a3f0-4cb703c08bd9}</UniqueIdentifier>
     </Filter>
     <Filter Include="ソース ファイル\data\loader">
       <UniqueIdentifier>{654a986c-bb5c-45f9-8faa-f222fa53c26c}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ソース ファイル\data\release">
-      <UniqueIdentifier>{08118a73-cce9-48ef-86d2-8142ab2d0754}</UniqueIdentifier>
     </Filter>
     <Filter Include="ヘッダー ファイル\specialskill">
       <UniqueIdentifier>{14d6b4e4-950f-444d-9dfe-4d181a76bcce}</UniqueIdentifier>
@@ -582,9 +576,6 @@
     <ClInclude Include="header\data\loader\TextureLoader.h">
       <Filter>ヘッダー ファイル\data\loader</Filter>
     </ClInclude>
-    <ClInclude Include="header\data\release\DataRelease.h">
-      <Filter>ヘッダー ファイル\data\release</Filter>
-    </ClInclude>
     <ClInclude Include="header\renderer\define\AnimationRenderDesc.h">
       <Filter>ヘッダー ファイル\renderer\define</Filter>
     </ClInclude>
@@ -653,9 +644,6 @@
     </ClInclude>
     <ClInclude Include="header\renderer\define\SpriteRectRenderDesc.h">
       <Filter>ヘッダー ファイル\renderer\define</Filter>
-    </ClInclude>
-    <ClInclude Include="header\data\release\DeleteModel.h">
-      <Filter>ヘッダー ファイル\data\release</Filter>
     </ClInclude>
     <ClInclude Include="header\collision\SpecialAttackCollision.h">
       <Filter>ヘッダー ファイル\collision</Filter>
@@ -761,9 +749,6 @@
     </ClInclude>
     <ClInclude Include="header\math\TargetLerp.h">
       <Filter>ヘッダー ファイル\math</Filter>
-    </ClInclude>
-    <ClInclude Include="header\data\release\DataAllRelease.h">
-      <Filter>ヘッダー ファイル\data\release</Filter>
     </ClInclude>
     <ClInclude Include="header\camera\CameraWork\CameraWorkData.h">
       <Filter>ヘッダー ファイル\camera\CameraWork</Filter>
@@ -1092,6 +1077,9 @@
     <ClInclude Include="header\effect\EffectManager.h">
       <Filter>ヘッダー ファイル\effect</Filter>
     </ClInclude>
+    <ClInclude Include="header\data\id\RENDER_TARGET_ID.h">
+      <Filter>ヘッダー ファイル\data\id</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="source\main.cpp">
@@ -1334,9 +1322,6 @@
     <ClCompile Include="source\data\loader\TextureLoader.cpp">
       <Filter>ソース ファイル\data\loader</Filter>
     </ClCompile>
-    <ClCompile Include="source\data\release\DeleteModel.cpp">
-      <Filter>ソース ファイル\data\release</Filter>
-    </ClCompile>
     <ClCompile Include="source\renderer\Renderer.cpp">
       <Filter>ソース ファイル\renderer</Filter>
     </ClCompile>
@@ -1357,9 +1342,6 @@
     </ClCompile>
     <ClCompile Include="source\state\player\SpecialAttackState.cpp">
       <Filter>ソース ファイル\state\player</Filter>
-    </ClCompile>
-    <ClCompile Include="source\data\release\DataAllRelease.cpp">
-      <Filter>ソース ファイル\data\release</Filter>
     </ClCompile>
     <ClCompile Include="source\scene\each\Menu.cpp">
       <Filter>ソース ファイル\scene\each</Filter>
