@@ -24,6 +24,7 @@ public:
 	bool isAttack(Animator & _animator);
 	const bool isEnd()const;
 	const AttackStatus &getStatus() const;
+	const bool isFinishAttack();
 private:
 	Player* m_player;
 	Attack m_current;

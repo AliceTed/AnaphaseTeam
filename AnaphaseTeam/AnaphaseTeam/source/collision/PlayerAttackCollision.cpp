@@ -48,7 +48,11 @@ void Player::PlayerAttackCollision::collision_Enter(HitInformation & _hit)
 	EffectManager::getInstance().effectPlay(EFFECT_ID::PLAYER_ATTACK,p);
 	GameDevice::getInstacnce().sound().playSE(SE_ID::ENEMY_DAMAGE);
 
-	if (_hit.m_tag == Collision_Tag::ENEMY)
+	if (_hit.m_tag != Collision_Tag::ENEMY)
+	{
+		return;
+	}
+	if (m_player->m_combo.isFinishAttack())
 	{
 		Sleep(150);
 	}
