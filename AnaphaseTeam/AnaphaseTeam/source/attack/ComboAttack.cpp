@@ -71,5 +71,11 @@ const AttackStatus & ComboAttack::getStatus() const
 	return m_current.getStatus();
 }
 
+const bool ComboAttack::isFinishAttack()
+{
+	std::string next = m_current.next(false);
+	return next == "END";
+}
+
 
 
