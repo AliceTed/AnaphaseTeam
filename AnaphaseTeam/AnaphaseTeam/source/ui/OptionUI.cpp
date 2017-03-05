@@ -135,16 +135,16 @@ void OptionUI::createSelect()
 	m_select.initialize();
 	ScaleImage imageOption(TEXTURE_ID::CONFIG_TEXT, GSvector2(50, 100), false, 50.0f, 1.0f);
 	m_select.add(OPTION::CONFIG, imageOption);
-	ScaleImage imageSE(TEXTURE_ID::SOUND_TEXT, GSvector2(50, 400), false, 50.0f, 1.0f);
+	ScaleImage imageSE(TEXTURE_ID::SOUND_TEXT, GSvector2(50, 250), false, 50.0f, 1.0f);
 	m_select.add(OPTION::SOUND, imageSE);
-	ScaleImage imageTitale(TEXTURE_ID::PAUSE_TITLEBACK, GSvector2(50, 600), false, 50.0f, 1.0f);
+	ScaleImage imageTitale(TEXTURE_ID::PAUSE_TITLEBACK, GSvector2(50, 550), false, 50.0f, 1.0f);
 	m_select.add(OPTION::TITLE, imageTitale);
 	m_select.startChange();
 
 	m_pad.initialize();
 	ScaleImage padA(TEXTURE_ID::PAD_A, GSvector2(500, 100), false, 500.0f, 1.0f);
 	m_pad.add(PAD::PAD_A, padA);
-	ScaleImage padB(TEXTURE_ID::PAD_B, GSvector2(1000, 100), false, 1000.0f, 1.0f);
+	ScaleImage padB(TEXTURE_ID::PAD_B, GSvector2(700, 400), false, 1000.0f, 1.0f);
 	m_pad.add(PAD::PAD_B, padB);
 	m_pad.startChange();
 

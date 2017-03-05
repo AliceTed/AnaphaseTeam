@@ -59,8 +59,8 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>C:\gslib_2015\gslib_2015\inc;C:\boost\Include\boost_1_57_0;C:\boost\include\boost-1_57;C:\boost\boost\include\boost-1_57;C:\gslib_2015\gslibEXT_2015\inc;D:\gslib_2015\gslib_2015\inc;D:\gslib_2015\gslibEXT_2015\inc;C:\Effekseer\EffekseerRuntime122\Compiled\include;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\gslib_2015\gslib_2015\lib;C:\boost\lib;C:\gslib_2015\gslibEXT_2015\lib;D:\gslib_2015\gslib_2015\lib;D:\gslib_2015\gslibEXT_2015\lib;C:\Effekseer\EffekseerRuntime122\Compiled\lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>C:\gslib_2015\gslib_2015\inc;C:\boost\Include\boost_1_57_0;C:\boost\include\boost-1_57;C:\boost\boost\include\boost-1_57;C:\gslib_2015\gslibEXT_2015\inc;D:\gslib_2015\gslib_2015\inc;D:\gslib_2015\gslibEXT_2015\inc;C:\Effekseer\EffekseerRuntime122\Compiled\include;D:\libs\Effekseer\EffekseerRuntime122\Compiled\include;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\gslib_2015\gslib_2015\lib;C:\boost\lib;C:\gslib_2015\gslibEXT_2015\lib;D:\gslib_2015\gslib_2015\lib;D:\gslib_2015\gslibEXT_2015\lib;C:\Effekseer\EffekseerRuntime122\Compiled\lib;D:\libs\Effekseer\EffekseerRuntime122\Compiled\lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
