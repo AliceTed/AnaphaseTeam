@@ -1,4 +1,4 @@
-#include "..\..\header\ui\ResultUI.h"
+#include "../../header/ui/ResultUI.h"
 #include "../header/renderer/define/SpriteRenderDesc.h"
 
 ResultUI::ResultUI(const GSvector2 & _position, const GSvector2 & _target, int _lerpTime)

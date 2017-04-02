@@ -1,4 +1,4 @@
-#include "MoveText.h"
+#include "ui/MoveText.h"
 #include "renderer/define/StringRenderDesc.h"
 
 MoveText::MoveText(const std::string & _text,const GSvector2 & _start,const GSvector2 & _end,int _size)
