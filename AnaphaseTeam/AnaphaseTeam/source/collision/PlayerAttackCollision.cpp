@@ -37,7 +37,7 @@ void Player::PlayerAttackCollision::doDraw(IRenderer *_renderer)
 void Player::PlayerAttackCollision::collision_Enter(HitInformation & _hit)
 {
 	if (_hit.m_tag != Collision_Tag::ENEMY)return;
-	m_player->m_Gauge->up(1);
+	m_player->m_Gauge->up(2);
 	m_player->m_timer.initialize();
 	m_player->m_isLockOn = true;
 	Actor* act = _hit.m_parent;

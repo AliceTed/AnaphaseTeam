@@ -131,6 +131,7 @@ const GSvector3 Transform::up() const
 	return rotate_vector(GSvector3(0.0f, 1.0f, 0.0f));
 }
 
+//‘ÎŠpü
 const GSvector3 Transform::diagonal() const
 {
 	return rotate_vector(GSvector3(0.0f, 1.0f, 1.0f));

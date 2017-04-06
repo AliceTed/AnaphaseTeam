@@ -55,10 +55,13 @@ void GamePlay::update(float deltaTime)
 
 void GamePlay::draw(IRenderer * _renderer)
 {
-	gsBeginRenderTarget(static_cast<GSuint>(RENDER_TARGET_ID::BASE));
+	m_stage->draw(_renderer);
+	m_change.draw(_renderer);
+	m_pause.draw(_renderer);
+/*	gsBeginRenderTarget(static_cast<GSuint>(RENDER_TARGET_ID::BASE));
 	glClearColor(0, 0, 0, 1);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-
+	
 	m_stage->draw(_renderer);
 	m_change.draw(_renderer);
 	m_pause.draw(_renderer);
@@ -115,7 +118,7 @@ void GamePlay::draw(IRenderer * _renderer)
 	gsDrawRenderTarget(bloom);
 
 	gsUnindRenderTargetTexture(bloom, 0);
-
+	*/
 }
 
 void GamePlay::finish()

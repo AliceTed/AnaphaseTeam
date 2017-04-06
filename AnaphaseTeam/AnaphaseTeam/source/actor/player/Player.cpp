@@ -131,11 +131,11 @@ void Player::update(float deltatime)
 	{
 		m_collision.clear();
 	}
-	//チートコマンド（ゲージMAX）
+	/*//チートコマンド（ゲージMAX）
 	if (gsGetKeyTrigger(GKEY_1))
 	{
 		m_Gauge->up(1000);
-	}
+	}*/
 }
 
 void Player::draw(IRenderer *_renderer)
