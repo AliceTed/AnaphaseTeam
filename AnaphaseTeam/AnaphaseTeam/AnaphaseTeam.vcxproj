@@ -147,8 +147,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="header\ui\MoveText.cpp" />
-    <ClCompile Include="header\ui\ResultUI.cpp" />
     <ClCompile Include="source\actor\ActorManager.cpp" />
     <ClCompile Include="source\actor\Boss\BossAI.cpp" />
     <ClCompile Include="source\actor\Enemy\IEnemy.cpp" />
@@ -318,6 +316,7 @@
     <ClCompile Include="source\ui\Fade.cpp" />
     <ClCompile Include="source\ui\HPGaugeUI.cpp" />
     <ClCompile Include="source\ui\MenuParticle.cpp" />
+    <ClCompile Include="source\ui\MoveText.cpp" />
     <ClCompile Include="source\ui\Number.cpp" />
     <ClCompile Include="source\ui\OptionSelectUI.cpp" />
     <ClCompile Include="source\ui\OptionUI.cpp" />
@@ -325,6 +324,7 @@
     <ClCompile Include="source\ui\PauseUI.cpp" />
     <ClCompile Include="source\ui\Rank.cpp" />
     <ClCompile Include="source\ui\ResultManager.cpp" />
+    <ClCompile Include="source\ui\ResultUI.cpp" />
     <ClCompile Include="source\ui\ScaleImage.cpp" />
     <ClCompile Include="source\ui\Score.cpp" />
     <ClCompile Include="source\ui\SelectUI.cpp" />

@@ -1604,9 +1604,6 @@
     <ClCompile Include="source\actor\Boss\BossAI.cpp">
       <Filter>ソース ファイル\actor\Boss</Filter>
     </ClCompile>
-    <ClCompile Include="header\ui\ResultUI.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
     <ClCompile Include="source\scene\each\Result.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
@@ -1640,9 +1637,6 @@
     <ClCompile Include="source\ui\StaffRollUI.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="header\ui\MoveText.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
     <ClCompile Include="source\function\Particle.cpp">
       <Filter>ソース ファイル\function</Filter>
     </ClCompile>
@@ -1669,6 +1663,12 @@
     </ClCompile>
     <ClCompile Include="source\state\enemy\ESecoundAttackState.cpp">
       <Filter>ソース ファイル\state\enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="source\ui\MoveText.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="source\ui\ResultUI.cpp">
+      <Filter>ソース ファイル</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
