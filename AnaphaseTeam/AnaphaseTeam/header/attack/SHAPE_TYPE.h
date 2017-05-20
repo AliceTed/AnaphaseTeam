@@ -1,4 +1,7 @@
 #pragma once
+/*
+UŒ‚ƒNƒ‰ƒX‚ÉŒ`ó”»’è‚·‚é‚½‚ß
+*/
 enum class SHAPE_TYPE
 {
 	SPHERE,

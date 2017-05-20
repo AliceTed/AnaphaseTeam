@@ -216,7 +216,6 @@ void Player::specialSkill()
 		}
 		if (GameDevice::getInstacnce().input()->gaugeAttack2())
 		{
-
 			m_specialUI->select(SPECIALSKILL_TYPE::SUPERARMOR);
 			if (m_specialskill.start(SPECIALSKILL_TYPE::SUPERARMOR))
 			{

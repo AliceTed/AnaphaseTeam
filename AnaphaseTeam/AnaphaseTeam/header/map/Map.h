@@ -18,13 +18,10 @@ public:
 	Map(OCTREE_ID _id);
 	~Map();
 
-	const bool isCollisionRay(const GSvector3 &_position, const GSvector3 &_direction,GSvector3* _intersect)const;
-	const bool isCollisionSphere(const GSvector3 &_center,float _radius,GSvector3* _out_center)const;
+	const bool isCollisionRay(const GSvector3 &_position, const GSvector3 &_direction, GSvector3* _intersect)const;
+	const bool isCollisionSphere(const GSvector3 &_center, float _radius, GSvector3* _out_center)const;
 	void draw(IRenderer * _renderer);
-	 const GSuint getID()const 
-	 {
-		 return static_cast<GSuint>(m_ID);
-	 }
+
 private:
 	OCTREE_ID m_ID;
 };

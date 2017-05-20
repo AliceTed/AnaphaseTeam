@@ -8,7 +8,6 @@
 #include "../transform/Transform.h"
 class IRenderer;
 class Animator;
-class CollisionGroup;
 class Scythe
 {
 public:
